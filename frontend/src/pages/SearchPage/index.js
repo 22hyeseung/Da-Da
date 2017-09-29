@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Header from '../../components/Header'
 
 class SearchPage extends Component {
   constructor(props) {
@@ -6,7 +7,12 @@ class SearchPage extends Component {
   }
 
   render() {
-    return <div>SearchPage</div>
+    return (
+      <div>
+        <Header />
+        <div>SearchPage</div>
+      </div>
+    )
   }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Header from '../../components/Header'
 
 class WeightPage extends Component {
   constructor(props) {
@@ -6,7 +7,12 @@ class WeightPage extends Component {
   }
 
   render() {
-    return <div>WeightPage</div>
+    return (
+      <div>
+        <Header />
+        <div>WeightPage</div>
+      </div>
+    )
   }
 }
 

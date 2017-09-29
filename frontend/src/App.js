@@ -4,31 +4,12 @@ import {
   Route,
 } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css'
-import { Header } from './components/Header'
+import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import DiaryPage from './pages/DiaryPage'
 import ReportPage from './pages/ReportPage'
 import WeightPage from './pages/WeightPage'
 import SearchPage from './pages/SearchPage'
-
-const routes = [
-  {
-    linkLabel: '다이어리',
-    linkTo: '/diary',
-  },
-  {
-    linkLabel: '리포트',
-    linkTo: '/report',
-  },
-  {
-    linkLabel: '체중',
-    linkTo: '/weight',
-  },
-  {
-    linkLabel: '검색',
-    linkTo: '/search',
-  },
-]
 
 class App extends Component {
   constructor(props) {
@@ -39,18 +20,14 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <div className="ui container">
-            {routes.map(route => (
-              <Header
-                key={route.linkLabel}
-                linkTo={route.linkTo}
-                label={route.linkLabel}
-              />
-            ))}
-          </div>
           <Route
             exact
             path="/"
+            component={LoginPage}
+          />
+
+          <Route
+            path="/home"
             component={HomePage}
           />
 

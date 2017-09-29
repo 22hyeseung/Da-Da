@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Header from '../../components/Header'
 
 class HomePage extends Component {
   constructor(props) {
@@ -7,8 +8,11 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className="ui container">
-        Hi here is HomePage
+      <div>
+        <Header />
+        <div className="ui container">
+          Hi here is HomePage
+        </div>
       </div>
     )
   }
