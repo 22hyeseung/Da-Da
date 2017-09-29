@@ -1,6 +1,6 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 
-class Home extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props)
   }
@@ -8,10 +8,10 @@ class Home extends Component {
   render() {
     return (
       <div className="ui container">
-        Hi here is Home
+        Hi here is HomePage
       </div>
     )
   }
 }
 
-export default Home
+export default HomePage

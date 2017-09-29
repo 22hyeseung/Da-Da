@@ -31,5 +31,6 @@ $ npm i -g prettier
 "prettier.semi": false,
 "prettier.jsxBracketSameLine": true,
 "prettier.trailingComma": "all",
-"prettier.printWidth": 50
+"prettier.printWidth": 50,
+"prettier.singleQuote": true
 ```
