@@ -8,7 +8,7 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react'
-
+import * as Fa from 'react-icons/lib/fa'
 const LoginPage = () => (
   <div className="login-form">
     {/*
@@ -30,38 +30,35 @@ const LoginPage = () => (
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header
           as="h2"
-          color="teal"
+          color="grey"
           textAlign="center">
-          <Image src="/logo.png" /> Log-in to your
-          account
+          Da, Da
         </Header>
         <Form size="large">
-          <Segment stacked>
-            <Form.Input
-              fluid
-              icon="user"
-              iconPosition="left"
-              placeholder="E-mail address"
-            />
-            <Form.Input
-              fluid
-              icon="lock"
-              iconPosition="left"
-              placeholder="Password"
-              type="password"
-            />
-
-            <Button
-              color="teal"
-              fluid
-              size="large">
-              Login
-            </Button>
-          </Segment>
+          <Button
+            color="facebook"
+            fluid
+            size="large">
+            <Fa.FaFacebookSquare />
+            Facebook 계정으로 로그인 하기
+          </Button>
+          <Button
+            color="instagram"
+            fluid
+            size="large">
+            <Fa.FaInstagram />
+            Instagram 계정으로 로그인 하기
+          </Button>
+          <Button positive fluid size="large">
+            Naver 계정으로 로그인 하기
+          </Button>
+          <Button
+            color="yellow"
+            fluid
+            size="large">
+            Kakao 계정으로 로그인 하기
+          </Button>
         </Form>
-        <Message>
-          New to us? <a href="#">Sign Up</a>
-        </Message>
       </Grid.Column>
     </Grid>
   </div>
