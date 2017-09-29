@@ -17,7 +17,15 @@
 * semantic-ui-react v0.74.2
 * semantic-ui-css v2.2.12
 
-## Style Formatter
+### Icons
+
+* [react-icons](https://gorangajic.github.io/react-icons/index.html) v2.2.5
+
+<br>
+
+## Conventions
+
+### Style Formatter
 
 * prettier
 
@@ -35,6 +43,3 @@ $ npm i -g prettier
 "prettier.singleQuote": true
 ```
 
-## Icons
-
-* [react-icons](https://gorangajic.github.io/react-icons/index.html) v2.2.5
