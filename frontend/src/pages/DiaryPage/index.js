@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from '../../components/Header'
+import Navigation from '../../components/Navigation'
 
 class DiaryPage extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class DiaryPage extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Navigation />
         <div>DiaryPage</div>
       </div>
     )

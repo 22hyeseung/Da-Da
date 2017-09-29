@@ -1,12 +1,9 @@
 import React from 'react'
 import {
   Button,
+  Header,
   Form,
   Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
 } from 'semantic-ui-react'
 import * as Fa from 'react-icons/lib/fa'
 const LoginPage = () => (
