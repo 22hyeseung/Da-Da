@@ -34,3 +34,7 @@ $ npm i -g prettier
 "prettier.printWidth": 50,
 "prettier.singleQuote": true
 ```
+
+## Icons
+
+* [react-icons](https://gorangajic.github.io/react-icons/index.html) v2.2.5
