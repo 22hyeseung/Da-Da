@@ -3,6 +3,8 @@ import {
   BrowserRouter,
   Route,
 } from 'react-router-dom'
+import 'typeface-spoqa-han-sans2/spoqa-han-sans.css'
+import 'wfk-montserrat/montserrat.css'
 import './App.css'
 import 'semantic-ui-css/semantic.min.css'
 import LoginPage from './pages/LoginPage'

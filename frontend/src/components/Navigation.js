@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
+import './Navigation.css'
 
 const routes = [
   {
@@ -31,7 +32,9 @@ class Navigation extends Component {
     const { activeItem } = this.state
     return (
       <Menu pointing secondary>
-        <Menu.Item name="logo">Logo</Menu.Item>
+        <Menu.Item className="navigation-logo">
+          Da, Da
+        </Menu.Item>
         <Menu.Menu position="right">
           {routes.map(route => (
             <Menu.Item

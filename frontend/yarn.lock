@@ -6579,6 +6579,10 @@ websocket-extensions@>=0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.2.tgz#0e18781de629a18308ce1481650f67ffa2693a5d"
 
+wfk-montserrat@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/wfk-montserrat/-/wfk-montserrat-1.0.0.tgz#44b81f6bd9faed3a75fa43c41f429f25a7b21b24"
+
 whatwg-encoding@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/whatwg-encoding/-/whatwg-encoding-1.0.1.tgz#3c6c451a198ee7aec55b1ec61d0920c67801a5f4"
