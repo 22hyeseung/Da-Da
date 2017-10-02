@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
 import './Navigation.css'
 
 const routes = [
@@ -13,11 +13,11 @@ const routes = [
     linkTo: '/report',
   },
   {
-    linkLabel: '체중',
+    linkLabel: '체중 기록',
     linkTo: '/weight',
   },
   {
-    linkLabel: '검색',
+    linkLabel: '레시피 검색',
     linkTo: '/search',
   },
 ]
@@ -31,24 +31,46 @@ class Navigation extends Component {
   render() {
     const { activeItem } = this.state
     return (
-      <Menu pointing secondary>
+      <Menu
+        className="navigation"
+        style={{
+          border: 'none',
+        }}
+        pointing
+        secondary>
         <Menu.Item className="navigation-logo">
-          Da, Da
+          DA, DA
         </Menu.Item>
-        <Menu.Menu position="right">
+        <Menu.Menu
+          position="right"
+          style={{ paddingBottom: '8px' }}>
           {routes.map(route => (
             <Menu.Item
+              style={{
+                padding: '20px 10px 7px',
+                marginLeft: '37px',
+              }}
               name={route.linkLabel}
               active={
                 activeItem ===
                 `${route.linkLabel}`
               }
               onClick={this.handleItemClick}>
-              <Link to={route.linkTo}>
+              <Link
+                className="navigation-item"
+                to={route.linkTo}>
                 {route.linkLabel}
               </Link>
             </Menu.Item>
           ))}
+          <Image
+            className="navigation-avatar"
+            shape="circular"
+            src="https://placeimg.com/34/34/people"
+          />
+          <span className="navigation-username">
+            홍길동
+          </span>
         </Menu.Menu>
       </Menu>
     )
