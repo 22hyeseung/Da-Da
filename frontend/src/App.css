@@ -1,0 +1,9 @@
+@import url('/node_modules/typeface-spoqa-han-sans2/spoqa-han-sans.css');
+
+@import url('/node_modules/wfk-montserrat/montserrat.css');
+
+* {
+  font-family: 'montserrat-regular',
+    'Spoqa Han Sans', 'Spoqa Han Sans JP',
+    'Sans-serif';
+}
