@@ -36,6 +36,7 @@ class Navigation extends Component {
         style={{
           border: 'none',
         }}
+        inverted={this.props.inverted}
         pointing
         secondary>
         <Menu.Item className="navigation-logo">
@@ -68,13 +69,22 @@ class Navigation extends Component {
             shape="circular"
             src="https://placeimg.com/34/34/people"
           />
-          <span className="navigation-username">
+          <span
+            className="navigation-username"
+            style={{
+              color: `${this.props.color}`,
+            }}>
             홍길동
           </span>
         </Menu.Menu>
       </Menu>
     )
   }
+}
+
+Navigation.defaultProps = {
+  inverted: false,
+  color: '#16325c',
 }
 
 export default Navigation
