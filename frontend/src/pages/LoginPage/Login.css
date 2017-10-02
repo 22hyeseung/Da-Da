@@ -1,18 +1,9 @@
-.login-wrapper {
-    background-image: rgba(22, 50, 92, 0.5);
-    position: absolute;
-    width: auto;
-    height: auto;
-    min-width: 100 %;
-    min-height: 100 %;
-}
-
 video {
     position: fixed;
     top: 0;
     left: 0;
-    min-width: 100 %;
-    min-height: 100 %;
+    min-width: 100%;
+    min-height: 100%;
     width: auto;
     height: auto;
     z-index: -1;
@@ -26,12 +17,8 @@ video {
     padding: 10px;
 }
 
-.login-header {
-    font-size: 60px;
-    font-family: 'montserrat-bold', sans-serif;
-}
-
 .login-socialBtns {
+    margin-top: 100px;
     display: flex;
     /* align-items: center; */
     justify-content: space-between;
