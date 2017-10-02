@@ -1,4 +1,6 @@
 * {
-  font-family: 'Spoqa Han Sans',
-    'Spoqa Han Sans JP', 'Sans-serif';
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
