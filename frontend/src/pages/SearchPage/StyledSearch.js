@@ -47,5 +47,5 @@ export const searchInput = {
   width: '581px',
   position: 'absolute',
   top: '340px',
-  left: '-20px',
+  left: '10px',
 }

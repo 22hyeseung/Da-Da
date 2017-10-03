@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {
   Input,
+  Search,
   Grid,
   Header,
 } from 'semantic-ui-react'
