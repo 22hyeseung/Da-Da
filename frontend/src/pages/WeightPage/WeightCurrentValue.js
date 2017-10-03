@@ -20,10 +20,7 @@ class WeightCurrentValue extends Component {
         }}
       >
         <div>
-          <img
-            src={weightMeasure}
-            style={{ marginBottom: '21px' }}
-          />
+          <img src={weightMeasure} />
         </div>
         <div>
           <span className="weight-current">

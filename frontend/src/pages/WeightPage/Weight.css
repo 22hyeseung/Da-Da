@@ -15,3 +15,7 @@
     font-size: 28px;
     color: #16325c;
 }
+
+.ui.list>.item:after {
+    display: none;
+}

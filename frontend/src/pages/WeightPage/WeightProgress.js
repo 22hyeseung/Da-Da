@@ -69,7 +69,8 @@ class WeightProgress extends Component {
             left: '19.8rem',
           }}
         >
-          {/* left = (시작체중-목표체중)/(시작체중-현재체중)*33  */}
+          {/* 추후 데이터 연동시, left에 수치값 적용
+          left = (시작체중-목표체중)/(시작체중-현재체중)*33  */}
           <li style={{ paddingBottom: '8px' }}>
             <img src={weightFlag} />
           </li>

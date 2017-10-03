@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="846px" height="291px" viewBox="0 0 846 291" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2 Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="835" height="291" rx="4"></rect>
+        <radialGradient cx="50%" cy="0%" fx="50%" fy="0%" r="14958.9844%" gradientTransform="translate(0.500000,0.000000),scale(0.001566,1.000000),rotate(90.000000),translate(-0.500000,-0.000000)" id="radialGradient-3">
+            <stop stop-color="#F5F7F8" offset="0%"></stop>
+            <stop stop-color="#E7EBEF" offset="100%"></stop>
+        </radialGradient>
+        <linearGradient x1="101.499999%" y1="-0.499999523%" x2="1.01329273%" y2="100.981623%" id="linearGradient-4">
+            <stop stop-color="#485563" offset="0%"></stop>
+            <stop stop-color="#29323C" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-5" cx="769" cy="103" r="5"></circle>
+    </defs>
+    <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3._체중기록" transform="translate(-134.000000, -433.000000)">
+            <g id="Group-2-Copy" style="mix-blend-mode: multiply;" transform="translate(134.000000, 433.000000)">
+                <g id="Group-3">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="bg" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <g id="lines" mask="url(#mask-2)" stroke-linecap="square" stroke="url(#radialGradient-3)" stroke-width="0.6">
+                        <g transform="translate(52.000000, 32.000000)">
+                            <path d="M0.935546875,1.3 L1278.38281,1.3" id="6"></path>
+                            <path d="M0.935546875,40.3 L1278.38281,40.3" id="5"></path>
+                            <path d="M0.935546875,79.3 L1278.38281,79.3" id="4"></path>
+                            <path d="M0.935546875,118.3 L1278.38281,118.3" id="3"></path>
+                            <path d="M0.935546875,157.3 L1278.38281,157.3" id="2"></path>
+                            <path d="M0.935546875,196.3 L1278.38281,196.3" id="1"></path>
+                        </g>
+                    </g>
+                    <g id="numbers_and_dates" mask="url(#mask-2)">
+                        <g transform="translate(10.000000, 26.000000)">
+                            <text id="27" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="74.6888281" y="223" fill="#485465">27</tspan>
+                            </text>
+                            <text id="0" font-family="SpoqaHanSans-Light, SpoqaHanSans" font-size="10" font-weight="300" letter-spacing="0.120000005">
+                                <tspan x="22.7888281" y="207" fill="#485465">0</tspan>
+                            </text>
+                            <text id="30" font-family="SpoqaHanSans-Light, SpoqaHanSans" font-size="10" font-weight="300" letter-spacing="0.120000005">
+                                <tspan x="16.7788281" y="168" fill="#485465">30</tspan>
+                            </text>
+                            <text id="40" font-family="SpoqaHanSans-Light, SpoqaHanSans" font-size="10" font-weight="300" letter-spacing="0.120000005">
+                                <tspan x="16.7788281" y="129" fill="#485465">40</tspan>
+                            </text>
+                            <text id="50" font-family="SpoqaHanSans-Light, SpoqaHanSans" font-size="10" font-weight="300" letter-spacing="0.120000005">
+                                <tspan x="16.7788281" y="90" fill="#485465">50</tspan>
+                            </text>
+                            <text id="60" font-family="SpoqaHanSans-Light, SpoqaHanSans" font-size="10" font-weight="300" letter-spacing="0.120000005">
+                                <tspan x="16.7788281" y="51" fill="#485465">60</tspan>
+                            </text>
+                            <text id="70" font-family="SpoqaHanSans-Light, SpoqaHanSans" font-size="10" font-weight="300" letter-spacing="0.120000005">
+                                <tspan x="16.7788281" y="12" fill="#485465">70</tspan>
+                            </text>
+                            <text id="28" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="132.346828" y="223" fill="#485465">28</tspan>
+                            </text>
+                            <text id="1" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="196.446828" y="223" fill="#485465">1</tspan>
+                            </text>
+                            <text id="2" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="252.198828" y="223" fill="#485465">2</tspan>
+                            </text>
+                            <text id="3" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="310.180828" y="223" fill="#485465">3</tspan>
+                            </text>
+                            <text id="4" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="369.34" y="223" fill="#485465">4</tspan>
+                            </text>
+                            <text id="5" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="425.22" y="223" fill="#485465">5</tspan>
+                            </text>
+                            <text id="6" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="481.142" y="223" fill="#485465">6</tspan>
+                            </text>
+                            <text id="7" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="537.49" y="223" fill="#485465">7</tspan>
+                            </text>
+                            <text id="8" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="593.148" y="223" fill="#485465">8</tspan>
+                            </text>
+                            <text id="9" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="649.154" y="223" fill="#485465">9</tspan>
+                            </text>
+                            <text id="10" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="702.352" y="223" fill="#485465">10</tspan>
+                            </text>
+                            <text id="11" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.120000005">
+                                <tspan x="760.296" y="223" fill="#485465">11</tspan>
+                            </text>
+                            <text id="12" font-family="Montserrat-Medium, Montserrat" font-size="12" font-weight="400" letter-spacing="0.144000009">
+                                <tspan x="814.024" y="224" fill="#16325C">12</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <path d="M69.4283359,182.464003 C69.4283359,182.464003 109.025077,189.414164 142.957633,184.387832 C176.890188,179.361499 172.656852,176.594863 185.998648,165.354628 C199.340445,154.114394 226.307892,176.456133 255.29357,175.381972 C296.033805,173.872207 305.326773,163.104628 358.932242,127.034316 C412.537711,90.9640035 432.252555,106.890205 471.494742,130.827705 C510.73693,154.765205 505.23693,138.573378 549.623648,139.956191 C594.010367,141.339003 623.291617,211.573378 692.318961,214.065566 C761.346305,216.557753 764.678336,48.0069722 809.615836,47.0108785 C854.553336,46.0147847 845.096305,113.753066 877.459586,115.026503 C909.822867,116.299941 895.295523,206.792128 964.889273,210.147597 C1034.48302,213.503066 1039.08068,108.620253 1091.47912,106.706191 C1143.87755,104.792128 1164.62755,245.307753 1227.29162,189.635878 C1289.95568,133.964003 1299.54182,197.0044 1308.64709,197.745253 C1317.75235,198.486107 1330.51037,198.034316 1330.51037,198.034316 L1330.51037,226.967466 L52,226.967466 L52,187.901439 L64.9810703,184.001113 L69.4283359,182.464003 Z" id="Path-2" fill="url(#linearGradient-4)" opacity="0.0362884964" mask="url(#mask-2)"></path>
+                    <path d="M53,182.464003 C53,182.464003 67.9326172,179.343886 82.9736328,182.464003 C98.0146484,185.584121 112.633789,190.90541 142.161133,186.684707 C171.688477,182.464003 173.494141,176.594863 186.835938,165.354628 C200.177734,154.114394 227.145182,176.456133 256.130859,175.381972 C296.871094,173.872207 306.164062,163.104628 359.769531,127.034316 C413.375,90.9640035 433.089844,106.890205 472.332031,130.827705 C511.574219,154.765205 506.074219,138.573378 550.460938,139.956191 C594.847656,141.339003 624.128906,211.573378 693.15625,214.065566 C762.183594,216.557753 765.515625,48.0069722 810.453125,47.0108785 C815.884191,46.8904924 820.520732,47.7740893 824.5326,49.4229965 M837.029297,58.718398 C854.491211,73.9532613 855.885723,114.144665 878.296875,115.026503 C910.660156,116.299941 896.132813,206.792128 965.726563,210.147597 C1035.32031,213.503066 1039.91797,108.620253 1092.31641,106.706191 C1144.71484,104.792128 1165.46484,245.307753 1228.12891,189.635878 C1290.79297,133.964003 1300.37911,197.0044 1309.48437,197.745253 C1318.58964,198.486107 1331.34766,198.034316 1331.34766,198.034316" id="Path-2" stroke="url(#linearGradient-4)" stroke-width="2" opacity="0.572463768" mask="url(#mask-2)"></path>
+                    <g id="Oval-2" mask="url(#mask-2)">
+                        <use fill="#53A8E2" fill-rule="evenodd" xlink:href="#path-5"></use>
+                        <circle stroke-opacity="0.493093297" stroke="#53A8E2" stroke-width="3" cx="769" cy="103" r="6.5"></circle>
+                    </g>
+                    <g id="select_info" mask="url(#mask-2)">
+                        <g transform="translate(843.000000, 37.000000)">
+                            <path d="M5,0.99016959 C5,0.443314026 5.44700623,0 6.0029907,0 L73.9970093,0 C74.5509458,0 75,0.455173016 75,1.00041944 L75,34.9995806 C75,35.552097 74.5529938,36 73.9970093,36 L6.0029907,36 C5.44905423,36 5,35.5505258 5,34.9909995 L5,24.1655273 L0.406494141,19 L5,14.0812988 L5,0.99016959 Z" id="Rectangle" fill="#485465" fill-rule="evenodd" opacity="0.9"></path>
+                            <text id="March-12" fill="none" opacity="0.4" font-family=".AppleSystemUIFont" font-size="9" font-weight="normal" letter-spacing="0.171">
+                                <tspan x="19.3076992" y="15" fill="#FFFFFF">March 12</tspan>
+                            </text>
+                        </g>
+                    </g>
+                </g>
+                <g id="select_info" transform="translate(771.000000, 75.000000)">
+                    <path d="M5,0.99016959 C5,0.443314026 5.44700623,0 6.0029907,0 L73.9970093,0 C74.5509458,0 75,0.455173016 75,1.00041944 L75,34.9995806 C75,35.552097 74.5529938,36 73.9970093,36 L6.0029907,36 C5.44905423,36 5,35.5505258 5,34.9909995 L5,24.1655273 L0.406494141,19 L5,14.0812988 L5,0.99016959 Z" id="Rectangle" fill="#485465" opacity="0.9"></path>
+                    <text id="2017.10.11" opacity="0.4" font-family="Montserrat-SemiBold, Montserrat" font-size="9" font-weight="500" letter-spacing="0.171" fill="#FFFFFF">
+                        <tspan x="17" y="15">2017.10.11</tspan>
+                    </text>
+                    <text id="45-kg" font-family="Montserrat-SemiBold, Montserrat" font-size="11" font-weight="500" letter-spacing="0.209000006" fill="#FFFFFF">
+                        <tspan x="17" y="28">45 kg</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

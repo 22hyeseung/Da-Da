@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Navigation from '../../components/Navigation'
 import { Segment } from 'semantic-ui-react'
 import WeightProgress from './WeightProgress'
 import WeightCurrentValue from './WeightCurrentValue'

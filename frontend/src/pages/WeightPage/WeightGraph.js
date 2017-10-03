@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Navigation from '../../components/Navigation'
 import { Segment } from 'semantic-ui-react'
+import Graph from '../../static/img/weight-graph.svg'
 
 class WeightGraph extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class WeightGraph extends Component {
             border: 'none',
           }}
         >
-          1
+          <img src={Graph} />
         </Segment>
       </div>
     )
