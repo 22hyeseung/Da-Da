@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import {
-  Search,
+  Input,
   Grid,
   Header,
 } from 'semantic-ui-react'
 import Navigation from '../../components/Navigation'
-import bgImg from '../../static/img/search_bg.jpg'
-import './Search.css'
+import * as styled from './StyledSearch'
 
 class SearchPage extends Component {
   constructor(props) {
@@ -15,13 +14,7 @@ class SearchPage extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          backgroundImage: `url(${bgImg})`,
-          backgroundSize: 'cover',
-          color: '#fff',
-          height: '780px',
-        }}>
+      <div style={styled.container}>
         <Navigation
           inverted="true"
           color="#fff"
@@ -31,38 +24,27 @@ class SearchPage extends Component {
           <Grid.Column width={4} />
           <Grid.Column
             width={8}
-            className="search-grid-center">
+            style={styled.centerGrid}>
             <Header
-              style={{
-                fontFamily: 'Spoqa Han Sans',
-                fontWeight: '100',
-                fontSize: '56px',
-                margin: '0',
-              }}
+              style={styled.h1}
               as="h1"
               content="어떤 요리를 원하세요?"
               inverted
             />
             <Header
-              style={{
-                fontFamily: 'Spoqa Han Sans',
-                fontWeight: '100',
-                fontSize: '28px',
-                margin: '0',
-              }}
-              as="h5"
+              style={styled.h2}
+              as="h2"
               content="레시피를 검색해보세요."
               inverted
             />
-            <Search />
+            <Input
+              style={styled.searchInput}
+              icon="search"
+              placeholder="Search..."
+            />
             <Header
-              style={{
-                fontFamily: 'Spoqa Han Sans',
-                fontWeight: '100',
-                fontSize: '14px',
-                margin: '0',
-              }}
-              as="h6"
+              style={styled.h5}
+              as="h5"
               content="하루 권장량 기준, 현재 소비가능한 칼로리는 300kcal입니다."
               inverted
             />
