@@ -1,0 +1,19 @@
+.weight-progress-start,
+.weight-progress-end {
+    font-family: 'montserrat-semibold';
+    font-size: 28px;
+    color: #16325c;
+}
+
+.weight-progress-unit-kg {
+    padding-left: 3px;
+    font-family: 'montserrat-semibold';
+    font-size: 14px;
+    color: #16325c;
+}
+
+.weight-progress-lable {
+    font-weight: 100;
+    font-size: 18px;
+    color: #16325c;
+}

@@ -1,0 +1,17 @@
+.weight-grid {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.weight-current {
+    font-family: 'montserrat-semibold';
+    font-size: 70px;
+    color: #16325c;
+}
+
+.weight-unit-kg {
+    padding-left: 3px;
+    font-family: 'montserrat-semibold';
+    font-size: 28px;
+    color: #16325c;
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="577px" height="16px" viewBox="0 0 577 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Progress Indicator - Base</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="6.24500451e-15%" y1="0%" x2="101.481623%" y2="100.486706%" id="linearGradient-1">
+            <stop stop-color="#26D0CE" offset="0%"></stop>
+            <stop stop-color="#1A2980" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="101.499999%" y1="-0.499999523%" x2="0.499999523%" y2="101.499999%" id="linearGradient-2">
+            <stop stop-color="#26D0CE" offset="0%"></stop>
+            <stop stop-color="#1A2980" offset="100%"></stop>
+        </linearGradient>
+        <path d="M26,12 C28.209139,12 30,10.209139 30,8 C30,5.790861 28.209139,4 26,4 C23.790861,4 22,5.790861 22,8 C22,10.209139 23.790861,12 26,12 Z" id="path-3"></path>
+        <path d="M587,12 C589.209139,12 591,10.209139 591,8 C591,5.790861 589.209139,4 587,4 C584.790861,4 583,5.790861 583,8 C583,10.209139 584.790861,12 587,12 Z" id="path-4"></path>
+    </defs>
+    <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3._체중기록" transform="translate(-282.000000, -342.000000)">
+            <g id="Group-2" transform="translate(257.000000, 299.000000)">
+                <g id="Progress-Indicator---Base" transform="translate(7.000000, 43.000000)">
+                    <path d="M309,7 L29,7 L29,9 L309,9 L309,13 L311,13 L311,9 L591,9 L591,7 L311,7 L311,4 L309,4 L309,7 Z" id="Combined-Shape" fill="url(#linearGradient-1)"></path>
+                    <g id="PI---Step---Active">
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        <path stroke="url(#linearGradient-2)" stroke-width="4" d="M26,14 C22.6862915,14 20,11.3137085 20,8 C20,4.6862915 22.6862915,2 26,2 C29.3137085,2 32,4.6862915 32,8 C32,11.3137085 29.3137085,14 26,14 Z"></path>
+                    </g>
+                    <g id="PI---Step---Not-Completed">
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-4"></use>
+                        <path stroke="#D8DDE6" stroke-width="4" d="M587,14 C583.686292,14 581,11.3137085 581,8 C581,4.6862915 583.686292,2 587,2 C590.313708,2 593,4.6862915 593,8 C593,11.3137085 590.313708,14 587,14 Z"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
