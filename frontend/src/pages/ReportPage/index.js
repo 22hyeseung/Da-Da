@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
+import { Grid, Segment } from 'semantic-ui-react'
 import Navigation from '../../components/Navigation'
+import ReportSubNav from './ReportSubNav'
+import ReportCalory from './ReportCalory'
+import ReportNutrtion from './ReportNutrtion'
+import './Report.css'
 
 class ReportPage extends Component {
   constructor(props) {
@@ -8,9 +13,11 @@ class ReportPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="report">
         <Navigation />
-        <div>ReportPage</div>
+        <ReportSubNav />
+        <ReportCalory />
+        <ReportNutrtion />
       </div>
     )
   }
