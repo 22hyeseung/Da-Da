@@ -11,3 +11,7 @@
 .ui.item.menu .item {
     padding-left: 16px !important
 }
+
+.ui.list>.item:after {
+    display: none;
+}
