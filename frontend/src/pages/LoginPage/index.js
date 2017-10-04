@@ -17,8 +17,7 @@ const LoginPage = () => (
     <Grid
       divided="vertically"
       textAlign="left"
-      style={{ marginTop: '127px' }}
-    >
+      style={{ marginTop: '127px' }}>
       <Grid.Row columns={4}>
         <Grid.Column>
           <Header
@@ -29,17 +28,12 @@ const LoginPage = () => (
               fontFamily: 'montserrat',
               fontWeight: '600',
               color: '#fff',
-            }}
-          >
+            }}>
             <Header.Subheader
               style={{
                 color: '#fff',
                 fontSize: '21px',
-                fontWeight: '100',
-                marginBottom: '10px',
-                lineHeight: '1.35',
-              }}
-            >
+              }}>
               건강하고 올바른 <br />
               <span style={{ fontWeight: '700' }}>
                 다
@@ -58,8 +52,7 @@ const LoginPage = () => (
                   'linear-gradient(261deg, #0f2e6c, #4267b2)',
                 color: '#fff',
                 fontWeight: '100',
-              }}
-            >
+              }}>
               {/* <Fa.FaFacebookSquare /> */}
               Facebook 계정으로 로그인 하기
             </Button>
@@ -70,8 +63,7 @@ const LoginPage = () => (
                   'linear-gradient(279deg, #515bd4, #8134af 23%, #dd2a7b 48%, #feda77)',
                 color: '#fff',
                 fontWeight: '100',
-              }}
-            >
+              }}>
               {/* <Fa.FaInstagram /> */}
               Instagram 계정으로 로그인 하기
             </Button>
@@ -82,8 +74,7 @@ const LoginPage = () => (
                   'linear-gradient(261deg, #008215, #00c73c)',
                 color: '#fff',
                 fontWeight: '100',
-              }}
-            >
+              }}>
               Naver 계정으로 로그인 하기
             </Button>
             <Button
@@ -93,8 +84,7 @@ const LoginPage = () => (
                   'linear-gradient(261deg, #ffb600, #fae200)',
                 color: '#16325c',
                 fontWeight: '100',
-              }}
-            >
+              }}>
               Kakao 계정으로 로그인 하기
             </Button>
           </div>
