@@ -8,6 +8,7 @@ import {
 import Navigation from '../../components/Navigation'
 import bgImg from '../../static/img/recipe_img.jpg'
 import IngredientBox from './IngredientBox'
+import CookingProcess from './CookingProcess'
 
 class RecipePage extends Component {
   render() {
@@ -176,6 +177,7 @@ class RecipePage extends Component {
             position: 'relative',
           }}>
           <IngredientBox />
+          <CookingProcess />
         </div>
       </div>
     )
