@@ -50,7 +50,7 @@ const LoginPage = () => (
             </Header.Subheader>
             DA,DA
           </Header>
-          <div className="login-socialBtns">
+          <div className="login-soci  alBtns">
             <Button
               fluid
               style={{
