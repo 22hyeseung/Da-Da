@@ -15,3 +15,25 @@
 .ui.list>.item:after {
     display: none;
 }
+
+.diary-date {
+    font-family: 'montserrat-bold';
+    font-size: 20px;
+    color: #16325c;
+    margin: 0px 48px;
+}
+
+.diary-submenu {
+    margin: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'montserrat-bold';
+    font-size: 20px;
+    color: #16325c;
+}
+
+.diary-day {
+    font-weight: 700;
+    font-size: 18px;
+}

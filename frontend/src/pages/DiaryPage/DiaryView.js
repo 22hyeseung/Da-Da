@@ -12,17 +12,9 @@ class DiaryView extends Component {
   render() {
     return (
       <div>
-        <Segment
-          style={{
-            padding: '35px 135px',
-            boxShadow: 'none',
-            border: '1px solid #D8DDE6',
-          }}
-        >
-          <DiaryFood />
-          <DiaryFitness />
-          <DiaryReview />
-        </Segment>
+        <DiaryFood />
+        <DiaryFitness />
+        <DiaryReview />
       </div>
     )
   }

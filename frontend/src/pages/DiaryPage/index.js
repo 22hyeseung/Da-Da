@@ -4,6 +4,7 @@ import { Grid } from 'semantic-ui-react'
 import DiaryTab from './DiaryTab'
 import DiarySummary from './DiarySummary'
 import DiaryView from './DiaryView'
+import DiarySubNav from './DiarySubNav'
 import './Diary.css'
 
 class DiaryPage extends Component {
@@ -15,6 +16,7 @@ class DiaryPage extends Component {
     return (
       <div className="diary-grid">
         <Navigation />
+        <DiarySubNav />
         <Grid
           columns="equal"
           style={{ margin: '0px' }}
