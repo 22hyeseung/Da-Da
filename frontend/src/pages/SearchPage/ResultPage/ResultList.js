@@ -7,6 +7,10 @@ import {
   Card,
   Header,
 } from 'semantic-ui-react'
+import img1 from '../../../static/img/result1.png'
+import img2 from '../../../static/img/result2.png'
+import img3 from '../../../static/img/result3.png'
+import img4 from '../../../static/img/result4.png'
 
 const wrapper = {
   width: '1180px',
@@ -48,7 +52,7 @@ const ImageWrap = {
   padding: '0',
 }
 
-const ImageSize = {
+const CardSize = {
   width: '279px',
   height: '271px',
   borderRadius: '4px',
@@ -90,8 +94,15 @@ class ResultBox extends Component {
               <Card>
                 <Image
                   as="a"
-                  style={ImageSize}
-                  src="http://lorempixel.com/279/271/food/"
+                  style={{
+                    width: '279px',
+                    height: '271px',
+                    borderRadius: '4px',
+                    backgroundImage: `url(${img1})`,
+                    backgroundSize: '100% 150%',
+                    backgroundPositionY: '70%',
+                  }}
+                  src="/"
                   href="http://google.com"
                   target="_blank">
                   {/* <Label
@@ -121,7 +132,7 @@ class ResultBox extends Component {
                       left: '18px',
                       fontSize: '21px',
                     }}>
-                    베리 팬케익
+                    트리플베리 팬케익
                   </Card.Header>
                   <Card.Meta
                     style={{
@@ -146,7 +157,7 @@ class ResultBox extends Component {
                           'Montserrat-Regular',
                         fontSize: '21px',
                       }}>
-                      380
+                      340
                     </span>{' '}
                     kcal
                   </Card.Description>
@@ -159,8 +170,14 @@ class ResultBox extends Component {
               <Card>
                 <Image
                   as="a"
-                  style={ImageSize}
-                  src="http://lorempixel.com/279/271/food/"
+                  style={{
+                    width: '279px',
+                    height: '271px',
+                    borderRadius: '4px',
+                    backgroundImage: `url(${img2})`,
+                    backgroundSize: '100% 100%',
+                  }}
+                  src="/"
                   href="http://google.com"
                   target="_blank">
                   {/* <Label
@@ -190,7 +207,7 @@ class ResultBox extends Component {
                       left: '18px',
                       fontSize: '21px',
                     }}>
-                    팬케익
+                    스트로베리 팬케익
                   </Card.Header>
                   <Card.Meta
                     style={{
@@ -215,7 +232,7 @@ class ResultBox extends Component {
                           'Montserrat-Regular',
                         fontSize: '21px',
                       }}>
-                      380
+                      320
                     </span>{' '}
                     kcal
                   </Card.Description>
@@ -228,8 +245,14 @@ class ResultBox extends Component {
               <Card>
                 <Image
                   as="a"
-                  style={ImageSize}
-                  src="http://lorempixel.com/279/271/food/"
+                  style={{
+                    width: '279px',
+                    height: '271px',
+                    borderRadius: '4px',
+                    backgroundImage: `url(${img3})`,
+                    backgroundSize: '100% 100%',
+                  }}
+                  src="/"
                   href="http://google.com"
                   target="_blank">
                   {/* <Label
@@ -259,7 +282,7 @@ class ResultBox extends Component {
                       left: '18px',
                       fontSize: '21px',
                     }}>
-                    팬케익
+                    블루베리 팬케익
                   </Card.Header>
                   <Card.Meta
                     style={{
@@ -284,7 +307,7 @@ class ResultBox extends Component {
                           'Montserrat-Regular',
                         fontSize: '21px',
                       }}>
-                      380
+                      270
                     </span>{' '}
                     kcal
                   </Card.Description>
@@ -297,8 +320,14 @@ class ResultBox extends Component {
               <Card>
                 <Image
                   as="a"
-                  style={ImageSize}
-                  src="http://lorempixel.com/279/271/food/"
+                  style={{
+                    width: '279px',
+                    height: '271px',
+                    borderRadius: '4px',
+                    backgroundImage: `url(${img4})`,
+                    backgroundSize: '100% 100%',
+                  }}
+                  src="/"
                   href="http://google.com"
                   target="_blank">
                   {/* <Label
@@ -328,7 +357,7 @@ class ResultBox extends Component {
                       left: '18px',
                       fontSize: '21px',
                     }}>
-                    팬케익
+                    바나나 팬케익
                   </Card.Header>
                   <Card.Meta
                     style={{

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Navigation from '../../../components/Navigation'
 import TopSearchBar from './ResultSearchBar'
-import ResultBox from './ResultBox'
+import ResultBox from './ResultList'
 
 const resultWrapper = {
   width: '1200px',
