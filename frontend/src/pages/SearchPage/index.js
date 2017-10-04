@@ -7,6 +7,7 @@ const container = {
   backgroundImage: `url(${bgImg})`,
   backgroundSize: 'cover',
   color: '#fff',
+  width: '1439px',
   height: '780px',
 }
 

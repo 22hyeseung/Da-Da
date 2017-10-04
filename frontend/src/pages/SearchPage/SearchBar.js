@@ -25,9 +25,6 @@ const h1 = {
   fontWeight: '100',
   fontSize: '56px',
   margin: '0',
-  position: 'absolute',
-  top: '195px',
-  left: '40px',
 }
 
 const h2 = {
@@ -35,26 +32,35 @@ const h2 = {
   fontWeight: '100',
   fontSize: '28px',
   margin: '0',
+}
+
+const headerGrid = {
+  textAlign: 'center',
   position: 'absolute',
-  top: '270px',
-  left: '160px',
+  top: '140px',
+  left: '112px',
+  width: '514px',
+  height: '124px',
+}
+
+const searchInput = {
+  width: '581px',
+  height: '41px',
+  position: 'absolute',
+  top: '334px',
+  left: '78px',
 }
 
 const h5 = {
+  width: '349px',
+  height: '20px',
   fontFamily: 'Spoqa Han Sans',
   fontWeight: '100',
   fontSize: '14px',
   margin: '0',
   position: 'absolute',
-  top: '410px',
-  left: '125px',
-}
-
-const searchInput = {
-  width: '581px',
-  position: 'absolute',
-  top: '340px',
-  left: '10px',
+  top: '397px',
+  left: '195px',
 }
 
 class SearchBar extends Component {
@@ -70,18 +76,20 @@ class SearchBar extends Component {
           <Grid.Column
             width={8}
             style={centerGrid}>
-            <Header
-              style={h1}
-              as="h1"
-              content="어떤 요리를 원하세요?"
-              inverted
-            />
-            <Header
-              style={h2}
-              as="h2"
-              content="레시피를 검색해보세요."
-              inverted
-            />
+            <Grid.Row style={headerGrid}>
+              <Header
+                style={h1}
+                as="h1"
+                content="어떤 요리를 원하세요?"
+                inverted
+              />
+              <Header
+                style={h2}
+                as="h2"
+                content="레시피를 검색해보세요."
+                inverted
+              />
+            </Grid.Row>
             <Input
               style={searchInput}
               icon="search"
