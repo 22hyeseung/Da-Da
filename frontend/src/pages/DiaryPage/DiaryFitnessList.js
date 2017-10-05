@@ -34,7 +34,7 @@ const DiaryFitnessAdd = () => (
   <div>
     <List
       horizontal
-      style={{ marginTop: '35px', width: '95%' }}
+      style={{ marginTop: '20px', width: '95%' }}
     >
       <List.Item
         style={{ width: '20%', margin: '0' }}
