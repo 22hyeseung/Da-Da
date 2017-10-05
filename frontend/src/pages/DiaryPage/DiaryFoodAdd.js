@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import MdAdd from 'react-icons/lib/md/add'
-import foodIconDefault from '../../static/img/diary-food_default.svg'
 
 class DiaryFoodAdd extends Component {
   constructor(props) {
@@ -12,6 +11,7 @@ class DiaryFoodAdd extends Component {
     return (
       <Button
         fluid
+        className="diary-food-addBtn"
         style={{
           textAlign: 'left',
           padding: '8px 14px',
@@ -22,6 +22,7 @@ class DiaryFoodAdd extends Component {
           fontWeight: '200',
           display: 'flex',
           alignItems: 'center',
+          fontFamily: 'Spoqa Han Sans',
         }}
       >
         <MdAdd

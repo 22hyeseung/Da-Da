@@ -37,3 +37,120 @@
     font-weight: 700;
     font-size: 18px;
 }
+
+.diary-food-addBtn {
+    transition: all 0.2s ease-in !important;
+    box-shadow: none !important;
+    bottom: 0px !important;
+}
+
+.diary-food-addBtn:hover {
+    box-shadow: rgba(79, 64, 64, 0.2) 0px 2px 5px 0px !important;
+    bottom: 2px;
+    position: relative;
+}
+
+.diary-food-meal {
+    margin-bottom: 14px;
+}
+
+.diary-food-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0px;
+}
+
+.diary-food-meal-count {
+    padding-left: 12px
+}
+
+.diary-food-title {
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.diary-food-search {
+    display: inline-block;
+    width: 100%;
+}
+
+.diary-food-search>div {
+    width: 100%;
+}
+
+.diary-food-search>div>.prompt {
+    border-radius: 4px !important;
+}
+
+
+/* .diary-food-search div:nth-child(2) {
+    background-color: red !important;
+    z-index: 0 !important
+} */
+
+.ui.search>.results {
+    position: relative;
+    width: 107%;
+    box-shadow: none;
+    border: none;
+}
+
+.diary-camera-icon {
+    border-style: none;
+    top: 20px;
+    position: absolute;
+    cursor: pointer
+}
+
+.diary-food-search-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.diary-food-search-label-result {
+    display: flex;
+    align-items: center;
+}
+
+.diary-food-search-label-result-title {
+    font-family: 'Spoqa Han Sans';
+    font-weight: 500;
+    padding-right: 26px;
+    font-size: 14px;
+}
+
+.diary-food-search-label-result-kcal {
+    font-family: 'Spoqa Han Sans';
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.diary-food-search-label-result-input {
+    display: flex;
+    align-items: center;
+}
+
+.diary-food-search-label-result-calculateKcal {
+    font-family: 'montserrat-semibold';
+    font-size: 28px;
+    color: #16325c;
+}
+
+.diary-food-search-label-result-unit {
+    font-family: 'Spoqa Han Sans';
+    font-weight: 300;
+    padding-left: 7px;
+    font-size: 14px;
+    color: #16325c;
+}
+
+.diary-food-calculateIcon {
+    padding: 0px 14px;
+}
+
+.diary-food-search-label-result-wrapper {
+    display: flex;
+    align-items: baseline;
+}

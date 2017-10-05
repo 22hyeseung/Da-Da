@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="22px" viewBox="0 0 26 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Mask</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="101.499999%" y1="-0.499999523%" x2="0.499999523%" y2="101.499999%" id="linearGradient-1">
+            <stop stop-color="#26D0CE" offset="0%"></stop>
+            <stop stop-color="#1A2980" offset="100%"></stop>
+        </linearGradient>
+        <path d="M806,70.7 C803.616667,70.7 801.666667,72.68 801.666667,75.1 C801.666667,77.52 803.616667,79.5 806,79.5 C808.383333,79.5 810.333333,77.52 810.333333,75.1 C810.333333,72.68 808.383333,70.7 806,70.7 Z M816.833333,67.4 L814.016667,67.4 C813.258333,67.4 812.608333,67.015 812.175,66.41 L810.929167,64.485 C810.55,63.55 809.629167,63 808.654167,63 L803.345833,63 C802.370833,63 801.45,63.55 801.016667,64.485 L799.770833,66.41 C799.391667,67.015 798.6875,67.4 797.929167,67.4 L795.166667,67.4 C793.975,67.4 793,68.39 793,69.6 L793,82.8 C793,84.01 793.975,85 795.166667,85 L816.833333,85 C818.025,85 819,84.01 819,82.8 L819,69.6 C819,68.39 818.025,67.4 816.833333,67.4 Z M806,81.7 C802.425,81.7 799.5,78.73 799.5,75.1 C799.5,71.47 802.425,68.5 806,68.5 C809.575,68.5 812.5,71.47 812.5,75.1 C812.5,78.73 809.575,81.7 806,81.7 Z" id="path-2"></path>
+    </defs>
+    <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.1.1_식단다이어리_food_search+card+album" transform="translate(-928.000000, -369.000000)">
+            <g id="아침식사" transform="translate(135.000000, 306.000000)">
+                <mask id="mask-3" fill="white">
+                    <use xlink:href="#path-2"></use>
+                </mask>
+                <use id="Mask" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+            </g>
+        </g>
+    </g>
+</svg>
