@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import {
   Segment,
   Header,
-  Divider,
 } from 'semantic-ui-react'
 import bgImg from '../../static/img/fitness_bg.png'
 import FitnessIcon from '../../static/img/diary-fitness_default.svg'
 import DiaryFitnessList from './DiaryFitnessList'
+import DiaryFitnessInput from './DiaryFitnessInput'
 import DiaryFitnessAdd from './DiaryFitnessAdd'
 
 class DiaryFitness extends Component {
@@ -18,6 +18,8 @@ class DiaryFitness extends Component {
     return (
       <Segment
         style={{
+          height: '574px',
+          overflow: 'auto',
           padding: '33px 36px',
           boxShadow: 'none',
           border: '1px solid #D8DDE6',
@@ -55,7 +57,12 @@ class DiaryFitness extends Component {
           />
         </Header>
         <DiaryFitnessList />
-        <Divider />
+        <DiaryFitnessList />
+        <DiaryFitnessList />
+        <DiaryFitnessList />
+        <DiaryFitnessList />
+        <DiaryFitnessList />
+        <DiaryFitnessInput />
         <DiaryFitnessAdd />
       </Segment>
     )
