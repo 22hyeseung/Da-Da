@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import {
+  BrowserRouter,
+  Route,
+} from 'react-router-dom'
 import { Segment } from 'semantic-ui-react'
 import DiaryFood from './DiaryFood'
 import DiaryFitness from './DiaryFitness'
@@ -11,11 +15,23 @@ class DiaryView extends Component {
 
   render() {
     return (
-      <div>
-        <DiaryFood />
-        <DiaryFitness />
-        <DiaryReview />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Route
+            exact
+            path="/diary"
+            component={DiaryFood}
+          />
+          <Route
+            path="/diary/fitness"
+            component={DiaryFitness}
+          />
+          <Route
+            path="/diary/review"
+            component={DiaryReview}
+          />
+        </div>
+      </BrowserRouter>
     )
   }
 }
