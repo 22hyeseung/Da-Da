@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import {
   Segment,
   Header,
+  Divider,
 } from 'semantic-ui-react'
 import bgImg from '../../static/img/fitness_bg.png'
 import FitnessIcon from '../../static/img/diary-fitness_default.svg'
+import DiaryFitnessList from './DiaryFitnessList'
 import DiaryFitnessAdd from './DiaryFitnessAdd'
 
 class DiaryFitness extends Component {
@@ -52,6 +54,8 @@ class DiaryFitness extends Component {
             }}
           />
         </Header>
+        <DiaryFitnessList />
+        <Divider />
         <DiaryFitnessAdd />
       </Segment>
     )

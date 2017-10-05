@@ -16,7 +16,6 @@ class DiaryFitnessAdd extends Component {
           padding: '8px 14px',
           color: '#16325C',
           backgroundColor: 'transparent',
-          borderRadius: '4px',
           fontWeight: '200',
           display: 'flex',
           alignItems: 'center',
