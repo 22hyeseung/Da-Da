@@ -16,6 +16,7 @@ import SearchPage from './pages/SearchPage'
 
 /* 페이지 확인용 라우터 -> 나중에 ajax로 처리할 화면입니다.*/
 import SearchResultPage from './pages/SearchPage/ResultPage'
+import NoSearchPage from './pages/SearchPage/ResultPage/NoSearch'
 
 class App extends Component {
   constructor(props) {
@@ -56,6 +57,10 @@ class App extends Component {
           <Route
             path="/search-result"
             component={SearchResultPage}
+          />
+          <Route
+            path="/search-no-result"
+            component={NoSearchPage}
           />
         </div>
       </BrowserRouter>
