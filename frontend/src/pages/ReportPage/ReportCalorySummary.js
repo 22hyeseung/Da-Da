@@ -30,6 +30,7 @@ class ReportCalorySummary extends Component {
           style={{
             fontSize: '28px',
             fontWeight: '100',
+            fontFamily: 'Spoqa Han Sans',
             textAlign: 'left',
             color: '#16325C',
             margin: '0px',
@@ -37,9 +38,9 @@ class ReportCalorySummary extends Component {
         >
           <Header.Subheader
             style={{
-              fontFamily: 'montserrat',
               fontSize: '14px',
               fontWeight: '600',
+              fontFamily: 'montserrat',
               textAlign: 'left',
               color: '#1f2e79',
             }}

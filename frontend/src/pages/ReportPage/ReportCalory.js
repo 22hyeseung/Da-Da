@@ -22,6 +22,7 @@ class ReportCalory extends Component {
             textAlign: 'left',
             color: '#16325C',
             margin: '0px',
+            fontFamily: 'Spoqa Han Sans',
           }}
         >
           <Header.Subheader

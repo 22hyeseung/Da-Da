@@ -21,6 +21,7 @@ class ReportNutrtion extends Component {
           style={{
             fontSize: '28px',
             fontWeight: '100',
+            fontFamily: 'Spoqa Han Sans',
             textAlign: 'left',
             color: '#16325C',
           }}
