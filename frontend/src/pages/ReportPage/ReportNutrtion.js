@@ -16,152 +16,29 @@ class ReportNutrtion extends Component {
 
   render() {
     return (
-      <div className="report-card">
-        <Segment.Group horizontal>
-          <Segment
+      <div className="report-nutrition">
+        <Header
+          style={{
+            fontSize: '28px',
+            fontWeight: '100',
+            textAlign: 'left',
+            color: '#16325C',
+          }}
+        >
+          <Header.Subheader
             style={{
-              width: '750px',
-              padding: '27px',
+              fontFamily: 'montserrat',
+              fontSize: '14px',
+              fontWeight: '600',
+              textAlign: 'left',
+              color: '#1f2e79',
             }}
           >
-            <Header
-              style={{
-                fontSize: '28px',
-                fontWeight: '100',
-                textAlign: 'left',
-                color: '#16325C',
-              }}
-            >
-              <Header.Subheader
-                style={{
-                  fontFamily: 'montserrat',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  textAlign: 'left',
-                  color: '#1f2e79',
-                }}
-              >
-                THIS WEEK’s
-              </Header.Subheader>
-              영양분 리포트
-            </Header>
-            <ReportSampleChart />
-          </Segment>
-          <Segment
-            style={{
-              borderLeft: 'none',
-              width: '14%',
-            }}
-            className="report-summary"
-          >
-            <Segment
-              style={{
-                padding: '25px 25px 100px 25px',
-                boxShadow:
-                  '0 2px 5px 0 rgba(79, 64, 64, 0.2)',
-                border: 'none',
-                backgroundImage: `url(${summaryImg})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition:
-                  'right bottom',
-                backgroundSize: '85%',
-              }}
-            >
-              <Header
-                style={{
-                  fontSize: '28px',
-                  fontWeight: '100',
-                  textAlign: 'left',
-                  color: '#16325C',
-                  margin: '0px',
-                }}
-              >
-                <Header.Subheader
-                  style={{
-                    fontFamily: 'montserrat',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    textAlign: 'left',
-                    color: '#1f2e79',
-                  }}
-                >
-                  SUMMARY
-                </Header.Subheader>
-                요약
-              </Header>
-              {/* 그래프 */}
-
-              <List
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  height: '140px',
-                  justifyContent: 'space-between',
-                  borderBottom: 'none',
-                  marginTop: '0px',
-                }}
-              >
-                <List.Item>
-                  <List.Content
-                    floated="right"
-                    style={{
-                      fontSize: '12px',
-                      fontWeight: '100',
-                      color: '#a8b7c7',
-                    }}
-                  >
-                    (%)
-                  </List.Content>
-                </List.Item>
-                <List.Item
-                  className="report-summary-list"
-                  style={{ display: 'flex' }}
-                >
-                  <List.Content
-                    className="report-summary-title"
-                    verticalAlign="bottom"
-                  >
-                    탄수화물
-                  </List.Content>
-                  <List.Content
-                    floated="right"
-                    className="report-result"
-                  >
-                    60%
-                  </List.Content>
-                </List.Item>
-                <List.Item
-                  className="report-summary-list"
-                  style={{ display: 'flex' }}
-                >
-                  <List.Content className="report-summary-title">
-                    단백질
-                  </List.Content>
-                  <List.Content
-                    floated="right"
-                    className="report-result"
-                  >
-                    20%
-                  </List.Content>
-                </List.Item>
-                <List.Item
-                  className="report-summary-list"
-                  style={{ display: 'flex' }}
-                >
-                  <List.Content className="report-summary-title">
-                    지방
-                  </List.Content>
-                  <List.Content
-                    floated="right"
-                    className="report-result"
-                  >
-                    20%
-                  </List.Content>
-                </List.Item>
-              </List>
-            </Segment>
-          </Segment>
-        </Segment.Group>
+            THIS WEEK’s
+          </Header.Subheader>
+          영양분 리포트
+        </Header>
+        <ReportSampleChart />
       </div>
     )
   }

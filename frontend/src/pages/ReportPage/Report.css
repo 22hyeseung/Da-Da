@@ -3,6 +3,9 @@
     margin: 0 auto;
 }
 
+
+/* subNav 시작 */
+
 .report-date {
     font-family: 'montserrat-bold';
     font-size: 20px;
@@ -26,11 +29,15 @@
 }
 
 
-/* .ui.segment,
-.ui.segments .segment {
-  box-shadow: 0 2px 5px 0 rgba(79, 64, 64, 0.2);
-  border: none;
-} */
+/* subNav 끝 */
+
+.report-calory,
+.report-nutrition {
+    padding: 21px 24px;
+}
+
+
+/* summary 시작 */
 
 .report-rate {
     font-size: 18px;
@@ -53,3 +60,6 @@
     flex-direction: row;
     align-items: baseline;
 }
+
+
+/* summary 끝 */
