@@ -6,6 +6,7 @@ import {
   Label,
 } from 'semantic-ui-react'
 import DiaryFoodAdd from './DiaryFoodAdd'
+import DiaryFoodList from './DiaryFoodList'
 import DiaryFoodSearch from './DiaryFoodSearch'
 import foodImg from '../../static/img/food_bg.png'
 import MdAdd from 'react-icons/lib/md/add'
@@ -152,6 +153,7 @@ class DiaryFood extends Component {
               </Label.Detail>
             </Label>
           </div>
+          <DiaryFoodList />
           <DiaryFoodAdd />
         </div>
         {/* 저녁 식사 끝 */}

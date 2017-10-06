@@ -154,3 +154,19 @@
     display: flex;
     align-items: baseline;
 }
+
+.diary-food-meal-list-card {
+    display: flex;
+    position: absolute;
+}
+
+.diary-food-meal-list-scroll {
+    overflow: auto;
+    height: 200px;
+    position: relative;
+}
+
+.diary-food-meal-list-card-firstRow {
+    display: flex;
+    justify-content: space-between;
+}
