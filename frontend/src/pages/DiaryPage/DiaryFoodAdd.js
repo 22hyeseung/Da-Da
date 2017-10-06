@@ -17,7 +17,7 @@ class DiaryFoodAdd extends Component {
           padding: '8px 14px',
           color: '#16325C',
           backgroundColor: 'white',
-          border: '1px solid #D8DDE6',
+          border: '1px dashed #A8B7C7',
           borderRadius: '4px',
           fontWeight: '200',
           display: 'flex',

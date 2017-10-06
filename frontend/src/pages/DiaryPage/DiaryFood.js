@@ -64,7 +64,12 @@ class DiaryFood extends Component {
 
         {/* 끼니별 식단 다이어리 시작 */}
         {/* 아침식사 시작 */}
-        <div className="diary-food-meal">
+        <Segment
+          className="diary-food-meal"
+          style={{
+            paddingTop: '7px',
+          }}
+        >
           <div className="diary-food-label">
             <div className="diary-food-title">
               아침 식사
@@ -85,18 +90,23 @@ class DiaryFood extends Component {
                 color: '#16325c',
               }}
             >
-              현재 아침식사 섭취 칼로리
+              현재 아침 식사 섭취 칼로리
               <Label.Detail>
                 100 kcal
               </Label.Detail>
             </Label>
           </div>
           <DiaryFoodAdd />
-        </div>
+        </Segment>
         {/* 아침식사 끝 */}
 
         {/* 점심 식사 시작 */}
-        <div className="diary-food-meal">
+        <Segment
+          className="diary-food-meal"
+          style={{
+            paddingTop: '7px',
+          }}
+        >
           <div className="diary-food-label">
             <div className="diary-food-title">
               점심 식사
@@ -124,10 +134,15 @@ class DiaryFood extends Component {
             </Label>
           </div>
           <DiaryFoodSearch />
-        </div>
+        </Segment>
         {/* 점심 식사 끝 */}
         {/* 저녁 식사 시작 */}
-        <div className="diary-food-meal">
+        <Segment
+          className="diary-food-meal"
+          style={{
+            paddingTop: '7px',
+          }}
+        >
           <div className="diary-food-label">
             <div className="diary-food-title">
               저녁 식사
@@ -156,10 +171,15 @@ class DiaryFood extends Component {
           </div>
           <DiaryFoodList />
           <DiaryFoodAdd />
-        </div>
+        </Segment>
         {/* 저녁 식사 끝 */}
         {/* 간식/기타 시작 */}
-        <div className="diary-food-meal">
+        <Segment
+          className="diary-food-meal"
+          style={{
+            paddingTop: '7px',
+          }}
+        >
           <div className="diary-food-label">
             <div className="diary-food-title">
               간식/기타
@@ -187,7 +207,7 @@ class DiaryFood extends Component {
             </Label>
           </div>
           <DiaryFoodAdd />
-        </div>
+        </Segment>
         {/* 간식/기타 끝 */}
         <DiaryFoodAlbum />
         {/* 끼니별 식단 다이어리 끝 */}

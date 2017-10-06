@@ -1,6 +1,7 @@
 .diary-grid {
     width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 
@@ -42,6 +43,26 @@
     font-size: 18px;
 }
 
+.diary-food-goal-edit {
+    margin-left: 10px;
+    cursor: pointer
+}
+
+.diary-food-goal-label {
+    line-height: 0px;
+}
+
+.diary-food-goal-kcal {
+    font-family: 'montserrat-semibold';
+    font-size: 14px;
+}
+
+.diary-food-goal-unit {
+    font-family: 'montserrat-light';
+    font-size: 14px;
+    margin-left: 3px;
+}
+
 .diary-social-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -60,7 +81,7 @@
 }
 
 .diary-food-addBtn:hover {
-    box-shadow: rgba(79, 64, 64, 0.2) 0px 2px 5px 0px !important;
+    border: 1.5px dashed #16325c !important;
     bottom: 2px;
     position: relative;
 }
@@ -72,7 +93,8 @@
 .diary-food-label {
     display: flex;
     justify-content: space-between;
-    padding: 7px 0px;
+    padding: 0px 0px 7px 0px;
+    align-items: center;
 }
 
 .diary-food-meal-count {

@@ -39,6 +39,7 @@ class DiaryFoodListCard extends Component {
                 }}
               />
             }
+            on="click"
             flowing
             hoverable
             style={{
