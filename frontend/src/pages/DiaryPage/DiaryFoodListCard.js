@@ -18,10 +18,9 @@ class DiaryFoodListCard extends Component {
       <Segment
         style={{
           boxShadow: 'none',
-          marginTop: '0px',
+          margin: '0px 14px 0px 0px',
           border: '1px solid #d8dde6',
           width: '210px',
-          marginRight: '14px',
         }}
       >
         <div className="diary-food-meal-list-card-firstRow">

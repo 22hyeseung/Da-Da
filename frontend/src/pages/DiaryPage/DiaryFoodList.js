@@ -17,8 +17,6 @@ class DiaryFoodList extends Component {
           <DiaryFoodListCard />
           <DiaryFoodListCard />
           <DiaryFoodListCard />
-          <DiaryFoodListCard />
-          <DiaryFoodListCard />
         </div>
       </div>
     )

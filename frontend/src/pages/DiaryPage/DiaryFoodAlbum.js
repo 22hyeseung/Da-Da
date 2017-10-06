@@ -20,7 +20,7 @@ class DiaryFoodAlbum extends Component {
             fontFamily: 'Spoqa Han Sans',
           }}
         >
-          오늘의 식단 다이어리
+          오늘의 식단 앨범
         </Header>
         <DiaryFoodAlbumList />
       </div>
