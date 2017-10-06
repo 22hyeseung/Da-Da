@@ -10,26 +10,16 @@ class DiaryFoodAlbum extends Component {
 
   render() {
     return (
-      <div>
+      <div className="diary-food-album">
         <Header
           style={{
             fontSize: '28px',
             fontWeight: '100',
             color: '#16325C',
-            marginBottom: '42px',
+            marginBottom: '21px',
             fontFamily: 'Spoqa Han Sans',
           }}
         >
-          <Header.Subheader
-            style={{
-              fontFamily: 'montserrat',
-              fontSize: '14px',
-              fontWeight: '600',
-              color: '#1f2e79',
-            }}
-          >
-            FOOD DIARY
-          </Header.Subheader>
           오늘의 식단 다이어리
         </Header>
         <DiaryFoodAlbumList />

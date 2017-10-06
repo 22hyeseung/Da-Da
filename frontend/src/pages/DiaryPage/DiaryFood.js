@@ -22,7 +22,7 @@ class DiaryFood extends Component {
     return (
       <Segment
         style={{
-          padding: '33px 36px',
+          padding: '33px 36px 21px 36px',
           boxShadow: 'none',
           border: '1px solid #D8DDE6',
           backgroundImage: `url(${foodImg})`,

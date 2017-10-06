@@ -9,7 +9,7 @@ class DiaryFoodAlbumList extends Component {
 
   render() {
     return (
-      <div className="diary-food-meal-list-scroll">
+      <div className="diary-food-album-list-scroll">
         <div
           style={{ display: 'flex' }}
           className="diary-food-meal-list-card"

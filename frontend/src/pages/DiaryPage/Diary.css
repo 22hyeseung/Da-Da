@@ -210,3 +210,13 @@
     font-size: 14px;
     color: #54698d;
 }
+
+.diary-food-album {
+    padding-top: 21px;
+}
+
+.diary-food-album-list-scroll {
+    overflow: auto;
+    height: 240px;
+    position: relative;
+}
