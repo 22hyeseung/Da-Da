@@ -21,60 +21,60 @@ const routes = [
     linkTo: '/search',
   },
 ]
+let activeItem = '다이어리'
 
-class Navigation extends Component {
-  state = { activeItem: '다이어리' }
+const handleItemClick = (e, { name }) => {
+  activeItem = name
+}
 
-  handleItemClick = (e, { name }) =>
-    this.setState({ activeItem: name })
-
-  render() {
-    const { activeItem } = this.state
-    return (
-      <Menu
-        className="navigation"
-        style={{
-          border: 'none',
-        }}
-        pointing
-        secondary>
-        <Menu.Item className="navigation-logo">
-          DA, DA
-        </Menu.Item>
-        <Menu.Menu
-          position="right"
-          style={{ paddingBottom: '8px' }}>
-          {routes.map(route => (
-            <Menu.Item
-              style={{
-                padding: '20px 10px 7px',
-                marginLeft: '37px',
-              }}
-              name={route.linkLabel}
-              active={
-                activeItem ===
-                `${route.linkLabel}`
-              }
-              onClick={this.handleItemClick}>
-              <Link
-                className="navigation-item"
-                to={route.linkTo}>
-                {route.linkLabel}
-              </Link>
-            </Menu.Item>
-          ))}
-          <Image
-            className="navigation-avatar"
-            shape="circular"
-            src="https://placeimg.com/34/34/people"
-          />
-          <span className="navigation-username">
-            홍길동
-          </span>
-        </Menu.Menu>
-      </Menu>
-    )
-  }
+const Navigation = () => {
+  return (
+    <Menu
+      className="navigation"
+      style={{
+        border: 'none',
+      }}
+      pointing
+      secondary
+    >
+      <Menu.Item className="navigation-logo">
+        DA, DA
+      </Menu.Item>
+      <Menu.Menu
+        position="right"
+        style={{ paddingBottom: '8px' }}
+      >
+        {routes.map(route => (
+          <Menu.Item
+            style={{
+              padding: '20px 10px 7px',
+              marginLeft: '37px',
+            }}
+            name={route.linkLabel}
+            active={
+              activeItem === `${route.linkLabel}`
+            }
+            onClick={handleItemClick}
+          >
+            <Link
+              className="navigation-item"
+              to={route.linkTo}
+            >
+              {route.linkLabel}
+            </Link>
+          </Menu.Item>
+        ))}
+        <Image
+          className="navigation-avatar"
+          shape="circular"
+          src="https://placeimg.com/34/34/people"
+        />
+        <span className="navigation-username">
+          홍길동
+        </span>
+      </Menu.Menu>
+    </Menu>
+  )
 }
 
 export default Navigation
