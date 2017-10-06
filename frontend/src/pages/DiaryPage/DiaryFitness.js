@@ -27,6 +27,7 @@ class DiaryFitness extends Component {
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center top',
           backgroundSize: '34%',
+          backgroundAttachment: 'local',
         }}
       >
         <Header
@@ -56,10 +57,6 @@ class DiaryFitness extends Component {
             }}
           />
         </Header>
-        <DiaryFitnessList />
-        <DiaryFitnessList />
-        <DiaryFitnessList />
-        <DiaryFitnessList />
         <DiaryFitnessList />
         <DiaryFitnessList />
         <DiaryFitnessInput />

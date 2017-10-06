@@ -32,10 +32,7 @@ const buttonIcon = {
 }
 const DiaryFitnessAdd = () => (
   <div>
-    <List
-      horizontal
-      style={{ marginTop: '20px', width: '95%' }}
-    >
+    <List horizontal style={{ width: '95%' }}>
       <List.Item
         style={{ width: '20%', margin: '0' }}
       >
