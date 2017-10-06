@@ -8,6 +8,7 @@ import {
 import DiaryFoodAdd from './DiaryFoodAdd'
 import DiaryFoodList from './DiaryFoodList'
 import DiaryFoodSearch from './DiaryFoodSearch'
+import DiaryFoodAlbum from './DiaryFoodAlbum'
 import foodImg from '../../static/img/food_bg.png'
 import MdAdd from 'react-icons/lib/md/add'
 import foodIconDefault from '../../static/img/diary-food_default.svg'
@@ -188,6 +189,7 @@ class DiaryFood extends Component {
           <DiaryFoodAdd />
         </div>
         {/* 간식/기타 끝 */}
+        <DiaryFoodAlbum />
         {/* 끼니별 식단 다이어리 끝 */}
       </Segment>
     )

@@ -164,9 +164,49 @@
     overflow: auto;
     height: 200px;
     position: relative;
+    margin-bottom: 21px;
 }
 
 .diary-food-meal-list-card-firstRow {
     display: flex;
     justify-content: space-between;
+}
+
+.diary-food-meal-list-card-firstRow-title {
+    font-size: 21px;
+    font-weight: 100;
+    color: #16325c;
+    margin-bottom: 35px;
+}
+
+.diary-food-meal-list-card-calory {
+    font-family: 'montserrat-semibold';
+    font-size: 21px;
+    letter-spacing: -1px;
+    color: #54698d;
+}
+
+.diary-food-meal-list-card-calory-unit {
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: -1px;
+    color: #54698d;
+    margin-left: 8px;
+}
+
+.diary-food-meal-list-card-nutrition-wrapper {
+    margin-right: 9px;
+}
+
+.diary-food-meal-list-card-nutrition-title {
+    font-weight: 100;
+    font-size: 14px;
+    color: #54698d;
+    margin-right: 7px;
+}
+
+.diary-food-meal-list-card-nutrition-kcal {
+    font-family: 'montserrat-semibold';
+    font-size: 14px;
+    color: #54698d;
 }

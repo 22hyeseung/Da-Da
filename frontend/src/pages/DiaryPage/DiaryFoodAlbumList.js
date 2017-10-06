@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import DiaryFoodListCard from './DiaryFoodListCard'
+import DiaryFoodAlbumListCard from './DiaryFoodAlbumListCard'
 import MdAdd from 'react-icons/lib/md/add'
 
-class DiaryFoodList extends Component {
+class DiaryFoodAlbumList extends Component {
   constructor(props) {
     super(props)
   }
@@ -14,15 +14,15 @@ class DiaryFoodList extends Component {
           style={{ display: 'flex' }}
           className="diary-food-meal-list-card"
         >
-          <DiaryFoodListCard />
-          <DiaryFoodListCard />
-          <DiaryFoodListCard />
-          <DiaryFoodListCard />
-          <DiaryFoodListCard />
+          <DiaryFoodAlbumListCard />
+          <DiaryFoodAlbumListCard />
+          <DiaryFoodAlbumListCard />
+          <DiaryFoodAlbumListCard />
+          <DiaryFoodAlbumListCard />
         </div>
       </div>
     )
   }
 }
 
-export default DiaryFoodList
+export default DiaryFoodAlbumList
