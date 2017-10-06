@@ -6,6 +6,7 @@ import {
   List,
 } from 'semantic-ui-react'
 import pieGraph from '../../static/img/diary-graph.svg'
+import DiarySocialBtns from './DiarySocialBtns'
 
 class DiarySummary extends Component {
   constructor(props) {
@@ -262,6 +263,7 @@ class DiarySummary extends Component {
             }}
           />
         </Segment>
+        <DiarySocialBtns />
       </div>
     )
   }

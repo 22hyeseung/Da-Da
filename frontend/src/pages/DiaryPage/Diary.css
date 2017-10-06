@@ -16,6 +16,10 @@
     display: none;
 }
 
+.ui.segment:last-child {
+    margin-bottom: 14px;
+}
+
 .diary-date {
     font-family: 'montserrat-bold';
     font-size: 20px;
@@ -36,6 +40,17 @@
 .diary-day {
     font-weight: 700;
     font-size: 18px;
+}
+
+.diary-social-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.diary-social {
+    width: 33%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .diary-food-addBtn {
@@ -83,11 +98,9 @@
     border-radius: 4px !important;
 }
 
-
-/* .diary-food-search div:nth-child(2) {
-    background-color: red !important;
-    z-index: 0 !important
-} */
+.diary-food-search div:nth-child(2) {
+    display: block !important;
+}
 
 .ui.search>.results {
     position: relative;
