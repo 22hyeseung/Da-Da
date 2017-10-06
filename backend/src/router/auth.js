@@ -3,12 +3,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieSession = require('cookie-session')
 const csurf = require('csurf')
-const flash = require('connect-flash')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
-const GitHubStrategy = require('passport-github').Strategy
+//const GitHubStrategy = require('passport-github').Strategy
 
-const util = require('../util')
 const query = require('../query')
 const mw = require('../middleware')
 
@@ -21,7 +19,6 @@ router.use(cookieSession({
     process.env.SESSION_SECRET
   ]
 }))
-router.use(flash())
 router.use(csurf())
 router.use(mw.insertReq)
 router.use(mw.insertToken)
@@ -43,7 +40,7 @@ passport.deserializeUser((str, done) => {
       }
     })
 })
-
+/*
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
@@ -59,7 +56,7 @@ passport.use(new GitHubStrategy({
     done(err)
   })
 }))
-
+*/
 router.get('/', (req, res) => {
   res.render('auth.pug')
 })
@@ -99,7 +96,6 @@ router.get('/github/callback', (req, res, next) => {
 })
 
 router.use((err, req, res, next) => {
-  req.flash('error', err.message)
   res.redirect(req.baseUrl)
 })
 
