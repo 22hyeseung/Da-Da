@@ -32,7 +32,9 @@ class DiaryFoodList extends Component {
             }}
           >
             <div className="diary-food-meal-list-card-firstRow">
-              <p>현미밥</p>
+              <p className="diary-food-meal-list-card-firstRow-title">
+                현미밥
+              </p>
               <Popup
                 trigger={<Icon name="setting" />}
                 flowing
@@ -52,9 +54,11 @@ class DiaryFoodList extends Component {
                 </Grid>
               </Popup>
             </div>
-            <p>100kcal</p>
-            <div>
-              <span>
+            <p className="diary-food-meal-list-card-calory">
+              100kcal
+            </p>
+            <div className="diary-food-meal-list-card-nutritions">
+              <span className="diary-food-meal-list-card-nutrition-wrapper">
                 <span>탄</span>
                 <span>100</span>
               </span>

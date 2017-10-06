@@ -7,6 +7,7 @@ import {
   Grid,
   Input,
 } from 'semantic-ui-react'
+import DiaryFoodSearchModal from './DiaryFoodSearchModal'
 import MdAdd from 'react-icons/lib/md/add'
 import cameraIcon from '../../static/img/diary-camera-icon.svg'
 import multiplyIcon from '../../static/img/diary-multiply.svg'
@@ -99,18 +100,7 @@ class DiaryFoodSearch extends Component {
               {...this.props}
             />
           </Grid.Column>
-          <Grid.Column
-            width={1}
-            style={{
-              paddingLeft: '0px',
-              paddingRight: '21px',
-            }}
-          >
-            <img
-              src={cameraIcon}
-              className="diary-camera-icon"
-            />
-          </Grid.Column>
+          <DiaryFoodSearchModal />
         </Grid>
         <Label
           attached="bottom"
