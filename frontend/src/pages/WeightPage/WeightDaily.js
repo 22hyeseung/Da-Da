@@ -35,6 +35,7 @@ class WeightDaily extends Component {
             style={{
               fontSize: '28px',
               fontWeight: '100',
+              fontFamily: 'Spoqa Han Sans',
               textAlign: 'left',
               color: '#16325C',
               marginBottom: '30px',
@@ -62,6 +63,10 @@ class WeightDaily extends Component {
                 ' linear-gradient(261deg, #485563, #29323c)',
               color: '#fff',
               fontWeight: '100',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              fontFamily: 'Spoqa Han Sans',
             }}
           >
             <MdAdd
