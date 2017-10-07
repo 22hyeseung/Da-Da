@@ -93,7 +93,12 @@ class Navigation extends Component {
             />
             <Popup
               wide
-              trigger={<Button content="홍길동" />}
+              trigger={
+                <Button
+                  inverted={this.props.inverted}
+                  content="홍길동"
+                />
+              }
               on="click"
             >
               <UserInfoPopup />
