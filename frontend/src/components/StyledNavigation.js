@@ -15,34 +15,39 @@ export const logo = {
   fontFamily: '"montserrat-bold", sans-serif',
 }
 
+export const itemWrap = {
+  display: 'flex',
+  width: '618px',
+  height: '46px',
+}
+
 // 네비게이션 아이템(a태그) 래퍼
 export const linkTagWrap = {
-  padding: '20px 10px 7px',
-  marginLeft: '37px',
+  width: '20%',
+  height: '29px',
+  // padding: '20px 10px 7px',
+  // marginLeft: '37px',
 }
 
 // 네비게이션 아이템(a태그)
 export const linkTag = {
   height: '20px',
+  color: '#16325c',
   fontSize: '14px',
   letterSpacing: '-0.7px',
+  paddingLeft: '6%',
+}
+
+export const userInfoWrap = {
+  ...linkTagWrap,
+  fontSize: '14px',
   color: '#16325c',
+  fontWeight: '700',
 }
 
 // 유저 프로필 사진
 export const avatar = {
   width: '34px',
   height: '34px',
-  margin: '12px 18px 10px 47px',
-}
-
-// 유저 아이디
-export const username = {
-  width: '37px',
-  height: '17px',
-  fontSize: '14px',
-  letterSpacing: '-0.7px',
-  textAlign: 'right',
-  color: '#16325c',
-  margin: '20px 129px 20px 0px',
+  marginRight: '18px',
 }

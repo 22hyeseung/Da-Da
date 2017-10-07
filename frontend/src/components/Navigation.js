@@ -57,7 +57,10 @@ class Navigation extends Component {
         </Menu.Item>
 
         {/* 오른쪽: 네비게이션 아이템 + 유저 정보 */}
-        <Menu.Menu position="right">
+        <Menu.Menu
+          position="right"
+          style={styled.itemWrap}
+        >
           {routes.map(route => (
             <Menu.Item
               style={styled.linkTagWrap}
@@ -76,19 +79,14 @@ class Navigation extends Component {
               </Link>
             </Menu.Item>
           ))}
-          <Image
-            style={styled.avatar}
-            shape="circular"
-            src="https://placeimg.com/34/34/people"
-          />
-          <span
-            style={{
-              ...styled.username,
-              color: `${this.props.color}`,
-            }}
-          >
+          <Menu.Item style={styled.userInfoWrap}>
+            <Image
+              style={styled.avatar}
+              shape="circular"
+              src="https://placeimg.com/34/34/people"
+            />
             홍길동
-          </span>
+          </Menu.Item>
         </Menu.Menu>
       </Menu>
     )
