@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Image } from 'semantic-ui-react'
+import styled from './StyledNavigation'
 import './Navigation.css'
 
 const routes = [
@@ -21,6 +22,7 @@ const routes = [
     linkTo: '/search',
   },
 ]
+
 let activeItem = '다이어리'
 
 const handleItemClick = (e, { name }) => {
@@ -30,15 +32,12 @@ const handleItemClick = (e, { name }) => {
 const Navigation = () => {
   return (
     <Menu
-      className="navigation"
-      style={{
-        border: 'none',
-      }}
+      style={styled.container}
       inverted={this.prosp.inverted}
       pointing
       secondary
     >
-      <Menu.Item className="navigation-logo">
+      <Menu.Item style={styled.logo}>
         DA, DA
       </Menu.Item>
       <Menu.Menu
@@ -47,10 +46,7 @@ const Navigation = () => {
       >
         {routes.map(route => (
           <Menu.Item
-            style={{
-              padding: '20px 10px 7px',
-              marginLeft: '37px',
-            }}
+            style={linkTagWrap}
             name={route.linkLabel}
             active={
               activeItem === `${route.linkLabel}`
@@ -58,7 +54,7 @@ const Navigation = () => {
             onClick={handleItemClick}
           >
             <Link
-              className="navigation-item"
+              style={linkTag}
               to={route.linkTo}
             >
               {route.linkLabel}
@@ -66,13 +62,15 @@ const Navigation = () => {
           </Menu.Item>
         ))}
         <Image
-          className="navigation-avatar"
+          style={styled.avatar}
           shape="circular"
           src="https://placeimg.com/34/34/people"
         />
         <span
-          className="navigation-username"
-          style={{ color: `${this.props.color}` }}
+          style={{
+            ...styled.username,
+            color: `${this.props.color}`,
+          }}
         >
           홍길동
         </span>
