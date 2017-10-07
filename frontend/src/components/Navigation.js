@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Image } from 'semantic-ui-react'
-import styled from './StyledNavigation'
-import './Navigation.css'
+import * as styled from './StyledNavigation'
 
 // 네비게이션 아이템: 다이어리/리포트/체중기록/레시피검색
 const routes = [
@@ -28,61 +27,63 @@ const routes = [
 //  active 효과 적용 대상
 let activeItem = ''
 
-// 클릭 시 해당 아이템을 현재 페이지로
-// 다이어리 클릭 => /diary로 페이지 이동 => 현재 페이지: diary (밑줄 효과)
-const handleItemClick = (e, { name }) => {
-  activeItem = name
-}
+class Navigation extends Component {
+  // 클릭 시 해당 아이템을 현재 페이지로
+  // 다이어리 클릭 => /diary로 페이지 이동 => 현재 페이지: diary (밑줄 효과)
+  handleItemClick = (e, { name }) => {
+    activeItem = name
+  }
+  render() {
+    return (
+      // 네비게이션 시작
+      <Menu
+        style={styled.container}
+        inverted={this.props.inverted}
+        pointing
+        secondary
+      >
+        {/* 왼쪽: 로고 */}
+        <Menu.Item style={styled.logo}>
+          DA, DA
+        </Menu.Item>
 
-const Navigation = () => {
-  return (
-    // 네비게이션 시작
-    <Menu
-      style={styled.container}
-      inverted={this.props.inverted}
-      pointing
-      secondary
-    >
-      {/* 왼쪽: 로고 */}
-      <Menu.Item style={styled.logo}>
-        DA, DA
-      </Menu.Item>
-
-      {/* 오른쪽: 네비게이션 아이템 + 유저 정보 */}
-      <Menu.Menu position="right">
-        {routes.map(route => (
-          <Menu.Item
-            style={linkTagWrap}
-            name={route.linkLabel}
-            active={
-              activeItem === `${route.linkLabel}`
-            }
-            onClick={handleItemClick}
-          >
-            <Link
-              style={linkTag}
-              to={route.linkTo}
+        {/* 오른쪽: 네비게이션 아이템 + 유저 정보 */}
+        <Menu.Menu position="right">
+          {routes.map(route => (
+            <Menu.Item
+              style={styled.linkTagWrap}
+              name={route.linkLabel}
+              active={
+                activeItem ===
+                `${route.linkLabel}`
+              }
+              onClick={this.handleItemClick}
             >
-              {route.linkLabel}
-            </Link>
-          </Menu.Item>
-        ))}
-        <Image
-          style={styled.avatar}
-          shape="circular"
-          src="https://placeimg.com/34/34/people"
-        />
-        <span
-          style={{
-            ...styled.username,
-            color: `${this.props.color}`,
-          }}
-        >
-          홍길동
-        </span>
-      </Menu.Menu>
-    </Menu>
-  )
+              <Link
+                style={styled.linkTag}
+                to={route.linkTo}
+              >
+                {route.linkLabel}
+              </Link>
+            </Menu.Item>
+          ))}
+          <Image
+            style={styled.avatar}
+            shape="circular"
+            src="https://placeimg.com/34/34/people"
+          />
+          <span
+            style={{
+              ...styled.username,
+              color: `${this.props.color}`,
+            }}
+          >
+            홍길동
+          </span>
+        </Menu.Menu>
+      </Menu>
+    )
+  }
 }
 
 Navigation.defaultProps = {
