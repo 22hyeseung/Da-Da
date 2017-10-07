@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, Image } from 'semantic-ui-react'
+import {
+  Menu,
+  Image,
+  Popup,
+  Button,
+} from 'semantic-ui-react'
 import * as styled from './StyledNavigation'
+import UserInfoPopup from './UserInfoPopup'
 
 // 네비게이션 아이템: 다이어리/리포트/체중기록/레시피검색
 const routes = [
@@ -85,7 +91,13 @@ class Navigation extends Component {
               shape="circular"
               src="https://placeimg.com/34/34/people"
             />
-            홍길동
+            <Popup
+              wide
+              trigger={<Button content="홍길동" />}
+              on="click"
+            >
+              <UserInfoPopup />
+            </Popup>
           </Menu.Item>
         </Menu.Menu>
       </Menu>
