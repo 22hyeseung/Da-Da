@@ -25,14 +25,23 @@ const routes = [
 
 // 현재 페이지가 어디인지,
 //  active 효과 적용 대상
-let activeItem = ''
+// let activeItem = ''
 
 class Navigation extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      activeItem: '',
+    }
+  }
   // 클릭 시 해당 아이템을 현재 페이지로
   // 다이어리 클릭 => /diary로 페이지 이동 => 현재 페이지: diary (밑줄 효과)
-  handleItemClick = (e, { name }) => {
-    activeItem = name
+  handleItemClick = ({ name }) => {
+    this.setState({
+      activeItem: name,
+    })
   }
+
   render() {
     return (
       // 네비게이션 시작
@@ -54,7 +63,7 @@ class Navigation extends Component {
               style={styled.linkTagWrap}
               name={route.linkLabel}
               active={
-                activeItem ===
+                this.state.activeItem ===
                 `${route.linkLabel}`
               }
               onClick={this.handleItemClick}
