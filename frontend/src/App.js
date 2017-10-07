@@ -50,6 +50,16 @@ class App extends Component {
             path="/search"
             component={SearchPage}
           />
+
+          <Route
+            path="/page"
+            children={props =>
+              props.match ? (
+                <Page {...props} />
+              ) : (
+                <EmptyPage {...props} />
+              )}
+          />
         </div>
       </BrowserRouter>
     )

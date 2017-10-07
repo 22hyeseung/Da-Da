@@ -62,7 +62,7 @@ class Navigation extends Component {
           DA, DA
         </Menu.Item>
 
-        {/* 오른쪽: 네비게이션 아이템 + 유저 정보 */}
+        {/* 오른쪽: 네비게이션 아이템*/}
         <Menu.Menu
           position="right"
           style={styled.itemWrap}
@@ -85,6 +85,8 @@ class Navigation extends Component {
               </Link>
             </Menu.Item>
           ))}
+
+          {/* 오른쪽 끝: 유저 정보 + 팝업*/}
           <Menu.Item style={styled.userInfoWrap}>
             <Image
               style={styled.avatar}
