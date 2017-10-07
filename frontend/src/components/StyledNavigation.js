@@ -18,15 +18,13 @@ export const logo = {
 export const itemWrap = {
   display: 'flex',
   width: '618px',
-  height: '46px',
 }
 
 // 네비게이션 아이템(a태그) 래퍼
 export const linkTagWrap = {
-  width: '20%',
   height: '29px',
-  // padding: '20px 10px 7px',
-  // marginLeft: '37px',
+  padding: '0px 9.5px 15px',
+  marginLeft: '37px',
 }
 
 // 네비게이션 아이템(a태그)
@@ -35,7 +33,6 @@ export const linkTag = {
   color: '#16325c',
   fontSize: '14px',
   letterSpacing: '-0.7px',
-  paddingLeft: '6%',
 }
 
 export const userInfoWrap = {
