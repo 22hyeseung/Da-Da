@@ -8,12 +8,11 @@ import {
   Input,
 } from 'semantic-ui-react'
 import DiaryFoodSearchModal from './DiaryFoodSearchModal'
-import MdAdd from 'react-icons/lib/md/add'
-import cameraIcon from '../../static/img/diary-camera-icon.svg'
 import multiplyIcon from '../../static/img/diary-multiply.svg'
 import returnIcon from '../../static/img/diary-return.svg'
 import _ from 'lodash'
 import faker from 'faker'
+import * as Style from './StyledDiaryFood'
 
 const source = _.times(5, () => ({
   title: faker.company.companyName(),
@@ -21,9 +20,6 @@ const source = _.times(5, () => ({
 }))
 
 class DiaryFoodSearch extends Component {
-  constructor(props) {
-    super(props)
-  }
   componentWillMount() {
     this.resetComponent()
   }
@@ -67,17 +63,11 @@ class DiaryFoodSearch extends Component {
   }
 
   render() {
-    const {
-      isLoading,
-      value,
-      results,
-    } = this.state
+    const { isLoading, results } = this.state
     return (
       <Segment
         style={{
-          boxShadow: 'none',
-          marginTop: '0px',
-          border: '1px solid #d8dde6',
+          ...Style.segmentDefault,
           overflow: 'hidden',
           height: '331px',
         }}
@@ -104,11 +94,7 @@ class DiaryFoodSearch extends Component {
         </Grid>
         <Label
           attached="bottom"
-          style={{
-            backgroundColor: 'white',
-            borderTop: '1px solid #D8DDE6',
-            fontFamily: 'Spoqa Han Sans',
-          }}
+          style={Style.searchLabel}
         >
           <div className="diary-food-search-label">
             <div className="diary-food-search-label-result">
@@ -123,6 +109,7 @@ class DiaryFoodSearch extends Component {
                   <img
                     src={multiplyIcon}
                     className="diary-food-calculateIcon"
+                    alt="곱하기 모양의 아이콘입니다."
                   />
                   <Input
                     placeholder={this.state.unit}
@@ -131,6 +118,7 @@ class DiaryFoodSearch extends Component {
                   <img
                     src={returnIcon}
                     className="diary-food-calculateIcon"
+                    alt="= 모양의 아이콘입니다."
                   />
                   <div className="diary-food-search-label-result-wrapper">
                     <span className="diary-food-search-label-result-calculateKcal">
@@ -149,9 +137,7 @@ class DiaryFoodSearch extends Component {
               <Button
                 basic
                 style={{
-                  fontFamily: 'Spoqa Han Sans',
-                  fontWeight: '100',
-                  padding: '10px 34px',
+                  ...Style.cancelBtn,
                   marginRight: '9px',
                 }}
               >
@@ -159,14 +145,7 @@ class DiaryFoodSearch extends Component {
               </Button>
               <Button
                 className="diary-food-meal-submitBtn"
-                style={{
-                  color: 'white',
-                  fontFamily: 'Spoqa Han Sans',
-                  fontWeight: '100',
-                  padding: '10px 34px',
-                  backgroundImage:
-                    'linear-gradient(249deg, #485563, #29323c)',
-                }}
+                style={Style.submitBtn}
               >
                 등록
               </Button>

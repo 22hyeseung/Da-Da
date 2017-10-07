@@ -1,31 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Header } from 'semantic-ui-react'
 import DiaryFoodAlbumList from './DiaryFoodAlbumList'
-import MdAdd from 'react-icons/lib/md/add'
+import * as Style from './StyledDiaryFood'
 
-class DiaryFoodAlbum extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <div className="diary-food-album">
-        <Header
-          style={{
-            fontSize: '28px',
-            fontWeight: '100',
-            color: '#16325C',
-            marginBottom: '21px',
-            fontFamily: 'Spoqa Han Sans',
-          }}
-        >
-          오늘의 식단 앨범
-        </Header>
-        <DiaryFoodAlbumList />
-      </div>
-    )
-  }
+const DiaryFoodAlbum = () => {
+  return (
+    <div className="diary-food-album">
+      <Header
+        style={{
+          ...Style.header,
+          marginBottom: '21px',
+        }}
+      >
+        오늘의 식단 앨범
+      </Header>
+      <DiaryFoodAlbumList />
+    </div>
+  )
 }
 
 export default DiaryFoodAlbum

@@ -10,8 +10,8 @@ import {
   List,
   Checkbox,
 } from 'semantic-ui-react'
-import foodImg from '../../static/img/diary_food_album.jpg'
 import cameraIcon from '../../static/img/diary-camera-icon.svg'
+import * as Style from './StyledDiaryFood'
 
 class DiaryFoodSearchModal extends Component {
   componentWillMount() {
@@ -32,10 +32,7 @@ class DiaryFoodSearchModal extends Component {
     return (
       <Grid.Column
         width={1}
-        style={{
-          paddingLeft: '0px',
-          paddingRight: '21px',
-        }}
+        style={Style.modalGrid}
       >
         <img
           src={cameraIcon}
@@ -123,50 +120,27 @@ class DiaryFoodSearchModal extends Component {
               </Grid.Column>
             </Grid>
             <Modal.Description
-              style={{
-                width: '33%',
-                marginRight: '7px',
-              }}
+              style={Style.modalPhotoSecondGrid}
             >
               <Segment
-                style={{
-                  boxShadow: 'none',
-                  height: '100%',
-                  background: `url(${foodImg})`,
-                  backgroundPosition: 'center',
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  border: 'none',
-                }}
+                style={Style.modalPhotoView}
               />
             </Modal.Description>
             <Modal.Description
-              style={{
-                width: '33%',
-                height: '100%',
-              }}
+              style={Style.modalThirdGrid}
             >
               <Segment
-                style={{
-                  height: '270px',
-                  marginBottom: '0px',
-                }}
+                style={Style.modalThirdGridBox}
               >
                 <Header
                   as="h3"
-                  style={{
-                    fontFamily: 'Spoqa Han Sans',
-                    fontWeight: '100',
-                  }}
+                  style={
+                    Style.modalThirdGridHeader
+                  }
                 >
                   찾으시는 음식이 맞나요?
                 </Header>
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                  }}
-                >
+                <div className="diary-food-search-photo-modal-list">
                   <List
                     divided
                     relaxed
@@ -202,14 +176,7 @@ class DiaryFoodSearchModal extends Component {
             </Modal.Description>
             {/*
               <Segment
-                style={{
-                  boxShadow: 'none',
-                  border: '1px dashed #A8B7C7',
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                }}
+                style={Style.modalUpload}
               >
                 <div className="diary-file-upload">
                   <label
@@ -218,12 +185,7 @@ class DiaryFoodSearchModal extends Component {
                   >
                     <img
                       src={cameraIcon}
-                      style={{
-                        height: '56px',
-                        marginBottom: '14px',
-                        filter: 'grayscale(100%)',
-                        opacity: '.5',
-                      }}
+                      className = "diary-food-search-photo-modal-upload-icon"
                     />
                     <span>이미지를 업로드하세요</span>
                   </label>
@@ -237,27 +199,10 @@ class DiaryFoodSearchModal extends Component {
               </Segment> */}
           </Modal.Content>
           <Modal.Actions>
-            <Button
-              basic
-              style={{
-                fontFamily: 'Spoqa Han Sans',
-                fontWeight: '100',
-                padding: '10px 34px',
-              }}
-            >
+            <Button basic style={Style.cancelBtn}>
               취소
             </Button>
-            <Button
-              className="diary-food-meal-submitBtn"
-              style={{
-                color: 'white',
-                fontFamily: 'Spoqa Han Sans',
-                fontWeight: '100',
-                padding: '10px 34px',
-                backgroundImage:
-                  'linear-gradient(249deg, #485563, #29323c)',
-              }}
-            >
+            <Button style={Style.submitBtn}>
               등록
             </Button>
           </Modal.Actions>

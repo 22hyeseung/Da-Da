@@ -181,13 +181,25 @@
     color: #16325c;
 }
 
-.diary-food-calculateIcon {
-    padding: 0px 14px;
-}
-
 .diary-food-search-label-result-wrapper {
     display: flex;
     align-items: baseline;
+}
+
+.diary-food-search-photo-modal-upload-icon {
+    height: 56px;
+    margin-bottom: 14px;
+    filter: grayscale(100%);
+    opacity: .5;
+}
+
+.diary-food-search-photo-modal-list {
+    display: flex;
+    justify-content: center
+}
+
+.diary-food-calculateIcon {
+    padding: 0px 14px;
 }
 
 .diary-food-meal-list-card {

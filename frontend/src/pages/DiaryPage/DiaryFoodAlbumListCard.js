@@ -5,18 +5,14 @@ import {
   Modal,
   Image,
   Button,
-  Input,
 } from 'semantic-ui-react'
-import MdAdd from 'react-icons/lib/md/add'
 import foodImg from '../../static/img/diary_food_album.jpg'
 import trashIcon from '../../static/img/diary-trash.svg'
 import eidtIcon from '../../static/img/diary-edit.svg'
 import zoomIcon from '../../static/img/diary-zoom.svg'
+import * as Style from './StyledDiaryFood'
 
 class DiaryFoodAlbumListCard extends Component {
-  constructor(props) {
-    super(props)
-  }
   state = { open: false }
 
   show = size => () =>
@@ -25,29 +21,12 @@ class DiaryFoodAlbumListCard extends Component {
   render() {
     const { open, size } = this.state
     return (
-      <Segment
-        style={{
-          boxShadow: 'none',
-          marginTop: '0px',
-          border: '1px solid #d8dde6',
-          width: '210px',
-          height: '210px',
-          marginRight: '14px',
-          background: `url(${foodImg})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
+      <Segment style={Style.albumCard}>
         <Label
           attached="top"
           style={{
-            backgroundColor:
-              'rgba(22, 50, 92, 0.7)',
-            color: '#fff',
-            fontSize: '12px',
-            display: 'flex',
-            justifyContent: 'space-between',
+            ...Style.albumLabel,
+            ...Style.albumCardLabelTop,
           }}
         >
           아침식사
@@ -57,6 +36,7 @@ class DiaryFoodAlbumListCard extends Component {
                 <img
                   src={zoomIcon}
                   className="diary-food-meal-list-card-icon"
+                  alt="클릭하면 음식사진을 확대해서 확인할 수 있습니다."
                 />
               }
               basic
@@ -75,6 +55,7 @@ class DiaryFoodAlbumListCard extends Component {
               src={eidtIcon}
               onClick={this.show('mini')}
               className="diary-food-meal-list-card-icon"
+              alt="클릭하면 음식사진을 다른 사진으로 교체할 수 있습니다."
             />
             <Modal
               size={size}
@@ -123,26 +104,13 @@ class DiaryFoodAlbumListCard extends Component {
               <Modal.Actions>
                 <Button
                   basic
-                  style={{
-                    fontFamily: 'Spoqa Han Sans',
-                    fontWeight: '100',
-                    padding: '10px 34px',
-                    marginRight: '9px',
-                  }}
+                  style={Style.cancelBtn}
                 >
                   취소
                 </Button>
                 <Button
                   className="diary-food-meal-submitBtn"
-                  style={{
-                    color: 'white',
-                    fontFamily: 'Spoqa Han Sans',
-                    fontWeight: '100',
-                    padding: '10px 34px',
-                    backgroundImage:
-                      'linear-gradient(249deg, #485563, #29323c)',
-                    margin: '0px',
-                  }}
+                  style={Style.submitBtn}
                 >
                   수정
                 </Button>
@@ -151,18 +119,15 @@ class DiaryFoodAlbumListCard extends Component {
             <img
               src={trashIcon}
               className="diary-food-meal-list-card-icon"
+              alt="클릭하면 해당 음식사진이 삭제됩니다."
             />
           </div>
         </Label>
         <Label
           attached="bottom"
           style={{
-            backgroundColor:
-              'rgba(22, 50, 92, 0.5)',
-            color: '#fff',
-            padding: '16px',
-            fontWeight: '100',
-            fontSize: '18px',
+            ...Style.albumLabel,
+            ...Style.albumCardLabelBtoom,
           }}
         >
           CSS
