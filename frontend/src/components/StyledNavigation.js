@@ -10,8 +10,9 @@ const container = {
 const logo = {
   height: '30px',
   fontSize: '25px',
-  fontFamily: '"montserrat-bold", sans-serif',
   color: '#16325c',
+  textTransform: 'uppercase',
+  fontFamily: '"montserrat-bold", sans-serif',
 }
 
 // 네비게이션 아이템(a태그) 래퍼

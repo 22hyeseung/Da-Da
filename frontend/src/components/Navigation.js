@@ -4,6 +4,7 @@ import { Menu, Image } from 'semantic-ui-react'
 import styled from './StyledNavigation'
 import './Navigation.css'
 
+// 네비게이션 아이템: 다이어리/리포트/체중기록/레시피검색
 const routes = [
   {
     linkLabel: '다이어리',
@@ -23,27 +24,32 @@ const routes = [
   },
 ]
 
-let activeItem = '다이어리'
+// 현재 페이지가 어디인지,
+//  active 효과 적용 대상
+let activeItem = ''
 
+// 클릭 시 해당 아이템을 현재 페이지로
+// 다이어리 클릭 => /diary로 페이지 이동 => 현재 페이지: diary (밑줄 효과)
 const handleItemClick = (e, { name }) => {
   activeItem = name
 }
 
 const Navigation = () => {
   return (
+    // 네비게이션 시작
     <Menu
       style={styled.container}
-      inverted={this.prosp.inverted}
+      inverted={this.props.inverted}
       pointing
       secondary
     >
+      {/* 왼쪽: 로고 */}
       <Menu.Item style={styled.logo}>
         DA, DA
       </Menu.Item>
-      <Menu.Menu
-        position="right"
-        style={{ paddingBottom: '8px' }}
-      >
+
+      {/* 오른쪽: 네비게이션 아이템 + 유저 정보 */}
+      <Menu.Menu position="right">
         {routes.map(route => (
           <Menu.Item
             style={linkTagWrap}
