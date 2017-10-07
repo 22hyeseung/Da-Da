@@ -3,6 +3,15 @@
     margin: 0 auto;
 }
 
+.weight-current-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 35px;
+    height: 166px;
+    justify-content: space-between;
+}
+
 .weight-current {
     font-family: 'montserrat-semibold';
     font-size: 70px;
