@@ -95,7 +95,6 @@ class Navigation extends Component {
 
 Navigation.defaultProps = {
   inverted: false,
-  color: '#16325c',
   opacity: '0',
   backgroundImage: 'transparent',
 }
