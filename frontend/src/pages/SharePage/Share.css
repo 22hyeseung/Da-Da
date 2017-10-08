@@ -1,0 +1,24 @@
+.share-wrapper {}
+
+.share-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.share-footer {
+    font-size: 14px;
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    padding: 14px;
+    background-image: url('../../static/img/share-footer.jpg');
+    background-size: cover;
+    cursor: pointer
+}
+
+.share-footer-logo {
+    margin-left: 7px;
+    font-family: 'montserrat-semibold';
+    color: '#16325c';
+}
