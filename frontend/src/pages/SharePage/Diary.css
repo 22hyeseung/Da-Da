@@ -10,7 +10,7 @@
  */
 
 .ui.item.menu .item {
-    padding-left: 16px !important
+    padding-left: 16px !important;
 }
 
 .ui.list>.item:after {
@@ -45,7 +45,7 @@
 
 .diary-food-goal-edit {
     margin-left: 10px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .diary-food-goal-label {
@@ -98,10 +98,11 @@
 }
 
 .diary-food-meal-count {
-    padding-left: 12px
+    padding-left: 12px;
 }
 
 .diary-food-title {
+    color: #54698d;
     font-weight: 700;
     font-size: 14px;
     display: inline-block;
@@ -135,7 +136,7 @@
     border-style: none;
     top: 20px;
     position: absolute;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .diary-food-search-label {
@@ -190,12 +191,12 @@
     height: 56px;
     margin-bottom: 14px;
     filter: grayscale(100%);
-    opacity: .5;
+    opacity: 0.5;
 }
 
 .diary-food-search-photo-modal-list {
     display: flex;
-    justify-content: center
+    justify-content: center;
 }
 
 .diary-food-calculateIcon {
@@ -209,20 +210,21 @@
 
 .diary-food-meal-list-card-icon {
     margin-left: 10px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .diary-food-meal-list-scroll {
     overflow: auto;
     height: 180px;
     position: relative;
-    margin-bottom: 14px;
-    border-bottom: 1px solid #d8dde6;
+    margin-bottom: 0px;
+    border-bottom: none;
 }
 
 .diary-food-meal-list-card-firstRow {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 21px;
 }
 
 .diary-food-meal-list-card-firstRow-title {
@@ -237,6 +239,7 @@
     font-size: 21px;
     letter-spacing: -1px;
     color: #54698d;
+    margin-top: 21px;
 }
 
 .diary-food-meal-list-card-calory-unit {
@@ -289,10 +292,10 @@
 .diary-file-upload__label {
     display: block;
     padding: 10px;
-    color: #A8B7C7;
-    border: 1px dashed #A8B7C7;
+    color: #a8b7c7;
+    border: 1px dashed #a8b7c7;
     border-radius: 4px;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
     margin-bottom: 14px;
     line-height: 14px;
 }
@@ -318,9 +321,9 @@
 .diary-food-meal-file-upload__label {
     display: block;
     padding: 10px;
-    color: #A8B7C7;
+    color: #a8b7c7;
     border-radius: 4px;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
     margin-bottom: 14px;
     line-height: 14px;
     display: flex;

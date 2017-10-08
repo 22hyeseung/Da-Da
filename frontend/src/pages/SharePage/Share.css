@@ -1,8 +1,12 @@
-.share-wrapper {}
+.share-wrapper {
+    background-image: linear-gradient(216deg, #485563, #29323c);
+    color: #fff;
+}
 
 .share-grid {
     max-width: 1200px;
     margin: 0 auto;
+    padding-bottom: 70px;
 }
 
 .share-footer {
@@ -13,12 +17,14 @@
     width: 100%;
     padding: 14px;
     background-image: url('../../static/img/share-footer.jpg');
+    background-position-x: 60%;
     background-size: cover;
-    cursor: pointer
+    cursor: pointer;
+    color: #fff;
+    font-weight: 100;
 }
 
 .share-footer-logo {
     margin-left: 7px;
     font-family: 'montserrat-semibold';
-    color: '#16325c';
 }

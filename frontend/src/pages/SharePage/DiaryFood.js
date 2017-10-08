@@ -4,12 +4,12 @@ import {
   Header,
   Label,
 } from 'semantic-ui-react'
-import DiaryFoodAdd from './DiaryFoodAdd'
+import DiaryFoodAdd from '../DiaryPage/'
 import DiaryFoodList from './DiaryFoodList'
-import DiaryFoodSearch from './DiaryFoodSearch'
 import DiaryFoodAlbum from './DiaryFoodAlbum'
 import foodIconDefault from '../../static/img/diary-food_default.svg'
 import * as Style from './StyledDiaryFood'
+import './Diary.css'
 
 const DiaryFood = () => {
   return (
@@ -32,7 +32,8 @@ const DiaryFood = () => {
       {/* title 끝 */}
 
       {/* 끼니별 식단 다이어리 시작 */}
-      {/* 아침식사 시작 */}
+
+      {/* 아침 식사 시작 */}
       <Segment
         className="diary-food-meal"
         style={{
@@ -47,14 +48,13 @@ const DiaryFood = () => {
             </span>
           </div>
           <Label style={Style.currentKcal}>
-            현재 아침 식사 섭취 칼로리
+            아침 식사 섭취 칼로리
             <Label.Detail>100 kcal</Label.Detail>
           </Label>
         </div>
-        <DiaryFoodAdd />
+        <DiaryFoodList />
       </Segment>
-      {/* 아침식사 끝 */}
-
+      {/* 아침 식사 끝 */}
       {/* 점심 식사 시작 */}
       <Segment
         className="diary-food-meal"
@@ -70,11 +70,11 @@ const DiaryFood = () => {
             </span>
           </div>
           <Label style={Style.currentKcal}>
-            현재 점심 식사 섭취 칼로리
+            점심 식사 섭취 칼로리
             <Label.Detail>100 kcal</Label.Detail>
           </Label>
         </div>
-        <DiaryFoodSearch />
+        <DiaryFoodList />
       </Segment>
       {/* 점심 식사 끝 */}
       {/* 저녁 식사 시작 */}
@@ -92,12 +92,11 @@ const DiaryFood = () => {
             </span>
           </div>
           <Label style={Style.currentKcal}>
-            현재 저녁 식사 섭취 칼로리
+            저녁 식사 섭취 칼로리
             <Label.Detail>100 kcal</Label.Detail>
           </Label>
         </div>
         <DiaryFoodList />
-        <DiaryFoodAdd />
       </Segment>
       {/* 저녁 식사 끝 */}
       {/* 간식/기타 시작 */}
@@ -115,11 +114,11 @@ const DiaryFood = () => {
             </span>
           </div>
           <Label style={Style.currentKcal}>
-            현재 간식/기타 섭취 칼로리
+            간식/기타 섭취 칼로리
             <Label.Detail>100 kcal</Label.Detail>
           </Label>
         </div>
-        <DiaryFoodAdd />
+        <DiaryFoodList />
       </Segment>
       {/* 간식/기타 끝 */}
       <DiaryFoodAlbum />

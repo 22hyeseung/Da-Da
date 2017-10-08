@@ -43,8 +43,6 @@ export const submitBtn = {
 // food tab view 컴포넌트 시작
 export const foodBox = {
   padding: '33px 36px 21px 36px',
-  boxShadow: 'none',
-  border: '1px solid #D8DDE6',
   backgroundImage: `url(${foodBG})`,
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'right top',
@@ -133,6 +131,10 @@ export const mealCard = {
   margin: '0px 14px 0px 0px',
   border: '1px solid #d8dde6',
   width: '210px',
+  height: '160px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
 }
 
 export const settingIconWrapper = {

@@ -4,8 +4,6 @@ import {
   List,
   Divider,
 } from 'semantic-ui-react'
-import FaPencil from 'react-icons/lib/fa/pencil'
-import FaTrashO from 'react-icons/lib/fa/trash-o'
 
 const textSmall = {
   fontSize: '12px',
@@ -42,14 +40,7 @@ const DiaryFitnessAdd = () => (
       </List.Item>
       <List.Item
         style={{ width: '20%', margin: '0' }}
-      >
-        <Button style={buttonIcon}>
-          <FaPencil size={20} />
-        </Button>
-        <Button style={buttonIcon}>
-          <FaTrashO size={20} />
-        </Button>
-      </List.Item>
+      />
       <List.Item
         style={{
           width: '30%',
