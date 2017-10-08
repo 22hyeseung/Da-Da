@@ -37,13 +37,15 @@ class Navigation extends Component {
           border: 'none',
         }}
         pointing
-        secondary>
+        secondary
+      >
         <Menu.Item className="navigation-logo">
           DA, DA
         </Menu.Item>
         <Menu.Menu
           position="right"
-          style={{ paddingBottom: '8px' }}>
+          style={{ paddingBottom: '8px' }}
+        >
           {routes.map(route => (
             <Menu.Item
               style={{
@@ -55,10 +57,12 @@ class Navigation extends Component {
                 activeItem ===
                 `${route.linkLabel}`
               }
-              onClick={this.handleItemClick}>
+              onClick={this.handleItemClick}
+            >
               <Link
                 className="navigation-item"
-                to={route.linkTo}>
+                to={route.linkTo}
+              >
                 {route.linkLabel}
               </Link>
             </Menu.Item>

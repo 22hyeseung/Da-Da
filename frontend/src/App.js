@@ -13,6 +13,7 @@ import DiaryPage from './pages/DiaryPage'
 import ReportPage from './pages/ReportPage'
 import WeightPage from './pages/WeightPage'
 import SearchPage from './pages/SearchPage'
+import notFoundPage from './pages/404Page'
 
 class App extends Component {
   constructor(props) {
@@ -49,6 +50,10 @@ class App extends Component {
           <Route
             path="/search"
             component={SearchPage}
+          />
+          <Route
+            path="/404"
+            component={notFoundPage}
           />
         </div>
       </BrowserRouter>
