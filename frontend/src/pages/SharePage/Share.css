@@ -9,6 +9,84 @@
     padding-bottom: 70px;
 }
 
+.share-bg-logo {
+    font-family: montserrat-bold;
+    opacity: 0.11;
+    mix-blend-mode: overlay;
+    position: absolute;
+    font-size: 210px;
+    top: 0;
+    right: 0;
+    line-height: 147px;
+}
+
+.share-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 35px 0px;
+}
+
+.share-header-title {
+    display: flex;
+    flex-direction: column;
+    font-weight: 100;
+    font-size: 35px;
+    line-height: 1.37;
+}
+
+.share-header-summary {
+    display: flex;
+}
+
+.share-summary-plusKcal,
+.share-summary-minusKcal {
+    width: 160px;
+    border-radius: 4px;
+    border: solid 1px #d8dde6;
+    padding: 28px 21px;
+    margin-left: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.share-summary-meal,
+.share-summary-nutritions {
+    width: 160px;
+    border-radius: 4px;
+    background-image: linear-gradient(225deg, #243b55, #141e30);
+    padding: 14px;
+    margin-left: 14px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.share-summary-meal-graph,
+.share-summary-nutritions-graph {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+}
+
+.share-summary-plusKcal-label,
+.share-summary-minusKcal-label {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 1.21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.share-summary-plusKcal-num,
+.share-summary-minusKcal-num {
+    font-family: montserrat-bold;
+    font-size: 35px;
+    line-height: 35px;
+}
+
 .share-footer {
     font-size: 14px;
     position: fixed;

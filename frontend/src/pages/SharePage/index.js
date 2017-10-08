@@ -2,12 +2,16 @@ import React from 'react'
 import './Share.css'
 import DiaryFood from './DiaryFood'
 import DiaryFitness from './DiaryFitness'
+import ShareTitle from './ShareTitle'
 
 const SharePage = () => {
   return (
     <div className="share-wrapper">
       <div className="share-grid">
-        <div>SharePage</div>
+        <span className="share-bg-logo">
+          DA, DA
+        </span>
+        <ShareTitle />
         <DiaryFood />
         <DiaryFitness />
       </div>
