@@ -150,11 +150,10 @@ export const settingIcon = {
 // 오늘의 식단앨범 시작
 export const albumCard = {
   boxShadow: 'none',
-  marginTop: '0px',
+  margin: '0px 14px 0px 0px',
   border: '1px solid #d8dde6',
   width: '210px',
   height: '210px',
-  marginRight: '14px',
   background: `url(${foodImg})`,
   backgroundPosition: 'center',
   backgroundSize: 'cover',

@@ -11,6 +11,8 @@ const DiaryFoodAlbumList = () => {
         <DiaryFoodAlbumListCard />
         <DiaryFoodAlbumListCard />
         <DiaryFoodAlbumListCard />
+        <DiaryFoodAlbumListCard />
+        <DiaryFoodAlbumListCard />
       </div>
     </div>
   )
