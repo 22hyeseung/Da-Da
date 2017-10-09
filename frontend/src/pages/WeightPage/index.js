@@ -9,7 +9,6 @@ class WeightPage extends Component {
   render() {
     return (
       <div>
-        <Navigation />
         <div>WeightPage</div>
       </div>
     )

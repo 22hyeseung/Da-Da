@@ -9,7 +9,6 @@ class DiaryPage extends Component {
   render() {
     return (
       <div>
-        <Navigation />
         <div>DiaryPage</div>
       </div>
     )

@@ -9,7 +9,6 @@ class ReportPage extends Component {
   render() {
     return (
       <div>
-        <Navigation />
         <div>ReportPage</div>
       </div>
     )

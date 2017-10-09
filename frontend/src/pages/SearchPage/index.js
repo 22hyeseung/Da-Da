@@ -9,7 +9,6 @@ class SearchPage extends Component {
   render() {
     return (
       <div>
-        <Navigation />
         <div>SearchPage</div>
       </div>
     )
