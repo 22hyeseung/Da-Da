@@ -1,13 +1,44 @@
 import React, { Component } from 'react'
-import { Segment } from 'semantic-ui-react'
+import {
+  Segment,
+  Header,
+  Label,
+} from 'semantic-ui-react'
+import reviewIconDefault from '../../static/img/diary-review_default.svg'
+import * as Style from './StyledDiaryReview'
+import DiaryReviewShort from './DiaryReviewShort'
 
 class DiaryReview extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
-    return <div>1</div>
+    return (
+      <div>
+        <Segment style={Style.reviewBox}>
+          {/* title 시작 */}
+          <Header style={Style.header}>
+            <Header.Subheader
+              style={Style.subHeader}
+            >
+              REVIEW DIARY
+            </Header.Subheader>
+            오늘의 일기
+            <img
+              src={reviewIconDefault}
+              style={{
+                height: '27px',
+                marginBottom: '9px',
+              }}
+              alt="의미없는 일기 표시 아이콘입니다."
+              aria-hidden="true"
+            />
+          </Header>
+          {/* title 끝 */}
+
+          {/* 오늘의 반성일기 시작*/}
+          <DiaryReviewShort />
+          {/* 오늘의 반성일기 끝*/}
+        </Segment>
+      </div>
+    )
   }
 }
 
