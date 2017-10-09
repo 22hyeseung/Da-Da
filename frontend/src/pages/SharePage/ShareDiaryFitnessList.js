@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  Button,
-  List,
-  Divider,
-} from 'semantic-ui-react'
+import { List, Divider } from 'semantic-ui-react'
 
 const textSmall = {
   fontSize: '12px',
@@ -22,12 +18,6 @@ const textBig = {
   fontFamily: 'Montserrat-Bold',
 }
 
-const buttonIcon = {
-  padding: '3px',
-  color: '#a8b7c7',
-  backgroundColor: 'transparent',
-  display: 'inline-block',
-}
 const ShareDiaryFitnessAdd = () => (
   <div>
     <List horizontal style={{ width: '95%' }}>

@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  Segment,
-  Icon,
-  Button,
-} from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 import * as Style from './StyledDiaryFood'
 
 const DiaryFoodListCard = () => {

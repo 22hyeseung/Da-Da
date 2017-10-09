@@ -215,14 +215,26 @@
 
 .diary-food-meal-list-scroll {
     overflow: auto;
-    height: 160px;
+    height: 175px;
     position: relative;
     margin-bottom: 0px;
     border-bottom: none;
 }
 
 .diary-food-meal-list-scroll::-webkit-scrollbar {
-    display: none;
+    height: 5px;
+    width: 5px;
+    /* display: none; */
+}
+
+.diary-food-meal-list-scroll::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #a8b7c7;
+}
+
+.diary-food-meal-list-scroll::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #e0e5ee;
 }
 
 .diary-food-meal-list-card-firstRow {
@@ -277,12 +289,30 @@
 
 .diary-food-album-list-scroll {
     overflow: auto;
-    height: 210px;
+    height: 220px;
     position: relative;
 }
 
 .diary-food-album-list-scroll::-webkit-scrollbar {
-    display: none;
+    /* display: none; */
+    height: 5px;
+    width: 5px;
+}
+
+.diary-food-album-list-scroll::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #a8b7c7;
+}
+
+.diary-food-album-list-scroll::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #e0e5ee;
+}
+
+.diary-food-meal-list-card-firstRow {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 21px;
 }
 
 .diary-food-album-list-card-edit-modal>div {

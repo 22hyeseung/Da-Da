@@ -1,7 +1,6 @@
 import React from 'react'
 import './Share.css'
 import graph from '../../static/img/share-graph.svg'
-import * as Style from './StyledDiaryFood'
 const ShareTitle = () => {
   return (
     <div className="share-header">

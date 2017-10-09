@@ -52,6 +52,7 @@ const ShareDiaryFitness = () => {
             height: '27px',
             marginBottom: '9px',
           }}
+          alt="운동 다이어리를 표시하는 아이콘입니다."
         />
       </Header>
       <div style={listWrapper}>

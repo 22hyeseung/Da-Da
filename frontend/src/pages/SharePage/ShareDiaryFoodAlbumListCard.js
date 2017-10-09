@@ -4,7 +4,6 @@ import {
   Label,
   Modal,
   Image,
-  Button,
 } from 'semantic-ui-react'
 import foodImg from '../../static/img/diary_food_album.jpg'
 import zoomIcon from '../../static/img/diary-zoom.svg'
