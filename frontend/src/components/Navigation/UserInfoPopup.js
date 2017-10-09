@@ -12,7 +12,7 @@ class UserInfo extends Component {
   render() {
     return (
       <Grid style={styled.PopWrap}>
-        <Grid.Row style={styled.styled.row_1}>
+        <Grid.Row style={styled.row_1}>
           <Grid.Column style={styled.row_1_col_1}>
             <Image
               style={styled.avatar_pop}
