@@ -1,9 +1,9 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react'
-import DiaryFoodAlbumList from './DiaryFoodAlbumList'
+import ShareDiaryFoodAlbumList from './ShareDiaryFoodAlbumList'
 import * as Style from './StyledDiaryFood'
 
-const DiaryFoodAlbum = () => {
+const ShareDiaryFoodAlbum = () => {
   return (
     <div className="diary-food-album">
       <Header
@@ -14,9 +14,9 @@ const DiaryFoodAlbum = () => {
       >
         오늘의 식단 앨범
       </Header>
-      <DiaryFoodAlbumList />
+      <ShareDiaryFoodAlbumList />
     </div>
   )
 }
 
-export default DiaryFoodAlbum
+export default ShareDiaryFoodAlbum

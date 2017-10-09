@@ -28,7 +28,7 @@ const buttonIcon = {
   backgroundColor: 'transparent',
   display: 'inline-block',
 }
-const DiaryFitnessAdd = () => (
+const ShareDiaryFitnessAdd = () => (
   <div>
     <List horizontal style={{ width: '95%' }}>
       <List.Item
@@ -68,4 +68,4 @@ const DiaryFitnessAdd = () => (
   </div>
 )
 
-export default DiaryFitnessAdd
+export default ShareDiaryFitnessAdd

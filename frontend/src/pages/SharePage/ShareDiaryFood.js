@@ -4,14 +4,13 @@ import {
   Header,
   Label,
 } from 'semantic-ui-react'
-import DiaryFoodAdd from '../DiaryPage/'
-import DiaryFoodList from './DiaryFoodList'
-import DiaryFoodAlbum from './DiaryFoodAlbum'
+import ShareDiaryFoodList from './ShareDiaryFoodList'
+import ShareDiaryFoodAlbum from './ShareDiaryFoodAlbum'
 import foodIconDefault from '../../static/img/diary-food_default.svg'
 import * as Style from './StyledDiaryFood'
 import './Diary.css'
 
-const DiaryFood = () => {
+const ShareDiaryFood = () => {
   return (
     <Segment style={Style.foodBox}>
       {/* title 시작 */}
@@ -52,7 +51,7 @@ const DiaryFood = () => {
             <Label.Detail>100 kcal</Label.Detail>
           </Label>
         </div>
-        <DiaryFoodList />
+        <ShareDiaryFoodList />
       </Segment>
       {/* 아침 식사 끝 */}
       {/* 점심 식사 시작 */}
@@ -74,7 +73,7 @@ const DiaryFood = () => {
             <Label.Detail>100 kcal</Label.Detail>
           </Label>
         </div>
-        <DiaryFoodList />
+        <ShareDiaryFoodList />
       </Segment>
       {/* 점심 식사 끝 */}
       {/* 저녁 식사 시작 */}
@@ -96,7 +95,7 @@ const DiaryFood = () => {
             <Label.Detail>100 kcal</Label.Detail>
           </Label>
         </div>
-        <DiaryFoodList />
+        <ShareDiaryFoodList />
       </Segment>
       {/* 저녁 식사 끝 */}
       {/* 간식/기타 시작 */}
@@ -118,13 +117,13 @@ const DiaryFood = () => {
             <Label.Detail>100 kcal</Label.Detail>
           </Label>
         </div>
-        <DiaryFoodList />
+        <ShareDiaryFoodList />
       </Segment>
       {/* 간식/기타 끝 */}
-      <DiaryFoodAlbum />
+      <ShareDiaryFoodAlbum />
       {/* 끼니별 식단 다이어리 끝 */}
     </Segment>
   )
 }
 
-export default DiaryFood
+export default ShareDiaryFood

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Share.css'
-import DiaryFood from './DiaryFood'
-import DiaryFitness from './DiaryFitness'
+import ShareDiaryFood from './ShareDiaryFood'
+import ShareDiaryFitness from './ShareDiaryFitness'
 import ShareTitle from './ShareTitle'
 
 const SharePage = () => {
@@ -12,8 +12,8 @@ const SharePage = () => {
           DA, DA
         </span>
         <ShareTitle />
-        <DiaryFood />
-        <DiaryFitness />
+        <ShareDiaryFood />
+        <ShareDiaryFitness />
       </div>
       <footer className="share-footer">
         나만의 식단다이어리를 갖고 싶다면

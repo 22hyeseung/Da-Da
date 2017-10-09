@@ -5,13 +5,13 @@ import {
 } from 'semantic-ui-react'
 import bgImg from '../../static/img/fitness_bg.png'
 import FitnessIcon from '../../static/img/diary-fitness_default.svg'
-import DiaryFitnessList from './DiaryFitnessList'
+import ShareDiaryFitnessList from './ShareDiaryFitnessList'
 
 const listWrapper = {
   width: '80%',
 }
 
-const DiaryFitness = () => {
+const ShareDiaryFitness = () => {
   return (
     <Segment
       style={{
@@ -55,12 +55,12 @@ const DiaryFitness = () => {
         />
       </Header>
       <div style={listWrapper}>
-        <DiaryFitnessList />
-        <DiaryFitnessList />
-        <DiaryFitnessList />
+        <ShareDiaryFitnessList />
+        <ShareDiaryFitnessList />
+        <ShareDiaryFitnessList />
       </div>
     </Segment>
   )
 }
 
-export default DiaryFitness
+export default ShareDiaryFitness

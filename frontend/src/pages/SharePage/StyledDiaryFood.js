@@ -42,7 +42,7 @@ export const submitBtn = {
 
 // food tab view 컴포넌트 시작
 export const foodBox = {
-  padding: '33px 36px 21px 36px',
+  padding: '33px 36px',
   backgroundImage: `url(${foodBG})`,
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'right top',
@@ -154,10 +154,11 @@ export const settingIcon = {
 export const albumCard = {
   boxShadow: 'none',
   marginTop: '0px',
+  marginBottom: '0px',
   border: '1px solid #d8dde6',
   width: '210px',
   height: '210px',
-  marginRight: '14px',
+  marginRight: '7px',
   background: `url(${foodImg})`,
   backgroundPosition: 'center',
   backgroundSize: 'cover',

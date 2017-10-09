@@ -215,10 +215,14 @@
 
 .diary-food-meal-list-scroll {
     overflow: auto;
-    height: 180px;
+    height: 160px;
     position: relative;
     margin-bottom: 0px;
     border-bottom: none;
+}
+
+.diary-food-meal-list-scroll::-webkit-scrollbar {
+    display: none;
 }
 
 .diary-food-meal-list-card-firstRow {
@@ -273,8 +277,12 @@
 
 .diary-food-album-list-scroll {
     overflow: auto;
-    height: 240px;
+    height: 210px;
     position: relative;
+}
+
+.diary-food-album-list-scroll::-webkit-scrollbar {
+    display: none;
 }
 
 .diary-food-album-list-card-edit-modal>div {

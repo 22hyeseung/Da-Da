@@ -10,7 +10,7 @@ import foodImg from '../../static/img/diary_food_album.jpg'
 import zoomIcon from '../../static/img/diary-zoom.svg'
 import * as Style from './StyledDiaryFood'
 
-class DiaryFoodAlbumListCard extends Component {
+class ShareDiaryFoodAlbumListCard extends Component {
   state = { open: false }
 
   show = size => () =>
@@ -65,4 +65,4 @@ class DiaryFoodAlbumListCard extends Component {
   }
 }
 
-export default DiaryFoodAlbumListCard
+export default ShareDiaryFoodAlbumListCard
