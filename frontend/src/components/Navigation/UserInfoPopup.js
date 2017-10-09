@@ -6,6 +6,7 @@ import {
   Button,
 } from 'semantic-ui-react'
 import * as styled from './StyledNavigation'
+import UserInfoPopup from './UserInfoPopup'
 
 class UserInfo extends Component {
   render() {
@@ -36,10 +37,6 @@ class UserInfo extends Component {
                 ...styled.avatar,
                 width: '69px',
                 height: '69px',
-                // borderStyle: 'solid',
-                // borderWidth: '3px',
-                // borderImageSource:
-                // 'linear-gradient(225deg, #26d0ce, #1a2980)',
               }}
               shape="circular"
               src="https://placeimg.com/34/34/people"

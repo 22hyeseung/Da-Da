@@ -22,7 +22,7 @@ const routes = [
   },
 ]
 
-class Router extends Component {
+class NavItems extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -36,6 +36,7 @@ class Router extends Component {
       activeItem: name,
     })
   }
+
   render() {
     return routes.map(route => (
       <Menu.Item
@@ -58,4 +59,4 @@ class Router extends Component {
   }
 }
 
-export default Router
+export default NavItems
