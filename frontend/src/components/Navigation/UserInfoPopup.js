@@ -11,124 +11,39 @@ import UserInfoPopup from './UserInfoPopup'
 class UserInfo extends Component {
   render() {
     return (
-      <Grid
-        style={{
-          textAlign: 'center',
-          color: '#16325c',
-          width: '220px',
-          height: '280px',
-        }}
-      >
-        <Grid.Row
-          style={{
-            height: '85px',
-            paddingBottom: '0',
-          }}
-        >
-          <Grid.Column
-            style={{
-              padding: '0',
-              marginLeft: '21px',
-              width: '80px',
-            }}
-          >
+      <Grid style={styled.PopWrap}>
+        <Grid.Row style={styled.styled.row_1}>
+          <Grid.Column style={styled.row_1_col_1}>
             <Image
-              style={{
-                ...styled.avatar,
-                width: '69px',
-                height: '69px',
-              }}
+              style={styled.avatar_pop}
               shape="circular"
               src="https://placeimg.com/34/34/people"
             />
           </Grid.Column>
-          <Grid.Column
-            style={{
-              padding: '10px 0 0 0',
-              width: '102px',
-            }}
-          >
-            <p
-              style={{
-                // width: '58px',
-                // height: '25px',
-                fontSize: '21px',
-                fontWeight: '700',
-                textAlign: 'left',
-                margin: '0',
-                paddingLeft: '7px',
-              }}
-            >
-              홍길동
-            </p>
-            <p
-              style={{
-                fontFamily: 'Montserrat-medium',
-                fontSize: '12px',
-                width: '102px',
-                height: '27px',
-                lineHeight: '27px',
-                color: '#fff',
-                borderRadius: '21px',
-                backgroundImage:
-                  'linear-gradient(255deg, #26d0ce, #1a2980)',
-              }}
-            >
+          <Grid.Column style={styled.row_1_col_2}>
+            <p style={styled.username_pop}>홍길동</p>
+            <p style={styled.userSize}>
               160cm / 60kg
             </p>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row
-          style={{
-            padding: '0',
-            height: '115px',
-          }}
-        >
-          <Segment
-            style={{
-              marginLeft: '21px',
-              height: '114px',
-            }}
-          >
-            <p
-              style={{
-                fontSize: '14px',
-                fontWeight: '700',
-              }}
-            >
+        <Grid.Row style={styled.row_2}>
+          <Segment style={styled.row_2_segment}>
+            <p style={styled.d_day}>
               오늘은 10일차 입니다.
             </p>
-            <div
-              style={{
-                width: '150px',
-                height: '55px',
-                lineHeight: '27.5px',
-                borderRadius: '4px',
-                border: 'solid 1px #d8dde6',
-              }}
-            >
+            <div style={styled.goalWrap}>
               목표체중까지
               <p>
-                <span
-                  style={{ fontWeight: '700' }}
-                >
+                <span style={styled.goalWeight}>
                   9
                 </span>kg 남았습니다.
               </p>
             </div>
           </Segment>
         </Grid.Row>
-        <Grid.Row
-          style={{
-            height: '40px',
-            marginLeft: '108px',
-            padding: '0',
-          }}
-        >
-          <Button
-            basic
-            style={{ height: '36px' }}
-          >
+        <Grid.Row style={styled.row_3}>
+          <Button basic style={styled.logout}>
             로그아웃
           </Button>
         </Grid.Row>
