@@ -7,6 +7,7 @@ import {
 import reviewIconDefault from '../../static/img/diary-review_default.svg'
 import * as Style from './StyledDiaryReview'
 import DiaryReviewShort from './DiaryReviewShort'
+import DiaryReviewLong from './DiaryReviewLong'
 
 class DiaryReview extends Component {
   render() {
@@ -32,10 +33,10 @@ class DiaryReview extends Component {
             />
           </Header>
           {/* title 끝 */}
-
-          {/* 오늘의 반성일기 시작*/}
+          {/* 오늘의 반성일기 */}
           <DiaryReviewShort />
-          {/* 오늘의 반성일기 끝*/}
+          {/* 오늘의 일기*/}
+          <DiaryReviewLong />
         </Segment>
       </div>
     )

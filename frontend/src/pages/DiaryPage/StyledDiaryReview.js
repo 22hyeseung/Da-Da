@@ -70,3 +70,9 @@ export const shortSubmitBtn = {
   height: '36px',
 }
 // 오늘의 반성일기 끝
+
+// 오늘의 일기 시작
+export const longBox = {
+  marginLeft: '-12px',
+  paddingTop: '20px',
+}
