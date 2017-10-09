@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import {
   Menu,
   Image,
@@ -8,46 +7,9 @@ import {
 } from 'semantic-ui-react'
 import * as styled from './StyledNavigation'
 import UserInfoPopup from './UserInfoPopup'
-
-// 네비게이션 아이템: 다이어리/리포트/체중기록/레시피검색
-const routes = [
-  {
-    linkLabel: '다이어리',
-    linkTo: '/diary',
-  },
-  {
-    linkLabel: '리포트',
-    linkTo: '/report',
-  },
-  {
-    linkLabel: '체중 기록',
-    linkTo: '/weight',
-  },
-  {
-    linkLabel: '레시피 검색',
-    linkTo: '/search',
-  },
-]
-
-// 현재 페이지가 어디인지,
-//  active 효과 적용 대상
-// let activeItem = ''
+import Router from './Router'
 
 class Navigation extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      activeItem: '',
-    }
-  }
-  // 클릭 시 해당 아이템을 현재 페이지로
-  // 다이어리 클릭 => /diary로 페이지 이동 => 현재 페이지: diary (밑줄 효과)
-  handleItemClick = ({ name }) => {
-    this.setState({
-      activeItem: name,
-    })
-  }
-
   render() {
     return (
       // 네비게이션 시작
@@ -67,24 +29,7 @@ class Navigation extends Component {
           position="right"
           style={styled.itemWrap}
         >
-          {routes.map(route => (
-            <Menu.Item
-              style={styled.linkTagWrap}
-              name={route.linkLabel}
-              active={
-                this.state.activeItem ===
-                `${route.linkLabel}`
-              }
-              onClick={this.handleItemClick}
-            >
-              <Link
-                style={styled.linkTag}
-                to={route.linkTo}
-              >
-                {route.linkLabel}
-              </Link>
-            </Menu.Item>
-          ))}
+          <Router />
 
           {/* 오른쪽 끝: 유저 정보 + 팝업*/}
           <Menu.Item style={styled.userInfoWrap}>
