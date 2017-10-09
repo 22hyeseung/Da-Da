@@ -1,6 +1,10 @@
 .weight-grid {
-    width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
+}
+
+.weight-grid-wrapper {
+    display: flex;
 }
 
 .weight-current-wrapper {
@@ -27,4 +31,119 @@
 
 .ui.list>.item:after {
     display: none;
+}
+
+.weight-daily {
+    box-shadow: 0 2px 5px 0 rgba(79, 64, 64, 0.2);
+    padding: 27px 27px 180px 27px;
+    background-image: url('../../static/img/weight-img_2.png');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 90%;
+    border-radius: 4px;
+}
+
+.weight-daily-value {
+    display: flex;
+}
+
+.weight-daily-value-unit {
+    margin-left: 5px
+}
+
+@media only screen and (max-width: 1200px) {
+    .weight-grid {
+        max-width: 992px;
+    }
+    .weight-grid-wrapper {
+        display: block;
+    }
+    .weight-daily {
+        background-image: url('../../static/img/weight-img_2.png');
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        background-size: 30%;
+    }
+    .weight-progress {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 150px;
+    }
+    .weight-progress-bar-rec {
+        width: 562px;
+    }
+    .weight-progress-bar-flag {
+        left: 19.8rem;
+        margin: 0px 250px;
+        /* 100%가 33rem */
+        /* 추후 데이터 연동시, left에 수치값 적용
+          left = (시작체중-목표체중)/(시작체중-현재체중)*33 */
+    }
+}
+
+
+/* Medium Devices, Desktops : ~ 992px */
+
+@media only screen and (max-width: 992px) {
+    .weight-grid {
+        max-width: 768px;
+    }
+    .weight-progress {
+        padding: 0px 30px;
+    }
+    .weight-progress-bar-flag {
+        left: 20.4rem;
+        margin: 0px 130px;
+        /* 100%가 34rem */
+        /* 추후 데이터 연동시, left에 수치값 적용
+        left = (시작체중-목표체중)/(시작체중-현재체중)*34  */
+    }
+}
+
+
+/* Small Devices, Tablets : ~ 768px */
+
+@media only screen and (max-width: 768px) {
+    .weight-grid {
+        max-width: 480px;
+    }
+    .weight-progress-bar-rec {
+        width: 290px;
+    }
+    .weight-progress-bar-flag {
+        left: 7.8rem;
+        margin: 0px 130px;
+        /* 100%가 13rem */
+        /* 추후 데이터 연동시, left에 수치값 적용
+      left = (시작체중-목표체중)/(시작체중-현재체중)*13  */
+    }
+    .weight-daily {
+        background-size: 60%;
+    }
+}
+
+
+/* Extra Small Devices, Phones : ~ 480px */
+
+@media only screen and (max-width: 480px) {
+    .weight-grid {
+        max-width: 320px;
+    }
+    .weight-progress {
+        padding: 0px;
+    }
+    .weight-progress-bar-rec {
+        width: 180px;
+    }
+    .weight-progress-bar-flag {
+        left: 4.2rem;
+        margin: 0px 90px;
+        /* 100%가 7rem */
+        /* 추후 데이터 연동시, left에 수치값 적용
+    left = (시작체중-목표체중)/(시작체중-현재체중)*7  */
+    }
+    .weight-daily {
+        background-size: 80%;
+    }
 }

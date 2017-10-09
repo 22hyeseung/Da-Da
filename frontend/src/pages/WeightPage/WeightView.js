@@ -8,7 +8,7 @@ const WeightView = () => {
     <div>
       <Segment
         style={{
-          padding: '35px 135px',
+          padding: '35px 35px',
           boxShadow: 'none',
           border: '1px solid #D8DDE6',
         }}

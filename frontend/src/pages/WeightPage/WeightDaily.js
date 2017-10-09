@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  Segment,
   Header,
   Button,
   List,
@@ -14,7 +13,7 @@ import * as Style from './StyledWeight'
 const WeightDaily = () => {
   return (
     <div>
-      <Segment style={Style.weightDailyBox}>
+      <div className="weight-daily">
         {/* title 시작 */}
         <Header style={Style.header}>
           <Header.Subheader
@@ -43,22 +42,25 @@ const WeightDaily = () => {
             <List.Content
               style={{ padding: '0px 30px' }}
             />
-            <List.Content
-              style={Style.weigthValue}
-            >
-              50
-            </List.Content>
-            <List.Content
-              style={Style.weightUnit}
-            >
-              kg
-            </List.Content>
-            <List.Content floated="right">
-              <img
-                src={ArrowDown}
-                alt="이전 몸무게보다 낮음을 표시"
-              />
-            </List.Content>
+            <div className="weight-daily-value">
+              <List.Content
+                style={Style.weigthValue}
+              >
+                50
+              </List.Content>
+              <List.Content
+                className="weight-daily-value-unit"
+                style={Style.weightUnit}
+              >
+                kg
+              </List.Content>
+              <List.Content floated="right">
+                <img
+                  src={ArrowDown}
+                  alt="이전 몸무게보다 낮음을 표시"
+                />
+              </List.Content>
+            </div>
           </List.Item>
 
           <List.Item style={Style.listItem}>
@@ -68,22 +70,25 @@ const WeightDaily = () => {
             <List.Content
               style={{ padding: '0px 30px' }}
             />
-            <List.Content
-              style={Style.weigthValue}
-            >
-              50
-            </List.Content>
-            <List.Content
-              style={Style.weightUnit}
-            >
-              kg
-            </List.Content>
-            <List.Content floated="right">
-              <img
-                src={ArrowUp}
-                alt="이전 몸무게보다 높음을 표시"
-              />
-            </List.Content>
+            <div className="weight-daily-value">
+              <List.Content
+                style={Style.weigthValue}
+              >
+                50
+              </List.Content>
+              <List.Content
+                className="weight-daily-value-unit"
+                style={Style.weightUnit}
+              >
+                kg
+              </List.Content>
+              <List.Content floated="right">
+                <img
+                  src={ArrowUp}
+                  alt="이전 몸무게보다 높음을 표시"
+                />
+              </List.Content>
+            </div>
           </List.Item>
 
           <List.Item style={Style.listItem}>
@@ -93,26 +98,29 @@ const WeightDaily = () => {
             <List.Content
               style={{ padding: '0px 30px' }}
             />
-            <List.Content
-              style={Style.weigthValue}
-            >
-              50
-            </List.Content>
-            <List.Content
-              style={Style.weightUnit}
-            >
-              kg
-            </List.Content>
-            <List.Content floated="right">
-              <img
-                src={ArrowUp}
-                alt="이전 몸무게보다 높음을 표시"
-              />
-            </List.Content>
+            <div className="weight-daily-value">
+              <List.Content
+                style={Style.weigthValue}
+              >
+                50
+              </List.Content>
+              <List.Content
+                className="weight-daily-value-unit"
+                style={Style.weightUnit}
+              >
+                kg
+              </List.Content>
+              <List.Content floated="right">
+                <img
+                  src={ArrowUp}
+                  alt="이전 몸무게보다 높음을 표시"
+                />
+              </List.Content>
+            </div>
           </List.Item>
         </List>
         {/* 리스트 끝 */}
-      </Segment>
+      </div>
     </div>
   )
 }

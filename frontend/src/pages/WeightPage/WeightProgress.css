@@ -22,6 +22,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0px 90px;
 }
 
 .weight-progress-bar-start,
@@ -30,12 +31,14 @@
     flex-direction: column;
     list-style: none;
     align-items: center;
+    z-index: 1;
 }
 
 .weight-progress-bar {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%)
+    transform: translateX(-50%);
+    z-index: 0
 }
 
 .weight-progress-bar-flag {
@@ -44,4 +47,19 @@
     list-style: none;
     position: absolute;
     margin: 0px 200px;
+    left: 19.8rem;
+}
+
+.weight-progress-bar-rec {
+    width: 562px;
+    height: 2px;
+    background-image: linear-gradient( to right, #1A2980, rgba(38, 208, 206, 0));
+}
+
+.weight-progress-bar-center {
+    height: 10px;
+    width: 2px;
+    background-color: #1A2980;
+    position: absolute;
+    left: 50%;
 }

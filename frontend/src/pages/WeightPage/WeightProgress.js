@@ -1,13 +1,16 @@
 import React from 'react'
 import './WeightProgress.css'
-import progressIndicator from '../../static/img/weight-ProgressIndicator.svg'
+import './Weight.css'
 import weightFlag from '../../static/img/weight-flag.svg'
+import startPoint from '../../static/img/Step-Active.svg'
+import endPoint from '../../static/img/Step-Not_Completed.svg'
 
 const WeightProgress = () => {
   return (
     <div className="weight-progress">
+      {/* 왼쪽 시작체중 그리드 시작 */}
       <ul className="weight-progress-bar-start">
-        <li style={{ paddingBottom: '20px' }}>
+        <li>
           <span className="weight-progress-start">
             60
           </span>
@@ -15,11 +18,19 @@ const WeightProgress = () => {
             kg
           </span>
         </li>
-        <li style={{ padding: '10px' }} />
+        <li style={{ padding: '10px' }}>
+          <img
+            src={startPoint}
+            alt="시작체중부분을 표시한 이미지입니다."
+          />
+        </li>
         <li className="weight-progress-label">
           시작체중
         </li>
       </ul>
+      {/* 왼쪽 시작체중 그리드 끝*/}
+
+      {/* 중간 그리드 시작 (bar+flag) */}
       <ul className="weight-progress-bar-start weight-progress-bar">
         <li
           style={{
@@ -27,21 +38,14 @@ const WeightProgress = () => {
             lineHeight: '0px',
           }}
         >
-          <img
-            src={progressIndicator}
-            alt="선 모양 이미지이며, 처음 포인트는 시작체중, 마지막 포인트는 목표체중입니다."
-          />
+          <div className="weight-progress-bar-rec" />
+          <div className="weight-progress-bar-center" />
         </li>
       </ul>
+      {/* 중간 그리드 끝 (bar+flag) */}
 
-      <ul
-        className="weight-progress-bar-flag"
-        style={{
-          left: '19.8rem',
-        }}
-      >
-        {/* 추후 데이터 연동시, left에 수치값 적용
-          left = (시작체중-목표체중)/(시작체중-현재체중)*33  */}
+      {/* 오른쪽 목표체중 그리드 시작 */}
+      <ul className="weight-progress-bar-flag">
         <li style={{ paddingBottom: '8px' }}>
           <img
             src={weightFlag}
@@ -52,7 +56,7 @@ const WeightProgress = () => {
         <li style={{ padding: '10px' }} />
       </ul>
       <ul className="weight-progress-bar-end">
-        <li style={{ paddingBottom: '20px' }}>
+        <li>
           <span className="weight-progress-end">
             50
           </span>
@@ -60,11 +64,17 @@ const WeightProgress = () => {
             kg
           </span>
         </li>
-        <li style={{ padding: '10px' }} />
-        <li className="weight-progress-lable">
+        <li style={{ padding: '10px' }}>
+          <img
+            src={endPoint}
+            alt="목표체중부분을 표시한 이미지입니다."
+          />
+        </li>
+        <li className="weight-progress-label">
           목표체중
         </li>
       </ul>
+      {/* 오른쪽 목표체중 그리드 끝 */}
     </div>
   )
 }
