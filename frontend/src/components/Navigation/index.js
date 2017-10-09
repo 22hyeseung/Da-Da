@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import * as styled from './StyledNavigation'
+import { container } from './StyledNavigation'
 import Logo from './Logo'
 import RightMenu from './RightMenu'
 
@@ -9,7 +9,7 @@ class Navigation extends Component {
     return (
       // 네비게이션 시작
       <Menu
-        style={styled.container}
+        style={container}
         inverted={this.props.inverted}
         pointing
         secondary

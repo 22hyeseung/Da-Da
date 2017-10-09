@@ -5,15 +5,18 @@ import {
   Popup,
   Button,
 } from 'semantic-ui-react'
-import * as styled from './StyledNavigation'
+import {
+  userInfoWrap,
+  avatar,
+} from './StyledNavigation'
 import UserInfoPopup from './UserInfoPopup'
 
 class UserInfo extends Component {
   render() {
     return (
-      <Menu.Item style={styled.userInfoWrap}>
+      <Menu.Item style={userInfoWrap}>
         <Image
-          style={styled.avatar}
+          style={avatar}
           shape="circular"
           src="https://placeimg.com/34/34/people"
         />

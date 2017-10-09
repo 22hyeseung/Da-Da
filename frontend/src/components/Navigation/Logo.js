@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import * as styled from './StyledNavigation'
+import { logo } from './StyledNavigation'
 
 const Logo = () => {
   return (
-    <Menu.Item style={styled.logo}>
-      DA, DA
-    </Menu.Item>
+    <Menu.Item style={logo}>DA, DA</Menu.Item>
   )
 }
 

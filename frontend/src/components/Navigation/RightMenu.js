@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import * as styled from './StyledNavigation'
+import { itemWrap } from './StyledNavigation'
 import NavItems from './NavItems'
 import UserInfo from './UserInfo'
 
@@ -9,7 +9,7 @@ class componentName extends Component {
     return (
       <Menu.Menu
         position="right"
-        style={styled.itemWrap}
+        style={itemWrap}
         opacity={this.props.opacity}
         backgroundImage={
           this.props.backgroundImage

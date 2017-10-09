@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
-import * as styled from './StyledNavigation'
+import {
+  linkTagWrap,
+  linkTag,
+} from './StyledNavigation'
 
 const routes = [
   {
@@ -40,7 +43,7 @@ class NavItems extends Component {
   render() {
     return routes.map(route => (
       <Menu.Item
-        style={styled.linkTagWrap}
+        style={linkTagWrap}
         name={route.linkLabel}
         active={
           this.state.activeItem ===
@@ -48,10 +51,7 @@ class NavItems extends Component {
         }
         onClick={this.handleItemClick}
       >
-        <Link
-          style={styled.linkTag}
-          to={route.linkTo}
-        >
+        <Link style={linkTag} to={route.linkTo}>
           {route.linkLabel}
         </Link>
       </Menu.Item>
