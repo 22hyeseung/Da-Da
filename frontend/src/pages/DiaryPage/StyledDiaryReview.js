@@ -74,5 +74,10 @@ export const shortSubmitBtn = {
 // 오늘의 일기 시작
 export const longBox = {
   marginLeft: '-12px',
-  paddingTop: '20px',
+  paddingTop: '32px',
+}
+
+export const longSubmitBtn = {
+  ...submitBtn,
+  marginLeft: '744px',
 }

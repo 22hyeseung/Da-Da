@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { convertFromRaw } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import {
+  editorStyle,
+  toolbarStyle,
+} from './StyledTextEditor'
 
 const content = {
   entityMap: {},
@@ -37,15 +41,20 @@ class TextEditor extends Component {
     const { contentState } = this.state
     return (
       <div
-        style={{
-          border: '1px solid #d8dde6',
-          borderRadius: '4px',
-          padding: '6px',
-        }}
+      /* style={} */
       >
         <Editor
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
+          editorStyle={editorStyle}
+          toolbarStyle={toolbarStyle}
+          localization={{
+            locale: 'ko',
+          }}
+          mention={{
+            separator: ' ',
+          }}
+          hashtag={{}}
           onContentStateChange={
             this.onContentStateChange
           }
