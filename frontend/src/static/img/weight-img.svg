@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="253px" height="60px" viewBox="0 0 253 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 7</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="101.499999%" y1="-0.499999523%" x2="1.01329273%" y2="100.981623%" id="linearGradient-1">
+            <stop stop-color="#485563" offset="0%"></stop>
+            <stop stop-color="#29323C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.543478261">
+        <g id="3._체중기록" transform="translate(-448.000000, -98.000000)" stroke="url(#linearGradient-1)" stroke-width="2">
+            <g id="Page-1" transform="translate(426.000000, 98.000000)">
+                <g id="Group-7" transform="translate(23.000000, 0.000000)">
+                    <path d="M127.497,0 L127,59" id="Stroke-13"></path>
+                    <path d="M153.897,2 L152,37" id="Stroke-15"></path>
+                    <path d="M178.486,4 L175,39" id="Stroke-17"></path>
+                    <path d="M203.068,7 L198,42" id="Stroke-19"></path>
+                    <path d="M227.671,12 L221,47" id="Stroke-21"></path>
+                    <path d="M251,17 L243,52" id="Stroke-23"></path>
+                    <path d="M97,2 L98.309,37" id="Stroke-25"></path>
+                    <path d="M72,4 L74.891,39" id="Stroke-27"></path>
+                    <path d="M48,7 L52.48,42" id="Stroke-29"></path>
+                    <path d="M24,11 L30.09,46" id="Stroke-31"></path>
+                    <path d="M0,16 L7,51" id="Stroke-33"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
