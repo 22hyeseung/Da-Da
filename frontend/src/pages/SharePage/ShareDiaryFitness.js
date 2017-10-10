@@ -9,6 +9,7 @@ import ShareDiaryFitnessList from './ShareDiaryFitnessList'
 
 const listWrapper = {
   width: '80%',
+  color: 'black',
 }
 
 const ShareDiaryFitness = () => {
@@ -25,6 +26,7 @@ const ShareDiaryFitness = () => {
         backgroundSize: '24%',
         backgroundAttachment: 'local',
         marginBottom: '0px',
+        minHeight: '200px',
       }}
     >
       <Header
@@ -56,9 +58,8 @@ const ShareDiaryFitness = () => {
         />
       </Header>
       <div style={listWrapper}>
-        <ShareDiaryFitnessList />
-        <ShareDiaryFitnessList />
-        <ShareDiaryFitnessList />
+        오늘은 운동을 하지 않았어요..
+        {/* <ShareDiaryFitnessList /> */}
       </div>
     </Segment>
   )
