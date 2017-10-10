@@ -26,13 +26,12 @@ router.use(passport.initialize())
 router.use(passport.session())
 
 passport.serializeUser((user, done) => {
-  done(null, `${user.Member_provider}:${user.Member_provider_number}`)
+  done(null, `${user.member_provider}:${user.member_provider_number}`)
 })
 
 passport.deserializeUser((str, done) => {
-  const [Member_provider, Member_provider_number] = str.split(':')
-
-  query.firstOrCreateUserByProvider(Member_provider, Member_provider_number)
+  const [member_provider, member_provider_number] = str.split(':');
+  query.firstOrCreateUserByProvider({member_provider, member_provider_number})
     .then(user => {
       if (user) {
         done(null, user)
@@ -50,22 +49,25 @@ passport.use(new KakaoStrategy({
   const avatar_url = profile._json.properties.profile_image ? profile._json.properties.profile_image : null;
   const user_name = profile.displayName ? profile.displayName : null;
   const member_data = {
-    "Member_provider": "kakao",
-    "Member_provider_number": profile.id,
-    "Member_provider_name": user_name,
-    "Member_avatar_url" : avatar_url,
-    "Member_token": accessToken
+    "member_provider": "kakao",
+    "member_provider_number": profile.id,
+    "member_provider_name": user_name,
+    "member_avatar_url" : avatar_url,
+    "token": accessToken
   };
 
   // 기존 소스와 DaDa의 전제조건이 달라 처리순서를 변경.
-  query.updateUserByProvider(member_data).then(() => {
-    query.getUserById('kakao',profile.id)
-      .then(user => {
+  query.firstOrCreateUserByProvider(member_data)
+    .then(user => {
+      if (user) {
+        query.updateUserByProvider(member_data).then();
         done(null, user);
-      }).catch(err => {
-        done(err);
-      })
-  });
+      } else {
+        done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
+      }
+    }).catch(err => {
+      done(err);
+    })
 }))
 
 /**

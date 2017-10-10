@@ -3,51 +3,50 @@ const bcrypt = require('bcrypt')
 const validator = require('validator')
 
 module.exports = {
-  firstOrCreateUserByProvider(Member_provider, Member_provider_number, Member_provider_name, Member_token=null) {
-    return knex('Member')
+  firstOrCreateUserByProvider({member_provider, member_provider_number, token=null}) {
+    return knex('member')
       .where({
-        Member_provider,
-        Member_provider_number
+        member_provider,
+        member_provider_number
       })
       .first()
-      .then(Member => {
-        if (Member) {
-          return Member
+      .then(member => {
+        if (member) {
+          return member
         } else {
-          return knex('Member')
+          return knex('member')
             .insert({
-              Member_provider,
-              Member_provider_number,
-              Member_provider_name,
-              Member_token
+              member_provider,
+              member_provider_number,
+              token
             })
-            .then(([Member_id]) => {
-              return knex('Member')
-                .where({Member_id})
+            .then(([member_id]) => {
+              return knex('member')
+                .where({member_id})
                 .first()
             })
         }
       })
   },
-  updateUserByProvider({Member_provider, Member_provider_number, Member_provider_name, Member_avatar_url, Member_token=null}){
-    return knex('Member')
+  updateUserByProvider({member_provider, member_provider_number, member_provider_name, member_avatar_url, token=null}){
+    return knex('member')
       .where({
-        Member_provider,
-        Member_provider_number
+        member_provider,
+        member_provider_number
       })
       .first()
-      .then(Member => {
-        return knex('Member')
+      .then(member => {
+        return knex('member')
         .update({
-          Member_provider_name,
-          Member_avatar_url,
-          Member_token
+          member_provider_name,
+          member_avatar_url,
+          token
         })
       })
   },
-  getUserById(Member_provider, Member_provider_number) {
+  getUserById(member_provider, member_provider_number) {
     return knex('member')
-      .where({Member_provider, Member_provider_number})
+      .where({member_provider, member_provider_number})
       .first()
   },
 }
