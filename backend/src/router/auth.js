@@ -6,6 +6,7 @@ const csurf = require('csurf')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const KakaoStrategy = require('passport-kakao').Strategy
+const NaverStrategy = require('passport-naver').Strategy
 
 const query = require('../query')
 const mw = require('../middleware')
@@ -47,7 +48,7 @@ passport.use(new KakaoStrategy({
   callbackURL: process.env.KAKAO_CALLBACK_URL
 }, (accessToken, refreshToken, profile, done) => {
   const avatar_url = profile._json.properties.profile_image ? profile._json.properties.profile_image : null;
-  const user_name = profile.displayName ? profile.displayName : null;
+  const user_name = profile.displayName ? profile.displayName : null
   const member_data = {
     "member_provider": "kakao",
     "member_provider_number": profile.id,
@@ -70,6 +71,34 @@ passport.use(new KakaoStrategy({
     })
 }))
 
+
+passport.use(new NaverStrategy({
+  clientID: process.env.NAVER_CLIENT_ID,
+  clientSecret: process.env.NAVER_CLIENT_SECRET,
+  callbackURL: process.env.NAVER_CALLBACK_URL
+}, (accessToken, refreshToken, profile, done) => {
+  const avatar_url = profile._json.profile_image ? profile._json.profile_image : null
+  const user_name = profile._json.nickname ? profile._json.nickname : null
+  const member_data = {
+    "member_provider": "naver",
+    "member_provider_number": profile._json.id,
+    "member_provider_name": user_name,
+    "member_avatar_url": avatar_url,
+    "token": accessToken
+  }
+
+  query.firstOrCreateUserByProvider(member_data)
+    .then(user => {
+      if(user){
+        query.updateUserByProvider(member_data).then()
+        done(null, user)
+      }else{
+        done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
+      }
+    }).catch(err => {
+      done(err)
+    })
+}))
 /**
  * @apiDefine auth OAuth
  * @apiSuccess {String} member_provider 소속sns
@@ -129,6 +158,39 @@ router.get('/kakao/callback', (req, res, next) => {
   })(req, res, next)
 })
 
+/**
+ @api {get} /auth/naver/ Nakao
+ * @apiDescription 네이버계정 로그인
+ * @apiName authNaver
+ * @apiGroup auth
+ *
+ * @apiUse auth
+ * @apiSuccessExample {json} Success-Respoonse:
+ * {
+ *   "member_provider": "naver",
+ *   "member_provider_number": 37589930,
+ *   "member_provider_name": "홍길순",
+ *   "member_avatar_url": "./data/photo/_thumb/20"
+ * }
+ */
+router.get('/naver', passport.authenticate('naver'))
+
+router.get('/naver/callback', (req,res,next) => {
+  passport.authenticate('naver', (err, user, info) => {
+    if(err){
+      return next(err)
+    }
+    if(!user){
+      return res.redirect(req.baseUrl)
+    }
+    req.logIn(user, err => {
+      if(err){
+        return next(err)
+      }
+      res.redirect(req.baseUrl + '/success')
+    })
+  })(req, res, next)
+})
 router.use((err, req, res, next) => {
   console.log(err, err.message, '<< [ err, err.message ]');
   res.redirect(req.baseUrl)

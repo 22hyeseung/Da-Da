@@ -23,6 +23,7 @@
     "mysql": "^2.14.1",
     "passport": "^0.4.0",
     "passport-kakao": "0.0.5",
+    "passport-naver": "^1.0.6",
     "pug": "^2.0.0-rc.4",
     "validator": "^9.0.0"
   }
