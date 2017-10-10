@@ -11,6 +11,8 @@ const DiaryFoodList = () => {
         <DiaryFoodListCard />
         <DiaryFoodListCard />
         <DiaryFoodListCard />
+        <DiaryFoodListCard />
+        <DiaryFoodListCard />
       </div>
     </div>
   )
