@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "debug": "nodemon --inspect src/index.js"
+    "debug": "nodemon --inspect src/index.js",
+    "apidoc": "apidoc -i src/router -o docs"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,8 @@
     "knex": "^0.13.0",
     "mysql": "^2.14.1",
     "passport": "^0.4.0",
+    "passport-kakao": "0.0.5",
+    "pug": "^2.0.0-rc.4",
     "validator": "^9.0.0"
   }
 }
