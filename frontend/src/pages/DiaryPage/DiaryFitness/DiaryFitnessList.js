@@ -6,70 +6,34 @@ import {
 } from 'semantic-ui-react'
 import FaPencil from 'react-icons/lib/fa/pencil'
 import FaTrashO from 'react-icons/lib/fa/trash-o'
+import * as styled from './StyledFitness'
 
-const textSmall = {
-  fontSize: '12px',
-}
-
-const text = {
-  fontSize: '17px',
-  letterSpacing: '-0.3px',
-  color: '#16325c',
-}
-
-const textBig = {
-  fontSize: '28px',
-  letterSpacing: '-1px',
-  color: '#16325c',
-  fontFamily: 'Montserrat-Bold',
-}
-
-const buttonIcon = {
-  padding: '3px',
-  color: '#a8b7c7',
-  backgroundColor: 'transparent',
-  display: 'inline-block',
-}
 const DiaryFitnessAdd = () => (
   <div>
-    <List horizontal style={{ width: '95%' }}>
-      <List.Item
-        style={{ width: '20%', margin: '0' }}
-      >
-        <List.Header style={text}>
+    <List horizontal style={styled.listWrap}>
+      <List.Item style={styled.listItemLeft}>
+        <List.Header style={styled.text}>
           팔 굽혀 펴기
         </List.Header>
       </List.Item>
-      <List.Item
-        style={{ width: '20%', margin: '0' }}
-      >
-        <Button style={buttonIcon}>
+      <List.Item style={styled.listItemLeft}>
+        <Button style={styled.buttonIcon}>
           <FaPencil size={20} />
         </Button>
-        <Button style={buttonIcon}>
+        <Button style={styled.buttonIcon}>
           <FaTrashO size={20} />
         </Button>
       </List.Item>
-      <List.Item
-        style={{
-          width: '30%',
-          margin: '0',
-          textAlign: 'right',
-        }}
-      >
-        <List.Header style={text}>
+      <List.Item style={styled.listItemRight}>
+        <List.Header style={styled.text}>
           30분
         </List.Header>
       </List.Item>
-      <List.Item
-        style={{
-          width: '30%',
-          margin: '0',
-          textAlign: 'right',
-        }}
-      >
-        <List.Header style={textSmall}>
-          <span style={textBig}>105 </span>kcal
+      <List.Item style={styled.listItemRight}>
+        <List.Header style={styled.textSmall}>
+          <span style={styled.textBig}>
+            105{' '}
+          </span>kcal
         </List.Header>
       </List.Item>
     </List>
