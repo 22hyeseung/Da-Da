@@ -26,15 +26,13 @@ router.use(passport.initialize())
 router.use(passport.session())
 
 passport.serializeUser((user, done) => {
-  done(null, `${user.member_provider}:${user.member_provider_number}`)
+  done(null, `${user.Member_provider}:${user.Member_provider_number}`)
 })
 
 passport.deserializeUser((str, done) => {
-  // 임시 code
-  console.log(str, '<< [ str ]');
-  done(null, str);
-  /*const [provider, provider_user_id] = str.split(':')
-  query.firstOrCreateUserByProvider(provider, provider_user_id)
+  const [Member_provider, Member_provider_number] = str.split(':')
+
+  query.firstOrCreateUserByProvider(Member_provider, Member_provider_number)
     .then(user => {
       if (user) {
         done(null, user)
@@ -42,7 +40,6 @@ passport.deserializeUser((str, done) => {
         done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
       }
     })
-  */
 })
 
 passport.use(new KakaoStrategy({
@@ -52,31 +49,32 @@ passport.use(new KakaoStrategy({
 }, (accessToken, refreshToken, profile, done) => {
   const avatar_url = profile._json.properties.profile_image ? profile._json.properties.profile_image : null;
   const user_name = profile.displayName ? profile.displayName : null;
-
-  console.log(avatar_url, user_name, '<< [ avatar_url, user_name ]');
-  // 임시 data, code
-  const user = {
-    "member_provider": "kakao",
-    "member_provider_number": profile.id,
-    "member_provider_name": user_name,
-    "member_avatar_url" : avatar_url
+  const member_data = {
+    "Member_provider": "kakao",
+    "Member_provider_number": profile.id,
+    "Member_provider_name": user_name,
+    "Member_avatar_url" : avatar_url,
+    "Member_token": accessToken
   };
-  done(null, user);
-/*
-  query.firstOrCreateUserByProvider(
-    'kakao',
-    profile.id,
-    accessToken,
-    avatar_url,
-    user_name
-  ).then(user => {
-    done(null, user)
-  }).catch(err => {
-    done(err)
-  })
-*/
+
+  // 기존 소스와 DaDa의 전제조건이 달라 처리순서를 변경.
+  query.updateUserByProvider(member_data).then(() => {
+    query.getUserById('kakao',profile.id)
+      .then(user => {
+        done(null, user);
+      }).catch(err => {
+        done(err);
+      })
+  });
 }))
 
+/**
+ * @apiDefine auth OAuth
+ * @apiSuccess {String} member_provider 소속sns
+ * @apiSuccess {Number} member_provider_number sns 고유Id
+ * @apiSuccess {String} member_provider_name 사용자 이름
+ * @apiSuccess {String} member_avatar_url 사용자 아바타Url
+ */
 router.get('/', (req, res) => {
   res.render('auth.pug');
 });
@@ -91,6 +89,21 @@ router.get('/success', mw.loginRequired, (req, res) => {
   })
 })
 
+/**
+ * @api {get} /auth/kakao/ Kakao
+ * @apiDescription 카카오계정 로그인
+ * @apiName authKakao
+ * @apiGroup auth
+ *
+ * @apiUse auth
+ * @apiSuccessExample {json} Success-Respoonse:
+ * {
+ *   "member_provider": "kakao",
+ *   "member_provider_number": 12083789234789,
+ *   "member_provider_name": "홍길동",
+ *   "member_avatar_url": "./data/photo/_thumb/20"
+ * }
+ */
 router.get('/kakao', passport.authenticate('kakao'))
 
 router.get('/kakao/callback', (req, res, next) => {

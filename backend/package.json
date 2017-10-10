@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "debug": "nodemon --inspect src/index.js"
+    "debug": "nodemon --inspect src/index.js",
+    "apidoc": "apidoc -i src/router -o docs"
   },
   "author": "",
   "license": "ISC",
