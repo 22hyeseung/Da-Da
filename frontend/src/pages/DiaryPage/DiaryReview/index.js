@@ -4,7 +4,7 @@ import {
   Header,
   Label,
 } from 'semantic-ui-react'
-import reviewIconDefault from '../../static/img/diary-review_default.svg'
+import reviewIconDefault from '../../../static/img/diary-review_default.svg'
 import * as Style from './StyledDiaryReview'
 import DiaryReviewShort from './DiaryReviewShort'
 import DiaryReviewLong from './DiaryReviewLong'

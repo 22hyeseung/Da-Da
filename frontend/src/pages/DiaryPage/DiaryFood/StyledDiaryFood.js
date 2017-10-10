@@ -1,5 +1,5 @@
-import foodImg from '../../static/img/diary_food_album.jpg'
-import foodBG from '../../static/img/food_bg.png'
+import foodImg from '../../../static/img/diary_food_album.jpg'
+import foodBG from '../../../static/img/food_bg.png'
 
 // 공통 스타일 시작
 export const header = {

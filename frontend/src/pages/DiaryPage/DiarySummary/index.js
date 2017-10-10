@@ -4,7 +4,7 @@ import {
   Header,
   List,
 } from 'semantic-ui-react'
-import pieGraph from '../../static/img/diary-graph.svg'
+import pieGraph from '../../../static/img/diary-graph.svg'
 import DiarySocialBtns from './DiarySocialBtns'
 import * as Style from './StyledDiarySummary'
 

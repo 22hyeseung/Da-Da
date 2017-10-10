@@ -8,8 +8,8 @@ import {
   Input,
 } from 'semantic-ui-react'
 import DiaryFoodSearchModal from './DiaryFoodSearchModal'
-import multiplyIcon from '../../static/img/diary-multiply.svg'
-import returnIcon from '../../static/img/diary-return.svg'
+import multiplyIcon from '../../../static/img/diary-multiply.svg'
+import returnIcon from '../../../static/img/diary-return.svg'
 import _ from 'lodash'
 import faker from 'faker'
 import * as Style from './StyledDiaryFood'

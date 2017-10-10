@@ -3,8 +3,8 @@ import {
   Segment,
   Header,
 } from 'semantic-ui-react'
-import bgImg from '../../static/img/fitness_bg.png'
-import FitnessIcon from '../../static/img/diary-fitness_default.svg'
+import bgImg from '../../../static/img/fitness_bg.png'
+import FitnessIcon from '../../../static/img/diary-fitness_default.svg'
 import DiaryFitnessList from './DiaryFitnessList'
 import DiaryFitnessInput from './DiaryFitnessInput'
 import DiaryFitnessAdd from './DiaryFitnessAdd'

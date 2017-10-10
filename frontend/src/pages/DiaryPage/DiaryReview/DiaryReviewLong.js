@@ -4,7 +4,7 @@ import {
   longBox,
   longSubmitBtn,
 } from './StyledDiaryReview'
-import TextEditor from '../../components/TextEditor'
+import TextEditor from '../../../components/TextEditor'
 
 class DiaryReviewShortInput extends Component {
   render() {

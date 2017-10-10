@@ -10,7 +10,7 @@ import {
   List,
   Checkbox,
 } from 'semantic-ui-react'
-import cameraIcon from '../../static/img/diary-camera-icon.svg'
+import cameraIcon from '../../../static/img/diary-camera-icon.svg'
 import * as Style from './StyledDiaryFood'
 
 class DiaryFoodSearchModal extends Component {

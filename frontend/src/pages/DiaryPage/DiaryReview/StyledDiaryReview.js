@@ -1,4 +1,4 @@
-import reviewBG from '../../static/img/review_bg.png'
+import reviewBG from '../../../static/img/review_bg.png'
 
 // 공통 스타일 시작
 export const header = {

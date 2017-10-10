@@ -1,9 +1,9 @@
 import React from 'react'
-import FbIcon from '../../static/img/diary-social-facebook.svg'
-import InstagramIcon from '../../static/img/diary-social-instagram.svg'
-import KakaoIcon from '../../static/img/diary-social-kakaotalk.svg'
-import NaverIcon from '../../static/img/diary-social-naver.svg'
-import './Diary.css'
+import FbIcon from '../../../static/img/diary-social-facebook.svg'
+import InstagramIcon from '../../../static/img/diary-social-instagram.svg'
+import KakaoIcon from '../../../static/img/diary-social-kakaotalk.svg'
+import NaverIcon from '../../../static/img/diary-social-naver.svg'
+import '../Diary.css'
 
 const DiarySocialBtns = () => {
   return (
