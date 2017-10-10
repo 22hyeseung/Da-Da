@@ -14,6 +14,7 @@ import ReportPage from './pages/ReportPage'
 import WeightPage from './pages/WeightPage'
 import SearchPage from './pages/SearchPage'
 import SharePage from './pages/SharePage'
+import RecipePage from './pages/RecipePage'
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +55,10 @@ class App extends Component {
           <Route
             path="/share"
             component={SharePage}
+          />
+          <Route
+            path="/recipe"
+            component={RecipePage}
           />
         </div>
       </BrowserRouter>

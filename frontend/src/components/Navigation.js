@@ -34,8 +34,12 @@ class Navigation extends Component {
       <Menu
         className="navigation"
         style={{
+          opacity: `${this.props.opacity}`,
+          backgroundImage: `${this.props
+            .backgroundImage}`,
           border: 'none',
         }}
+        inverted={this.props.inverted}
         pointing
         secondary>
         <Menu.Item className="navigation-logo">
@@ -68,13 +72,24 @@ class Navigation extends Component {
             shape="circular"
             src="https://placeimg.com/34/34/people"
           />
-          <span className="navigation-username">
+          <span
+            className="navigation-username"
+            style={{
+              color: `${this.props.color}`,
+            }}>
             홍길동
           </span>
         </Menu.Menu>
       </Menu>
     )
   }
+}
+
+Navigation.defaultProps = {
+  inverted: false,
+  color: '#16325c',
+  opacity: '0',
+  backgroundImage: 'transparent',
 }
 
 export default Navigation
