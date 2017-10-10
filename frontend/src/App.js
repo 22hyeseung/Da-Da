@@ -7,6 +7,7 @@ import 'typeface-spoqa-han-sans2/spoqa-han-sans.css'
 import 'wfk-montserrat/montserrat.css'
 import './App.css'
 import 'semantic-ui-css/semantic.min.css'
+import Navigation from './components/Navigation'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import DiaryPage from './pages/DiaryPage'
@@ -29,6 +30,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+          <Navigation />
+
           <Route
             exact
             path="/"

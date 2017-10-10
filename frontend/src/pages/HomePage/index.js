@@ -20,7 +20,6 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <Navigation />
         <Container text>
           <Header
             as="h1"
