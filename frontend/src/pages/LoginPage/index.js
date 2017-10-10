@@ -5,7 +5,7 @@ import {
   Grid,
 } from 'semantic-ui-react'
 import './Login.css'
-import bgVideo from '../../static/video/bg_login.mp4'
+import bgVideo from '../../static/video/bg_login_1m.mp4'
 import bgImg from '../../static/img/login_img.jpg'
 import * as Style from './StyledLogin'
 
