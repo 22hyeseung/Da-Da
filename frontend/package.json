@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "faker": "^4.1.0",
     "global": "^4.3.2",
+    "lodash": "^4.17.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-icons": "^2.2.5",
@@ -11,6 +13,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "redux": "^3.7.2",
+    "riek": "^1.1.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.74.2",
     "typeface-spoqa-han-sans2": "^2.1.2",
