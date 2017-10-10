@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Navigation />
+          {/* <Navigation /> */}
 
           <Route
             exact
