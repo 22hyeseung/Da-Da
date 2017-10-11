@@ -80,7 +80,7 @@ router.get('/', (req, res) => {
 
 // 로그인 성공
 router.get('/success', mw.loginRequired, (req, res) => {
-  const token = jwt.sign({id: req.user.id}, process.env.JWT_SECRET);
+  const token = jwt.sign({id: req.user.member_id}, process.env.JWT_SECRET);
 
   res.render('success.pug', {
     token,

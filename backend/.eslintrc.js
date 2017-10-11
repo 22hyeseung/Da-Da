@@ -10,6 +10,7 @@ module.exports = {
       // config : 0 "off", 1 "warn" 2 "error"
       "arrow-parens": [ 2, "as-needed" ],
       "quote-props": [ 2, "always" ],
+      "no-else-return": 0,
       "camelcase": 0,
       "no-console": 1,
       "no-var": 1,
