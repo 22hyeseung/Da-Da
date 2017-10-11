@@ -7,6 +7,7 @@ import {
   Card,
   Header,
 } from 'semantic-ui-react'
+import img1 from '../../../static/img/result1.png'
 import img2 from '../../../static/img/result2.png'
 import img3 from '../../../static/img/result3.png'
 import img4 from '../../../static/img/result4.png'
@@ -47,7 +48,10 @@ const ResultBox = () => {
             <Card>
               <Image
                 as="a"
-                style={styled.ResultImage}
+                style={{
+                  ...styled.ResultImage,
+                  backgroundImage: `url(${img1})`,
+                }}
                 src="/"
                 href="http://google.com"
                 target="_blank"

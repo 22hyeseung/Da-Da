@@ -1,23 +1,20 @@
 import React, { Component } from 'react'
-import { Input, Icon } from 'semantic-ui-react'
+import { Input, Search } from 'semantic-ui-react'
 import {
   searchWrapper,
-  resultSearch,
+  cameraIcon,
   iconStyle,
 } from './StyledResult'
 
 const ResultSearchBar = () => {
   return (
     <div style={searchWrapper}>
-      <Input
-        style={resultSearch}
-        icon="search"
-        placeholder="Search..."
-      />
-      <Icon
-        name="photo"
-        size="large"
+      <Search className="search-result-searchbar" />
+      <img
+        src={cameraIcon}
         style={iconStyle}
+        /* onClick={this.show('blurring')} */
+        alt="이미지를 업로드하여 식단을 검색"
       />
     </div>
   )
