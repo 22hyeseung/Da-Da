@@ -7,62 +7,16 @@ import {
   Card,
   Header,
 } from 'semantic-ui-react'
-import img1 from '../../../static/img/result1.png'
 import img2 from '../../../static/img/result2.png'
 import img3 from '../../../static/img/result3.png'
 import img4 from '../../../static/img/result4.png'
-
-const wrapper = {
-  width: '1180px',
-  position: 'absolute',
-  top: '141px',
-  left: '131px',
-  verticalAlign: 'middle',
-}
-
-const message = {
-  width: '128px',
-  height: '20px',
-  fontSize: '14px',
-  fontWeight: '300',
-  textAlign: 'left',
-  color: '#54698d',
-}
-
-const icon = {
-  width: '13.5px',
-  height: '13.5px',
-  color: '#54698d',
-  marginRight: '12.3px',
-}
-
-const messagewrap = {
-  height: '28px',
-  padding: '0',
-  position: 'absolute',
-  top: '15px',
-  left: '14px',
-  lineHeight: '28px',
-}
-
-const ImageWrap = {
-  position: 'absolute',
-  top: '54px',
-  left: '14px',
-  padding: '0',
-}
-
-const CardSize = {
-  width: '279px',
-  height: '271px',
-  borderRadius: '4px',
-}
+import * as styled from './StyledResult'
 
 const ResultBox = () => {
   return (
-    <Grid style={wrapper}>
-      <Grid.Row style={messagewrap}>
-        <span style={message}>
+    <Grid style={styled.wrapper}>
+      <Grid.Row style={styled.messagewrap}>
+        <span style={styled.message}>
           ‘팬케익’ 검색 결과 8건
         </span>
         <div
@@ -73,92 +27,51 @@ const ResultBox = () => {
           }}
         >
           <Icon
-            style={icon}
+            style={styled.icon}
             name="grid layout"
             size="large"
           />
           <Icon
-            style={icon}
+            style={styled.icon}
             name="list layout"
             size="large"
           />
         </div>
       </Grid.Row>
-      <Grid.Row columns={4} style={ImageWrap}>
+      <Grid.Row
+        columns={4}
+        style={styled.ImageWrap}
+      >
         <Grid.Column style={{ padding: '0' }}>
           <div style={{ width: '279px' }}>
             <Card>
               <Image
                 as="a"
-                style={{
-                  width: '279px',
-                  height: '271px',
-                  borderRadius: '4px',
-                  backgroundImage: `url(${img1})`,
-                  backgroundSize: '100% 150%',
-                  backgroundPositionY: '70%',
-                }}
+                style={styled.ResultImage}
                 src="/"
                 href="http://google.com"
                 target="_blank"
-              >
-                {/* <Label
-                content="Image not found!"
-                icon="warning"
-              /> */}
-              </Image>
+              />
               <Card.Content
-                style={{
-                  width: '279px',
-                  height: '83px',
-                  position: 'absolute',
-                  top: '188px',
-                  fontWeight: '100',
-                  fontSize: '14px',
-                  opacity: '0.7',
-                  borderRadius: '4px',
-                  backgroundImage:
-                    'linear-gradient(253deg, #485563, #29323c)',
-                }}
+                style={styled.CardLabel}
               >
                 <Card.Header
-                  style={{
-                    color: '#fff',
-                    fontWeight: '100',
-                    position: 'absolute',
-                    top: '13.5px',
-                    left: '18px',
-                    fontSize: '21px',
-                  }}
+                  style={styled.CardLabelHeader}
                 >
                   트리플베리 팬케익
                 </Card.Header>
                 <Card.Meta
-                  style={{
-                    color: '#fff',
-                    position: 'absolute',
-                    top: '48px',
-                    left: '18px',
-                  }}
+                  style={styled.CardLabelLeftText}
                 >
                   <Icon name="clock" />
                   소요시간: 60분
                 </Card.Meta>
                 <Card.Description
-                  style={{
-                    color: '#fff',
-                    position: 'absolute',
-                    bottom: '15px',
-                    right: '17px',
-                  }}
+                  style={
+                    styled.CardLabelRightText
+                  }
                 >
-                  <span
-                    style={{
-                      fontFamily:
-                        'Montserrat-Regular',
-                      fontSize: '21px',
-                    }}
-                  >
+                  <span style={styled.dataText}>
                     340
                   </span>{' '}
                   kcal
@@ -173,73 +86,33 @@ const ResultBox = () => {
               <Image
                 as="a"
                 style={{
-                  width: '279px',
-                  height: '271px',
-                  borderRadius: '4px',
+                  ...styled.ResultImage,
                   backgroundImage: `url(${img2})`,
-                  backgroundSize: '100% 100%',
                 }}
                 src="/"
                 href="http://google.com"
                 target="_blank"
-              >
-                {/* <Label
-                content="Image not found!"
-                icon="warning"
-              /> */}
-              </Image>
+              />
               <Card.Content
-                style={{
-                  width: '279px',
-                  height: '83px',
-                  position: 'absolute',
-                  top: '188px',
-                  fontWeight: '100',
-                  fontSize: '14px',
-                  opacity: '0.7',
-                  borderRadius: '4px',
-                  backgroundImage:
-                    'linear-gradient(253deg, #485563, #29323c)',
-                }}
+                style={styled.CardLabel}
               >
                 <Card.Header
-                  style={{
-                    color: '#fff',
-                    fontWeight: '100',
-                    position: 'absolute',
-                    top: '13.5px',
-                    left: '18px',
-                    fontSize: '21px',
-                  }}
+                  style={styled.CardLabelHeader}
                 >
                   스트로베리 팬케익
                 </Card.Header>
                 <Card.Meta
-                  style={{
-                    color: '#fff',
-                    position: 'absolute',
-                    top: '48px',
-                    left: '18px',
-                  }}
+                  style={styled.CardLabelLeftText}
                 >
                   <Icon name="clock" />
                   소요시간: 60분
                 </Card.Meta>
                 <Card.Description
-                  style={{
-                    color: '#fff',
-                    position: 'absolute',
-                    bottom: '15px',
-                    right: '17px',
-                  }}
+                  style={
+                    styled.CardLabelRightText
+                  }
                 >
-                  <span
-                    style={{
-                      fontFamily:
-                        'Montserrat-Regular',
-                      fontSize: '21px',
-                    }}
-                  >
+                  <span style={styled.dataText}>
                     320
                   </span>{' '}
                   kcal
@@ -254,73 +127,33 @@ const ResultBox = () => {
               <Image
                 as="a"
                 style={{
-                  width: '279px',
-                  height: '271px',
-                  borderRadius: '4px',
+                  ...styled.ResultImage,
                   backgroundImage: `url(${img3})`,
-                  backgroundSize: '100% 100%',
                 }}
                 src="/"
                 href="http://google.com"
                 target="_blank"
-              >
-                {/* <Label
-                content="Image not found!"
-                icon="warning"
-              /> */}
-              </Image>
+              />
               <Card.Content
-                style={{
-                  width: '279px',
-                  height: '83px',
-                  position: 'absolute',
-                  top: '188px',
-                  fontWeight: '100',
-                  fontSize: '14px',
-                  opacity: '0.7',
-                  borderRadius: '4px',
-                  backgroundImage:
-                    'linear-gradient(253deg, #485563, #29323c)',
-                }}
+                style={styled.CardLabel}
               >
                 <Card.Header
-                  style={{
-                    color: '#fff',
-                    fontWeight: '100',
-                    position: 'absolute',
-                    top: '13.5px',
-                    left: '18px',
-                    fontSize: '21px',
-                  }}
+                  style={styled.CardLabelHeader}
                 >
                   블루베리 팬케익
                 </Card.Header>
                 <Card.Meta
-                  style={{
-                    color: '#fff',
-                    position: 'absolute',
-                    top: '48px',
-                    left: '18px',
-                  }}
+                  style={styled.CardLabelLeftText}
                 >
                   <Icon name="clock" />
                   소요시간: 60분
                 </Card.Meta>
                 <Card.Description
-                  style={{
-                    color: '#fff',
-                    position: 'absolute',
-                    bottom: '15px',
-                    right: '17px',
-                  }}
+                  style={
+                    styled.CardLabelRightText
+                  }
                 >
-                  <span
-                    style={{
-                      fontFamily:
-                        'Montserrat-Regular',
-                      fontSize: '21px',
-                    }}
-                  >
+                  <span style={styled.dataText}>
                     270
                   </span>{' '}
                   kcal
@@ -335,73 +168,33 @@ const ResultBox = () => {
               <Image
                 as="a"
                 style={{
-                  width: '279px',
-                  height: '271px',
-                  borderRadius: '4px',
+                  ...styled.ResultImage,
                   backgroundImage: `url(${img4})`,
-                  backgroundSize: '100% 100%',
                 }}
                 src="/"
                 href="http://google.com"
                 target="_blank"
-              >
-                {/* <Label
-                content="Image not found!"
-                icon="warning"
-              /> */}
-              </Image>
+              />
               <Card.Content
-                style={{
-                  width: '279px',
-                  height: '83px',
-                  position: 'absolute',
-                  top: '188px',
-                  fontWeight: '100',
-                  fontSize: '14px',
-                  opacity: '0.7',
-                  borderRadius: '4px',
-                  backgroundImage:
-                    'linear-gradient(253deg, #485563, #29323c)',
-                }}
+                style={styled.CardLabel}
               >
                 <Card.Header
-                  style={{
-                    color: '#fff',
-                    fontWeight: '100',
-                    position: 'absolute',
-                    top: '13.5px',
-                    left: '18px',
-                    fontSize: '21px',
-                  }}
+                  style={styled.CardLabelHeader}
                 >
                   바나나 팬케익
                 </Card.Header>
                 <Card.Meta
-                  style={{
-                    color: '#fff',
-                    position: 'absolute',
-                    top: '48px',
-                    left: '18px',
-                  }}
+                  style={styled.CardLabelLeftText}
                 >
                   <Icon name="clock" />
                   소요시간: 60분
                 </Card.Meta>
                 <Card.Description
-                  style={{
-                    color: '#fff',
-                    position: 'absolute',
-                    bottom: '15px',
-                    right: '17px',
-                  }}
+                  style={
+                    styled.CardLabelRightText
+                  }
                 >
-                  <span
-                    style={{
-                      fontFamily:
-                        'Montserrat-Regular',
-                      fontSize: '21px',
-                    }}
-                  >
+                  <span style={styled.dataText}>
                     380
                   </span>{' '}
                   kcal
