@@ -3,11 +3,16 @@ import {
   Segment,
   Header,
 } from 'semantic-ui-react'
-import bgImg from '../../../static/img/fitness_bg.png'
-import FitnessIcon from '../../../static/img/diary-fitness_default.svg'
 import DiaryFitnessList from './DiaryFitnessList'
 import DiaryFitnessInput from './DiaryFitnessInput'
 import DiaryFitnessAdd from './DiaryFitnessAdd'
+import {
+  container,
+  header,
+  subHeader,
+  icon,
+  fitnessIcon,
+} from './StyledFitness'
 
 class DiaryFitness extends Component {
   constructor(props) {
@@ -16,45 +21,17 @@ class DiaryFitness extends Component {
 
   render() {
     return (
-      <Segment
-        style={{
-          height: '574px',
-          overflow: 'auto',
-          padding: '33px 36px',
-          boxShadow: 'none',
-          border: '1px solid #D8DDE6',
-          backgroundImage: `url(${bgImg})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center top',
-          backgroundSize: '34%',
-          backgroundAttachment: 'local',
-        }}
-      >
-        <Header
-          style={{
-            fontSize: '28px',
-            fontWeight: '100',
-            color: '#16325C',
-            marginBottom: '42px',
-          }}
-        >
-          <Header.Subheader
-            style={{
-              fontFamily: 'montserrat',
-              fontSize: '14px',
-              fontWeight: '600',
-              color: '#1f2e79',
-            }}
-          >
+      <Segment style={container}>
+        <Header style={header}>
+          <Header.Subheader style={subHeader}>
             FITNESS DIARY
           </Header.Subheader>
           오늘의 운동 다이어리
           <img
-            src={FitnessIcon}
-            style={{
-              height: '27px',
-              marginBottom: '9px',
-            }}
+            src={fitnessIcon}
+            style={icon}
+            alt="의미 없는 운동 다이어리 아이콘 입니다."
+            aria-hiddee="true"
           />
         </Header>
         <DiaryFitnessList />
