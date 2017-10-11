@@ -2,13 +2,9 @@ import React, { Component } from 'react'
 import {
   BrowserRouter,
   Route,
+  Redirect,
 } from 'react-router-dom'
-import 'typeface-spoqa-han-sans2/spoqa-han-sans.css'
-import 'wfk-montserrat/montserrat.css'
-import './App.css'
-import 'semantic-ui-css/semantic.min.css'
 import Navigation from './components/Navigation'
-import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import DiaryPage from './pages/DiaryPage'
 import ReportPage from './pages/ReportPage'
@@ -23,65 +19,59 @@ import NoSearchPage from './pages/SearchPage/ResultPage/NoSearch'
 import notFoundPage from './pages/404Page'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
+  state = {
+    isLoggedIn: true,
   }
 
   render() {
+    if (!this.state.isLoggedIn) {
+      return <Redirect to="/login" />
+    }
     return (
-      <BrowserRouter>
-        <div>
-          {/* <Navigation /> */}
+      <div>
+        <Route
+          exact
+          path="/"
+          component={HomePage}
+        />
 
-          <Route
-            exact
-            path="/"
-            component={LoginPage}
-          />
-
-          <Route
-            path="/home"
-            component={HomePage}
-          />
-
-          <Route
-            path="/diary"
-            component={DiaryPage}
-          />
-          <Route
-            path="/report"
-            component={ReportPage}
-          />
-          <Route
-            path="/weight"
-            component={WeightPage}
-          />
-          <Route
-            path="/search"
-            component={SearchPage}
-          />
-          <Route
-            path="/share"
-            component={SharePage}
-          />
-          <Route
-            path="/recipe"
-            component={RecipePage}
-          />
-          <Route
-            path="/search-result"
-            component={SearchResultPage}
-          />
-          <Route
-            path="/search-no-result"
-            component={NoSearchPage}
-          />
-          <Route
-            path="/404"
-            component={notFoundPage}
-          />
-        </div>
-      </BrowserRouter>
+        <Route
+          path="/diary"
+          component={DiaryPage}
+        />
+        <Route
+          path="/report"
+          component={ReportPage}
+        />
+        <Route
+          path="/weight"
+          component={WeightPage}
+        />
+        <Route
+          path="/search"
+          component={SearchPage}
+        />
+        <Route
+          path="/share"
+          component={SharePage}
+        />
+        <Route
+          path="/recipe"
+          component={RecipePage}
+        />
+        <Route
+          path="/search-result"
+          component={SearchResultPage}
+        />
+        <Route
+          path="/search-no-result"
+          component={NoSearchPage}
+        />
+        <Route
+          path="/404"
+          component={notFoundPage}
+        />
+      </div>
     )
   }
 }
