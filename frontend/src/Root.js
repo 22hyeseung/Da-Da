@@ -4,6 +4,8 @@ import {
   Route,
   Switch,
 } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import store from './store'
 import 'typeface-spoqa-han-sans2/spoqa-han-sans.css'
 import 'wfk-montserrat/montserrat.css'
 import './Root.css'
@@ -16,14 +18,16 @@ class Root extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Switch>
-          <Route
-            path="/login"
-            component={LoginPage}
-          />
+        <Provider store={store}>
+          <Switch>
+            <Route
+              path="/login"
+              component={LoginPage}
+            />
 
-          <Route path="/" component={App} />
-        </Switch>
+            <Route path="/" component={App} />
+          </Switch>
+        </Provider>
       </BrowserRouter>
     )
   }
