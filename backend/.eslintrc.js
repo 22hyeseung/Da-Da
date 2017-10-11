@@ -12,12 +12,16 @@ module.exports = {
       "quote-props": [ 2, "always" ],
       "no-else-return": 0,
       "camelcase": 0,
+      "consistent-return": 1,
+      "semi": [2, "never" ],
       "no-console": 1,
       "no-var": 1,
       "max-len": [ 1, { "code": 150 } ],
       "quotes": [ 2, "single" ],
-      "no-underscore-dangle": 1,
+      "no-underscore-dangle": 0,
       "no-plusplus": [ 2, { "allowForLoopAfterthoughts": true }],
       "comma-dangle": [ 2, "never"],
+      "no-unneeded-ternary": [ 2, { "defaultAssignment": true }],
+      "object-curly-newline": [ 2, { "multiline": true }],
   }
 };
