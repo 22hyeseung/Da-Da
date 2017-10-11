@@ -1,7 +1,14 @@
 import React from 'react'
-import img1 from '../../../static/img/result1.png'
+import noImg from '../../../static/img/No_image_available.svg'
+import iconSrc from '../../../static/img/diary-camera-icon.svg'
 
 //===========================> index.js
+
+export const container = {
+  width: '1200px',
+  margin: '0 auto',
+  position: 'relative',
+}
 
 export const resultWrapper = {
   width: '1200px',
@@ -13,22 +20,17 @@ export const resultWrapper = {
 
 export const searchWrapper = {
   display: 'inlineBlock',
-  position: 'absolute',
-  top: '72px',
-  left: '139px',
-}
-
-export const resultSearch = {
-  width: '1124px',
-  height: '41px',
 }
 
 export const iconStyle = {
-  width: '26px',
-  height: '22px',
-  color: '#1a2980',
-  marginLeft: '21px',
+  borderStyle: 'none',
+  position: 'absolute',
+  top: '76px',
+  right: '25px',
+  cursor: 'pointer',
 }
+
+export const cameraIcon = iconSrc
 
 // ===================================> ResultList.js
 
@@ -36,7 +38,6 @@ export const wrapper = {
   width: '1180px',
   position: 'absolute',
   top: '141px',
-  left: '131px',
   verticalAlign: 'middle',
 }
 
@@ -77,8 +78,8 @@ export const ResultImage = {
   height: '271px',
   borderRadius: '4px',
   backgroundSize: '100% 150%',
-  backgroundImage: `url(${img1})`,
   backgroundPositionY: '70%',
+  backgroundImage: `url(${noImg})`,
 }
 
 export const CardLabel = {
