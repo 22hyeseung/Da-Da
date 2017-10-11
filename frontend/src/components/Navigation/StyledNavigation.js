@@ -16,6 +16,7 @@ export const logo = {
   color: '#16325c',
   textTransform: 'uppercase',
   fontFamily: '"montserrat-bold", sans-serif',
+  paddingLeft: '0',
 }
 
 // =============================== RightMenu
