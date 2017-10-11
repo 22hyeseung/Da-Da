@@ -73,6 +73,7 @@ export const factsData = {
 
 export const unitData = {
   fontSize: '21px',
+  padding: '7px 0',
 }
 
 // =====================================> ingredient box

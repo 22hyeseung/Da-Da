@@ -1,0 +1,7 @@
+.ui.black.ribbon.label {
+  border-color: #1b1c1d !important;
+}
+
+.ui.ribbon.label:after {
+  left: -1px;
+}
