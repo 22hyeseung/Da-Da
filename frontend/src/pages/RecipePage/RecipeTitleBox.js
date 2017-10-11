@@ -6,6 +6,7 @@ import {
   Table,
 } from 'semantic-ui-react'
 import * as styled from './StyledRecipe'
+import './Recipe.css'
 
 const RecipeTitleBox = () => {
   return (
@@ -36,6 +37,7 @@ const RecipeTitleBox = () => {
               <Table.Cell
                 style={{
                   fontWeight: '700',
+                  padding: '0',
                 }}
               >
                 칼로리
@@ -43,6 +45,7 @@ const RecipeTitleBox = () => {
               <Table.Cell
                 textAlign="right"
                 style={{
+                  ...styled.unitData,
                   fontSize: '21px',
                 }}
               >
@@ -52,7 +55,11 @@ const RecipeTitleBox = () => {
               </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>탄수화물</Table.Cell>
+              <Table.Cell
+                style={{ padding: '0' }}
+              >
+                탄수화물
+              </Table.Cell>
               <Table.Cell
                 textAlign="right"
                 style={styled.unitData}
@@ -63,7 +70,11 @@ const RecipeTitleBox = () => {
               </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>단백질</Table.Cell>
+              <Table.Cell
+                style={{ padding: '0' }}
+              >
+                단백질
+              </Table.Cell>
               <Table.Cell
                 textAlign="right"
                 style={styled.unitData}
@@ -74,7 +85,11 @@ const RecipeTitleBox = () => {
               </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>지방</Table.Cell>
+              <Table.Cell
+                style={{ padding: '0' }}
+              >
+                지방
+              </Table.Cell>
               <Table.Cell
                 textAlign="right"
                 style={styled.unitData}
@@ -83,6 +98,14 @@ const RecipeTitleBox = () => {
                   80
                 </span>g
               </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell
+                style={{ padding: '0' }}
+              />
+              <Table.Cell
+                style={styled.unitData}
+              />
             </Table.Row>
           </Table.Body>
         </Table>

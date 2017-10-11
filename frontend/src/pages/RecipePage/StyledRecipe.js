@@ -19,6 +19,12 @@ export const topContainer = {
   position: 'relative',
 }
 
+export const navigationGrid = {
+  width: '1200px',
+  margin: '0 auto',
+  position: 'relative',
+}
+
 export const bottomContainer = {
   height: '555px',
   position: 'relative',
@@ -73,6 +79,7 @@ export const factsData = {
 
 export const unitData = {
   fontSize: '21px',
+  padding: '7px 0',
 }
 
 // =====================================> ingredient box

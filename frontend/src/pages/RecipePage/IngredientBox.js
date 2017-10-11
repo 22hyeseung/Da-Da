@@ -17,18 +17,23 @@ const IngredientBox = () => (
   <Card style={styled.cardWrap}>
     <Card.Content>
       <Card.Header style={styled.cardHeader}>
-        <p style={{ margin: '7px 0 25px 0' }}>
+        <p style={{ margin: '7px 0 15px 0' }}>
           재료
         </p>
-        <Icon name="user" size="large" />
+        <Icon name="user" size="big" />
         <Dropdown
           downward
-          floating
-          inline
+          compact
+          selection
           options={options}
           defaultValue="1"
         />
-        <span style={{ fontWeight: '300' }}>
+        <span
+          style={{
+            fontWeight: '300',
+            marginLeft: '7px',
+          }}
+        >
           인분
         </span>
       </Card.Header>
