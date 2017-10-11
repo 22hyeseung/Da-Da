@@ -4,14 +4,12 @@ import React from 'react'
 // 전체 컨테이너
 export const container = {
   border: 'none',
-  height: '56px',
 }
 
 // ===============================  Logo.js
 
 // 홈페이지 로고
 export const logo = {
-  height: '30px',
   fontSize: '25px',
   // color: '#16325c',
   textTransform: 'uppercase',
@@ -31,14 +29,12 @@ export const itemWrap = {
 
 // 네비게이션 개별 아이템(a태그) 래퍼
 export const linkTagWrap = {
-  height: '29px',
   padding: '0px 9.5px 15px',
   marginLeft: '37px',
 }
 
 // 네비게이션 개별 아이템(a태그)
 export const linkTag = {
-  height: '20px',
   // color: '#16325c',
   fontSize: '14px',
   letterSpacing: '-0.7px',
