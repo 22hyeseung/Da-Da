@@ -59,12 +59,9 @@ passport.use(new KakaoStrategy({
   // 기존 소스와 DaDa의 전제조건이 달라 처리순서를 변경.
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
-      if (user) {
-        query.updateUserByProvider(member_data).then();
-        done(null, user);
-      } else {
-        done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
-      }
+      return user ? user : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
+    }).then(user => {
+      query.updateUserByProvider(member_data).then(done(null, user));
     }).catch(err => {
       done(err);
     })
