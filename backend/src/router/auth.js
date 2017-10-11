@@ -8,6 +8,8 @@ const jwt = require('jsonwebtoken')
 const KakaoStrategy = require('passport-kakao').Strategy
 const NaverStrategy = require('passport-naver').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
+const InstagramStrategy = require('passport-instagram').Strategy
+
 
 const query = require('../query')
 const mw = require('../middleware')
@@ -114,19 +116,49 @@ passport.use(new FacebookStrategy({
     "member_provider_name": user_name,
     "member_avatar_url" : avatar_url,
     "token": accessToken
-  };
+  }
 
   // 기존 소스와 DaDa의 전제조건이 달라 처리순서를 변경.
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
       if (user) {
-        query.updateUserByProvider(member_data).then();
-        done(null, user);
+        query.updateUserByProvider(member_data).then()
+        done(null, user)
       } else {
         done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
       }
     }).catch(err => {
       done(err);
+    })
+
+}))
+
+
+passport.use(new InstagramStrategy({
+  clientID: process.env.INSTAGRAM_CLIENT_ID,
+  clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
+  callbackURL: process.env.INSTAGRAM_CALLBACK_URL
+},(accessToken, refreshToken, profile, done) => {
+  const avatar_url = profile._json.data.profile_picture ? profile._json.data.profile_picture : null
+  const user_name = profile.displayName ? profile.displayName : null
+  const member_data = {
+    "member_provider": "instagram",
+    "member_provider_number": profile.id,
+    "member_provider_name": user_name,
+    "member_avatar_url" : avatar_url,
+    "token": accessToken
+  }
+
+  query.firstOrCreateUserByProvider(member_data)
+    .then(user => {
+      if(user) {
+        query.updateUserByProvider(member_data).then()
+        done(null, user)
+      }else {
+        done(new Error('해당 정보에 일치하는 사용자가 없습니다.'))
+      }
+    }).catch(err => {
+      done(err)
     })
 
 }))
@@ -216,9 +248,17 @@ router.get('/naver/callback', (req,res,next) => {
       return res.redirect(req.baseUrl)
     }
     req.logIn(user, err => {
+      // 예상치 못한 예외 발생 시
       if(err){
         return next(err)
       }
+      // 로그인 성공
+      res.redirect(req.baseUrl + '/success')
+    })
+  })(req, res, next)
+})
+
+
 
 router.get('/facebook', passport.authenticate('facebook'))
 
@@ -243,8 +283,31 @@ router.get('/facebook/callback', (req, res, next) => {
   })(req, res, next)
 })
 
+router.get('/instagram', passport.authenticate('instagram'))
+
+router.get('/instagram/callback', (req, res, next) => {
+  passport.authenticate('instagram', (err, user, info) => {
+    if (err) {
+      // 예상치 못한 예외 발생 시
+      return next(err)
+    }
+    if (!user){
+      // 로그인 실패 시
+      return res.redirect(req.baseUrl)
+    }
+    req.logIn(user, err => {
+      // 예상치 못한 예외 발생 시
+      if(err) {
+        return next(err)
+      }
+      // 로그인 성공
+      res.redirect(req.baseUrl + '/success')
+    })
+  })(req, res, next)
+})
+
 router.use((err, req, res, next) => {
-  console.log(err, err.message, '<< [ err, err.message ]');
+  console.log(err, err.message, '<< [ err, err.message ]')
   res.redirect(req.baseUrl)
 })
 
