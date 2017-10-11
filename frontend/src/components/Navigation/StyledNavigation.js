@@ -13,7 +13,7 @@ export const container = {
 export const logo = {
   height: '30px',
   fontSize: '25px',
-  color: '#16325c',
+  // color: '#16325c',
   textTransform: 'uppercase',
   fontFamily: '"montserrat-bold", sans-serif',
 }
@@ -38,7 +38,7 @@ export const linkTagWrap = {
 // 네비게이션 개별 아이템(a태그)
 export const linkTag = {
   height: '20px',
-  color: '#16325c',
+  // color: '#16325c',
   fontSize: '14px',
   letterSpacing: '-0.7px',
 }

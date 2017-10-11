@@ -51,7 +51,13 @@ class NavItems extends Component {
         }
         onClick={this.handleItemClick}
       >
-        <Link style={linkTag} to={route.linkTo}>
+        <Link
+          style={{
+            ...linkTag,
+            color: `${this.props.color}`,
+          }}
+          to={route.linkTo}
+        >
           {route.linkLabel}
         </Link>
       </Menu.Item>

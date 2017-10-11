@@ -8,18 +8,14 @@ class Navigation extends Component {
   render() {
     return (
       // 네비게이션 시작
-      <Menu
-        style={container}
-        inverted={this.props.inverted}
-        pointing
-        secondary
-      >
+      <Menu style={container} pointing secondary>
         {/* 왼쪽: 로고 */}
-        <Logo />
+        <Logo color={this.props.color} />
 
         {/* 오른쪽: 네비게이션 아이템*/}
         <RightMenu
           inverted={this.props.inverted}
+          color={this.props.color}
         />
       </Menu>
     )
@@ -29,6 +25,7 @@ class Navigation extends Component {
 Navigation.defaultProps = {
   inverted: false,
   opacity: '0',
+  color: '#16325',
   backgroundImage: 'transparent',
 }
 
