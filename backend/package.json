@@ -24,6 +24,7 @@
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-kakao": "0.0.5",
+    "passport-naver": "^1.0.6",
     "pug": "^2.0.0-rc.4",
     "validator": "^9.0.0"
   }
