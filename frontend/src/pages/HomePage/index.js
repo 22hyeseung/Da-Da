@@ -1,58 +1,21 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from '../../components/Navigation'
-import Logo from '../../components/Navigation/Logo'
-import RightMenu from '../../components/Navigation/RightMenu'
 import {
   Button,
   Grid,
   Header,
-  List,
-  Segment,
-  Image,
-  Menu,
-  Sidebar,
 } from 'semantic-ui-react'
 import bgVideo from '../../static/video/bg_login_1m.mp4'
 import bgImg from '../../static/img/login_img.jpg'
-import { container } from '../../components/Navigation/StyledNavigation'
 import foodTabImage from '../../static/img/1.0_home_BG1.jpg'
 import fitnessTabImage from '../../static/img/1.0_home_BG2.jpg'
 import reviewTabImage from '../../static/img/1.0_home_BG3.jpg'
 import './Home.css'
-
-const button = {
-  width: '190px',
-  borderRadius: '18px',
-  marginTop: '42px',
-  backgroundColor: 'transparent',
-  border: '1px solid rgba(255, 255, 255,.5)',
-  color: '#fff',
-  fontWeight: '100',
-}
-export const header = {
-  fontSize: '28px',
-  fontWeight: '100',
-  color: '#16325C',
-  marginBottom: '42px',
-  fontFamily: 'Spoqa Han Sans',
-}
-
-export const subHeader = {
-  fontFamily: 'montserrat-bold',
-  fontSize: '14px',
-  color: '#1f2e79',
-}
+import * as Style from './StyledHome'
 
 class HomePage extends Component {
-  state = { visible: false }
-
-  toggleVisibility = () =>
-    this.setState({
-      visible: !this.state.visible,
-    })
   render() {
-    const { visible } = this.state
     return (
       <div>
         <div className="home-grid">
@@ -70,7 +33,9 @@ class HomePage extends Component {
               to="/diary"
               style={{ padding: '12px' }}
             >
-              <Button style={button}>시작하기</Button>
+              <Button style={Style.button}>
+                시작하기
+              </Button>
             </Link>
           </div>
           <div className="home-dashboard-filter" />
@@ -100,49 +65,86 @@ class HomePage extends Component {
             style={{ width: '100%' }}
           >
             <Grid.Column
-              className="home-rightColumn-first"
               style={{ padding: '0px' }}
             >
-              <div
-                className="home-rightColumn-first"
-                style={{
-                  padding: '35px',
-                  backgroundImage: `url(${foodTabImage})`,
-                  backgroundSize: 'cover',
-                  height: '100%',
-                }}
-              >
-                <span className="home-label">
-                  <Header style={header}>
-                    <Header.Subheader
-                      style={subHeader}
-                    >
-                      FOOD DIARY
-                    </Header.Subheader>
-                    오늘의 식단 다이어리
-                  </Header>
-                </span>
-              </div>
+              <span className="home-label">
+                <Header style={Style.header}>
+                  <Header.Subheader
+                    style={Style.subHeader}
+                  >
+                    FOOD DIARY
+                  </Header.Subheader>
+                  오늘<br />
+                  무엇을<br />
+                  드셨나요?<br />
+                </Header>
+              </span>
+              <Link to="/diary">
+                <div
+                  className="home-rightColumn-first"
+                  style={{
+                    backgroundImage: `url(${foodTabImage})`,
+                    backgroundSize: 'cover',
+                    height: '100%',
+                  }}
+                />
+              </Link>
             </Grid.Column>
             <Grid.Column
-              className="home-rightColumn-second"
               style={{
-                padding: '35px',
-                backgroundImage: `url(${fitnessTabImage})`,
-                backgroundSize: 'cover',
+                padding: '0px',
               }}
             >
-              2
+              <span className="home-label">
+                <Header style={Style.header}>
+                  <Header.Subheader
+                    style={Style.subHeader}
+                  >
+                    FITNESS DIARY
+                  </Header.Subheader>
+                  오늘<br />
+                  어떤 운동을<br />
+                  하셨나요?<br />
+                </Header>
+              </span>
+              <Link to="/diary/fitness">
+                <div
+                  className="home-rightColumn-second"
+                  style={{
+                    backgroundImage: `url(${fitnessTabImage})`,
+                    backgroundSize: 'cover',
+                    height: '100%',
+                  }}
+                />
+              </Link>
             </Grid.Column>
             <Grid.Column
-              className="home-rightColumn-third"
               style={{
-                padding: '35px',
-                backgroundImage: `url(${reviewTabImage})`,
-                backgroundSize: 'cover',
+                padding: '0px',
               }}
             >
-              3
+              <span className="home-label">
+                <Header style={Style.header}>
+                  <Header.Subheader
+                    style={Style.subHeader}
+                  >
+                    REVIEW DIARY
+                  </Header.Subheader>
+                  오늘<br />
+                  하루를<br />
+                  기록해볼까요?<br />
+                </Header>
+              </span>
+              <Link to="/diary/review">
+                <div
+                  className="home-rightColumn-third"
+                  style={{
+                    backgroundImage: `url(${reviewTabImage})`,
+                    backgroundSize: 'cover',
+                    height: '100%',
+                  }}
+                />
+              </Link>
             </Grid.Column>
           </Grid>
         </div>

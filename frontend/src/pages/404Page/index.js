@@ -25,9 +25,14 @@ const notFoundPage = () => (
         <span className="notFound-subHeader">
           현재 찾을 수 없는 페이지를 요청 하셨습니다.
         </span>
-        <Link to="/Home">
-          <Button style={button}>홈으로 돌아가기</Button>
-        </Link>
+        <Button
+          style={button}
+          onClick={() => {
+            this.props.history.push('/home')
+          }}
+        >
+          홈으로 돌아가기
+        </Button>
       </div>
     </div>
   </div>
