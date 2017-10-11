@@ -1,0 +1,7 @@
+.search-result-searchbar {
+  margin-top: 3px;
+}
+
+.search-result-searchbar > div > input {
+  width: 1124px;
+}

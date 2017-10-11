@@ -1,40 +1,23 @@
 import React, { Component } from 'react'
-import { Input, Icon } from 'semantic-ui-react'
+import { Input, Search } from 'semantic-ui-react'
+import {
+  searchWrapper,
+  cameraIcon,
+  iconStyle,
+} from './StyledResult'
 
-const searchWrapper = {
-  display: 'inlineBlock',
-  position: 'absolute',
-  top: '72px',
-  left: '139px',
+const ResultSearchBar = () => {
+  return (
+    <div style={searchWrapper}>
+      <Search className="search-result-searchbar" />
+      <img
+        src={cameraIcon}
+        style={iconStyle}
+        /* onClick={this.show('blurring')} */
+        alt="이미지를 업로드하여 식단을 검색"
+      />
+    </div>
+  )
 }
 
-const resultSearch = {
-  width: '1124px',
-  height: '41px',
-}
-
-const iconStyle = {
-  width: '26px',
-  height: '22px',
-  color: '#1a2980',
-  marginLeft: '21px',
-}
-
-export default class ResultSearchBar extends Component {
-  render() {
-    return (
-      <div style={searchWrapper}>
-        <Input
-          style={resultSearch}
-          icon="search"
-          placeholder="Search..."
-        />
-        <Icon
-          name="photo"
-          size="large"
-          style={iconStyle}
-        />
-      </div>
-    )
-  }
-}
+export default ResultSearchBar

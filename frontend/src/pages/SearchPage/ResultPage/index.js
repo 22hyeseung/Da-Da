@@ -2,21 +2,16 @@ import React, { Component } from 'react'
 import Navigation from '../../../components/Navigation'
 import TopSearchBar from './ResultSearchBar'
 import ResultBox from './ResultList'
-
-const resultWrapper = {
-  width: '1200px',
-  display: 'flex',
-  position: 'relative',
-}
+import './Result.css'
+import {
+  resultWrapper,
+  container,
+} from './StyledResult'
 
 class SearchResult extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
-      <div>
+      <div style={container}>
         <Navigation />
         <div style={resultWrapper} />
         <TopSearchBar />
