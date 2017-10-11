@@ -6,6 +6,7 @@ const csurf = require('csurf')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const KakaoStrategy = require('passport-kakao').Strategy
+const FacebookStrategy = require('passport-facebook').Strategy
 
 const query = require('../query')
 const mw = require('../middleware')
@@ -46,8 +47,8 @@ passport.use(new KakaoStrategy({
   clientSecret: process.env.KAKAO_CLIENT_SECRET,
   callbackURL: process.env.KAKAO_CALLBACK_URL
 }, (accessToken, refreshToken, profile, done) => {
-  const avatar_url = profile._json.properties.profile_image ? profile._json.properties.profile_image : null;
-  const user_name = profile.displayName ? profile.displayName : null;
+  const avatar_url = profile._json.properties.profile_image ? profile._json.properties.profile_image : null
+  const user_name = profile.displayName ? profile.displayName : null
   const member_data = {
     "member_provider": "kakao",
     "member_provider_number": profile.id,
@@ -68,6 +69,38 @@ passport.use(new KakaoStrategy({
     }).catch(err => {
       done(err);
     })
+}))
+
+
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_CLIENT_ID,
+  clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+  callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+  profileFields: ['id', 'displayName', 'photos', 'email']
+},(accessToken, refreshToken, profile, done) => {
+  const avatar_url = profile.photos[0] ? profile.photos[0].value : null
+  const user_name = profile.displayName ? profile.displayName : null
+  const member_data = {
+    "member_provider": "facebook",
+    "member_provider_number": profile.id,
+    "member_provider_name": user_name,
+    "member_avatar_url" : avatar_url,
+    "token": accessToken
+  };
+
+  // 기존 소스와 DaDa의 전제조건이 달라 처리순서를 변경.
+  query.firstOrCreateUserByProvider(member_data)
+    .then(user => {
+      if (user) {
+        query.updateUserByProvider(member_data).then();
+        done(null, user);
+      } else {
+        done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
+      }
+    }).catch(err => {
+      done(err);
+    })
+
 }))
 
 /**
@@ -110,6 +143,29 @@ router.get('/kakao', passport.authenticate('kakao'))
 
 router.get('/kakao/callback', (req, res, next) => {
   passport.authenticate('kakao', (err, user, info) => {
+    if (err) {
+      // 예상치 못한 예외 발생 시
+      return next(err)
+    }
+    if (!user) {
+      // 로그인 실패 시
+      return res.redirect(req.baseUrl)
+    }
+    req.logIn(user, err => {
+      // 예상치 못한 예외 발생 시
+      if(err){
+        return next(err)
+      }
+      // 로그인 성공
+      res.redirect(req.baseUrl + '/success')
+    })
+  })(req, res, next)
+})
+
+router.get('/facebook', passport.authenticate('facebook'))
+
+router.get('/facebook/callback', (req, res, next) => {
+  passport.authenticate('facebook', (err, user, info) => {
     if (err) {
       // 예상치 못한 예외 발생 시
       return next(err)
