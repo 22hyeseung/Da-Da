@@ -20,10 +20,12 @@ import notFoundPage from './pages/404Page'
 
 class App extends Component {
   state = {
-    isLoggedIn: true
+    isLoggedIn: true,
   }
 
   render() {
+    /* Login 상태가 아닌 경우에 다른 페이지로 접근하면
+       Login페이지로 Redirect하여 접근을 막음 */
     if (!this.state.isLoggedIn) {
       return <Redirect to="/login" />
     }
@@ -34,7 +36,6 @@ class App extends Component {
           path="/"
           component={HomePage}
         />
-
         <Route
           path="/diary"
           component={DiaryPage}
