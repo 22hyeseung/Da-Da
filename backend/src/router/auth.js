@@ -33,7 +33,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((str, done) => {
-  const [member_provider, member_provider_number] = str.split(':');
+  const [member_provider, member_provider_number] = str.split(':')
   query.firstOrCreateUserByProvider({ member_provider, member_provider_number })
     .then(user => {
       if (user) {
@@ -89,7 +89,9 @@ passport.use(new NaverStrategy({
     .then(user => {
       return user ? user : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).then(user => {
-      query.updateUserByProvider(member_data).then(done(null, user))
+      query.updateUserByProvider(member_data).then(() => {
+        done(null, user)
+      })
     }).catch(err => {
       done(err)
     })
@@ -115,40 +117,41 @@ passport.use(new FacebookStrategy({
     .then(user => {
       return user ? user : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).then(user => {
-      query.updateUserByProvider(member_data).then(done(null, user))
+      query.updateUserByProvider(member_data).then(() => {
+        done(null, user)
+      })
     }).catch(err => {
       done(err)
     })
 }))
 
-
 passport.use(new InstagramStrategy({
-  clientID: process.env.INSTAGRAM_CLIENT_ID,
-  clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
-  callbackURL: process.env.INSTAGRAM_CALLBACK_URL
-},(accessToken, refreshToken, profile, done) => {
+  'clientID': process.env.INSTAGRAM_CLIENT_ID,
+  'clientSecret': process.env.INSTAGRAM_CLIENT_SECRET,
+  'callbackURL': process.env.INSTAGRAM_CALLBACK_URL
+}, (accessToken, refreshToken, profile, done) => {
   const avatar_url = profile._json.data.profile_picture ? profile._json.data.profile_picture : null
   const user_name = profile.displayName ? profile.displayName : null
   const member_data = {
-    "member_provider": "instagram",
-    "member_provider_number": profile.id,
-    "member_provider_name": user_name,
-    "member_avatar_url" : avatar_url,
-    "token": accessToken
+    'member_provider': 'instagram',
+    'member_provider_number': profile.id,
+    'member_provider_name': user_name,
+    'member_avatar_url': avatar_url,
+    'token': accessToken
   }
 
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
-      if(user) {
-        query.updateUserByProvider(member_data).then()
-        done(null, user)
-      }else {
+      if (user) {
+        query.updateUserByProvider(member_data).then(() => {
+          done(null, user)
+        })
+      } else {
         done(new Error('해당 정보에 일치하는 사용자가 없습니다.'))
       }
     }).catch(err => {
       done(err)
     })
-
 }))
 
 /**
@@ -271,22 +274,22 @@ router.get('/facebook/callback', (req, res, next) => {
 router.get('/instagram', passport.authenticate('instagram'))
 
 router.get('/instagram/callback', (req, res, next) => {
-  passport.authenticate('instagram', (err, user, info) => {
+  passport.authenticate('instagram', (err, user) => {
     if (err) {
       // 예상치 못한 예외 발생 시
       return next(err)
     }
-    if (!user){
+    if (!user) {
       // 로그인 실패 시
       return res.redirect(req.baseUrl)
     }
     req.logIn(user, err => {
       // 예상치 못한 예외 발생 시
-      if(err) {
+      if (err) {
         return next(err)
       }
       // 로그인 성공
-      res.redirect(req.baseUrl + '/success')
+      res.redirect(`${req.baseUrl}/success`)
     })
   })(req, res, next)
 })
