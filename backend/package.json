@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "debug": "nodemon --inspect src/index.js",
-    "apidoc": "apidoc -i src/router -o docs"
+    "debug": "nodemon --inspect src/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,18 +20,7 @@
     "jsonwebtoken": "^8.0.1",
     "knex": "^0.13.0",
     "mysql": "^2.14.1",
-    "nodemon": "^1.12.1",
     "passport": "^0.4.0",
-    "passport-facebook": "^2.1.1",
-    "passport-instagram": "^1.0.0",
-    "passport-kakao": "0.0.5",
-    "passport-naver": "^1.0.6",
-    "pug": "^2.0.0-rc.4",
     "validator": "^9.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^4.8.0",
-    "eslint-config-airbnb-base": "^12.0.2",
-    "eslint-plugin-import": "^2.7.0"
   }
 }

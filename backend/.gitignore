@@ -57,5 +57,3 @@ typings/
 # dotenv environment variables file
 .env
 
-# 커스텀
-docs/
