@@ -17,6 +17,8 @@ function firstOrCreateUserByProvider({ member_provider, member_provider_number, 
           .insert({
             member_provider,
             member_provider_number,
+            member_provider_name,
+            member_avatar_url,
             token
           })
           .then(([member_id]) => {
