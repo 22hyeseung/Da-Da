@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import {
   Grid,
   Header,
-  Input,
+  Search,
 } from 'semantic-ui-react'
 import * as Style from './StyledSearch'
+import './Search.css'
 
 class SearchBar extends Component {
   render() {
@@ -30,11 +31,7 @@ class SearchBar extends Component {
                 inverted
               />
             </Grid.Row>
-            <Input
-              style={Style.searchInput}
-              icon="search"
-              placeholder="Search..."
-            />
+            <Search className="search-searchbar" />
             <Header
               style={Style.h5}
               as="h5"

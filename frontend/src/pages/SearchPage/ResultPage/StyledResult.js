@@ -24,10 +24,9 @@ export const searchWrapper = {
 }
 
 export const iconStyle = {
-  borderStyle: 'none',
   position: 'absolute',
-  top: '76px',
-  right: '25px',
+  top: '90px',
+  right: '32px',
   cursor: 'pointer',
 }
 
@@ -52,10 +51,11 @@ export const message = {
 }
 
 export const icon = {
-  width: '13.5px',
-  height: '13.5px',
   color: '#54698d',
-  marginRight: '12.3px',
+  marginLeft: '0.3rem',
+  marginRight: '0',
+  cursor: 'pointer',
+  fontSize: '1.2rem',
 }
 
 export const messagewrap = {

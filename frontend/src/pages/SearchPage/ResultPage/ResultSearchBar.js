@@ -9,7 +9,10 @@ import {
 const ResultSearchBar = () => {
   return (
     <div style={searchWrapper}>
-      <Search className="search-result-searchbar" />
+      <Search
+        style={{ display: 'flex' }}
+        className="search-result-searchbar"
+      />
       <img
         src={cameraIcon}
         style={iconStyle}

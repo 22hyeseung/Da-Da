@@ -22,20 +22,16 @@ const ResultBox = () => {
         </span>
         <div
           style={{
-            position: 'absolute',
-            bottom: '7px',
-            right: '25.6px',
+            marginLeft: '83.5%',
           }}
         >
           <Icon
             style={Style.icon}
             name="grid layout"
-            size="large"
           />
           <Icon
             style={Style.icon}
             name="list layout"
-            size="large"
           />
         </div>
       </Grid.Row>
