@@ -23,5 +23,6 @@ module.exports = {
       "comma-dangle": [ 2, "never"],
       "no-unneeded-ternary": [ 2, { "defaultAssignment": true }],
       "object-curly-newline": [ 2, { "multiline": true }],
+      "arrow-body-style": [0, "always"]
   }
 };
