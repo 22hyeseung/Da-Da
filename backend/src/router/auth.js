@@ -16,12 +16,14 @@ const mw = require('../middleware')
 const router = express.Router()
 
 router.use(bodyParser.urlencoded({ 'extended': false }))
+
 router.use(cookieSession({
   'name': 'oasess',
   'keys': [
     process.env.SESSION_SECRET
   ]
 }))
+
 router.use(csurf())
 router.use(mw.insertReq)
 router.use(mw.insertToken)
@@ -33,7 +35,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((str, done) => {
-  const [member_provider, member_provider_number] = str.split(':');
+  const [member_provider, member_provider_number] = str.split(':')
   query.firstOrCreateUserByProvider({ member_provider, member_provider_number })
     .then(user => {
       if (user) {
@@ -43,6 +45,7 @@ passport.deserializeUser((str, done) => {
       }
     })
 })
+
 
 passport.use(new KakaoStrategy({
   'clientID': process.env.KAKAO_CLIENT_ID,
@@ -59,12 +62,9 @@ passport.use(new KakaoStrategy({
     'token': accessToken
   }
 
-  // 기존 소스와 DaDa의 전제조건이 달라 처리순서를 변경.
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
-      return user ? user : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
-    }).then(user => {
-      query.updateUserByProvider(member_data).then(done(null, user))
+      return user ? done(null, user) : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).catch(err => {
       done(err)
     })
@@ -87,9 +87,7 @@ passport.use(new NaverStrategy({
 
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
-      return user ? user : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
-    }).then(user => {
-      query.updateUserByProvider(member_data).then(done(null, user))
+      return user ? done(null, user) : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).catch(err => {
       done(err)
     })
@@ -113,9 +111,7 @@ passport.use(new FacebookStrategy({
 
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
-      return user ? user : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
-    }).then(user => {
-      query.updateUserByProvider(member_data).then(done(null, user))
+      return user ? done(null, user) : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).catch(err => {
       done(err)
     })
@@ -139,16 +135,10 @@ passport.use(new InstagramStrategy({
 
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
-      if(user) {
-        query.updateUserByProvider(member_data).then()
-        done(null, user)
-      }else {
-        done(new Error('해당 정보에 일치하는 사용자가 없습니다.'))
-      }
+      return user ? done(null, user) : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).catch(err => {
       done(err)
     })
-
 }))
 
 /**

@@ -37,7 +37,7 @@ class LoginPage extends Component{
   tokenHandler = e => {
     const token = e.data
 
-    if (e.origin === 'http://localhost:5000') {
+    if (e.origin === 'http://localhost:5000' && token) {
       window.localStorage.token = token
       this.state.popupWindow.close()
       this.setState({
@@ -61,7 +61,6 @@ class LoginPage extends Component{
       console.log(res, '<< [ res ]')
       return res.json()
     }).then(json => {
-      // fetch로 ajax json받기 위해서는 promise를 두번 써야만 가능?? axios처럼 한번에 안됨;
       console.log(json, '<< [ json ]');
     })
   }
