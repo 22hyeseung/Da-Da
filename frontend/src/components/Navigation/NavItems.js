@@ -46,14 +46,13 @@ class NavItems extends Component {
     return routes.map(route => (
       <Menu.Item
         style={linkTagWrap}
-        className={route.linkLabel}
         active={
           this.props.activeItem ===
           `${route.linkLabel}`
         }
-        onClick={e =>
+        onClick={() =>
           this.props.ACTIVE_ACTION(
-            e.target.className,
+            `${route.linkLabel}`,
           )}
       >
         <Link
