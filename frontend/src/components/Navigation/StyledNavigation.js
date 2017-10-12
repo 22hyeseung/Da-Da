@@ -28,15 +28,15 @@ export const itemWrap = {
 
 // 네비게이션 개별 아이템(a태그) 래퍼
 export const linkTagWrap = {
-  padding: '0px 9.5px 15px',
+  padding: '0px 9.5px 7px',
   marginLeft: '37px',
+  marginBottom: '16.8px',
 }
 
 // 네비게이션 개별 아이템(a태그)
 export const linkTag = {
   fontSize: '14px',
   letterSpacing: '-0.7px',
-  paddingBottom: '10.5px',
 }
 
 // =============================== RightMenu > UseInfo.js
@@ -48,6 +48,7 @@ export const userInfoWrap = {
   color: '#16325c',
   fontWeight: '700',
   paddingBottom: '18px',
+  marginBottom: '0px',
 }
 
 // 유저 프로필 사진

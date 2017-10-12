@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import colorReducer from './colors'
-import navActiveReducer from './navActive'
+import navActiveItemReducer from './navActiveItem'
 
 const reducers = combineReducers({
   colors: colorReducer,
-  navActive: navActiveReducer,
+  navActiveItem: navActiveItemReducer,
 })
 
 export default reducers

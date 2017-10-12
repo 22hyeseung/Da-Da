@@ -9,9 +9,9 @@ export const changeColorAction = RGB => {
 
 // ======================================> navigation action
 
-export const navActive = item => {
+export const changeNavigationItemActive = item => {
   return {
-    type: types.NAV_ITEM_ACTIVE,
+    type: types.CHANGE_NAV_ITEM_ACTIVE,
     payload: item,
   }
 }

@@ -4,11 +4,11 @@ const INITIAL_STATE = {
   activeItem: '',
 }
 
-const navActiveReducer = (
+const navActiveItemReducer = (
   state = INITIAL_STATE,
   action,
 ) => {
-  if (action.type === 'NAV_ITEM_ACTIVE') {
+  if (action.type === 'CHANGE_NAV_ITEM_ACTIVE') {
     return {
       ...state,
       activeItem: action.payload,
@@ -19,4 +19,4 @@ const navActiveReducer = (
   }
 }
 
-export default navActiveReducer
+export default navActiveItemReducer
