@@ -10,6 +10,11 @@ const router = express.Router()
 /**
  * @apiDefine user user
  */
+
+router.use(cors({
+  'origin': process.env.TARGET_ORIGIN
+}))
+
 router.use((req, res, next) => {
   next()
 })
@@ -18,10 +23,6 @@ router.use(bodyParser.json())
 router.use(expressJwt({
   'secret': process.env.JWT_SECRET
 }))
-router.use(cors({
-  'origin': process.env.TARGET_ORIGIN
-}))
-
 /**
  * @api {get} /user getUserData
  * @apiDescription 현재 로그인된 사용자의 정보를 가져온다.
