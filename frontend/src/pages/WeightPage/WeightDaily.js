@@ -36,15 +36,24 @@ class WeightDaily extends Component {
           {/* title 끝 */}
 
           {this.state.isPostMode ? (
-            <div>
+            <div className="weight-add-wrapper">
               <Input
                 focus
+                fluid
                 style={{
-                  display: 'inline-block',
+                  width: '100%',
                 }}
                 placeholder="몸무게를 입력하세요"
               />
-              <Button>입력</Button>
+              <Button
+                style={{
+                  ...Style.weightAddBtn,
+                  marginLeft: '7px',
+                  width: '84px',
+                }}
+              >
+                입력
+              </Button>
             </div>
           ) : (
             <Button

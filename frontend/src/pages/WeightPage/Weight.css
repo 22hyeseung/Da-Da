@@ -51,6 +51,10 @@
     margin-left: 5px
 }
 
+.weight-add-wrapper {
+    display: flex;
+}
+
 @media only screen and (max-width: 1200px) {
     .weight-grid {
         max-width: 992px;
