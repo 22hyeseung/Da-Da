@@ -15,13 +15,8 @@ router.use((req, res, next) => {
 })
 
 router.use(bodyParser.json())
-router.use(expressJwt({
-  secret: process.env.JWT_SECRET
-}))
-router.use(cors({
-  origin: process.env.TARGET_ORIGIN
-}))
-
+router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
+router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
 
 /**
  * @api {get} /__api/message/ message
@@ -60,8 +55,8 @@ router.get('/user', (req, res) => {
   query.getUserById(req.user.id)
     .then(user => {
       res.send({
-        provider: user.provider,
-        providerUserId: user.provider_user_id
+        'provider': user.provider,
+        'providerUserId': user.provider_user_id
       })
     })
 })

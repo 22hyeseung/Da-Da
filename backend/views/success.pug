@@ -2,4 +2,4 @@ p 검증용
 p token : #{token}
 p origin : #{origin}
 script.
-  //window.opener.postMessage('#{token}', '#{origin}')
+  window.opener.postMessage('#{token}', '#{origin}')
