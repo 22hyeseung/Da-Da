@@ -20,7 +20,7 @@ import notFoundPage from './pages/404Page'
 
 class App extends Component {
   state = {
-    isLoggedIn: true,
+    isLoggedIn: true
   }
 
   render() {
