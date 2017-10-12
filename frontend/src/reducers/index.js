@@ -1,8 +1,9 @@
 import colorReducer from './colors'
+import { weigthListReducer } from './weight'
 import { combineReducers } from 'redux'
 
 const reducers = combineReducers({
-  colors: colorReducer,
+  weightList: weigthListReducer,
 })
 
 export default reducers
