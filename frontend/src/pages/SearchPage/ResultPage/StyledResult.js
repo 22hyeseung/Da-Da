@@ -1,6 +1,7 @@
 import React from 'react'
 import noImg from '../../../static/img/No_image_available.svg'
 import iconSrc from '../../../static/img/diary-camera-icon.svg'
+import noSearchImgSrc from '../../../static/img/noSearchImg.svg'
 
 //===========================> index.js
 
@@ -128,3 +129,38 @@ export const CardSize = {
   height: '271px',
   borderRadius: '4px',
 }
+
+// ===================================> NoSearch.js
+
+export const noSearchContainer = {
+  width: '1180px',
+  height: '607px',
+  position: 'absolute',
+  top: '113px',
+  left: '139px',
+}
+
+export const noSearchText = {
+  width: '267px',
+  height: '62px',
+  fontSize: '21px',
+  fontWeight: '300',
+  letterSpacing: '-1px',
+  textAlign: 'center',
+  color: '#54698d',
+  position: 'absolute',
+  top: '110px',
+  left: '447.5px',
+}
+
+export const noSearchImage = {
+  width: '180px',
+  height: '179px',
+  objectFit: 'contain',
+  color: '#54698d',
+  position: 'absolute',
+  top: '216px',
+  left: '491px',
+}
+
+export const noSearchSvgSrc = noSearchImgSrc

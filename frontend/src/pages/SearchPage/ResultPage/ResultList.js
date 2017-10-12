@@ -11,13 +11,13 @@ import img1 from '../../../static/img/result1.png'
 import img2 from '../../../static/img/result2.png'
 import img3 from '../../../static/img/result3.png'
 import img4 from '../../../static/img/result4.png'
-import * as styled from './StyledResult'
+import * as Style from './StyledResult'
 
 const ResultBox = () => {
   return (
-    <Grid style={styled.wrapper}>
-      <Grid.Row style={styled.messagewrap}>
-        <span style={styled.message}>
+    <Grid style={Style.wrapper}>
+      <Grid.Row style={Style.messagewrap}>
+        <span style={Style.message}>
           ‘팬케익’ 검색 결과 8건
         </span>
         <div
@@ -28,12 +28,12 @@ const ResultBox = () => {
           }}
         >
           <Icon
-            style={styled.icon}
+            style={Style.icon}
             name="grid layout"
             size="large"
           />
           <Icon
-            style={styled.icon}
+            style={Style.icon}
             name="list layout"
             size="large"
           />
@@ -41,7 +41,7 @@ const ResultBox = () => {
       </Grid.Row>
       <Grid.Row
         columns={4}
-        style={styled.ImageWrap}
+        style={Style.ImageWrap}
       >
         <Grid.Column style={{ padding: '0' }}>
           <div style={{ width: '279px' }}>
@@ -49,7 +49,7 @@ const ResultBox = () => {
               <Image
                 as="a"
                 style={{
-                  ...styled.ResultImage,
+                  ...Style.ResultImage,
                   backgroundImage: `url(${img1})`,
                 }}
                 src="/"
@@ -57,25 +57,23 @@ const ResultBox = () => {
                 target="_blank"
               />
               <Card.Content
-                style={styled.CardLabel}
+                style={Style.CardLabel}
               >
                 <Card.Header
-                  style={styled.CardLabelHeader}
+                  style={Style.CardLabelHeader}
                 >
                   트리플베리 팬케익
                 </Card.Header>
                 <Card.Meta
-                  style={styled.CardLabelLeftText}
+                  style={Style.CardLabelLeftText}
                 >
                   <Icon name="clock" />
                   소요시간: 60분
                 </Card.Meta>
                 <Card.Description
-                  style={
-                    styled.CardLabelRightText
-                  }
+                  style={Style.CardLabelRightText}
                 >
-                  <span style={styled.dataText}>
+                  <span style={Style.dataText}>
                     340
                   </span>{' '}
                   kcal
@@ -90,7 +88,7 @@ const ResultBox = () => {
               <Image
                 as="a"
                 style={{
-                  ...styled.ResultImage,
+                  ...Style.ResultImage,
                   backgroundImage: `url(${img2})`,
                 }}
                 src="/"
@@ -98,25 +96,23 @@ const ResultBox = () => {
                 target="_blank"
               />
               <Card.Content
-                style={styled.CardLabel}
+                style={Style.CardLabel}
               >
                 <Card.Header
-                  style={styled.CardLabelHeader}
+                  style={Style.CardLabelHeader}
                 >
                   스트로베리 팬케익
                 </Card.Header>
                 <Card.Meta
-                  style={styled.CardLabelLeftText}
+                  style={Style.CardLabelLeftText}
                 >
                   <Icon name="clock" />
                   소요시간: 60분
                 </Card.Meta>
                 <Card.Description
-                  style={
-                    styled.CardLabelRightText
-                  }
+                  style={Style.CardLabelRightText}
                 >
-                  <span style={styled.dataText}>
+                  <span style={Style.dataText}>
                     320
                   </span>{' '}
                   kcal
@@ -131,7 +127,7 @@ const ResultBox = () => {
               <Image
                 as="a"
                 style={{
-                  ...styled.ResultImage,
+                  ...Style.ResultImage,
                   backgroundImage: `url(${img3})`,
                 }}
                 src="/"
@@ -139,25 +135,23 @@ const ResultBox = () => {
                 target="_blank"
               />
               <Card.Content
-                style={styled.CardLabel}
+                style={Style.CardLabel}
               >
                 <Card.Header
-                  style={styled.CardLabelHeader}
+                  style={Style.CardLabelHeader}
                 >
                   블루베리 팬케익
                 </Card.Header>
                 <Card.Meta
-                  style={styled.CardLabelLeftText}
+                  style={Style.CardLabelLeftText}
                 >
                   <Icon name="clock" />
                   소요시간: 60분
                 </Card.Meta>
                 <Card.Description
-                  style={
-                    styled.CardLabelRightText
-                  }
+                  style={Style.CardLabelRightText}
                 >
-                  <span style={styled.dataText}>
+                  <span style={Style.dataText}>
                     270
                   </span>{' '}
                   kcal
@@ -172,7 +166,7 @@ const ResultBox = () => {
               <Image
                 as="a"
                 style={{
-                  ...styled.ResultImage,
+                  ...Style.ResultImage,
                   backgroundImage: `url(${img4})`,
                 }}
                 src="/"
@@ -180,25 +174,23 @@ const ResultBox = () => {
                 target="_blank"
               />
               <Card.Content
-                style={styled.CardLabel}
+                style={Style.CardLabel}
               >
                 <Card.Header
-                  style={styled.CardLabelHeader}
+                  style={Style.CardLabelHeader}
                 >
                   바나나 팬케익
                 </Card.Header>
                 <Card.Meta
-                  style={styled.CardLabelLeftText}
+                  style={Style.CardLabelLeftText}
                 >
                   <Icon name="clock" />
                   소요시간: 60분
                 </Card.Meta>
                 <Card.Description
-                  style={
-                    styled.CardLabelRightText
-                  }
+                  style={Style.CardLabelRightText}
                 >
-                  <span style={styled.dataText}>
+                  <span style={Style.dataText}>
                     380
                   </span>{' '}
                   kcal
