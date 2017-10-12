@@ -38,6 +38,7 @@ export const linkTag = {
   color: '#16325c',
   fontSize: '14px',
   letterSpacing: '-0.7px',
+  paddingBottom: '10.5px',
 }
 
 // =============================== RightMenu > UseInfo.js
@@ -48,6 +49,7 @@ export const userInfoWrap = {
   fontSize: '14px',
   color: '#16325c',
   fontWeight: '700',
+  paddingBottom: '18px',
 }
 
 // 유저 프로필 사진
