@@ -50,8 +50,16 @@ function getUserById(member_provider, member_provider_number) {
     .where({member_provider, member_provider_number})
     .first()
 }
+
+function getExerciseInfobyName(exercise_name){
+  return knex('exercise')
+    .where(exercise_name)
+    .first()
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
-  updateUserByProvider
+  updateUserByProvider,
+  getExerciseInfobyName
 }
