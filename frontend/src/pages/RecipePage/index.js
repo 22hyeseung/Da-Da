@@ -10,13 +10,15 @@ class RecipePage extends Component {
     return (
       <div style={styled.container}>
         <div style={styled.topContainer}>
-          <div style={styled.navigationGrid}>
-            <Navigation
-              inverted="true"
-              color="#fff"
-              opacity="0.7"
-              backgroundImage="linear-gradient(268deg, #485563, #29323c)"
-            />
+          <div
+            style={styled.navigationBackground}
+          >
+            <div style={styled.navigationGrid}>
+              <Navigation
+                inverted="true"
+                color="#fff"
+              />
+            </div>
           </div>
           <RecipeTitleBox />
         </div>

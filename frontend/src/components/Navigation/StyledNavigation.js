@@ -11,7 +11,6 @@ export const container = {
 // 홈페이지 로고
 export const logo = {
   fontSize: '25px',
-  // color: '#16325c',
   textTransform: 'uppercase',
   fontFamily: '"montserrat-bold", sans-serif',
   paddingLeft: '0',
@@ -35,9 +34,9 @@ export const linkTagWrap = {
 
 // 네비게이션 개별 아이템(a태그)
 export const linkTag = {
-  // color: '#16325c',
   fontSize: '14px',
   letterSpacing: '-0.7px',
+  paddingBottom: '10.5px',
 }
 
 // =============================== RightMenu > UseInfo.js
@@ -48,6 +47,7 @@ export const userInfoWrap = {
   fontSize: '14px',
   color: '#16325c',
   fontWeight: '700',
+  paddingBottom: '18px',
 }
 
 // 유저 프로필 사진

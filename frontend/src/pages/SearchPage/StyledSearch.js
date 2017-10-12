@@ -6,8 +6,14 @@ export const container = {
   backgroundImage: `url(${bgImg})`,
   backgroundSize: 'cover',
   color: '#fff',
-  width: '1439px',
-  height: '780px',
+  minWidth: '1439px',
+  minHeight: '780px',
+}
+
+export const navGrid = {
+  width: '1200px',
+  margin: '0 auto',
+  position: 'relative',
 }
 
 // ==========================> SearchBar.js
