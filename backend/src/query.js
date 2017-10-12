@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const validator = require('validator')
 
 module.exports = {
-  firstOrCreateUserByProvider({member_provider, member_provider_number, token=null}) {
+  firstOrCreateUserByProvider({ member_provider, member_provider_number, token = null }) {
     return knex('member')
       .where({
         member_provider,
@@ -22,13 +22,13 @@ module.exports = {
             })
             .then(([member_id]) => {
               return knex('member')
-                .where({member_id})
+                .where({ member_id })
                 .first()
             })
         }
       })
   },
-  updateUserByProvider({member_provider, member_provider_number, member_provider_name, member_avatar_url, token=null}){
+  updateUserByProvider({ member_provider, member_provider_number, member_provider_name, member_avatar_url, token = null }) {
     return knex('member')
       .where({
         member_provider,
@@ -37,16 +37,20 @@ module.exports = {
       .first()
       .then(member => {
         return knex('member')
-        .update({
-          member_provider_name,
-          member_avatar_url,
-          token
-        })
+          .where({
+            'member_provider': member.member_provider,
+            'member_provider_number': member.member_provider_number
+          })
+          .update({
+            member_provider_name,
+            member_avatar_url,
+            token
+          })
       })
   },
-  getUserById(member_provider, member_provider_number) {
+  getUserById(member_id) {
     return knex('member')
-      .where({member_provider, member_provider_number})
+      .where({ member_id })
       .first()
-  },
+  }
 }
