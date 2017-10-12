@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
+import {
+  Router,
+  withRouter,
+} from 'react-router-dom'
 import { container } from './StyledNavigation'
 import Logo from './Logo'
 import RightMenu from './RightMenu'
@@ -22,9 +26,10 @@ class Navigation extends Component {
   }
 }
 
+// default Props: 컬러 반전이 없는 일반 페이지의 default color
 Navigation.defaultProps = {
+  color: '#16325c',
   inverted: false,
-  color: '#16325',
 }
 
 export default Navigation
