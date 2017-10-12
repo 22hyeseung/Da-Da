@@ -1,1 +1,2 @@
 export const CHANGE_COLOR = 'CHANGE_COLOR'
+export const NAV_ITEM_ACTIVE = 'NAV_ITEM_ACTIVE'
