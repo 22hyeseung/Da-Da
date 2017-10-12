@@ -64,7 +64,9 @@ passport.use(new KakaoStrategy({
     .then(user => {
       return user ? user : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).then(user => {
-      query.updateUserByProvider(member_data).then(done(null, user))
+      query.updateUserByProvider(member_data).then(() => {
+        done(null, user)
+      })
     }).catch(err => {
       done(err)
     })
