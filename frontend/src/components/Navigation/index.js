@@ -24,9 +24,7 @@ class Navigation extends Component {
 
 Navigation.defaultProps = {
   inverted: false,
-  opacity: '0',
   color: '#16325',
-  backgroundImage: 'transparent',
 }
 
 export default Navigation
