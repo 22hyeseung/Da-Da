@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
 import Navigation from '../../components/Navigation'
 import SearchBar from './SearchBar'
-import { container } from './StyledSearch'
+import {
+  container,
+  navGrid,
+} from './StyledSearch'
 
 class SearchPage extends Component {
   render() {
     return (
       <div style={container}>
-        <Navigation
-          inverted="true"
-          color="#fff"
-        />
-        <SearchBar />
+        <div style={navGrid}>
+          <Navigation
+            inverted="true"
+            color="#fff"
+          />
+          <SearchBar />
+        </div>
       </div>
     )
   }

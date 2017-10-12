@@ -6,16 +6,26 @@ import bgImg from '../../static/img/recipe_img.jpg'
 
 // 레피시 페이지 전체 컨테이너
 export const container = {
-  width: '1440px',
-  height: '1080px',
+  minWidth: '1440px',
+  minHeight: '1080px',
 }
 
 // 레시피 페이지 상단 컨테이너
 export const topContainer = {
-  height: '464px',
+  minHeight: '464px',
   backgroundImage: `url(${bgImg})`,
   backgroundSize: '1550px',
   backgroundPosition: 'left center',
+  position: 'relative',
+}
+
+// 레시피 페이지 네비게이션 배경
+export const navigationBackground = {
+  minWidth: '1440px',
+  backgroundColor: 'red',
+  opacity: '0.7',
+  backgroundImage:
+    'linear-gradient(268deg, #485563, #29323c)',
   position: 'relative',
 }
 

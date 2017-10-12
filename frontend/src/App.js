@@ -16,7 +16,6 @@ import RecipePage from './pages/RecipePage'
 /* 페이지 확인용 라우터 -> 나중에 ajax로 처리할 화면입니다.*/
 import SearchResultPage from './pages/SearchPage/ResultPage'
 import NoSearchPage from './pages/SearchPage/ResultPage/NoSearch'
-import notFoundPage from './pages/404Page'
 
 class App extends Component {
   state = {
@@ -24,6 +23,8 @@ class App extends Component {
   }
 
   render() {
+    /* Login 상태가 아닌 경우에 다른 페이지로 접근하면
+       Login페이지로 Redirect하여 접근을 막음 */
     if (!this.state.isLoggedIn) {
       return <Redirect to="/login" />
     }
@@ -34,7 +35,6 @@ class App extends Component {
           path="/"
           component={HomePage}
         />
-
         <Route
           path="/diary"
           component={DiaryPage}
@@ -67,10 +67,10 @@ class App extends Component {
           path="/search-no-result"
           component={NoSearchPage}
         />
-        <Route
+        {/* <Route
           path="/404"
           component={notFoundPage}
-        />
+        /> */}
       </div>
     )
   }
