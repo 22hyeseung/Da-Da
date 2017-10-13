@@ -1,0 +1,5 @@
+apps:
+  - script: src/index.js
+    name: dadaapi
+    env_production:
+      NODE_ENV: production
