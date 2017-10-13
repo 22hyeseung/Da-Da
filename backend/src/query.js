@@ -44,7 +44,7 @@ function getUserById(member_id) {
 
 function postDayLogRegret({ day_log_member_id, day_log_regret, day_log_diary_date }) {
   return knex('day_log')
-    .where({ day_log_diary_date })
+    .where({ day_log_member_id, day_log_diary_date })
     .first()
     .then(regret => {
       if (regret) {
