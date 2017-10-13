@@ -86,10 +86,30 @@ function getSelectDayLog({ day_log_member_id, day_log_diary_date }) {
     .first()
 }
 
+function postDayKgbyUser({ day_log_member_id, day_log_kg, day_log_diary_date }) {
+  return knex('day_log')
+    .where({ day_log_diary_date, day_log_member_id })
+    .first()
+    .then(day_kg => {
+      if (!day_kg) {
+        knex('day_log')
+          .insert({
+            day_log_member_id,
+            day_log_diary_date
+          })
+          .then()
+      }
+      return knex('day_log')
+        .where({ day_log_diary_date, day_log_member_id })
+        .update({ day_log_kg })
+    })
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
   postDayLogRegret,
   postDayLogComment,
-  getSelectDayLog
+  getSelectDayLog,
+  postDayKgbyUser
 }
