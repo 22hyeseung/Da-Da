@@ -44,30 +44,52 @@ function getUserById(member_id) {
 
 function postDayLogRegret({ day_log_member_id, day_log_regret, day_log_diary_date }) {
   return knex('day_log')
-    .where({ day_log_member_id, day_log_diary_date })
+    .where({ day_log_diary_date, day_log_member_id })
     .first()
-    .then(regret => {
-      if (regret) {
-        return console.log('이미 작성한 일기가 존재합니다.')
-      } else {
-        return knex('day_log')
+    .then(day_log => {
+      if (!day_log) {
+        knex('day_log')
           .insert({
             day_log_member_id,
-            day_log_regret,
             day_log_diary_date
           })
-          .then(([day_log_id]) => {
-            return knex('day_log')
-              .where({ day_log_id })
-              .first()
-          })
+          .then()
       }
+      return knex('day_log')
+        .where({ day_log_diary_date, day_log_member_id })
+        .update({ day_log_regret })
     })
 }
 
+function postDayLogComment({ day_log_member_id, day_log_comment, day_log_diary_date }) {
+  return knex('day_log')
+    .where({ day_log_diary_date, day_log_member_id })
+    .first()
+    .then(day_log => {
+      if (!day_log) {
+        knex('day_log')
+          .insert({
+            day_log_member_id,
+            day_log_diary_date
+          })
+          .then()
+      }
+      return knex('day_log')
+        .where({ day_log_diary_date, day_log_member_id })
+        .update({ day_log_comment })
+    })
+}
+
+function getSelectDayLog({ day_log_member_id, day_log_diary_date }) {
+  return knex('day_log')
+    .where({ day_log_diary_date, day_log_member_id })
+    .first()
+}
 
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
-  postDayLogRegret
+  postDayLogRegret,
+  postDayLogComment,
+  getSelectDayLog
 }
