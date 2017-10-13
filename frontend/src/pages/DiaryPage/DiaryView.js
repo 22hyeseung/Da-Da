@@ -2,31 +2,33 @@ import React from 'react'
 import {
   BrowserRouter,
   Route,
+  Switch,
+  withRouter,
 } from 'react-router-dom'
 import DiaryFood from './DiaryFood'
 import DiaryFitness from './DiaryFitness'
 import DiaryReview from './DiaryReview'
 
-const DiaryView = () => {
+const DiaryView = props => {
   return (
-    <BrowserRouter>
-      <div>
-        <Route
-          exact
-          path="/diary"
-          component={DiaryFood}
-        />
-        <Route
-          path="/diary/fitness"
-          component={DiaryFitness}
-        />
-        <Route
-          path="/diary/review"
-          component={DiaryReview}
-        />
-      </div>
-    </BrowserRouter>
+    <div>
+      {/* <Switch> */}
+      <Route
+        exact
+        path={`${props.match.url}`}
+        component={DiaryFood}
+      />
+      <Route
+        path={`${props.match.url}/fitness`}
+        component={DiaryFitness}
+      />
+      <Route
+        path={`${props.match.url}/review`}
+        component={DiaryReview}
+      />
+      {/* </Switch> */}
+    </div>
   )
 }
 
-export default DiaryView
+export default withRouter(DiaryView)

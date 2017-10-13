@@ -36,7 +36,7 @@ class notFoundPage extends Component {
             <Button
               style={button}
               onClick={() => {
-                this.props.history.push('/home')
+                this.props.history.push('/')
               }}
             >
               홈으로 돌아가기

@@ -7,13 +7,19 @@ export const changeColorAction = RGB => {
   }
 }
 
-// ======================================> navigation action
+// ======================================> navigation & tab action
 
-export const changeNavigationItemActive = item => {
+export const changeNavigationItemActive = navItem => {
   return {
     type: types.CHANGE_NAV_ITEM_ACTIVE,
-    payload: item,
+    payload: navItem,
   }
 }
 
-// ======================================> navigation action end
+export const changeTabItemActive = tabItem => {
+  return {
+    type: types.CHANGE_TAB_ITEM_ACTIVE,
+    payload: tabItem,
+  }
+}
+// ======================================> navigation & tab action end

@@ -1,46 +1,41 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import {
+  Link,
+  withRouter,
+} from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
-import fitnessIconDefault from '../../static/img/diary-fitness_default.svg'
-import fitnessIconWhite from '../../static/img/diary-fitness_w.svg'
-import foodIconDefault from '../../static/img/diary-food_default.svg'
-import foodIconWhite from '../../static/img/diary-food_w.svg'
-import reviewIconDefault from '../../static/img/diary-review_default.svg'
-import reviewIconWhite from '../../static/img/diary-review_w.svg'
+import { connect } from 'react-redux'
+import * as Style from './StyledDiarySubNav'
 import MdAdd from 'react-icons/lib/md/add'
+import { changeTabItemActive } from '../../actions'
+
 const routes = [
   {
     linkLabel: '식단',
-    linkTo: '/food',
+    linkTo: '/diary',
+    iconDefault: Style.iconSet.foodIcon.default,
+    iconWhite: Style.iconSet.foodIcon.white,
   },
   {
     linkLabel: '운동',
-    linkTo: '/fitness',
+    linkTo: '/diary/fitness',
+    iconDefault:
+      Style.iconSet.fitnessIcon.default,
+    iconWhite: Style.iconSet.fitnessIcon.white,
   },
   {
     linkLabel: '일기',
-    linkTo: '/review',
+    linkTo: '/diary/review',
+    iconDefault: Style.iconSet.reviewIcon.default,
+    iconWhite: Style.iconSet.reviewIcon.white,
   },
 ]
-const colors = ['black']
 
 class DiaryTab extends Component {
-  state = { activeItem: 'food' }
-
-  static propTypes = {
-    color: PropTypes.string,
-  }
-
-  handleItemClick = (e, { name }) =>
-    this.setState({ activeItem: name })
-
   render() {
-    const { color } = this.props
-    const { activeItem } = this.state
     return (
       <Menu
-        color={color}
         widths={3}
         style={{
           flexGrow: 'initial',
@@ -48,70 +43,46 @@ class DiaryTab extends Component {
           marginBottom: '7px',
         }}
       >
-        <Menu.Item
-          className="diary-label"
-          active={activeItem === 'food'}
-          onClick={this.handleItemClick}
-          style={{
-            justifyContent: 'flex-start',
-            color: '#fff',
-            backgroundImage:
-              'linear-gradient(263deg, #485563, #29323c)',
-            fontWeight: '100',
-          }}
-        >
-          식단
-          <img
-            src={foodIconWhite}
-            style={{
-              height: '14px',
-            }}
-          />
-        </Menu.Item>
-        <Menu.Item
-          active={activeItem === 'fitness'}
-          onClick={this.handleItemClick}
-          style={{
-            justifyContent: 'flex-start',
-            color: '#16325c',
-            fontWeight: '100',
-          }}
-        >
-          운동
-          <img
-            src={fitnessIconDefault}
-            style={{
-              height: '14px',
-            }}
-          />
-        </Menu.Item>
-        <Menu.Item
-          active={activeItem === 'review'}
-          onClick={this.handleItemClick}
-          style={{
-            justifyContent: 'flex-start',
-            color: '#16325c',
-            fontWeight: '100',
-          }}
-        >
-          일기
-          <img
-            src={reviewIconDefault}
-            style={{
-              height: '14px',
-            }}
-          />
-        </Menu.Item>
+        {routes.map(route => {
+          const isLinkMatched =
+            this.props.location.pathname ===
+            route.linkTo
+          return (
+            <Menu.Item
+              className="diary-label"
+              active={isLinkMatched}
+              style={
+                isLinkMatched
+                  ? Style.activeTabStyle
+                  : Style.defaultTabStyle
+              }
+            >
+              <Link
+                to={route.linkTo}
+                style={
+                  isLinkMatched
+                    ? Style.activeFontStyle
+                    : Style.defaultFontStyle
+                }
+              >
+                {route.linkLabel}{' '}
+                <img
+                  src={
+                    isLinkMatched
+                      ? route.iconWhite
+                      : route.iconDefault
+                  }
+                  style={{
+                    height: '14px',
+                  }}
+                />
+              </Link>
+            </Menu.Item>
+          )
+        })}
       </Menu>
     )
   }
 }
-const MenuExampleColoredMenus = () => {
-  const menus = colors.map(color => (
-    <DiaryTab color={color} key={color} />
-  ))
 
-  return <div>{menus}</div>
-}
-
-export default DiaryTab
+export default withRouter(DiaryTab)
