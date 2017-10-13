@@ -27,16 +27,19 @@ export const fetchWeightToDB = payload => {
 // 2. input에서 받은 값을 db로 보내는 action(post)
 export const postWeightToDB = payload => {
   return dispatch => {
+    dispatch({
+      type: types.POST_WEIGHT_REQUEST,
+    })
     fetch(`api/weight/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
-    })
-    dispatch({
-      type: types.POST_WEIGHT_TO_DATABASE,
-      payload: payload,
+    }).catch(error => {
+      dispatch({
+        type: types.POST_WEIGHT_FAILD,
+      })
     })
   }
 }
