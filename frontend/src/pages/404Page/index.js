@@ -15,7 +15,7 @@ const button = {
   fontWeight: '100',
 }
 
-export default class notFoundPage extends Component {
+export default class NotFoundPage extends Component {
   render() {
     return (
       <div className="notFound-wrapper">

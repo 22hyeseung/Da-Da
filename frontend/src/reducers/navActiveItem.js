@@ -4,7 +4,6 @@ const INITIAL_STATE = {
   // color: '#16325c',
   // inverted: false,
   activeNavItem: '',
-  activeTabItem: '식단',
 }
 
 const navActiveItemReducer = (
