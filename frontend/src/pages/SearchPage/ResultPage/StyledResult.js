@@ -1,6 +1,7 @@
 import React from 'react'
 import noImg from '../../../static/img/No_image_available.svg'
 import iconSrc from '../../../static/img/diary-camera-icon.svg'
+import noSearchImgSrc from '../../../static/img/noSearchImg.svg'
 
 //===========================> index.js
 
@@ -23,10 +24,9 @@ export const searchWrapper = {
 }
 
 export const iconStyle = {
-  borderStyle: 'none',
   position: 'absolute',
-  top: '76px',
-  right: '25px',
+  top: '90px',
+  right: '32px',
   cursor: 'pointer',
 }
 
@@ -51,10 +51,11 @@ export const message = {
 }
 
 export const icon = {
-  width: '13.5px',
-  height: '13.5px',
   color: '#54698d',
-  marginRight: '12.3px',
+  marginLeft: '0.3rem',
+  marginRight: '0',
+  cursor: 'pointer',
+  fontSize: '1.2rem',
 }
 
 export const messagewrap = {
@@ -128,3 +129,38 @@ export const CardSize = {
   height: '271px',
   borderRadius: '4px',
 }
+
+// ===================================> NoSearch.js
+
+export const noSearchContainer = {
+  width: '1180px',
+  height: '607px',
+  position: 'absolute',
+  top: '113px',
+  left: '139px',
+}
+
+export const noSearchText = {
+  width: '267px',
+  height: '62px',
+  fontSize: '21px',
+  fontWeight: '300',
+  letterSpacing: '-1px',
+  textAlign: 'center',
+  color: '#54698d',
+  position: 'absolute',
+  top: '110px',
+  left: '447.5px',
+}
+
+export const noSearchImage = {
+  width: '180px',
+  height: '179px',
+  objectFit: 'contain',
+  color: '#54698d',
+  position: 'absolute',
+  top: '216px',
+  left: '491px',
+}
+
+export const noSearchSvgSrc = noSearchImgSrc

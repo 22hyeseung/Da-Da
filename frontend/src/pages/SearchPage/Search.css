@@ -1,0 +1,7 @@
+.search-searchbar {
+  margin-top: 70px;
+}
+
+.search-searchbar > div > input {
+  min-width: 581px;
+}
