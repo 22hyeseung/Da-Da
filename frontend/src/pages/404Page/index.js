@@ -15,19 +15,17 @@ const button = {
   fontWeight: '100',
 }
 
-class notFoundPage extends Component {
+export default class notFoundPage extends Component {
   render() {
     return (
       <div className="notFound-wrapper">
         <div className="notFound-grid">
-          <Navigation />
+          <Navigation
+            color="#fff"
+            inverted="true"
+          />
           <div class="notFound-content">
-            <span
-              className="notFound-header"
-              style={{
-                color: `#${this.props.rootColor}`,
-              }}
-            >
+            <span className="notFound-header">
               404
             </span>
             <span className="notFound-subHeader">
@@ -47,13 +45,3 @@ class notFoundPage extends Component {
     )
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    rootColor: state.colors.rootColor,
-  }
-}
-
-export default connect(mapStateToProps, null)(
-  notFoundPage,
-)

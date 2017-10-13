@@ -2,7 +2,6 @@ import React from 'react'
 import {
   BrowserRouter,
   Route,
-  Switch,
   withRouter,
 } from 'react-router-dom'
 import DiaryFood from './DiaryFood'
@@ -12,10 +11,9 @@ import DiaryReview from './DiaryReview'
 const DiaryView = props => {
   return (
     <div>
-      {/* <Switch> */}
       <Route
         exact
-        path={`${props.match.url}`}
+        path={props.match.url}
         component={DiaryFood}
       />
       <Route
@@ -26,7 +24,6 @@ const DiaryView = props => {
         path={`${props.match.url}/review`}
         component={DiaryReview}
       />
-      {/* </Switch> */}
     </div>
   )
 }

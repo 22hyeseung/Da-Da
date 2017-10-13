@@ -17,11 +17,6 @@ const navActiveItemReducer = (
         ...state,
         activeNavItem: action.payload,
       }
-    case types.CHANGE_TAB_ITEM_ACTIVE:
-      return {
-        ...state,
-        activeTabItem: action.payload,
-      }
     default:
       return state
   }
