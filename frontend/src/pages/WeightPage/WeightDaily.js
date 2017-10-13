@@ -20,11 +20,21 @@ class WeightDaily extends Component {
       date: '',
       weight: '',
       isPostMode: false,
+      valueAlert: '',
+      isPositiveNum: false,
     }
   }
 
   handleWeightValueChange = e => {
+    if (e.target.value < 1) {
+      return this.setState({
+        valueAlert: '1 이상의 값을 입력하세요 ',
+        isPositiveNum: true,
+      })
+    }
     this.setState({
+      valueAlert: '',
+      isPositiveNum: false,
       weight: e.target.value,
     })
   }
@@ -68,30 +78,42 @@ class WeightDaily extends Component {
           {/* title 끝 */}
 
           {this.state.isPostMode ? (
-            <div className="weight-add-wrapper">
-              <Input
-                focus
-                fluid
-                style={{
-                  width: '100%',
-                }}
-                placeholder="몸무게를 입력하세요"
-                onChange={e =>
-                  this.handleWeightValueChange(e)}
-              />
-              <Button
-                style={{
-                  ...Style.weightAddBtn,
-                  marginLeft: '7px',
-                  width: '84px',
-                }}
-                disabled={!this.state.weight}
-                onClick={
-                  this.createPayloadAndPostToDB
-                }
-              >
-                입력
-              </Button>
+            <div>
+              <div className="weight-add-wrapper">
+                <Input
+                  focus
+                  fluid
+                  error={this.state.isPositiveNum}
+                  type="number"
+                  style={{
+                    width: '100%',
+                  }}
+                  placeholder="몸무게를 입력하세요"
+                  onChange={e =>
+                    this.handleWeightValueChange(
+                      e,
+                    )}
+                />
+
+                <Button
+                  style={{
+                    ...Style.weightAddBtn,
+                    marginLeft: '7px',
+                    width: '84px',
+                  }}
+                  disabled={
+                    this.state.isPositiveNum
+                  }
+                  onClick={
+                    this.createPayloadAndPostToDB
+                  }
+                >
+                  입력
+                </Button>
+              </div>
+              <span className="weight-alert">
+                {this.state.valueAlert}
+              </span>
             </div>
           ) : (
             <Button
