@@ -6,8 +6,13 @@ export const container = {
   backgroundImage: `url(${bgImg})`,
   backgroundSize: 'cover',
   color: '#fff',
-  minWidth: '1439px',
-  minHeight: '780px',
+  position: 'fixed',
+  top: '0',
+  left: '0',
+  minWidth: '100%',
+  minHeight: '100%',
+  width: 'auto',
+  height: 'auto',
 }
 
 export const navGrid = {
@@ -21,47 +26,31 @@ export const navGrid = {
 export const centerGrid = {
   textAlign: 'center',
   position: 'relative',
+  marginTop: '12%',
+  marginBottom: '25%',
 }
 
 export const h1 = {
-  fontFamily: 'Spoqa Han Sans',
   fontWeight: '100',
   fontSize: '56px',
   margin: '0',
 }
 
 export const h2 = {
-  fontFamily: 'Spoqa Han Sans',
   fontWeight: '100',
   fontSize: '28px',
   margin: '0',
+  letterSpacing: '1.6px',
 }
 
 export const headerGrid = {
   textAlign: 'center',
-  position: 'absolute',
-  top: '140px',
-  left: '112px',
-  width: '514px',
-  height: '124px',
-}
-
-export const searchInput = {
-  width: '581px',
-  height: '41px',
-  position: 'absolute',
-  top: '334px',
-  left: '78px',
 }
 
 export const h5 = {
   width: '349px',
   height: '20px',
-  fontFamily: 'Spoqa Han Sans',
   fontWeight: '100',
   fontSize: '14px',
-  margin: '0',
-  position: 'absolute',
-  top: '397px',
-  left: '195px',
+  margin: '22px 0 0 20%',
 }
