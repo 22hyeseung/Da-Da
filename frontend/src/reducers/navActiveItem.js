@@ -1,21 +1,23 @@
+import * as types from '../actions/ActionTypes'
+
 const INITIAL_STATE = {
   // color: '#16325c',
   // inverted: false,
-  activeItem: '',
+  activeNavItem: '',
 }
 
 const navActiveItemReducer = (
   state = INITIAL_STATE,
-  action,
+  action = {},
 ) => {
-  if (action.type === 'CHANGE_NAV_ITEM_ACTIVE') {
-    return {
-      ...state,
-      activeItem: action.payload,
-    }
-  }
-  return {
-    ...state,
+  switch (action.type) {
+    case types.CHANGE_NAV_ITEM_ACTIVE:
+      return {
+        ...state,
+        activeNavItem: action.payload,
+      }
+    default:
+      return state
   }
 }
 
