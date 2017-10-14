@@ -30,10 +30,12 @@ router.use(expressJwt({
  * @apiGroup user
  *
  *
- * @apiSuccess {String} provider sns분류
- * @apiSuccess {Number} providerUserId snsId
- * @apiSuccess {String} contnet 내용
- * @apiSuccess {String} imgsrc 아바타jpg Url
+ * @apiSuccess {String} member_provider sns분류
+ * @apiSuccess {String} member_provider_number sns ID
+ * @apiSuccess {String} member_provider_name sns 이름
+ * @apiSuccess {String} member_avatar_url sns 프로필이미지
+ * @apiSuccess {String} member_age 나이
+ * @apiSuccess {String} member_gender 내용
  *
  * @apiSuccessExample {json} Success-Respoonse:
  * {
@@ -41,8 +43,9 @@ router.use(expressJwt({
  *     "member_provider_number": "532971400",
  *     "member_provider_name": "홍길동",
  *     "member_avatar_url": "http://k.kakaocdn.net/dn/beeqib/btqhlVJQRrn/8bFQnlKKwFyOd4xyvNIjTk/img_640x640.jpg",
- *     "member_age": null,
- *     "member_gender": null
+ *     "member_birth": "1990-06-14T15:00:00.000Z",
+ *     "member_goal_weight": 70,
+ *     "member_gender": "남"
  * }
  */
 router.get('/', (req, res) => {
@@ -53,7 +56,8 @@ router.get('/', (req, res) => {
         'member_provider_number': user.member_provider_number,
         'member_provider_name': user.member_provider_name,
         'member_avatar_url': user.member_avatar_url,
-        'member_age': user.member_age,
+        'member_birth': user.member_birth,
+        'member_goal_weight': user.member_goal_weight,
         'member_gender': user.member_gender
       });
     })

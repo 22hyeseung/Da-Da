@@ -8,7 +8,7 @@ const query = require('../query')
 const router = express.Router()
 
 /**
- * @apiDefine eat-log
+ * @apiDefine eatlog
  */
 router.use((req, res, next) => {
   next()
@@ -23,7 +23,7 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  * @api {post} /eat-logs
  * @apiDescription 사용자가 먹은 음식을 기록
  * @apiName eat-logs
- * @apiGroup eat-logs
+ * @apiGroup eatlog
  *
  * @apiSuccess {Integer} eat_log_id eat_log에 남겨지는 id
  * @apiSuccess {Integer} eat_log_member_id 기록한 member의 id
@@ -49,7 +49,6 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  *     }
  * ]
  */
-
 router.post('/', (req, res) => {
   const food_id = req.body.food_id ? req.body.food_id : null
   const recipe_id = req.body.recipe_id ? req.body.recipe_id : null
@@ -78,7 +77,7 @@ router.post('/', (req, res) => {
  * @api {get} /eat-logs
  * @apiDescription 사용자가 지정한날에 먹은기록을 가져온다.
  * @apiName eat-logs
- * @apiGroup eat-logs
+ * @apiGroup eatlog
  *
  * @apiSuccess {Integer} eat_log_id eat_log에 남겨지는 id
  * @apiSuccess {Integer} eat_log_member_id 기록한 member의 id
@@ -136,7 +135,6 @@ router.post('/', (req, res) => {
  *     }
  * ]
  */
-
 router.get('/', (req, res) => {
   const eat_log_meal = {
     'eat_log_member_id': req.user.id,

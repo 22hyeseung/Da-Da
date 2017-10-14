@@ -140,13 +140,6 @@ passport.use(new InstagramStrategy({
     })
 }))
 
-/**
- * @apiDefine auth OAuth
- * @apiSuccess {String} member_provider 소속sns
- * @apiSuccess {Number} member_provider_number sns 고유Id
- * @apiSuccess {String} member_provider_name 사용자 이름
- * @apiSuccess {String} member_avatar_url 사용자 아바타Url
- */
 router.get('/', (req, res) => {
   res.render('auth.pug')
 })
@@ -161,21 +154,6 @@ router.get('/success', mw.loginRequired, (req, res) => {
   })
 })
 
-/**
- * @api {get} /auth/kakao/ Kakao
- * @apiDescription 카카오계정 로그인
- * @apiName authKakao
- * @apiGroup auth
- *
- * @apiUse auth
- * @apiSuccessExample {json} Success-Respoonse:
- * {
- *   "member_provider": "kakao",
- *   "member_provider_number": 12083789234789,
- *   "member_provider_name": "홍길동",
- *   "member_avatar_url": "./data/photo/_thumb/20"
- * }
- */
 router.get('/kakao', passport.authenticate('kakao'))
 
 router.get('/kakao/callback', (req, res, next) => {
@@ -199,21 +177,6 @@ router.get('/kakao/callback', (req, res, next) => {
   })(req, res, next)
 })
 
-/**
- @api {get} /auth/naver/ Nakao
- * @apiDescription 네이버계정 로그인
- * @apiName authNaver
- * @apiGroup auth
- *
- * @apiUse auth
- * @apiSuccessExample {json} Success-Respoonse:
- * {
- *   "member_provider": "naver",
- *   "member_provider_number": 37589930,
- *   "member_provider_name": "홍길순",
- *   "member_avatar_url": "./data/photo/_thumb/20"
- * }
- */
 router.get('/naver', passport.authenticate('naver'))
 
 router.get('/naver/callback', (req, res, next) => {

@@ -8,7 +8,7 @@ const query = require('../query')
 const router = express.Router()
 
 /**
- * @apiDefine __api __api
+ * @apiDefine SAMPLE SAMPLE
  */
 router.use((req, res, next) => {
   next()
@@ -22,7 +22,7 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  * @api {get} /__api/message/ message
  * @apiDescription 세션 유지를 위한 dummy call
  * @apiName message
- * @apiGroup __api
+ * @apiGroup SAMPLE
  *
  * @apiSuccess {String} body Hello SPA!
  */
@@ -34,7 +34,7 @@ router.get('/message', (req, res) => {
  * @api {get} /__api/user/:id getUserById
  * @apiDescription 다른사용자를 선택하면 해당 사용자의 정보를 조회하는 API.
  * @apiName getUserById
- * @apiGroup __api
+ * @apiGroup SAMPLE
  *
  * @apiParam {Number} id 아이템 식별자
  *
