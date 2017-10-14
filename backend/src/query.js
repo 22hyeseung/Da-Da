@@ -105,11 +105,33 @@ function postDayKgbyUser({ day_log_member_id, day_log_kg, day_log_diary_date }) 
     })
 }
 
+function insertBurnById({ burn_member_id, burn_exercise_id, burn_date, burn_kcal }) {
+  return knex('burn')
+    .insert({
+      burn_member_id,
+      burn_exercise_id,
+      burn_date,
+      burn_kcal
+    })
+    .then(([burn_id]) => {
+      return knex('burn')
+        .where({ burn_id })
+        .first()
+    })
+}
+
+function getExercisesByName(exercise_name) {
+  return knex('exercise')
+    .where('exercise_name', 'like', '%' + exercise_name + '%')
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
   postDayLogRegret,
   postDayLogComment,
   getSelectDayLog,
-  postDayKgbyUser
+  postDayKgbyUser,
+  insertBurnById,
+  getExercisesByName
 }

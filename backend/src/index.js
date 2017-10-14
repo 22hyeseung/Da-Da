@@ -5,6 +5,7 @@ const express = require('express')
 const authRouter = require('./router/auth')
 const userRouter = require('./router/user')
 const diaryRouter = require('./router/diary')
+const exercisesRouter = require('./router/exercises')
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')))
 app.use('/auth', authRouter)
 app.use('/user', userRouter)
 app.use('/diary', diaryRouter)
+app.use('/exercises', exercisesRouter)
 
 app.listen(PORT, () => {
   console.log(`listening ${PORT}...`)
