@@ -133,6 +133,22 @@ function getKgByDate(day_log_diary_date, day_log_member_id) {
     .limit(4)
 }
 
+function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, eat_log_meal_tag, eat_log_picture, eat_log_diary_date }) {
+  return knex('eat_log')
+    .insert({
+      eat_log_member_id,
+      eat_log_food_id,
+      eat_log_recipe_id,
+      eat_log_meal_tag,
+      eat_log_picture,
+      eat_log_diary_date
+    })
+    .then(([eat_log_id]) => {
+      return knex('eat_log')
+        .where({ eat_log_id })
+    })
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -142,5 +158,6 @@ module.exports = {
   postDayKgbyUser,
   insertBurnById,
   getExercisesByName,
-  getKgByDate
+  getKgByDate,
+  postEatLogs
 }
