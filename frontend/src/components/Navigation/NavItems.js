@@ -33,18 +33,18 @@ class NavItems extends Component {
       <Menu.Item
         style={linkTagWrap}
         active={
-          this.props.activeItem ===
-          `${route.linkLabel}`
+          this.props.activeNavItem ===
+          route.linkLabel
         }
         onClick={() =>
           this.props.changeNavigationItemActive(
-            `${route.linkLabel}`,
+            route.linkLabel,
           )}
       >
         <Link
           style={{
             ...linkTag,
-            color: `${this.props.color}`,
+            color: this.props.color,
           }}
           to={route.linkTo}
         >
@@ -57,7 +57,8 @@ class NavItems extends Component {
 
 const mapStateToProps = state => {
   return {
-    activeItem: state.navActiveItem.activeItem,
+    activeNavItem:
+      state.navActiveItem.activeNavItem,
   }
 }
 
