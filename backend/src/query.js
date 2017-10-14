@@ -133,6 +133,28 @@ function getKgByDate(day_log_diary_date, day_log_member_id) {
     .limit(4)
 }
 
+function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, eat_log_meal_tag, eat_log_amount, eat_log_picture, eat_log_diary_date }) {
+  return knex('eat_log')
+    .insert({
+      eat_log_member_id,
+      eat_log_food_id,
+      eat_log_recipe_id,
+      eat_log_meal_tag,
+      eat_log_amount,
+      eat_log_picture,
+      eat_log_diary_date
+    })
+    .then(([eat_log_id]) => {
+      return knex('eat_log')
+        .where({ eat_log_id })
+    })
+}
+
+function getEatLogs({ eat_log_member_id, eat_log_diary_date }) {
+  return knex('eat_log')
+    .where({ eat_log_member_id, eat_log_diary_date })
+}
+
 function getFoodsSearch(search) {
   return knex('food')
     .select('food_id', 'food_name_ko', 'food_carb', 'food_protein', 'food_fat', 'food_unit')
@@ -151,5 +173,8 @@ module.exports = {
   insertBurnById,
   getExercisesByName,
   getFoodsSearch,
-  getKgByDate
+  getKgByDate,
+  postEatLogs,
+  getEatLogs
+
 }
