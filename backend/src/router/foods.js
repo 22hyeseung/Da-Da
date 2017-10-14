@@ -25,7 +25,7 @@ router.use(expressJwt({
 }))
 /**
  * @api {get} /foods getFoodsSearch
- * @apiDescription 현재 로그인된 사용자의 정보를 가져온다.
+ * @apiDescription 음식정보(영양소)를 검색한다.
  * @apiName getFoodsSearch
  * @apiGroup foods
  *
