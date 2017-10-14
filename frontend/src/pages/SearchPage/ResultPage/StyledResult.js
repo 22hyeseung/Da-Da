@@ -1,4 +1,3 @@
-import React from 'react'
 import noImg from '../../../static/img/No_image_available.svg'
 import iconSrc from '../../../static/img/diary-camera-icon.svg'
 import noSearchImgSrc from '../../../static/img/noSearchImg.svg'

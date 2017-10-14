@@ -6,12 +6,10 @@ import {
   Input,
 } from 'semantic-ui-react'
 import MdAdd from 'react-icons/lib/md/add'
-import ArrowUp from '../../static/img/weight-daily-arrowUp.svg'
 import ArrowDown from '../../static/img/weight-daily-arrowDown.svg'
 import * as Style from './StyledWeight'
 import { connect } from 'react-redux'
 import { postWeightToDB } from '../../actions/weight.js'
-import map from 'lodash/map'
 
 class WeightDaily extends Component {
   constructor(props) {

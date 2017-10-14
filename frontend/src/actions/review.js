@@ -1,5 +1,4 @@
 import * as types from './ActionTypes'
-import map from 'lodash/map'
 import { SERVER_HOSTNAME } from '../config'
 
 export const getRegretFromDB = date => {

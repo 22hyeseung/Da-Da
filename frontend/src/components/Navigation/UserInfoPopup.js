@@ -6,7 +6,6 @@ import {
   Button,
 } from 'semantic-ui-react'
 import * as styled from './StyledNavigation'
-import UserInfoPopup from './UserInfoPopup'
 
 class UserInfo extends Component {
   render() {

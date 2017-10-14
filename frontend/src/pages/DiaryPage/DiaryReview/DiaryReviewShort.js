@@ -15,7 +15,6 @@ import {
 import { connect } from 'react-redux'
 import FaPencil from 'react-icons/lib/fa/pencil'
 import FaTrashO from 'react-icons/lib/fa/trash-o'
-import { SERVER_HOSTNAME } from '../../../config'
 import {
   getRegretFromDB,
   postRegretToDB,

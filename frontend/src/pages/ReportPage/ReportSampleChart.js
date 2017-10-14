@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import './ReportSampleChart.css'
 
 class ReportSampleChart extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <section class="report-chart">

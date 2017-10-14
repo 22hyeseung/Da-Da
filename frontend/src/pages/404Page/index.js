@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 import Navigation from '../../components/Navigation'
 import './404.css'
-import { connect } from 'react-redux'
 
 const button = {
   width: '190px',

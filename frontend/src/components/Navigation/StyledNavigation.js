@@ -1,5 +1,3 @@
-import React from 'react'
-
 // ===============================  index.js
 // 전체 컨테이너
 export const container = {

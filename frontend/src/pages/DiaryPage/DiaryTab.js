@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import {
   Link,
   withRouter,
 } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
-import { connect } from 'react-redux'
 import * as Style from './StyledDiarySubNav'
-import MdAdd from 'react-icons/lib/md/add'
-import { changeTabItemActive } from '../../actions'
 
 const routes = [
   {
@@ -72,6 +68,8 @@ class DiaryTab extends Component {
                       ? route.iconWhite
                       : route.iconDefault
                   }
+                  alt="의미없는 탭 아이콘 입니다."
+                  aria-hidden="true"
                   style={{
                     height: '14px',
                   }}

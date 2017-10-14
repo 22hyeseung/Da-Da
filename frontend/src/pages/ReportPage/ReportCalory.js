@@ -1,16 +1,9 @@
 import React, { Component } from 'react'
-import {
-  Segment,
-  Header,
-} from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 import './Report.css'
 import ReportSampleChart from './ReportSampleChart'
 
 class ReportCalory extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div className="report-calory">

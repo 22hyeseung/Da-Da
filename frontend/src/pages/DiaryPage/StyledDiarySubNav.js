@@ -1,4 +1,3 @@
-import React from 'react'
 import editIcon from '../../static/img/diary-review_w.svg'
 import fitnessIconDefault from '../../static/img/diary-fitness_default.svg'
 import fitnessIconWhite from '../../static/img/diary-fitness_w.svg'

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const editorStyle = {
   border: '1px solid #f5f7fa',
   borderRadius: '4px',

@@ -1,4 +1,3 @@
-import React from 'react'
 import bgImg from '../../static/img/search_bg.jpg'
 
 // ========================> index.js

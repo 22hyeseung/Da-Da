@@ -1,11 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   Grid,
   Image,
   Icon,
-  Label,
   Card,
-  Header,
 } from 'semantic-ui-react'
 import img1 from '../../../static/img/result1.png'
 import img2 from '../../../static/img/result2.png'

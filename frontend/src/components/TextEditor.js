@@ -40,9 +40,7 @@ class TextEditor extends Component {
   render() {
     const { contentState } = this.state
     return (
-      <div
-      /* style={} */
-      >
+      <div>
         <Editor
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
