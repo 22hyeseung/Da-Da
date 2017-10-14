@@ -13,7 +13,6 @@ import 'semantic-ui-css/semantic.min.css'
 import App from './App'
 
 import LoginPage from './pages/LoginPage'
-import NotFoundPage from './pages/404Page'
 
 class Root extends Component {
   render() {
@@ -28,7 +27,6 @@ class Root extends Component {
             />
             {/* 서비스 페이지 (로그인 이후 접근 가능) & 네비게이션 있는 페이지*/}
             <Route path="/" component={App} />
-            <Route component={NotFoundPage} />
           </Switch>
         </Provider>
       </BrowserRouter>

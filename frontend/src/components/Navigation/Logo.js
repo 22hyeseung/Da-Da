@@ -12,7 +12,7 @@ class Logo extends Component {
       <Menu.Item
         style={{
           ...logo,
-          color: `${this.props.color}`,
+          color: this.props.color,
         }}
       >
         DA, DA

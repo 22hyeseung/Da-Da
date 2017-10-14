@@ -1,19 +1,10 @@
 import * as types from '../actions/ActionTypes'
 
-export const changeColorAction = RGB => {
-  return {
-    type: types.CHANGE_COLOR,
-    payload: RGB,
-  }
-}
-
-// ======================================> navigation action
-
-export const changeNavigationItemActive = item => {
+// ======================================> navigation & tab action
+export const changeNavigationItemActive = navItem => {
   return {
     type: types.CHANGE_NAV_ITEM_ACTIVE,
-    payload: item,
+    payload: navItem,
   }
 }
-
-// ======================================> navigation action end
+// ======================================> navigation & tab action end

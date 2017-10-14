@@ -1,8 +1,8 @@
 import React from 'react'
-import { Segment } from 'semantic-ui-react'
 import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left'
 import MdKeyboardArrowRight from 'react-icons/lib/md/keyboard-arrow-right'
-import editIcon from '../../static/img/diary-review_w.svg'
+import { Segment } from 'semantic-ui-react'
+import * as Style from './StyledDiarySubNav'
 import './Diary.css'
 
 const DiarySubNav = () => {
@@ -16,25 +16,7 @@ const DiarySubNav = () => {
         </span>
         <MdKeyboardArrowRight />
       </nav>
-      <Segment
-        style={{
-          width: '16%',
-          position: 'absolute',
-          top: '64px',
-          right: '0px',
-          padding: '7px 14px',
-          margin: '0px',
-          boxShadow: 'none',
-          border: 'none',
-          fontWeight: '100',
-          color: '#fff',
-          backgroundImage:
-            'linear-gradient(216deg, #26d0ce, #1a2980)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+      <Segment style={Style.calorieGoal}>
         <span className="diary-food-goal-label">
           목표 칼로리
         </span>
@@ -46,7 +28,7 @@ const DiarySubNav = () => {
             kcal
           </span>
           <img
-            src={editIcon}
+            src={Style.iconSet.editIcon}
             className="diary-food-goal-edit"
             alt="클릭하면 목표칼로리를 수정할 수 있습니다"
           />

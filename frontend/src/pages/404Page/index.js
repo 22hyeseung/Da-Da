@@ -15,19 +15,17 @@ const button = {
   fontWeight: '100',
 }
 
-class notFoundPage extends Component {
+export default class NotFoundPage extends Component {
   render() {
     return (
       <div className="notFound-wrapper">
         <div className="notFound-grid">
-          <Navigation />
+          <Navigation
+            color="#fff"
+            inverted="true"
+          />
           <div class="notFound-content">
-            <span
-              className="notFound-header"
-              style={{
-                color: `#${this.props.rootColor}`,
-              }}
-            >
+            <span className="notFound-header">
               404
             </span>
             <span className="notFound-subHeader">
@@ -36,7 +34,7 @@ class notFoundPage extends Component {
             <Button
               style={button}
               onClick={() => {
-                this.props.history.push('/home')
+                this.props.history.push('/')
               }}
             >
               홈으로 돌아가기
@@ -47,13 +45,3 @@ class notFoundPage extends Component {
     )
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    rootColor: state.colors.rootColor,
-  }
-}
-
-export default connect(mapStateToProps, null)(
-  notFoundPage,
-)

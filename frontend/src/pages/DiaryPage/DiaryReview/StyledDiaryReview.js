@@ -37,6 +37,7 @@ export const submitBtn = {
     'linear-gradient(249deg, #485563, #29323c)',
   marginRight: '0px',
 }
+
 // 공통 스타일 끝
 
 // review tab view 컴포넌트 시작
@@ -62,6 +63,14 @@ export const shortInput = {
   borderRadius: '4px',
   backgroundColor: '#ffffff',
   border: 'solid 1px #d8dde6',
+}
+
+export const buttonIcon = {
+  padding: '5px',
+  margin: 0,
+  color: '#a8b7c7',
+  backgroundColor: 'transparent',
+  display: 'inline-block',
 }
 
 export const shortSubmitBtn = {
