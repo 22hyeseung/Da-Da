@@ -149,6 +149,10 @@ function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, ea
     })
 }
 
+function getEatLogs({ eat_log_member_id, eat_log_diary_date }) {
+  return knex('eat_log')
+    .where({ eat_log_member_id, eat_log_diary_date })
+}
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -159,5 +163,6 @@ module.exports = {
   insertBurnById,
   getExercisesByName,
   getKgByDate,
-  postEatLogs
+  postEatLogs,
+  getEatLogs
 }
