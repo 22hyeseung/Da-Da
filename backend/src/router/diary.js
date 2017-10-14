@@ -25,20 +25,17 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  * @apiName regret
  * @apiGroup diary
  *
- * @apiSuccess {String} regret 반성일기
+ * @apiSuccess {Integer} id 반성일기의 id
+ * @apiSuccess {Integer} member_id  반성일기를 작성한 유저의 id
+ * @apiSuccess {String} regret 작성한 반성일기
  * @apiSuccess {Date} date 페이지의 표시되어 있는 다이어리의 날짜
  *
  * @apiSuccessExample {json} Success-Response:
  * {
- *  "day_log": {
- *  "day_log_id": 2,
- *  "day_log_member_id": 2,
- *  "day_log_height": null,
- *  "day_log_kg": null,
- *  "day_log_regret": "나의 일기이다.",
- *  "day_log_comment": "나의 일기이다.",
- *  "day_log_diary_date": "2017-10-12T15:00:00.000Z",
- *  "day_log_submit_time": "2017-10-13T09:53:55.000Z"
+ *    "day_log_id": 1,
+ *    "day_log_member_id": 2,
+ *    "day_log_regret": "나의 14일 반성일기이다.",
+ *    "day_log_diary_date": "2017-10-13T15:00:00.000Z"
  * }
  */
 
@@ -53,8 +50,58 @@ router.post('/regret', (req, res) => {
     .then(() => {
       query.getSelectDayLog(day_log_regret)
         .then(day_log => {
-          res.send({ day_log })
+          if (day_log) {
+            res.send({
+              'day_log_id': day_log.day_log_id,
+              'day_log_member_id': day_log.day_log_member_id,
+              'day_log_regret': day_log.day_log_regret,
+              'day_log_diary_date': day_log.day_log_diary_date
+            })
+          } else {
+            console.log('Regret POST error')
+          }
         })
+    })
+})
+
+/**
+ * @api {get} /diary/regret?date regret
+ * @apiDescription 원하는 날의 반성일기 가져오기
+ * @apiName regret
+ * @apiGroup diary
+ *
+ * @apiSuccess {Integer} id 반성일기의 id
+ * @apiSuccess {Integer} member_id  반성일기를 작성한 유저의 id
+ * @apiSuccess {String} regret 가져온 반성일기
+ * @apiSuccess {Date} date 페이지의 표시되어 있는 다이어리의 날짜
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *    "day_log_id": 1,
+ *    "day_log_member_id": 2,
+ *    "day_log_regret": "나의 14일 반성일기이다.",
+ *    "day_log_diary_date": "2017-10-13T15:00:00.000Z"
+ * }
+ */
+
+router.get('/regret', (req, res) => {
+  const day_log_regret = {
+    'day_log_member_id': req.user.id,
+    'day_log_diary_date': req.query.date
+  }
+
+  query.getSelectDayLog(day_log_regret)
+    .then(day_log => {
+      if (day_log) {
+        res.send({
+          'day_log_id': day_log.day_log_id,
+          'day_log_member_id': day_log.day_log_member_id,
+          'day_log_regret': day_log.day_log_regret,
+          'day_log_diary_date': day_log.day_log_diary_date
+        })
+      } else {
+        console.log('Regret GET error')
+      }
     })
 })
 
@@ -64,20 +111,17 @@ router.post('/regret', (req, res) => {
  * @apiName comment
  * @apiGroup diary
  *
- * @apiSuccess {String} comment 일기
+ * @apiSuccess {Integer} id 반성일기의 id
+ * @apiSuccess {Integer} member_id  반성일기를 작성한 유저의 id
+ * @apiSuccess {String} comment 작성한 일기
  * @apiSuccess {Date} date 페이지의 표시되어 있는 다이어리의 날짜
- *
+
  * @apiSuccessExample {json} Success-Response:
  * {
- *  "day_log": {
- *  "day_log_id": 2,
- *  "day_log_member_id": 2,
- *  "day_log_height": null,
- *  "day_log_kg": null,
- *  "day_log_regret": "나의 일기이다.",
- *  "day_log_comment": "나의 일기이다.",
- *  "day_log_diary_date": "2017-10-12T15:00:00.000Z",
- *  "day_log_submit_time": "2017-10-13T09:53:55.000Z"
+ *    "day_log_id": 2,
+ *    "day_log_member_id": 2,
+ *    "day_log_comment": "나의 14일 일기이다.",
+ *    "day_log_diary_date": "2017-10-13T15:00:00.000Z"
  * }
  */
 
@@ -92,10 +136,61 @@ router.post('/comment', (req, res) => {
     .then(() => {
       query.getSelectDayLog(day_log_comment)
         .then(day_log => {
-          res.send({ day_log })
+          if (day_log) {
+            res.send({
+              'day_log_id': day_log.day_log_id,
+              'day_log_member_id': day_log.day_log_member_id,
+              'day_log_comment': day_log.day_log_comment,
+              'day_log_diary_date': day_log.day_log_diary_date
+            })
+          } else {
+            console.log('Comment POST error')
+          }
         })
     })
 })
+
+/**
+ * @api {get} /diary/comment comment
+ * @apiDescription 원하는 날의 comment(일기)를 가져온다.
+ * @apiName comment
+ * @apiGroup diary
+ *
+ * @apiSuccess {Integer} id 반성일기의 id
+ * @apiSuccess {Integer} member_id  반성일기를 작성한 유저의 id
+ * @apiSuccess {String} comment 가져온 일기
+ * @apiSuccess {Date} date 페이지의 표시되어 있는 다이어리의 날짜
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *    "day_log_id": 2,
+ *    "day_log_member_id": 2,
+ *    "day_log_comment": "나의 14일 일기이다.",
+ *    "day_log_diary_date": "2017-10-13T15:00:00.000Z"
+ * }
+ */
+
+router.get('/comment', (req, res) => {
+  const day_log_comment = {
+    'day_log_member_id': req.user.id,
+    'day_log_diary_date': req.query.date
+  }
+
+  query.getSelectDayLog(day_log_comment)
+    .then(day_log => {
+      if (day_log) {
+        res.send({
+          'day_log_id': day_log.day_log_id,
+          'day_log_member_id': day_log.day_log_member_id,
+          'day_log_comment': day_log.day_log_comment,
+          'day_log_diary_date': day_log.day_log_diary_date
+        })
+      } else {
+        console.log('Comment GET error')
+      }
+    })
+})
+
 
 /**
  * @api {post} diary/kg kg
