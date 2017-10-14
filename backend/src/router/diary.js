@@ -138,4 +138,57 @@ router.post('/kg', (req, res) => {
     })
 })
 
+/**
+ * @api {get} diary/kg kg
+ * @apiDescription 최근 입력한 체중 5개만 출력
+ * @apiName kg
+ * @apiGroup diary
+ *
+ * @apiSuccess {Number} user.id 사용자 id
+ * @apiSuccess {Date} date '오늘'을 기준
+ * @apiSuccess {Number} kg 사용자가 입력했던 몸무게
+ *
+ * @apiSuccesExample {json} Success-Response:
+ *  [
+ *    {
+ *        "day_log_kg": 47.6,
+ *        "day_log_member_id": 1,
+ *        "day_log_diary_date": "2017-10-09T15:00:00.000Z"
+ *    },
+ *    {
+ *        "day_log_kg": 42,
+ *        "day_log_member_id": 1,
+ *        "day_log_diary_date": "2017-10-08T15:00:00.000Z"
+ *    },
+ *    {
+ *        "day_log_kg": 41,
+ *        "day_log_member_id": 1,
+ *        "day_log_diary_date": "2017-10-07T15:00:00.000Z"
+ *    },
+ *    {
+ *        "day_log_kg": 40,
+ *        "day_log_member_id": 1,
+ *        "day_log_diary_date": "2017-10-06T15:00:00.000Z"
+ *    },
+ *    {
+ *        "day_log_kg": 39,
+ *        "day_log_member_id": 1,
+ *        "day_log_diary_date": "2017-10-05T15:00:00.000Z"
+ *    }
+ * ]
+ */
+router.get('/kg', (req, res) => {
+  const date = req.query.date
+  const user = req.user.id
+
+  query.getKgByDate(date, user)
+    .then(data => {
+      if (!data) {
+        res.status(404)
+      } else {
+        res.send(data)
+      }
+    })
+})
+
 module.exports = router
