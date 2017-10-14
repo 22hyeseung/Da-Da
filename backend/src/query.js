@@ -133,6 +133,14 @@ function getKgByDate(day_log_diary_date, day_log_member_id) {
     .limit(4)
 }
 
+function getFoodsSearch(search) {
+  return knex('food')
+    .select('food_id', 'food_name_ko', 'food_carb', 'food_protein', 'food_fat', 'food_unit')
+    .where('food_name_ko', 'like', `%${search}%`)
+    .orderByRaw('length(food_name_ko)')
+    .orderBy('food_name_ko')
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -142,5 +150,6 @@ module.exports = {
   postDayKgbyUser,
   insertBurnById,
   getExercisesByName,
+  getFoodsSearch,
   getKgByDate
 }
