@@ -13,9 +13,7 @@ class WeightCurrentValue extends Component {
           />
         </div>
         <div>
-          <span className="weight-current">
-            {this.props.weightListItem[0].weight}
-          </span>
+          <span className="weight-current" />
           <span className="weight-unit-kg">
             kg
           </span>
@@ -26,8 +24,7 @@ class WeightCurrentValue extends Component {
 }
 const mapStateToProps = state => {
   return {
-    weightListItem:
-      state.weightList.weightListItem,
+    wieghtLists: state.weightList.wieghtLists,
   }
 }
 

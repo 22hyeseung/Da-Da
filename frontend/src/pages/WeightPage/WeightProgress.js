@@ -10,13 +10,13 @@ class WeightProgress extends Component {
   render() {
     // 임의의 값 넣음.
     // 공식 = {(현재체중-시작체중)/(시작체중 - 목표체중 )}/33*100
-    const flagPosition =
-      (100 -
-        `${this.props.weightListItem[0]
-          .weight}`) /
-      10 /
-      33 *
-      100
+    // const flagPosition =
+    //   (100 -
+    //     `${this.props.weightListItem[0]
+    //       .weight}`) /
+    //   10 /
+    //   33 *
+    //   100
 
     return (
       <div className="weight-progress">
@@ -60,7 +60,7 @@ class WeightProgress extends Component {
         <ul
           className="weight-progress-bar-flag"
           style={{
-            left: `${flagPosition}rem`,
+            // left: `${flagPosition}rem`,
           }}
         >
           <li style={{ paddingBottom: '8px' }}>
