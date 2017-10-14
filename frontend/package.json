@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apidoc": "^0.17.6",
     "draft-js": "^0.10.3",
     "faker": "^4.1.0",
     "global": "^4.3.2",
@@ -29,7 +30,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "backend":
-      "json-server --watch --port=3335 weightDB.json"
+    "backend": "json-server --watch --port=3335 weightDB.json"
   }
 }

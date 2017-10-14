@@ -142,7 +142,6 @@ class WeightDaily extends Component {
               오늘 체중 기록하기
             </Button>
           )}
-          {console.log(this.props.weightListItem)}
           {/* 리스트 시작 */}
           <List divided verticalAlign="bottom">
             {this.props.weightListItem.map(

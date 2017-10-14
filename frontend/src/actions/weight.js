@@ -6,9 +6,6 @@ export const fetchWeightToDB = () => {
   return dispatch => {
     fetch(`http://localhost:3335/weightLists`)
       .then(res => res.json())
-      // .then(data => {
-      //   console.log(data)
-      // })
       .then(data => {
         dispatch({
           type: types.FETCHED_WEIGHT_SUCCESS,
