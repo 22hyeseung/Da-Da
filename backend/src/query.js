@@ -122,7 +122,15 @@ function insertBurnById({ burn_member_id, burn_exercise_id, burn_date, burn_kcal
 
 function getExercisesByName(exercise_name) {
   return knex('exercise')
-    .where('exercise_name', 'like', '%' + exercise_name + '%')
+    .where('exercise_name', 'like', `%${exercise_name}%`)
+}
+
+function getKgByDate(day_log_diary_date, day_log_member_id) {
+  return knex('day_log')
+    .where({ day_log_member_id })
+    .orderBy('day_log_diary_date', 'desc')
+    .select('day_log_kg', 'day_log_member_id', 'day_log_diary_date')
+    .limit(5)
 }
 
 module.exports = {
@@ -133,5 +141,6 @@ module.exports = {
   getSelectDayLog,
   postDayKgbyUser,
   insertBurnById,
-  getExercisesByName
+  getExercisesByName,
+  getKgByDate
 }
