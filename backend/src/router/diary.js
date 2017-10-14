@@ -58,6 +58,22 @@ router.post('/regret', (req, res) => {
     })
 })
 
+router.get('/regret?date', (req, res) => {
+  const day_log_regret = {
+    'day_log_member_id': req.user.id,
+    'day_log_diary_date': req.query.date
+  }
+
+  query.getDayLogRegret(day_log_regret)
+    .then(day_log => {
+      if (day_log) {
+        res.send({ day_log })
+      } else {
+        console.log('Regret error')
+      }
+    })
+})
+
 /**
  * @api {post} /diary/comment comment
  * @apiDescription 오늘의 일기 작성 후 저장

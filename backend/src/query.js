@@ -61,6 +61,13 @@ function postDayLogRegret({ day_log_member_id, day_log_regret, day_log_diary_dat
     })
 }
 
+function getDayLogRegret( { day_log_memeber_id, day_log_diary_date }) {
+  return knex('day_log')
+    .where({ day_log_memeber_id, day_log_diary_date })
+    .first()
+}
+
+
 function postDayLogComment({ day_log_member_id, day_log_comment, day_log_diary_date }) {
   return knex('day_log')
     .where({ day_log_diary_date, day_log_member_id })
@@ -111,5 +118,6 @@ module.exports = {
   postDayLogRegret,
   postDayLogComment,
   getSelectDayLog,
-  postDayKgbyUser
+  postDayKgbyUser,
+  getDayLogRegret
 }
