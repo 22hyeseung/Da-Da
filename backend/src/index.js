@@ -6,6 +6,7 @@ const authRouter = require('./router/auth')
 const userRouter = require('./router/user')
 const diaryRouter = require('./router/diary')
 const exercisesRouter = require('./router/exercises')
+const foodsRouter = require('./router/foods')
 
 const app = express()
 
@@ -19,6 +20,8 @@ app.use('/auth', authRouter)
 app.use('/user', userRouter)
 app.use('/diary', diaryRouter)
 app.use('/exercises', exercisesRouter)
+app.use('/foods', foodsRouter)
+
 
 app.listen(PORT, () => {
   console.log(`listening ${PORT}...`)

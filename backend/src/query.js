@@ -125,6 +125,14 @@ function getExercisesByName(exercise_name) {
     .where('exercise_name', 'like', '%' + exercise_name + '%')
 }
 
+function getFoodsSearch(search) {
+  return knex('food')
+    .select('food_id', 'food_name_ko', 'food_carb', 'food_protein', 'food_fat', 'food_unit')
+    .where('food_name_ko', 'like', `%${search}%`)
+    .orderByRaw('length(food_name_ko)')
+    .orderBy('food_name_ko')
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -133,5 +141,6 @@ module.exports = {
   getSelectDayLog,
   postDayKgbyUser,
   insertBurnById,
-  getExercisesByName
+  getExercisesByName,
+  getFoodsSearch
 }
