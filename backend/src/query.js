@@ -154,6 +154,15 @@ function getEatLogs({ eat_log_member_id, eat_log_diary_date }) {
   return knex('eat_log')
     .where({ eat_log_member_id, eat_log_diary_date })
 }
+
+function getFoodsSearch(search) {
+  return knex('food')
+    .select('food_id', 'food_name_ko', 'food_carb', 'food_protein', 'food_fat', 'food_unit')
+    .where('food_name_ko', 'like', `%${search}%`)
+    .orderByRaw('length(food_name_ko)')
+    .orderBy('food_name_ko')
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -163,7 +172,9 @@ module.exports = {
   postDayKgbyUser,
   insertBurnById,
   getExercisesByName,
+  getFoodsSearch,
   getKgByDate,
   postEatLogs,
   getEatLogs
+
 }
