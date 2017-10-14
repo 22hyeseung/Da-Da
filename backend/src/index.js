@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000
 app.set('view engine', 'pug')
 app.set('trust proxy')
 
-app.use(express.static(path.join(__dirname, '..', 'public')))
+app.use(express.static(path.join(__dirname, '..', 'docs')))
 app.use('/auth', authRouter)
 app.use('/user', userRouter)
 app.use('/diary', diaryRouter)
