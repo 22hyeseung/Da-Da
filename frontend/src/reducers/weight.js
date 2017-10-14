@@ -5,7 +5,6 @@
 const DEFAULT_WEIGHT_LISTS = {
   // 최신값 배열이 첫번째에오도록
   weightListItem: [],
-  newWeight: [],
 }
 
 // Fetch한 데이터 변경해주는 reducer
@@ -17,6 +16,14 @@ export const weigthListReducer = (
     return {
       ...state,
       weightListItem: [...action.payload],
+    }
+  }
+  if (action.type === 'POST_WEIGHT_TO_DATABASE') {
+    return {
+      weightListItem: [
+        action.payload,
+        ...state.weightListItem,
+      ],
     }
   }
   return {

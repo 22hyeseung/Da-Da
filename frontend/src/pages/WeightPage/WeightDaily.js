@@ -22,6 +22,7 @@ class WeightDaily extends Component {
     this.state = {
       weight: '',
       isPostMode: false,
+      isFocusMode: false,
       valueAlert: '',
       isPositiveNum: false,
     }
@@ -47,10 +48,11 @@ class WeightDaily extends Component {
     })
   }
 
-  togglePostingMode = e =>
+  togglePostingMode = e => {
     this.setState({
       isPostMode: !this.state.isPostMode,
     })
+  }
 
   closeAndResetValue = e =>
     this.setState({

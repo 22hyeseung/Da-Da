@@ -12,7 +12,7 @@ export const fetchWeightToDB = () => {
       .then(data => {
         dispatch({
           type: types.FETCHED_WEIGHT_SUCCESS,
-          payload: [...data],
+          payload: [...data].reverse(),
         })
       })
       .catch(error => {
@@ -31,16 +31,12 @@ export const postWeightToDB = payload => {
       },
       body: JSON.stringify(payload),
     })
-    fetch(`http://localhost:3335/weightLists`)
       .then(res => res.json())
-      .then(data => {
+      .then(result => {
         dispatch({
-          type: types.FETCHED_WEIGHT_SUCCESS,
-          payload: [...data],
+          type: types.POST_WEIGHT_TO_DATABASE,
+          payload: result,
         })
-      })
-      .catch(error => {
-        console.log('error')
       })
   }
 }

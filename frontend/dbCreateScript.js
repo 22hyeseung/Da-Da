@@ -18,6 +18,6 @@ _.range(1, 20).forEach(index => {
 db['weightLists'] = weightLists
 
 fs.writeFile(
-  'db.json',
+  'weightDB.json',
   JSON.stringify(db, null, 2),
 )

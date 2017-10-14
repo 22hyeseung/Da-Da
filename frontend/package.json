@@ -30,6 +30,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "backend":
-      "json-server --watch --port=3335 db.json"
+      "json-server --watch --port=3335 weightDB.json"
   }
 }

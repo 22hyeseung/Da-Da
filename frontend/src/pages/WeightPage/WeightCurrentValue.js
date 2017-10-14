@@ -24,7 +24,8 @@ class WeightCurrentValue extends Component {
 }
 const mapStateToProps = state => {
   return {
-    wieghtLists: state.weightList.wieghtLists,
+    weightListItem:
+      state.weightList.weightListItem,
   }
 }
 
