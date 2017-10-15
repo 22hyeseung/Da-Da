@@ -63,7 +63,7 @@ class DiaryReviewShortInput extends Component {
     })
     const dateTime = new Date()
     const requestBody = {
-      id: 4,
+      id: 10,
       member_id: 2,
       date: dateTime.toLocaleDateString,
       regret: this.state.regret,
@@ -134,7 +134,11 @@ class DiaryReviewShortInput extends Component {
               onChange={
                 this.handleRegretValueChange
               }
-              onKeyDown={this.handleKeyPress}
+              onKeyDown={
+                this.isInputValid()
+                  ? this.handleKeyPress
+                  : false
+              }
             />
             <Button
               secondary
@@ -170,8 +174,8 @@ class DiaryReviewShortInput extends Component {
               </Button>
             </Header>
             <div onClick={this.changeMode}>
-              {/*this.props.regretWrited.regret*/}
-              {this.state.regret}
+              {this.props.regretWrited.regret}
+              {/*this.state.regret*/}
             </div>
           </div>
         )}
