@@ -7,6 +7,12 @@ export const editorStyle = {
   overflow: 'auto',
 }
 
-export const toolbarStyle = {
+export const button = {
   backgroundColor: '#f5f7fa',
+  border: 'none',
+  padding: '.5em',
+  cursor: 'pointer',
+  marginBottom: ' 1em',
+  marginRight: ' 1em',
+  borderRadius: '.2em',
 }

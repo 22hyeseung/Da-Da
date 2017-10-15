@@ -10,7 +10,6 @@
     "lodash": "^4.17.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-draft-wysiwyg": "^1.10.12",
     "react-icons": "^2.2.5",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
@@ -29,7 +28,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "backend":
-      "json-server --watch db.json --port 3333"
+    "backend": "json-server --watch db.json --port 3333"
   }
 }
