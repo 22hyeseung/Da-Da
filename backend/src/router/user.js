@@ -11,18 +11,14 @@ const router = express.Router()
  * @apiDefine user user
  */
 
-router.use(cors({
-  'origin': process.env.TARGET_ORIGIN
-}))
+router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
 
 router.use((req, res, next) => {
   next()
 })
 
 router.use(bodyParser.json())
-router.use(expressJwt({
-  'secret': process.env.JWT_SECRET
-}))
+router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 /**
  * @api {get} /user getUserData
  * @apiDescription 현재 로그인된 사용자의 정보를 가져온다.
@@ -59,7 +55,7 @@ router.get('/', (req, res) => {
         'member_birth': user.member_birth,
         'member_goal_weight': user.member_goal_weight,
         'member_gender': user.member_gender
-      });
+      })
     })
 })
 
