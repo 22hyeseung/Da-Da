@@ -5,6 +5,7 @@ import {
   Button,
   Dimmer,
   Loader,
+  Message,
 } from 'semantic-ui-react'
 import {
   shortBox,
@@ -25,7 +26,6 @@ class DiaryReviewShortInput extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isPending: false,
       isLoading: false,
       errorState: false,
       isVaild: true,
@@ -50,6 +50,11 @@ class DiaryReviewShortInput extends Component {
   // 입력창에 값이 들어왔는지 확인
   isInputValid = () => {
     return this.state.regret
+  }
+
+  isInputLengthValid = () => {
+    // console.log(this.state.regret.length)
+    return this.state.regret.length <= 30
   }
 
   saveRegretAndGetFromDB = date => {
@@ -111,24 +116,36 @@ class DiaryReviewShortInput extends Component {
                 this.handleRegretValueChange
               }
               onKeyDown={
-                this.isInputValid()
+                this.isInputValid() &&
+                this.isInputLengthValid()
                   ? this.handleKeyPress
                   : false
               }
             />
+
             <Button
               secondary
-              loading={this.state.isPending}
+              /* loading={this.state.isPending} */
               style={shortSubmitBtn}
               onClick={
                 this.createRegretAndPostToDB
               }
               disabled={
                 !this.isInputValid() ||
-                this.state.isPending
+                !this.isInputLengthValid()
               }
               content={'등록'}
             />
+            <Message
+              negative
+              hidden={this.isInputLengthValid()}
+              style={{ marginRight: '15px' }}
+            >
+              <Message.Header>
+                등록할 수 있는 길이를 초과하였습니다.
+              </Message.Header>
+              <p> 반성 일기는 30자 이내만 작성 가능합니다.</p>
+            </Message>
           </div>
         ) : (
           <div>
