@@ -8,6 +8,7 @@ const diaryRouter = require('./router/diary')
 const exercisesRouter = require('./router/exercises')
 const eatLogsRouter = require('./router/eat_logs')
 const foodsRouter = require('./router/foods')
+const weightRouter = require('./router/weight')
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.use('/diary', diaryRouter)
 app.use('/exercises', exercisesRouter)
 app.use('/eat-logs', eatLogsRouter)
 app.use('/foods', foodsRouter)
+app.use('/weight', weightRouter)
 
 app.listen(PORT, () => {
   console.log(`listening ${PORT}...`)

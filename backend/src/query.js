@@ -184,6 +184,14 @@ function getBurnKcalByDate({ burn_member_id, burn_date }) {
     .first()
 }
 
+function getDayLogAll({ day_log_member_id }) {
+  return knex('day_log')
+    .select('day_log_height', 'day_log_kg', 'day_log_kcal', 'day_log_diary_date')
+    .where({ day_log_member_id })
+    .orderBy('day_log_diary_date', 'desc')
+    .then()
+}
+
 // 가장 마지막 day_log (방어코드 용)
 function getLastDaylog({ day_log_member_id }) {
   return knex('day_log')
@@ -207,6 +215,7 @@ module.exports = {
   getLastDaylog,
   getEatKcalByDate,
   getBurnKcalByDate,
+  getDayLogAll,
   getEatLogs
 
 }

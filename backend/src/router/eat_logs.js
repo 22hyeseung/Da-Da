@@ -226,7 +226,6 @@ router.get('/summary', (req, res) => {
     .then(() => {
       return query.getBurnKcalByDate(param)
         .then(result => {
-          console.log(result, '<< [ result ]');
           if (result && result.burn_kcal !== null) {
             out.today_burn_kcal = result.burn_kcal
           }
