@@ -20,7 +20,7 @@ import {
   getRegretFromDB,
   postRegretToDB,
 } from '../../../actions/review'
-// import { SERVER_HOSTNAME } from '../../../config'
+import './diaryReview.css'
 
 class DiaryReviewShortInput extends Component {
   constructor(props) {
@@ -52,11 +52,13 @@ class DiaryReviewShortInput extends Component {
     return this.state.regret
   }
 
+  // 입력 받은 일기 길이가 30자 미만인지 확인
   isInputLengthValid = () => {
-    // console.log(this.state.regret.length)
     return this.state.regret.length <= 30
   }
 
+  // data GET
+  // ex. http://localhost:3333/regret?date=2017. 10. 15.
   saveRegretAndGetFromDB = date => {
     this.props.getRegretFromDB(date)
   }
@@ -78,21 +80,23 @@ class DiaryReviewShortInput extends Component {
     this.props.postRegretToDB(requestBody)
 
     // 요청 보낸 날짜로 다시 get
+    //
     this.saveRegretAndGetFromDB(date)
     // 이후 읽기모드로 전환
     this.changeMode()
   }
 
+  // 엔터 버튼 클릭시 등록 이벤트
   handleKeyPress = e => {
     if (e.keyCode === 13) {
-      console.log('enter pressed!')
+      // console.log('enter pressed!')
       this.createRegretAndPostToDB()
     }
   }
 
   render() {
     if (this.state.errorState) {
-      return <h1>에러발생</h1>
+      return <h1>ERROR!</h1>
     }
     if (this.state.isLoading) {
       return (
@@ -128,9 +132,11 @@ class DiaryReviewShortInput extends Component {
               /* loading={this.state.isPending} */
               style={shortSubmitBtn}
               onClick={
+                // 버튼 클릭시 POST 요청
                 this.createRegretAndPostToDB
               }
               disabled={
+                // 입력 값이 없거나 30자를 초과할 경우 버튼 비활성화
                 !this.isInputValid() ||
                 !this.isInputLengthValid()
               }
@@ -138,6 +144,7 @@ class DiaryReviewShortInput extends Component {
             />
             <Message
               negative
+              // 입력 길이가 30자를 초과할때만 나타나는 경고창
               hidden={this.isInputLengthValid()}
               style={{ marginRight: '15px' }}
             >
@@ -166,7 +173,10 @@ class DiaryReviewShortInput extends Component {
                 <FaTrashO size={17} />
               </Button>
             </Header>
-            <div onClick={this.changeMode}>
+            <div
+              className="savedRegret"
+              onClick={this.changeMode}
+            >
               {this.props.regretWrited.regret}
             </div>
           </div>
