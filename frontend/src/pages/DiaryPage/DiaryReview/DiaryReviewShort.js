@@ -19,11 +19,13 @@ import {
   getRegretFromDB,
   postRegretToDB,
 } from '../../../actions/review'
+import { SERVER_HOSTNAME } from '../../../config'
 
 class DiaryReviewShortInput extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      isPending: false,
       isLoading: false,
       errorState: false,
       isVaild: true,
@@ -56,6 +58,9 @@ class DiaryReviewShortInput extends Component {
 
   // 반성일기 등록시 date와 regret db로 전송(Post)
   createRegretAndPostToDB = () => {
+    this.setState({
+      isPending: true,
+    })
     const dateTime = new Date()
     const requestBody = {
       id: 4,
@@ -64,11 +69,44 @@ class DiaryReviewShortInput extends Component {
       regret: this.state.regret,
     }
     // DB로 post
-    this.props.postRegretToDB(requestBody)
+    // this.props.postRegretToDB(requestBody)
+
+    fetch(`${SERVER_HOSTNAME}/regret`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+    })
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          isPending: false,
+          regretWrited: [
+            result,
+            ...this.state.regretWrited,
+          ],
+        })
+      })
+      .catch(res => {
+        console.log(res)
+        this.setState({
+          isPending: false,
+        })
+      })
+
     // 요청 보낸 날짜로 다시 get
     this.saveRegretAndGetFromDB(requestBody.date)
     // 이후 읽기모드로 전환
     this.changeMode()
+  }
+
+  handleKeyPress = e => {
+    if (e.keyCode === 13) {
+      console.log('enter pressed!')
+      this.createRegretAndPostToDB()
+    }
   }
 
   render() {
@@ -96,13 +134,20 @@ class DiaryReviewShortInput extends Component {
               onChange={
                 this.handleRegretValueChange
               }
+              onKeyDown={this.handleKeyPress}
             />
             <Button
+              secondary
+              loading={this.state.isPending}
               style={shortSubmitBtn}
               onClick={
                 this.createRegretAndPostToDB
               }
-              content="등록"
+              disabled={
+                !this.isInputValid() ||
+                this.state.isPending
+              }
+              content={'등록'}
             />
           </div>
         ) : (
@@ -124,10 +169,10 @@ class DiaryReviewShortInput extends Component {
                 <FaTrashO size={17} />
               </Button>
             </Header>
-            <span>
+            <div onClick={this.changeMode}>
               {/*this.props.regretWrited.regret*/}
               {this.state.regret}
-            </span>
+            </div>
           </div>
         )}
       </div>
