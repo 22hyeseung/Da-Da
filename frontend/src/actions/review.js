@@ -26,15 +26,29 @@ export const getRegretFromDB = date => {
 
 export const postRegretToDB = requestBody => {
   return dispatch => {
-    fetch(`${SERVER_HOSTNAME}/regret/`, {
-      method: 'POST',
+    fetch(`${SERVER_HOSTNAME}/regret`, {
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+      method: 'POST',
       body: JSON.stringify(requestBody),
     })
       .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
+      .then(result => {
+        this.setState({
+          isPending: false,
+          regretWrited: [
+            result,
+            ...this.state.regretWrited,
+          ],
+        })
+      })
+      .catch(res => {
+        console.log(res)
+        this.setState({
+          isPending: false,
+        })
+      })
   }
 }

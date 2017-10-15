@@ -62,11 +62,12 @@ class DiaryReviewShortInput extends Component {
       isPending: true,
     })
     const dateTime = new Date()
+    const date = dateTime.toLocaleDateString
     const requestBody = {
-      id: 10,
+      id: 4,
       member_id: 2,
-      date: dateTime.toLocaleDateString,
       regret: this.state.regret,
+      date,
     }
     // DB로 post
     // this.props.postRegretToDB(requestBody)
@@ -97,7 +98,7 @@ class DiaryReviewShortInput extends Component {
       })
 
     // 요청 보낸 날짜로 다시 get
-    this.saveRegretAndGetFromDB(requestBody.date)
+    this.saveRegretAndGetFromDB(date)
     // 이후 읽기모드로 전환
     this.changeMode()
   }

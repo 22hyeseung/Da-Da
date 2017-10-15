@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
   isLoading: false,
   errorState: false,
-  regretMessage: {},
+  regretMessage: [],
 }
 
 const readingRegretReducer = (

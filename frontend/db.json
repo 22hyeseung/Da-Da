@@ -17,6 +17,11 @@
       "member_id": 2,
       "regret": "오늘너무많이먹었다3",
       "date": "2017-10-13T18:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "member_id": 2,
+      "regret": "dsak"
     }
   ]
 }
