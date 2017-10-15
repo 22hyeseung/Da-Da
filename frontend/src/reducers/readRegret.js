@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
   isLoading: false,
   errorState: false,
-  regretMessage: [],
+  regretWrited: [],
 }
 
 const readingRegretReducer = (
@@ -13,7 +13,7 @@ const readingRegretReducer = (
       return {
         ...state,
         isLoading: false,
-        regretMessage: action.payload,
+        regretWrited: action.payload,
       }
     case 'GET_REGRET_REQUEST':
       return {
@@ -25,6 +25,11 @@ const readingRegretReducer = (
         ...state,
         isLoading: false,
         errorState: true,
+      }
+    case 'POST_REGRET_TO_DATABASE':
+      return {
+        ...state,
+        regretWrited: action.payload,
       }
     default:
       return state

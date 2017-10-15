@@ -25,8 +25,12 @@ export const getRegretFromDB = date => {
 }
 
 export const postRegretToDB = requestBody => {
+  console.log('sdfa')
   return dispatch => {
-    fetch(`${SERVER_HOSTNAME}/regret`, {
+    dispatch({
+      type: 'abc',
+    })
+    return fetch(`${SERVER_HOSTNAME}/regret`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -36,19 +40,14 @@ export const postRegretToDB = requestBody => {
     })
       .then(res => res.json())
       .then(result => {
-        this.setState({
-          isPending: false,
-          regretWrited: [
-            result,
-            ...this.state.regretWrited,
-          ],
+        console.log(result)
+        dispatch({
+          type: types.POST_REGRET_TO_DATABASE,
+          payload: result,
         })
       })
       .catch(res => {
         console.log(res)
-        this.setState({
-          isPending: false,
-        })
       })
   }
 }

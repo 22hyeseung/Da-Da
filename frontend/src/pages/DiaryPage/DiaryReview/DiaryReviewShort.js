@@ -19,7 +19,7 @@ import {
   getRegretFromDB,
   postRegretToDB,
 } from '../../../actions/review'
-import { SERVER_HOSTNAME } from '../../../config'
+// import { SERVER_HOSTNAME } from '../../../config'
 
 class DiaryReviewShortInput extends Component {
   constructor(props) {
@@ -62,40 +62,15 @@ class DiaryReviewShortInput extends Component {
       isPending: true,
     })
     const dateTime = new Date()
-    const date = dateTime.toLocaleDateString
+    const date = dateTime.toLocaleDateString()
     const requestBody = {
-      id: 4,
       member_id: 2,
       regret: this.state.regret,
       date,
     }
     // DB로 post
-    // this.props.postRegretToDB(requestBody)
-
-    fetch(`${SERVER_HOSTNAME}/regret`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify(requestBody),
-    })
-      .then(res => res.json())
-      .then(result => {
-        this.setState({
-          isPending: false,
-          regretWrited: [
-            result,
-            ...this.state.regretWrited,
-          ],
-        })
-      })
-      .catch(res => {
-        console.log(res)
-        this.setState({
-          isPending: false,
-        })
-      })
+    console.log(requestBody)
+    this.props.postRegretToDB(requestBody)
 
     // 요청 보낸 날짜로 다시 get
     this.saveRegretAndGetFromDB(date)
@@ -176,7 +151,6 @@ class DiaryReviewShortInput extends Component {
             </Header>
             <div onClick={this.changeMode}>
               {this.props.regretWrited.regret}
-              {/*this.state.regret*/}
             </div>
           </div>
         )}
@@ -187,16 +161,16 @@ class DiaryReviewShortInput extends Component {
 
 const mapStateToProps = state => {
   return {
-    regretWrited: state.readRegret.regretMessage,
+    regretWrited: state.readRegret.regretWrited,
   }
 }
 
 const mapDispatchToprops = dispatch => {
   return {
     getRegretFromDB: date =>
-      dispatch(() => getRegretFromDB(date)),
+      dispatch(getRegretFromDB(date)),
     postRegretToDB: requestBody =>
-      dispatch(() => postRegretToDB(requestBody)),
+      dispatch(postRegretToDB(requestBody)),
   }
 }
 
