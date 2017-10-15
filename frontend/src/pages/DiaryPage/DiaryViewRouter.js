@@ -7,7 +7,7 @@ import DiaryFood from './DiaryFood'
 import DiaryFitness from './DiaryFitness'
 import DiaryReview from './DiaryReview'
 
-const DiaryView = props => {
+const DiaryViewRouter = props => {
   return (
     <div>
       <Route
@@ -27,4 +27,4 @@ const DiaryView = props => {
   )
 }
 
-export default withRouter(DiaryView)
+export default withRouter(DiaryViewRouter)

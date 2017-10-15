@@ -28,7 +28,7 @@ const routes = [
   },
 ]
 
-class DiaryTab extends Component {
+class DiaryTabNav extends Component {
   render() {
     return (
       <Menu
@@ -83,4 +83,4 @@ class DiaryTab extends Component {
   }
 }
 
-export default withRouter(DiaryTab)
+export default withRouter(DiaryTabNav)
