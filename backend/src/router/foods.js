@@ -24,7 +24,7 @@ router.use(expressJwt({
   'secret': process.env.JWT_SECRET
 }))
 /**
- * @api {get} /foods getFoodsSearch
+ * @api {get} /foods Get FoodsSearch
  * @apiDescription 음식정보(영양소)를 검색한다.
  * @apiName getFoodsSearch
  * @apiGroup foods

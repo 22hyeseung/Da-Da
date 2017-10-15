@@ -20,9 +20,9 @@ router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
 
 /**
- * @api {post} /diary/regret regret
+ * @api {post} /diary/regret Post Regret
  * @apiDescription 오늘의 반성일기 작성 후 저장
- * @apiName regret
+ * @apiName PostRegret
  * @apiGroup diary
  *
  * @apiSuccess {Integer} id 반성일기의 id
@@ -65,9 +65,9 @@ router.post('/regret', (req, res) => {
 })
 
 /**
- * @api {get} /diary/regret?date regret
+ * @api {get} /diary/regret?date Get Regret
  * @apiDescription 원하는 날의 반성일기 가져오기
- * @apiName regret
+ * @apiName GetRegret
  * @apiGroup diary
  *
  * @apiSuccess {Integer} id 반성일기의 id
@@ -106,9 +106,9 @@ router.get('/regret', (req, res) => {
 })
 
 /**
- * @api {post} /diary/comment comment
+ * @api {post} /diary/comment Post Comment
  * @apiDescription 오늘의 일기 작성 후 저장
- * @apiName comment
+ * @apiName PostComment
  * @apiGroup diary
  *
  * @apiSuccess {Integer} id 반성일기의 id
@@ -151,9 +151,9 @@ router.post('/comment', (req, res) => {
 })
 
 /**
- * @api {get} /diary/comment comment
+ * @api {get} /diary/comment Get Comment
  * @apiDescription 원하는 날의 comment(일기)를 가져온다.
- * @apiName comment
+ * @apiName GetComment
  * @apiGroup diary
  *
  * @apiSuccess {Integer} id 반성일기의 id
@@ -193,9 +193,9 @@ router.get('/comment', (req, res) => {
 
 
 /**
- * @api {post} diary/kg kg
+ * @api {post} diary/kg Post Kg
  * @apiDescription 오늘 체중을 입력 후 저장
- * @apiName kg
+ * @apiName PostKg
  * @apiGroup diary
  *
  * @apiSuccess {Number} user.id 사용자 id
@@ -234,9 +234,9 @@ router.post('/kg', (req, res) => {
 })
 
 /**
- * @api {get} diary/kg kg
+ * @api {get} diary/kg Get Kg
  * @apiDescription 최근 입력한 체중 5개만 출력
- * @apiName kg
+ * @apiName GetKg
  * @apiGroup diary
  *
  * @apiSuccess {Number} user.id 사용자 id

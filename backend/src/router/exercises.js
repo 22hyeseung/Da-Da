@@ -9,7 +9,7 @@ const router = express.Router()
 
 // const urlencodeParser = bodyParser.urlencoded({ 'extended': false })
 /**
- * @apiDefine __api __api
+ * @apiDefine exercises
  */
 router.use((req, res, next) => {
   next()
@@ -21,9 +21,9 @@ router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
 
 /**
- * @api {post} /exercises
+ * @api {post} /exercises Post Exercises
  * @apiDescription 운동을 통한 열량소모를 등록하기 위한 액션
- * @apiName exercises
+ * @apiName PostExercises
  * @apiGroup exercises
  *
  * @apiSuccess {Number} req.body.exercise_id exercise pk
@@ -57,9 +57,9 @@ router.post('/', (req, res) => {
 })
 
 /**
- * @api {get} /exercises
+ * @api {get} /exercises Get Exercises
  * @apiDescription 사용자가 운동별 1분당 소모열량 검색
- * @apiName exercises
+ * @apiName GetExercises
  * @apiGroup exercises
  *
  * @apiSuccess {Number} exercise_id exercise 번호

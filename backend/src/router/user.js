@@ -20,7 +20,7 @@ router.use((req, res, next) => {
 router.use(bodyParser.json())
 router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 /**
- * @api {get} /user getUserData
+ * @api {get} /user Get UserData
  * @apiDescription 현재 로그인된 사용자의 정보를 가져온다.
  * @apiName getUserData
  * @apiGroup user
@@ -31,7 +31,7 @@ router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
  * @apiSuccess {String} member_provider_name sns 이름
  * @apiSuccess {String} member_avatar_url sns 프로필이미지
  * @apiSuccess {String} member_age 나이
- * @apiSuccess {String} member_gender 내용
+ * @apiSuccess {String} member_gender 성별
  *
  * @apiSuccessExample {json} Success-Respoonse:
  * {
