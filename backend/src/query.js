@@ -165,7 +165,8 @@ function getFoodsSearch(name) {
 
 function getEatKcalByDate({ eat_log_member_id, eat_log_diary_date }) {
   return knex('eat_log')
-    .select('eat_log.eat_log_member_id', 'eat_log.eat_log_diary_date',
+    .select(
+'eat_log.eat_log_member_id', 'eat_log.eat_log_diary_date',
       knex.raw('sum(eat_log.eat_log_amount * ((food.food_carb * 4) + (food.food_protein * 4) + (food.food_fat * 9))) as today_kcal'),
       knex.raw('sum(eat_log.eat_log_amount * (food.food_carb * 4)) as today_carb'),
       knex.raw('sum(eat_log.eat_log_amount * (food.food_protein * 4)) as today_protein'),
@@ -192,6 +193,36 @@ function getDayLogAll({ day_log_member_id }) {
     .then()
 }
 
+function getReportNutrition({ eat_log_member_id, start_date, end_date }) {
+  return knex('view_eat_log_type2')
+    .select(
+      'eat_log_member_id', 'eat_log_diary_date',
+      knex.raw('round(sum(carb),3) as carb'),
+      knex.raw('round(sum(protein),3) as protein'),
+      knex.raw('round(sum(fat),3) as fat')
+    )
+    .where({ eat_log_member_id })
+    .andWhere('eat_log_diary_date', '>=', start_date)
+    .andWhere('eat_log_diary_date', '<=', end_date)
+    .groupBy('eat_log_member_id', 'eat_log_diary_date')
+    .orderBy('eat_log_member_id', 'eat_log_diary_date')
+    .then()
+}
+
+function getReportNutritionSum({ eat_log_member_id, start_date, end_date }) {
+  return knex('view_eat_log_type2')
+    .select(
+      'eat_log_member_id',
+      knex.raw('round(sum(carb),3) as carb'),
+      knex.raw('round(sum(protein),3) as protein'),
+      knex.raw('round(sum(fat),3) as fat')
+    )
+    .where({ eat_log_member_id })
+    .andWhere('eat_log_diary_date', '>=', start_date)
+    .andWhere('eat_log_diary_date', '<=', end_date)
+    .first()
+}
+
 // 가장 마지막 day_log (방어코드 용)
 function getLastDaylog({ day_log_member_id }) {
   return knex('day_log')
@@ -216,6 +247,8 @@ module.exports = {
   getEatKcalByDate,
   getBurnKcalByDate,
   getDayLogAll,
+  getReportNutrition,
+  getReportNutritionSum,
   getEatLogs
 
 }
