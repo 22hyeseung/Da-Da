@@ -45,7 +45,7 @@ export const Style = {
     padding: 20,
   },
   editor: {
-    // borderTop: '1px solid #ddd',
+    borderTop: '1px solid #ddd',
     cursor: 'text',
     fontSize: 16,
     marginTop: 13,
@@ -53,12 +53,10 @@ export const Style = {
     padding: '13px 10px 0px',
   },
   buttonGroup: {
-    backgroundColor: '#f5f7fa',
     marginRight: '5px',
   },
   button: {
     backgroundColor: 'transparent',
-    // border: 'solid 1px #eee',
   },
 
   colorPicker: {

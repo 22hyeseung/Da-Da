@@ -56,10 +56,9 @@ const COLORS = [
 
 const ColorControls = props => {
   return (
-    // <Button.Group style={}>
     <div
       style={{
-        paddingTop: '10px',
+        padding: '10px 10px 2px',
       }}
     >
       {COLORS.map(type => (
@@ -70,7 +69,6 @@ const ColorControls = props => {
         />
       ))}
     </div>
-    // </Button.Group>
   )
 }
 
