@@ -208,7 +208,9 @@ router.get('/summary', (req, res) => {
       } else {
         return query.getLastDaylog(param)
           .then(result => {
-            out.day_log_kcal = result.day_log_kcal
+            if (result && result.burn_kcal !== null) {
+              out.day_log_kcal = result.day_log_kcal
+            }
           })
       }
     })

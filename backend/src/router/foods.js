@@ -11,18 +11,14 @@ const router = express.Router()
  * @apiDefine food food
  */
 
-router.use(cors({
-  'origin': process.env.TARGET_ORIGIN
-}))
+router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
 
 router.use((req, res, next) => {
   next()
 })
 
 router.use(bodyParser.json())
-router.use(expressJwt({
-  'secret': process.env.JWT_SECRET
-}))
+router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 /**
  * @api {get} /foods Get FoodsSearch
  * @apiDescription 음식정보(영양소)를 검색한다.
@@ -83,10 +79,10 @@ router.use(expressJwt({
  * ]
  */
 router.get('/', (req, res) => {
-  const search = req.query.search.toString()
+  const name = req.query.name.toString()
 
-  if (search.length >= 1) {
-    query.getFoodsSearch(search)
+  if (name.length >= 1) {
+    query.getFoodsSearch(name)
       .then(food => {
         res.status(200)
         res.send(food)
