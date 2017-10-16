@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from '../../components/Navigation'
+import Loader from '../../components/Loader'
 import {
   Button,
   Grid,
@@ -11,11 +12,46 @@ import bgImg from '../../static/img/login_img.jpg'
 import foodTabImage from '../../static/img/1.0_home_BG1.jpg'
 import fitnessTabImage from '../../static/img/1.0_home_BG2.jpg'
 import reviewTabImage from '../../static/img/1.0_home_BG3.jpg'
+import rootApi from '../../config'
+import { getUserInfo } from '../../actions/auth.js'
+import { connect } from 'react-redux'
 import './Home.css'
 import * as Style from './StyledHome'
 
 class HomePage extends Component {
+  state = {
+    loading: false,
+  }
+  componentWillMount() {
+    this.getUserInfo()
+    this.setState({ loading: true }, () =>
+      this.fetchData(),
+    )
+  }
+  fetchData = () => {
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+      })
+    }, 4000)
+  }
+  getUserInfo = () => {
+    fetch(`${rootApi}/user`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(userInfo => {
+        this.props.I_WANT_SAVE_USER_INFO(userInfo)
+      })
+  }
   render() {
+    if (this.state.loading) {
+      return <Loader />
+    }
     return (
       <div>
         <div className="home-grid">
@@ -153,4 +189,21 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage
+const mapStateToProps = state => {
+  return {
+    userInfo: state.auth.userInfo,
+    token: state.auth.token,
+  }
+}
+
+const mapDispatchtoProps = dispatch => {
+  return {
+    I_WANT_SAVE_USER_INFO: user =>
+      dispatch(getUserInfo(user)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchtoProps,
+)(HomePage)
