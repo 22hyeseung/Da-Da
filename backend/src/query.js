@@ -133,7 +133,7 @@ function getKgByDate(day_log_diary_date, day_log_member_id) {
     .limit(4)
 }
 
-function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, eat_log_meal_tag, eat_log_amount, eat_log_picture, eat_log_diary_date }) {
+function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, eat_log_meal_tag, eat_log_amount, eat_log_serve, eat_log_picture, eat_log_diary_date }) {
   return knex('eat_log')
     .insert({
       eat_log_member_id,
@@ -141,6 +141,7 @@ function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, ea
       eat_log_recipe_id,
       eat_log_meal_tag,
       eat_log_amount,
+      eat_log_serve,
       eat_log_picture,
       eat_log_diary_date
     })

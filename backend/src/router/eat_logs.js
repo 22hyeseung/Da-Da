@@ -53,12 +53,15 @@ router.post('/', (req, res) => {
   const food_id = req.body.food_id ? req.body.food_id : null
   const recipe_id = req.body.recipe_id ? req.body.recipe_id : null
   const picture = req.body.picture ? req.body.picture : null
+  const amount = req.body.amount ? req.body.amount : null
+  const serve = req.body.serve ? req.body.serve : null
   const eat_log_meal = {
     'eat_log_member_id': req.user.id,
     'eat_log_food_id': food_id,
     'eat_log_recipe_id': recipe_id,
     'eat_log_meal_tag': req.body.meal_tag,
-    'eat_log_amount': req.body.amount,
+    'eat_log_amount': amount,
+    'eat_log_serve': serve,
     'eat_log_picture': picture,
     'eat_log_diary_date': req.body.date
   }
