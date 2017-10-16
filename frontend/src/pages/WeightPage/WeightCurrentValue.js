@@ -28,8 +28,6 @@ const mapStateToProps = state => {
   return {
     weightListItem:
       state.weightList.weightListItem,
-    userInfo: state.auth.userInfo,
-    token: state.auth.token,
   }
 }
 
