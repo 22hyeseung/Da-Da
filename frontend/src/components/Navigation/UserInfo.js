@@ -40,9 +40,6 @@ class UserInfo extends Component {
           shape="circular"
           src={this.props.userInfo.userAvatar}
         />
-        {console.log(
-          this.props.userInfo.userAvatar,
-        )}
         <Popup
           wide
           trigger={

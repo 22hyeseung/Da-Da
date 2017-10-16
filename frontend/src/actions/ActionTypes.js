@@ -3,5 +3,3 @@ export const CHANGE_NAV_ITEM_ACTIVE =
 export const SAVE_TOKEN = 'SAVE_TOKEN'
 export const SAVE_USERINFO = 'SAVE_USERINFO'
 export const LOGOUT = 'LOGOUT'
-export const LOGIN_USER_SUCCESS =
-  'LOGIN_USER_SUCCESS'

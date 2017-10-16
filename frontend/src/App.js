@@ -24,7 +24,6 @@ class App extends Component {
     /* Login 상태가 아닌 경우에 다른 페이지로 접근하면
        Login페이지로 Redirect하여 접근을 막음 */
 
-    // 로그인 유무를 token값으로 하려했으나, 작동이 안되서, 우선 window에 저장되어있는 token유무로 하였음.
     if (!this.props.token) {
       return <Redirect to="/login" />
     }
