@@ -10,7 +10,6 @@ import ArrowUp from '../../static/img/weight-daily-arrowUp.svg'
 import ArrowDown from '../../static/img/weight-daily-arrowDown.svg'
 import * as Style from './StyledWeight'
 import { connect } from 'react-redux'
-import { postWeightToDB } from '../../actions/weight.js'
 import map from 'lodash/map'
 
 class WeightDaily extends Component {
@@ -157,20 +156,12 @@ class WeightDaily extends Component {
 }
 const mapStateToProps = state => {
   return {
-    weightListItem:
-      state.weightList.weightListItem,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    postWeightToDB: payload =>
-      dispatch(postWeightToDB(payload)),
+    // weightListItem:
+    //   state.weightList.weightListItem,
   }
 }
 
 // export default WeightDaily
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(WeightDaily)
+export default connect(mapStateToProps, null)(
+  WeightDaily,
+)
