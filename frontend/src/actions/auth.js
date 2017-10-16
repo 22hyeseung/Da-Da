@@ -15,6 +15,12 @@ export const getUserInfo = data => {
   }
 }
 
+export const logOut = () => {
+  return {
+    type: types.LOGOUT,
+  }
+}
+
 // export const logout = () => {
 //   return dispatch => {
 //     auth

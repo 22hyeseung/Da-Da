@@ -25,7 +25,7 @@ class App extends Component {
        Login페이지로 Redirect하여 접근을 막음 */
 
     // 로그인 유무를 token값으로 하려했으나, 작동이 안되서, 우선 window에 저장되어있는 token유무로 하였음.
-    if (!window.localStorage.token) {
+    if (!this.props.token) {
       return <Redirect to="/login" />
     }
     return (

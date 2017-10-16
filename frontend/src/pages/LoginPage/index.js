@@ -19,14 +19,6 @@ class LoginPage extends Component {
     popupWindow: null,
   }
 
-  // componentWillMount() {
-  //   if (localStorage.token) {
-  //     this.setState({
-  //       token: localStorage.token,
-  //     })
-  //   }
-  // }
-
   componentWillUnmount() {
     window.removeEventListener(
       'message',

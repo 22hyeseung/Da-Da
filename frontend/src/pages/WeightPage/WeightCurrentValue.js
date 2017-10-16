@@ -12,6 +12,7 @@ class WeightCurrentValue extends Component {
             alt="의미없는 체중계 눈금모양 이미지"
           />
           {console.log(this.props.token)}
+          {console.log(this.props.userInfo)}
         </div>
         <div>
           <span className="weight-current">
@@ -29,6 +30,7 @@ const mapStateToProps = state => {
   return {
     weightListItem:
       state.weightList.weightListItem,
+    userInfo: state.auth.userInfo,
     token: state.auth.token,
   }
 }
