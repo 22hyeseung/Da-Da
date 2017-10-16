@@ -1,34 +1,22 @@
 import React, { Component } from 'react'
-import {
-  styles,
-  colorStyleMap,
-} from './StyledTextEditor'
+import { Style } from './StyledTextEditor'
+import { Button } from 'semantic-ui-react'
 
-class StyleButton extends React.Component {
-  constructor(props) {
-    super(props)
-    this.onToggle = e => {
+class StyleButton extends Component {
+  constructor() {
+    super()
+    this.onClick = e => {
       e.preventDefault()
-      this.props.onToggle(this.props.style)
+      this.props.onClick(this.props.blockStyle)
     }
   }
   render() {
-    let style
-    if (this.props.active) {
-      style = {
-        ...styles.styleButton,
-        ...colorStyleMap[this.props.style],
-      }
-    } else {
-      style = styles.styleButton
-    }
     return (
-      <span
-        style={style}
-        onMouseDown={this.onToggle}
-      >
-        {this.props.label}
-      </span>
+      <Button
+        style={Style.button}
+        icon={this.props.icon}
+        onClick={this.onClick}
+      />
     )
   }
 }

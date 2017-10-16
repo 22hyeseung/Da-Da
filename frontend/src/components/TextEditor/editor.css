@@ -1,0 +1,23 @@
+.editorContainer:hover {
+  border: 2px solid rgba(34, 36, 38, 0.15);
+  border-radius: 4px;
+  margin-left: -2px;
+  padding: 11px 10px 0px;
+}
+
+.blockquote {
+  color: #999;
+  font-family: 'Hoefler Text', Georgia, serif;
+  font-style: italic;
+  text-align: center;
+}
+
+.align-left div {
+  text-align: left;
+}
+.align-center div {
+  text-align: center;
+}
+.align-right div {
+  text-align: right;
+}
