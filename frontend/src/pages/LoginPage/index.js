@@ -8,6 +8,7 @@ import './Login.css'
 import bgVideo from '../../static/video/bg_login_1m.mp4'
 import bgImg from '../../static/img/login_img.jpg'
 import * as Style from './StyledLogin'
+import rootApi from '../../config'
 import { connect } from 'react-redux'
 import {
   saveToken,
@@ -27,7 +28,7 @@ class LoginPage extends Component {
   }
 
   getUserInfo = () => {
-    fetch(`https://api.downmix.net/user`, {
+    fetch(`${rootApi}/user`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window
@@ -43,10 +44,7 @@ class LoginPage extends Component {
   // token 갖고오는 함수 작동. > 여기서 토큰 저장
   tokenHandler = e => {
     const token = e.data
-    if (
-      e.origin === 'https://api.downmix.net' &&
-      token
-    ) {
+    if (e.origin === `${rootApi}` && token) {
       window.localStorage.token = token // window에 토큰 저장
       this.props.saveToken(token)
     }
@@ -65,7 +63,7 @@ class LoginPage extends Component {
       this.tokenHandler,
     )
     const popupWindow = window.open(
-      `https://api.downmix.net/auth/${target}`,
+      `${rootApi}/auth/${target}`,
     )
     this.setState({
       popupWindow: popupWindow,

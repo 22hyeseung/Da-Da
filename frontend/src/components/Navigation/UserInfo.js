@@ -11,6 +11,7 @@ import {
 } from './StyledNavigation'
 import UserInfoPopup from './UserInfoPopup'
 import { getUserInfo } from '../../actions/auth.js'
+import rootApi from '../../config'
 import { connect } from 'react-redux'
 
 class UserInfo extends Component {
@@ -20,7 +21,7 @@ class UserInfo extends Component {
     }
   }
   getUserInfo = () => {
-    fetch(`https://api.downmix.net/user`, {
+    fetch(`${rootApi}/user`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window
