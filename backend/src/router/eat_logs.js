@@ -20,9 +20,9 @@ router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
 
 /**
- * @api {post} /eat-logs
+ * @api {post} /eat-logs Post Eat-logs
  * @apiDescription 사용자가 먹은 음식을 기록
- * @apiName eat-logs
+ * @apiName postEatLogs
  * @apiGroup eatlog
  *
  * @apiSuccess {Integer} eat_log_id eat_log에 남겨지는 id
@@ -74,7 +74,7 @@ router.post('/', (req, res) => {
 })
 
 /**
- * @api {get} /eat-logs
+ * @api {get} /eat-logs Get Eat-logs
  * @apiDescription 사용자가 지정한날에 먹은기록을 가져온다.
  * @apiName eat-logs
  * @apiGroup eatlog
@@ -152,7 +152,7 @@ router.get('/', (req, res) => {
 })
 
 /**
- * @api {post} /eat-logs/summary
+ * @api {get} /eat-logs/summary Get EatSummary
  * @apiDescription 우측의 사용자 칼로리 요약
  * @apiName eatSummary
  * @apiGroup eatlog
