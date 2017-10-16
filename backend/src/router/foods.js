@@ -83,10 +83,19 @@ router.use(expressJwt({
  * ]
  */
 router.get('/', (req, res) => {
-  query.getFoodsSearch(req.query.search)
-    .then(food => {
-      res.send(food)
-    })
+  const search = req.query.search
+
+  if (search.length >= 1) {
+    query.getFoodsSearch(search)
+      .then(food => {
+        res.status(200)
+        res.send(food)
+      })
+  } else {
+    res.status(405)
+    res.send(null)
+  }
+
 })
 
 module.exports = router
