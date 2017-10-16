@@ -150,4 +150,91 @@ router.get('/', (req, res) => {
       }
     })
 })
+
+/**
+ * @api {post} /eat-logs/summary
+ * @apiDescription 우측의 사용자 칼로리 요약
+ * @apiName eatSummary
+ * @apiGroup eatlog
+ *
+ * @apiParam {String} date 요약할 날짜 ("YYYYMMDD")
+ *
+ * @apiSuccess {Integer} member_id 사용자 id
+ * @apiSuccess {String} date summary의 날짜
+ * @apiSuccess {Integer} day_log_kcal 목표 칼로리
+ * @apiSuccess {Integer} today_kcal 하루 섭취 칼로리
+ * @apiSuccess {Enum} today_burn_kcal 하루 소모 칼로리
+ * @apiSuccess {Float} today_carb 하루 섭취 탄수화물
+ * @apiSuccess {String} today_protein 하루 섭취 단백질
+ * @apiSuccess {Date} today_fat 하루 섭취 지방
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *     "member_id": 1,
+ *     "date": "20171015",
+ *     "day_log_kcal": 1200,
+ *     "today_kcal": 260,
+ *     "today_burn_kcal": 340,
+ *     "today_carb": 132,
+ *     "today_protein": 56,
+ *     "today_fat": 72
+ * }
+ */
+router.get('/summary', (req, res) => {
+  const param = {
+    'day_log_member_id': req.user.id,
+    'day_log_diary_date': req.query.date,
+    'eat_log_member_id': req.user.id,
+    'eat_log_diary_date': req.query.date,
+    'burn_member_id': req.user.id,
+    'burn_date': req.query.date
+  }
+
+  const out = {
+    'member_id': req.user.id,
+    'date': req.query.date,
+    'day_log_kcal': 0,
+    'today_kcal': 0,
+    'today_burn_kcal': 0,
+    'today_carb': 0,
+    'today_protein': 0,
+    'today_fat': 0
+  }
+
+  query.getSelectDayLog(param)
+    .then(result => {
+      if (result) {
+        out.day_log_kcal = result.day_log_kcal
+      } else {
+        return query.getLastDaylog(param)
+          .then(result => {
+            out.day_log_kcal = result.day_log_kcal
+          })
+      }
+    })
+    .then(() => {
+      return query.getEatKcalByDate(param)
+        .then(result => {
+          if (result) {
+            out.today_kcal = result.today_kcal
+            out.today_carb = result.today_carb
+            out.today_protein = result.today_protein
+            out.today_fat = result.today_fat
+          }
+        })
+    })
+    .then(() => {
+      return query.getBurnKcalByDate(param)
+        .then(result => {
+          console.log(result, '<< [ result ]');
+          if (result && result.burn_kcal !== null) {
+            out.today_burn_kcal = result.burn_kcal
+          }
+        })
+    })
+    .then(() => {
+      res.send(out)
+    })
+})
+
 module.exports = router

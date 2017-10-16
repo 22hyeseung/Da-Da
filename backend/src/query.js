@@ -163,6 +163,35 @@ function getFoodsSearch(search) {
     .orderBy('food_name_ko')
 }
 
+function getEatKcalByDate({ eat_log_member_id, eat_log_diary_date }) {
+  return knex('eat_log')
+    .select('eat_log.eat_log_member_id', 'eat_log.eat_log_diary_date',
+      knex.raw('sum(eat_log.eat_log_amount * ((food.food_carb * 4) + (food.food_protein * 4) + (food.food_fat * 9))) as today_kcal'),
+      knex.raw('sum(eat_log.eat_log_amount * (food.food_carb * 4)) as today_carb'),
+      knex.raw('sum(eat_log.eat_log_amount * (food.food_protein * 4)) as today_protein'),
+      knex.raw('sum(eat_log.eat_log_amount * (food.food_fat * 9)) as today_fat')
+    )
+    .join('food', 'eat_log.eat_log_food_id', '=', 'food.food_id')
+    .where({ eat_log_member_id, eat_log_diary_date })
+    .groupBy(['eat_log.eat_log_member_id', 'eat_log.eat_log_diary_date'])
+    .first()
+}
+
+function getBurnKcalByDate({ burn_member_id, burn_date }) {
+  return knex('burn')
+    .select('burn_member_id', 'burn_date', knex.raw('sum(burn_kcal) as burn_kcal'))
+    .where({ burn_member_id, burn_date })
+    .first()
+}
+
+// 가장 마지막 day_log (방어코드 용)
+function getLastDaylog({ day_log_member_id }) {
+  return knex('day_log')
+    .where({ day_log_member_id })
+    .orderBy('day_log_diary_date', 'desc')
+    .first()
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -175,6 +204,9 @@ module.exports = {
   getFoodsSearch,
   getKgByDate,
   postEatLogs,
+  getLastDaylog,
+  getEatKcalByDate,
+  getBurnKcalByDate,
   getEatLogs
 
 }

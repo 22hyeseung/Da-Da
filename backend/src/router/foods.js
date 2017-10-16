@@ -83,7 +83,7 @@ router.use(expressJwt({
  * ]
  */
 router.get('/', (req, res) => {
-  const search = req.query.search
+  const search = req.query.search.toString()
 
   if (search.length >= 1) {
     query.getFoodsSearch(search)
@@ -93,7 +93,7 @@ router.get('/', (req, res) => {
       })
   } else {
     res.status(405)
-    res.send(null)
+    res.send('검색어는 최소 한글자 이상 입력해야 합니다.')
   }
 
 })
