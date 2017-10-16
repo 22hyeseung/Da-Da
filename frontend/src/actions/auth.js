@@ -18,20 +18,6 @@ export const getUserInfo = data => {
 export const logOut = () => {
   return {
     type: types.LOGOUT,
+    payload: null,
   }
 }
-
-// export const logout = () => {
-//   return dispatch => {
-//     auth
-//       .signOut()
-//       .then(() => {
-//         dispatch({
-//           type: 'LOGOUT',
-//         })
-//       })
-//       .catch(() => {
-//         console.log('LOGIN FAILED')
-//       })
-//   }
-// }

@@ -1,0 +1,9 @@
+.ui.dimmer {
+    z-index: 2000 !important;
+}
+
+.navigation-logout-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}

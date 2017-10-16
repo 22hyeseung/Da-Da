@@ -49,8 +49,8 @@ const authReducer = (
   if (action.type === 'LOGOUT') {
     return {
       ...state,
-      userInfo: null,
-      token: null,
+      token: action.payload,
+      userInfo: action.payload,
     }
   }
   return {

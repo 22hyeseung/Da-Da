@@ -54,7 +54,8 @@ class LoginPage extends Component {
     this.setState({
       popupWindow: null,
     })
-    this.getUserInfo()
+    this.props.history.push('/')
+    // window.location.reload()
   }
 
   // sns를 target으로 받아서 분리시킴

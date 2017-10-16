@@ -24,7 +24,7 @@ class App extends Component {
     /* Login 상태가 아닌 경우에 다른 페이지로 접근하면
        Login페이지로 Redirect하여 접근을 막음 */
 
-    if (!this.props.token) {
+    if (!window.localStorage.token) {
       return <Redirect to="/login" />
     }
     return (
