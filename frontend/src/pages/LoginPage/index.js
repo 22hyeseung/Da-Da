@@ -64,6 +64,8 @@ class LoginPage extends Component {
     )
     const popupWindow = window.open(
       `${rootApi}/auth/${target}`,
+      '_blank',
+      'width=475, height=630;',
     )
     this.setState({
       popupWindow: popupWindow,
