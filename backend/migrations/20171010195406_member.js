@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
     t.string('member_avatar_url')  // SNS 사진경로
     t.date('member_birth')  // 생일
     t.enum('member_gender', ['남', '여'])  // 회원 성별
-    t.float('member_goal_weight') // 목표체중
+    t.float('member_goal_weight', [8], [3]) // 목표체중
     t.string('token')  // SNS JWT 토큰(보류)
     t.timestamp('member_join_date').defaultTo(knex.fn.now())  // 데이터 로그시간
   })

@@ -4,8 +4,8 @@ exports.up = function(knex, Promise) {
     t.increments('day_log_id')  //  변화 id(PK)
     t.integer('day_log_member_id').unsigned()  // 멤버 id(FK)
     t.foreign('day_log_member_id').references('member.member_id')
-    t.float('day_log_height')  // 키
-    t.float('day_log_kg')  // 몸무게
+    t.float('day_log_height', [8], [3])  // 키
+    t.float('day_log_kg', [8], [3])  // 몸무게
     t.integer('day_log_kcal')  // 목표 칼로리
     t.string('day_log_regret')  // 반성일기
     t.string('day_log_comment')  // 일기 내용

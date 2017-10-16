@@ -9,7 +9,8 @@ exports.up = function(knex, Promise) {
     t.integer('eat_log_recipe_id').unsigned()  // (FK)
     t.foreign('eat_log_recipe_id').references('recipe.recipe_id')  //
     t.enum('eat_log_meal_tag', ['아침', '점심', '저녁', '간식'])  // 다이어리 타입
-    t.float('eat_log_amount') // 먹은 양
+    t.float('eat_log_amount', [8], [3]) // 먹은 양
+    t.float('eat_log_serve', [8], [3]) // 인분수
     t.string('eat_log_picture')  // 사진
     t.date('eat_log_diary_date') // 등록일
     t.timestamp('eat_log_submit_time').defaultTo(knex.fn.now())  // 데이터 로그시간
