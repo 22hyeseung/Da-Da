@@ -9,19 +9,23 @@ import bgVideo from '../../static/video/bg_login_1m.mp4'
 import bgImg from '../../static/img/login_img.jpg'
 import * as Style from './StyledLogin'
 import { connect } from 'react-redux'
+import {
+  saveToken,
+  getUserInfo,
+} from '../../actions/auth.js'
 
 class LoginPage extends Component {
   state = {
     popupWindow: null,
   }
 
-  componentWillMount() {
-    if (localStorage.token) {
-      this.setState({
-        token: localStorage.token,
-      })
-    }
-  }
+  // componentWillMount() {
+  //   if (localStorage.token) {
+  //     this.setState({
+  //       token: localStorage.token,
+  //     })
+  //   }
+  // }
 
   componentWillUnmount() {
     window.removeEventListener(
@@ -31,51 +35,47 @@ class LoginPage extends Component {
   }
 
   getUserInfo = () => {
-    fetch(`http://api.downmix.net/user`, {
+    fetch(`https://api.downmix.net/user`, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${this.state
-          .token}`,
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
       },
     })
-      .then(res => {
-        console.log(res, '<< [ res ]')
-        return res.json()
-      })
-      .then(json => {
-        console.log(json, '<< [ json ]')
+      .then(res => res.json())
+      .then(userInfo => {
+        this.props.I_WANT_SAVE_USER_INFO(userInfo)
       })
   }
 
+  // token 갖고오는 함수 작동. > 여기서 토큰 저장
   tokenHandler = e => {
     const token = e.data
     if (
-      e.origin === 'http://api.downmix.net' &&
+      e.origin === 'https://api.downmix.net' &&
       token
     ) {
-      window.localStorage.token = token
-      //
-      this.state.popupWindow.close()
-      this.setState({
-        complete: true,
-        popupWindow: null,
-      })
-
-      this.getUserInfo()
+      window.localStorage.token = token // window에 토큰 저장
+      this.props.saveToken(token)
     }
-    console.log(token, '<< [ token ]')
+    this.state.popupWindow.close()
+    this.setState({
+      popupWindow: null,
+    })
+    this.getUserInfo()
   }
 
+  // sns를 target으로 받아서 분리시킴
   logIn = target => {
     window.addEventListener(
       'message',
       this.tokenHandler,
     )
     const popupWindow = window.open(
-      `http://api.downmix.net/auth/${target}`,
+      `https://api.downmix.net/auth/${target}`,
     )
     this.setState({
-      popupWindow,
+      popupWindow: popupWindow,
     })
   }
 
@@ -179,14 +179,21 @@ class LoginPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    token: this.auth.token,
-    member_sns: this.auth.member_sns,
-    member_name: this.auth.member_name,
-    member_avatar_url: this.auth
-      .member_avatar_url,
+    token: state.auth.token,
+    userInfo: state.auth.userInfo,
   }
 }
 
-export default connect(mapStateToProps, null)(
-  LoginPage,
-)
+const mapDispatchtoProps = dispatch => {
+  return {
+    saveToken: token =>
+      dispatch(saveToken(token)),
+    I_WANT_SAVE_USER_INFO: user =>
+      dispatch(getUserInfo(user)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchtoProps,
+)(LoginPage)

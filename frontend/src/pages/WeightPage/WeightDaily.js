@@ -106,7 +106,6 @@ class WeightDaily extends Component {
               오늘 체중 기록하기
             </Button>
           )}
-
           {/* 리스트 시작 */}
           <List divided verticalAlign="bottom">
             {this.props.weightListItem.map(
@@ -159,6 +158,8 @@ const mapStateToProps = state => {
   return {
     weightListItem:
       state.weightList.weightListItem,
+    userInfo: state.auth.userInfo,
+    token: state.auth.token,
   }
 }
 

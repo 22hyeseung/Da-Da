@@ -22,12 +22,7 @@ class notFoundPage extends Component {
         <div className="notFound-grid">
           <Navigation />
           <div class="notFound-content">
-            <span
-              className="notFound-header"
-              style={{
-                color: `#${this.props.rootColor}`,
-              }}
-            >
+            <span className="notFound-header">
               404
             </span>
             <span className="notFound-subHeader">
@@ -50,7 +45,7 @@ class notFoundPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    rootColor: state.colors.rootColor,
+    // rootColor: state.colors.rootColor,
   }
 }
 

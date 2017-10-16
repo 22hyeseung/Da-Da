@@ -1,52 +1,31 @@
-export const loginUser = () => {
-  return dispatch => {
-    // 로그인 요청중 Action
+import * as types from '../actions/ActionTypes'
 
-    fetch(`http://api.downmix.net/user`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${this.state
-          .token}`,
-      },
-    })
-      .then(res => {
-        console.log(res, '<< [ res ]')
-        return res.json()
-      })
-      .then(json => {
-        dispatch({
-          type: 'LOGIN_USER_SUCCESS',
-          payload: {
-            popupWindow: '',
-            token: '',
-            member_sns: json.member_provider,
-            member_name:
-              json.member_provider_name,
-            member_avatar_url:
-              json.member_avator_url,
-          },
-        })
-        // console.log(json, '<< [ json ]')
-      })
-      .catch(error => {
-        dispatch({
-          type: 'LOGIN_USER_FAILED',
-        })
-      })
+export const saveToken = token => {
+  return {
+    type: types.SAVE_TOKEN,
+    payload: token,
   }
 }
 
-export const logout = () => {
-  return dispatch => {
-    auth
-      .signOut()
-      .then(() => {
-        dispatch({
-          type: 'LOGOUT',
-        })
-      })
-      .catch(() => {
-        console.log('LOGIN FAILED')
-      })
+// 로그인 이후 토큰 값으로 사용자정보를 갖고오는 action
+export const getUserInfo = data => {
+  return {
+    type: types.SAVE_USERINFO,
+    payload: data,
   }
 }
+
+// export const logout = () => {
+//   return dispatch => {
+//     auth
+//       .signOut()
+//       .then(() => {
+//         dispatch({
+//           type: 'LOGOUT',
+//         })
+//       })
+//       .catch(() => {
+//         console.log('LOGIN FAILED')
+//       })
+//   }
+// }

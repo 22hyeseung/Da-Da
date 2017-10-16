@@ -6,7 +6,7 @@ import navActiveItemReducer from './navActiveItem'
 const reducers = combineReducers({
   weightList: weigthListReducer,
   navActiveItem: navActiveItemReducer,
-  atth: authReducer,
+  auth: authReducer,
 })
 
 export default reducers
