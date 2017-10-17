@@ -200,6 +200,22 @@ function getLastDaylog({ day_log_member_id }) {
     .first()
 }
 
+// recipe를 가져온다.
+function getRecipeById(recipe_id) {
+  return knex('recipe')
+    .select('*', knex.raw('((recipe_carb*4)+(recipe_protein*4)+(recipe_fat*9)) as recipe_kcal'))
+    .where({ recipe_id })
+    .first()
+}
+
+// 이름을 통하여 recipe를 검색한다.
+function getRecipeByName(recipe_name) {
+  return knex('recipe')
+    .select('recipe_id', 'recipe_name_ko', 'recipe_time', knex.raw('((recipe_carb*4)+(recipe_protein*4)+(recipe_fat*9)) as recipe_kcal'))
+    .where('recipe_name_ko', 'like', `%${recipe_name}%`)
+}
+
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -216,6 +232,6 @@ module.exports = {
   getEatKcalByDate,
   getBurnKcalByDate,
   getDayLogAll,
-  getEatLogs
-
+  getRecipeById,
+  getRecipeByName
 }
