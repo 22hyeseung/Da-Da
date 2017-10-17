@@ -166,7 +166,7 @@ function getFoodsSearch(name) {
 function getEatKcalByDate({ eat_log_member_id, eat_log_diary_date }) {
   return knex('eat_log')
     .select(
-'eat_log.eat_log_member_id', 'eat_log.eat_log_diary_date',
+      'eat_log.eat_log_member_id', 'eat_log.eat_log_diary_date',
       knex.raw('sum(eat_log.eat_log_amount * ((food.food_carb * 4) + (food.food_protein * 4) + (food.food_fat * 9))) as today_kcal'),
       knex.raw('sum(eat_log.eat_log_amount * (food.food_carb * 4)) as today_carb'),
       knex.raw('sum(eat_log.eat_log_amount * (food.food_protein * 4)) as today_protein'),
@@ -231,6 +231,22 @@ function getLastDaylog({ day_log_member_id }) {
     .first()
 }
 
+function getWeightByDate({ day_log_member_id, day_log_diary_date }) {
+  return knex('day_log')
+    .join('member', 'day_log.day_log_member_id', '=', 'member.member_id')
+    .select('day_log.day_log_kg', 'member.member_goal_weight')
+    .where({ day_log_member_id, day_log_diary_date })
+    .first()
+}
+
+function getFirstKgById({ day_log_member_id }) {
+  return knex('day_log')
+    .select('day_log_kg')
+    .orderBy('day_log_diary_date', 'asc')
+    .where({ day_log_member_id })
+    .first()
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -249,6 +265,7 @@ module.exports = {
   getDayLogAll,
   getReportNutrition,
   getReportNutritionSum,
-  getEatLogs
-
+  getEatLogs,
+  getWeightByDate,
+  getFirstKgById
 }
