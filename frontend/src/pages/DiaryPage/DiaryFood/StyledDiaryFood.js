@@ -179,12 +179,73 @@ export const albumCardLabelBtoom = {
 }
 // 오늘의 식단앨범 끝
 
-export const SearchResultList = {
+export const searchResultList = {
   display: 'flex',
   justifyContent: 'space-between',
-  padding: '14px 7px',
+  padding: '14px 7px 7px 7px',
   borderBottom: '1px solid #d8dde6',
   margin: '0px',
   borderRadius: '0px',
   cursor: 'pointer',
+}
+
+export const searchDefaultMsg = {
+  color: '#a8b7c7',
+  fontWeight: '100',
+  marginTop: '10px',
+}
+
+export const searchDefault = {
+  display: 'flex',
+  height: '100%',
+  justifyContent: 'space-between',
+}
+
+export const errorIcon = {
+  width: '6%',
+  filter: 'grayscale(100%)',
+}
+
+export const noResultMsg = {
+  color: '#a8b7c7',
+  fontWeight: '100',
+  display: 'block',
+}
+
+export const noResult = {
+  display: 'flex',
+  height: '169px',
+  justifyContent: 'space-between',
+  flexDirection: 'column-reverse',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
+export const noResultWrapper = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+}
+
+export const resultSmallMsg = {
+  width: '100%',
+  fontSize: '12px',
+  padding: '7px 0px',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  color: '#a8b7c7',
+}
+
+export const searchResult = {
+  width: '100%',
+  display: 'inline-block',
+  padding: '7px 0px',
+  color: '#54698d',
+  marginBottom: '7px',
+}
+
+export const searchResultWrapper = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  borderBottom: '1px dashed #a8b7c7',
 }
