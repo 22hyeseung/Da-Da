@@ -8,10 +8,10 @@ import {
   Input,
   List,
 } from 'semantic-ui-react'
+import * as Styled from './StyledDiaryFood'
+import FoodSelectDetails from './DiaryFoodSearchDetails'
 import DiaryFoodSearchModal from './DiaryFoodSearchModal'
 import DiaryFoodAdd from './DiaryFoodAdd'
-import multiplyIcon from '../../../static/img/diary-multiply.svg'
-import returnIcon from '../../../static/img/diary-return.svg'
 import { connect } from 'react-redux'
 import { toggleSearchMode } from '../../../actions/diaryFood'
 import _ from 'lodash'
@@ -19,33 +19,11 @@ import dummyDB from './DBdiaryFoodSearch'
 import faker from 'faker'
 import * as Style from './StyledDiaryFood'
 
-class Results extends Component {
-  constructor(props) {
-    super(props)
-  }
-  //list out articles received from parent
-  render() {
-    return (
-      <div>
-        <ul>
-          {this.props.results.map(result => {
-            return (
-              <li key={result.food_id}>
-                {result.food_name_ko}
-                {result.food_carb}
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    )
-  }
-}
-
 class DiaryFoodSearch extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      selectedKey: -1,
       isSearchMode: true,
       isLoading: false,
       userInput: '',
@@ -70,19 +48,21 @@ class DiaryFoodSearch extends Component {
         this.setState({
           results: result,
         })
-        console.log(this.state.results)
       })
     this.clearForm()
   }
 
   clearForm = () => {
-    console.log(this.state.userInput)
     this.setState({ userInput: '' })
-    console.log(this.state.userInput)
   }
 
   handleChange = e => {
     this.setState({ userInput: e.target.value })
+  }
+
+  // 검색 결과 배열 자체에 id값을 주어야함!!!
+  handleSelect = key => {
+    this.setState({ selectedKey: key })
   }
 
   toggleSearchMode = () => {
@@ -92,11 +72,9 @@ class DiaryFoodSearch extends Component {
   }
 
   render() {
-    const { isLoading, results } = this.state
+    const { isLoading } = this.state
     return (
       <div>
-        {console.log(this.state.value)}
-        {console.log(dummyDB.foodSource)}
         {this.state.isSearchMode ? (
           <Segment
             style={{
@@ -137,56 +115,62 @@ class DiaryFoodSearch extends Component {
                 style={{
                   overflow: 'auto',
                   height: '210px',
+                  padding: '0px 21px',
                 }}
               >
-                <Results
-                  results={this.state.results}
-                />
+                {/* 검색결과 시작 */}
+                <div style={{ width: '100%' }}>
+                  <ul
+                    selection
+                    style={{ margin: '0px' }}
+                  >
+                    {this.state.results.map(
+                      (result, i) => {
+                        return (
+                          <li
+                            style={
+                              Styled.SearchResultList
+                            }
+                            key={i}
+                            onClick={() =>
+                              this.handleSelect(
+                                i,
+                              )}
+                          >
+                            <span>
+                              {
+                                result.food_name_ko
+                              }
+                            </span>
+                            <span>
+                              {result.food_carb}
+                            </span>
+                          </li>
+                        )
+                      },
+                    )}
+                  </ul>
+                </div>
+                {/* 검색결과 끝 */}
               </Grid.Row>
             </Grid>
+
             <Label
               attached="bottom"
               style={Style.searchLabel}
             >
               <div className="diary-food-search-label">
-                <div className="diary-food-search-label-result">
-                  <span className="diary-food-search-label-result-title">
-                    {this.state.title}
-                  </span>
-                  <span className="diary-food-search-label-result-kcal">
-                    {this.state.price}
-                  </span>
-                  {this.state.title ? (
-                    <div className="diary-food-search-label-result-input">
-                      <img
-                        src={multiplyIcon}
-                        className="diary-food-calculateIcon"
-                        alt="곱하기 모양의 아이콘입니다."
-                      />
-                      <Input
-                        placeholder={
-                          this.state.unit
-                        }
-                        style={{ width: '84px' }}
-                      />
-                      <img
-                        src={returnIcon}
-                        className="diary-food-calculateIcon"
-                        alt="= 모양의 아이콘입니다."
-                      />
-                      <div className="diary-food-search-label-result-wrapper">
-                        <span className="diary-food-search-label-result-calculateKcal">
-                          {this.state.price * 3}
-                        </span>
-                        <span className="diary-food-search-label-result-unit">
-                          kcal
-                        </span>
-                      </div>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                </div>
+                <FoodSelectDetails
+                  isSelected={
+                    this.state.selectedKey != -1
+                  }
+                  foodResult={
+                    this.state.results[
+                      this.state.selectedKey
+                    ]
+                  }
+                />
+
                 <div>
                   <Button
                     basic
@@ -217,12 +201,5 @@ class DiaryFoodSearch extends Component {
     )
   }
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     toggleSearchMode: () =>
-//       dispatch(toggleSearchMode()),
-//   }
-// }
 
 export default DiaryFoodSearch

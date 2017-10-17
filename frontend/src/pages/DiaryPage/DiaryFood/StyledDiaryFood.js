@@ -178,3 +178,13 @@ export const albumCardLabelBtoom = {
   fontSize: '18px',
 }
 // 오늘의 식단앨범 끝
+
+export const SearchResultList = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  padding: '14px 7px',
+  borderBottom: '1px solid #d8dde6',
+  margin: '0px',
+  borderRadius: '0px',
+  cursor: 'pointer',
+}
