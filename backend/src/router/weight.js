@@ -55,4 +55,58 @@ router.get('/all', (req, res) => {
     })
 })
 
+/**
+ * @api {get} / Get WeightDate
+ *
+ * @apiDescription 사용자가 찾고자 하는 날짜를 기준으로 등록한 뭄무게와 목표 몸무게, 처음에 입력한 몸무게를 불러온다.
+ * @apiName getWeightDate
+ * @apiGroup weight
+ *
+ * @apiSuccess {Number} first_kg 사용자가 처음 입력한 몸무게
+ * @apiSuccess {Number} goal_weight 사용자가 입력한 목표 몸무게
+ * @apiSuccess {Number} date_weight 특정 날짜에 입력한 몸무게
+ *
+ * @apiSuccesExample {JSON} Success-Response:
+ * {
+ *   "member_id": 1,
+ *   "date": "20171004",
+ *   "first_kg": 90,
+ *   "goal_weight": 39,
+ *   "date_weight": 21
+ * }
+ */
+router.get('/', (req, res) => {
+  const user = {
+    'day_log_member_id': req.user.id,
+    'day_log_diary_date': req.query.date
+  }
+
+  const data = {
+    'member_id': req.user.id,
+    'date': req.query.date,
+    'first_kg': 0,
+    'goal_weight': 0,
+    'date_weight': 0
+  }
+
+  query.getWeightByDate(user)
+    .then(weight_date => {
+      if (weight_date) {
+        data.date_weight = weight_date.day_log_kg
+        data.goal_weight = weight_date.member_goal_weight
+      }
+    })
+    .then(() => {
+      return query.getFirstKgById(user)
+        .then(first => {
+          if (first) {
+            data.first_kg = first.day_log_kg
+          }
+        })
+    })
+    .then(() => {
+      res.send(data)
+    })
+})
+
 module.exports = router
