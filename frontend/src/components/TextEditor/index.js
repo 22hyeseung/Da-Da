@@ -5,7 +5,6 @@ import {
   Editor,
   EditorState,
   RichUtils,
-  Modifier,
   getDefaultKeyBinding,
   KeyBindingUtil,
   convertToRaw,
@@ -19,10 +18,8 @@ import {
 } from './StyledTextEditor'
 import './editor.css'
 
-// 툴 탭
-import InlineTypesControls from './InlineTypesControls'
-import BlockTypesControl from './BlockTypesControl'
-import ColorControls from './ColorControls'
+// 상단 툴바
+import Toolbar from './Toolbar'
 
 // Block Style 커스텀
 const blockStyleFn = contentBlock => {
@@ -59,15 +56,6 @@ class TextEditor extends Component {
 
     // tab => 리스트 depth
     this.onTab = this._onTab.bind(this)
-    this.onInlineType = this._onInlineType.bind(
-      this,
-    )
-    this.onBlockType = this._onBlockType.bind(
-      this,
-    )
-    this.changeColor = this._changeColor.bind(
-      this,
-    )
 
     // 로컬 스토리지에서 content를 가져옴.
     const content = window.localStorage.getItem(
@@ -174,25 +162,6 @@ class TextEditor extends Component {
     return 'not-handled'
   }
 
-  // tab키 핸들러
-  // _onTab(e) {
-  //   e.preventDefault() // default(페이지 내 포커스 이동) 취소
-  //   const tabCharacter = '    '
-  //   let currentState = this.state.editorState
-  //   let newContentState = Modifier.replaceText(
-  //     currentState.getCurrentContent(),
-  //     currentState.getSelection(),
-  //     tabCharacter,
-  //   )
-  //   this.setState({
-  //     editorState: EditorState.push(
-  //       currentState,
-  //       newContentState,
-  //       'insert-characters',
-  //     ),
-  //   })
-  // }
-
   _onTab(e) {
     const maxDepth = 4
     this.onChange(
@@ -204,84 +173,16 @@ class TextEditor extends Component {
     )
   }
 
-  // 인라인타입 버튼: bold, italic, underline, strikethrough
-  _onInlineType = inlineType => {
-    this.onChange(
-      RichUtils.toggleInlineStyle(
-        this.state.editorState,
-        inlineType,
-      ),
-    )
-  }
-
-  // 블록타입 버튼: ol, ul, blockquote, header
-  _onBlockType = blockType => {
-    this.onChange(
-      RichUtils.toggleBlockType(
-        this.state.editorState,
-        blockType,
-      ),
-    )
-  }
-
-  // 색상 변경
-  _changeColor = pickedColor => {
-    const { editorState } = this.state
-    const selection = editorState.getSelection()
-
-    const nextContentState = Object.keys(
-      colorStyleMap,
-    ).reduce((contentState, color) => {
-      return Modifier.removeInlineStyle(
-        contentState,
-        selection,
-        color,
-      )
-    }, editorState.getCurrentContent())
-    let nextEditorState = EditorState.push(
-      editorState,
-      nextContentState,
-      'change-inline-style',
-    )
-    const currentStyle = editorState.getCurrentInlineStyle()
-
-    if (selection.isCollapsed()) {
-      nextEditorState = currentStyle.reduce(
-        (state, color) => {
-          return RichUtils.toggleInlineStyle(
-            state,
-            color,
-          )
-        },
-        nextEditorState,
-      )
-    }
-
-    if (!currentStyle.has(pickedColor)) {
-      nextEditorState = RichUtils.toggleInlineStyle(
-        nextEditorState,
-        pickedColor,
-      )
-    }
-    this.onChange(nextEditorState)
-  }
-
   render() {
     const { editorState } = this.state
 
     return (
       <div style={Style.root}>
-        <InlineTypesControls
-          /* editorState={editorState} */
-          onClick={this.onInlineType}
+        <Toolbar
+          editorState={editorState}
+          onChange={this.onChange}
         />
-        <BlockTypesControl
-          /* editorState={editorState} */
-          onClick={this.onBlockType}
-        />
-        <ColorControls
-          onClick={this.changeColor}
-        />
+
         <div
           className="editorContainer"
           style={Style.editor}
