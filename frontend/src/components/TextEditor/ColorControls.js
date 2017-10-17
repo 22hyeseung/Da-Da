@@ -1,7 +1,5 @@
 import React from 'react'
-import { Style } from './StyledTextEditor'
 import ColorPicker from './ColorPicker'
-import { Button } from 'semantic-ui-react'
 
 const COLORS = [
   {

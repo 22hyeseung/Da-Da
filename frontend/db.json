@@ -1,81 +1,87 @@
 {
-  "regret": [
+  "comment": [
     {
       "id": 1,
       "member_id": 2,
-      "regret": "오늘너무많이먹었다",
+      "comment": "오늘너무많이먹었다",
       "date": "2017-10-11T18:00:00.000Z"
     },
     {
       "id": 2,
       "member_id": 2,
-      "regret": "오늘너무많이먹었다2",
+      "comment": "오늘너무많이먹었다2",
       "date": "2017-10-12T18:00:00.000Z"
     },
     {
       "id": 3,
       "member_id": 2,
-      "regret": "오늘너무많이먹었다3",
+      "comment": "오늘너무많이먹었다3",
       "date": "2017-10-13T18:00:00.000Z"
     },
     {
       "id": 4,
       "member_id": 2,
-      "regret": "dsak"
+      "comment": "dsak"
     },
     {
       "member_id": 2,
-      "regret": "반성일기 333",
+      "comment": "반성일기 333",
       "date": "2017. 10. 15.",
       "id": 5
     },
     {
       "member_id": 2,
-      "regret": "반성일기 33333",
+      "comment": "반성일기 33333",
       "date": "2017. 10. 15.",
       "id": 6
     },
     {
       "member_id": 2,
-      "regret": "반성일기 33331242",
+      "comment": "반성일기 33331242",
       "date": "2017. 10. 15.",
       "id": 7
     },
     {
       "member_id": 2,
-      "regret": "ㅁㅇㄹ",
+      "comment": "ㅁㅇㄹ",
       "date": "2017. 10. 15.",
       "id": 8
     },
     {
       "member_id": 2,
-      "regret": "asd",
+      "comment": "asd",
       "date": "2017. 10. 15.",
       "id": 9
     },
     {
       "member_id": 2,
-      "regret": "asfasd",
+      "comment": "asfasd",
       "date": "2017. 10. 15.",
       "id": 10
     },
     {
       "member_id": 2,
-      "regret": "dsa",
+      "comment": "dsa",
       "date": "2017. 10. 15.",
       "id": 11
     },
     {
       "member_id": 2,
-      "regret": "kgjhfhrtdh",
+      "comment": "kgjhfhrtdh",
       "date": "2017. 10. 15.",
       "id": 12
     },
     {
       "member_id": 2,
-      "regret": "룰루랄ㄹ라",
-      "date": "2017. 10. 15.",
+      "comment": "\n이렇게 하고 새로고침 해도\n저장이 된다굿!\n\n인용구이다!!!!!\n하하하하\n\n  ",
+      "date": "2017. 10. 17.",
       "id": 13
+    },
+    {
+      "member_id": 2,
+      "comment": "이렇게 하고 새로고침 해도\n저장이 된다굿!\n\n인용구이다!!!!!\n하하하하",
+      "date": "2017. 10. 17.",
+      "id": 14
     }
   ]
 }

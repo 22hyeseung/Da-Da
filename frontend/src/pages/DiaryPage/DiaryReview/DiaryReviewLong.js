@@ -24,13 +24,8 @@ class DiaryReviewLongInput extends Component {
       errorState: false,
       isVaild: true,
       isPostMode: true,
-      comment: '',
+      // comment: '',
     }
-  }
-
-  handleCommentValueChange = e => {
-    // console.log(e.target.value)
-    // this.setState({ comment: e.target.value })
   }
 
   // 읽기모드 <-> 쓰기모드 상태 변경
@@ -40,16 +35,37 @@ class DiaryReviewLongInput extends Component {
     })
   }
 
+  // DB에 저장된 comment GET
   saveCommentAndGetFromDB = date => {
-    this.props.getCommnetFromDB(date)
+    this.props.getCommentFromDB(date)
   }
 
+  // local Storage에 저장된 에디터에 작성된 내용(가장 최근, 마지막 상태)
+  // 불러와서 comment state에 set
+  // local Storage에 저장하는 부분은 TextEditor/index.js에 있음
+  loadExistingContentFromLocalStorage = () => {
+    const content = JSON.parse(
+      window.localStorage.getItem('content'),
+    )
+
+    let localContent = ''
+
+    content.blocks.map(p => {
+      return (localContent += '\n' + p.text)
+    })
+
+    return localContent.trim()
+  }
+
+  // 작성된 comment를 DB로 POST
   createCommentAndPostToDB = () => {
+    const localContent = this.loadExistingContentFromLocalStorage()
+
     const dateTime = new Date()
     const date = dateTime.toLocaleDateString()
     const requestBody = {
       member_id: 2,
-      comment: this.state.comment,
+      comment: localContent,
       date,
     }
     // DB로 post
