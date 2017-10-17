@@ -217,6 +217,38 @@ function getFirstKgById({ day_log_member_id }) {
     .first()
 }
 
+function getKcalsRecipeByDate({ eat_log_member_id, start_date, end_date }) {
+  return knex('eat_log')
+    .select(
+      'eat_log.eat_log_member_id', 'eat_log.eat_log_diary_date', 'eat_log.eat_log_id', 'eat_log.eat_log_recipe_id',
+      knex.raw('sum(recipe.recipe_serving/10 * ((recipe.recipe_carb * 4) + (recipe.recipe_protein * 4) + (recipe.recipe_fat * 9))) as recipe_kcal')
+    )
+    .join('recipe', 'eat_log.eat_log_recipe_id', '=', 'recipe.recipe_id')
+    .whereNull('eat_log_food_id')
+    .andWhere({ eat_log_member_id })
+    .whereBetween('eat_log_diary_date', [start_date, end_date])
+    .groupBy(['eat_log_id', 'eat_log_diary_date'])
+}
+
+function getKcalsFoodByDate({ eat_log_member_id, start_date, end_date }) {
+  return knex('eat_log')
+    .select(
+      'eat_log.eat_log_member_id', 'eat_log.eat_log_diary_date', 'eat_log.eat_log_id', 'eat_log.eat_log_recipe_id',
+      knex.raw('sum(eat_log.eat_log_amount * ((food.food_carb * 4) + (food.food_protein * 4) + (food.food_fat * 9))) as food_kcal')
+    )
+    .join('food', 'eat_log.eat_log_food_id', '=', 'food.food_id')
+    .where({ eat_log_member_id })
+    .whereNull('eat_log_recipe_id')
+    .whereBetween('eat_log_diary_date', [start_date, end_date])
+    .groupBy(['eat_log_id', 'eat_log_diary_date'])
+}
+
+function getGoalKcalsByDate({ day_log_member_id, start_date, end_date }) {
+  return knex('day_log')
+    .select('day_log_kcal', 'day_log_diary_date')
+    .where({ day_log_member_id })
+    .whereBetween('day_log_diary_date', [start_date, end_date])
+}
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -235,5 +267,8 @@ module.exports = {
   getDayLogAll,
   getEatLogs,
   getWeightByDate,
-  getFirstKgById
+  getFirstKgById,
+  getKcalsFoodByDate,
+  getKcalsRecipeByDate,
+  getGoalKcalsByDate
 }
