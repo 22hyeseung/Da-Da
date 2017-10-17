@@ -133,7 +133,7 @@ function getKgByDate(day_log_diary_date, day_log_member_id) {
     .limit(4)
 }
 
-function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, eat_log_meal_tag, eat_log_amount, eat_log_picture, eat_log_diary_date }) {
+function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, eat_log_meal_tag, eat_log_amount, eat_log_serve, eat_log_picture, eat_log_diary_date }) {
   return knex('eat_log')
     .insert({
       eat_log_member_id,
@@ -141,6 +141,7 @@ function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, ea
       eat_log_recipe_id,
       eat_log_meal_tag,
       eat_log_amount,
+      eat_log_serve,
       eat_log_picture,
       eat_log_diary_date
     })
@@ -150,8 +151,39 @@ function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, ea
     })
 }
 
+// function getEatLogs({ eat_log_member_id, eat_log_diary_date }) {
+//   return knex('eat_log')
+//     .where({ eat_log_member_id, eat_log_diary_date })
+// }
+
 function getEatLogs({ eat_log_member_id, eat_log_diary_date }) {
   return knex('eat_log')
+    .where({ eat_log_member_id, eat_log_diary_date })
+}
+
+function getEatLogsFood({ eat_log_member_id, eat_log_diary_date }) {
+  return knex('eat_log')
+    .select(
+      'eat_log_id', 'eat_log.eat_log_food_id', 'food.food_unit', 'eat_log.eat_log_meal_tag',
+      knex.raw('(((food.food_carb*4) + (food.food_protein*4)+(food.food_fat*9))*eat_log.eat_log_amount) as food_kcal'),
+      knex.raw('(eat_log.eat_log_amount * (food.food_carb * 4)) as food_carb'),
+      knex.raw('(eat_log.eat_log_amount * (food.food_protein * 4)) as food_protein'),
+      knex.raw('(eat_log.eat_log_amount * (food.food_fat * 9)) as food_fat')
+    )
+    .join('food', 'eat_log.eat_log_food_id', '=', 'food.food_id')
+    .where({ eat_log_member_id, eat_log_diary_date })
+}
+
+function getEatLogsRecipe({ eat_log_member_id, eat_log_diary_date }) {
+  return knex('eat_log')
+    .select(
+      'eat_log_id', 'eat_log.eat_log_recipe_id', 'eat_log.eat_log_meal_tag',
+      knex.raw('(eat_log.eat_log_serve * ((recipe.recipe_carb * 4) + (recipe.recipe_protein * 4) + (recipe.recipe_fat * 9))) as recipe_kcal'),
+      knex.raw('(eat_log.eat_log_serve * (recipe.recipe_carb * 4)) as recipe_carb'),
+      knex.raw('(eat_log.eat_log_serve * (recipe.recipe_protein * 4)) as recipe_protein'),
+      knex.raw('(eat_log.eat_log_serve * (recipe.recipe_fat * 9)) as recipe_fat')
+    )
+    .join('recipe', 'eat_log.eat_log_recipe_id', '=', 'recipe.recipe_id')
     .where({ eat_log_member_id, eat_log_diary_date })
 }
 
@@ -191,36 +223,6 @@ function getDayLogAll({ day_log_member_id }) {
     .where({ day_log_member_id })
     .orderBy('day_log_diary_date', 'desc')
     .then()
-}
-
-function getReportNutrition({ eat_log_member_id, start_date, end_date }) {
-  return knex('view_eat_log_type2')
-    .select(
-      'eat_log_member_id', 'eat_log_diary_date',
-      knex.raw('round(sum(carb),3) as carb'),
-      knex.raw('round(sum(protein),3) as protein'),
-      knex.raw('round(sum(fat),3) as fat')
-    )
-    .where({ eat_log_member_id })
-    .andWhere('eat_log_diary_date', '>=', start_date)
-    .andWhere('eat_log_diary_date', '<=', end_date)
-    .groupBy('eat_log_member_id', 'eat_log_diary_date')
-    .orderBy('eat_log_member_id', 'eat_log_diary_date')
-    .then()
-}
-
-function getReportNutritionSum({ eat_log_member_id, start_date, end_date }) {
-  return knex('view_eat_log_type2')
-    .select(
-      'eat_log_member_id',
-      knex.raw('round(sum(carb),3) as carb'),
-      knex.raw('round(sum(protein),3) as protein'),
-      knex.raw('round(sum(fat),3) as fat')
-    )
-    .where({ eat_log_member_id })
-    .andWhere('eat_log_diary_date', '>=', start_date)
-    .andWhere('eat_log_diary_date', '<=', end_date)
-    .first()
 }
 
 // 가장 마지막 day_log (방어코드 용)
@@ -263,9 +265,9 @@ module.exports = {
   getEatKcalByDate,
   getBurnKcalByDate,
   getDayLogAll,
-  getReportNutrition,
-  getReportNutritionSum,
   getEatLogs,
+  getEatLogsFood,
+  getEatLogsRecipe,
   getWeightByDate,
   getFirstKgById
 }
