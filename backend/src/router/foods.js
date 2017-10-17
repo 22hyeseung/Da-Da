@@ -25,7 +25,7 @@ router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
  * @apiName getFoodsSearch
  * @apiGroup foods
  *
- * @apiParam {String} search 음식 검색어
+ * @apiParam {String} name 음식 검색어
  *
  * @apiSuccess {Number} food_id 음식ID
  * @apiSuccess {String} food_name_ko 음식명
