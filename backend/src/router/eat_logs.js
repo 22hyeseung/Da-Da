@@ -43,6 +43,7 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  *         "eat_log_recipe_id": null,
  *         "eat_log_meal_tag": "아침",
  *         "eat_log_amount": 100,
+ *         "eat_log_serve": null,
  *         "eat_log_picture": null,
  *         "eat_log_diary_date": "2017-10-15T15:00:00.000Z",
  *         "eat_log_submit_time": "2017-10-14T10:07:55.000Z"
@@ -91,52 +92,51 @@ router.post('/', (req, res) => {
  * @apiSuccess {Date} eat_log_diary_date 등록일
  *
  * @apiSuccessExample {json} Success-Response:
- * [
- *     {
- *         "eat_log_id": 1,
- *         "eat_log_member_id": 1,
- *         "eat_log_food_id": 1,
- *         "eat_log_recipe_id": null,
- *         "eat_log_meal_tag": "아침",
- *         "eat_log_amount": 100,
- *         "eat_log_picture": null,
- *         "eat_log_diary_date": "2017-10-15T15:00:00.000Z",
- *         "eat_log_submit_time": "2017-10-14T10:07:55.000Z"
- *     },
- *     {
- *         "eat_log_id": 2,
- *         "eat_log_member_id": 1,
- *         "eat_log_food_id": 1,
- *         "eat_log_recipe_id": null,
- *         "eat_log_meal_tag": "점심",
- *         "eat_log_amount": 100,
- *         "eat_log_picture": null,
- *         "eat_log_diary_date": "2017-10-15T15:00:00.000Z",
- *         "eat_log_submit_time": "2017-10-14T10:08:41.000Z"
- *     },
- *     {
- *         "eat_log_id": 3,
- *         "eat_log_member_id": 1,
- *         "eat_log_food_id": 1,
- *         "eat_log_recipe_id": null,
- *         "eat_log_meal_tag": "저녁",
- *         "eat_log_amount": 100,
- *         "eat_log_picture": null,
- *         "eat_log_diary_date": "2017-10-15T15:00:00.000Z",
- *         "eat_log_submit_time": "2017-10-14T10:08:45.000Z"
- *     },
- *     {
- *         "eat_log_id": 4,
- *         "eat_log_member_id": 1,
- *         "eat_log_food_id": 1,
- *         "eat_log_recipe_id": null,
- *         "eat_log_meal_tag": "간식",
- *         "eat_log_amount": 100,
- *         "eat_log_picture": null,
- *         "eat_log_diary_date": "2017-10-15T15:00:00.000Z",
- *         "eat_log_submit_time": "2017-10-14T10:08:49.000Z"
- *     }
- * ]
+ * {
+ *     "foodresult": [
+ *         {
+ *             "eat_log_id": 2,
+ *             "eat_log_food_id": 1,
+ *             "food_unit": "g",
+ *             "eat_log_meal_tag": "저녁",
+ *             "food_kcal": 60.1,
+ *             "food_carb": 43.2,
+ *             "food_protein": 8.8,
+ *             "food_fat": 8.1
+ *         },
+ *         {
+ *             "eat_log_id": 3,
+ *             "eat_log_food_id": 1,
+ *             "food_unit": "g",
+ *             "eat_log_meal_tag": "저녁",
+ *             "food_kcal": 120.2,
+ *             "food_carb": 86.4,
+ *             "food_protein": 17.6,
+ *             "food_fat": 16.2
+ *         },
+ *         {
+ *             "eat_log_id": 5,
+ *             "eat_log_food_id": 2,
+ *             "food_unit": "g",
+ *             "eat_log_meal_tag": "점심",
+ *             "food_kcal": 216.3,
+ *             "food_carb": 168,
+ *             "food_protein": 34.8,
+ *             "food_fat": 13.5
+ *         }
+ *     ],
+ *     "reciperesult": [
+ *         {
+ *             "eat_log_id": 1,
+ *             "eat_log_recipe_id": 1,
+ *             "eat_log_meal_tag": "저녁",
+ *             "recipe_kcal": 3400,
+ *             "recipe_carb": 800,
+ *             "recipe_protein": 800,
+ *             "recipe_fat": 1800
+ *         }
+ *     ]
+ * }
  */
 router.get('/', (req, res) => {
   const eat_log_meal = {
@@ -144,13 +144,12 @@ router.get('/', (req, res) => {
     'eat_log_diary_date': req.query.date
   }
 
-  query.getEatLogs(eat_log_meal)
-    .then(eat_log => {
-      if (eat_log) {
-        res.send(eat_log)
-      } else {
-        console.log('Eat_logs GET Error')
-      }
+  query.getEatLogsFood(eat_log_meal)
+    .then(foodresult => {
+      query.getEatLogsRecipe(eat_log_meal)
+        .then(reciperesult => {
+          res.send({ foodresult, reciperesult })
+        })
     })
 })
 
