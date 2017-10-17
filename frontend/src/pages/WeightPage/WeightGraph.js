@@ -1,6 +1,7 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
-import Graph from '../../static/img/weight-graph.svg'
+// import Graph from '../../static/img/weight-graph.svg'
+import WeightChart from '../../components/Charts/WeightChart'
 
 const WeightGraph = () => {
   return (
@@ -11,7 +12,8 @@ const WeightGraph = () => {
           border: 'none',
         }}
       >
-        <img src={Graph} alt="그래프 넣을 공간입니다" />
+        {/* <img src={Graph} alt="그래프 넣을 공간입니다" /> */}
+        <WeightChart />
       </Segment>
     </div>
   )
