@@ -223,20 +223,11 @@ class TextEditor extends Component {
     )
   }
 
-  // _changeColor = pickedColor => {
-  //   this.onChange(
-  //     RichUtils.toggleInlineStyle(
-  //       this.state.editorState,
-  //       pickedColor,
-  //     ),
-  //   )
-  // }
-
   // 색상 변경
   _changeColor = pickedColor => {
     const { editorState } = this.state
     const selection = editorState.getSelection()
-    // Let's just allow one color at a time. Turn off all active colors.
+
     const nextContentState = Object.keys(
       colorStyleMap,
     ).reduce((contentState, color) => {
@@ -252,7 +243,7 @@ class TextEditor extends Component {
       'change-inline-style',
     )
     const currentStyle = editorState.getCurrentInlineStyle()
-    // Unset style override for current color.
+
     if (selection.isCollapsed()) {
       nextEditorState = currentStyle.reduce(
         (state, color) => {
@@ -264,7 +255,7 @@ class TextEditor extends Component {
         nextEditorState,
       )
     }
-    // If the color is being toggled on, apply it.
+
     if (!currentStyle.has(pickedColor)) {
       nextEditorState = RichUtils.toggleInlineStyle(
         nextEditorState,

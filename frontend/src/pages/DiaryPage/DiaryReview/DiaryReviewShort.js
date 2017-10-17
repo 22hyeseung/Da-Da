@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   Input,
   Header,
   Button,
+  Message,
   Dimmer,
   Loader,
-  Message,
 } from 'semantic-ui-react'
 import {
   shortBox,
@@ -13,7 +14,6 @@ import {
   buttonIcon,
   shortSubmitBtn,
 } from './StyledDiaryReview'
-import { connect } from 'react-redux'
 import FaPencil from 'react-icons/lib/fa/pencil'
 import FaTrashO from 'react-icons/lib/fa/trash-o'
 import {
@@ -26,7 +26,6 @@ class DiaryReviewShortInput extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLoading: false,
       errorState: false,
       isVaild: true,
       isPostMode: true,
@@ -65,9 +64,6 @@ class DiaryReviewShortInput extends Component {
 
   // 반성일기 등록시 date와 regret db로 전송(Post)
   createRegretAndPostToDB = () => {
-    this.setState({
-      isPending: true,
-    })
     const dateTime = new Date()
     const date = dateTime.toLocaleDateString()
     const requestBody = {
@@ -105,6 +101,7 @@ class DiaryReviewShortInput extends Component {
         </Dimmer>
       )
     }
+
     return (
       <div style={shortBox}>
         {this.state.isPostMode ? (

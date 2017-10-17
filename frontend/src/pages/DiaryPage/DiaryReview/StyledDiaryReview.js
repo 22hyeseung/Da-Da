@@ -90,3 +90,10 @@ export const longSubmitBtn = {
   ...submitBtn,
   marginLeft: '744px',
 }
+
+export const savedContainer = {
+  border: '1px solid f5f7fa',
+  borderRadius: '4px',
+  padding: '20px',
+  minHeight: '400px',
+}

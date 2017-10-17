@@ -1,24 +1,119 @@
 import React, { Component } from 'react'
-import { Header, Button } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import {
+  Header,
+  Button,
+  Dimmer,
+  Loader,
+} from 'semantic-ui-react'
 import {
   longBox,
   longSubmitBtn,
+  savedContainer,
 } from './StyledDiaryReview'
 import TextEditor from '../../../components/TextEditor'
+import {
+  getCommentFromDB,
+  postCommentToDB,
+} from '../../../actions/review'
 
-class DiaryReviewShortInput extends Component {
+class DiaryReviewLongInput extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      errorState: false,
+      isVaild: true,
+      isPostMode: true,
+      comment: '',
+    }
+  }
+
+  handleCommentValueChange = e => {
+    // console.log(e.target.value)
+    // this.setState({ comment: e.target.value })
+  }
+
+  // 읽기모드 <-> 쓰기모드 상태 변경
+  changeMode = () => {
+    this.setState({
+      isPostMode: !this.state.isPostMode,
+    })
+  }
+
+  saveCommentAndGetFromDB = date => {
+    this.props.getCommnetFromDB(date)
+  }
+
+  createCommentAndPostToDB = () => {
+    const dateTime = new Date()
+    const date = dateTime.toLocaleDateString()
+    const requestBody = {
+      member_id: 2,
+      comment: this.state.comment,
+      date,
+    }
+    // DB로 post
+    // console.log(requestBody)
+    this.props.postCommentToDB(requestBody)
+
+    // 요청 보낸 날짜로 다시 get
+    this.saveCommentAndGetFromDB(date)
+    // 이후 읽기모드로 전환
+    this.changeMode()
+  }
+
   render() {
+    if (this.state.errorState) {
+      return <h1>ERROR!</h1>
+    }
+    if (this.state.isLoading) {
+      return (
+        <Dimmer active>
+          <Loader>Loading</Loader>
+        </Dimmer>
+      )
+    }
     return (
       <div style={longBox}>
         <Header as="h5">오늘의 일기</Header>
-        <TextEditor />
-        <Button
-          style={longSubmitBtn}
-          content="등록"
-        />
+        {this.state.isPostMode ? (
+          <div>
+            <TextEditor />
+            <Button
+              style={longSubmitBtn}
+              content={'등록'}
+              onClick={
+                this.createCommentAndPostToDB
+              }
+            />
+          </div>
+        ) : (
+          <div style={savedContainer}>
+            {this.props.commentWrited.comment}
+          </div>
+        )}
       </div>
     )
   }
 }
 
-export default DiaryReviewShortInput
+const mapStateToProps = state => {
+  return {
+    commentWrited:
+      state.readComment.commentWrited,
+  }
+}
+
+const mapDispatchToprops = dispatch => {
+  return {
+    getCommentFromDB: date =>
+      dispatch(getCommentFromDB(date)),
+    postCommentToDB: requestBody =>
+      dispatch(postCommentToDB(requestBody)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToprops,
+)(DiaryReviewLongInput)
