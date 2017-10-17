@@ -20,7 +20,7 @@ export const segmentDefault = {
   boxShadow: 'none',
   marginTop: '0px',
   border: '1px solid #d8dde6',
-  marginBottom: '0px',
+  marginBottom: '14px',
 }
 
 export const cancelBtn = {

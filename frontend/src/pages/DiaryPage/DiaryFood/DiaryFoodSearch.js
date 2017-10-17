@@ -72,6 +72,7 @@ class DiaryFoodSearch extends Component {
           height: '331px',
         }}
       >
+        {console.log(source.title)}
         <Grid>
           <Grid.Column
             width={15}
