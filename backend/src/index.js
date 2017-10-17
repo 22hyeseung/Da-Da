@@ -9,6 +9,7 @@ const exercisesRouter = require('./router/exercises')
 const eatLogsRouter = require('./router/eat_logs')
 const foodsRouter = require('./router/foods')
 const weightRouter = require('./router/weight')
+const recipeRouter = require('./router/recipe')
 const reportRouter = require('./router/report')
 
 const app = express()
@@ -26,6 +27,7 @@ app.use('/exercises', exercisesRouter)
 app.use('/eat-logs', eatLogsRouter)
 app.use('/foods', foodsRouter)
 app.use('/weight', weightRouter)
+app.use('/recipe', recipeRouter)
 app.use('/report', reportRouter)
 
 app.listen(PORT, () => {
