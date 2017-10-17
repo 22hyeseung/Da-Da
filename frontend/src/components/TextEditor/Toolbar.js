@@ -12,7 +12,6 @@ import { colorStyleMap } from './StyledTextEditor'
 class Toolbar extends Component {
   constructor(props) {
     super(props)
-
     this.onInlineType = this._onInlineType.bind(
       this,
     )
@@ -25,7 +24,7 @@ class Toolbar extends Component {
   }
   // 인라인타입 버튼: bold, italic, underline, strikethrough
   _onInlineType = inlineType => {
-    this.onChange(
+    this.props.onChange(
       RichUtils.toggleInlineStyle(
         this.props.editorState,
         inlineType,
@@ -35,7 +34,7 @@ class Toolbar extends Component {
 
   // 블록타입 버튼: ol, ul, blockquote, header
   _onBlockType = blockType => {
-    this.onChange(
+    this.props.onChange(
       RichUtils.toggleBlockType(
         this.props.editorState,
         blockType,
