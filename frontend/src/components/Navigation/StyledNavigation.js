@@ -7,11 +7,14 @@ export const container = {
 // ===============================  Logo.js
 
 // 홈페이지 로고
-export const logo = {
+export const logoWrap = {
   fontSize: '25px',
-  textTransform: 'uppercase',
-  fontFamily: '"montserrat-bold", sans-serif',
   paddingLeft: '0',
+}
+
+export const logo = {
+  fontFamily: '"montserrat-bold", sans-serif',
+  textTransform: 'uppercase',
 }
 
 // =============================== RightMenu
