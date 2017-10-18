@@ -26,16 +26,19 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  * @apiName PostExercises
  * @apiGroup exercises
  *
- * @apiSuccess {Number} req.body.exercise_id exercise pk
- * @apiSuccess {Date} req.body.date 등록하고자 하는 날짜
- * @apiSuccess {Number} req.body.burn_kcal 사용자가 입력한 정보로 계산된 소모된 열량
+ * @apiParam {Number} user.id userid
+ * @apiParam {Number} exercise_id exercise pk
+ * @apiParam {Date} date 등록하고자 하는 날짜
+ * @apiParam {Number} burn_kcal 사용자가 입력한 정보로 계산된 소모된 열량
+ * @apiParam {Number} burn_minute 사용자가 입력한 운동시간
  *
  * @apiSuccessExample {Json} Success-Response:
  *{
  *   "burn_id": 6,
  *   "burn_exercise_id": null,
  *   "date": "2017-01-09T15:00:00.000Z",
- *   "kcal": 1
+ *   "kcal": 1,
+ *   "burn_minute": 30
  * }
  */
 router.post('/', (req, res) => {
@@ -63,6 +66,8 @@ router.post('/', (req, res) => {
  * @apiDescription 사용자가 운동별 1분당 소모열량 검색
  * @apiName GetExercises
  * @apiGroup exercises
+ *
+ * @apiParam {String} 사용자가 입력한 검색 글자
  *
  * @apiSuccess {Number} exercise_id exercise 번호
  * @apiSuccess {Number} exercise_burn_kcal 1분당 소모 열량
