@@ -25,12 +25,15 @@ router.use(bodyParser.urlencoded({ 'extended': false }))
  * @apiName getRecipe/search
  * @apiGroup recipe
  *
+ * @apiParam {String} name 레시피명
+ *
  * @apiSuccess {Integer} recipe_id recipe의 id값
  * @apiSuccess {String}  recipe_name_ko recipe의 한국명
  * @apiSuccess {String} recipe_time recipe의 소요시간
  * @apiSuccess {float} recipe_kcal recipe의 kcal
  *
  * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/recipe/search?name=피자
  * [
  *     {
  *         "recipe_id": 1,
@@ -65,6 +68,8 @@ router.get('/search', (req, res) => {
  * @apiName getRecipe
  * @apiGroup recipe
  *
+ * @apiParam {Integer} recipe_id 레시피의 id값
+ *
  * @apiSuccess {Integer} recipe_id recipe의 id값
  * @apiSuccess {String}  recipe_name_ko recipe의 한국명
  * @apiSuccess {String} recipe_name_en recipe의 영어명
@@ -80,6 +85,8 @@ router.get('/search', (req, res) => {
  * @apiSuccess {float} recipe_kcal recipe의 kcal
  *
  * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/recipe/search/1
+ * => 여기서 1은 recipe_id값이다.
  * {
  *     "recipe_id": 1,
  *     "recipe_name_ko": "피자",
