@@ -5,7 +5,6 @@ import {
   Label,
   Grid,
   Input,
-  List,
 } from 'semantic-ui-react'
 import * as Styled from './StyledDiaryFood'
 import FoodSelectDetails from './DiaryFoodSearchDetails'
@@ -14,7 +13,6 @@ import DiaryFoodAdd from './DiaryFoodAdd'
 import notyet from '../../../static/img/diary-food-search-notyet.svg'
 import error from '../../../static/img/diary-search-error.svg'
 import { connect } from 'react-redux'
-import { toggleSearchMode } from '../../../actions/diaryFood'
 
 class DiaryFoodSearch extends Component {
   constructor(props) {
@@ -343,7 +341,7 @@ class DiaryFoodSearch extends Component {
               <div className="diary-food-search-label">
                 <FoodSelectDetails
                   isSelected={
-                    this.state.selectedKey != -1
+                    this.state.selectedKey !== -1
                   }
                   calculateKcal={
                     this.state.resultKcal

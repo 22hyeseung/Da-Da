@@ -9,9 +9,7 @@ import {
   userInfoWrap,
   avatar,
 } from './StyledNavigation'
-import Loader from '../../components/Loader'
 import UserInfoPopup from './UserInfoPopup'
-import { getUserInfo } from '../../actions/auth.js'
 import { connect } from 'react-redux'
 
 class UserInfo extends Component {

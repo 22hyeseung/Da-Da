@@ -215,7 +215,6 @@ export const noResultMsg = {
 export const noResult = {
   display: 'flex',
   height: '169px',
-  justifyContent: 'space-between',
   flexDirection: 'column-reverse',
   justifyContent: 'center',
   alignItems: 'center',

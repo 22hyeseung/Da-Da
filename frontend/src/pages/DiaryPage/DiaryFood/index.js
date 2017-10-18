@@ -5,8 +5,6 @@ import {
   Label,
 } from 'semantic-ui-react'
 import DiaryFoodAdd from './DiaryFoodAdd'
-import DiaryFoodList from './DiaryFoodList'
-import DiaryFoodSearch from './DiaryFoodSearch'
 import DiaryFoodAlbum from './DiaryFoodAlbum'
 import foodIconDefault from '../../../static/img/diary-food_default.svg'
 import * as Style from './StyledDiaryFood'
