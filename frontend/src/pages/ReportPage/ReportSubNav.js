@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left'
-import MdKeyboardArrowRight from 'react-icons/lib/md/keyboard-arrow-right'
+import { Icon } from 'semantic-ui-react'
 import './Report.css'
 
 class ReportSubNav extends Component {
@@ -8,7 +7,7 @@ class ReportSubNav extends Component {
     return (
       <div className="report">
         <nav className="report-submenu">
-          <MdKeyboardArrowLeft />
+          <Icon name="chevron left" />
           <span className="report-date">
             2017.10.10.<span className="report-day">
               월
@@ -20,7 +19,7 @@ class ReportSubNav extends Component {
               일
             </span>
           </span>
-          <MdKeyboardArrowRight />
+          <Icon name="chevron right" />
         </nav>
       </div>
     )

@@ -64,7 +64,6 @@ class DiaryReviewLongInput extends Component {
     const dateTime = new Date()
     const date = dateTime.toLocaleDateString()
     const requestBody = {
-      member_id: 2,
       comment: localContent,
       date,
     }

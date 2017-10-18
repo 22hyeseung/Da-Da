@@ -7,6 +7,7 @@ import {
   Message,
   Dimmer,
   Loader,
+  Icon,
 } from 'semantic-ui-react'
 import {
   shortBox,
@@ -14,8 +15,6 @@ import {
   buttonIcon,
   shortSubmitBtn,
 } from './StyledDiaryReview'
-import FaPencil from 'react-icons/lib/fa/pencil'
-import FaTrashO from 'react-icons/lib/fa/trash-o'
 import {
   getRegretFromDB,
   postRegretToDB,
@@ -42,7 +41,6 @@ class DiaryReviewShortInput extends Component {
 
   // 반성일기 입력창에 값 입력시 state 변경
   handleRegretValueChange = e => {
-    console.log(e.target.value)
     this.setState({ regret: e.target.value })
   }
 
@@ -67,7 +65,6 @@ class DiaryReviewShortInput extends Component {
     const dateTime = new Date()
     const date = dateTime.toLocaleDateString()
     const requestBody = {
-      member_id: 2,
       regret: this.state.regret,
       date,
     }
@@ -76,7 +73,6 @@ class DiaryReviewShortInput extends Component {
     this.props.postRegretToDB(requestBody)
 
     // 요청 보낸 날짜로 다시 get
-    //
     this.saveRegretAndGetFromDB(date)
     // 이후 읽기모드로 전환
     this.changeMode()
@@ -163,11 +159,11 @@ class DiaryReviewShortInput extends Component {
                 }}
                 onClick={this.changeMode}
               >
-                <FaPencil size={17} />
+                <Icon name="pencil" />
               </Button>
               {/* 삭제 버튼 */}
               <Button style={buttonIcon}>
-                <FaTrashO size={17} />
+                <Icon name="trash outline" />
               </Button>
             </Header>
             <div
