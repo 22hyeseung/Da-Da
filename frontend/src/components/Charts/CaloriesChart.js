@@ -7,6 +7,8 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ComposedChart,
+  Line,
 } from 'recharts'
 
 const data = [
@@ -16,6 +18,7 @@ const data = [
     점심: 380,
     저녁: 210,
     간식: 120,
+    목표칼로리: 1400,
   },
   {
     day: '4/13',
@@ -23,6 +26,7 @@ const data = [
     점심: 650,
     저녁: 110,
     간식: 0,
+    목표칼로리: 1300,
   },
   {
     day: '4/14',
@@ -30,6 +34,7 @@ const data = [
     점심: 260,
     저녁: 280,
     간식: 120,
+    목표칼로리: 1400,
   },
   {
     day: '4/15',
@@ -37,6 +42,7 @@ const data = [
     점심: 340,
     저녁: 200,
     간식: 140,
+    목표칼로리: 1200,
   },
   {
     day: '4/16',
@@ -44,6 +50,7 @@ const data = [
     점심: 480,
     저녁: 400,
     간식: 36,
+    목표칼로리: 1100,
   },
   {
     day: '4/17',
@@ -51,6 +58,7 @@ const data = [
     점심: 620,
     저녁: 120,
     간식: 100,
+    목표칼로리: 1400,
   },
   {
     day: '4/18',
@@ -58,31 +66,32 @@ const data = [
     점심: 610,
     저녁: 280,
     간식: 0,
+    목표칼로리: 1600,
   },
 ]
 class CaloriesChart extends Component {
   render() {
     return (
-      <BarChart
+      <ComposedChart
         width={850}
         height={300}
         data={data}
         margin={{
           top: 20,
-          right: 30,
-          left: 0,
+          right: 20,
           bottom: 5,
+          left: 0,
         }}
       >
         <XAxis dataKey="day" />
         <YAxis />
         <CartesianGrid strokeDasharray="3 3" />
-        <Tooltip />
         <Legend
           verticalAlign="top"
           align="right"
-          iconType="circle"
+          wrapperStyle={{ paddingBottom: 20 }}
         />
+        <Tooltip />
         <Bar
           dataKey="아침"
           stackId="a"
@@ -104,10 +113,15 @@ class CaloriesChart extends Component {
         <Bar
           dataKey="간식"
           stackId="a"
-          fill="#e5e5e5"
+          fill="#e0e5ee"
           maxBarSize={55}
         />
-      </BarChart>
+        <Line
+          type="monotone"
+          dataKey="목표칼로리"
+          stroke="#26d0ce"
+        />
+      </ComposedChart>
     )
   }
 }
