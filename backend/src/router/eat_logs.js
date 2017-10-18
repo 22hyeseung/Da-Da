@@ -25,6 +25,13 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  * @apiName postEatLogs
  * @apiGroup eatlog
  *
+ * @apiParam {Integer} food_id 입력 food등록
+ * @apiParam {Integer} recipe_id 입력 recipe등록
+ * @apiParam {Enum} meal_tag 아침,점심,저녁,간식인지 구분
+ * @apiParam {Float} amount 먹은양 기록
+ * @apiParam {String} picture 사진을 기록
+ * @apiParam {Date} date 등록일
+ *
  * @apiSuccess {Integer} eat_log_id eat_log에 남겨지는 id
  * @apiSuccess {Integer} eat_log_member_id 기록한 member의 id
  * @apiSuccess {Integer} eat_log_food_id food를 기록할시 food_id 입력
@@ -35,6 +42,7 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  * @apiSuccess {Date} eat_log_diary_date 등록일
  *
  * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/eat-logs
  * [
  *     {
  *         "eat_log_id": 1,
@@ -83,6 +91,8 @@ router.post('/', (req, res) => {
  * @apiName eat-logs
  * @apiGroup eatlog
  *
+ * @apiParam {Date} date 등록일
+ *
  * @apiSuccess {Integer} eat_log_id eat_log에 남겨지는 id
  * @apiSuccess {Integer} eat_log_member_id 기록한 member의 id
  * @apiSuccess {Integer} eat_log_food_id food를 기록할시 food_id 입력
@@ -92,6 +102,7 @@ router.post('/', (req, res) => {
  * @apiSuccess {Date} eat_log_diary_date 등록일
  *
  * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/eat-logs?date=20171010
  * {
  *     "foodresult": [
  *         {

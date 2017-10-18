@@ -118,52 +118,60 @@ router.get('/nutrition/summary', (req, res) => {
 })
 
 /**
- * @api {get} /kcal/days Get Kcal for summary
+ * @api {get} /kcal/days Get Kcal
  * @apiDescription 레포트에서 특정 기간동안의 입력했던 먹은 음식들의 일별 칼로리
- * @apiName
- * @apiGroup
+ * @apiName getKcalDays
+ * @apiGroup report
  *
- * @apiSuccess {array} food_kcals food서치를 통해 등록한 기록에 대한 열량
- * @apiSuccess {array} recipe_kcals recipe 서치를 통해 등록한 기록에 대한 열량
- * @apiSuccess {array} goal_kcal 사용자가 입력한 당일 목표 섭취 칼로리
- * @apiSuccess {Number} eat_log_member_id user아이디
- * @apiSuccess {Date} eat_log_diary_date 기록한 날짜
- * @apiSuccess {Number} eat_log_id 데이터베이스 식별자
+ * @apiParam {String} start_date 시작일 YYYYMMDD
+ * @apiParam {String} end_date 종료일 YYYYMMDD
+ *
+ * @apiSuccess {Number} eat_log_meal_tag 사용자가 섭취한 시기
+ * @apiSuccess {Number} day_log_diary_date 사용자가 등록한 섭취일자
+ * @apiSuccess {Number} sum(kcal) 사용자가 meal_tag에 섭취한 당일 열량
+ * @apiSuccess {Number} day_log_kcal 사용자가 입력한 당일 목표 섭취 칼로리
  *
  * @apiSuccessExample {json} Success-Respoonse:
- * {
- *    "food_kcals": [
- *        {
- *            "eat_log_member_id": 1,
- *            "eat_log_diary_date": "2017-10-09T15:00:00.000Z",
- *            "eat_log_id": 2,
- *            "eat_log_recipe_id": null,
- *            "eat_log_serve": null,
- *            "food_kcal": 57.68
- *        },
- *        {
- *            "eat_log_member_id": 1,
- *            "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
- *            "eat_log_id": 3,
- *            "eat_log_recipe_id": null,
- *            "eat_log_serve": null,
- *            "food_kcal": 57.68
- *        }
- *    ],
- *    "recipe_kcals": [
- *        {
- *            "eat_log_member_id": 1,
- *            "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
- *            "eat_log_id": 4,
- *            "eat_log_recipe_id": 1,
- *            "eat_log_serve": 40,
- *            "recipe_kcal": 292
- *        }
- *    ],
- *   "goal_kcal": []
- * }
- *
- */
+ * http://localhost:5000/report/kcal/days?start_date=20170101&end_date=20170102
+ *[
+ *    {
+ *        "eat_log_meal_tag": null,
+ *        "eat_log_diary_date": "2017-10-09T15:00:00.000Z",
+ *        "sum(kcal)": 74.96,
+ *        "day_log_kcal": 1200
+ *    },
+ *    {
+ *        "eat_log_meal_tag": null,
+ *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
+ *        "sum(kcal)": 85.93,
+ *        "day_log_kcal": 1200
+ *    },
+ *    {
+ *        "eat_log_meal_tag": "간식",
+ *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
+ *        "sum(kcal)": 37.48,
+ *        "day_log_kcal": 1200
+ *    },
+ *    {
+ *        "eat_log_meal_tag": "아침",
+ *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
+ *        "sum(kcal)": 9.37,
+ *        "day_log_kcal": 1200
+ *    },
+ *    {
+ *        "eat_log_meal_tag": "저녁",
+ *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
+ *        "sum(kcal)": 28.11,
+ *        "day_log_kcal": 1200
+ *    },
+ *    {
+ *        "eat_log_meal_tag": "점심",
+ *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
+ *        "sum(kcal)": 18.74,
+ *        "day_log_kcal": 1200
+ *    }
+ *]
+ * */
 router.get('/kcal/days', (req, res) => {
   const param = {
     'eat_log_member_id': req.user.id,
@@ -172,13 +180,10 @@ router.get('/kcal/days', (req, res) => {
   }
 
   if (param.start_date && param.end_date) {
-    query.getReportKcalByDateF(param)
-      .then(food_kcal => {
-        query.getReportKcalByDateR(param)
-          .then(recipe_kcal => {
-            res.send({ food_kcal, recipe_kcal })
-          })
-      })
+    query.getReportKcalByDate(param)
+    .then(meal_kcal => {
+      res.send(meal_kcal)
+    })
   } else {
     res.status(405)
     res.send('조회 기간을 지정 해야합니다.')
@@ -186,7 +191,7 @@ router.get('/kcal/days', (req, res) => {
 })
 
 /**
-  * @api {get} /kcal/summary GetKcalSummaryDate
+ * @api {get} /kcal/summary GetKcalSummaryDate
  * @apiDescription 사용자의 아침,점심,저녁,간식의 비중을 요약
  * @apiName getKcalSummaryDate
  * @apiGroup report
@@ -199,6 +204,7 @@ router.get('/kcal/days', (req, res) => {
  * @apiSuccess {Number} sum(kcal) 합계
  *
  * @apiSuccessExample {json} Success-Respoonse:
+ * http://localhost:5000/report/kcal/summary?start_date=20170101&end_date=20170102
  * [
  *     {
  *         "eat_log_meal_tag": null,
