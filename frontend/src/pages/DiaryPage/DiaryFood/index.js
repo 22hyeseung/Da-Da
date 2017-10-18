@@ -74,7 +74,7 @@ const DiaryFood = () => {
             <Label.Detail>100 kcal</Label.Detail>
           </Label>
         </div>
-        <DiaryFoodSearch />
+        <DiaryFoodAdd />
       </Segment>
       {/* 점심 식사 끝 */}
       {/* 저녁 식사 시작 */}
@@ -96,7 +96,6 @@ const DiaryFood = () => {
             <Label.Detail>100 kcal</Label.Detail>
           </Label>
         </div>
-        <DiaryFoodList />
         <DiaryFoodAdd />
       </Segment>
       {/* 저녁 식사 끝 */}
