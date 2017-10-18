@@ -13,7 +13,6 @@ import WeightPage from './pages/WeightPage'
 import SearchPage from './pages/SearchPage'
 import SharePage from './pages/SharePage'
 import RecipePage from './pages/RecipePage'
-import NotFoundPage from './pages/404Page'
 
 /* 페이지 확인용 라우터 -> 나중에 ajax로 처리할 화면입니다.*/
 import SearchResultPage from './pages/SearchPage/ResultPage'

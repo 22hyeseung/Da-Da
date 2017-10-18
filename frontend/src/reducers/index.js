@@ -1,6 +1,5 @@
-import { weigthListReducer } from './weight'
-import { diaryFoodReducer } from './diaryFood'
 import { combineReducers } from 'redux'
+import { diaryFoodReducer } from './diaryFood'
 import { weigthListReducer } from './weight'
 import authReducer from './auth'
 import navActiveItemReducer from './navActiveItem'

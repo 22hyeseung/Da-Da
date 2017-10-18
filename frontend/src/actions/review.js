@@ -1,21 +1,18 @@
 import * as types from './ActionTypes'
-import { SERVER_HOSTNAME } from '../config'
+import { rootApi } from '../config'
 
 export const getRegretFromDB = date => {
   return dispatch => {
     dispatch({
       type: types.GET_REGRET_REQUEST,
     })
-    fetch(
-      `${SERVER_HOSTNAME}/regret?date=${date}`,
-      {
-        method: 'GET',
-        header: {
-          Authorization: `Bearer ${window
-            .localStorage.token}`,
-        },
+    fetch(`${rootApi}/regret?date=${date}`, {
+      method: 'GET',
+      header: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
       },
-    )
+    })
       .then(res => res.json())
       .then(data => {
         dispatch({
@@ -33,7 +30,7 @@ export const getRegretFromDB = date => {
 
 export const postRegretToDB = requestBody => {
   return dispatch => {
-    return fetch(`${SERVER_HOSTNAME}/regret`, {
+    return fetch(`${rootApi}/regret`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -60,16 +57,13 @@ export const getCommentFromDB = date => {
     dispatch({
       type: types.GET_COMMENT_REQUEST,
     })
-    fetch(
-      `${SERVER_HOSTNAME}/comment?date=${date}`,
-      {
-        method: 'GET',
-        header: {
-          Authorization: `Bearer ${window
-            .localStorage.token}`,
-        },
+    fetch(`${rootApi}/comment?date=${date}`, {
+      method: 'GET',
+      header: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
       },
-    )
+    })
       .then(res => res.json())
       .then(data => {
         dispatch({
@@ -87,7 +81,7 @@ export const getCommentFromDB = date => {
 
 export const postCommentToDB = requestBody => {
   return dispatch => {
-    return fetch(`${SERVER_HOSTNAME}/comment`, {
+    return fetch(`${rootApi}/comment`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
