@@ -213,24 +213,34 @@ router.get('/comment', (req, res) => {
  * @apiName PostKg
  * @apiGroup diary
  *
- * @apiSuccess {Number} user.id 사용자 id
- * @apiSuccess {Date} date 사용자가 입력한 날짜
- * @apiSuccess {Number} kg 사용자가 입력한 몸무게
+ * @apiParam {Number} user.id 사용자 id
+ * @apiParam {Date} date 오늘날짜
+ * @apiParam {Number} kg 사용자가 입력한 몸무게
  *
  * @apiSuccesExample {json} Success-Response:
- * {
- *  "day_kg": {
- *      "day_log_id": 1,
- *      "day_log_member_id": 1,
- *      "day_log_height": null,
- *      "day_log_kg": 47.6,
- *      "day_log_kcal": null,
- *      "day_log_regret": null,
- *      "day_log_comment": null,
- *      "day_log_diary_date": "2017-10-09T15:00:00.000Z",
- *      "day_log_submit_time": "2017-10-13T23:50:32.000Z"
- *  }
-*}
+ * http://localhost:5000/diary/kg
+ * [
+ *     {
+ *         "day_log_kg": null,
+ *         "day_log_member_id": 1,
+ *         "day_log_diary_date": "2017-10-10T15:00:00.000Z"
+ *     },
+ *     {
+ *         "day_log_kg": 50,
+ *         "day_log_member_id": 1,
+ *         "day_log_diary_date": "2017-10-10T15:00:00.000Z"
+ *     },
+ *     {
+ *         "day_log_kg": 47.6,
+ *         "day_log_member_id": 1,
+ *         "day_log_diary_date": "2017-10-09T15:00:00.000Z"
+ *     },
+ *     {
+ *         "day_log_kg": 46,
+ *         "day_log_member_id": 1,
+ *         "day_log_diary_date": "2016-12-31T15:00:00.000Z"
+ *     }
+ * ]
  */
 router.post('/kg', (req, res) => {
   const day_log_kg = {
@@ -241,24 +251,28 @@ router.post('/kg', (req, res) => {
 
   query.postDayKgbyUser(day_log_kg)
     .then(() => {
-      query.getSelectDayLog(day_log_kg)
+      query.getKgByDate(day_log_kg)
         .then(day_kg => {
-          res.send({ day_kg })
+          res.send(day_kg)
         })
     })
 })
 
 /**
  * @api {get} diary/kg Get Kg
- * @apiDescription 최근 입력한 체중 5개만 출력
+ * @apiDescription 최근 입력한 체중 4개만 출력
  * @apiName GetKg
  * @apiGroup diary
  *
- * @apiSuccess {Number} user.id 사용자 id
- * @apiSuccess {Date} date '오늘'을 기준
- * @apiSuccess {Number} kg 사용자가 입력했던 몸무게
+ * @apiParam {Number} user.id 사용자 id
+ * @apiParam {Date} date '오늘'을 기준
+ *
+ * @apiSuccess {Number} day_log_kg 사용자가 입력했던 몸무게
+ * @apiSuccess {Number} day_log_member_id 사용자id
+ * @apiSuccess {Number} day_log_diary_date 사용자가 입력했던 date
  *
  * @apiSuccesExample {json} Success-Response:
+ * http://localhost:5000/diary/kg?date=20170101
  *  [
  *    {
  *        "day_log_kg": 47.6,
