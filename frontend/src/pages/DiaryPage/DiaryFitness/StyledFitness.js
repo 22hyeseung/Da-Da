@@ -23,9 +23,8 @@ export const header = {
 }
 
 export const subHeader = {
-  fontFamily: 'montserrat',
+  fontFamily: 'montserrat-bold',
   fontSize: '14px',
-  fontWeight: '600',
   color: '#1f2e79',
 }
 

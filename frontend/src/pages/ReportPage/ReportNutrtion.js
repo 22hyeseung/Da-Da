@@ -19,9 +19,8 @@ class ReportNutrtion extends Component {
         >
           <Header.Subheader
             style={{
-              fontFamily: 'montserrat',
+              fontFamily: 'montserrat-bold',
               fontSize: '14px',
-              fontWeight: '600',
               textAlign: 'left',
               color: '#1f2e79',
             }}
