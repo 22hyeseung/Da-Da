@@ -6,13 +6,16 @@ export const getRegretFromDB = date => {
     dispatch({
       type: types.GET_REGRET_REQUEST,
     })
-    fetch(`${rootApi}/regret?date=${date}`, {
-      method: 'GET',
-      header: {
-        Authorization: `Bearer ${window
-          .localStorage.token}`,
+    fetch(
+      `${rootApi}/diary/regret?date=${date}`,
+      {
+        method: 'GET',
+        header: {
+          Authorization: `Bearer ${window
+            .localStorage.token}`,
+        },
       },
-    })
+    )
       .then(res => res.json())
       .then(data => {
         dispatch({
@@ -30,7 +33,7 @@ export const getRegretFromDB = date => {
 
 export const postRegretToDB = requestBody => {
   return dispatch => {
-    return fetch(`${rootApi}/regret`, {
+    return fetch(`${rootApi}/diary/regret`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -57,13 +60,16 @@ export const getCommentFromDB = date => {
     dispatch({
       type: types.GET_COMMENT_REQUEST,
     })
-    fetch(`${rootApi}/comment?date=${date}`, {
-      method: 'GET',
-      header: {
-        Authorization: `Bearer ${window
-          .localStorage.token}`,
+    fetch(
+      `${rootApi}/diary/comment?date=${date}`,
+      {
+        method: 'GET',
+        header: {
+          Authorization: `Bearer ${window
+            .localStorage.token}`,
+        },
       },
-    })
+    )
       .then(res => res.json())
       .then(data => {
         dispatch({
@@ -81,7 +87,7 @@ export const getCommentFromDB = date => {
 
 export const postCommentToDB = requestBody => {
   return dispatch => {
-    return fetch(`${rootApi}/comment`, {
+    return fetch(`${rootApi}/diary/comment`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -91,7 +97,7 @@ export const postCommentToDB = requestBody => {
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result)
+        // console.log(result)
         dispatch({
           type: types.POST_COMMENT_TO_DATABASE,
           payload: result,
