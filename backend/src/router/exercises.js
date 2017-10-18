@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
  * @apiName GetExercises
  * @apiGroup exercises
  *
- * @apiParam {String} 사용자가 입력한 검색 글자
+ * @apiParam {String} name 사용자가 입력한 검색 글자
  *
  * @apiSuccess {Number} exercise_id exercise 번호
  * @apiSuccess {Number} exercise_burn_kcal 1분당 소모 열량
