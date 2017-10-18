@@ -105,13 +105,14 @@ function postDayKgbyUser({ day_log_member_id, day_log_kg, day_log_diary_date }) 
     })
 }
 
-function insertBurnById({ burn_member_id, burn_exercise_id, burn_date, burn_kcal }) {
+function insertBurnById({ burn_member_id, burn_exercise_id, burn_date, burn_kcal, burn_minute }) {
   return knex('burn')
     .insert({
       burn_member_id,
       burn_exercise_id,
       burn_date,
-      burn_kcal
+      burn_kcal,
+      burn_minute
     })
     .then(([burn_id]) => {
       return knex('burn')
