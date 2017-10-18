@@ -29,7 +29,7 @@ class WeightDaily extends Component {
 
   componentDidMount() {
     {
-      this.props.fetchWeight()
+      // this.props.fetchWeight()
     }
   }
 
