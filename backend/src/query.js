@@ -308,6 +308,36 @@ function getReportKcalByDateAvg({ eat_log_member_id, start_date, end_date }) {
     .whereBetween('eat_log_diary_date', [start_date, end_date])
 }
 
+function getReportNutrition({ eat_log_member_id, start_date, end_date }) {
+  return knex('view_eat_log_type2')
+    .select(
+      'eat_log_member_id', 'eat_log_diary_date',
+      knex.raw('round(sum(carb),3) as carb'),
+      knex.raw('round(sum(protein),3) as protein'),
+      knex.raw('round(sum(fat),3) as fat')
+    )
+    .where({ eat_log_member_id })
+    .andWhere('eat_log_diary_date', '>=', start_date)
+    .andWhere('eat_log_diary_date', '<=', end_date)
+    .groupBy('eat_log_member_id', 'eat_log_diary_date')
+    .orderBy('eat_log_member_id', 'eat_log_diary_date')
+    .then()
+}
+
+function getReportNutritionSum({ eat_log_member_id, start_date, end_date }) {
+  return knex('view_eat_log_type2')
+    .select(
+      'eat_log_member_id',
+      knex.raw('round(sum(carb),3) as carb'),
+      knex.raw('round(sum(protein),3) as protein'),
+      knex.raw('round(sum(fat),3) as fat')
+    )
+    .where({ eat_log_member_id })
+    .andWhere('eat_log_diary_date', '>=', start_date)
+    .andWhere('eat_log_diary_date', '<=', end_date)
+    .first()
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -333,5 +363,7 @@ module.exports = {
   getFirstKgById,
   getReportKcalByDateF,
   getReportKcalByDateR,
-  getReportKcalByDateAvg
+  getReportKcalByDateAvg,
+  getReportNutrition,
+  getReportNutritionSum
 }
