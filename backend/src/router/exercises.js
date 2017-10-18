@@ -43,7 +43,8 @@ router.post('/', (req, res) => {
     'burn_member_id': req.user.id,
     'burn_exercise_id': req.body.exercise_id,
     'burn_date': req.body.date,
-    'burn_kcal': req.body.kcal
+    'burn_kcal': req.body.kcal,
+    'burn_minute': req.body.burn_minute
   }
   query.insertBurnById(exercise_data)
     .then(burn => {
@@ -51,7 +52,8 @@ router.post('/', (req, res) => {
         'burn_id': burn.burn_id,
         'burn_exercise_id': burn.burn_exercise_id,
         'burn_date': burn.burn_date,
-        'burn_kcal': burn.burn_kcal
+        'burn_kcal': burn.burn_kcal,
+        'burn_minute': burn.burn_minute
       })
     })
 })
