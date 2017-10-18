@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import * as Style from './StyledDiaryFood'
 import { Input, Icon } from 'semantic-ui-react'
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import returnIcon from '../../../static/img/diary-return.svg'

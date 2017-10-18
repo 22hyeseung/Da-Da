@@ -13,7 +13,6 @@ import {
   postWeightToDB,
   fetchWeightToDB,
 } from '../../actions/weight.js'
-import map from 'lodash/map'
 
 class WeightDaily extends Component {
   constructor(props) {
