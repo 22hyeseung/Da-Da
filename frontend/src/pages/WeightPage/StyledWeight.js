@@ -28,6 +28,7 @@ export const weightAddBtn = {
   alignItems: 'center',
   fontFamily: 'Spoqa Han Sans',
   padding: '9px',
+  // marginBottom: '10px',
 }
 
 export const listItem = {

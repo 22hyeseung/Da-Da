@@ -20,13 +20,15 @@
 
 .weight-progress {
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 90px;
+    margin: 0px 77px;
 }
 
 .weight-progress-bar-start,
 .weight-progress-bar-end {
+    width: 15%;
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -46,8 +48,8 @@
     flex-direction: column;
     list-style: none;
     position: absolute;
-    margin: 0px 200px;
-    left: 19.8rem;
+    width: 80%;
+    left: 10%;
 }
 
 .weight-progress-bar-rec {

@@ -3,18 +3,8 @@
 // 2. 갱신된 db 값 받는 action
 
 const DEFAULT_WEIGHT_LISTS = {
-  // DB 연결되면 빈 배열로 변경예정
   // 최신값 배열이 첫번째에오도록
-  weightListItem: [
-    {
-      date: '2017년 10월 10일 월',
-      weight: '70',
-    },
-    {
-      date: '2017년 10월 11일 월',
-      weight: '60',
-    },
-  ],
+  weightListItem: [],
 }
 
 // Fetch한 데이터 변경해주는 reducer
@@ -26,6 +16,14 @@ export const weigthListReducer = (
     return {
       ...state,
       weightListItem: [...action.payload],
+    }
+  }
+  if (action.type === 'POST_WEIGHT_TO_DATABASE') {
+    return {
+      weightListItem: [
+        action.payload,
+        ...state.weightListItem,
+      ],
     }
   }
   return {
