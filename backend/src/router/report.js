@@ -21,7 +21,7 @@ router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
  */
 
 /**
- * @api {get} /nutrition/days Get ReportNutrition
+ * @api {get} /report/nutrition/days Get ReportNutrition
  * @apiDescription 사용자의 영양분을 일별기간 통계낸다.
  * @apiName getReportNutrition
  * @apiGroup report
@@ -36,7 +36,7 @@ router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
  * @apiSuccess {Number} fat 지방
  *
  * @apiSuccessExample {json} Success-Respoonse:
- * /nutrition/days?start_date=20171010&end_date=20171016
+ * /report/nutrition/days?start_date=20171010&end_date=20171016
  *
  * [
  *     {
@@ -75,7 +75,7 @@ router.get('/nutrition/days', (req, res) => {
 })
 
 /**
- * @api {get} /nutrition/summary Get ReportNutritionSum
+ * @api {get} /report/nutrition/summary Get ReportNutritionSum
  * @apiDescription 사용자의 영양분을 기간내 합산한다.
  * @apiName ReportNutritionSummary
  * @apiGroup report
@@ -89,6 +89,8 @@ router.get('/nutrition/days', (req, res) => {
  * @apiSuccess {Number} fat 지방
  *
  * @apiSuccessExample {json} Success-Respoonse:
+ * /report/nutrition/summary?start_date=20171010&end_date=20171016
+ *
  * {
  *     "eat_log_member_id": 7,
  *     "carb": 971.45,
