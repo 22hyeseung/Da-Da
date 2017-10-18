@@ -37,7 +37,7 @@ class LoginPage extends Component {
     })
       .then(res => res.json())
       .then(userInfo => {
-        this.props.I_WANT_SAVE_USER_INFO(userInfo)
+        this.props.saveUserInfo(userInfo)
       })
   }
 
@@ -181,7 +181,7 @@ const mapDispatchtoProps = dispatch => {
   return {
     saveToken: token =>
       dispatch(saveToken(token)),
-    I_WANT_SAVE_USER_INFO: user =>
+    saveUserInfo: user =>
       dispatch(getUserInfo(user)),
   }
 }
