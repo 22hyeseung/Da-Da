@@ -9,7 +9,10 @@ import {
   userInfoWrap,
   avatar,
 } from './StyledNavigation'
+import Loader from '../../components/Loader'
 import UserInfoPopup from './UserInfoPopup'
+import { getUserInfo } from '../../actions/auth.js'
+import { connect } from 'react-redux'
 
 class UserInfo extends Component {
   render() {
@@ -18,23 +21,40 @@ class UserInfo extends Component {
         <Image
           style={avatar}
           shape="circular"
-          src="https://placeimg.com/34/34/people"
+          src={this.props.userInfo.userAvatar}
         />
         <Popup
           wide
           trigger={
             <Button
               inverted={this.props.inverted}
-              content="홍길동"
+              content={
+                this.props.userInfo.userName
+              }
             />
           }
           on="click"
         >
-          <UserInfoPopup />
+          <UserInfoPopup
+            userName={
+              this.props.userInfo.userName
+            }
+            userAvatar={
+              this.props.userInfo.userAvatar
+            }
+          />
         </Popup>
       </Menu.Item>
     )
   }
 }
 
-export default UserInfo
+const mapStateToProps = state => {
+  return {
+    userInfo: state.auth.userInfo,
+  }
+}
+
+export default connect(mapStateToProps, null)(
+  UserInfo,
+)

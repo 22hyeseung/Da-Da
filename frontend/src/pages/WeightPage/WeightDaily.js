@@ -192,6 +192,7 @@ class WeightDaily extends Component {
 }
 const mapStateToProps = state => {
   return {
+<<<<<<< HEAD
     weightListItem:
       state.weightList.weightListItem,
   }
@@ -203,11 +204,14 @@ const mapDispatchToProps = dispatch => {
       dispatch(postWeightToDB(payload)),
     fetchWeight: () =>
       dispatch(fetchWeightToDB()),
+=======
+    // weightListItem:
+    //   state.weightList.weightListItem,
+>>>>>>> ny-Login/ft-login
   }
 }
 
 // export default WeightDaily
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(WeightDaily)
+export default connect(mapStateToProps, null)(
+  WeightDaily,
+)
