@@ -171,6 +171,8 @@ router.get('/', (req, res) => {
  * @apiSuccess {Date} today_fat 하루 섭취 지방
  *
  * @apiSuccessExample {json} Success-Response:
+ * GET: /eat-logs/summary?date=20171010
+ *
  * {
  *     "member_id": 1,
  *     "date": "20171015",

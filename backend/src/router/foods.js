@@ -35,6 +35,8 @@ router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
  * @apiSuccess {String} food_unit 단위(g, ml)
  *
  * @apiSuccessExample {json} Success-Respoonse:
+ * /foods?name=덮밥
+ *
  * [
  *     {
  *         "food_id": 21,

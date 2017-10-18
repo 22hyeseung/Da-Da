@@ -36,6 +36,8 @@ router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
  * @apiSuccess {Number} fat 지방
  *
  * @apiSuccessExample {json} Success-Respoonse:
+ * /nutrition/days?start_date=20171010&end_date=20171016
+ *
  * [
  *     {
  *         "eat_log_member_id": 7,
@@ -157,8 +159,9 @@ router.get('/nutrition/summary', (req, res) => {
  *        }
  *    ],
  *   "goal_kcal": []
- *}
- * */
+ * }
+ *
+ */
 router.get('/kcal/days', (req, res) => {
   const param = {
     'eat_log_member_id': req.user.id,
