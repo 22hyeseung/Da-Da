@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apidoc": "^0.17.6",
     "draft-js": "^0.10.3",
     "draft-js-plugins-editor": "2.0.0-rc8",
     "faker": "^4.1.0",
@@ -16,6 +17,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "recharts": "^1.0.0-alpha.6",
+    "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",

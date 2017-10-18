@@ -33,6 +33,11 @@
     display: none;
 }
 
+.weight-alert {
+    color: tomato;
+    padding: 10px;
+}
+
 .weight-daily {
     box-shadow: 0 2px 5px 0 rgba(79, 64, 64, 0.2);
     padding: 27px 27px 180px 27px;
@@ -53,6 +58,7 @@
 
 .weight-add-wrapper {
     display: flex;
+    margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 1200px) {

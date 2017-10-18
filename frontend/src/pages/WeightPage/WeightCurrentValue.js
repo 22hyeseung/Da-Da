@@ -4,6 +4,16 @@ import { connect } from 'react-redux'
 
 class WeightCurrentValue extends Component {
   render() {
+    let recentWeight = 0
+
+    this.props.weightListItem.forEach(item => {
+      if (
+        item.id ===
+        this.props.weightListItem.length
+      ) {
+        recentWeight = item.weight
+      }
+    })
     return (
       <div className="weight-current-wrapper">
         <div>
@@ -14,7 +24,7 @@ class WeightCurrentValue extends Component {
         </div>
         <div>
           <span className="weight-current">
-            {this.props.weightListItem[0].weight}
+            {recentWeight}
           </span>
           <span className="weight-unit-kg">
             kg

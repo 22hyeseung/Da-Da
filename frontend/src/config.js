@@ -1,5 +1,3 @@
-export const SERVER_HOSTNAME =
-  'http://localhost:3333'
+const rootApi = 'https://api.downmix.net'
 
-// export const SERVER_HOSTNAME =
-// 'http://api.downmix.net/'
+export default rootApi

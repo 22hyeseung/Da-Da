@@ -148,3 +148,31 @@ export const row_3 = {
 }
 
 export const logout = { height: '36px' }
+
+export const notLogoutBtn = {
+  color: 'white',
+  fontFamily: 'Spoqa Han Sans',
+  fontWeight: '100',
+  padding: '10px 34px',
+  backgroundImage:
+    'linear-gradient(259deg, #26d0ce, #1a2980)',
+  marginRight: '0px',
+}
+
+export const logoutContent = {
+  textAlign: 'center',
+  paddingBottom: '0px',
+}
+
+export const logoutImg = {
+  marginBottom: '10px',
+  width: '100%',
+  borderRadius: '4px',
+}
+export const logoutHeader = {
+  fontSize: '21px',
+  display: 'block',
+  paddingBottom: '14px',
+  color: '#54698d',
+  fontWeight: '300',
+}

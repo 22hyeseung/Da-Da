@@ -9,28 +9,49 @@ import MdAdd from 'react-icons/lib/md/add'
 import ArrowDown from '../../static/img/weight-daily-arrowDown.svg'
 import * as Style from './StyledWeight'
 import { connect } from 'react-redux'
-import { postWeightToDB } from '../../actions/weight.js'
+import {
+  postWeightToDB,
+  fetchWeightToDB,
+} from '../../actions/weight.js'
+import map from 'lodash/map'
 
 class WeightDaily extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      date: '',
       weight: '',
       isPostMode: false,
+      isFocusMode: false,
+      valueAlert: '',
+      isPositiveNum: false,
+    }
+  }
+
+  componentDidMount() {
+    {
+      this.props.fetchWeight()
     }
   }
 
   handleWeightValueChange = e => {
+    if (e.target.value < 1) {
+      return this.setState({
+        valueAlert: '1 이상의 값을 입력하세요 ',
+        isPositiveNum: true,
+      })
+    }
     this.setState({
+      valueAlert: '',
+      isPositiveNum: false,
       weight: e.target.value,
     })
   }
 
-  togglePostingMode = e =>
+  togglePostingMode = e => {
     this.setState({
       isPostMode: !this.state.isPostMode,
     })
+  }
 
   closeAndResetValue = e =>
     this.setState({
@@ -40,11 +61,15 @@ class WeightDaily extends Component {
     })
 
   createPayloadAndPostToDB = () => {
+    const dateTime = new Date()
+    const date = dateTime.toLocaleDateString()
+
     if (!this.state.weight) {
       return
     }
     this.props.postWeightToDB({
-      date: this.state.date,
+      id: '',
+      date: date,
       weight: this.state.weight,
     })
     this.closeAndResetValue()
@@ -66,30 +91,42 @@ class WeightDaily extends Component {
           {/* title 끝 */}
 
           {this.state.isPostMode ? (
-            <div className="weight-add-wrapper">
-              <Input
-                focus
-                fluid
-                style={{
-                  width: '100%',
-                }}
-                placeholder="몸무게를 입력하세요"
-                onChange={e =>
-                  this.handleWeightValueChange(e)}
-              />
-              <Button
-                style={{
-                  ...Style.weightAddBtn,
-                  marginLeft: '7px',
-                  width: '84px',
-                }}
-                disabled={!this.state.weight}
-                onClick={
-                  this.createPayloadAndPostToDB
-                }
-              >
-                입력
-              </Button>
+            <div>
+              <div className="weight-add-wrapper">
+                <Input
+                  focus
+                  fluid
+                  error={this.state.isPositiveNum}
+                  type="number"
+                  style={{
+                    width: '100%',
+                  }}
+                  placeholder="몸무게를 입력하세요"
+                  onChange={e =>
+                    this.handleWeightValueChange(
+                      e,
+                    )}
+                />
+
+                <Button
+                  style={{
+                    ...Style.weightAddBtn,
+                    marginLeft: '7px',
+                    width: '84px',
+                  }}
+                  disabled={
+                    this.state.isPositiveNum
+                  }
+                  onClick={
+                    this.createPayloadAndPostToDB
+                  }
+                >
+                  입력
+                </Button>
+              </div>
+              <span className="weight-alert">
+                {this.state.valueAlert}
+              </span>
             </div>
           ) : (
             <Button
@@ -104,7 +141,6 @@ class WeightDaily extends Component {
               오늘 체중 기록하기
             </Button>
           )}
-
           {/* 리스트 시작 */}
           <List divided verticalAlign="bottom">
             {this.props.weightListItem.map(
@@ -164,11 +200,12 @@ const mapDispatchToProps = dispatch => {
   return {
     postWeightToDB: payload =>
       dispatch(postWeightToDB(payload)),
+    fetchWeight: () =>
+      dispatch(fetchWeightToDB()),
   }
 }
 
 // export default WeightDaily
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(WeightDaily)
+export default connect(mapStateToProps, null)(
+  WeightDaily,
+)

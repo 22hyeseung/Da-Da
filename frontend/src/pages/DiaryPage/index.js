@@ -1,10 +1,18 @@
 import React from 'react'
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+} from 'react-router-dom'
 import Navigation from '../../components/Navigation'
 import { Grid } from 'semantic-ui-react'
+import DiarySummary from './DiarySummary/'
+// import DiaryFood from './DiaryFood'
+// import DiaryFitness from './DiaryFitness'
+// import DiaryReview from './DiaryReview'
 import DiarySubNav from './DiarySubNav'
 import DiaryTabNav from './DiaryTabNav'
 import DiaryViewRouter from './DiaryViewRouter'
-import DiarySummary from './DiarySummary'
 import './Diary.css'
 
 const DiaryPage = () => {
@@ -31,6 +39,15 @@ const DiaryPage = () => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+
+      {/* <Route
+        path={`{this.props.match.url}/fitness`}
+        component={DiaryFitness}
+      />
+      <Route
+        path={`{this.props.match.url}/review`}
+        component={DiaryReview}
+      /> */}
     </div>
   )
 }

@@ -36,6 +36,11 @@ class DiaryFoodSearchModal extends Component {
       >
         <img
           src={cameraIcon}
+          style={{
+            top: '50%',
+            transform: 'translateY(-50%)',
+            position: 'absolute',
+          }}
           className="diary-camera-icon"
           onClick={this.show('blurring')}
           alt="이미지를 업로드하여 식단을 검색"
