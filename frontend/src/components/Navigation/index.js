@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import {
-  Router,
-  withRouter,
-} from 'react-router-dom'
 import { container } from './StyledNavigation'
 import Logo from './Logo'
 import RightMenu from './RightMenu'

@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import cardBgImg from '../../static/img/recipe_box_img.png'
 import bgImg from '../../static/img/recipe_img.jpg'
 

@@ -9,10 +9,6 @@ import ReportNutritionSummary from './ReportNutritionSummary'
 import './Report.css'
 
 class ReportPage extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div className="report">

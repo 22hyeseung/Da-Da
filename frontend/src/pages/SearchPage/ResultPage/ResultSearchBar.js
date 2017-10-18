@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Input, Search } from 'semantic-ui-react'
+import React from 'react'
+import { Search } from 'semantic-ui-react'
 import {
   searchWrapper,
   cameraIcon,

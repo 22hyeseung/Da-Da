@@ -5,7 +5,6 @@ import {
 } from 'semantic-ui-react'
 import bgImg from '../../static/img/fitness_bg.png'
 import FitnessIcon from '../../static/img/diary-fitness_default.svg'
-import ShareDiaryFitnessList from './ShareDiaryFitnessList'
 
 const listWrapper = {
   width: '80%',

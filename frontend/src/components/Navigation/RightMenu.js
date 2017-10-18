@@ -5,10 +5,6 @@ import NavItems from './NavItems'
 import UserInfo from './UserInfo'
 
 class componentName extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <Menu.Menu

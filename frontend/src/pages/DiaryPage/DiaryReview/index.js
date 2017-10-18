@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {
   Segment,
   Header,
-  Label,
 } from 'semantic-ui-react'
 import reviewIconDefault from '../../../static/img/diary-review_default.svg'
 import * as Style from './StyledDiaryReview'

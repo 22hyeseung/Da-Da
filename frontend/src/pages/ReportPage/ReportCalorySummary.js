@@ -8,10 +8,6 @@ import summaryImg from '../../static/img/report_calory_img.png'
 import './Report.css'
 
 class ReportCalorySummary extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <Segment

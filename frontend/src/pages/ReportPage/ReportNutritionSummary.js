@@ -8,10 +8,6 @@ import summaryImg from '../../static/img/report_nutrition_img.png'
 import './Report.css'
 
 class ReportNutritionSummary extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <Segment

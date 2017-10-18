@@ -15,10 +15,6 @@ import {
 } from './StyledFitness'
 
 class DiaryFitness extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <Segment style={container}>
@@ -31,7 +27,7 @@ class DiaryFitness extends Component {
             src={fitnessIcon}
             style={icon}
             alt="의미 없는 운동 다이어리 아이콘 입니다."
-            aria-hiddee="true"
+            aria-hidden="true"
           />
         </Header>
         <DiaryFitnessList />

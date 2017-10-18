@@ -16,7 +16,6 @@ class ShareDiaryFoodAlbumListCard extends Component {
     this.setState({ size, open: true })
   close = () => this.setState({ open: false })
   render() {
-    const { open, size } = this.state
     return (
       <Segment style={Style.albumCard}>
         <Label

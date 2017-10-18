@@ -1,4 +1,3 @@
-import React from 'react'
 import bgImg from '../../../static/img/fitness_bg.png'
 import iconSrc from '../../../static/img/diary-fitness_default.svg'
 

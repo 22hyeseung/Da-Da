@@ -1,0 +1,11 @@
+.savedRegret {
+  margin-left: 12px;
+  font-size: 14px;
+}
+
+.savedRegret:hover {
+  border: 2px solid rgba(34, 36, 38, 0.15);
+  padding: 8px 17px;
+  border-radius: 4px;
+  margin: -10px -7px;
+}

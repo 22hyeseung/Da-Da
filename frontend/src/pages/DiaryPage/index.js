@@ -6,13 +6,13 @@ import {
 } from 'react-router-dom'
 import Navigation from '../../components/Navigation'
 import { Grid } from 'semantic-ui-react'
-import DiaryTab from './DiaryTab'
 import DiarySummary from './DiarySummary/'
-import DiaryView from './DiaryView'
 // import DiaryFood from './DiaryFood'
 // import DiaryFitness from './DiaryFitness'
 // import DiaryReview from './DiaryReview'
 import DiarySubNav from './DiarySubNav'
+import DiaryTabNav from './DiaryTabNav'
+import DiaryViewRouter from './DiaryViewRouter'
 import './Diary.css'
 
 const DiaryPage = () => {
@@ -26,8 +26,8 @@ const DiaryPage = () => {
       >
         <Grid.Row stretched>
           <Grid.Column style={{ padding: '0px' }}>
-            <DiaryTab />
-            <DiaryView />
+            <DiaryTabNav />
+            <DiaryViewRouter />
           </Grid.Column>
           <Grid.Column
             width={4}

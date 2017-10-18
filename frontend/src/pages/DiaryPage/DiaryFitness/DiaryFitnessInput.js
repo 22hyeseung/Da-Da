@@ -7,54 +7,52 @@ import {
 } from 'semantic-ui-react'
 import TiTimes from 'react-icons/lib/ti/times'
 import TiEquals from 'react-icons/lib/ti/equals'
-import * as styled from './StyledFitness'
+import * as Style from './StyledFitness'
 
 const DiaryFitnessInput = () => {
   return (
     <div>
-      <List horizontal style={styled.listWrap}>
-        <List.Item
-          style={styled.listItemLeftWrap}
-        >
+      <List horizontal style={Style.listWrap}>
+        <List.Item style={Style.listItemLeftWrap}>
           <List.Content>
             <Input
               icon="search"
               placeholder="어떤 종류의 운동을 하셨나요?"
-              style={styled.inputStyle}
+              style={Style.inputStyle}
             />
             <TiTimes
               size={25}
-              style={styled.tiemsIcon}
+              style={Style.tiemsIcon}
             />
           </List.Content>
         </List.Item>
         <List.Item
-          style={styled.listItemRightWrap}
+          style={Style.listItemRightWrap}
         >
           <List.Content>
             <Input placeholder="얼마나 운동하셨나요?" />
             <TiEquals
               size={25}
-              style={styled.equalIcon}
+              style={Style.equalIcon}
             />
           </List.Content>
         </List.Item>
         <List.Item
-          style={styled.listItemRightAlign}
+          style={Style.listItemRightAlign}
         >
           <List.Content
-            style={styled.textSmall_Input}
+            style={Style.textSmall_Input}
           >
-            <span style={styled.textBig}>
+            <span style={Style.textBig}>
               0{' '}
             </span>kcal
           </List.Content>
         </List.Item>
-        <div style={styled.buttonWrap}>
-          <Button basic style={styled.button}>
+        <div style={Style.buttonWrap}>
+          <Button basic style={Style.button}>
             취소
           </Button>
-          <Button style={styled.submitButton}>
+          <Button style={Style.submitButton}>
             등록
           </Button>
         </div>
