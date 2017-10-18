@@ -5,7 +5,6 @@ import {
   Switch,
 } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Navigation from './components/Navigation'
 import HomePage from './pages/HomePage'
 import DiaryPage from './pages/DiaryPage'
 import ReportPage from './pages/ReportPage'

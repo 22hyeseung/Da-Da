@@ -1,3 +1,3 @@
-const rootApi = 'https://api.downmix.net'
+export const rootApi = 'https://api.downmix.net'
 
 export default rootApi

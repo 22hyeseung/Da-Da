@@ -32,7 +32,7 @@ class DiaryFoodSearch extends Component {
       resultKcal: '',
       finalKcal: '',
       inputAmount: 1,
-      token: `Bearer ${token}`,
+      token: `Bearer ${this.props.token}`,
     }
   }
 
@@ -384,4 +384,12 @@ class DiaryFoodSearch extends Component {
   }
 }
 
-export default DiaryFoodSearch
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token,
+  }
+}
+
+export default connect(mapStateToProps, null)(
+  DiaryFoodSearch,
+)

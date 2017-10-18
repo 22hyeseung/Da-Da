@@ -1,5 +1,4 @@
 import * as types from '../actions/ActionTypes'
-import map from 'lodash/map'
 
 // 1. db 값 받는 action
 export const fetchWeightToDB = () => {

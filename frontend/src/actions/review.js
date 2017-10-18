@@ -1,5 +1,5 @@
 import * as types from './ActionTypes'
-import { rootApi } from '../config'
+import rootApi from '../config'
 
 export const getRegretFromDB = date => {
   return dispatch => {
