@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Header } from 'semantic-ui-react'
 import './Report.css'
-import ReportSampleChart from './ReportSampleChart'
+// import ReportSampleChart from './ReportSampleChart'
+import CaloriesChart from '../../components/Charts/CaloriesChart'
 
 class ReportNutrtion extends Component {
   render() {
@@ -29,7 +30,9 @@ class ReportNutrtion extends Component {
           </Header.Subheader>
           영양분 리포트
         </Header>
-        <ReportSampleChart />
+        {/* <ReportSampleChart />
+         */}
+        <CaloriesChart />
       </div>
     )
   }

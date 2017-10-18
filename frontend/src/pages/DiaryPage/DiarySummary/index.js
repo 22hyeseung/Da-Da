@@ -4,7 +4,8 @@ import {
   Header,
   List,
 } from 'semantic-ui-react'
-import pieGraph from '../../../static/img/diary-graph.svg'
+// import pieGraph from '../../../static/img/diary-graph.svg'
+import StaticPieChart from '../../../components/Charts/StaticPieChart'
 import DiarySocialBtns from './DiarySocialBtns'
 import * as Style from './StyledDiarySummary'
 
@@ -148,11 +149,12 @@ const DiarySummary = () => {
             NUTRITION<br /> GRAPH
           </Header.Subheader>
         </Header>
-        <img
+        {/* <img
           src={pieGraph}
           style={Style.graph}
           alt="영양분 그래프입니다"
-        />
+        /> */}
+        <StaticPieChart />
       </Segment>
       <DiarySocialBtns />
     </div>
