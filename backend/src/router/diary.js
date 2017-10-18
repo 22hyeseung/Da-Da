@@ -25,12 +25,17 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  * @apiName PostRegret
  * @apiGroup diary
  *
+ * @apiParam {String} regret 반성일기
+ * @apiParam {Date} date 등록일
+ *
  * @apiSuccess {Integer} id 반성일기의 id
  * @apiSuccess {Integer} member_id  반성일기를 작성한 유저의 id
  * @apiSuccess {String} regret 작성한 반성일기
  * @apiSuccess {Date} date 페이지의 표시되어 있는 다이어리의 날짜
  *
  * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/diary/regret
+ *
  * {
  *    "day_log_id": 1,
  *    "day_log_member_id": 2,
@@ -65,10 +70,12 @@ router.post('/regret', (req, res) => {
 })
 
 /**
- * @api {get} /diary/regret?date Get Regret
+ * @api {get} /diary/regret Get Regret
  * @apiDescription 원하는 날의 반성일기 가져오기
  * @apiName GetRegret
  * @apiGroup diary
+ *
+ * @apiParam {Date} date 등록일
  *
  * @apiSuccess {Integer} id 반성일기의 id
  * @apiSuccess {Integer} member_id  반성일기를 작성한 유저의 id
@@ -76,6 +83,7 @@ router.post('/regret', (req, res) => {
  * @apiSuccess {Date} date 페이지의 표시되어 있는 다이어리의 날짜
  *
  * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/diary/regret?date=20171011
  * {
  *    "day_log_id": 1,
  *    "day_log_member_id": 2,
@@ -111,12 +119,16 @@ router.get('/regret', (req, res) => {
  * @apiName PostComment
  * @apiGroup diary
  *
+ * @apiParam {String} comment 일기
+ * @apiParam {Date} date 등록일
+ *
  * @apiSuccess {Integer} id 반성일기의 id
  * @apiSuccess {Integer} member_id  반성일기를 작성한 유저의 id
  * @apiSuccess {String} comment 작성한 일기
  * @apiSuccess {Date} date 페이지의 표시되어 있는 다이어리의 날짜
 
  * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/diary/comment
  * {
  *    "day_log_id": 2,
  *    "day_log_member_id": 2,
@@ -156,12 +168,15 @@ router.post('/comment', (req, res) => {
  * @apiName GetComment
  * @apiGroup diary
  *
+ * @apiParam {Date} date 등록일
+ *
  * @apiSuccess {Integer} id 반성일기의 id
  * @apiSuccess {Integer} member_id  반성일기를 작성한 유저의 id
  * @apiSuccess {String} comment 가져온 일기
  * @apiSuccess {Date} date 페이지의 표시되어 있는 다이어리의 날짜
  *
  * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/diary/comment?date=20171010
  * {
  *    "day_log_id": 2,
  *    "day_log_member_id": 2,
