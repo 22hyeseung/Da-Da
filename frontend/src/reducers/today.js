@@ -8,12 +8,12 @@ const todayReducer = (
   action,
 ) => {
   switch (action.type) {
-    case 'GET_TODAY_DATE':
+    case 'SET_TODAY_DATE':
       return {
         ...state,
         date: action.payload,
       }
-    case 'GET_TODAY_DAY':
+    case 'SET_TODAY_DAY':
       return {
         ...state,
         day: action.payload,
