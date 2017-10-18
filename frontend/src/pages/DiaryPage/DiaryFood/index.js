@@ -11,6 +11,18 @@ import DiaryFoodAlbum from './DiaryFoodAlbum'
 import foodIconDefault from '../../../static/img/diary-food_default.svg'
 import * as Style from './StyledDiaryFood'
 
+{
+  /* <DiaryFood
+  type="아침"
+/>
+<DiaryFood
+  type="점심"
+/>
+<DiaryFood
+  type="저녁"
+/> */
+}
+
 const DiaryFood = () => {
   return (
     <Segment style={Style.foodBox}>

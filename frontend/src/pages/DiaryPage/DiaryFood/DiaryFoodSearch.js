@@ -24,9 +24,10 @@ class DiaryFoodSearch extends Component {
       isSearchMode: true,
       inputError: false,
       isLoading: false,
-      btnState: false,
+      btnState: false, //
       isFocus: false,
       isEmpty: true,
+
       userInput: '',
       results: [],
       resultKcal: '',
@@ -36,10 +37,9 @@ class DiaryFoodSearch extends Component {
     }
   }
 
-  componentWillMount() {
-    this.setState({
-      isFocus: true,
-    })
+  componentDidMount() {
+    console.log(this.textInput)
+    this.textInput.focus()
   }
 
   // foodsSearch api : 현재 컴포넌트에서만 사용하므로 따로 action으로 분리하지 않았다.
@@ -144,6 +144,8 @@ class DiaryFoodSearch extends Component {
                   }}
                 >
                   <Input
+                    ref={input =>
+                      (this.textInput = input)}
                     placeholder="오늘 무엇을 드셨나요?"
                     className="diary-food-search"
                     loading={isLoading}
