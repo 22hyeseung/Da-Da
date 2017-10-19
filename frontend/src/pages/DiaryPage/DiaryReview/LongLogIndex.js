@@ -67,8 +67,6 @@ class DiaryReviewLongInput extends Component {
     const content = this.loadExistingContentFromLocalStorage()
     // ContentState -> HTML
     const editorContent = convertFromRaw(content)
-    // console.log(editorContent)
-    // console.log(typeof stateToHTML(editorContent))
     return stateToHTML(editorContent)
   }
 
@@ -80,7 +78,6 @@ class DiaryReviewLongInput extends Component {
       date: this.state.date,
     }
     // DB로 post
-    // console.log(requestBody)
     this.props.postLongLogToDB(requestBody)
 
     // 이후 읽기모드로 전환

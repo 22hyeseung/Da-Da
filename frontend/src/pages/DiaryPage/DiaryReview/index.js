@@ -5,8 +5,8 @@ import {
 } from 'semantic-ui-react'
 import reviewIconDefault from '../../../static/img/diary-review_default.svg'
 import * as Style from './StyledDiaryReview'
-import DiaryReviewShort from './DiaryReviewShort'
-import DiaryReviewLong from './DiaryReviewLong'
+import ShortLogIndex from './ShortLogIndex'
+import LongLogIndex from './LongLogIndex'
 
 class DiaryReview extends Component {
   render() {
@@ -33,9 +33,9 @@ class DiaryReview extends Component {
           </Header>
           {/* title 끝 */}
           {/* 오늘의 반성일기 */}
-          <DiaryReviewShort />
+          <ShortLogIndex />
           {/* 오늘의 일기*/}
-          <DiaryReviewLong />
+          <LongLogIndex />
         </Segment>
       </div>
     )
