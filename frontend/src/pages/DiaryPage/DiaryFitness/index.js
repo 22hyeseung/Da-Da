@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 // 스타일링
 import { Segment } from 'semantic-ui-react'
-import { container, icon } from './StyledFitness'
+import { container } from './StyledFitness'
 
 // 컴포넌트
 import DiarySubHeader from '../DiarySubHeader'

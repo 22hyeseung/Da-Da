@@ -3,10 +3,7 @@ import { connect } from 'react-redux'
 
 // 스타일링
 import { Dimmer, Loader } from 'semantic-ui-react'
-import { shortBox } from './StyledDiaryReview'
-
-// helper: 오늘 날짜 API Query형식
-import { dateStringForApiQuery } from '../../../helper/date'
+import { shortBox } from '../StyledDiaryReview'
 
 // 컴포넌트
 import ShortLogWriteMode from './ShortLogWriteMode'

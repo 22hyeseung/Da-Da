@@ -11,13 +11,13 @@ import {
 import {
   shortInput,
   shortSubmitBtn,
-} from './StyledDiaryReview'
+} from '../StyledDiaryReview'
 
 // 리듀서 액션
-import { postShortLogToDB } from '../../../actions/review'
+import { postShortLogToDB } from '../../../../actions/review'
 
 // helper: 오늘 날짜 API Query형식
-import { dateStringForApiQuery } from '../../../helper/date'
+import { dateStringForApiQuery } from '../../../../helper/date'
 
 class ShortLogWriteMode extends Component {
   constructor(props) {

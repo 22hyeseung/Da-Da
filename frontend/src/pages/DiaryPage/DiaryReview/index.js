@@ -3,8 +3,8 @@ import { Segment } from 'semantic-ui-react'
 import { reviewBox } from './StyledDiaryReview'
 
 // 컴포넌트
-import ShortLogIndex from './ShortLogIndex'
-import LongLogIndex from './LongLogIndex'
+import ShortLog from './ShortLog'
+import LongLog from './LongLog'
 import DiarySubHeader from '../DiarySubHeader'
 
 class DiaryReview extends Component {
@@ -19,9 +19,9 @@ class DiaryReview extends Component {
             icon="reviewIcon"
           />
           {/* 오늘의 반성일기 */}
-          <ShortLogIndex />
+          <ShortLog />
           {/* 오늘의 일기*/}
-          <LongLogIndex />
+          <LongLog />
         </Segment>
       </div>
     )

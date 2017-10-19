@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   Header,
   Button,
   Icon,
 } from 'semantic-ui-react'
-import { buttonIcon } from './StyledDiaryReview'
-import './diaryReview.css'
+import { buttonIcon } from '../StyledDiaryReview'
+import '../diaryReview.css'
 
 const ShortLogReadMode = props => {
   return (

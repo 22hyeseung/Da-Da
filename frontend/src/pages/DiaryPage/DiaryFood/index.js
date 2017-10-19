@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  Segment,
-  Header,
-  Label,
-} from 'semantic-ui-react'
+import { Segment, Label } from 'semantic-ui-react'
 import * as Style from './StyledDiaryFood'
 
 // 컴포넌트

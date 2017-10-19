@@ -13,25 +13,23 @@ import {
   longBox,
   longSubmitBtn,
   savedContainer,
-} from './StyledDiaryReview'
+} from '../StyledDiaryReview'
 
 // 컴포넌트
-import TextEditor from '../../../components/TextEditor'
+import TextEditor from '../../../../components/TextEditor'
 
 // 컨버터(Converter)
 // EditorContent -> HTML
 import { stateToHTML } from 'draft-js-export-html'
-// EditorContent <- HTML
-import { stateFromHTML } from 'draft-js-import-html'
 
 // 리덕스 액션 생성자
 import {
   getLongLogFromDB,
   postLongLogToDB,
-} from '../../../actions/review'
+} from '../../../../actions/review'
 
 // helper: 오늘 날짜 API Query형식
-import { dateStringForApiQuery } from '../../../helper/date'
+import { dateStringForApiQuery } from '../../../../helper/date'
 
 class DiaryReviewLongInput extends Component {
   constructor(props) {
