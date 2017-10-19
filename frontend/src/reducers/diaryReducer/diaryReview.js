@@ -35,6 +35,7 @@ export const shortLogReducer = (
     case 'POST_SHORTLOG_SUCCESS':
       return {
         ...state,
+        isLoading: false,
         shortLogSaved: action.payload,
       }
     case 'POST_SHORTLOG_FAILED':
