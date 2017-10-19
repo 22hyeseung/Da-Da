@@ -9,6 +9,7 @@ const mime = require('mime')
 const multer = require('multer')
 const aws = require('aws-sdk')
 const uuid = require('uuid')
+const sharp = require('sharp')
 const fileType = require('file-type')
 
 /**
@@ -77,13 +78,13 @@ function googleVision(fileUrl) {
   })
 }
 
-function s3upload(file, ext) {
+function s3upload(buffer, target) {
   return new Promise((resolve, reject) => {
     s3.upload({
       'ACL': 'public-read', // 익명의 사용자도 파일 경로만 알면 읽기 가능하도록 설정
-      'Body': file.buffer,
+      'Body': buffer,
       'Bucket': process.env.S3_BUCKET_NAME,
-      'Key': `${uuid.v4()}.${ext}`, // 파일이름
+      'Key': target, // 파일이름
       'ContentDisposition': 'inline', // Content-Disposition 헤더
       'ContentType': 'string' // Content-Type 헤더 ??????
     }, (err, result) => {
@@ -111,13 +112,22 @@ router.post('/', upload.single('upload_img'), (req, res) => {
     res.send('파일 용량은 3mb 까지 입니다.')
   }
 
-  Promise.all([googleVision(req.file.buffer), s3upload(req.file, ext)])
+  Promise.all([googleVision(req.file.buffer), s3upload(req.file.buffer, `${uuid.v4()}.${ext}`)])
     .then(result => {
       // console.log('모두 완료', result)
       res.render('vision.pug', {
         'visionAnalysis': JSON.stringify(result[0]),
         'imgUrl': result[1].Location
       })
+    })
+    .then(() => {
+      sharp(req.file.buffer)
+        .resize(200, 200)
+        .crop(sharp.gravity.center)
+        .toBuffer()
+        .then(resizeFile => {
+          s3upload(resizeFile, `thumb/${uuid.v4()}.${ext}`)
+        })
     })
     .catch(err => {
       res.status(400)
