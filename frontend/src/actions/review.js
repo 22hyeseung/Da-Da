@@ -97,7 +97,7 @@ export const postCommentToDB = requestBody => {
     })
       .then(res => res.json())
       .then(result => {
-        // console.log(result)
+        console.log(result)
         dispatch({
           type: types.POST_COMMENT_TO_DATABASE,
           payload: result,

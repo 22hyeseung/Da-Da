@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { convertFromRaw } from 'draft-js'
+
+// 스타일링
 import {
   Header,
   Button,
@@ -11,7 +14,17 @@ import {
   longSubmitBtn,
   savedContainer,
 } from './StyledDiaryReview'
+
+// 컴포넌트
 import TextEditor from '../../../components/TextEditor'
+
+// 컨버터(Converter)
+// EditorContent -> HTML
+import { stateToHTML } from 'draft-js-export-html'
+// EditorContent <- HTML
+import { stateFromHTML } from 'draft-js-import-html'
+
+// 리덕스 액션 생성자
 import {
   getCommentFromDB,
   postCommentToDB,
@@ -40,31 +53,31 @@ class DiaryReviewLongInput extends Component {
     this.props.getCommentFromDB(date)
   }
 
-  // local Storage에 저장된 에디터에 작성된 내용(가장 최근, 마지막 상태)
-  // 불러와서 comment state에 set
+  // local Storage의 content = 에디터에 가장 최근까지 작성된 내용
   // local Storage에 저장하는 부분은 TextEditor/index.js에 있음
   loadExistingContentFromLocalStorage = () => {
-    const content = JSON.parse(
+    // String -> JSON
+    return JSON.parse(
       window.localStorage.getItem('content'),
     )
+  }
 
-    let localContent = ''
-
-    content.blocks.map(p => {
-      return (localContent += '\n' + p.text)
-    })
-
-    return localContent.trim()
+  convertContentStateToHtml = () => {
+    // JSON -> ContentState
+    const content = this.loadExistingContentFromLocalStorage()
+    // ContentState -> HTML
+    const editorContent = convertFromRaw(content)
+    console.log(editorContent)
+    console.log(typeof stateToHTML(editorContent))
+    return stateToHTML(editorContent)
   }
 
   // 작성된 comment를 DB로 POST
   createCommentAndPostToDB = () => {
-    const localContent = this.loadExistingContentFromLocalStorage()
-
-    const dateTime = new Date()
-    const date = dateTime.toLocaleDateString()
+    let html = this.convertContentStateToHtml()
+    const date = '20171019'
     const requestBody = {
-      comment: localContent,
+      comment: html,
       date,
     }
     // DB로 post

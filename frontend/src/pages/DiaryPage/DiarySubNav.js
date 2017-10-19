@@ -1,21 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
+// 스타일링
 import { Segment, Icon } from 'semantic-ui-react'
-import * as Style from './StyledDiarySubNav'
+import {
+  calorieGoal,
+  iconSet,
+} from './StyledDiarySubNav'
 import './Diary.css'
 
-const DiarySubNav = () => {
+const DiarySubNav = props => {
   return (
     <div>
       <nav className="diary-submenu">
         <Icon name="chevron left" />
         <span className="diary-date">
-          date
-          <span className="diary-day"> day</span>
+          {props.date}
+          <span className="diary-day">
+            {props.day}
+          </span>
         </span>
         <Icon name="chevron right" />
       </nav>
-      <Segment style={Style.calorieGoal}>
+      <Segment style={calorieGoal}>
         <span className="diary-food-goal-label">
           목표 칼로리
         </span>
@@ -27,7 +33,7 @@ const DiarySubNav = () => {
             kcal
           </span>
           <img
-            src={Style.iconSet.editIcon}
+            src={iconSet.editIcon}
             className="diary-food-goal-edit"
             alt="클릭하면 목표칼로리를 수정할 수 있습니다"
           />

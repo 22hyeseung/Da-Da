@@ -18,13 +18,8 @@ import Loader from '../../components/Loader'
 import HomeHero from './HomeHero'
 import HomeTab from './HomeTab'
 
-// 오늘 날짜 설정을 위한 변수 및 함수
-const dateTime = new Date()
-const date = dateTime.toLocaleDateString()
-const days = ['일', '월', '화', '수', '목', '금', '토']
-const getday = () => {
-  return days[dateTime.getDay()]
-}
+// helper 함수
+import { setDay, date } from '../../helper/date'
 
 // 홈페이지 컴포넌트 시작
 class HomePage extends Component {
@@ -36,7 +31,7 @@ class HomePage extends Component {
   componentWillMount() {
     this.getUserInfo()
     this.props.setTodayDate(date)
-    this.props.setTodayDay(getday())
+    this.props.setTodayDay(setDay())
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
