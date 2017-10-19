@@ -10,6 +10,10 @@ import {
   List,
   Checkbox,
 } from 'semantic-ui-react'
+import {
+  cancelBtn,
+  submitBtn,
+} from '../StyledDiaryCommon'
 import cameraIcon from '../../../static/img/diary-camera-icon.svg'
 import * as Style from './StyledDiaryFood'
 
@@ -204,12 +208,10 @@ class DiaryFoodSearchModal extends Component {
               </Segment> */}
           </Modal.Content>
           <Modal.Actions>
-            <Button basic style={Style.cancelBtn}>
+            <Button basic style={cancelBtn}>
               취소
             </Button>
-            <Button style={Style.submitBtn}>
-              등록
-            </Button>
+            <Button style={submitBtn}>등록</Button>
           </Modal.Actions>
         </Modal>
       </Grid.Column>

@@ -5,7 +5,7 @@ import { Segment, Icon } from 'semantic-ui-react'
 import {
   calorieGoal,
   iconSet,
-} from './StyledDiarySubNav'
+} from './StyledDiaryCommon'
 import './Diary.css'
 // 리덕스 액션생성자
 import { getUserInfo } from '../../actions/auth.js'
@@ -19,7 +19,6 @@ import {
 import {
   todaysDate,
   todaysDay,
-  dateStringForApiQuery,
 } from '../../helper/date'
 
 class DiarySubNav extends Component {
@@ -36,6 +35,7 @@ class DiarySubNav extends Component {
           <span className="diary-date">
             {this.props.dateState}
             <span className="diary-day">
+              {' '}
               {this.props.dayState}
             </span>
           </span>

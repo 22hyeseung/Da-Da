@@ -13,8 +13,7 @@ class HomeTab extends Component {
   render() {
     const {
       tabName,
-      msg1,
-      msg2,
+      message,
       linkTo,
       order,
     } = this.props
@@ -25,11 +24,14 @@ class HomeTab extends Component {
             <Header.Subheader style={subHeader}>
               {tabName} DIARY
             </Header.Subheader>
-            오늘<br />
-            {msg1}
-            <br />
-            {msg2}
-            <br />
+            {message.split('br').map(line => {
+              return (
+                <span>
+                  {line}
+                  <br />
+                </span>
+              )
+            })}
           </Header>
         </span>
         <Link to={linkTo}>
