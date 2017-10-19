@@ -1,9 +1,8 @@
 // 오늘 날짜
 const dateTime = new Date()
-export const date = dateTime.toLocaleDateString()
+const day = dateTime.getDay()
 
-export const setDay = () => {
-  const day = dateTime.getDay() // 요일 (0~6)
+const setDay = day => {
   switch (day) {
     case 0:
       return '일'
@@ -19,5 +18,10 @@ export const setDay = () => {
       return '금'
     case 6:
       return '토'
+    default:
+      return console.log('예외 발생: ' + day)
   }
 }
+
+export const todaysDate = dateTime.toLocaleDateString()
+export const todaysDay = setDay(day)

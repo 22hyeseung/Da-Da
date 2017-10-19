@@ -8,18 +8,12 @@ import { tabContainer } from './StyledHome'
 import './Home.css'
 // 리덕스 액션생성자
 import { getUserInfo } from '../../actions/auth.js'
-import {
-  setTodayDate,
-  setTodayDay,
-} from '../../actions/setTodayDate'
+
 // 컴포넌트
 import Navigation from '../../components/Navigation'
 import Loader from '../../components/Loader'
 import HomeHero from './HomeHero'
 import HomeTab from './HomeTab'
-
-// helper 함수
-import { setDay, date } from '../../helper/date'
 
 // 홈페이지 컴포넌트 시작
 class HomePage extends Component {
@@ -30,8 +24,6 @@ class HomePage extends Component {
   // 유저 정보 및 오늘 날짜 SET
   componentWillMount() {
     this.getUserInfo()
-    this.props.setTodayDate(date)
-    this.props.setTodayDay(setDay())
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
@@ -116,16 +108,11 @@ class HomePage extends Component {
 const mapStateToProps = state => ({
   userInfo: state.auth.userInfo,
   token: state.auth.token,
-  date: state.today.date,
-  day: state.today.day,
 })
 
 const mapDispatchtoProps = dispatch => ({
   saveUserInfo: user =>
     dispatch(getUserInfo(user)),
-  setTodayDate: date =>
-    dispatch(setTodayDate(date)),
-  setTodayDay: day => dispatch(setTodayDay(day)),
 })
 
 export default connect(
