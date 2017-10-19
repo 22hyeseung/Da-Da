@@ -4,8 +4,8 @@ import {
   Button,
   List,
   Input,
+  Icon,
 } from 'semantic-ui-react'
-import MdAdd from 'react-icons/lib/md/add'
 import ArrowDown from '../../static/img/weight-daily-arrowDown.svg'
 import * as Style from './StyledWeight'
 import { connect } from 'react-redux'
@@ -133,8 +133,8 @@ class WeightDaily extends Component {
               style={Style.weightAddBtn}
               onClick={this.togglePostingMode}
             >
-              <MdAdd
-                size={20}
+              <Icon
+                name="plus"
                 style={{ marginRight: '10px' }}
               />
               오늘 체중 기록하기

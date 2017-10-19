@@ -1,16 +1,20 @@
 import { combineReducers } from 'redux'
-import { weigthListReducer } from './weight'
-import authReducer from './auth'
-import navActiveItemReducer from './navActiveItem'
-import readingRegretReducer from './readRegret'
-import readingCommentReducer from './readComment'
+import { weigthListReducer } from './weightReducer/weight'
+import authReducer from './authReducer/auth'
+import navActiveItemReducer from './appReducer/navActiveItem'
+import {
+  shortLogReducer,
+  longLogReducer,
+} from './diaryReducer/diaryReview'
+import todayDateReducer from './appReducer/todayDate'
 
 const reducers = combineReducers({
-  weightList: weigthListReducer,
   navActiveItem: navActiveItemReducer,
+  today: todayDateReducer,
   auth: authReducer,
-  readRegret: readingRegretReducer,
-  readComment: readingCommentReducer,
+  weightList: weigthListReducer,
+  shortLog: shortLogReducer,
+  longLog: longLogReducer,
 })
 
 export default reducers

@@ -1,4 +1,4 @@
-const DEFAULT_STATE = {
+const INITIAL_STATE = {
   token: localStorage.token,
   userInfo: {
     userName: null,
@@ -10,7 +10,7 @@ const DEFAULT_STATE = {
 }
 
 const authReducer = (
-  state = DEFAULT_STATE,
+  state = INITIAL_STATE,
   action,
 ) => {
   if (action.type === 'SAVE_TOKEN') {

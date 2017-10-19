@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { convertFromRaw } from 'draft-js'
+
+// 스타일링
 import {
   Header,
   Button,
@@ -11,10 +14,20 @@ import {
   longSubmitBtn,
   savedContainer,
 } from './StyledDiaryReview'
+
+// 컴포넌트
 import TextEditor from '../../../components/TextEditor'
+
+// 컨버터(Converter)
+// EditorContent -> HTML
+import { stateToHTML } from 'draft-js-export-html'
+// EditorContent <- HTML
+import { stateFromHTML } from 'draft-js-import-html'
+
+// 리덕스 액션 생성자
 import {
-  getCommentFromDB,
-  postCommentToDB,
+  getLongLogFromDB,
+  postLongLogToDB,
 } from '../../../actions/review'
 
 class DiaryReviewLongInput extends Component {
@@ -24,7 +37,6 @@ class DiaryReviewLongInput extends Component {
       errorState: false,
       isVaild: true,
       isPostMode: true,
-      // comment: '',
     }
   }
 
@@ -36,44 +48,43 @@ class DiaryReviewLongInput extends Component {
   }
 
   // DB에 저장된 comment GET
-  saveCommentAndGetFromDB = date => {
-    this.props.getCommentFromDB(date)
+  saveLongLogAndGetFromDB = date => {
+    this.props.getLongLogFromDB(date)
   }
 
-  // local Storage에 저장된 에디터에 작성된 내용(가장 최근, 마지막 상태)
-  // 불러와서 comment state에 set
+  // local Storage의 content = 에디터에 가장 최근까지 작성된 내용
   // local Storage에 저장하는 부분은 TextEditor/index.js에 있음
   loadExistingContentFromLocalStorage = () => {
-    const content = JSON.parse(
+    // String -> JSON
+    return JSON.parse(
       window.localStorage.getItem('content'),
     )
-
-    let localContent = ''
-
-    content.blocks.map(p => {
-      return (localContent += '\n' + p.text)
-    })
-
-    return localContent.trim()
   }
 
-  // 작성된 comment를 DB로 POST
-  createCommentAndPostToDB = () => {
-    const localContent = this.loadExistingContentFromLocalStorage()
+  convertContentStateToHtml = () => {
+    // JSON -> ContentState
+    const content = this.loadExistingContentFromLocalStorage()
+    // ContentState -> HTML
+    const editorContent = convertFromRaw(content)
+    console.log(editorContent)
+    console.log(typeof stateToHTML(editorContent))
+    return stateToHTML(editorContent)
+  }
 
-    const dateTime = new Date()
-    const date = dateTime.toLocaleDateString()
+  // 작성된 LongLog를 DB로 POST
+  createLongLogAndPostToDB = () => {
+    let html = this.convertContentStateToHtml()
+    const date = '20171019'
     const requestBody = {
-      member_id: 2,
-      comment: localContent,
+      comment: html,
       date,
     }
     // DB로 post
     // console.log(requestBody)
-    this.props.postCommentToDB(requestBody)
+    this.props.postLongLogToDB(requestBody)
 
     // 요청 보낸 날짜로 다시 get
-    this.saveCommentAndGetFromDB(date)
+    this.saveLongLogAndGetFromDB(date)
     // 이후 읽기모드로 전환
     this.changeMode()
   }
@@ -99,13 +110,13 @@ class DiaryReviewLongInput extends Component {
               style={longSubmitBtn}
               content={'등록'}
               onClick={
-                this.createCommentAndPostToDB
+                this.createLongLogAndPostToDB
               }
             />
           </div>
         ) : (
           <div style={savedContainer}>
-            {this.props.commentWrited.comment}
+            {this.props.longLogSaved.longLog}
           </div>
         )}
       </div>
@@ -115,17 +126,16 @@ class DiaryReviewLongInput extends Component {
 
 const mapStateToProps = state => {
   return {
-    commentWrited:
-      state.readComment.commentWrited,
+    longLogSaved: state.longLog.longLogSaved,
   }
 }
 
 const mapDispatchToprops = dispatch => {
   return {
-    getCommentFromDB: date =>
-      dispatch(getCommentFromDB(date)),
-    postCommentToDB: requestBody =>
-      dispatch(postCommentToDB(requestBody)),
+    getLongLogFromDB: date =>
+      dispatch(getLongLogFromDB(date)),
+    postLongLogToDB: requestBody =>
+      dispatch(postLongLogToDB(requestBody)),
   }
 }
 

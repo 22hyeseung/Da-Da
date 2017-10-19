@@ -7,6 +7,7 @@ import {
   Message,
   Dimmer,
   Loader,
+  Icon,
 } from 'semantic-ui-react'
 import {
   shortBox,
@@ -14,11 +15,9 @@ import {
   buttonIcon,
   shortSubmitBtn,
 } from './StyledDiaryReview'
-import FaPencil from 'react-icons/lib/fa/pencil'
-import FaTrashO from 'react-icons/lib/fa/trash-o'
 import {
-  getRegretFromDB,
-  postRegretToDB,
+  getShortLogFromDB,
+  postShortLogToDB,
 } from '../../../actions/review'
 import './diaryReview.css'
 
@@ -29,7 +28,7 @@ class DiaryReviewShortInput extends Component {
       errorState: false,
       isVaild: true,
       isPostMode: true,
-      regret: '',
+      shortLog: '',
     }
   }
 
@@ -41,43 +40,40 @@ class DiaryReviewShortInput extends Component {
   }
 
   // 반성일기 입력창에 값 입력시 state 변경
-  handleRegretValueChange = e => {
-    console.log(e.target.value)
-    this.setState({ regret: e.target.value })
+  handleShortLogValueChange = e => {
+    this.setState({ shortLog: e.target.value })
   }
 
   // 입력창에 값이 들어왔는지 확인
   isInputValid = () => {
-    return this.state.regret
+    return this.state.shortLog
   }
 
   // 입력 받은 일기 길이가 30자 미만인지 확인
   isInputLengthValid = () => {
-    return this.state.regret.length <= 30
+    return this.state.shortLog.length <= 30
   }
 
   // data GET
   // ex. http://localhost:3333/regret?date=2017. 10. 15.
-  saveRegretAndGetFromDB = date => {
-    this.props.getRegretFromDB(date)
+  saveShortLogAndGetFromDB = date => {
+    this.props.getShortLogFromDB(date)
   }
 
-  // 반성일기 등록시 date와 regret db로 전송(Post)
-  createRegretAndPostToDB = () => {
+  // 반성일기 등록시 date와 ShortLog db로 전송(Post)
+  createShortLogAndPostToDB = () => {
     const dateTime = new Date()
     const date = dateTime.toLocaleDateString()
     const requestBody = {
-      member_id: 2,
-      regret: this.state.regret,
+      regret: this.state.shortLog,
       date,
     }
     // DB로 post
     console.log(requestBody)
-    this.props.postRegretToDB(requestBody)
+    this.props.postShortLogToDB(requestBody)
 
     // 요청 보낸 날짜로 다시 get
-    //
-    this.saveRegretAndGetFromDB(date)
+    this.saveShortLogAndGetFromDB(date)
     // 이후 읽기모드로 전환
     this.changeMode()
   }
@@ -86,7 +82,7 @@ class DiaryReviewShortInput extends Component {
   handleKeyPress = e => {
     if (e.keyCode === 13) {
       // console.log('enter pressed!')
-      this.createRegretAndPostToDB()
+      this.createShortLogAndPostToDB()
     }
   }
 
@@ -111,10 +107,10 @@ class DiaryReviewShortInput extends Component {
             </Header>
             <Input
               style={shortInput}
-              value={this.state.regret}
+              value={this.state.shortLog}
               placeholder="오늘 하루, 스스로의 약속을 잘 지키셨나요?"
               onChange={
-                this.handleRegretValueChange
+                this.handleShortLogValueChange
               }
               onKeyDown={
                 this.isInputValid() &&
@@ -130,7 +126,7 @@ class DiaryReviewShortInput extends Component {
               style={shortSubmitBtn}
               onClick={
                 // 버튼 클릭시 POST 요청
-                this.createRegretAndPostToDB
+                this.createShortLogAndPostToDB
               }
               disabled={
                 // 입력 값이 없거나 30자를 초과할 경우 버튼 비활성화
@@ -163,18 +159,18 @@ class DiaryReviewShortInput extends Component {
                 }}
                 onClick={this.changeMode}
               >
-                <FaPencil size={17} />
+                <Icon name="pencil" />
               </Button>
               {/* 삭제 버튼 */}
               <Button style={buttonIcon}>
-                <FaTrashO size={17} />
+                <Icon name="trash outline" />
               </Button>
             </Header>
             <div
-              className="savedRegret"
+              className="savedShortLog"
               onClick={this.changeMode}
             >
-              {this.props.regretWrited.regret}
+              {this.props.shortLogSaved.shortLog}
             </div>
           </div>
         )}
@@ -185,16 +181,16 @@ class DiaryReviewShortInput extends Component {
 
 const mapStateToProps = state => {
   return {
-    regretWrited: state.readRegret.regretWrited,
+    shortLogSaved: state.shortLog.shortLogSaved,
   }
 }
 
 const mapDispatchToprops = dispatch => {
   return {
-    getRegretFromDB: date =>
-      dispatch(getRegretFromDB(date)),
-    postRegretToDB: requestBody =>
-      dispatch(postRegretToDB(requestBody)),
+    getShortLogFromDB: date =>
+      dispatch(getShortLogFromDB(date)),
+    postShortLogToDB: requestBody =>
+      dispatch(postShortLogToDB(requestBody)),
   }
 }
 
