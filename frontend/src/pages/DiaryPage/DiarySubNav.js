@@ -19,6 +19,7 @@ import {
 import {
   todaysDate,
   todaysDay,
+  dateStringForApiQuery,
 } from '../../helper/date'
 
 class DiarySubNav extends Component {

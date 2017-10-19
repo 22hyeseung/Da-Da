@@ -23,5 +23,14 @@ const setDay = day => {
   }
 }
 
+// 오늘 날짜 형식: YYYY. MM. DD.
 export const todaysDate = dateTime.toLocaleDateString()
+
+// 오늘 요일 형식: ex. '월'
 export const todaysDay = setDay(day)
+
+// API 통신용 date형식: YYYYMMDD
+export const dateStringForApiQuery = todaysDate
+  .split('.')
+  .join('')
+  .replace(/ /gi, '')
