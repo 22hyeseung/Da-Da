@@ -6,6 +6,10 @@ import {
   Image,
   Button,
 } from 'semantic-ui-react'
+import {
+  cancelBtn,
+  submitBtn,
+} from '../StyledDiaryCommon'
 import foodImg from '../../../static/img/diary_food_album.jpg'
 import trashIcon from '../../../static/img/diary-trash.svg'
 import eidtIcon from '../../../static/img/diary-edit.svg'
@@ -102,15 +106,12 @@ class DiaryFoodAlbumListCard extends Component {
                 />
               </Modal.Content>
               <Modal.Actions>
-                <Button
-                  basic
-                  style={Style.cancelBtn}
-                >
+                <Button basic style={cancelBtn}>
                   취소
                 </Button>
                 <Button
                   className="diary-food-meal-submitBtn"
-                  style={Style.submitBtn}
+                  style={submitBtn}
                 >
                   수정
                 </Button>

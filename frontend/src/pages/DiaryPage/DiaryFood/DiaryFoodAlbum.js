@@ -1,14 +1,14 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react'
 import DiaryFoodAlbumList from './DiaryFoodAlbumList'
-import * as Style from './StyledDiaryFood'
+import { header } from '../StyledDiaryCommon'
 
 const DiaryFoodAlbum = () => {
   return (
     <div className="diary-food-album">
       <Header
         style={{
-          ...Style.header,
+          ...header,
           marginBottom: '21px',
         }}
       >
