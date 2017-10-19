@@ -20,7 +20,7 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ 'extended': false }))
 
 /**
- * @api {get} /recipe/search?name Get Recipe
+ * @api {get} /recipe/search?name Get RecipeSearch
  * @apiDescription 검색한 recipe들을 보여준다.
  * @apiName getRecipe/search
  * @apiGroup recipe
