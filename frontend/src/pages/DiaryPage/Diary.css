@@ -209,12 +209,25 @@
 
 .diary-food-meal-list-scroll {
     overflow: auto;
-    height: 169px;
+    height: 163px;
     position: relative;
+    margin-bottom: 7px;
 }
 
 .diary-food-meal-list-scroll::-webkit-scrollbar {
-    display: none;
+    height: 5px;
+    width: 5px;
+    /* display: none; */
+}
+
+.diary-food-meal-list-scroll::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #a8b7c7;
+}
+
+.diary-food-meal-list-scroll::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #e0e5ee;
 }
 
 .diary-food-meal-list-card-firstRow {
