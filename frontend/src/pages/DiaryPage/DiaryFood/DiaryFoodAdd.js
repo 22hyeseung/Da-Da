@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
-import MdAdd from 'react-icons/lib/md/add'
+// import MdAdd from 'react-icons/lib/md/add'
 import * as Style from './StyledDiaryFood'
 import DiaryFoodSearch from './DiaryFoodSearch'
 
@@ -32,10 +32,10 @@ class DiaryFoodAdd extends Component {
             style={Style.addBtn}
             onClick={this.toggleSearchMode}
           >
-            <MdAdd
+            {/* <MdAdd
               size={20}
               style={{ marginRight: '10px' }}
-            />
+            /> */}
             음식추가
           </Button>
         )}

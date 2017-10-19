@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left'
-import MdKeyboardArrowRight from 'react-icons/lib/md/keyboard-arrow-right'
-import './Report.css'
+// import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left'
+// import MdKeyboardArrowRight from 'react-icons/lib/md/keyboard-arrow-right'
+// import './Report.css'
 
 class ReportSubNav extends Component {
   render() {
     return (
       <div className="report">
         <nav className="report-submenu">
-          <MdKeyboardArrowLeft />
+          {/* <MdKeyboardArrowLeft /> */}
           <span className="report-date">
             2017.10.10.<span className="report-day">
               월
@@ -20,7 +20,7 @@ class ReportSubNav extends Component {
               일
             </span>
           </span>
-          <MdKeyboardArrowRight />
+          {/* <MdKeyboardArrowRight /> */}
         </nav>
       </div>
     )

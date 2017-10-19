@@ -1,6 +1,7 @@
 import React from 'react'
 import { Segment, Label } from 'semantic-ui-react'
 import DiaryFoodAdd from './DiaryFoodAdd'
+import DiaryFoodList from './DiaryFoodList'
 import * as Style from './StyledDiaryFood'
 
 class DiaryFoodMeal extends React.Component {
@@ -8,6 +9,7 @@ class DiaryFoodMeal extends React.Component {
     super(props)
   }
   render() {
+    let totalKcal = ''
     return (
       <Segment
         className="diary-food-meal"
@@ -15,19 +17,31 @@ class DiaryFoodMeal extends React.Component {
           paddingTop: '7px',
         }}
       >
+        {console.log(this.props.foodresult)}
         <div className="diary-food-label">
           <div className="diary-food-title">
             {this.props.type} 식사
             <span className="diary-food-meal-count">
-              0
+              {this.props.foodresult.length}
             </span>
           </div>
           <Label style={Style.currentKcal}>
             현재 {this.props.type} 식사 섭취 칼로리
-            <Label.Detail>100 kcal</Label.Detail>
+            <Label.Detail>100kcal</Label.Detail>
           </Label>
         </div>
-        <DiaryFoodAdd type={this.props.type} />
+        <div className="diary-food-meal-list-scroll">
+          <div
+            style={{ display: 'flex' }}
+            className="diary-food-meal-list-card"
+          >
+            <DiaryFoodList
+              type={this.props.type}
+              foodresult={this.props.foodresult}
+            />
+          </div>
+        </div>
+        <DiaryFoodAdd />
       </Segment>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react'
-import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left'
-import MdKeyboardArrowRight from 'react-icons/lib/md/keyboard-arrow-right'
+// import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left'
+// import MdKeyboardArrowRight from 'react-icons/lib/md/keyboard-arrow-right'
 import { Segment } from 'semantic-ui-react'
 import * as Style from './StyledDiarySubNav'
 import './Diary.css'
@@ -9,12 +9,12 @@ const DiarySubNav = () => {
   return (
     <div>
       <nav className="diary-submenu">
-        <MdKeyboardArrowLeft />
+        {/* <MdKeyboardArrowLeft /> */}
         <span className="diary-date">
           2017.10.10.
           <span className="diary-day">월</span>
         </span>
-        <MdKeyboardArrowRight />
+        {/* <MdKeyboardArrowRight /> */}
       </nav>
       <Segment style={Style.calorieGoal}>
         <span className="diary-food-goal-label">

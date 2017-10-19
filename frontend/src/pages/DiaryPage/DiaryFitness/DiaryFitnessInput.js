@@ -5,8 +5,8 @@ import {
   List,
   Divider,
 } from 'semantic-ui-react'
-import TiTimes from 'react-icons/lib/ti/times'
-import TiEquals from 'react-icons/lib/ti/equals'
+// import TiTimes from 'react-icons/lib/ti/times'
+// import TiEquals from 'react-icons/lib/ti/equals'
 import * as Style from './StyledFitness'
 
 const DiaryFitnessInput = () => {
@@ -20,10 +20,10 @@ const DiaryFitnessInput = () => {
               placeholder="어떤 종류의 운동을 하셨나요?"
               style={Style.inputStyle}
             />
-            <TiTimes
+            {/* <TiTimes
               size={25}
               style={Style.tiemsIcon}
-            />
+            /> */}
           </List.Content>
         </List.Item>
         <List.Item
@@ -31,10 +31,10 @@ const DiaryFitnessInput = () => {
         >
           <List.Content>
             <Input placeholder="얼마나 운동하셨나요?" />
-            <TiEquals
+            {/* <TiEquals
               size={25}
               style={Style.equalIcon}
-            />
+            /> */}
           </List.Content>
         </List.Item>
         <List.Item

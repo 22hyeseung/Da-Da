@@ -16,6 +16,10 @@ class DiaryFood extends React.Component {
   }
 
   render() {
+    const breackfast = []
+    const lunch = []
+    const dinner = []
+    const desert = []
     return (
       <Segment style={Style.foodBox}>
         {/* title 시작 */}
@@ -36,12 +40,55 @@ class DiaryFood extends React.Component {
           />
         </Header>
         {/* title 끝 */}
-        {console.log(this.props.foodresult)}
+        {this.props.foodresult.map(
+          (result, i) => {
+            if (
+              result.eat_log_meal_tag === '아침'
+            ) {
+              {
+                breackfast.push(result)
+              }
+            }
+            if (
+              result.eat_log_meal_tag === '점심'
+            ) {
+              {
+                lunch.push(result)
+              }
+            }
+            if (
+              result.eat_log_meal_tag === '저녁'
+            ) {
+              {
+                dinner.push(result)
+              }
+            }
+            if (
+              result.eat_log_meal_tag === '간식'
+            ) {
+              {
+                desert.push(result)
+              }
+            }
+          },
+        )}
 
-        <DiaryFoodMeal type="아침" />
-        <DiaryFoodMeal type="점심" />
-        <DiaryFoodMeal type="저녁" />
-        <DiaryFoodMeal type="간식" />
+        <DiaryFoodMeal
+          type="아침"
+          foodresult={breackfast}
+        />
+        <DiaryFoodMeal
+          type="점심"
+          foodresult={lunch}
+        />
+        <DiaryFoodMeal
+          type="저녁"
+          foodresult={dinner}
+        />
+        <DiaryFoodMeal
+          type="간식"
+          foodresult={desert}
+        />
       </Segment>
     )
   }
