@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
   isLoading: false,
+  isPostMode: true,
   errorState: false,
   shortLogSaved: [],
   longLogSaved: [],
@@ -36,6 +37,7 @@ export const shortLogReducer = (
       return {
         ...state,
         isLoading: false,
+        isPostMode: false,
         shortLogSaved: action.payload,
       }
     case 'POST_SHORTLOG_FAILED':
@@ -43,6 +45,11 @@ export const shortLogReducer = (
         ...state,
         isLoading: false,
         errorState: true,
+      }
+    case 'CHANGE_MODE':
+      return {
+        ...state,
+        isPostMode: action.payload,
       }
     default:
       return state
@@ -86,6 +93,11 @@ export const longLogReducer = (
         ...state,
         isLoading: false,
         errorState: true,
+      }
+    case 'CHANGE_MODE':
+      return {
+        ...state,
+        isPostMode: action.payload,
       }
     default:
       return state

@@ -1,6 +1,13 @@
 import * as types from './ActionTypes'
 import rootApi from '../config'
 
+export const changeMode = isPostMode => {
+  return {
+    type: types.CHANGE_MODE,
+    payload: !isPostMode,
+  }
+}
+
 export const getShortLogFromDB = date => {
   return dispatch => {
     dispatch({

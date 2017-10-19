@@ -13,8 +13,11 @@ import {
   shortSubmitBtn,
 } from '../StyledDiaryReview'
 
-// 리듀서 액션
-import { postShortLogToDB } from '../../../../actions/review'
+// 리덕스 액션
+import {
+  postShortLogToDB,
+  changeMode,
+} from '../../../../actions/review'
 
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../../helper/date'
@@ -24,7 +27,6 @@ class ShortLogWriteMode extends Component {
     super(props)
     this.state = {
       isVaild: true,
-      isPostMode: true,
       shortLog: '',
       date: dateStringForApiQuery(
         this.props.dateState,
@@ -66,7 +68,7 @@ class ShortLogWriteMode extends Component {
     this.props.postShortLogToDB(requestBody)
 
     // 이후 읽기모드로 전환
-    this.props.changeMode()
+    this.props.changeMode(this.props.isPostMode)
   }
 
   render() {
@@ -124,6 +126,7 @@ const mapStateToProps = state => {
   return {
     shortLogSaved: state.shortLog.shortLogSaved,
     dateState: state.today.date,
+    isPostMode: state.shortLog.isPostMode,
   }
 }
 
@@ -131,6 +134,8 @@ const mapDispatchToprops = dispatch => {
   return {
     postShortLogToDB: requestBody =>
       dispatch(postShortLogToDB(requestBody)),
+    changeMode: isPostMode =>
+      dispatch(changeMode(isPostMode)),
   }
 }
 

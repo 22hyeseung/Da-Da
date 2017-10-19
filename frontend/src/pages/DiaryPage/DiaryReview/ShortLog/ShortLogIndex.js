@@ -9,28 +9,36 @@ import { shortBox } from '../StyledDiaryReview'
 import ShortLogWriteMode from './ShortLogWriteMode'
 import ShortLogReadMode from './ShortLogReadMode'
 
+// 리덕스 액션
+import { changeMode } from '../../../../actions/review'
+
 class DiaryReviewShortInput extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLogExisted: false,
-      isPostMode: true,
+      isPostMode: props.isPostMode,
     }
   }
 
-  // 읽기모드 <-> 쓰기모드 상태 변경
-  changeMode = () => {
-    this.setState({
-      isPostMode: !this.state.isPostMode,
-    })
+  // 작성한 로그가 존재하는지 확인
+  isLogExisted = () => {
+    return this.props.shortLogSaved.day_log_regret
   }
 
+  // 읽기모드 <-> 쓰기모드 상태 변경
+  // changeMode = () => {
+  //   this.setState({
+  //     isPostMode: !this.state.isPostMode,
+  //   })
+  // }
+
   render() {
-    const { isPostMode } = this.state
     const {
+      isPostMode,
       errorState,
       isLoading,
       shortLogSaved,
+      changeMode,
     } = this.props
 
     if (errorState) {
@@ -47,17 +55,16 @@ class DiaryReviewShortInput extends Component {
 
     return (
       <div style={shortBox}>
-        {isPostMode ? (
-          <ShortLogWriteMode
-            changeMode={this.changeMode}
-          />
+        {this.isLogExisted() ? (
+          // 작성한 로그가 이미 있으면
+          isPostMode ? (
+            <ShortLogWriteMode />
+          ) : (
+            <ShortLogReadMode />
+          )
         ) : (
-          <ShortLogReadMode
-            changeMode={this.changeMode}
-            shortLogSaved={
-              shortLogSaved.day_log_regret
-            }
-          />
+          // 오늘 작성한 로그가 없으면
+          <ShortLogWriteMode />
         )}
       </div>
     )
@@ -69,10 +76,18 @@ const mapStateToProps = state => {
     shortLogSaved: state.shortLog.shortLogSaved,
     isLoading: state.shortLog.isLoading,
     errorState: state.shortLog.errorState,
-    dateState: state.today.date,
+    isPostMode: state.shortLog.isPostMode,
   }
 }
 
-export default connect(mapStateToProps, null)(
-  DiaryReviewShortInput,
-)
+const mapDispatchToprops = dispatch => {
+  return {
+    changeMode: isPostMode =>
+      dispatch(changeMode(isPostMode)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToprops,
+)(DiaryReviewShortInput)
