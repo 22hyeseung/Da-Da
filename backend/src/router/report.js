@@ -135,18 +135,6 @@ router.get('/nutrition/summary', (req, res) => {
  * http://localhost:5000/report/kcal/days?start_date=20170101&end_date=20170102
  *[
  *    {
- *        "eat_log_meal_tag": null,
- *        "eat_log_diary_date": "2017-10-09T15:00:00.000Z",
- *        "sum(kcal)": 74.96,
- *        "day_log_kcal": 1200
- *    },
- *    {
- *        "eat_log_meal_tag": null,
- *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
- *        "sum(kcal)": 85.93,
- *        "day_log_kcal": 1200
- *    },
- *    {
  *        "eat_log_meal_tag": "간식",
  *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
  *        "sum(kcal)": 37.48,
@@ -206,10 +194,6 @@ router.get('/kcal/days', (req, res) => {
  * @apiSuccessExample {json} Success-Respoonse:
  * http://localhost:5000/report/kcal/summary?start_date=20170101&end_date=20170102
  * [
- *     {
- *         "eat_log_meal_tag": null,
- *         "sum(kcal)": 160.89
- *     },
  *     {
  *         "eat_log_meal_tag": "아침",
  *         "sum(kcal)": 9.37
