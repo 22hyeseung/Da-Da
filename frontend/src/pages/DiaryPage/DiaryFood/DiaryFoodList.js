@@ -3,7 +3,7 @@ import {
   Segment,
   Icon,
   Button,
-  Popup,
+  Popup
 } from 'semantic-ui-react'
 import * as Style from './StyledDiaryFood'
 
@@ -32,7 +32,7 @@ class DiaryFoodList extends React.Component {
                   flowing
                   hoverable
                   style={{
-                    padding: '1px',
+                    padding: '1px'
                   }}
                 >
                   <Button.Group>
@@ -47,37 +47,44 @@ class DiaryFoodList extends React.Component {
                   </Button.Group>
                 </Popup>
               </div>
-              <p className="diary-food-meal-list-card-calory">
-                {card.food_kcal}
-                <span className="diary-food-meal-list-card-calory-unit">
-                  kcal
-                </span>
-              </p>
-              <div className="diary-food-meal-list-card-nutritions">
-                <span className="diary-food-meal-list-card-nutrition-wrapper">
-                  <span className="diary-food-meal-list-card-nutrition-title">
-                    탄
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between'
+                }}
+              >
+                <p className="diary-food-meal-list-card-calory">
+                  {card.food_kcal}
+                  <span className="diary-food-meal-list-card-calory-unit">
+                    kcal
                   </span>
-                  <span className="diary-food-meal-list-card-nutrition-kcal">
-                    {card.food_carb}
+                </p>
+                <div className="diary-food-meal-list-card-nutritions">
+                  <span className="diary-food-meal-list-card-nutrition-wrapper">
+                    <span className="diary-food-meal-list-card-nutrition-title">
+                      탄
+                    </span>
+                    <span className="diary-food-meal-list-card-nutrition-kcal">
+                      {card.food_carb}
+                    </span>
                   </span>
-                </span>
-                <span className="diary-food-meal-list-card-nutrition-wrapper">
-                  <span className="diary-food-meal-list-card-nutrition-title">
-                    단
+                  <span className="diary-food-meal-list-card-nutrition-wrapper">
+                    <span className="diary-food-meal-list-card-nutrition-title">
+                      단
+                    </span>
+                    <span className="diary-food-meal-list-card-nutrition-kcal">
+                      {card.food_protein}
+                    </span>
                   </span>
-                  <span className="diary-food-meal-list-card-nutrition-kcal">
-                    {card.food_protein}
+                  <span className="diary-food-meal-list-card-nutrition-wrapper">
+                    <span className="diary-food-meal-list-card-nutrition-title">
+                      지
+                    </span>
+                    <span className="diary-food-meal-list-card-nutrition-kcal">
+                      {card.food_fat}
+                    </span>
                   </span>
-                </span>
-                <span className="diary-food-meal-list-card-nutrition-wrapper">
-                  <span className="diary-food-meal-list-card-nutrition-title">
-                    지
-                  </span>
-                  <span className="diary-food-meal-list-card-nutrition-kcal">
-                    {card.food_fat}
-                  </span>
-                </span>
+                </div>
               </div>
             </Segment>
           )

@@ -209,7 +209,7 @@
 
 .diary-food-meal-list-scroll {
     overflow: auto;
-    height: 176px;
+    height: 169px;
     position: relative;
 }
 
@@ -244,8 +244,12 @@
     margin-left: 8px;
 }
 
-.diary-food-meal-list-card-nutrition-wrapper {
-    margin-right: 9px;
+.diary-food-meal-list-card-nutritions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3px;
+    padding-left: 7px;
+    border-left: 1px solid #e0e5ee;
 }
 
 .diary-food-meal-list-card-nutrition-title {
