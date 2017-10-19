@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
+// 스타일링
 import {
   Input,
   Header,
@@ -15,11 +17,16 @@ import {
   buttonIcon,
   shortSubmitBtn,
 } from './StyledDiaryReview'
+import './diaryReview.css'
+
+// 리듀서 액션
 import {
   getShortLogFromDB,
   postShortLogToDB,
 } from '../../../actions/review'
-import './diaryReview.css'
+
+// helper: 오늘 날짜 API Query형식
+import { dateStringForApiQuery } from '../../../helper/date'
 
 class DiaryReviewShortInput extends Component {
   constructor(props) {
@@ -29,6 +36,9 @@ class DiaryReviewShortInput extends Component {
       isVaild: true,
       isPostMode: true,
       shortLog: '',
+      date: dateStringForApiQuery(
+        this.props.dateState,
+      ),
     }
   }
 
@@ -55,17 +65,16 @@ class DiaryReviewShortInput extends Component {
   }
 
   // data GET
-  // ex. http://localhost:3333/regret?date=2017. 10. 15.
+  // ex. http://localhost:3333/regret?date=20171015
   saveShortLogAndGetFromDB = date => {
     this.props.getShortLogFromDB(date)
   }
 
   // 반성일기 등록시 date와 ShortLog db로 전송(Post)
   createShortLogAndPostToDB = () => {
-    const dateTime = new Date()
-    const date = dateTime.toLocaleDateString()
+    const { shortLog, date } = this.state
     const requestBody = {
-      regret: this.state.shortLog,
+      regret: shortLog,
       date,
     }
     // DB로 post
@@ -87,10 +96,16 @@ class DiaryReviewShortInput extends Component {
   }
 
   render() {
-    if (this.state.errorState) {
+    const {
+      errorState,
+      isLoading,
+      isPostMode,
+      shortLog,
+    } = this.state
+    if (errorState) {
       return <h1>ERROR!</h1>
     }
-    if (this.state.isLoading) {
+    if (isLoading) {
       return (
         <Dimmer active>
           <Loader>Loading</Loader>
@@ -100,14 +115,14 @@ class DiaryReviewShortInput extends Component {
 
     return (
       <div style={shortBox}>
-        {this.state.isPostMode ? (
+        {isPostMode ? (
           <div>
             <Header as="h5">
               오늘의 반성 일기 ( 30자 내외 )
             </Header>
             <Input
               style={shortInput}
-              value={this.state.shortLog}
+              value={shortLog}
               placeholder="오늘 하루, 스스로의 약속을 잘 지키셨나요?"
               onChange={
                 this.handleShortLogValueChange
@@ -182,6 +197,7 @@ class DiaryReviewShortInput extends Component {
 const mapStateToProps = state => {
   return {
     shortLogSaved: state.shortLog.shortLogSaved,
+    dateState: state.today.date,
   }
 }
 

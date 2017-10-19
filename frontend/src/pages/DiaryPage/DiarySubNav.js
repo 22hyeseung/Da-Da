@@ -19,7 +19,6 @@ import {
 import {
   todaysDate,
   todaysDay,
-  dateStringForApiQuery,
 } from '../../helper/date'
 
 class DiarySubNav extends Component {
@@ -36,6 +35,7 @@ class DiarySubNav extends Component {
           <span className="diary-date">
             {this.props.dateState}
             <span className="diary-day">
+              {' '}
               {this.props.dayState}
             </span>
           </span>
