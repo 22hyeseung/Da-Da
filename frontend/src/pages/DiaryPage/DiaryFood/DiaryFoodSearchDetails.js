@@ -17,10 +17,12 @@ class FoodSelectDetails extends Component {
     this.state = {
       finalKcal: '-',
       inputAmount: '',
+      disabled: false,
       meal_tag: '',
       loading: false
     }
   }
+
   handleAmount = e => {
     const finalKcal =
       this.props.calculateKcal * e.target.value
@@ -28,6 +30,10 @@ class FoodSelectDetails extends Component {
       finalKcal: finalKcal.toFixed(3),
       inputAmount: e.target.value
     })
+    if (e.target.value > 0)
+      this.setState({
+        disabled: false
+      })
   }
 
   // 태그명에 따라서 Enum 타입으로 변환
@@ -74,6 +80,15 @@ class FoodSelectDetails extends Component {
     }, 2000)
   }
   createPayloadAndPostToDB = () => {
+    if (
+      !this.state.inputAmount ||
+      this.state.inputAmount < 1
+    ) {
+      return this.setState({
+        disabled: true
+      })
+    }
+
     this.props.postFoodToDB({
       amount: this.state.inputAmount * 1,
       date: 20171019,
@@ -117,6 +132,7 @@ class FoodSelectDetails extends Component {
             style={{ width: '105px' }}
             type="number"
             onKeyDown={this.handleKeyPress}
+            error={this.state.disabled}
           />
           <span className="diary-food-search-label-result-unit">
             {this.props.foodResult.food_unit}
@@ -168,6 +184,7 @@ class FoodSelectDetails extends Component {
               this.createPayloadAndPostToDB
             }
             loading={this.state.loading}
+            disabled={this.state.disabled}
           >
             등록
           </Button>
