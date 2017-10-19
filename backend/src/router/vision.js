@@ -86,17 +86,11 @@ function s3upload(file, ext) {
       'Key': `${uuid.v4()}.${ext}`, // 파일이름
       'ContentDisposition': 'inline', // Content-Disposition 헤더
       'ContentType': 'string' // Content-Type 헤더 ??????
-    }, (err, s3_file) => {
-      console.log(s3_file, '<< [ s3_file ]');
+    }, (err, result) => {
       if (err) {
         reject(err)
-        // res.status(500)
-        // res.send(err)
       } else {
-        resolve(s3_file)
-        // S3 업로드 완료되자마자 곧바로 google vision으로 보내게 되면, 간혹 s3파일을 못 불러올때가 있음.
-        // s3 파일을 갱신타임이 존재하는것으로 보임.
-        // 서버 딜레이를 주기위한 방법(settimeout, delay 관련 npm) 적용필요
+        resolve(result)
       }
     })
   })
@@ -119,11 +113,15 @@ router.post('/', upload.single('upload_img'), (req, res) => {
 
   Promise.all([googleVision(req.file.buffer), s3upload(req.file, ext)])
     .then(result => {
-      console.log('모두 완료', result)
+      // console.log('모두 완료', result)
       res.render('vision.pug', {
         'visionAnalysis': JSON.stringify(result[0]),
         'imgUrl': result[1].Location
       })
+    })
+    .catch(err => {
+      res.status(400)
+      res.send(err)
     })
 })
 
