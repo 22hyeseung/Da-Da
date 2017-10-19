@@ -5,6 +5,5 @@ html(lang="ko")
     title Vision api 디버그페이지
   body
     div
-      form(method='post' action='/vision' enctype="multipart/form-data")
-        input(type='file' name='upload_img')
-        input(type='submit' value='전송')
+      img(style={'max-width': '50%'} src=imgUrl)
+      p vision : #{visionAnalysis}
