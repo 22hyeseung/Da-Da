@@ -111,9 +111,9 @@ router.post('/', (req, res) => {
  *             "food_unit": "g",
  *             "eat_log_meal_tag": "저녁",
  *             "food_kcal": 60.1,
- *             "food_carb": 43.2,
- *             "food_protein": 8.8,
- *             "food_fat": 8.1
+ *             "food_carb": 10.8,
+ *             "food_protein": 2.2,
+ *             "food_fat": 0.9
  *         },
  *         {
  *             "eat_log_id": 3,
@@ -121,9 +121,9 @@ router.post('/', (req, res) => {
  *             "food_unit": "g",
  *             "eat_log_meal_tag": "저녁",
  *             "food_kcal": 120.2,
- *             "food_carb": 86.4,
- *             "food_protein": 17.6,
- *             "food_fat": 16.2
+ *             "food_carb": 21.6,
+ *             "food_protein": 4.4,
+ *             "food_fat": 1.8
  *         },
  *         {
  *             "eat_log_id": 5,
@@ -131,9 +131,9 @@ router.post('/', (req, res) => {
  *             "food_unit": "g",
  *             "eat_log_meal_tag": "점심",
  *             "food_kcal": 216.3,
- *             "food_carb": 168,
- *             "food_protein": 34.8,
- *             "food_fat": 13.5
+ *             "food_carb": 42,
+ *             "food_protein": 8.7,
+ *             "food_fat": 1.5
  *         }
  *     ],
  *     "reciperesult": [
@@ -142,9 +142,9 @@ router.post('/', (req, res) => {
  *             "eat_log_recipe_id": 1,
  *             "eat_log_meal_tag": "저녁",
  *             "recipe_kcal": 3400,
- *             "recipe_carb": 800,
- *             "recipe_protein": 800,
- *             "recipe_fat": 1800
+ *             "recipe_carb": 200,
+ *             "recipe_protein": 200,
+ *             "recipe_fat": 200
  *         }
  *     ]
  * }
