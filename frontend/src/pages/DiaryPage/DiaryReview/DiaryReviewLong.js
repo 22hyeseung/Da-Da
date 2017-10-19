@@ -26,8 +26,8 @@ import { stateFromHTML } from 'draft-js-import-html'
 
 // 리덕스 액션 생성자
 import {
-  getCommentFromDB,
-  postCommentToDB,
+  getLongLogFromDB,
+  postLongLogToDB,
 } from '../../../actions/review'
 
 class DiaryReviewLongInput extends Component {
@@ -37,7 +37,6 @@ class DiaryReviewLongInput extends Component {
       errorState: false,
       isVaild: true,
       isPostMode: true,
-      // comment: '',
     }
   }
 
@@ -49,8 +48,8 @@ class DiaryReviewLongInput extends Component {
   }
 
   // DB에 저장된 comment GET
-  saveCommentAndGetFromDB = date => {
-    this.props.getCommentFromDB(date)
+  saveLongLogAndGetFromDB = date => {
+    this.props.getLongLogFromDB(date)
   }
 
   // local Storage의 content = 에디터에 가장 최근까지 작성된 내용
@@ -72,8 +71,8 @@ class DiaryReviewLongInput extends Component {
     return stateToHTML(editorContent)
   }
 
-  // 작성된 comment를 DB로 POST
-  createCommentAndPostToDB = () => {
+  // 작성된 LongLog를 DB로 POST
+  createLongLogAndPostToDB = () => {
     let html = this.convertContentStateToHtml()
     const date = '20171019'
     const requestBody = {
@@ -82,10 +81,10 @@ class DiaryReviewLongInput extends Component {
     }
     // DB로 post
     // console.log(requestBody)
-    this.props.postCommentToDB(requestBody)
+    this.props.postLongLogToDB(requestBody)
 
     // 요청 보낸 날짜로 다시 get
-    this.saveCommentAndGetFromDB(date)
+    this.saveLongLogAndGetFromDB(date)
     // 이후 읽기모드로 전환
     this.changeMode()
   }
@@ -111,13 +110,13 @@ class DiaryReviewLongInput extends Component {
               style={longSubmitBtn}
               content={'등록'}
               onClick={
-                this.createCommentAndPostToDB
+                this.createLongLogAndPostToDB
               }
             />
           </div>
         ) : (
           <div style={savedContainer}>
-            {this.props.commentWrited.comment}
+            {this.props.longLogSaved.longLog}
           </div>
         )}
       </div>
@@ -127,17 +126,16 @@ class DiaryReviewLongInput extends Component {
 
 const mapStateToProps = state => {
   return {
-    commentWrited:
-      state.readComment.commentWrited,
+    longLogSaved: state.longLog.longLogSaved,
   }
 }
 
 const mapDispatchToprops = dispatch => {
   return {
-    getCommentFromDB: date =>
-      dispatch(getCommentFromDB(date)),
-    postCommentToDB: requestBody =>
-      dispatch(postCommentToDB(requestBody)),
+    getLongLogFromDB: date =>
+      dispatch(getLongLogFromDB(date)),
+    postLongLogToDB: requestBody =>
+      dispatch(postLongLogToDB(requestBody)),
   }
 }
 

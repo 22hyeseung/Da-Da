@@ -1,10 +1,10 @@
 import * as types from './ActionTypes'
 import rootApi from '../config'
 
-export const getRegretFromDB = date => {
+export const getShortLogFromDB = date => {
   return dispatch => {
     dispatch({
-      type: types.GET_REGRET_REQUEST,
+      type: types.GET_SHORTLOG_REQUEST,
     })
     fetch(
       `${rootApi}/diary/regret?date=${date}`,
@@ -19,7 +19,7 @@ export const getRegretFromDB = date => {
       .then(res => res.json())
       .then(data => {
         dispatch({
-          type: types.GET_REGRET_SUCCESS,
+          type: types.GET_SHORTLOG_SUCCESS,
           payload: [...data],
         })
       })
@@ -31,7 +31,7 @@ export const getRegretFromDB = date => {
   }
 }
 
-export const postRegretToDB = requestBody => {
+export const postShortLogToDB = requestBody => {
   return dispatch => {
     return fetch(`${rootApi}/diary/regret`, {
       headers: {
@@ -45,7 +45,7 @@ export const postRegretToDB = requestBody => {
       .then(result => {
         console.log(result)
         dispatch({
-          type: types.POST_REGRET_TO_DATABASE,
+          type: types.POST_SHORTLOG_TO_DATABASE,
           payload: result,
         })
       })
@@ -55,10 +55,10 @@ export const postRegretToDB = requestBody => {
   }
 }
 
-export const getCommentFromDB = date => {
+export const getLongLogFromDB = date => {
   return dispatch => {
     dispatch({
-      type: types.GET_COMMENT_REQUEST,
+      type: types.GET_LONGLOG_REQUEST,
     })
     fetch(
       `${rootApi}/diary/comment?date=${date}`,
@@ -73,7 +73,7 @@ export const getCommentFromDB = date => {
       .then(res => res.json())
       .then(data => {
         dispatch({
-          type: types.GET_COMMENT_SUCCESS,
+          type: types.GET_LONGLOG_SUCCESS,
           payload: [...data],
         })
       })
@@ -85,7 +85,7 @@ export const getCommentFromDB = date => {
   }
 }
 
-export const postCommentToDB = requestBody => {
+export const postLongLogToDB = requestBody => {
   return dispatch => {
     return fetch(`${rootApi}/diary/comment`, {
       headers: {
@@ -99,7 +99,7 @@ export const postCommentToDB = requestBody => {
       .then(result => {
         console.log(result)
         dispatch({
-          type: types.POST_COMMENT_TO_DATABASE,
+          type: types.POST_LONGLOG_TO_DATABASE,
           payload: result,
         })
       })

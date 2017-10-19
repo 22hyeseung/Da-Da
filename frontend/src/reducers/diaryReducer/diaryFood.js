@@ -1,9 +1,9 @@
-const DEFAULT_DIARY_FOOD = {
+const INITIAL_STATE = {
   isSearchMode: null,
 }
 
 export const diaryFoodReducer = (
-  state = DEFAULT_DIARY_FOOD,
+  state = INITIAL_STATE,
   action,
 ) => {
   if (action.type === 'TOOGLE_SEARCH_HIDDEN') {

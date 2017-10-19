@@ -3,7 +3,7 @@ const INITIAL_STATE = {
   date: '',
 }
 
-const todayReducer = (
+const todayDateReducer = (
   state = INITIAL_STATE,
   action,
 ) => {
@@ -23,4 +23,4 @@ const todayReducer = (
   }
 }
 
-export default todayReducer
+export default todayDateReducer
