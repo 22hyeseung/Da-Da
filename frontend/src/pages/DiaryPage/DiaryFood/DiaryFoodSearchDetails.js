@@ -4,6 +4,7 @@ import {
   Icon,
   Button
 } from 'semantic-ui-react'
+import ComponentLoader from '../../../components/ComponentLoader'
 import { postFoodToDB } from '../../../actions/diaryFood'
 import { connect } from 'react-redux'
 import * as Styled from './StyledDiaryFood'
@@ -16,7 +17,8 @@ class FoodSelectDetails extends Component {
     this.state = {
       finalKcal: '-',
       inputAmount: '',
-      meal_tag: ''
+      meal_tag: '',
+      loading: false
     }
   }
   handleAmount = e => {
@@ -52,6 +54,25 @@ class FoodSelectDetails extends Component {
     }
   }
 
+  componentDidMount() {
+    if (this.props.isSelected) {
+      this.textInput.focus()
+    }
+  }
+
+  handleKeyPress = e => {
+    if (e.keyCode === 13) {
+      this.createPayloadAndPostToDB()
+    }
+  }
+  postDelay = () => {
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      }),
+        this.props.toggleSearchMode()
+    }, 2000)
+  }
   createPayloadAndPostToDB = () => {
     this.props.postFoodToDB({
       amount: this.state.inputAmount * 1,
@@ -60,7 +81,10 @@ class FoodSelectDetails extends Component {
       meal_tag: `${this.state.meal_tag}`,
       picture: null
     })
-    this.props.toggleSearchMode()
+    this.setState({ loading: true }, () =>
+      this.postDelay()
+    )
+
     console.log(this.props.foodResult.food_id)
     console.log(this.props.type)
     console.log(this.state.inputAmount * 1)
@@ -86,9 +110,13 @@ class FoodSelectDetails extends Component {
             alt="곱하기 모양의 아이콘입니다."
           />
           <Input
+            ref={input =>
+              (this.textInput = input)}
             placeholder="얼마나 먹었나요?"
             onChange={e => this.handleAmount(e)}
             style={{ width: '105px' }}
+            type="number"
+            onKeyDown={this.handleKeyPress}
           />
           <span className="diary-food-search-label-result-unit">
             {this.props.foodResult.food_unit}
@@ -129,7 +157,7 @@ class FoodSelectDetails extends Component {
               ...Styled.cancelBtn,
               marginRight: '9px'
             }}
-            onClick={this.toggleSearchMode}
+            onClick={this.props.toggleSearchMode}
           >
             취소
           </Button>
@@ -139,6 +167,7 @@ class FoodSelectDetails extends Component {
             onClick={
               this.createPayloadAndPostToDB
             }
+            loading={this.state.loading}
           >
             등록
           </Button>
