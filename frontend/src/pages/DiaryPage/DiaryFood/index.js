@@ -9,17 +9,34 @@ import foodIconDefault from '../../../static/img/diary-food_default.svg'
 import * as Style from './StyledDiaryFood'
 import { connect } from 'react-redux'
 import { fetchFoodLogsFromDB } from '../../../actions/diaryFood'
+import ComponentLoader from '../../../components/ComponentLoader'
 
 class DiaryFood extends React.Component {
+  state = {
+    loading: false,
+  }
   componentWillMount() {
     this.props.fetchFoodLogs()
+    this.setState({ loading: true }, () =>
+      this.fetchData(),
+    )
   }
-
+  fetchData = () => {
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+      })
+    }, 2000)
+  }
   render() {
     const breackfast = []
     const lunch = []
     const dinner = []
     const desert = []
+
+    if (this.state.loading) {
+      return <ComponentLoader />
+    }
     return (
       <Segment style={Style.foodBox}>
         {/* title 시작 */}
