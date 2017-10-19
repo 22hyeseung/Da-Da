@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
   Input,
   Icon,
-  Button,
+  Button
 } from 'semantic-ui-react'
 import { postFoodToDB } from '../../../actions/diaryFood'
 import { connect } from 'react-redux'
@@ -16,7 +16,7 @@ class FoodSelectDetails extends Component {
     this.state = {
       finalKcal: '-',
       inputAmount: '',
-      meal_tag: '',
+      meal_tag: ''
     }
   }
   handleAmount = e => {
@@ -24,7 +24,7 @@ class FoodSelectDetails extends Component {
       this.props.calculateKcal * e.target.value
     this.setState({
       finalKcal: finalKcal.toFixed(3),
-      inputAmount: e.target.value,
+      inputAmount: e.target.value
     })
   }
 
@@ -32,45 +32,45 @@ class FoodSelectDetails extends Component {
   componentWillMount() {
     if (this.props.type == '아침') {
       return this.setState({
-        meal_tag: 1,
+        meal_tag: 1
       })
     }
     if (this.props.type == '점심') {
       return this.setState({
-        meal_tag: 2,
+        meal_tag: 2
       })
     }
     if (this.props.type == '저녁') {
       return this.setState({
-        meal_tag: 3,
+        meal_tag: 3
       })
     }
     if (this.props.type == '간식') {
       return this.setState({
-        meal_tag: 4,
+        meal_tag: 4
       })
     }
   }
 
   createPayloadAndPostToDB = () => {
     this.props.postFoodToDB({
+      amount: this.state.inputAmount * 1,
+      date: 20171019,
       food_id: this.props.foodResult.food_id,
       meal_tag: `${this.state.meal_tag}`,
-      amount: this.state.inputAmount * 1,
-      picture: null,
-      date: 20171019,
+      picture: null
     })
     this.props.toggleSearchMode()
-    // console.log(this.props.foodResult.food_id)
-    // console.log(this.state.meal_tag)
-    // console.log(this.state.inputAmount * 1)
+    console.log(this.props.foodResult.food_id)
+    console.log(this.props.type)
+    console.log(this.state.inputAmount * 1)
   }
   render() {
     const details = (
       <div
         style={{
           display: 'flex',
-          alignItems: 'center',
+          alignItems: 'center'
         }}
       >
         <span className="diary-food-search-label-result-title">
@@ -127,7 +127,7 @@ class FoodSelectDetails extends Component {
             basic
             style={{
               ...Styled.cancelBtn,
-              marginRight: '9px',
+              marginRight: '9px'
             }}
             onClick={this.toggleSearchMode}
           >
@@ -155,17 +155,17 @@ FoodSelectDetails.defaultProps = {
     food_unit: '',
     food_protein: '',
     food_carb: '',
-    food_fat: '',
-  },
+    food_fat: ''
+  }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     postFoodToDB: payload =>
-      dispatch(postFoodToDB(payload)),
+      dispatch(postFoodToDB(payload))
   }
 }
 
 export default connect(null, mapDispatchToProps)(
-  FoodSelectDetails,
+  FoodSelectDetails
 )

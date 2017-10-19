@@ -339,6 +339,7 @@ class DiaryFoodSearch extends Component {
               style={Styled.searchLabel}
             >
               <FoodSelectDetails
+                type={this.props.type}
                 isSelected={
                   this.state.selectedKey !== -1
                 }

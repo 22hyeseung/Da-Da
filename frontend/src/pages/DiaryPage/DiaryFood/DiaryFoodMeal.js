@@ -10,16 +10,18 @@ class DiaryFoodMeal extends React.Component {
     super(props)
   }
   render() {
-    let totalKcal = this.props.foodresult.reduce(
-      (pre, cur) => {
-        return pre.food_kcal + cur.food_kcal
-      },
-    )
+    let totalKcal = this.props.foodresult
+      .map(kcal => {
+        return kcal.food_kcal
+      })
+      .reduce((pre, cur) => pre + cur)
+      .toFixed(1)
+
     return (
       <Segment
         className="diary-food-meal"
         style={{
-          paddingTop: '7px',
+          paddingTop: '7px'
         }}
       >
         <div>
@@ -49,7 +51,7 @@ class DiaryFoodMeal extends React.Component {
             </div>
           </div>
         </div>
-        <DiaryFoodAdd />
+        <DiaryFoodAdd type={this.props.type} />
       </Segment>
     )
   }
