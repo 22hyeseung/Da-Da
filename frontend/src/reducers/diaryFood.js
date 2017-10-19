@@ -1,15 +1,32 @@
 const DEFAULT_DIARY_FOOD = {
-  isSearchMode: null,
+  foodresult: [],
+  reciperesult: [],
 }
 
 export const diaryFoodReducer = (
   state = DEFAULT_DIARY_FOOD,
   action,
 ) => {
-  if (action.type === 'TOOGLE_SEARCH_HIDDEN') {
+  if (
+    action.type === 'FETCHED_FOOD_LOGS_SUCCESS'
+  ) {
     return {
       ...state,
-      isSearchMode: action.payload,
+      foodresult: [...action.payload.foodresult],
+      reciperesult: [
+        ...action.payload.reciperesult,
+      ],
     }
+  }
+  if (action.type === 'POST_FOOD_TO_DATABASE') {
+    return {
+      foodresult: [
+        action.payload,
+        ...state.foodresult,
+      ],
+    }
+  }
+  return {
+    ...state,
   }
 }

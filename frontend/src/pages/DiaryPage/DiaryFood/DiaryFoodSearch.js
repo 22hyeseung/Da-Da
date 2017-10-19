@@ -30,7 +30,6 @@ class DiaryFoodSearch extends Component {
       results: [],
       resultKcal: '',
       finalKcal: '',
-      inputAmount: 1,
       token: `Bearer ${this.props.token}`,
     }
   }
@@ -127,6 +126,7 @@ class DiaryFoodSearch extends Component {
           <Segment
             style={{
               ...Styled.segmentDefault,
+              margin: '0px',
               overflow: 'hidden',
               height: '331px',
             }}
@@ -338,42 +338,23 @@ class DiaryFoodSearch extends Component {
               attached="bottom"
               style={Styled.searchLabel}
             >
-              <div className="diary-food-search-label">
-                <FoodSelectDetails
-                  isSelected={
-                    this.state.selectedKey !== -1
-                  }
-                  calculateKcal={
-                    this.state.resultKcal
-                  }
-                  foodResult={
-                    this.state.results[
-                      this.state.selectedKey
-                    ]
-                  }
-                />
-
-                <div>
-                  <Button
-                    basic
-                    style={{
-                      ...Styled.cancelBtn,
-                      marginRight: '9px',
-                    }}
-                    onClick={
-                      this.toggleSearchMode
-                    }
-                  >
-                    취소
-                  </Button>
-                  <Button
-                    className="diary-food-meal-submitBtn"
-                    style={Styled.submitBtn}
-                  >
-                    등록
-                  </Button>
-                </div>
-              </div>
+              <FoodSelectDetails
+                isSelected={
+                  this.state.selectedKey !== -1
+                }
+                calculateKcal={
+                  this.state.resultKcal
+                }
+                foodResult={
+                  this.state.results[
+                    this.state.selectedKey
+                  ]
+                }
+                type={this.props.type}
+                toggleSearchMode={
+                  this.toggleSearchMode
+                } // 토글 이벤트 내림
+              />
             </Label>
           </Segment>
         ) : (

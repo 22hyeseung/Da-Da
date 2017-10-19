@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
-import { Input, Icon } from 'semantic-ui-react'
+import {
+  Input,
+  Icon,
+  Button,
+} from 'semantic-ui-react'
+import { postFoodToDB } from '../../../actions/diaryFood'
+import { connect } from 'react-redux'
+import * as Styled from './StyledDiaryFood'
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import returnIcon from '../../../static/img/diary-return.svg'
 
-export default class FoodSelectDetails extends Component {
+class FoodSelectDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
       finalKcal: '-',
+      inputAmount: '',
+      meal_tag: '',
     }
   }
   handleAmount = e => {
@@ -15,12 +24,55 @@ export default class FoodSelectDetails extends Component {
       this.props.calculateKcal * e.target.value
     this.setState({
       finalKcal: finalKcal.toFixed(3),
+      inputAmount: e.target.value,
     })
   }
 
+  // 태그명에 따라서 Enum 타입으로 변환
+  componentWillMount() {
+    if (this.props.type == '아침') {
+      return this.setState({
+        meal_tag: 1,
+      })
+    }
+    if (this.props.type == '점심') {
+      return this.setState({
+        meal_tag: 2,
+      })
+    }
+    if (this.props.type == '저녁') {
+      return this.setState({
+        meal_tag: 3,
+      })
+    }
+    if (this.props.type == '간식') {
+      return this.setState({
+        meal_tag: 4,
+      })
+    }
+  }
+
+  createPayloadAndPostToDB = () => {
+    this.props.postFoodToDB({
+      food_id: this.props.foodResult.food_id,
+      meal_tag: `${this.state.meal_tag}`,
+      amount: this.state.inputAmount * 1,
+      picture: null,
+      date: 20171019,
+    })
+    this.props.toggleSearchMode()
+    // console.log(this.props.foodResult.food_id)
+    // console.log(this.state.meal_tag)
+    // console.log(this.state.inputAmount * 1)
+  }
   render() {
     const details = (
-      <div className="diary-food-search-label-result">
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
         <span className="diary-food-search-label-result-title">
           {this.props.foodResult.food_name_ko}
         </span>
@@ -64,10 +116,33 @@ export default class FoodSelectDetails extends Component {
       </span>
     )
     return (
-      <div>
-        {this.props.isSelected
-          ? details
-          : this.props.foodResult ? '' : blank}
+      <div className="diary-food-search-label">
+        <div className="diary-food-search-label-result">
+          {this.props.isSelected
+            ? details
+            : this.props.foodResult ? '' : blank}
+        </div>
+        <div>
+          <Button
+            basic
+            style={{
+              ...Styled.cancelBtn,
+              marginRight: '9px',
+            }}
+            onClick={this.toggleSearchMode}
+          >
+            취소
+          </Button>
+          <Button
+            className="diary-food-meal-submitBtn"
+            style={Styled.submitBtn}
+            onClick={
+              this.createPayloadAndPostToDB
+            }
+          >
+            등록
+          </Button>
+        </div>
       </div>
     )
   }
@@ -75,6 +150,7 @@ export default class FoodSelectDetails extends Component {
 
 FoodSelectDetails.defaultProps = {
   foodResult: {
+    food_id: '',
     food_name_ko: '',
     food_unit: '',
     food_protein: '',
@@ -82,3 +158,14 @@ FoodSelectDetails.defaultProps = {
     food_fat: '',
   },
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    postFoodToDB: payload =>
+      dispatch(postFoodToDB(payload)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(
+  FoodSelectDetails,
+)

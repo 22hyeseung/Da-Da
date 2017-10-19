@@ -21,7 +21,9 @@ class DiaryFoodAdd extends Component {
       <div>
         {this.state.isSearchMode ? (
           <div>
-            <DiaryFoodSearch />
+            <DiaryFoodSearch
+              type={this.props.type}
+            />
           </div>
         ) : (
           <Button
