@@ -30,6 +30,9 @@ import {
   postLongLogToDB,
 } from '../../../actions/review'
 
+// helper: 오늘 날짜 API Query형식
+import { dateStringForApiQuery } from '../../../helper/date'
+
 class DiaryReviewLongInput extends Component {
   constructor(props) {
     super(props)
@@ -37,6 +40,9 @@ class DiaryReviewLongInput extends Component {
       errorState: false,
       isVaild: true,
       isPostMode: true,
+      date: dateStringForApiQuery(
+        this.props.dateState,
+      ),
     }
   }
 
@@ -45,11 +51,6 @@ class DiaryReviewLongInput extends Component {
     this.setState({
       isPostMode: !this.state.isPostMode,
     })
-  }
-
-  // DB에 저장된 comment GET
-  saveLongLogAndGetFromDB = date => {
-    this.props.getLongLogFromDB(date)
   }
 
   // local Storage의 content = 에디터에 가장 최근까지 작성된 내용
@@ -66,34 +67,38 @@ class DiaryReviewLongInput extends Component {
     const content = this.loadExistingContentFromLocalStorage()
     // ContentState -> HTML
     const editorContent = convertFromRaw(content)
-    console.log(editorContent)
-    console.log(typeof stateToHTML(editorContent))
+    // console.log(editorContent)
+    // console.log(typeof stateToHTML(editorContent))
     return stateToHTML(editorContent)
   }
 
   // 작성된 LongLog를 DB로 POST
   createLongLogAndPostToDB = () => {
     let html = this.convertContentStateToHtml()
-    const date = '20171019'
     const requestBody = {
       comment: html,
-      date,
+      date: this.state.date,
     }
     // DB로 post
     // console.log(requestBody)
     this.props.postLongLogToDB(requestBody)
 
-    // 요청 보낸 날짜로 다시 get
-    this.saveLongLogAndGetFromDB(date)
     // 이후 읽기모드로 전환
     this.changeMode()
   }
 
   render() {
-    if (this.state.errorState) {
+    const {
+      errorState,
+      isLoading,
+      isPostMode,
+    } = this.state
+    const { longLogSaved } = this.props
+
+    if (errorState) {
       return <h1>ERROR!</h1>
     }
-    if (this.state.isLoading) {
+    if (isLoading) {
       return (
         <Dimmer active>
           <Loader>Loading</Loader>
@@ -103,7 +108,7 @@ class DiaryReviewLongInput extends Component {
     return (
       <div style={longBox}>
         <Header as="h5">오늘의 일기</Header>
-        {this.state.isPostMode ? (
+        {isPostMode ? (
           <div>
             <TextEditor />
             <Button
@@ -116,7 +121,12 @@ class DiaryReviewLongInput extends Component {
           </div>
         ) : (
           <div style={savedContainer}>
-            {this.props.longLogSaved.longLog}
+            <div
+              dangerouslySetInnerHTML={{
+                __html:
+                  longLogSaved.day_log_comment,
+              }}
+            />
           </div>
         )}
       </div>
@@ -127,6 +137,7 @@ class DiaryReviewLongInput extends Component {
 const mapStateToProps = state => {
   return {
     longLogSaved: state.longLog.longLogSaved,
+    dateState: state.today.date,
   }
 }
 

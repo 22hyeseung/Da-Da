@@ -64,12 +64,6 @@ class DiaryReviewShortInput extends Component {
     return this.state.shortLog.length <= 30
   }
 
-  // data GET
-  // ex. http://localhost:3333/regret?date=20171015
-  saveShortLogAndGetFromDB = date => {
-    this.props.getShortLogFromDB(date)
-  }
-
   // 반성일기 등록시 date와 ShortLog db로 전송(Post)
   createShortLogAndPostToDB = () => {
     const { shortLog, date } = this.state
@@ -78,11 +72,9 @@ class DiaryReviewShortInput extends Component {
       date,
     }
     // DB로 post
-    console.log(requestBody)
+    // console.log(requestBody)
     this.props.postShortLogToDB(requestBody)
 
-    // 요청 보낸 날짜로 다시 get
-    this.saveShortLogAndGetFromDB(date)
     // 이후 읽기모드로 전환
     this.changeMode()
   }
@@ -185,7 +177,10 @@ class DiaryReviewShortInput extends Component {
               className="savedShortLog"
               onClick={this.changeMode}
             >
-              {this.props.shortLogSaved.shortLog}
+              {
+                this.props.shortLogSaved
+                  .day_log_regret
+              }
             </div>
           </div>
         )}
