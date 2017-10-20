@@ -40,6 +40,7 @@ class DiaryReviewShortInput extends Component {
     )
   }
 
+  // 로딩 화면 위해 2초 지연
   fetchData = () => {
     setTimeout(() => {
       this.setState({
@@ -82,12 +83,15 @@ class DiaryReviewShortInput extends Component {
         {shortLogSaved.day_log_regret ? (
           // 작성한 로그가 이미 있으면
           isPostMode ? (
+            // 수정 시 화면: 쓰기 모드
             <ShortLogWriteMode />
           ) : (
+            // 기본 화면: 읽기 모드
             <ShortLogReadMode />
           )
         ) : (
           // 오늘 작성한 로그가 없으면
+          // 기본 화면: 쓰기 모드
           <ShortLogWriteMode />
         )}
       </div>
