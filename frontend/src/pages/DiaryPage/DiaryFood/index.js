@@ -13,15 +13,21 @@ import DiaryFoodAdd from './DiaryFoodAdd'
 import DiaryFoodAlbum from './DiaryFoodAlbum'
 import DiaryFoodMeal from './DiaryFoodMeal'
 import { connect } from 'react-redux'
-import { fetchFoodLogsFromDB } from '../../../actions/diaryFood'
+import { getFoodLogsFromDB } from '../../../actions/diaryFood'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
+// helper: 오늘 날짜 API Query형식
+import { dateStringForApiQuery } from '../../../helper/date'
 
 class DiaryFood extends React.Component {
   state = {
     loading: false,
+    date: dateStringForApiQuery(
+      this.props.dateState,
+    ),
   }
   componentWillMount() {
-    this.props.fetchFoodLogs()
+    console.log(this.state.date)
+    this.props.fetchFoodLogs(this.state.date)
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
@@ -108,13 +114,14 @@ class DiaryFood extends React.Component {
 const mapStateToProps = state => {
   return {
     foodresult: state.foodLogs.foodresult,
+    dateState: state.today.date,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchFoodLogs: () =>
-      dispatch(fetchFoodLogsFromDB()),
+    fetchFoodLogs: date =>
+      dispatch(getFoodLogsFromDB(date)),
   }
 }
 export default connect(

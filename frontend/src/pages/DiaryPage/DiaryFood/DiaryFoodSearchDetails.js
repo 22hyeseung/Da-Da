@@ -15,6 +15,8 @@ import { connect } from 'react-redux'
 import * as Styled from './StyledDiaryFood'
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import returnIcon from '../../../static/img/diary-return.svg'
+// helper: 오늘 날짜 API Query형식
+import { dateStringForApiQuery } from '../../../helper/date'
 
 class FoodSelectDetails extends Component {
   constructor(props) {
@@ -25,6 +27,9 @@ class FoodSelectDetails extends Component {
       disabled: false,
       meal_tag: '',
       loading: false,
+      date: dateStringForApiQuery(
+        this.props.dateState,
+      ),
     }
   }
 
@@ -96,7 +101,7 @@ class FoodSelectDetails extends Component {
 
     this.props.postFoodToDB({
       amount: this.state.inputAmount * 1,
-      date: 20171019,
+      date: this.state.date,
       food_id: this.props.foodResult.food_id,
       meal_tag: `${this.state.meal_tag}`,
       picture: null,
@@ -209,7 +214,11 @@ FoodSelectDetails.defaultProps = {
     food_fat: '',
   },
 }
-
+const mapStateToProps = state => {
+  return {
+    dateState: state.today.date,
+  }
+}
 const mapDispatchToProps = dispatch => {
   return {
     postFoodToDB: payload =>
@@ -217,6 +226,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(
-  FoodSelectDetails,
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(FoodSelectDetails)
