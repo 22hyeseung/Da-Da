@@ -114,10 +114,11 @@ function insertBurnById({ burn_member_id, burn_exercise_id, burn_date, burn_kcal
       burn_kcal,
       burn_minute
     })
-    .then(([burn_id]) => {
+    .then(burn_id => {
       return knex('burn')
+        .select('exercise.exercise_name', 'burn.burn_date', 'burn.burn_minute', 'burn.burn_kcal', 'burn.burn_id')
+        .join('exercise', 'burn.burn_exercise_id', '=', 'exercise.exercise_id')
         .where({ burn_id })
-        .first()
     })
 }
 
