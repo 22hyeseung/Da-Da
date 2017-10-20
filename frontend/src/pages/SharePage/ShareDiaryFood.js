@@ -8,7 +8,7 @@ import ShareDiaryFoodList from './ShareDiaryFoodList'
 import ShareDiaryFoodAlbum from './ShareDiaryFoodAlbum'
 import foodIconDefault from '../../static/img/diary-food_default.svg'
 import * as Style from './StyledDiaryFood'
-import './Diary.css'
+import './ShareDiary.css'
 
 const ShareDiaryFood = () => {
   return (

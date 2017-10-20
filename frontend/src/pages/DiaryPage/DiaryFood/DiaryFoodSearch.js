@@ -28,20 +28,17 @@ class DiaryFoodSearch extends Component {
       inputError: false,
       isLoading: false,
       btnState: false, //
-      isFocus: false,
       isEmpty: true,
 
       userInput: '',
       results: [],
       resultKcal: '',
       finalKcal: '',
-      inputAmount: 1,
       token: `Bearer ${this.props.token}`,
     }
   }
 
   componentDidMount() {
-    console.log(this.textInput)
     this.textInput.focus()
   }
 
@@ -91,7 +88,11 @@ class DiaryFoodSearch extends Component {
       btnState: false,
     })
   }
-
+  handleKeyPress = e => {
+    if (e.keyCode === 13) {
+      this.getFoodsList()
+    }
+  }
   // 검색 리스트 중 선택하는 핸들러
   // 검색 결과 배열 자체에 id값을 주어야함!!!
   handleSelect = key => {
@@ -131,7 +132,8 @@ class DiaryFoodSearch extends Component {
         {this.state.isSearchMode ? (
           <Segment
             style={{
-              ...segmentDefault,
+              ...Styled.segmentDefault,
+              margin: '0px',
               overflow: 'hidden',
               height: '331px',
             }}
@@ -153,9 +155,11 @@ class DiaryFoodSearch extends Component {
                     className="diary-food-search"
                     loading={isLoading}
                     error={inputError}
-                    focus={isFocus}
                     onChange={this.handleChange}
                     value={this.state.userInput}
+                    onKeyDown={
+                      this.handleKeyPress
+                    }
                   />
                   <Button
                     onClick={this.getFoodsList}
@@ -343,42 +347,24 @@ class DiaryFoodSearch extends Component {
               attached="bottom"
               style={Style.searchLabel}
             >
-              <div className="diary-food-search-label">
-                <FoodSelectDetails
-                  isSelected={
-                    this.state.selectedKey !== -1
-                  }
-                  calculateKcal={
-                    this.state.resultKcal
-                  }
-                  foodResult={
-                    this.state.results[
-                      this.state.selectedKey
-                    ]
-                  }
-                />
-
-                <div>
-                  <Button
-                    basic
-                    style={{
-                      ...cancelBtn,
-                      marginRight: '9px',
-                    }}
-                    onClick={
-                      this.toggleSearchMode
-                    }
-                  >
-                    취소
-                  </Button>
-                  <Button
-                    className="diary-food-meal-submitBtn"
-                    style={submitBtn}
-                  >
-                    등록
-                  </Button>
-                </div>
-              </div>
+              <FoodSelectDetails
+                type={this.props.type}
+                isSelected={
+                  this.state.selectedKey !== -1
+                }
+                calculateKcal={
+                  this.state.resultKcal
+                }
+                foodResult={
+                  this.state.results[
+                    this.state.selectedKey
+                  ]
+                }
+                type={this.props.type}
+                toggleSearchMode={
+                  this.toggleSearchMode
+                } // 토글 이벤트 props 내림
+              />
             </Label>
           </Segment>
         ) : (

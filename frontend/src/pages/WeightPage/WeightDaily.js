@@ -136,8 +136,8 @@ class WeightDaily extends Component {
               <Icon
                 name="plus"
                 style={{ marginRight: '10px' }}
-              />
-              오늘 체중 기록하기
+              />{' '}
+              */} 오늘 체중 기록하기
             </Button>
           )}
           {/* 리스트 시작 */}

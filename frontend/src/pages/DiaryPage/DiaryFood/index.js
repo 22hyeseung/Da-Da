@@ -6,122 +6,125 @@ import * as Style from './StyledDiaryFood'
 import DiarySubHeader from '../DiarySubHeader'
 import DiaryFoodAdd from './DiaryFoodAdd'
 import DiaryFoodAlbum from './DiaryFoodAlbum'
+import DiaryFoodAlbum from './DiaryFoodAlbum'
+import DiaryFoodMeal from './DiaryFoodMeal'
+import { connect } from 'react-redux'
+import { fetchFoodLogsFromDB } from '../../../actions/diaryFood'
+import ComponentLoader from '../../../components/ComponentLoader'
 
-{
-  /* <DiaryFood
-  type="아침"
-/>
-<DiaryFood
-  type="점심"
-/>
-<DiaryFood
-  type="저녁"
-/> */
+class DiaryFood extends React.Component {
+  state = {
+    loading: false,
+  }
+  componentWillMount() {
+    this.props.fetchFoodLogs()
+    this.setState({ loading: true }, () =>
+      this.fetchData(),
+    )
+  }
+  fetchData = () => {
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+      })
+    }, 2000)
+  }
+  render() {
+    const breackfast = []
+    const lunch = []
+    const dinner = []
+    const desert = []
+
+    if (this.state.loading) {
+      return <ComponentLoader />
+    }
+    return (
+      <Segment style={Style.foodBox}>
+        {/* title 시작 */}
+        <Header style={Style.header}>
+          <Header.Subheader
+            style={Style.subHeader}
+          >
+            FOOD DIARY
+          </Header.Subheader>
+          오늘의 식단 다이어리
+          <img
+            src={foodIconDefault}
+            style={{
+              height: '27px',
+              marginBottom: '9px',
+            }}
+            alt="의미없는 식단 다이어리 표시 아이콘입니다."
+          />
+        </Header>
+        {/* title 끝 */}
+        {this.props.foodresult.map(
+          (result, i) => {
+            if (
+              result.eat_log_meal_tag === '아침'
+            ) {
+              {
+                breackfast.push(result)
+              }
+            }
+            if (
+              result.eat_log_meal_tag === '점심'
+            ) {
+              {
+                lunch.push(result)
+              }
+            }
+            if (
+              result.eat_log_meal_tag === '저녁'
+            ) {
+              {
+                dinner.push(result)
+              }
+            }
+            if (
+              result.eat_log_meal_tag === '간식'
+            ) {
+              {
+                desert.push(result)
+              }
+            }
+          },
+        )}
+
+        <DiaryFoodMeal
+          type="아침"
+          foodresult={breackfast}
+        />
+        <DiaryFoodMeal
+          type="점심"
+          foodresult={lunch}
+        />
+        <DiaryFoodMeal
+          type="저녁"
+          foodresult={dinner}
+        />
+        <DiaryFoodMeal
+          type="간식"
+          foodresult={desert}
+        />
+      </Segment>
+    )
+  }
 }
 
-const DiaryFood = () => {
-  return (
-    <Segment style={Style.foodBox}>
-      {/* title 시작 */}
-      <DiarySubHeader
-        tabNameEN="FOOD"
-        tabNameKR="식단 다이어리"
-        icon="foodIcon"
-      />
-      {/* title 끝 */}
-      {/* 끼니별 식단 다이어리 시작 */}
-      {/* 아침식사 시작 */}
-      <Segment
-        className="diary-food-meal"
-        style={{
-          paddingTop: '7px',
-        }}
-      >
-        <div className="diary-food-label">
-          <div className="diary-food-title">
-            아침 식사
-            <span className="diary-food-meal-count">
-              0
-            </span>
-          </div>
-          <Label style={Style.currentKcal}>
-            현재 아침 식사 섭취 칼로리
-            <Label.Detail>100 kcal</Label.Detail>
-          </Label>
-        </div>
-        <DiaryFoodAdd />
-      </Segment>
-      {/* 아침식사 끝 */}
-      {/* 점심 식사 시작 */}
-      <Segment
-        className="diary-food-meal"
-        style={{
-          paddingTop: '7px',
-        }}
-      >
-        <div className="diary-food-label">
-          <div className="diary-food-title">
-            점심 식사
-            <span className="diary-food-meal-count">
-              0
-            </span>
-          </div>
-          <Label style={Style.currentKcal}>
-            현재 점심 식사 섭취 칼로리
-            <Label.Detail>100 kcal</Label.Detail>
-          </Label>
-        </div>
-        <DiaryFoodAdd />
-      </Segment>
-      {/* 점심 식사 끝 */}
-      {/* 저녁 식사 시작 */}
-      <Segment
-        className="diary-food-meal"
-        style={{
-          paddingTop: '7px',
-        }}
-      >
-        <div className="diary-food-label">
-          <div className="diary-food-title">
-            저녁 식사
-            <span className="diary-food-meal-count">
-              0
-            </span>
-          </div>
-          <Label style={Style.currentKcal}>
-            현재 저녁 식사 섭취 칼로리
-            <Label.Detail>100 kcal</Label.Detail>
-          </Label>
-        </div>
-        <DiaryFoodAdd />
-      </Segment>
-      {/* 저녁 식사 끝 */}
-      {/* 간식/기타 시작 */}
-      <Segment
-        className="diary-food-meal"
-        style={{
-          paddingTop: '7px',
-        }}
-      >
-        <div className="diary-food-label">
-          <div className="diary-food-title">
-            간식/기타
-            <span className="diary-food-meal-count">
-              0
-            </span>
-          </div>
-          <Label style={Style.currentKcal}>
-            현재 간식/기타 섭취 칼로리
-            <Label.Detail>100 kcal</Label.Detail>
-          </Label>
-        </div>
-        <DiaryFoodAdd />
-      </Segment>
-      {/* 간식/기타 끝 */}
-      <DiaryFoodAlbum />
-      {/* 끼니별 식단 다이어리 끝 */}
-    </Segment>
-  )
+const mapStateToProps = state => {
+  return {
+    foodresult: state.foodLogs.foodresult,
+  }
 }
 
-export default DiaryFood
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchFoodLogs: () =>
+      dispatch(fetchFoodLogsFromDB()),
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DiaryFood)
