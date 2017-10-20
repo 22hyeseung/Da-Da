@@ -116,7 +116,14 @@
             "description": "<p>사용자가 입력했던 date</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "http://localhost:5000/diary/kcal?date=20170101\n{\n    \"day_log_kcal\": 1300,\n    \"day_log_member_id\": 1,\n    \"day_log_diary_date\": \"2016-12-31T15:00:00.000Z\"\n}",
+          "type": "json"
+        }
+      ]
     },
     "version": "0.0.0",
     "filename": "src/router/diary.js",
@@ -376,7 +383,14 @@
             "description": "<p>사용자가 입력했던 date</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "http://localhost:5000/diary/kcal\n{\n    \"day_log_kcal\": 1300,\n    \"day_log_member_id\": 1,\n    \"day_log_diary_date\": \"2016-12-31T15:00:00.000Z\"\n}",
+          "type": "json"
+        }
+      ]
     },
     "version": "0.0.0",
     "filename": "src/router/diary.js",
@@ -415,6 +429,15 @@
           }
         ]
       }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "http://localhost:5000/diary/kg\n{\n    \"day_log_id\": 7,\n    \"day_log_kg\": 123,\n    \"day_log_member_id\": 1,\n    \"day_log_diary_date\": \"2017-09-12T15:00:00.000Z\"\n}",
+          "type": "json"
+        }
+      ]
     },
     "version": "0.0.0",
     "filename": "src/router/diary.js",
@@ -2132,8 +2155,8 @@
   },
   {
     "type": "get",
-    "url": "/",
-    "title": "Get WeightDate",
+    "url": "/weight?date",
+    "title": "WeightDate",
     "description": "<p>사용자가 찾고자 하는 날짜를 기준으로 등록한 뭄무게와 목표 몸무게, 처음에 입력한 몸무게를 불러온다.</p>",
     "name": "getWeightDate",
     "group": "weight",
@@ -2162,7 +2185,14 @@
             "description": "<p>특정 날짜에 입력한 몸무게</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  \"member_id\": 1,\n  \"date\": \"20171004\",\n  \"first_kg\": 90,\n  \"goal_weight\": 39,\n  \"date_weight\": 21\n}",
+          "type": "JSON"
+        }
+      ]
     },
     "version": "0.0.0",
     "filename": "src/router/weight.js",
