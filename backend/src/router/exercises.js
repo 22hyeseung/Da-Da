@@ -61,9 +61,9 @@ router.post('/', (req, res) => {
 })
 
 /**
- * @api {get} /exercises Get ExercisesSearch
+ * @api {get} /exercises/search Get ExercisesSearch
  * @apiDescription 사용자가 운동별 1분당 소모열량 검색
- * @apiName GetExercises
+ * @apiName GetExercisesSearch
  * @apiGroup exercises
  *
  * @apiParam {String} name 사용자가 입력한 검색 글자
@@ -73,7 +73,7 @@ router.post('/', (req, res) => {
  * @apiSuccess {String} exercise_name 운동이름
  *
  * @apiSuccessExample {Json} Succes-Response:
- * http://localhost:5000/exercises?name=걷기
+ * http://localhost:5000/exercises/search?name=걷기
  * 걷기로 검색
  * [
  *    {
@@ -98,6 +98,45 @@ router.get('/search', (req, res) => {
       } else {
         res.send(data)
       }
+    })
+})
+
+/**
+ * @api {get} /exercises Get Exercises
+ * @apiDescription 사용자가 등록한 날짜별 운동기록
+ * @apiName GetExercises
+ * @apiGroup exercises
+ *
+ * @apiParam {Number} date 사용자가 등록한 날짜
+ * @apiParam {Number} user.id user.id
+ *
+ * @apiSuccess {Number} burn_id burn 번호
+ * @apiSuccess {Number} burn_member_id 유저 번호
+ * @apiSuccess {Number} burn_kcal 운동별 소모 열량
+ * @apiSuccess {Number} burn_minute 운동별 소요 시간
+ * @apiSuccess {String} exercise_name 운동이름
+ *
+ * @apiSuccessExample {Json} Succes-Response:
+ * http://localhost:5000/exercises?date=20170101
+ *[
+ *    {
+ *        "burn_id": 1,
+ *        "burn_member_id": 1,
+ *        "burn_kcal": 50,
+ *        "burn_minute": 30,
+ *        "exercise_name": "요리하기"
+ *    }
+ *]
+ */
+router.get('/', (req, res) => {
+  const param = {
+    'burn_member_id': req.user.id,
+    'burn_date': req.query.date
+  }
+
+  query.getBurnByDate(param)
+    .then(burn => {
+      res.send(burn)
     })
 })
 
