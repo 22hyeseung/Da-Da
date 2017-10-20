@@ -1,4 +1,4 @@
-.diary-grid {
+.share-diary-grid {
     width: 1200px;
     margin: 0 auto;
     position: relative;
@@ -9,26 +9,26 @@
  * 현재 다른 페이지에서 탭을 사용하지 않았기 때문에 영향을 주지 않을 것이라고 판단
  */
 
-.ui.item.menu .item {
+.share-ui.item.menu .item {
     padding-left: 16px !important;
 }
 
-.ui.list>.item:after {
+.share-ui.list>.item:after {
     display: none;
 }
 
-.ui.segment:last-child {
+.share-ui.segment:last-child {
     margin-bottom: 14px;
 }
 
-.diary-date {
+.share-diary-date {
     font-family: 'montserrat-bold';
     font-size: 20px;
     color: #16325c;
     margin: 0px 48px;
 }
 
-.diary-submenu {
+.share-diary-submenu {
     margin: 4px;
     display: flex;
     justify-content: center;
@@ -38,90 +38,90 @@
     color: #16325c;
 }
 
-.diary-day {
+.share-diary-day {
     font-weight: 700;
     font-size: 18px;
 }
 
-.diary-food-goal-edit {
+.share-iary-food-goal-edit {
     margin-left: 10px;
     cursor: pointer;
 }
 
-.diary-food-goal-label {
+.share-diary-food-goal-label {
     line-height: 0px;
 }
 
-.diary-food-goal-kcal {
+.share-diary-food-goal-kcal {
     font-family: 'montserrat-semibold';
     font-size: 14px;
 }
 
-.diary-food-goal-unit {
+.share-diary-food-goal-unit {
     font-family: 'montserrat-light';
     font-size: 14px;
     margin-left: 3px;
 }
 
-.diary-social-wrapper {
+.share-diary-social-wrapper {
     display: flex;
     justify-content: flex-end;
 }
 
-.diary-social {
+.share-diary-social {
     width: 33%;
     display: flex;
     justify-content: space-between;
 }
 
-.diary-food-addBtn {
+.share-diary-food-addBtn {
     transition: all 0.2s ease-in !important;
     box-shadow: none !important;
     bottom: 0px !important;
 }
 
-.diary-food-addBtn:hover {
+.share-diary-food-addBtn:hover {
     border: 1.5px dashed #16325c !important;
     bottom: 2px;
     position: relative;
 }
 
-.diary-food-meal {
+.share-diary-food-meal {
     margin-bottom: 14px;
 }
 
-.diary-food-label {
+.share-diary-food-label {
     display: flex;
     justify-content: space-between;
     padding: 0px 0px 7px 0px;
     align-items: center;
 }
 
-.diary-food-meal-count {
+.share-diary-food-meal-count {
     padding-left: 12px;
 }
 
-.diary-food-title {
+.share-diary-food-title {
     color: #54698d;
     font-weight: 700;
     font-size: 14px;
     display: inline-block;
 }
 
-.diary-food-search {
+.share-diary-food-search {
     display: inline-block;
     width: 100%;
 }
 
-.diary-food-search>div {
+.share-diary-food-search>div {
     width: 100%;
 }
 
-.diary-food-search>div>.prompt {
+.share-diary-food-search>div>.prompt {
     border-radius: 4px !important;
 }
 
-.diary-food-search div:nth-child(2) {
+.share-diary-food-search div:nth-child(2) {
     display: block !important;
 }
 
@@ -132,49 +132,49 @@
     border: none;
 }
 
-.diary-camera-icon {
+.share-diary-camera-icon {
     border-style: none;
     top: 20px;
     position: absolute;
     cursor: pointer;
 }
 
-.diary-food-search-label {
+.share-diary-food-search-label {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.diary-food-search-label-result {
+.share-diary-food-search-label-result {
     display: flex;
     align-items: center;
 }
 
-.diary-food-search-label-result-title {
+.share-diary-food-search-label-result-title {
     font-family: 'Spoqa Han Sans';
     font-weight: 500;
     padding-right: 26px;
     font-size: 14px;
 }
 
-.diary-food-search-label-result-kcal {
+.share-diary-food-search-label-result-kcal {
     font-family: 'Spoqa Han Sans';
     font-weight: 500;
     font-size: 14px;
 }
 
-.diary-food-search-label-result-input {
+.share-diary-food-search-label-result-input {
     display: flex;
     align-items: center;
 }
 
-.diary-food-search-label-result-calculateKcal {
+.share-diary-food-search-label-result-calculateKcal {
     font-family: 'montserrat-semibold';
     font-size: 28px;
     color: #16325c;
 }
 
-.diary-food-search-label-result-unit {
+.share-diary-food-search-label-result-unit {
     font-family: 'Spoqa Han Sans';
     font-weight: 300;
     padding-left: 7px;
@@ -182,38 +182,38 @@
     color: #16325c;
 }
 
-.diary-food-search-label-result-wrapper {
+.share-diary-food-search-label-result-wrapper {
     display: flex;
     align-items: baseline;
 }
 
-.diary-food-search-photo-modal-upload-icon {
+.share-diary-food-search-photo-modal-upload-icon {
     height: 56px;
     margin-bottom: 14px;
     filter: grayscale(100%);
     opacity: 0.5;
 }
 
-.diary-food-search-photo-modal-list {
+.share-diary-food-search-photo-modal-list {
     display: flex;
     justify-content: center;
 }
 
-.diary-food-calculateIcon {
+.share-diary-food-calculateIcon {
     padding: 0px 14px;
 }
 
-.diary-food-meal-list-card {
+.share-diary-food-meal-list-card {
     display: flex;
     position: absolute;
 }
 
-.diary-food-meal-list-card-icon {
+.share-diary-food-meal-list-card-icon {
     margin-left: 10px;
     cursor: pointer;
 }
 
-.diary-food-meal-list-scroll {
+.share-diary-food-meal-list-scroll {
     overflow: auto;
     height: 175px;
     position: relative;
@@ -221,36 +221,36 @@
     border-bottom: none;
 }
 
-.diary-food-meal-list-scroll::-webkit-scrollbar {
+.share-diary-food-meal-list-scroll::-webkit-scrollbar {
     height: 5px;
     width: 5px;
     /* display: none; */
 }
 
-.diary-food-meal-list-scroll::-webkit-scrollbar-thumb {
+.share-diary-food-meal-list-scroll::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: #a8b7c7;
 }
 
-.diary-food-meal-list-scroll::-webkit-scrollbar-track {
+.share-diary-food-meal-list-scroll::-webkit-scrollbar-track {
     border-radius: 5px;
     background-color: #e0e5ee;
 }
 
-.diary-food-meal-list-card-firstRow {
+.share-diary-food-meal-list-card-firstRow {
     display: flex;
     justify-content: space-between;
     padding-bottom: 21px;
 }
 
-.diary-food-meal-list-card-firstRow-title {
+.share-diary-food-meal-list-card-firstRow-title {
     font-size: 21px;
     font-weight: 100;
     color: #16325c;
     margin-bottom: 35px;
 }
 
-.diary-food-meal-list-card-calory {
+.share-diary-food-meal-list-card-calory {
     font-family: 'montserrat-semibold';
     font-size: 21px;
     letter-spacing: -1px;
@@ -258,7 +258,7 @@
     margin-top: 21px;
 }
 
-.diary-food-meal-list-card-calory-unit {
+.share-diary-food-meal-list-card-calory-unit {
     font-weight: 300;
     font-size: 18px;
     letter-spacing: -1px;
@@ -266,68 +266,68 @@
     margin-left: 8px;
 }
 
-.diary-food-meal-list-card-nutrition-wrapper {
+.share-diary-food-meal-list-card-nutrition-wrapper {
     margin-right: 9px;
 }
 
-.diary-food-meal-list-card-nutrition-title {
+.share-diary-food-meal-list-card-nutrition-title {
     font-weight: 100;
     font-size: 14px;
     color: #54698d;
     margin-right: 7px;
 }
 
-.diary-food-meal-list-card-nutrition-kcal {
+.share-diary-food-meal-list-card-nutrition-kcal {
     font-family: 'montserrat-semibold';
     font-size: 14px;
     color: #54698d;
 }
 
-.diary-food-album {
+.share-diary-food-album {
     padding-top: 21px;
 }
 
-.diary-food-album-list-scroll {
+.share-diary-food-album-list-scroll {
     overflow: auto;
     height: 220px;
     position: relative;
 }
 
-.diary-food-album-list-scroll::-webkit-scrollbar {
+.share-diary-food-album-list-scroll::-webkit-scrollbar {
     /* display: none; */
     height: 5px;
     width: 5px;
 }
 
-.diary-food-album-list-scroll::-webkit-scrollbar-thumb {
+.share-diary-food-album-list-scroll::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: #a8b7c7;
 }
 
-.diary-food-album-list-scroll::-webkit-scrollbar-track {
+.share-diary-food-album-list-scroll::-webkit-scrollbar-track {
     border-radius: 5px;
     background-color: #e0e5ee;
 }
 
-.diary-food-meal-list-card-firstRow {
+.share-diary-food-meal-list-card-firstRow {
     display: flex;
     justify-content: space-between;
     padding-bottom: 21px;
 }
 
-.diary-food-album-list-card-edit-modal>div {
+.share-diary-food-album-list-card-edit-modal>div {
     padding: 9px 14px;
     font-size: 14px;
 }
 
-.diary-file-upload {
+.share-diary-file-upload {
     position: relative;
     display: inline-block;
     width: 100%;
     text-align: center;
 }
 
-.diary-file-upload__label {
+.share-diary-file-upload__label {
     display: block;
     padding: 10px;
     color: #a8b7c7;
@@ -338,13 +338,13 @@
     line-height: 14px;
 }
 
-.diary-file-upload__label:hover {
+.share-diary-file-upload__label:hover {
     cursor: pointer;
     color: #29323c;
     border: 1px dashed #29323c;
 }
 
-.diary-file-upload__input {
+.share-diary-file-upload__input {
     position: absolute;
     left: 0;
     top: 0;
@@ -356,7 +356,7 @@
     opacity: 0;
 }
 
-.diary-food-meal-file-upload__label {
+.share-diary-food-meal-file-upload__label {
     display: block;
     padding: 10px;
     color: #a8b7c7;
@@ -369,7 +369,7 @@
     cursor: pointer;
 }
 
-.diary-food-meal-file-upload__input {
+.share-diary-food-meal-file-upload__input {
     position: absolute;
     left: 0;
     top: 0;

@@ -1,4 +1,10 @@
 //==========================================
+// diaryFood.js
+export const FETCHED_FOOD_LOGS_SUCCESS =
+  'FETCHED_FOOD_LOGS_SUCCESS'
+export const POST_FOOD_TO_DATABASE =
+  'POST_FOOD_TO_DATABASE'
+//==========================================
 // weight.js
 export const FETCHED_WEIGHT_SUCCESS =
   'FETCHED_WEIGHT_SUCCESS'
