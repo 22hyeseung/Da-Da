@@ -10,12 +10,15 @@ class DiaryFoodMeal extends React.Component {
     super(props)
   }
   render() {
-    let totalKcal = this.props.foodresult
-      .map(kcal => {
-        return kcal.food_kcal
-      })
-      .reduce((pre, cur) => pre + cur)
-      .toFixed(1)
+    let totalKcal =
+      this.props.foodresult.length === 0
+        ? 0
+        : this.props.foodresult
+            .map(kcal => {
+              return kcal.food_kcal
+            })
+            .reduce((pre, cur) => pre + cur)
+            .toFixed(1)
 
     return (
       <Segment
@@ -39,17 +42,23 @@ class DiaryFoodMeal extends React.Component {
               </Label.Detail>
             </Label>
           </div>
-          <div className="diary-food-meal-list-scroll">
-            <div
-              style={{ display: 'flex' }}
-              className="diary-food-meal-list-card"
-            >
-              <DiaryFoodList
-                type={this.props.type}
-                foodresult={this.props.foodresult}
-              />
+          {this.props.foodresult.length === 0 ? (
+            ''
+          ) : (
+            <div className="diary-food-meal-list-scroll">
+              <div
+                style={{ display: 'flex' }}
+                className="diary-food-meal-list-card"
+              >
+                <DiaryFoodList
+                  type={this.props.type}
+                  foodresult={
+                    this.props.foodresult
+                  }
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <DiaryFoodAdd type={this.props.type} />
       </Segment>
