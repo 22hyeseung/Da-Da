@@ -160,9 +160,8 @@ router.delete('/:id', (req, res) => {
   }
 
   query.deleteBurnById(param)
-  .then(() => {
-    res.end()
-  })
-
+    .then(() => {
+      res.end()
+    })
 })
 module.exports = router
