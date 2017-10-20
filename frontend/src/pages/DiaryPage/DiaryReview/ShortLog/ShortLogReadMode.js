@@ -40,7 +40,10 @@ class ShortLogReadMode extends Component {
               ...buttonIcon,
               marginLeft: '16px',
             }}
-            onClick={this.props.changeMode}
+            onClick={() =>
+              this.props.changeMode(
+                this.props.isPostMode,
+              )}
           >
             <Icon name="pencil" />
           </Button>
@@ -51,7 +54,10 @@ class ShortLogReadMode extends Component {
         </Header>
         <div
           className="savedShortLog"
-          onClick={this.props.changeMode}
+          onClick={() =>
+            this.props.changeMode(
+              this.props.isPostMode,
+            )}
         >
           {
             this.props.shortLogSaved

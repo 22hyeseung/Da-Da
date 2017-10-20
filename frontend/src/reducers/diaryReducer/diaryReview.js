@@ -20,6 +20,7 @@ export const shortLogReducer = (
       return {
         ...state,
         isLoading: false,
+        isPostMode: false,
         shortLogSaved: action.payload,
       }
     case 'GET_SHORTLOG_FAILED':

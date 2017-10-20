@@ -15,11 +15,18 @@ import {
   getShortLogFromDB,
 } from '../../../../actions/review'
 
+// helper: 오늘 날짜 API Query형식
+import { dateStringForApiQuery } from '../../../../helper/date'
+
 class DiaryReviewShortInput extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isPostMode: props.isPostMode,
+      date: dateStringForApiQuery(
+        this.props.dateState,
+      ),
+      isLogExisted: this.props.shortLogSaved
+        .day_log_regret,
     }
   }
 
@@ -34,7 +41,10 @@ class DiaryReviewShortInput extends Component {
   // }
   // 작성한 로그가 존재하는지 확인
   isLogExisted = () => {
-    return this.props.shortLogSaved.day_log_regret
+    console.log(
+      this.props.shortLogSaved.day_log_regret,
+    )
+    // return this.props.shortLogSaved.day_log_regret
   }
 
   render() {
@@ -60,7 +70,8 @@ class DiaryReviewShortInput extends Component {
 
     return (
       <div style={shortBox}>
-        {this.isLogExisted() ? (
+        {this.props.shortLogSaved
+          .day_log_regret ? (
           // 작성한 로그가 이미 있으면
           isPostMode ? (
             <ShortLogWriteMode />
@@ -79,6 +90,7 @@ class DiaryReviewShortInput extends Component {
 const mapStateToProps = state => {
   return {
     shortLogSaved: state.shortLog.shortLogSaved,
+    dateState: state.today.date,
     isLoading: state.shortLog.isLoading,
     errorState: state.shortLog.errorState,
     isPostMode: state.shortLog.isPostMode,
