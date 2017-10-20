@@ -149,4 +149,24 @@ router.delete('/:id', (req, res) => {
     res.send('weight null complete')
   })
 })
+
+/**
+ *
+ * @apiSuccesExample {JSON} Success-Response:
+ *  {
+ *    "member_id": 1,
+ *    "member_goal_weight": 24
+ * }
+ */
+router.post('/', (req, res) => {
+  const param = {
+    'member_id': req.user.id,
+    'member_goal_weight': req.body.goal_weight
+  }
+
+  query.PostGoalKgbyUser(param)
+  .then(data => {
+    res.send(data)
+  })
+})
 module.exports = router
