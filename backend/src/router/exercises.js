@@ -32,13 +32,18 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  * @apiParam {Number} burn_kcal 사용자가 입력한 정보로 계산된 소모된 열량
  * @apiParam {Number} burn_minute 사용자가 입력한 운동시간
  *
+ * @apiSuccess {Number} burn_id post 완료한 운동항목 pk
+ * @apiSuccess {String} burn_exercise_name post 완료한 운동이름
+ * @apiSuccess {Date} burn_date 운동등록한 날짜
+ * @apiSuccess {Number} burn_kcal 계산된 칼로리로 등록한 칼로리
+ * @apiSuccess {Number} burn_minute 사용자가 운동한 운동시간
  * @apiSuccessExample {Json} Success-Response:
- *{
- *   "burn_id": 6,
- *   "burn_exercise_id": null,
- *   "date": "2017-01-09T15:00:00.000Z",
- *   "kcal": 1,
- *   "burn_minute": 30
+ * {
+ *     "burn_id": 1,
+ *     "burn_exercise_name": "요리하기",
+ *     "burn_date": "2016-12-31T15:00:00.000Z",
+ *     "burn_kcal": 50,
+ *     "burn_minute": 30
  * }
  */
 router.post('/', (req, res) => {
@@ -53,7 +58,7 @@ router.post('/', (req, res) => {
     .then(burn => {
       res.send({
         'burn_id': burn.burn_id,
-        'burn_exercise_id': burn.burn_exercise_id,
+        'burn_exercise_name': burn.exercise_name,
         'burn_date': burn.burn_date,
         'burn_kcal': burn.burn_kcal,
         'burn_minute': burn.burn_minute
