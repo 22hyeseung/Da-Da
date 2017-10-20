@@ -24,7 +24,7 @@ class HomeTab extends Component {
             <Header.Subheader style={subHeader}>
               {tabName} DIARY
             </Header.Subheader>
-            {message.split('br').map(line => {
+            {message.split('\\n').map(line => {
               return (
                 <span>
                   {line}
