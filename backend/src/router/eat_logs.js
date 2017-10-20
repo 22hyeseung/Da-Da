@@ -43,20 +43,18 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  *
  * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/eat-logs
- * [
- *     {
- *         "eat_log_id": 1,
- *         "eat_log_member_id": 1,
- *         "eat_log_food_id": 1,
- *         "eat_log_recipe_id": null,
- *         "eat_log_meal_tag": "아침",
- *         "eat_log_amount": 100,
- *         "eat_log_serve": null,
- *         "eat_log_picture": null,
- *         "eat_log_diary_date": "2017-10-15T15:00:00.000Z",
- *         "eat_log_submit_time": "2017-10-14T10:07:55.000Z"
- *     }
- * ]
+ * {
+ *     "eat_log_id": 28,
+ *     "eat_log_food_id": 1,
+ *     "food_name_ko": "도토리묵밥",
+ *     "food_name_en": "Doritomi rice",
+ *     "food_unit": "g",
+ *     "eat_log_meal_tag": "점심",
+ *     "food_kcal": 120.2,
+ *     "food_carb": 21.6,
+ *     "food_protein": 4.4,
+ *     "food_fat": 1.8
+ * }
  */
 router.post('/', (req, res) => {
   const food_id = req.body.food_id ? req.body.food_id : null
@@ -78,7 +76,19 @@ router.post('/', (req, res) => {
   query.postEatLogs(eat_log_meal)
     .then(eat_log => {
       if (eat_log) {
-        res.send(eat_log)
+        if (eat_log[0].eat_log_food_id) {
+          query.getEatLogsFoodFirst(eat_log[0])
+            .then(result => {
+              res.send(result)
+            })
+        } else if (eat_log[0].eat_log_recipe_id) {
+          query.getEatLogsRecipeFirst(eat_log[0])
+            .then(result => {
+              res.send(result)
+            })
+        } else {
+          console.log('Eat_logs food_id, recipe_id POST Error')
+        }
       } else {
         console.log('Eat_logs POST Error')
       }
