@@ -181,7 +181,14 @@
             "description": "<p>사용자가 입력했던 date</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "http://localhost:5000/diary/kg?date=20170101\n [\n   {\n       \"day_log_kg\": 47.6,\n       \"day_log_member_id\": 1,\n       \"day_log_diary_date\": \"2017-10-09T15:00:00.000Z\"\n   },\n   {\n       \"day_log_kg\": 42,\n       \"day_log_member_id\": 1,\n       \"day_log_diary_date\": \"2017-10-08T15:00:00.000Z\"\n   },\n   {\n       \"day_log_kg\": 41,\n       \"day_log_member_id\": 1,\n       \"day_log_diary_date\": \"2017-10-07T15:00:00.000Z\"\n   },\n   {\n       \"day_log_kg\": 40,\n       \"day_log_member_id\": 1,\n       \"day_log_diary_date\": \"2017-10-06T15:00:00.000Z\"\n   },\n   {\n       \"day_log_kg\": 39,\n       \"day_log_member_id\": 1,\n       \"day_log_diary_date\": \"2017-10-05T15:00:00.000Z\"\n   }\n]",
+          "type": "json"
+        }
+      ]
     },
     "version": "0.0.0",
     "filename": "src/router/diary.js",

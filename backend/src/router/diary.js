@@ -252,7 +252,7 @@ router.post('/kg', (req, res) => {
  * @apiSuccess {Number} day_log_member_id 사용자id
  * @apiSuccess {Number} day_log_diary_date 사용자가 입력했던 date
  *
- * @apiSuccesExample {json} Success-Response:
+ * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/diary/kg?date=20170101
  *  [
  *    {
