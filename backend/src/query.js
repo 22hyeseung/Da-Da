@@ -103,6 +103,12 @@ function postDayKgbyUser({ day_log_member_id, day_log_kg, day_log_diary_date }) 
         .where({ day_log_diary_date, day_log_member_id })
         .update({ day_log_kg })
     })
+    .then(() => {
+      return knex('day_log')
+      .where({ day_log_diary_date, day_log_member_id })
+      .select('day_log_id', 'day_log_kg', 'day_log_member_id', 'day_log_diary_date')
+      .first()
+    })
 }
 
 function insertBurnById({ burn_member_id, burn_exercise_id, burn_date, burn_kcal, burn_minute }) {
@@ -398,6 +404,19 @@ function patchEatLogs({ eat_log_id, eat_log_amount, eat_log_serve }) {
     })
 }
 
+function WeightNullById(day_log_id) {
+  return knex('day_log')
+    .where({ day_log_id })
+    .update('day_log_kg', null)
+}
+
+function PostGoalKgbyUser({ member_id, member_goal_weight }) {
+  return knex('member')
+    .where({ member_id })
+    .update({ member_goal_weight })
+    .select('member_id', 'member_goal_weight')
+    .first()
+}
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -431,5 +450,7 @@ module.exports = {
   postGoalKcalbyUser,
   getKcalByDate,
   deleteEatLogs,
-  patchEatLogs
+  patchEatLogs,
+  WeightNullById,
+  PostGoalKgbyUser
 }

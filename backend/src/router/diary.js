@@ -219,42 +219,23 @@ router.get('/comment', (req, res) => {
  *
  * @apiSuccesExample {json} Success-Response:
  * http://localhost:5000/diary/kg
- * [
- *     {
- *         "day_log_kg": null,
- *         "day_log_member_id": 1,
- *         "day_log_diary_date": "2017-10-10T15:00:00.000Z"
- *     },
- *     {
- *         "day_log_kg": 50,
- *         "day_log_member_id": 1,
- *         "day_log_diary_date": "2017-10-10T15:00:00.000Z"
- *     },
- *     {
- *         "day_log_kg": 47.6,
- *         "day_log_member_id": 1,
- *         "day_log_diary_date": "2017-10-09T15:00:00.000Z"
- *     },
- *     {
- *         "day_log_kg": 46,
- *         "day_log_member_id": 1,
- *         "day_log_diary_date": "2016-12-31T15:00:00.000Z"
- *     }
- * ]
+ * {
+ *     "day_log_id": 7,
+ *     "day_log_kg": 123,
+ *     "day_log_member_id": 1,
+ *     "day_log_diary_date": "2017-09-12T15:00:00.000Z"
+ * }
  */
 router.post('/kg', (req, res) => {
-  const day_log_kg = {
+  const param = {
     'day_log_member_id': req.user.id,
     'day_log_kg': req.body.kg,
     'day_log_diary_date': req.body.date
   }
 
-  query.postDayKgbyUser(day_log_kg)
-    .then(() => {
-      query.getKgByDate(day_log_kg)
-        .then(day_kg => {
-          res.send(day_kg)
-        })
+  query.postDayKgbyUser(param)
+    .then((data) => {
+      res.send(data)
     })
 })
 
@@ -305,7 +286,11 @@ router.get('/kg', (req, res) => {
   const date = req.query.date
   const user = req.user.id
 
-  query.getKgByDate(date, user)
+  const param = {
+    'day_log_member_id': req.user.id,
+    'day_log_diary_date': req.query.date
+  }
+  query.getKgByDate(param)
     .then(data => {
       if (!data) {
         res.status(404)
