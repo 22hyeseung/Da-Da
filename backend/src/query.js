@@ -422,6 +422,13 @@ function PostGoalKgbyUser({ member_id, member_goal_weight }) {
     .select('member_id', 'member_goal_weight')
     .first()
 }
+
+function deleteBurnById({ burn_id, burn_member_id }) {
+  return knex('burn')
+    .where({ burn_id, burn_member_id })
+    .delete(burn_id)
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -457,5 +464,6 @@ module.exports = {
   deleteEatLogs,
   patchEatLogs,
   WeightNullById,
-  PostGoalKgbyUser
+  PostGoalKgbyUser,
+  deleteBurnById
 }
