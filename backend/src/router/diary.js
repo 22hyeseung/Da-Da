@@ -315,4 +315,75 @@ router.get('/kg', (req, res) => {
     })
 })
 
+/**
+ * @api {post} diary/kcal Post kcal
+ * @apiDescription 특정 날짜에 목표 칼로리 등록
+ * @apiName PostKcal
+ * @apiGroup diary
+ *
+ * @apiParam {Number} user.id 사용자 id
+ * @apiParam {Number} goal_kcal 목표 칼로리
+ * @apiParam {Number} date 특정 날짜
+ *
+ * @apiSuccess {Number} day_log_kcal 사용자가 등록한 목표 칼로리
+ * @apiSuccess {Number} day_log_member_id 사용자id
+ * @apiSuccess {Number} day_log_diary_date 사용자가 입력했던 date
+ *
+ * @apiSuccesExample {json} Success-Response:
+ * http://localhost:5000/diary/kcal
+ * {
+ *     "day_log_kcal": 1300,
+ *     "day_log_member_id": 1,
+ *     "day_log_diary_date": "2016-12-31T15:00:00.000Z"
+ * }
+ */
+router.post('/kcal', (req, res) => {
+  const param = {
+    'day_log_member_id': req.user.id,
+    'day_log_kcal': req.body.goal_kcal,
+    'day_log_diary_date': req.body.date
+  }
+
+  query.postGoalKcalbyUser(param)
+    .then(() => {
+      query.getKcalByDate(param)
+        .then(result => {
+          res.send(result)
+        })
+    })
+})
+
+/**
+ * @api {get} diary/kcal Get kcal
+ * @apiDescription 특정 날짜에 등록한 목표 칼로리
+ * @apiName GetKcal
+ * @apiGroup diary
+ *
+ * @apiParam {Number} user.id 사용자 id
+ * @apiParam {Number} date 특정 날짜
+ *
+ * @apiSuccess {Number} day_log_kcal 사용자가 입력했던 몸무게
+ * @apiSuccess {Number} day_log_member_id 사용자id
+ * @apiSuccess {Number} day_log_diary_date 사용자가 입력했던 date
+ *
+ * @apiSuccesExample {json} Success-Response:
+ * http://localhost:5000/diary/kcal?date=20170101
+ * {
+ *     "day_log_kcal": 1300,
+ *     "day_log_member_id": 1,
+ *     "day_log_diary_date": "2016-12-31T15:00:00.000Z"
+ * }
+ */
+router.get('/kcal', (req, res) => {
+  const param = {
+    'day_log_member_id': req.user.id,
+    'day_log_diary_date': req.query.date
+  }
+
+  query.getKcalByDate(param)
+    .then(result => {
+      res.send(result)
+    })
+})
+
 module.exports = router
