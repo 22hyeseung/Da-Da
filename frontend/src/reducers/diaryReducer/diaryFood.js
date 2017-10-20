@@ -1,11 +1,11 @@
 const DEFAULT_DIARY_FOOD = {
   foodresult: [],
-  reciperesult: []
+  reciperesult: [],
 }
 
 export const diaryFoodReducer = (
   state = DEFAULT_DIARY_FOOD,
-  action
+  action,
 ) => {
   if (
     action.type === 'FETCHED_FOOD_LOGS_SUCCESS'
@@ -13,22 +13,22 @@ export const diaryFoodReducer = (
     return {
       ...state,
       foodresult: [
-        ...action.payload.foodresult
+        ...action.payload.foodresult,
       ].reverse(),
       reciperesult: [
-        ...action.payload.reciperesult
-      ]
+        ...action.payload.reciperesult,
+      ],
     }
   }
   if (action.type === 'POST_FOOD_TO_DATABASE') {
     return {
       foodresult: [
         ...action.payload,
-        ...state.foodresult
-      ]
+        ...state.foodresult,
+      ],
     }
   }
   return {
-    ...state
+    ...state,
   }
 }

@@ -7,12 +7,12 @@ class DiaryFoodAdd extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isSearchMode: false
+      isSearchMode: false,
     }
   }
   toggleSearchMode = () => {
     this.setState({
-      isSearchMode: !this.state.isSearchMode
+      isSearchMode: !this.state.isSearchMode,
     })
   }
   render() {
@@ -31,7 +31,10 @@ class DiaryFoodAdd extends Component {
             style={Style.addBtn}
             onClick={this.toggleSearchMode}
           >
-            <Icon name="plus" />
+            <Icon
+              name="plus"
+              style={{ marginRight: '10px' }}
+            />
             음식추가
           </Button>
         )}

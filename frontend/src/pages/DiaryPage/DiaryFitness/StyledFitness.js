@@ -1,5 +1,4 @@
 import bgImg from '../../../static/img/fitness_bg.png'
-import iconSrc from '../../../static/img/diary-fitness_default.svg'
 
 // ==========================> index.js
 export const container = {
@@ -15,25 +14,10 @@ export const container = {
   backgroundAttachment: 'local',
 }
 
-export const header = {
-  fontSize: '28px',
-  fontWeight: '100',
-  color: '#16325C',
-  marginBottom: '42px',
-}
-
-export const subHeader = {
-  fontFamily: 'montserrat-bold',
-  fontSize: '14px',
-  color: '#1f2e79',
-}
-
 export const icon = {
   height: '27px',
   marginBottom: '9px',
 }
-
-export const fitnessIcon = iconSrc
 
 // ==========================> DiaryFitnessList.js
 

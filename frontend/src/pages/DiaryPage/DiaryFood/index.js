@@ -1,12 +1,13 @@
 import React from 'react'
-import {
-  Segment,
-  Header,
-} from 'semantic-ui-react'
+import { Segment, Label } from 'semantic-ui-react'
+import * as Style from './StyledDiaryFood'
+
+// 컴포넌트
+import DiarySubHeader from '../DiarySubHeader'
+import DiaryFoodAdd from './DiaryFoodAdd'
+import DiaryFoodAlbum from './DiaryFoodAlbum'
 import DiaryFoodAlbum from './DiaryFoodAlbum'
 import DiaryFoodMeal from './DiaryFoodMeal'
-import foodIconDefault from '../../../static/img/diary-food_default.svg'
-import * as Style from './StyledDiaryFood'
 import { connect } from 'react-redux'
 import { fetchFoodLogsFromDB } from '../../../actions/diaryFood'
 import ComponentLoader from '../../../components/ComponentLoader'

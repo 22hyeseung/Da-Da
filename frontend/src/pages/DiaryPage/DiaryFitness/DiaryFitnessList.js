@@ -3,9 +3,8 @@ import {
   Button,
   List,
   Divider,
+  Icon,
 } from 'semantic-ui-react'
-// import FaPencil from 'react-icons/lib/fa/pencil'
-// import FaTrashO from 'react-icons/lib/fa/trash-o'
 import * as Style from './StyledFitness'
 
 const DiaryFitnessAdd = () => (
@@ -18,10 +17,10 @@ const DiaryFitnessAdd = () => (
       </List.Item>
       <List.Item style={Style.listItemLeft}>
         <Button style={Style.buttonIcon}>
-          {/* <FaPencil size={20} />  */}
+          <Icon name="pencil" />
         </Button>
         <Button style={Style.buttonIcon}>
-          {/* <FaTrashO size={20} /> */}
+          <Icon name="trash outline" />
         </Button>
       </List.Item>
       <List.Item style={Style.listItemRight}>
