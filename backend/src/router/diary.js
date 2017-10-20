@@ -348,7 +348,7 @@ router.post('/kcal', (req, res) => {
  * @apiSuccess {Number} day_log_member_id 사용자id
  * @apiSuccess {Number} day_log_diary_date 사용자가 입력했던 date
  *
- * @apiSuccesExample {json} Success-Response:
+ * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/diary/kcal?date=20170101
  * {
  *     "day_log_kcal": 1300,
