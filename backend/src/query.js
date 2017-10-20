@@ -387,7 +387,11 @@ function getKcalByDate({ day_log_diary_date, day_log_member_id }) {
     .first()
 }
 
-
+function WeightNullById(day_log_id){
+  return knex('day_log')
+    .where({ day_log_id })
+    .update('day_log_kg', null)
+}
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -420,5 +424,6 @@ module.exports = {
   getEatLogsRecipeFirst,
   postGoalKcalbyUser,
   getKcalByDate,
-  deleteEatLogs
+  deleteEatLogs,
+  WeightNullById
 }
