@@ -353,13 +353,39 @@ function getReportNutritionSum({ eat_log_member_id, start_date, end_date }) {
     .first()
 }
 
-
 function getBurnByDate({ burn_member_id, burn_date }) {
   return knex('burn')
     .select('burn.burn_id', 'burn.burn_member_id', 'burn.burn_kcal', 'burn.burn_minute', 'exercise.exercise_name')
     .join('exercise', 'burn.burn_exercise_id', '=', 'exercise.exercise_id')
     .where({ burn_date, burn_member_id })
 }
+
+function postGoalKcalbyUser({ day_log_member_id, day_log_kcal, day_log_diary_date }) {
+  return knex('day_log')
+    .where({ day_log_diary_date, day_log_member_id })
+    .first()
+    .then(day_kcal => {
+      if (!day_kcal) {
+        knex('day_log')
+          .insert({
+            day_log_member_id,
+            day_log_diary_date
+          })
+          .then()
+      }
+      return knex('day_log')
+        .where({ day_log_diary_date, day_log_member_id })
+        .update({ day_log_kcal })
+    })
+}
+
+function getKcalByDate({ day_log_diary_date, day_log_member_id }) {
+  return knex('day_log')
+    .where({ day_log_member_id, day_log_diary_date })
+    .select('day_log_kcal', 'day_log_member_id', 'day_log_diary_date')
+    .first()
+}
+
 
 module.exports = {
   getUserById,
@@ -390,5 +416,7 @@ module.exports = {
   getReportNutritionSum,
   getBurnByDate,
   getEatLogsFoodFirst,
-  getEatLogsRecipeFirst
+  getEatLogsRecipeFirst,
+  postGoalKcalbyUser,
+  getKcalByDate
 }
