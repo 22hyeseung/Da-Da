@@ -219,28 +219,12 @@ router.get('/comment', (req, res) => {
  *
  * @apiSuccesExample {json} Success-Response:
  * http://localhost:5000/diary/kg
- * [
- *     {
- *         "day_log_kg": null,
- *         "day_log_member_id": 1,
- *         "day_log_diary_date": "2017-10-10T15:00:00.000Z"
- *     },
- *     {
- *         "day_log_kg": 50,
- *         "day_log_member_id": 1,
- *         "day_log_diary_date": "2017-10-10T15:00:00.000Z"
- *     },
- *     {
- *         "day_log_kg": 47.6,
- *         "day_log_member_id": 1,
- *         "day_log_diary_date": "2017-10-09T15:00:00.000Z"
- *     },
- *     {
- *         "day_log_kg": 46,
- *         "day_log_member_id": 1,
- *         "day_log_diary_date": "2016-12-31T15:00:00.000Z"
- *     }
- * ]
+ * {
+ *     "day_log_id": 7,
+ *     "day_log_kg": 123,
+ *     "day_log_member_id": 1,
+ *     "day_log_diary_date": "2017-09-12T15:00:00.000Z"
+ * }
  */
 router.post('/kg', (req, res) => {
   const param = {
