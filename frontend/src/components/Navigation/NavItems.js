@@ -6,7 +6,7 @@ import {
   linkTagWrap,
   linkTag,
 } from './StyledNavigation'
-import { changeNavigationItemActive } from '../../actions/'
+import { changeNavigationItemActive } from '../../actions/navItemActive'
 
 const routes = [
   {
