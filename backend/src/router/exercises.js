@@ -140,4 +140,29 @@ router.get('/', (req, res) => {
     })
 })
 
+/**
+ * @api {delete} /exercises delete Exercises
+ * @apiDescription burn_id를 선택해 소모 열량 운동기록 한개 삭제
+ * @apiName DeleteExercises
+ * @apiGroup exercises
+ *
+ * @apiParam {Number} id 사용자가 선택한 기록 id
+ * @apiParam {Number} user.id user.id
+ *
+ * @apiSuccessExample {Json} Succes-Response:
+ * http://localhost:5000/exercises/3
+ */
+
+router.delete('/:id', (req, res) => {
+  const param = {
+    'burn_member_id': req.user.id,
+    'burn_id': req.params.id
+  }
+
+  query.deleteBurnById(param)
+  .then(() => {
+    res.end()
+  })
+
+})
 module.exports = router
