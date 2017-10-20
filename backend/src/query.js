@@ -105,9 +105,9 @@ function postDayKgbyUser({ day_log_member_id, day_log_kg, day_log_diary_date }) 
     })
     .then(() => {
       return knex('day_log')
-      .where({ day_log_diary_date, day_log_member_id })
-      .select('day_log_id', 'day_log_kg', 'day_log_member_id', 'day_log_diary_date')
-      .first()
+        .where({ day_log_diary_date, day_log_member_id })
+        .select('day_log_id', 'day_log_kg', 'day_log_member_id', 'day_log_diary_date')
+        .first()
     })
 }
 
@@ -133,7 +133,7 @@ function getExercisesByName(exercise_name) {
     .where('exercise_name', 'like', `%${exercise_name}%`)
 }
 
-function getKgByDate({ day_log_diary_date, day_log_member_id }) {
+function getKgByDate({ day_log_member_id }) {
   return knex('day_log')
     .where({ day_log_member_id })
     .orderBy('day_log_diary_date', 'desc')
@@ -173,7 +173,7 @@ function getEatLogsFood({ eat_log_member_id, eat_log_diary_date }) {
     .where({ eat_log_member_id, eat_log_diary_date })
 }
 
-function getEatLogsRecipe({ eat_log_member_id, eat_log_diary_date  }) {
+function getEatLogsRecipe({ eat_log_member_id, eat_log_diary_date }) {
   return knex('eat_log')
     .select(
       'eat_log_id', 'eat_log.eat_log_picture', 'eat_log.eat_log_recipe_id', 'recipe.recipe_name_ko', 'recipe.recipe_name_en', 'eat_log.eat_log_meal_tag',
