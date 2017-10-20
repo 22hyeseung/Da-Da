@@ -61,7 +61,7 @@ router.post('/', (req, res) => {
 })
 
 /**
- * @api {get} /exercises Get Exercises
+ * @api {get} /exercises Get ExercisesSearch
  * @apiDescription 사용자가 운동별 1분당 소모열량 검색
  * @apiName GetExercises
  * @apiGroup exercises
@@ -88,7 +88,7 @@ router.post('/', (req, res) => {
  *    }
  *]
  */
-router.get('/', (req, res) => {
+router.get('/search', (req, res) => {
   const name = req.query.name
 
   query.getExercisesByName(name)
