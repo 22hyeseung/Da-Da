@@ -73,15 +73,15 @@ function googleVision(fileBuffer) {
   })
 }
 
-function s3upload(buffer, target) {
+function s3upload(buffer, fileName, fileMime) {
   return new Promise((resolve, reject) => {
     s3.upload({
       'ACL': 'public-read', // 익명의 사용자도 파일 경로만 알면 읽기 가능하도록 설정
       'Body': buffer,
       'Bucket': process.env.S3_BUCKET_NAME,
-      'Key': target, // 파일이름
+      'Key': fileName, // 파일이름
       'ContentDisposition': 'inline', // Content-Disposition 헤더
-      'ContentType': 'string' // Content-Type 헤더 ??????
+      'ContentType': fileMime // Content-Type 헤더
     }, (err, result) => {
       if (err) {
         reject(err)
@@ -107,9 +107,13 @@ router.post('/', upload.single('upload_img'), (req, res) => {
     res.send('파일 용량은 3mb 까지 입니다.')
   }
 
-  Promise.all([googleVision(req.file.buffer), s3upload(req.file.buffer, `${uuid.v4()}.${ext}`)])
+  const fileName = `${uuid.v4()}.${ext}`
+
+  Promise.all([googleVision(req.file.buffer), s3upload(req.file.buffer, fileName, mime)])
     .then(result => {
       // console.log('모두 완료', result)
+
+      // googleVision결과에서 불필요 단어 (food, dish, recipe 등등) 걸러야함
       res.render('vision.pug', {
         'visionAnalysis': JSON.stringify(result[0]),
         'imgUrl': result[1].Location
@@ -121,7 +125,7 @@ router.post('/', upload.single('upload_img'), (req, res) => {
         .crop(sharp.gravity.center)
         .toBuffer()
         .then(resizeFile => {
-          s3upload(resizeFile, `thumb/${uuid.v4()}.${ext}`)
+          s3upload(resizeFile, `thumb/${fileName}`)
         })
     })
     .catch(err => {
