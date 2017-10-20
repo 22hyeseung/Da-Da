@@ -1,6 +1,13 @@
 import * as types from './ActionTypes'
 import rootApi from '../config'
 
+export const changeMode = isPostMode => {
+  return {
+    type: types.CHANGE_MODE,
+    payload: !isPostMode,
+  }
+}
+
 export const getShortLogFromDB = date => {
   return dispatch => {
     dispatch({
@@ -25,7 +32,7 @@ export const getShortLogFromDB = date => {
       })
       .catch(error => {
         dispatch({
-          type: types.GET_REQUEST_FAILED,
+          type: types.GET_SHORTLOG_FAILED,
         })
       })
   }
@@ -33,24 +40,31 @@ export const getShortLogFromDB = date => {
 
 export const postShortLogToDB = requestBody => {
   return dispatch => {
-    return fetch(`${rootApi}/diary/regret`, {
+    dispatch({
+      type: types.POST_SHORTLOG_REQUEST,
+    })
+    fetch(`${rootApi}/diary/regret`, {
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
       },
       method: 'POST',
       body: JSON.stringify(requestBody),
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result)
         dispatch({
-          type: types.POST_SHORTLOG_TO_DATABASE,
+          type: types.POST_SHORTLOG_SUCCESS,
           payload: result,
         })
       })
-      .catch(res => {
-        console.log(res)
+      .catch(error => {
+        dispatch({
+          type: types.POST_SHORTLOG_FAILED,
+        })
+        console.log(error)
       })
   }
 }
@@ -76,10 +90,11 @@ export const getLongLogFromDB = date => {
           type: types.GET_LONGLOG_SUCCESS,
           payload: [...data],
         })
+        console.log(data)
       })
       .catch(error => {
         dispatch({
-          type: types.GET_REQUEST_FAILED,
+          type: types.GET_LONGLOG_FAILED,
         })
       })
   }
@@ -87,24 +102,30 @@ export const getLongLogFromDB = date => {
 
 export const postLongLogToDB = requestBody => {
   return dispatch => {
-    return fetch(`${rootApi}/diary/comment`, {
+    dispatch({
+      type: types.GET_LONGLOG_REQUEST,
+    })
+    fetch(`${rootApi}/diary/comment`, {
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
       },
       method: 'POST',
       body: JSON.stringify(requestBody),
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result)
         dispatch({
-          type: types.POST_LONGLOG_TO_DATABASE,
+          type: types.POST_LONGLOG_SUCCESS,
           payload: result,
         })
       })
-      .catch(res => {
-        console.log(res)
+      .catch(error => {
+        dispatch({
+          type: types.POST_LONGLOG_FAILED,
+        })
       })
   }
 }

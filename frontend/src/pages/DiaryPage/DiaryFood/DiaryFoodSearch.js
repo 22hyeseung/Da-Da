@@ -6,7 +6,12 @@ import {
   Grid,
   Input,
 } from 'semantic-ui-react'
-import * as Styled from './StyledDiaryFood'
+import * as Style from './StyledDiaryFood'
+import {
+  segmentDefault,
+  submitBtn,
+  cancelBtn,
+} from '../StyledDiaryCommon'
 import FoodSelectDetails from './DiaryFoodSearchDetails'
 import DiaryFoodSearchModal from './DiaryFoodSearchModal'
 import DiaryFoodAdd from './DiaryFoodAdd'
@@ -126,7 +131,7 @@ class DiaryFoodSearch extends Component {
         {this.state.isSearchMode ? (
           <Segment
             style={{
-              ...Styled.segmentDefault,
+              ...segmentDefault,
               overflow: 'hidden',
               height: '331px',
             }}
@@ -156,7 +161,7 @@ class DiaryFoodSearch extends Component {
                     onClick={this.getFoodsList}
                     disabled={btnState}
                     style={{
-                      ...Styled.submitBtn,
+                      ...submitBtn,
                       width: '100px',
                       marginLeft: '14px',
                     }}
@@ -184,12 +189,12 @@ class DiaryFoodSearch extends Component {
                     <div>
                       <div
                         style={
-                          Styled.searchResultWrapper
+                          Style.searchResultWrapper
                         }
                       >
                         <span
                           style={
-                            Styled.searchResult
+                            Style.searchResult
                           }
                         >
                           검색결과 {'  '}
@@ -204,7 +209,7 @@ class DiaryFoodSearch extends Component {
                           .length > 100 ? (
                           <span
                             style={
-                              Styled.resultSmallMsg
+                              Style.resultSmallMsg
                             }
                           >
                             검색결과가 너무 많이 나오신다면 조금 더
@@ -235,7 +240,7 @@ class DiaryFoodSearch extends Component {
                               return (
                                 <li
                                   style={
-                                    Styled.searchResultList
+                                    Style.searchResultList
                                   }
                                   key={i}
                                   onClick={() =>
@@ -266,16 +271,16 @@ class DiaryFoodSearch extends Component {
                       ) : (
                         // 2. 결과값이 없는경우
                         <div
-                          style={Styled.noResult}
+                          style={Style.noResult}
                         >
                           <div
                             style={
-                              Styled.noResultWrapper
+                              Style.noResultWrapper
                             }
                           >
                             <span
                               style={{
-                                ...Styled.noResultMsg,
+                                ...Style.noResultMsg,
                                 marginTop: '10px',
                               }}
                             >
@@ -283,7 +288,7 @@ class DiaryFoodSearch extends Component {
                             </span>
                             <span
                               style={
-                                Styled.noResultMsg
+                                Style.noResultMsg
                               }
                             >
                               좀 더 큰 범위의 키워드로
@@ -292,7 +297,7 @@ class DiaryFoodSearch extends Component {
                           </div>
                           <img
                             style={
-                              Styled.errorIcon
+                              Style.errorIcon
                             }
                             src={error}
                             alt="검색결과가 없어서 표시하는 이미지입니다"
@@ -303,12 +308,12 @@ class DiaryFoodSearch extends Component {
                   ) : (
                     // 3. 초기 빈 화면
                     <div
-                      style={Styled.searchDefault}
+                      style={Style.searchDefault}
                     >
                       <div>
                         <span
                           style={{
-                            ...Styled.searchDefaultMsg,
+                            ...Style.searchDefaultMsg,
                             display: 'block',
                           }}
                         >
@@ -316,7 +321,7 @@ class DiaryFoodSearch extends Component {
                         </span>
                         <span
                           style={
-                            Styled.searchDefaultMsg
+                            Style.searchDefaultMsg
                           }
                         >
                           아직 안먹으셨다면 검색!
@@ -336,7 +341,7 @@ class DiaryFoodSearch extends Component {
 
             <Label
               attached="bottom"
-              style={Styled.searchLabel}
+              style={Style.searchLabel}
             >
               <div className="diary-food-search-label">
                 <FoodSelectDetails
@@ -357,7 +362,7 @@ class DiaryFoodSearch extends Component {
                   <Button
                     basic
                     style={{
-                      ...Styled.cancelBtn,
+                      ...cancelBtn,
                       marginRight: '9px',
                     }}
                     onClick={
@@ -368,7 +373,7 @@ class DiaryFoodSearch extends Component {
                   </Button>
                   <Button
                     className="diary-food-meal-submitBtn"
-                    style={Styled.submitBtn}
+                    style={submitBtn}
                   >
                     등록
                   </Button>

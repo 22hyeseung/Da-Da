@@ -1,13 +1,11 @@
 import React from 'react'
-import {
-  Segment,
-  Header,
-  Label,
-} from 'semantic-ui-react'
+import { Segment, Label } from 'semantic-ui-react'
+import * as Style from './StyledDiaryFood'
+
+// 컴포넌트
+import DiarySubHeader from '../DiarySubHeader'
 import DiaryFoodAdd from './DiaryFoodAdd'
 import DiaryFoodAlbum from './DiaryFoodAlbum'
-import foodIconDefault from '../../../static/img/diary-food_default.svg'
-import * as Style from './StyledDiaryFood'
 
 {
   /* <DiaryFood
@@ -25,22 +23,12 @@ const DiaryFood = () => {
   return (
     <Segment style={Style.foodBox}>
       {/* title 시작 */}
-      <Header style={Style.header}>
-        <Header.Subheader style={Style.subHeader}>
-          FOOD DIARY
-        </Header.Subheader>
-        오늘의 식단 다이어리
-        <img
-          src={foodIconDefault}
-          style={{
-            height: '27px',
-            marginBottom: '9px',
-          }}
-          alt="의미없는 식단 다이어리 표시 아이콘입니다."
-        />
-      </Header>
+      <DiarySubHeader
+        tabNameEN="FOOD"
+        tabNameKR="식단 다이어리"
+        icon="foodIcon"
+      />
       {/* title 끝 */}
-
       {/* 끼니별 식단 다이어리 시작 */}
       {/* 아침식사 시작 */}
       <Segment
@@ -64,7 +52,6 @@ const DiaryFood = () => {
         <DiaryFoodAdd />
       </Segment>
       {/* 아침식사 끝 */}
-
       {/* 점심 식사 시작 */}
       <Segment
         className="diary-food-meal"

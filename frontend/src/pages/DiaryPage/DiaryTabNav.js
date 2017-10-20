@@ -4,7 +4,7 @@ import {
   withRouter,
 } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
-import * as Style from './StyledDiarySubNav'
+import * as Style from './StyledDiaryCommon'
 
 const routes = [
   {
