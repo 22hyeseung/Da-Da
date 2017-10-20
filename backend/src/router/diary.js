@@ -243,18 +243,15 @@ router.get('/comment', (req, res) => {
  * ]
  */
 router.post('/kg', (req, res) => {
-  const day_log_kg = {
+  const param = {
     'day_log_member_id': req.user.id,
     'day_log_kg': req.body.kg,
     'day_log_diary_date': req.body.date
   }
 
-  query.postDayKgbyUser(day_log_kg)
-    .then(() => {
-      query.getKgByDate(day_log_kg)
-        .then(day_kg => {
-          res.send(day_kg)
-        })
+  query.postDayKgbyUser(param)
+    .then((data) => {
+      res.send(data)
     })
 })
 
