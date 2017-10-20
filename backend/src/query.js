@@ -324,6 +324,15 @@ function getReportNutritionSum({ eat_log_member_id, start_date, end_date }) {
     .first()
 }
 
+
+function getBurnByDate({ burn_member_id, burn_date }) {
+  return knex('burn')
+    .select('burn.burn_id', 'burn.burn_member_id', 'burn.burn_kcal', 'burn.burn_minute', 'exercise.exercise_name')
+    .join('exercise', 'burn.burn_exercise_id', '=', 'exercise.exercise_id')
+    .where({ burn_date, burn_member_id })
+    .groupBy('burn.burn_date')
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -350,5 +359,6 @@ module.exports = {
   getReportKcalByDate,
   getReportKcalByDateAvg,
   getReportNutrition,
-  getReportNutritionSum
+  getReportNutritionSum,
+  getBurnByDate
 }
