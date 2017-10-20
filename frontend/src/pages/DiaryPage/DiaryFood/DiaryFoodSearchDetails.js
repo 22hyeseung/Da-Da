@@ -33,19 +33,6 @@ class FoodSelectDetails extends Component {
     }
   }
 
-  handleAmount = e => {
-    const finalKcal =
-      this.props.calculateKcal * e.target.value
-    this.setState({
-      finalKcal: finalKcal.toFixed(3),
-      inputAmount: e.target.value,
-    })
-    if (e.target.value > 0)
-      this.setState({
-        disabled: false,
-      })
-  }
-
   // 태그명에 따라서 Enum 타입으로 변환
   componentWillMount() {
     if (this.props.type == '아침') {
@@ -76,11 +63,28 @@ class FoodSelectDetails extends Component {
     }
   }
 
+  // 먹은 양 받기
+  handleAmount = e => {
+    const finalKcal =
+      this.props.calculateKcal * e.target.value
+    this.setState({
+      finalKcal: finalKcal.toFixed(3),
+      inputAmount: e.target.value,
+    })
+    // 양 입력 안했을 경우 버튼 비활성화
+    if (e.target.value > 0)
+      this.setState({
+        disabled: false,
+      })
+  }
+
+  // keydown 이벤트
   handleKeyPress = e => {
     if (e.keyCode === 13) {
       this.createPayloadAndPostToDB()
     }
   }
+
   postDelay = () => {
     setTimeout(() => {
       this.setState({
@@ -89,6 +93,8 @@ class FoodSelectDetails extends Component {
         this.props.toggleSearchMode()
     }, 2000)
   }
+
+  // payload 생성
   createPayloadAndPostToDB = () => {
     if (
       !this.state.inputAmount ||
@@ -98,7 +104,6 @@ class FoodSelectDetails extends Component {
         disabled: true,
       })
     }
-
     this.props.postFoodToDB({
       amount: this.state.inputAmount * 1,
       date: this.state.date,
@@ -109,11 +114,8 @@ class FoodSelectDetails extends Component {
     this.setState({ loading: true }, () =>
       this.postDelay(),
     )
-
-    console.log(this.props.foodResult.food_id)
-    console.log(this.props.type)
-    console.log(this.state.inputAmount * 1)
   }
+
   render() {
     const details = (
       <div
@@ -163,18 +165,20 @@ class FoodSelectDetails extends Component {
         </div>
       </div>
     )
+
     const blank = (
       <span className="diary-food-search-label-result-title">
         <Icon color="teal" name="check" />
-        먹은 음식을 선택하세요.
+        검색 후 먹은 음식을 선택하세요.
       </span>
     )
+
     return (
       <div className="diary-food-search-label">
         <div className="diary-food-search-label-result">
           {this.props.isSelected
             ? details
-            : this.props.foodResult ? '' : blank}
+            : blank}
         </div>
         <div>
           <Button

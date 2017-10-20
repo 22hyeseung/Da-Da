@@ -17,6 +17,7 @@ import DiaryFoodAdd from './DiaryFoodAdd'
 import notyet from '../../../static/img/diary-food-search-notyet.svg'
 import error from '../../../static/img/diary-search-error.svg'
 import { connect } from 'react-redux'
+import rootApi from '../../../config'
 
 class DiaryFoodSearch extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class DiaryFoodSearch extends Component {
       isSearchMode: true,
       inputError: false,
       isLoading: false,
-      btnState: false, //
+      btnState: false,
       isEmpty: true,
 
       userInput: '',
@@ -57,10 +58,11 @@ class DiaryFoodSearch extends Component {
       isLoading: true,
       selectedKey: -1, // 두번째 검색시, label의 결과값을 제거 (select 초기화)
     })
-    // merge이후에 config파일 연동해야함
+
+    // 검색 get
     fetch(
-      `https://api.downmix.net/foods?name=${this
-        .state.userInput}`,
+      `${rootApi}/foods?name=${this.state
+        .userInput}`,
       {
         method: 'GET',
         headers: {
@@ -87,16 +89,19 @@ class DiaryFoodSearch extends Component {
       btnState: false,
     })
   }
+
+  // 입력시 keydown
   handleKeyPress = e => {
     if (e.keyCode === 13) {
       this.getFoodsList()
     }
   }
+
   // 검색 리스트 중 선택하는 핸들러
   // 검색 결과 배열 자체에 id값을 주어야함!!!
   handleSelect = key => {
     this.setState({ selectedKey: key })
-    this.calculateKcal(key) //
+    this.calculateKcal(key)
   }
 
   // 음식 칼로리를 계산하는 함수
@@ -347,7 +352,6 @@ class DiaryFoodSearch extends Component {
               style={Style.searchLabel}
             >
               <FoodSelectDetails
-                type={this.props.type}
                 isSelected={
                   this.state.selectedKey !== -1
                 }

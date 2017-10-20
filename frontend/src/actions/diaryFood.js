@@ -1,10 +1,10 @@
 import * as types from '../actions/ActionTypes'
 import rootApi from '../config'
+
 // 1. db 값 받는 action
 export const getFoodLogsFromDB = date => {
   return dispatch => {
-    // console.log(date)
-    fetch(`${rootApi}/eat-logs/?date=${date}`, {
+    fetch(`${rootApi}/eat-logs?date=${date}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window
