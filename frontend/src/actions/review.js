@@ -14,10 +14,10 @@ export const getShortLogFromDB = date => {
       type: types.GET_SHORTLOG_REQUEST,
     })
     fetch(
-      `${rootApi}/diary/regret?date=${date}`,
+      `${rootApi}/diary/regret?date=20171020`,
       {
         method: 'GET',
-        header: {
+        headers: {
           Authorization: `Bearer ${window
             .localStorage.token}`,
         },
@@ -25,6 +25,7 @@ export const getShortLogFromDB = date => {
     )
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         dispatch({
           type: types.GET_SHORTLOG_SUCCESS,
           payload: [...data],
@@ -64,7 +65,37 @@ export const postShortLogToDB = requestBody => {
         dispatch({
           type: types.POST_SHORTLOG_FAILED,
         })
-        console.log(error)
+        console.error(error)
+      })
+  }
+}
+
+export const updateShortLogOfDB = requestBody => {
+  return dispatch => {
+    dispatch({
+      type: types.UPDATE_SHORTLOG_REQUEST,
+    })
+    fetch(`${rootApi}/diary/regret`, {
+      header: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+      method: 'UPDATE',
+      body: JSON.stringify(requestBody),
+    })
+      .then(res => res.json())
+      .then(result => {
+        dispatch({
+          type: types.UPDATE_SHORTLOG_SUCCESS,
+          payload: result,
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: types.UPDATE_SHORTLOG_FAILED,
+        })
       })
   }
 }

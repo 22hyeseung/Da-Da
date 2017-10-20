@@ -10,7 +10,10 @@ import ShortLogWriteMode from './ShortLogWriteMode'
 import ShortLogReadMode from './ShortLogReadMode'
 
 // 리덕스 액션
-import { changeMode } from '../../../../actions/review'
+import {
+  changeMode,
+  getShortLogFromDB,
+} from '../../../../actions/review'
 
 class DiaryReviewShortInput extends Component {
   constructor(props) {
@@ -20,17 +23,19 @@ class DiaryReviewShortInput extends Component {
     }
   }
 
-  // 작성한 로그가 존재하는지 확인
-  isLogExisted = () => {
-    return this.props.shortLogSaved.day_log_regret
+  componentWillMount() {
+    this.props.getShortLogFromDB(this.state.date)
   }
-
   // 읽기모드 <-> 쓰기모드 상태 변경
   // changeMode = () => {
   //   this.setState({
   //     isPostMode: !this.state.isPostMode,
   //   })
   // }
+  // 작성한 로그가 존재하는지 확인
+  isLogExisted = () => {
+    return this.props.shortLogSaved.day_log_regret
+  }
 
   render() {
     const {
@@ -84,6 +89,8 @@ const mapDispatchToprops = dispatch => {
   return {
     changeMode: isPostMode =>
       dispatch(changeMode(isPostMode)),
+    getShortLogFromDB: date =>
+      dispatch(getShortLogFromDB(date)),
   }
 }
 

@@ -29,10 +29,6 @@ class ShortLogReadMode extends Component {
     }
   }
 
-  componentWillMount() {
-    this.props.getShortLogFromDB(this.state.date)
-  }
-
   render() {
     return (
       <div>
