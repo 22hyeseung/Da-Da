@@ -125,4 +125,28 @@ router.get('/', (req, res) => {
     })
 })
 
+/**
+ * @api {delete} /:id Delete Weight
+ *
+ * @apiDescription 사용자가 지우고자하는 몸무게 기록을 삭제한다.
+ * @apiName DeleteWeight
+ * @apiGroup weight
+ *
+ * @apiParam {Number} id 사용자가 선택한 몸무게 id
+ *
+ * @apiSuccess {String} weight null complete
+ *
+ * @apiSuccesExample {HTML-message} Success-Response:
+ * res.status(200)
+ * weight null complete
+ */
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+
+  query.WeightNullById(id)
+  .then(() => {
+    res.status(200)
+    res.send('weight null complete')
+  })
+})
 module.exports = router
