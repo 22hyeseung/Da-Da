@@ -145,8 +145,7 @@ router.delete('/:id', (req, res) => {
 
   query.WeightNullById(id)
   .then(() => {
-    res.status(200)
-    res.send('weight null complete')
+    res.end()
   })
 })
 

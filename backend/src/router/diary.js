@@ -286,7 +286,11 @@ router.get('/kg', (req, res) => {
   const date = req.query.date
   const user = req.user.id
 
-  query.getKgByDate(date, user)
+  const param = {
+    'day_log_member_id': req.user.id,
+    'day_log_diary_date': req.query.date
+  }
+  query.getKgByDate(param)
     .then(data => {
       if (!data) {
         res.status(404)
