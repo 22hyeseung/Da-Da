@@ -50,17 +50,12 @@ router.use(bodyParser.json())
  */
 // router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 
-function base64Image(src) {
-  const data = fs.readFileSync(src).toString('base64')
-  return util.format('data:%s;base64,%s', mime.getType(src), data)
-}
-
-function googleVision(fileUrl) {
+function googleVision(fileBuffer) {
   return new Promise((resolve, reject) => {
     // faces, landmarks, labels, logos, properties, safeSearch, texts
     const types = ['labels']
 
-    vision.detect(fileUrl, types, (err, detections, apiResponse) => {
+    vision.detect(fileBuffer, types, (err, detections, apiResponse) => {
       if (err) {
         reject(err)
       } else {
