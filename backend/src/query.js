@@ -423,10 +423,22 @@ function PostGoalKgbyUser({ member_id, member_goal_weight }) {
     .first()
 }
 
-function deleteBurnById({ burn_id, burn_member_id }) {
+function deleteBurnById({ burn_id }) {
   return knex('burn')
-    .where({ burn_id, burn_member_id })
+    .where({ burn_id })
     .delete(burn_id)
+}
+
+function patchBurnById({ burn_id, burn_kcal, burn_minute, burn_exercise_id }) {
+  return knex('burn')
+    .where({ burn_id })
+    .update({ burn_kcal, burn_exercise_id, burn_minute })
+    .then(() => {
+      return knex('burn')
+        .select('burn.burn_id', 'burn.burn_kcal', 'burn.burn_minute', 'exercise.exercise_name')
+        .join('exercise', 'burn.burn_exercise_id', '=', 'exercise.exercise_id')
+        .where({ burn_id })
+    })
 }
 
 module.exports = {
@@ -465,5 +477,6 @@ module.exports = {
   patchEatLogs,
   WeightNullById,
   PostGoalKgbyUser,
-  deleteBurnById
+  deleteBurnById,
+  patchBurnById
 }
