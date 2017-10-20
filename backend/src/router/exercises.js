@@ -164,4 +164,44 @@ router.delete('/:id', (req, res) => {
       res.end()
     })
 })
+
+/**
+ * @api {patch} /exercises/:id Patch Exercises
+ * @apiDescription burn_id를 선택해 사용자가 입력한 정보로 업데이트
+ * @apiName PatchExercises
+ * @apiGroup exercises
+ *
+ * @apiParam {Number} id 사용자가 선택한 기록 id
+ * @apiParam {Number} burn_minute 사용자가 수정할 운동한 시간
+ * @apiParam {Number} kcal 사용자가 수정할 시간으로 계산된 소모 열량
+ *
+ * @apiSuccess {Number} burn_id 사용자가 선택해 수정한 소모열량 번호
+ * @apiSuccess {Number} burn_kcal 사용자가 선택해 수정한 소모열량
+ * @apiSuccess {Number} burn_minute 사용자가 선택해 수정한 소모 운동시간
+ * @apiSuccess {String} exercise_name 사용자가 선택한 수정하고자 한 운동이름
+ * @apiSuccessExample {JSON} Succes-Response:
+ * http://localhost:5000/exercises/3
+ *
+ * [
+ *   {
+ *       "burn_id": 3,
+ *       "burn_kcal": 300,
+ *       "burn_minute": 50,
+ *       "exercise_name": "요리하기"
+ *   }
+* ]
+ */
+router.patch('/:id', (req, res) => {
+  const param = {
+    'burn_member_id': req.user.id,
+    'burn_id': req.params.id,
+    'burn_minute': req.body.burn_minute,
+    'burn_kcal': req.body.kcal
+  }
+
+  query.patchBurnById(param)
+    .then(data => {
+      res.send(data)
+    })
+})
 module.exports = router
