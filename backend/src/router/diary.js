@@ -250,10 +250,10 @@ router.post('/kg', (req, res) => {
   }
 
   query.postDayKgbyUser(day_log_kg)
-    .then(() => {
+    .then(data => {
       query.getKgByDate(day_log_kg)
-        .then(day_kg => {
-          res.send(day_kg)
+        .then(result => {
+          res.send(result)
         })
     })
 })
@@ -305,7 +305,11 @@ router.get('/kg', (req, res) => {
   const date = req.query.date
   const user = req.user.id
 
-  query.getKgByDate(date, user)
+  const param = {
+    'day_log_member_id': req.user.id,
+    'day_log_diary_date': req.query.date
+  }
+  query.getKgByDate(param)
     .then(data => {
       if (!data) {
         res.status(404)
