@@ -27,6 +27,7 @@ class ShortLogWriteMode extends Component {
     super(props)
     this.state = {
       shortLog: this.props.shortLogSaved
+        .day_log_regret
         ? this.props.shortLogSaved.day_log_regret
         : '',
       date: dateStringForApiQuery(
