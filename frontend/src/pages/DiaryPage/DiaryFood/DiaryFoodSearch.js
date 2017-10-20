@@ -371,7 +371,7 @@ class DiaryFoodSearch extends Component {
             </Label>
           </Segment>
         ) : (
-          <DiaryFoodAdd />
+          <DiaryFoodAdd type={this.props.type} />
         )}
       </div>
     )

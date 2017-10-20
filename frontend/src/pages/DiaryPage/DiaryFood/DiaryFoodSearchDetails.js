@@ -35,22 +35,22 @@ class FoodSelectDetails extends Component {
 
   // 태그명에 따라서 Enum 타입으로 변환
   componentWillMount() {
-    if (this.props.type == '아침') {
+    if (this.props.type === '아침') {
       return this.setState({
         meal_tag: 1,
       })
     }
-    if (this.props.type == '점심') {
+    if (this.props.type === '점심') {
       return this.setState({
         meal_tag: 2,
       })
     }
-    if (this.props.type == '저녁') {
+    if (this.props.type === '저녁') {
       return this.setState({
         meal_tag: 3,
       })
     }
-    if (this.props.type == '간식') {
+    if (this.props.type === '간식') {
       return this.setState({
         meal_tag: 4,
       })

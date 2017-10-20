@@ -3,7 +3,7 @@ import {
   Segment,
   Icon,
   Button,
-  Popup
+  Popup,
 } from 'semantic-ui-react'
 import * as Style from './StyledDiaryFood'
 
@@ -16,7 +16,7 @@ class DiaryFoodList extends React.Component {
             <Segment style={Style.mealCard}>
               <div className="diary-food-meal-list-card-firstRow">
                 <p className="diary-food-meal-list-card-firstRow-title">
-                  {this.props.type}
+                  {card.food_name_ko}
                   {/* {card.food_name_ko} 서버 업데이트되면 적용하면 됩니다. */}
                 </p>
                 <Popup
@@ -32,7 +32,7 @@ class DiaryFoodList extends React.Component {
                   flowing
                   hoverable
                   style={{
-                    padding: '1px'
+                    padding: '1px',
                   }}
                 >
                   <Button.Group>
@@ -50,7 +50,7 @@ class DiaryFoodList extends React.Component {
               <div
                 style={{
                   display: 'flex',
-                  justifyContent: 'space-between'
+                  justifyContent: 'space-between',
                 }}
               >
                 <p className="diary-food-meal-list-card-calory">

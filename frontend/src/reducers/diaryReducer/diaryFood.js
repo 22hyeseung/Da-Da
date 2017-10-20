@@ -23,7 +23,7 @@ export const diaryFoodReducer = (
   if (action.type === 'POST_FOOD_TO_DATABASE') {
     return {
       foodresult: [
-        ...action.payload,
+        action.payload,
         ...state.foodresult,
       ],
     }
