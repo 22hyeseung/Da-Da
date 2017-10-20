@@ -22,7 +22,7 @@ router.options('*', cors())
 /**
  * @api {post} /eat-logs Post Eat-logs
  * @apiDescription 사용자가 먹은 음식을 기록
- * @apiName postEatLogs
+ * @apiName Post EatLogs
  * @apiGroup eatlog
  *
  * @apiParam {Integer} food_id 입력 food등록
@@ -87,9 +87,9 @@ router.post('/', (req, res) => {
 
 
 /**
- * @api {get} /eat-logs/:id Get Eat-logs
+ * @api {get} /eat-logs/:id Get Eat-logs By Id
  * @apiDescription 사용자가 선택한 기록을 가져온다.
- * @apiName eat-logs
+ * @apiName GET EatLogs By Id
  * @apiGroup eatlog
  *
  * @apiParam {Integer} eat-log-id 기록된 id
@@ -151,7 +151,7 @@ router.get('/:id', (req, res) => {
 /**
  * @api {get} /eat-logs Get Eat-logs
  * @apiDescription 사용자가 지정한날에 먹은기록을 가져온다.
- * @apiName eat-logs
+ * @apiName GET EatLogs
  * @apiGroup eatlog
  *
  * @apiParam {Date} date 등록일
@@ -228,12 +228,10 @@ router.get('/', (req, res) => {
 })
 
 
-
-
 /**
  * @api {delete} /eat-logs/:id delete Eat-logs
  * @apiDescription 사용자가 선택한 기록을 지운다.
- * @apiName eat-logs
+ * @apiName Delete EatLogs
  * @apiGroup eatlog
  *
  * @apiParam {Integer} eat_log_id 기록된것의 id
@@ -258,6 +256,57 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+/**
+ * @api {petch} /eat-logs/:id Petch Eat-logs
+ * @apiDescription 사용자가 먹은 음식의 기록을 변경
+ * @apiName Petch EatLogs
+ * @apiGroup eatlog
+ *
+ * @apiParam {Float} amount 먹은양 기록
+ * @apiParam {Integer} serve 인분 기록
+ *
+ *
+ * @apiSuccess {Enum} eat_log_meal_tag 아침,점심,저녁,간식인지 구분
+ * @apiSuccess {Float} eat_log_amount 먹은양 기록
+ * @apiSuccess {String} eat_log_picture 사진을 기록
+ * @apiSuccess {Date} eat_log_diary_date 등록일
+ *
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/eat-logs/2
+ * {
+ *     "eat_log_id": 2,
+ *     "eat_log_member_id": 1,
+ *     "eat_log_food_id": 1,
+ *     "eat_log_recipe_id": null,
+ *     "eat_log_meal_tag": "저녁",
+ *     "eat_log_amount": 322,
+ *     "eat_log_serve": null,
+ *     "eat_log_picture": null,
+ *     "eat_log_diary_date": "2017-10-15T15:00:00.000Z",
+ *     "eat_log_submit_time": "2017-10-16T12:30:37.000Z"
+ * }
+ */
+
+router.patch('/:id', (req, res) => {
+  const amount = req.body.amount ? req.body.amount : null
+  const serve = req.body.serve ? req.body.serve : null
+
+  const update_eat_log = {
+    'eat_log_id': req.params.id,
+    'eat_log_amount': amount,
+    'eat_log_serve': serve
+  }
+
+  query.patchEatLogs(update_eat_log)
+    .then((result) => {
+      if (result) {
+        res.send(result)
+      } else {
+        console.log('EatLogs update Error!!')
+      }
+    })
+})
 
 /**
  * @api {get} /eat-logs/summary Get EatSummary
