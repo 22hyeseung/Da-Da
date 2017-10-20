@@ -18,7 +18,7 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ 'extended': false }))
 router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-
+router.options('*', cors())
 /**
  * @api {post} /eat-logs Post Eat-logs
  * @apiDescription 사용자가 먹은 음식을 기록
@@ -43,18 +43,20 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  *
  * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/eat-logs
- * {
- *     "eat_log_id": 28,
- *     "eat_log_food_id": 1,
- *     "food_name_ko": "도토리묵밥",
- *     "food_name_en": "Doritomi rice",
- *     "food_unit": "g",
- *     "eat_log_meal_tag": "점심",
- *     "food_kcal": 120.2,
- *     "food_carb": 21.6,
- *     "food_protein": 4.4,
- *     "food_fat": 1.8
- * }
+ * [
+ *     {
+ *         "eat_log_id": 31,
+ *         "eat_log_member_id": 1,
+ *         "eat_log_food_id": null,
+ *         "eat_log_recipe_id": 1,
+ *         "eat_log_meal_tag": "점심",
+ *         "eat_log_amount": null,
+ *         "eat_log_serve": 2,
+ *         "eat_log_picture": null,
+ *         "eat_log_diary_date": "2017-10-16T15:00:00.000Z",
+ *         "eat_log_submit_time": "2017-10-20T08:12:06.000Z"
+ *     }
+ * ]
  */
 router.post('/', (req, res) => {
   const food_id = req.body.food_id ? req.body.food_id : null
@@ -76,21 +78,72 @@ router.post('/', (req, res) => {
   query.postEatLogs(eat_log_meal)
     .then(eat_log => {
       if (eat_log) {
-        if (eat_log[0].eat_log_food_id) {
-          query.getEatLogsFoodFirst(eat_log[0])
-            .then(result => {
-              res.send(result)
-            })
-        } else if (eat_log[0].eat_log_recipe_id) {
-          query.getEatLogsRecipeFirst(eat_log[0])
-            .then(result => {
-              res.send(result)
-            })
-        } else {
-          console.log('Eat_logs food_id, recipe_id POST Error')
-        }
+        res.send(eat_log)
       } else {
         console.log('Eat_logs POST Error')
+      }
+    })
+})
+
+
+/**
+ * @api {get} /eat-logs/:id Get Eat-logs
+ * @apiDescription 사용자가 선택한 기록을 가져온다.
+ * @apiName eat-logs
+ * @apiGroup eatlog
+ *
+ * @apiParam {Integer} eat-log-id 기록된 id
+ *
+ * @apiSuccess {Integer} eat_log_id eat_log에 남겨지는 id
+ * @apiSuccess {Integer} eat_log_member_id 기록한 member의 id
+ * @apiSuccess {Integer} eat_log_food_id food를 기록할시 food_id 입력
+ * @apiSuccess {Integer} eat_log_recipe_id recipe를 기록할시 recipe_id 입력
+ * @apiSuccess {Enum} eat_log_meal_tag 아침,점심,저녁,간식인지 구분
+ * @apiSuccess {String} eat_log_picture 사진을 기록
+ * @apiSuccess {Date} eat_log_diary_date 등록일
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/eat-logs/10
+ * {
+ *     "eat_log_id": 3,
+ *     "eat_log_picture": null,
+ *     "eat_log_food_id": 1,
+ *     "food_name_ko": "도토리묵밥",
+ *     "food_name_en": "Doritomi rice",
+ *     "food_unit": "g",
+ *     "eat_log_meal_tag": "저녁",
+ *     "food_kcal": 120.2,
+ *     "food_carb": 21.6,
+ *     "food_protein": 4.4,
+ *     "food_fat": 1.8
+ * }
+ */
+
+router.get('/:id', (req, res) => {
+  const eat_log_id = req.params.id
+
+  query.getEatLogsId(eat_log_id)
+    .then(result => {
+      if (result.eat_log_food_id) {
+        query.getEatLogsFoodFirst(result)
+          .then(foodresult => {
+            if (foodresult) {
+              res.send(foodresult)
+            } else {
+              console.log('foodresult error')
+            }
+          })
+      } else if (result.eat_log_recipe_id) {
+        query.getEatLogsRecipeFirst(result)
+          .then(reciperesult => {
+            if (reciperesult) {
+              res.send(reciperesult)
+            } else {
+              console.log('reciperesult error')
+            }
+          })
+      } else {
+        console.log('GET eatlogs/:id Error')
       }
     })
 })
@@ -174,6 +227,38 @@ router.get('/', (req, res) => {
     })
 })
 
+
+
+
+/**
+ * @api {delete} /eat-logs/:id delete Eat-logs
+ * @apiDescription 사용자가 선택한 기록을 지운다.
+ * @apiName eat-logs
+ * @apiGroup eatlog
+ *
+ * @apiParam {Integer} eat_log_id 기록된것의 id
+ *
+ * @apiSuccess {Message} complete
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/eat-logs/10
+ * Message complete
+ */
+
+router.delete('/:id', (req, res) => {
+  const eat_log_id = req.params.id
+  query.deleteEatLogs(eat_log_id)
+    .then(result => {
+      if (result) {
+        res.status(200)
+        res.end('complete')
+      } else {
+        console.log('delete eat-log error')
+      }
+    })
+})
+
+
 /**
  * @api {get} /eat-logs/summary Get EatSummary
  * @apiDescription 우측의 사용자 칼로리 요약
@@ -205,6 +290,7 @@ router.get('/', (req, res) => {
  *     "today_fat": 72
  * }
  */
+
 router.get('/summary', (req, res) => {
   const param = {
     'day_log_member_id': req.user.id,
