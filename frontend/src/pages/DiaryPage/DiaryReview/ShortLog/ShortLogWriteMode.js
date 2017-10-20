@@ -26,8 +26,9 @@ class ShortLogWriteMode extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isVaild: true,
-      shortLog: '',
+      shortLog: this.props.shortLogSaved
+        ? this.props.shortLogSaved.day_log_regret
+        : '',
       date: dateStringForApiQuery(
         this.props.dateState,
       ),
@@ -56,7 +57,7 @@ class ShortLogWriteMode extends Component {
     }
   }
 
-  // 반성일기 등록시 date와 ShortLog db로 전송(Post)
+  // 반성 일기 등록시 date와 ShortLog db로 전송(Post)
   createShortLogAndPostToDB = () => {
     const { shortLog, date } = this.state
     const requestBody = {
@@ -67,7 +68,7 @@ class ShortLogWriteMode extends Component {
     // console.log(requestBody)
     this.props.postShortLogToDB(requestBody)
 
-    // 이후 읽기모드로 전환
+    // 이후 읽기 모드로 전환
     this.props.changeMode(this.props.isPostMode)
   }
 
