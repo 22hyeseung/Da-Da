@@ -10,7 +10,6 @@ import * as Style from './StyledDiaryFood'
 import {
   segmentDefault,
   submitBtn,
-  cancelBtn,
 } from '../StyledDiaryCommon'
 import FoodSelectDetails from './DiaryFoodSearchDetails'
 import DiaryFoodSearchModal from './DiaryFoodSearchModal'
@@ -132,7 +131,7 @@ class DiaryFoodSearch extends Component {
         {this.state.isSearchMode ? (
           <Segment
             style={{
-              ...Style.segmentDefault,
+              ...segmentDefault,
               margin: '0px',
               overflow: 'hidden',
               height: '331px',
