@@ -72,7 +72,7 @@ router.get('/all', (req, res) => {
 })
 
 /**
- * @api {get} / Get WeightDate
+ * @api {get} /weight?date WeightDate
  *
  * @apiDescription 사용자가 찾고자 하는 날짜를 기준으로 등록한 뭄무게와 목표 몸무게, 처음에 입력한 몸무게를 불러온다.
  * @apiName getWeightDate
@@ -82,7 +82,7 @@ router.get('/all', (req, res) => {
  * @apiSuccess {Number} goal_weight 사용자가 입력한 목표 몸무게
  * @apiSuccess {Number} date_weight 특정 날짜에 입력한 몸무게
  *
- * @apiSuccesExample {JSON} Success-Response:
+ * @apiSuccessExample {JSON} Success-Response:
  * {
  *   "member_id": 1,
  *   "date": "20171004",
