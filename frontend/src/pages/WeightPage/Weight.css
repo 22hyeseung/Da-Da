@@ -3,10 +3,6 @@
     margin: 0 auto;
 }
 
-.weight-grid-wrapper {
-    display: flex;
-}
-
 .weight-current-wrapper {
     display: flex;
     align-items: center;

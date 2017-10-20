@@ -11,8 +11,8 @@ import * as Style from './StyledWeight'
 import { connect } from 'react-redux'
 import {
   postWeightToDB,
-  fetchWeightToDB,
-} from '../../actions/weight.js'
+  fetchWeightFromDB,
+} from '../../actions/weight'
 
 class WeightDaily extends Component {
   constructor(props) {
@@ -136,8 +136,7 @@ class WeightDaily extends Component {
               <Icon
                 name="plus"
                 style={{ marginRight: '10px' }}
-              />{' '}
-              */} 오늘 체중 기록하기
+              />오늘 체중 기록하기
             </Button>
           )}
           {/* 리스트 시작 */}
@@ -200,7 +199,7 @@ const mapDispatchToProps = dispatch => {
     postWeightToDB: payload =>
       dispatch(postWeightToDB(payload)),
     fetchWeight: () =>
-      dispatch(fetchWeightToDB()),
+      dispatch(fetchWeightFromDB()),
   }
 }
 
