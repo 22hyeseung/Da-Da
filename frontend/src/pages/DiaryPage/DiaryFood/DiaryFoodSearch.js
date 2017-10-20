@@ -132,7 +132,7 @@ class DiaryFoodSearch extends Component {
         {this.state.isSearchMode ? (
           <Segment
             style={{
-              ...Styled.segmentDefault,
+              ...Style.segmentDefault,
               margin: '0px',
               overflow: 'hidden',
               height: '331px',
