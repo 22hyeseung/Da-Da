@@ -208,16 +208,17 @@ function getEatLogsRecipeFirst({ eat_log_id }) {
     .first()
 }
 
-// function getEatLogs({ eat_log_member_id, eat_log_diary_date }) {
-//   return knex('eat_log')
-//     .where({ eat_log_member_id, eat_log_diary_date })
-// }
-
-function getEatLogs({ eat_log_member_id, eat_log_diary_date }) {
+function getEatLogsId(eat_log_id) {
   return knex('eat_log')
-    .where({ eat_log_member_id, eat_log_diary_date })
+    .where({ eat_log_id })
+    .first()
 }
 
+function deleteEatLogs(eat_log_id) {
+  return knex('eat_log')
+    .where({ eat_log_id })
+    .delete()
+}
 function getFoodsSearch(name) {
   return knex('food')
     .select('food_id', 'food_name_ko', 'food_carb', 'food_protein', 'food_fat', 'food_unit')
@@ -405,7 +406,7 @@ module.exports = {
   getDayLogAll,
   getRecipeById,
   getRecipeByName,
-  getEatLogs,
+  getEatLogsId,
   getEatLogsFood,
   getEatLogsRecipe,
   getWeightByDate,
@@ -418,5 +419,6 @@ module.exports = {
   getEatLogsFoodFirst,
   getEatLogsRecipeFirst,
   postGoalKcalbyUser,
-  getKcalByDate
+  getKcalByDate,
+  deleteEatLogs
 }
