@@ -151,7 +151,15 @@ router.delete('/:id', (req, res) => {
 })
 
 /**
+ * @api {delete} /:id Delete Weight
  *
+ * @apiDescription 사용자가 지우고자하는 몸무게 기록을 삭제한다.
+ * @apiName DeleteWeight
+ * @apiGroup weight
+ *
+ * @apiParam {Number} id 사용자가 선택한 몸무게 id
+ * @apiParam {Number} goal_weight 사용자가 입력한 목표 몸무게
+ * @apiSuccess {Number} member_goal_weight 사용자가 입력한 목표 몸무게
  * @apiSuccesExample {JSON} Success-Response:
  *  {
  *    "member_id": 1,
