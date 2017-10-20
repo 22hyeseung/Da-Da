@@ -1,16 +1,20 @@
 import React from 'react'
-import { Segment, Label } from 'semantic-ui-react'
+import {
+  Segment,
+  Label,
+  Header,
+} from 'semantic-ui-react'
 import * as Style from './StyledDiaryFood'
+import { iconSet } from '../StyledDiaryCommon'
 
 // 컴포넌트
 import DiarySubHeader from '../DiarySubHeader'
 import DiaryFoodAdd from './DiaryFoodAdd'
 import DiaryFoodAlbum from './DiaryFoodAlbum'
-import DiaryFoodAlbum from './DiaryFoodAlbum'
 import DiaryFoodMeal from './DiaryFoodMeal'
 import { connect } from 'react-redux'
 import { fetchFoodLogsFromDB } from '../../../actions/diaryFood'
-import ComponentLoader from '../../../components/ComponentLoader'
+import ComponentLoader from '../../../components/Loader/ComponentLoader'
 
 class DiaryFood extends React.Component {
   state = {
@@ -41,22 +45,11 @@ class DiaryFood extends React.Component {
     return (
       <Segment style={Style.foodBox}>
         {/* title 시작 */}
-        <Header style={Style.header}>
-          <Header.Subheader
-            style={Style.subHeader}
-          >
-            FOOD DIARY
-          </Header.Subheader>
-          오늘의 식단 다이어리
-          <img
-            src={foodIconDefault}
-            style={{
-              height: '27px',
-              marginBottom: '9px',
-            }}
-            alt="의미없는 식단 다이어리 표시 아이콘입니다."
-          />
-        </Header>
+        <DiarySubHeader
+          tabNameEN="FOOD"
+          tabNameKR="식단 다이어리"
+          icon="foodIcon"
+        />
         {/* title 끝 */}
         {this.props.foodresult.map(
           (result, i) => {

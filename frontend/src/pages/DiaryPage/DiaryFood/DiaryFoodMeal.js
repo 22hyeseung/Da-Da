@@ -3,13 +3,14 @@ import { Segment, Label } from 'semantic-ui-react'
 import DiaryFoodAdd from './DiaryFoodAdd'
 import DiaryFoodList from './DiaryFoodList'
 import * as Style from './StyledDiaryFood'
-import ComponentLoader from '../../../components/ComponentLoader'
+import ComponentLoader from '../../../components/Loader/ComponentLoader'
 
 class DiaryFoodMeal extends React.Component {
   constructor(props) {
     super(props)
   }
   render() {
+    // 끼니별 등록된 칼로리 계산식
     let totalKcal =
       this.props.foodresult.length === 0
         ? 0
@@ -24,7 +25,7 @@ class DiaryFoodMeal extends React.Component {
       <Segment
         className="diary-food-meal"
         style={{
-          paddingTop: '7px'
+          paddingTop: '7px',
         }}
       >
         <div>
@@ -42,6 +43,8 @@ class DiaryFoodMeal extends React.Component {
               </Label.Detail>
             </Label>
           </div>
+
+          {/* 예외처리_ */}
           {this.props.foodresult.length === 0 ? (
             ''
           ) : (

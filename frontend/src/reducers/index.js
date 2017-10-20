@@ -7,7 +7,7 @@ import {
   longLogReducer,
 } from './diaryReducer/diaryReview'
 import todayDateReducer from './appReducer/todayDate'
-import { diaryFoodReducer } from './diaryFood'
+import { diaryFoodReducer } from './diaryReducer/diaryFood'
 
 const reducers = combineReducers({
   navActiveItem: navActiveItemReducer,

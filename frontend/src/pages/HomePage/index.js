@@ -11,7 +11,7 @@ import { getUserInfo } from '../../actions/auth.js'
 
 // 컴포넌트
 import Navigation from '../../components/Navigation'
-import Loader from '../../components/Loader'
+import Loader from '../../components/Loader/index'
 import HomeHero from './HomeHero'
 import HomeTab from './HomeTab'
 

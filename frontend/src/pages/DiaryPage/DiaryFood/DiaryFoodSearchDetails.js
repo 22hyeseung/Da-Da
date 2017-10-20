@@ -4,7 +4,12 @@ import {
   Icon,
   Button,
 } from 'semantic-ui-react'
-import ComponentLoader from '../../../components/ComponentLoader'
+import ComponentLoader from '../../../components/Loader/ComponentLoader'
+import {
+  segmentDefault,
+  submitBtn,
+  cancelBtn,
+} from '../StyledDiaryCommon'
 import { postFoodToDB } from '../../../actions/diaryFood'
 import { connect } from 'react-redux'
 import * as Styled from './StyledDiaryFood'
@@ -170,7 +175,7 @@ class FoodSelectDetails extends Component {
           <Button
             basic
             style={{
-              ...Styled.cancelBtn,
+              ...cancelBtn,
               marginRight: '9px',
             }}
             onClick={this.props.toggleSearchMode}
@@ -179,7 +184,7 @@ class FoodSelectDetails extends Component {
           </Button>
           <Button
             className="diary-food-meal-submitBtn"
-            style={Styled.submitBtn}
+            style={submitBtn}
             onClick={
               this.createPayloadAndPostToDB
             }

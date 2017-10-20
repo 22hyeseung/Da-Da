@@ -1,7 +1,7 @@
 import React from 'react'
 import './ComponentLoader.css'
 
-export default class Loader extends React.Component {
+export default class ComponentLoader extends React.Component {
   render() {
     return (
       <div>
