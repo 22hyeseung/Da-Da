@@ -18,7 +18,8 @@ class WeightProgress extends Component {
         : (flagPosition =
             (60 -
               this.props.weightListItem.find(
-                Item => Item.day_log_kg !== null,
+                Item =>
+                  Item.day_log_kg !== 'null',
               ).day_log_kg) /
             10 *
             100)
