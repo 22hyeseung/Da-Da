@@ -19,13 +19,11 @@ class WeightCurrentValue extends Component {
             {/* 인터넷 느린경우 */}
             {this.props.weightListItem.length !==
             0 ? (
-              // (beingWeight =
               // null값이 아닌 첫번째 요소 등장
               this.props.weightListItem.find(
                 Item => Item.day_log_kg !== null,
               ).day_log_kg
             ) : (
-              // `${beingWeight.day_log_kg}`
               <Icon loading name="asterisk" />
             )}
           </span>

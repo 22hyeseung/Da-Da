@@ -8,15 +8,15 @@ import { connect } from 'react-redux'
 
 class WeightProgress extends Component {
   render() {
-    // 임의의 값 넣음.
-    // 공식 = {(현재체중-시작체중)/(시작체중 - 목표체중 )}/33*100
+    // 공식 = {(시작체중-현재체중)/(시작체중 - 목표체중 )}*100
     let flagPosition = ''
     {
       this.props.weightListItem.length !== 0
         ? (flagPosition =
             (60 -
-              this.props.weightListItem[0]
-                .day_log_kg) /
+              this.props.weightListItem.find(
+                Item => Item.day_log_kg !== null,
+              ).day_log_kg) /
             10 *
             100)
         : (flagPosition = 0)
