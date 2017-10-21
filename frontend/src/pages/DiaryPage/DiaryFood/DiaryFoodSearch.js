@@ -164,6 +164,7 @@ class DiaryFoodSearch extends Component {
                     onKeyDown={
                       this.handleKeyPress
                     }
+                    icon="search"
                   />
                   <Button
                     onClick={this.getFoodsList}

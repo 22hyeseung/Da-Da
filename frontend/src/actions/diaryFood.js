@@ -72,8 +72,53 @@ export const postFoodToDB = payload => {
       })
   }
 }
+// 3. updateDB
+export const updateFoodOfDB = payload => {
+  return dispatch => {
+    fetch(`${rootApi}/eat-logs`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+      .then(result => result.json())
+      .then(result => {
+        if (result) {
+          return fetch(
+            `${rootApi}/eat-logs/${result[0]
+              .eat_log_id}`,
+            {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${window
+                  .localStorage.token}`,
+              },
+            },
+          )
+            .then(res => res.json())
+            .then(data => {
+              dispatch({
+                type: types.POST_FOOD_TO_DATABASE,
+                payload: data,
+              })
+            })
+            .catch(error => {
+              console.log(
+                'fetchUpdateFoodToDB error',
+              )
+            })
+        }
+      })
+      .catch(error => {
+        console.log('updateFoodOfDB error')
+      })
+  }
+}
 
-// 3. deleteFood
+// 4. deleteFood
 export const deleteFoodOfDB = id => {
   return dispatch => {
     fetch(`${rootApi}/eat-logs/${id}`, {

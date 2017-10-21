@@ -4,6 +4,8 @@ export const FETCHED_FOOD_LOGS_SUCCESS =
   'FETCHED_FOOD_LOGS_SUCCESS'
 export const POST_FOOD_TO_DATABASE =
   'POST_FOOD_TO_DATABASE'
+export const UPDATE_FOOD_OF_DATABASE =
+  'UPDATE_FOOD_OF_DATABASE'
 export const DELETE_FOOD_OF_DATABASE =
   'DELETE_FOOD_OF_DATABASE'
 //==========================================
