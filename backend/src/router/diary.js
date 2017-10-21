@@ -234,7 +234,7 @@ router.post('/kg', (req, res) => {
   }
 
   query.postDayKgbyUser(param)
-    .then((data) => {
+    .then(data => {
       res.send(data)
     })
 })
@@ -330,11 +330,8 @@ router.post('/kcal', (req, res) => {
   }
 
   query.postGoalKcalbyUser(param)
-    .then(() => {
-      query.getKcalByDate(param)
-        .then(result => {
-          res.send(result)
-        })
+    .then(result => {
+      res.send(result)
     })
 })
 
