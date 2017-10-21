@@ -14,7 +14,7 @@ export const getShortLogFromDB = date => {
       type: types.GET_SHORTLOG_REQUEST,
     })
     fetch(
-      `${rootApi}/diary/regret?date=20171020`,
+      `${rootApi}/diary/regret?date=${date}`,
       {
         method: 'GET',
         headers: {
@@ -28,7 +28,7 @@ export const getShortLogFromDB = date => {
         console.log(data)
         dispatch({
           type: types.GET_SHORTLOG_SUCCESS,
-          payload: [...data],
+          payload: data,
         })
       })
       .catch(error => {
@@ -70,36 +70,6 @@ export const postShortLogToDB = requestBody => {
   }
 }
 
-export const updateShortLogOfDB = requestBody => {
-  return dispatch => {
-    dispatch({
-      type: types.UPDATE_SHORTLOG_REQUEST,
-    })
-    fetch(`${rootApi}/diary/regret`, {
-      header: {
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${window
-          .localStorage.token}`,
-      },
-      method: 'UPDATE',
-      body: JSON.stringify(requestBody),
-    })
-      .then(res => res.json())
-      .then(result => {
-        dispatch({
-          type: types.UPDATE_SHORTLOG_SUCCESS,
-          payload: result,
-        })
-      })
-      .catch(error => {
-        dispatch({
-          type: types.UPDATE_SHORTLOG_FAILED,
-        })
-      })
-  }
-}
-
 export const getLongLogFromDB = date => {
   return dispatch => {
     dispatch({
@@ -119,7 +89,7 @@ export const getLongLogFromDB = date => {
       .then(data => {
         dispatch({
           type: types.GET_LONGLOG_SUCCESS,
-          payload: [...data],
+          payload: data,
         })
         console.log(data)
       })

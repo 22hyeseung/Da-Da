@@ -14,10 +14,7 @@ import '../diaryReview.css'
 import { dateStringForApiQuery } from '../../../../helper/date'
 
 // 리덕스 액션
-import {
-  getShortLogFromDB,
-  changeMode,
-} from '../../../../actions/review'
+import { changeMode } from '../../../../actions/review'
 
 class ShortLogReadMode extends Component {
   constructor(props) {
@@ -40,7 +37,10 @@ class ShortLogReadMode extends Component {
               ...buttonIcon,
               marginLeft: '16px',
             }}
-            onClick={this.props.changeMode}
+            onClick={() =>
+              this.props.changeMode(
+                this.props.isPostMode,
+              )}
           >
             <Icon name="pencil" />
           </Button>
@@ -51,7 +51,10 @@ class ShortLogReadMode extends Component {
         </Header>
         <div
           className="savedShortLog"
-          onClick={this.props.changeMode}
+          onClick={() =>
+            this.props.changeMode(
+              this.props.isPostMode,
+            )}
         >
           {
             this.props.shortLogSaved
@@ -71,10 +74,8 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToprops = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    getShortLogFromDB: date =>
-      dispatch(getShortLogFromDB(date)),
     changeMode: isPostMode =>
       dispatch(changeMode(isPostMode)),
   }
@@ -82,5 +83,5 @@ const mapDispatchToprops = dispatch => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToprops,
+  mapDispatchToProps,
 )(ShortLogReadMode)
