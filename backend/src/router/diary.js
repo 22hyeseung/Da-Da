@@ -217,7 +217,7 @@ router.get('/comment', (req, res) => {
  * @apiParam {Date} date 오늘날짜
  * @apiParam {Number} kg 사용자가 입력한 몸무게
  *
- * @apiSuccesExample {json} Success-Response:
+ * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/diary/kg
  * {
  *     "day_log_id": 7,
@@ -252,7 +252,7 @@ router.post('/kg', (req, res) => {
  * @apiSuccess {Number} day_log_member_id 사용자id
  * @apiSuccess {Number} day_log_diary_date 사용자가 입력했던 date
  *
- * @apiSuccesExample {json} Success-Response:
+ * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/diary/kg?date=20170101
  *  [
  *    {
@@ -314,7 +314,7 @@ router.get('/kg', (req, res) => {
  * @apiSuccess {Number} day_log_member_id 사용자id
  * @apiSuccess {Number} day_log_diary_date 사용자가 입력했던 date
  *
- * @apiSuccesExample {json} Success-Response:
+ * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/diary/kcal
  * {
  *     "day_log_kcal": 1300,
@@ -348,7 +348,7 @@ router.post('/kcal', (req, res) => {
  * @apiSuccess {Number} day_log_member_id 사용자id
  * @apiSuccess {Number} day_log_diary_date 사용자가 입력했던 date
  *
- * @apiSuccesExample {json} Success-Response:
+ * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/diary/kcal?date=20170101
  * {
  *     "day_log_kcal": 1300,
