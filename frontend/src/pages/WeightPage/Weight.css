@@ -37,10 +37,10 @@
 .weight-daily {
     box-shadow: 0 2px 5px 0 rgba(79, 64, 64, 0.2);
     padding: 27px 27px 180px 27px;
-    background-image: url('../../static/img/weight-img_2.png');
+    background-image: url('../../static/img/weight_img_3.png');
     background-repeat: no-repeat;
     background-position: right bottom;
-    background-size: 90%;
+    background-size: 100%;
     border-radius: 4px;
 }
 

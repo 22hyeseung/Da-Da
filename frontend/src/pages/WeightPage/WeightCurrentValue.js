@@ -1,19 +1,10 @@
 import React, { Component } from 'react'
 import weightMeasure from '../../static/img/weight-img.svg'
 import { connect } from 'react-redux'
+import { Icon } from 'semantic-ui-react'
 
 class WeightCurrentValue extends Component {
   render() {
-    let recentWeight = 0
-
-    this.props.weightListItem.forEach(item => {
-      if (
-        item.id ===
-        this.props.weightListItem.length
-      ) {
-        recentWeight = item.weight
-      }
-    })
     return (
       <div className="weight-current-wrapper">
         <div>
@@ -24,7 +15,14 @@ class WeightCurrentValue extends Component {
         </div>
         <div>
           <span className="weight-current">
-            {recentWeight}
+            {/* 인터넷 느린경우 */}
+            {this.props.weightListItem.length !==
+            0 ? (
+              this.props.weightListItem[0]
+                .day_log_kg
+            ) : (
+              <Icon loading name="asterisk" />
+            )}
           </span>
           <span className="weight-unit-kg">
             kg

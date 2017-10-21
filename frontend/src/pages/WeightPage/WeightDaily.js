@@ -196,7 +196,7 @@ class WeightDaily extends Component {
                         <img
                           src={trash}
                           alt="삭제버튼"
-                          onclick={}
+                          /* onclick={} */
                         />
                       </List.Content>
                     </div>
