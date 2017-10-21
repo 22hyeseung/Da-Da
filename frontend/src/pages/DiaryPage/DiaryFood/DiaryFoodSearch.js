@@ -5,16 +5,18 @@ import {
   Label,
   Grid,
   Input,
-  List,
 } from 'semantic-ui-react'
-import * as Styled from './StyledDiaryFood'
+import * as Style from './StyledDiaryFood'
+import {
+  segmentDefault,
+  submitBtn,
+} from '../StyledDiaryCommon'
 import FoodSelectDetails from './DiaryFoodSearchDetails'
 import DiaryFoodSearchModal from './DiaryFoodSearchModal'
 import DiaryFoodAdd from './DiaryFoodAdd'
 import notyet from '../../../static/img/diary-food-search-notyet.svg'
 import error from '../../../static/img/diary-search-error.svg'
 import { connect } from 'react-redux'
-import { toggleSearchMode } from '../../../actions/diaryFood'
 
 class DiaryFoodSearch extends Component {
   constructor(props) {
@@ -24,22 +26,19 @@ class DiaryFoodSearch extends Component {
       isSearchMode: true,
       inputError: false,
       isLoading: false,
-      btnState: false,
-      isFocus: false,
+      btnState: false, //
       isEmpty: true,
+
       userInput: '',
       results: [],
       resultKcal: '',
       finalKcal: '',
-      inputAmount: 1,
       token: `Bearer ${this.props.token}`,
     }
   }
 
-  componentWillMount() {
-    this.setState({
-      isFocus: true,
-    })
+  componentDidMount() {
+    this.textInput.focus()
   }
 
   // foodsSearch api : 현재 컴포넌트에서만 사용하므로 따로 action으로 분리하지 않았다.
@@ -88,7 +87,11 @@ class DiaryFoodSearch extends Component {
       btnState: false,
     })
   }
-
+  handleKeyPress = e => {
+    if (e.keyCode === 13) {
+      this.getFoodsList()
+    }
+  }
   // 검색 리스트 중 선택하는 핸들러
   // 검색 결과 배열 자체에 id값을 주어야함!!!
   handleSelect = key => {
@@ -128,7 +131,8 @@ class DiaryFoodSearch extends Component {
         {this.state.isSearchMode ? (
           <Segment
             style={{
-              ...Styled.segmentDefault,
+              ...segmentDefault,
+              margin: '0px',
               overflow: 'hidden',
               height: '331px',
             }}
@@ -144,19 +148,23 @@ class DiaryFoodSearch extends Component {
                   }}
                 >
                   <Input
+                    ref={input =>
+                      (this.textInput = input)}
                     placeholder="오늘 무엇을 드셨나요?"
                     className="diary-food-search"
                     loading={isLoading}
                     error={inputError}
-                    focus={isFocus}
                     onChange={this.handleChange}
                     value={this.state.userInput}
+                    onKeyDown={
+                      this.handleKeyPress
+                    }
                   />
                   <Button
                     onClick={this.getFoodsList}
                     disabled={btnState}
                     style={{
-                      ...Styled.submitBtn,
+                      ...submitBtn,
                       width: '100px',
                       marginLeft: '14px',
                     }}
@@ -184,12 +192,12 @@ class DiaryFoodSearch extends Component {
                     <div>
                       <div
                         style={
-                          Styled.searchResultWrapper
+                          Style.searchResultWrapper
                         }
                       >
                         <span
                           style={
-                            Styled.searchResult
+                            Style.searchResult
                           }
                         >
                           검색결과 {'  '}
@@ -204,7 +212,7 @@ class DiaryFoodSearch extends Component {
                           .length > 100 ? (
                           <span
                             style={
-                              Styled.resultSmallMsg
+                              Style.resultSmallMsg
                             }
                           >
                             검색결과가 너무 많이 나오신다면 조금 더
@@ -235,7 +243,7 @@ class DiaryFoodSearch extends Component {
                               return (
                                 <li
                                   style={
-                                    Styled.searchResultList
+                                    Style.searchResultList
                                   }
                                   key={i}
                                   onClick={() =>
@@ -266,16 +274,16 @@ class DiaryFoodSearch extends Component {
                       ) : (
                         // 2. 결과값이 없는경우
                         <div
-                          style={Styled.noResult}
+                          style={Style.noResult}
                         >
                           <div
                             style={
-                              Styled.noResultWrapper
+                              Style.noResultWrapper
                             }
                           >
                             <span
                               style={{
-                                ...Styled.noResultMsg,
+                                ...Style.noResultMsg,
                                 marginTop: '10px',
                               }}
                             >
@@ -283,7 +291,7 @@ class DiaryFoodSearch extends Component {
                             </span>
                             <span
                               style={
-                                Styled.noResultMsg
+                                Style.noResultMsg
                               }
                             >
                               좀 더 큰 범위의 키워드로
@@ -292,7 +300,7 @@ class DiaryFoodSearch extends Component {
                           </div>
                           <img
                             style={
-                              Styled.errorIcon
+                              Style.errorIcon
                             }
                             src={error}
                             alt="검색결과가 없어서 표시하는 이미지입니다"
@@ -303,12 +311,12 @@ class DiaryFoodSearch extends Component {
                   ) : (
                     // 3. 초기 빈 화면
                     <div
-                      style={Styled.searchDefault}
+                      style={Style.searchDefault}
                     >
                       <div>
                         <span
                           style={{
-                            ...Styled.searchDefaultMsg,
+                            ...Style.searchDefaultMsg,
                             display: 'block',
                           }}
                         >
@@ -316,7 +324,7 @@ class DiaryFoodSearch extends Component {
                         </span>
                         <span
                           style={
-                            Styled.searchDefaultMsg
+                            Style.searchDefaultMsg
                           }
                         >
                           아직 안먹으셨다면 검색!
@@ -336,44 +344,26 @@ class DiaryFoodSearch extends Component {
 
             <Label
               attached="bottom"
-              style={Styled.searchLabel}
+              style={Style.searchLabel}
             >
-              <div className="diary-food-search-label">
-                <FoodSelectDetails
-                  isSelected={
-                    this.state.selectedKey != -1
-                  }
-                  calculateKcal={
-                    this.state.resultKcal
-                  }
-                  foodResult={
-                    this.state.results[
-                      this.state.selectedKey
-                    ]
-                  }
-                />
-
-                <div>
-                  <Button
-                    basic
-                    style={{
-                      ...Styled.cancelBtn,
-                      marginRight: '9px',
-                    }}
-                    onClick={
-                      this.toggleSearchMode
-                    }
-                  >
-                    취소
-                  </Button>
-                  <Button
-                    className="diary-food-meal-submitBtn"
-                    style={Styled.submitBtn}
-                  >
-                    등록
-                  </Button>
-                </div>
-              </div>
+              <FoodSelectDetails
+                type={this.props.type}
+                isSelected={
+                  this.state.selectedKey !== -1
+                }
+                calculateKcal={
+                  this.state.resultKcal
+                }
+                foodResult={
+                  this.state.results[
+                    this.state.selectedKey
+                  ]
+                }
+                type={this.props.type}
+                toggleSearchMode={
+                  this.toggleSearchMode
+                } // 토글 이벤트 props 내림
+              />
             </Label>
           </Segment>
         ) : (

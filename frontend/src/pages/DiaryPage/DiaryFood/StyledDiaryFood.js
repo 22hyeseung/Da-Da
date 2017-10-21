@@ -1,45 +1,6 @@
 import foodImg from '../../../static/img/diary_food_album.jpg'
 import foodBG from '../../../static/img/food_bg.png'
 
-// 공통 스타일 시작
-export const header = {
-  fontSize: '28px',
-  fontWeight: '100',
-  color: '#16325C',
-  marginBottom: '42px',
-  fontFamily: 'Spoqa Han Sans',
-}
-
-export const subHeader = {
-  fontFamily: 'montserrat-bold',
-  fontSize: '14px',
-  color: '#1f2e79',
-}
-
-export const segmentDefault = {
-  boxShadow: 'none',
-  marginTop: '0px',
-  border: '1px solid #d8dde6',
-  marginBottom: '14px',
-}
-
-export const cancelBtn = {
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
-  padding: '10px 34px',
-}
-
-export const submitBtn = {
-  color: 'white',
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
-  padding: '10px 34px',
-  backgroundImage:
-    'linear-gradient(249deg, #485563, #29323c)',
-  marginRight: '0px',
-}
-// 공통 스타일 끝
-
 // food tab view 컴포넌트 시작
 export const foodBox = {
   padding: '33px 36px 21px 36px',
@@ -215,7 +176,6 @@ export const noResultMsg = {
 export const noResult = {
   display: 'flex',
   height: '169px',
-  justifyContent: 'space-between',
   flexDirection: 'column-reverse',
   justifyContent: 'center',
   alignItems: 'center',

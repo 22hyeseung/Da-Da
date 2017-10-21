@@ -1,10 +1,8 @@
 import * as types from '../actions/ActionTypes'
 
-// ======================================> navigation & tab action
 export const changeNavigationItemActive = navItem => {
   return {
     type: types.CHANGE_NAV_ITEM_ACTIVE,
     payload: navItem,
   }
 }
-// ======================================> navigation & tab action end

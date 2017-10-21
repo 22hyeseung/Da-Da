@@ -1,5 +1,6 @@
 import React from 'react'
 import './Share.css'
+import './ShareDiary.css'
 import ShareDiaryFood from './ShareDiaryFood'
 import ShareDiaryFitness from './ShareDiaryFitness'
 import ShareTitle from './ShareTitle'

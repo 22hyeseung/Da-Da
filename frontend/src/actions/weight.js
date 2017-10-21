@@ -1,9 +1,10 @@
 import * as types from '../actions/ActionTypes'
+import rootApi from '../config'
 
 // 1. db 값 받는 action
 export const fetchWeightToDB = () => {
   return dispatch => {
-    fetch(`http://localhost:3335/weightLists`)
+    fetch(`${rootApi}/weightLists`)
       .then(res => res.json())
       .then(data => {
         dispatch({
@@ -20,7 +21,7 @@ export const fetchWeightToDB = () => {
 // 2. input에서 받은 값을 db로 보내는 action(post)
 export const postWeightToDB = payload => {
   return dispatch => {
-    fetch(`http://localhost:3335/weightLists/`, {
+    fetch(`${rootApi}/weightLists/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

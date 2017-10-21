@@ -37,7 +37,7 @@ class LoginPage extends Component {
     })
       .then(res => res.json())
       .then(userInfo => {
-        this.props.I_WANT_SAVE_USER_INFO(userInfo)
+        this.props.saveUserInfo(userInfo)
       })
   }
 
@@ -47,12 +47,12 @@ class LoginPage extends Component {
     if (e.origin === `${rootApi}` && token) {
       window.localStorage.token = token // window에 토큰 저장
       this.props.saveToken(token)
+      this.state.popupWindow.close()
+      this.setState({
+        popupWindow: null,
+      })
+      this.props.history.push('/')
     }
-    this.state.popupWindow.close()
-    this.setState({
-      popupWindow: null,
-    })
-    this.props.history.push('/')
     // window.location.reload()
   }
 
@@ -181,7 +181,7 @@ const mapDispatchtoProps = dispatch => {
   return {
     saveToken: token =>
       dispatch(saveToken(token)),
-    I_WANT_SAVE_USER_INFO: user =>
+    saveUserInfo: user =>
       dispatch(getUserInfo(user)),
   }
 }

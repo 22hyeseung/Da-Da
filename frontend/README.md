@@ -17,10 +17,6 @@
 * semantic-ui-react v0.74.2
 * semantic-ui-css v2.2.12
 
-### Icons
-
-* [react-icons](https://gorangajic.github.io/react-icons/index.html) v2.2.5
-
 <br>
 
 ## Conventions

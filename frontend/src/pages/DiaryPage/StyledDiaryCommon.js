@@ -6,6 +6,45 @@ import foodIconWhite from '../../static/img/diary-food_w.svg'
 import reviewIconDefault from '../../static/img/diary-review_default.svg'
 import reviewIconWhite from '../../static/img/diary-review_w.svg'
 
+// 공통 스타일 시작
+export const header = {
+  fontSize: '28px',
+  fontWeight: '100',
+  color: '#16325C',
+  marginBottom: '42px',
+  fontFamily: 'Spoqa Han Sans',
+}
+
+export const subHeader = {
+  fontFamily: 'montserrat-bold',
+  fontSize: '14px',
+  color: '#1f2e79',
+}
+
+export const segmentDefault = {
+  boxShadow: 'none',
+  marginTop: '0px',
+  border: '1px solid #d8dde6',
+  marginBottom: '14px',
+}
+
+export const cancelBtn = {
+  fontFamily: 'Spoqa Han Sans',
+  fontWeight: '100',
+  padding: '10px 34px',
+}
+
+export const submitBtn = {
+  color: 'white',
+  fontFamily: 'Spoqa Han Sans',
+  fontWeight: '100',
+  padding: '10px 34px',
+  backgroundImage:
+    'linear-gradient(249deg, #485563, #29323c)',
+  marginRight: '0px',
+}
+// 공통 스타일 끝
+
 export const calorieGoal = {
   width: '16%',
   position: 'absolute',

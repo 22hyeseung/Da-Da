@@ -14,8 +14,8 @@ import {
   buttonIcon,
   shortSubmitBtn,
 } from './StyledDiaryReview'
-import FaPencil from 'react-icons/lib/fa/pencil'
-import FaTrashO from 'react-icons/lib/fa/trash-o'
+// import FaPencil from 'react-icons/lib/fa/pencil'
+// import FaTrashO from 'react-icons/lib/fa/trash-o'
 import {
   getRegretFromDB,
   postRegretToDB,
@@ -163,11 +163,11 @@ class DiaryReviewShortInput extends Component {
                 }}
                 onClick={this.changeMode}
               >
-                <FaPencil size={17} />
+                {/* <FaPencil size={17} /> */}
               </Button>
               {/* 삭제 버튼 */}
               <Button style={buttonIcon}>
-                <FaTrashO size={17} />
+                {/* <FaTrashO size={17} /> */}
               </Button>
             </Header>
             <div

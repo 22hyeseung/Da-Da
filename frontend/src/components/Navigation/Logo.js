@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
-import { logo } from './StyledNavigation'
+import {
+  logoWrap,
+  logo,
+} from './StyledNavigation'
 
 class Logo extends Component {
   render() {
     return (
-      <Menu.Item
-        style={{
-          ...logo,
-          color: this.props.color,
-        }}
-      >
-        DA, DA
+      <Menu.Item style={logoWrap}>
+        <Link
+          to="/"
+          style={{
+            ...logo,
+            color: this.props.color,
+          }}
+        >
+          DA, DA
+        </Link>
       </Menu.Item>
     )
   }

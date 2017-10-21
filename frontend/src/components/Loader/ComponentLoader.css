@@ -1,27 +1,5 @@
-.loader-regret {
-    color: white;
-    font-size: 21px;
-    display: block;
-    font-weight: 100;
-    margin-bottom: 21px;
-}
-
-.loader-body {
-    background: -webkit-linear-gradient(191deg, #26d0ce, #1a2980);
-    background: linear-gradient(259deg, #26d0ce, #1a2980);
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-}
-
-.loader-container {
+.componentloader-container {
     display: flex;
-    /* justify-content: center; */
-    flex-direction: column;
     align-items: center;
     position: absolute;
     top: 50%;
@@ -30,10 +8,10 @@
     transform: translate(-50%, -50%);
 }
 
-.loader-dot {
+.componentloader-dot {
     width: 10px;
     height: 10px;
-    border: 2px solid white;
+    border: 2px solid #26d0ce;
     border-radius: 50%;
     float: left;
     margin: 0 5px;
@@ -43,12 +21,12 @@
     animation: fx 1000ms ease infinite 0ms;
 }
 
-.loader-dot:nth-child(2) {
+.componentloader-dot:nth-child(2) {
     -webkit-animation: fx 1000ms ease infinite 300ms;
     animation: fx 1000ms ease infinite 300ms;
 }
 
-.loader-dot:nth-child(3) {
+.componentloader-dot:nth-child(3) {
     -webkit-animation: fx 1000ms ease infinite 600ms;
     animation: fx 1000ms ease infinite 600ms;
 }

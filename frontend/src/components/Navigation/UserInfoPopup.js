@@ -7,7 +7,6 @@ import {
   Modal,
 } from 'semantic-ui-react'
 import * as styled from './StyledNavigation'
-import UserInfoPopup from './UserInfoPopup'
 import { connect } from 'react-redux'
 import { logOut } from '../../actions/auth'
 import crybaby from '../../static/img/crybaby.gif'
