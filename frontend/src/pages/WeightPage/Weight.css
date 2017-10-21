@@ -1,5 +1,5 @@
 .weight-grid {
-    max-width: 1200px;
+    min-width: 1200px;
     margin: 0 auto;
 }
 
@@ -57,6 +57,8 @@
     margin-bottom: 10px;
 }
 
+
+/*
 @media only screen and (max-width: 1200px) {
     .weight-grid {
         max-width: 992px;
@@ -83,14 +85,20 @@
         left: 19.8rem;
         margin: 0px 250px;
         /* 100%가 33rem */
-        /* 추후 데이터 연동시, left에 수치값 적용
+
+
+/* 추후 데이터 연동시, left에 수치값 적용
           left = (시작체중-목표체중)/(시작체중-현재체중)*33 */
-    }
-}
+
+
+/* }
+} */
 
 
 /* Medium Devices, Desktops : ~ 992px */
 
+
+/*
 @media only screen and (max-width: 992px) {
     .weight-grid {
         max-width: 768px;
@@ -102,14 +110,20 @@
         left: 20.4rem;
         margin: 0px 130px;
         /* 100%가 34rem */
-        /* 추후 데이터 연동시, left에 수치값 적용
+
+
+/* 추후 데이터 연동시, left에 수치값 적용
         left = (시작체중-목표체중)/(시작체중-현재체중)*34  */
-    }
-}
+
+
+/* }
+} */
 
 
 /* Small Devices, Tablets : ~ 768px */
 
+
+/*
 @media only screen and (max-width: 768px) {
     .weight-grid {
         max-width: 480px;
@@ -121,17 +135,23 @@
         left: 7.8rem;
         margin: 0px 130px;
         /* 100%가 13rem */
-        /* 추후 데이터 연동시, left에 수치값 적용
+
+
+/* 추후 데이터 연동시, left에 수치값 적용
       left = (시작체중-목표체중)/(시작체중-현재체중)*13  */
-    }
+
+
+/* }
     .weight-daily {
         background-size: 60%;
     }
-}
+} */
 
 
 /* Extra Small Devices, Phones : ~ 480px */
 
+
+/*
 @media only screen and (max-width: 480px) {
     .weight-grid {
         max-width: 320px;
@@ -146,10 +166,14 @@
         left: 4.2rem;
         margin: 0px 90px;
         /* 100%가 7rem */
-        /* 추후 데이터 연동시, left에 수치값 적용
+
+
+/* 추후 데이터 연동시, left에 수치값 적용
     left = (시작체중-목표체중)/(시작체중-현재체중)*7  */
-    }
+
+
+/* }
     .weight-daily {
         background-size: 80%;
     }
-}
+} */
