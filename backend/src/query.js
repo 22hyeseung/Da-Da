@@ -105,9 +105,9 @@ function postDayKgbyUser({ day_log_member_id, day_log_kg, day_log_diary_date }) 
     })
     .then(() => {
       return knex('day_log')
-      .where({ day_log_diary_date, day_log_member_id })
-      .select('day_log_id', 'day_log_kg', 'day_log_member_id', 'day_log_diary_date')
-      .first()
+        .where({ day_log_diary_date, day_log_member_id })
+        .select('day_log_id', 'day_log_kg', 'day_log_member_id', 'day_log_diary_date')
+        .first()
     })
 }
 
@@ -133,7 +133,7 @@ function getExercisesByName(exercise_name) {
     .where('exercise_name', 'like', `%${exercise_name}%`)
 }
 
-function getKgByDate({ day_log_diary_date, day_log_member_id }) {
+function getKgByDate({ day_log_member_id }) {
   return knex('day_log')
     .where({ day_log_member_id })
     .orderBy('day_log_diary_date', 'desc')
@@ -173,7 +173,7 @@ function getEatLogsFood({ eat_log_member_id, eat_log_diary_date }) {
     .where({ eat_log_member_id, eat_log_diary_date })
 }
 
-function getEatLogsRecipe({ eat_log_member_id, eat_log_diary_date  }) {
+function getEatLogsRecipe({ eat_log_member_id, eat_log_diary_date }) {
   return knex('eat_log')
     .select(
       'eat_log_id', 'eat_log.eat_log_picture', 'eat_log.eat_log_recipe_id', 'recipe.recipe_name_ko', 'recipe.recipe_name_en', 'eat_log.eat_log_meal_tag',
@@ -423,10 +423,22 @@ function PostGoalKgbyUser({ member_id, member_goal_weight }) {
     .first()
 }
 
-function deleteBurnById({ burn_id, burn_member_id }) {
+function deleteBurnById({ burn_id }) {
   return knex('burn')
-    .where({ burn_id, burn_member_id })
+    .where({ burn_id })
     .delete(burn_id)
+}
+
+function patchBurnById({ burn_id, burn_kcal, burn_minute, burn_exercise_id }) {
+  return knex('burn')
+    .where({ burn_id })
+    .update({ burn_kcal, burn_exercise_id, burn_minute })
+    .then(() => {
+      return knex('burn')
+        .select('burn.burn_id', 'burn.burn_kcal', 'burn.burn_minute', 'exercise.exercise_name')
+        .join('exercise', 'burn.burn_exercise_id', '=', 'exercise.exercise_id')
+        .where({ burn_id })
+    })
 }
 
 module.exports = {
@@ -465,5 +477,6 @@ module.exports = {
   patchEatLogs,
   WeightNullById,
   PostGoalKgbyUser,
-  deleteBurnById
+  deleteBurnById,
+  patchBurnById
 }
