@@ -18,6 +18,7 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ 'extended': false }))
 router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
+router.options('*', cors())
 
 /**
  * @api {post} /diary/regret Post Regret
@@ -37,10 +38,11 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
  * http://localhost:5000/diary/regret
  *
  * {
- *    "day_log_id": 1,
- *    "day_log_member_id": 2,
- *    "day_log_regret": "나의 14일 반성일기이다.",
- *    "day_log_diary_date": "2017-10-13T15:00:00.000Z"
+ *     "day_log_id": 2,
+ *     "day_log_member_id": 1,
+ *     "day_log_regret": "오늘의 반성일기입니다.",
+ *     "day_log_comment": null,
+ *     "day_log_diary_date": "2017-10-22"
  * }
  */
 
@@ -56,12 +58,7 @@ router.post('/regret', (req, res) => {
       query.getSelectDayLog(day_log_regret)
         .then(day_log => {
           if (day_log) {
-            res.send({
-              'day_log_id': day_log.day_log_id,
-              'day_log_member_id': day_log.day_log_member_id,
-              'day_log_regret': day_log.day_log_regret,
-              'day_log_diary_date': day_log.day_log_diary_date
-            })
+            res.send(day_log)
           } else {
             console.log('Regret POST error')
           }
@@ -85,10 +82,11 @@ router.post('/regret', (req, res) => {
  * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/diary/regret?date=20171011
  * {
- *    "day_log_id": 1,
- *    "day_log_member_id": 2,
- *    "day_log_regret": "나의 14일 반성일기이다.",
- *    "day_log_diary_date": "2017-10-13T15:00:00.000Z"
+ *     "day_log_id": 3,
+ *     "day_log_member_id": 1,
+ *     "day_log_regret": "오늘의 반성일기입니다.",
+ *     "day_log_comment": "오늘의 일기입니다.",
+ *     "day_log_diary_date": "2017-10-23"
  * }
  */
 
@@ -101,14 +99,48 @@ router.get('/regret', (req, res) => {
   query.getSelectDayLog(day_log_regret)
     .then(day_log => {
       if (day_log) {
-        res.send({
-          'day_log_id': day_log.day_log_id,
-          'day_log_member_id': day_log.day_log_member_id,
-          'day_log_regret': day_log.day_log_regret,
-          'day_log_diary_date': day_log.day_log_diary_date
-        })
+        res.send(day_log)
       } else {
         console.log('Regret GET error')
+      }
+    })
+})
+
+/**
+* @api {put} /diary/regret/:id Put regret
+* @apiDescription 오늘의 일기 작성 후 삭제 null로 치환
+* @apiName PutRegret
+* @apiGroup diary
+*
+* @apiParam {String} regret 반성일기
+*
+* @apiSuccess {Integer} id 반성일기의 id
+* @apiSuccess {Integer} member_id  반성일기를 작성한 유저의 id
+* @apiSuccess {String} regret 작성한 반성일기
+* @apiSuccess {Date} date 페이지의 표시되어 있는 다이어리의 날짜
+
+* @apiSuccessExample {json} Success-Response:
+* http://localhost:5000/diary/regret/2
+* {
+*     "day_log_id": 2,
+*     "day_log_member_id": 1,
+*     "day_log_regret": null,
+*     "day_log_diary_date": "2017-10-22"
+* }
+*/
+
+router.put('/regret/:id', (req, res) => {
+  const day_log_regret_params = {
+    'day_log_id': req.params.id,
+    'day_log_regret': null
+  }
+
+  query.putRegretDayLogById(day_log_regret_params)
+    .then(result => {
+      if (result) {
+        res.send(result)
+      } else {
+        console.log('put regret Error')
       }
     })
 })
@@ -130,10 +162,11 @@ router.get('/regret', (req, res) => {
  * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/diary/comment
  * {
- *    "day_log_id": 2,
- *    "day_log_member_id": 2,
- *    "day_log_comment": "나의 14일 일기이다.",
- *    "day_log_diary_date": "2017-10-13T15:00:00.000Z"
+ *     "day_log_id": 2,
+ *     "day_log_member_id": 1,
+ *     "day_log_regret": null,
+ *     "day_log_comment": "오늘의 일기입니다.",
+ *     "day_log_diary_date": "2017-10-22"
  * }
  */
 
@@ -149,12 +182,7 @@ router.post('/comment', (req, res) => {
       query.getSelectDayLog(day_log_comment)
         .then(day_log => {
           if (day_log) {
-            res.send({
-              'day_log_id': day_log.day_log_id,
-              'day_log_member_id': day_log.day_log_member_id,
-              'day_log_comment': day_log.day_log_comment,
-              'day_log_diary_date': day_log.day_log_diary_date
-            })
+            res.send(day_log)
           } else {
             console.log('Comment POST error')
           }
@@ -178,10 +206,11 @@ router.post('/comment', (req, res) => {
  * @apiSuccessExample {json} Success-Response:
  * http://localhost:5000/diary/comment?date=20171010
  * {
- *    "day_log_id": 2,
- *    "day_log_member_id": 2,
- *    "day_log_comment": "나의 14일 일기이다.",
- *    "day_log_diary_date": "2017-10-13T15:00:00.000Z"
+ *    "day_log_id": 4,
+ *    "day_log_member_id": 1,
+ *    "day_log_regret": null,
+ *    "day_log_comment": "오늘의 일기입니다.",
+ *    "day_log_diary_date": "2017-10-24"
  * }
  */
 
@@ -194,14 +223,48 @@ router.get('/comment', (req, res) => {
   query.getSelectDayLog(day_log_comment)
     .then(day_log => {
       if (day_log) {
-        res.send({
-          'day_log_id': day_log.day_log_id,
-          'day_log_member_id': day_log.day_log_member_id,
-          'day_log_comment': day_log.day_log_comment,
-          'day_log_diary_date': day_log.day_log_diary_date
-        })
+        res.send(day_log)
       } else {
         console.log('Comment GET error')
+      }
+    })
+})
+
+/**
+ * @api {put} /diary/comment/2 Put Comment
+ * @apiDescription 원하는 날의 comment(일기)를 지운다.
+ * @apiName PutComment
+ * @apiGroup diary
+ *
+ * @apiParam {Date} date 등록일
+ *
+ * @apiSuccess {Integer} id 반성일기의 id
+ * @apiSuccess {Integer} member_id  반성일기를 작성한 유저의 id
+ * @apiSuccess {String} comment 가져온 일기
+ * @apiSuccess {Date} date 페이지의 표시되어 있는 다이어리의 날짜
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * http://localhost:5000/diary/comment/2
+ * {
+ *     "day_log_id": 2,
+ *     "day_log_member_id": 1,
+ *     "day_log_comment": null,
+ *     "day_log_diary_date": "2017-10-22"
+ * }
+ */
+
+router.put('/comment/:id', (req, res) => {
+  const day_log_comment_params = {
+    'day_log_id': req.params.id,
+    'day_log_comment': null
+  }
+
+  query.putCommentDayLogById(day_log_comment_params)
+    .then(result => {
+      if (result) {
+        res.send(result)
+      } else {
+        console.log('put comment Error')
       }
     })
 })
