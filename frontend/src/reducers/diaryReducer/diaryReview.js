@@ -62,7 +62,6 @@ export const shortLogReducer = (
       return {
         ...state,
         isLoading: false,
-        isPostMode: true,
         shortLogSaved: action.payload,
       }
     case 'DELETE_SHORTLOG_FAILED':
@@ -116,6 +115,23 @@ export const longLogReducer = (
         longLogSaved: action.payload,
       }
     case 'POST_LONGLOG_FAILED':
+      return {
+        ...state,
+        isLoading: false,
+        errorState: true,
+      }
+    case 'DELETE_LONGLOG_REQUEST':
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case 'DELETE_LONGLOG_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        longLogSaved: action.payload,
+      }
+    case 'DELETE_LONGLOG_FAILED':
       return {
         ...state,
         isLoading: false,

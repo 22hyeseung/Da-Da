@@ -14,7 +14,10 @@ import {
 import '../diaryReview.css'
 
 // 리덕스 액션
-import { changeModeLong } from '../../../../actions/review'
+import {
+  changeModeLong,
+  deleteLongLogOfDB,
+} from '../../../../actions/review'
 
 class LongLogReadMode extends Component {
   constructor(props) {
@@ -22,8 +25,17 @@ class LongLogReadMode extends Component {
     this.state = {}
   }
 
+  deleteLogAndChangeToWriteMode(id) {
+    this.props.deleteLongLogOfDB(id)
+    this.props.changeMode(this.props.isPostMode)
+  }
+
   render() {
-    const { longLogSaved } = this.props
+    const {
+      longLogSaved,
+      changeMode,
+      isEditorMode,
+    } = this.props
 
     return (
       <div>
@@ -36,24 +48,25 @@ class LongLogReadMode extends Component {
               marginLeft: '16px',
             }}
             onClick={() =>
-              this.props.changeMode(
-                this.props.isEditorMode,
-              )}
+              changeMode(isEditorMode)}
           >
             <Icon name="pencil" />
           </Button>
           {/* 삭제 버튼 */}
-          <Button style={buttonIcon}>
+          <Button
+            style={buttonIcon}
+            onClick={() =>
+              this.deleteLogAndChangeToWriteMode(
+                longLogSaved.day_log_id,
+              )}
+          >
             <Icon name="trash outline" />
           </Button>
         </Header>
         <div
           className="savedLongLog"
           style={savedContainer}
-          onClick={() =>
-            this.props.changeMode(
-              this.props.isEditorMode,
-            )}
+          onClick={() => changeMode(isEditorMode)}
         >
           <div
             dangerouslySetInnerHTML={{
@@ -78,6 +91,8 @@ const mapDispatchToProps = dispatch => {
   return {
     changeMode: isEditorMode =>
       dispatch(changeModeLong(isEditorMode)),
+    deleteLongLogOfDB: id =>
+      dispatch(deleteLongLogOfDB(id)),
   }
 }
 

@@ -163,3 +163,31 @@ export const postLongLogToDB = requestBody => {
       })
   }
 }
+
+export const deleteLongLogOfDB = id => {
+  return dispatch => {
+    dispatch({
+      type: types.DELETE_LONGLOG_REQUEST,
+    })
+    fetch(`${rootApi}/diary/comment/${id}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(result => {
+        dispatch({
+          type: types.DELETE_LONGLOG_SUCCESS,
+          payload: result,
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: types.DELETE_LONGLOG_FAILED,
+        })
+        console.error(error)
+      })
+  }
+}
