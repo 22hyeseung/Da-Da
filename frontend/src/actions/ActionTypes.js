@@ -25,10 +25,6 @@ export const CHANGE_TAB_ITEM_ACTIVE =
 export const SAVE_TOKEN = 'SAVE_TOKEN'
 export const SAVE_USERINFO = 'SAVE_USERINFO'
 export const LOGOUT = 'LOGOUT'
-export const TOOGLE_SEARCH_VISIBLE =
-  'TOOGLE_SEARCH_VISIBLE'
-export const TOOGLE_SEARCH_HIDDEN =
-  'TOOGLE_SEARCH_HIDDEN'
 //==========================================
 
 //==========================================

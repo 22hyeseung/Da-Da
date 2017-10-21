@@ -11,8 +11,10 @@ import * as Style from './StyledWeight'
 import { connect } from 'react-redux'
 import {
   postWeightToDB,
-  fetchWeightToDB,
-} from '../../actions/weight.js'
+  fetchWeightFromDB,
+} from '../../actions/weight'
+// helper: 오늘 날짜 API Query형식
+import { dateStringForApiQuery } from '../../helper/date'
 
 class WeightDaily extends Component {
   constructor(props) {
@@ -23,13 +25,14 @@ class WeightDaily extends Component {
       isFocusMode: false,
       valueAlert: '',
       isPositiveNum: false,
+      date: dateStringForApiQuery(
+        this.props.dateState,
+      ),
     }
   }
 
-  componentDidMount() {
-    {
-      // this.props.fetchWeight()
-    }
+  componentWillMount() {
+    this.props.fetchWeight()
   }
 
   handleWeightValueChange = e => {
@@ -60,18 +63,26 @@ class WeightDaily extends Component {
     })
 
   createPayloadAndPostToDB = () => {
-    const dateTime = new Date()
-    const date = dateTime.toLocaleDateString()
-
-    if (!this.state.weight) {
-      return
+    if (
+      !this.state.inputAmount ||
+      this.state.inputAmount < 1
+    ) {
+      return this.setState({
+        disabled: true,
+      })
     }
-    this.props.postWeightToDB({
-      id: '',
-      date: date,
-      weight: this.state.weight,
+
+    this.props.postFoodToDB({
+      kg: this.state.weight,
+      date: this.state.date,
     })
-    this.closeAndResetValue()
+    this.setState({ loading: true }, () =>
+      this.postDelay(),
+    )
+
+    console.log(this.props.foodResult.food_id)
+    console.log(this.props.type)
+    console.log(this.state.inputAmount * 1)
   }
 
   render() {
@@ -132,12 +143,14 @@ class WeightDaily extends Component {
               fluid
               style={Style.weightAddBtn}
               onClick={this.togglePostingMode}
+              onClick={
+                this.createPayloadAndPostToDB
+              }
             >
               <Icon
                 name="plus"
                 style={{ marginRight: '10px' }}
-              />{' '}
-              */} 오늘 체중 기록하기
+              />오늘 체중 기록하기
             </Button>
           )}
           {/* 리스트 시작 */}
@@ -151,7 +164,9 @@ class WeightDaily extends Component {
                     <List.Content
                       style={Style.date}
                     >
-                      {Item.date}
+                      {Item.day_log_diary_date
+                        .substring(0, 10)
+                        .split('-')}
                     </List.Content>
                     <List.Content
                       style={{
@@ -162,7 +177,7 @@ class WeightDaily extends Component {
                       <List.Content
                         style={Style.weigthValue}
                       >
-                        {Item.weight}
+                        {Item.day_log_kg}
                       </List.Content>
                       <List.Content
                         className="weight-daily-value-unit"
@@ -192,6 +207,7 @@ const mapStateToProps = state => {
   return {
     weightListItem:
       state.weightList.weightListItem,
+    dateState: state.today.date,
   }
 }
 
@@ -200,11 +216,11 @@ const mapDispatchToProps = dispatch => {
     postWeightToDB: payload =>
       dispatch(postWeightToDB(payload)),
     fetchWeight: () =>
-      dispatch(fetchWeightToDB()),
+      dispatch(fetchWeightFromDB()),
   }
 }
 
-// export default WeightDaily
-export default connect(mapStateToProps, null)(
-  WeightDaily,
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(WeightDaily)

@@ -44,7 +44,7 @@ class DiaryFoodMeal extends React.Component {
             </Label>
           </div>
 
-          {/* 예외처리_ */}
+          {/* 예외처리_get했던 데이터가 없을 경우 */}
           {this.props.foodresult.length === 0 ? (
             ''
           ) : (
