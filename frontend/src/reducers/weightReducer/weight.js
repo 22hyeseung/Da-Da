@@ -20,6 +20,14 @@ export const weigthListReducer = (
       weightListItem: [...action.payload],
     }
   }
+  if (
+    action.type ===
+    'DELETE_AND_GET_WEIGHT_SUCCESS'
+  ) {
+    return {
+      weightListItem: [...action.payload],
+    }
+  }
   return {
     ...state,
   }

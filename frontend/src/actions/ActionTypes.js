@@ -10,6 +10,8 @@ export const FETCHED_WEIGHT_SUCCESS =
   'FETCHED_WEIGHT_SUCCESS'
 export const POST_AND_GET_WEIGHT_SUCCESS =
   'POST_AND_GET_WEIGHT_SUCCESS'
+export const DELETE_AND_GET_WEIGHT_SUCCESS =
+  'DELETE_AND_GET_WEIGHT_SUCCESS'
 //==========================================
 
 //==========================================

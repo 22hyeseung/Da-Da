@@ -12,6 +12,7 @@ import { connect } from 'react-redux'
 import {
   postWeightToDB,
   fetchWeightFromDB,
+  deleteWeightOfDB,
 } from '../../actions/weight'
 import trash from '../../static/img/trash_icon.svg'
 // helper: 오늘 날짜 API Query형식
@@ -73,18 +74,17 @@ class WeightDaily extends Component {
         disabled: true,
       })
     }
-    // console.log(this.props.dateState)
-    // console.log(this.state.date)
     this.props.postWeightToDB({
       kg: this.state.weight,
       date: 20171021,
     })
     this.togglePostingMode()
-    // this.setState({ loading: true }, () =>
-    //   this.postDelay(),
-    // )
   }
 
+  deleteWeight = id => {
+    // console.log(id)
+    this.props.deleteWeight(id)
+  }
   render() {
     return (
       <div>
@@ -203,7 +203,13 @@ class WeightDaily extends Component {
                             <img
                               src={trash}
                               alt="삭제버튼"
-                              /* onclick={} */
+                              style={{
+                                cursor: 'pointer',
+                              }}
+                              onClick={() =>
+                                this.deleteWeight(
+                                  Item.day_log_id,
+                                )}
                             />
                           </List.Content>
                         </div>
@@ -235,6 +241,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(postWeightToDB(payload)),
     fetchWeight: () =>
       dispatch(fetchWeightFromDB()),
+    deleteWeight: id =>
+      dispatch(deleteWeightOfDB(id)),
   }
 }
 

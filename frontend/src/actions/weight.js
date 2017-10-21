@@ -66,3 +66,45 @@ export const postWeightToDB = payload => {
       })
   }
 }
+
+// 3. delete
+export const deleteWeightOfDB = id => {
+  return dispatch => {
+    fetch(`${rootApi}/weight/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
+      .then(res => {
+        if (res.ok) {
+          return fetch(`${rootApi}/diary/kg`, {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${window
+                .localStorage.token}`,
+            },
+          })
+            .then(res => res.json())
+            .then(data => {
+              dispatch({
+                type:
+                  types.DELETE_AND_GET_WEIGHT_SUCCESS,
+                payload: data,
+              })
+            })
+            .catch(error => {
+              console.log(
+                'DeleteandGETWeightLogsToDB error',
+              )
+            })
+        }
+      })
+      .catch(error => {
+        console.log(
+          'DeleteandGETWeightLogsToDB error',
+        )
+      })
+  }
+}

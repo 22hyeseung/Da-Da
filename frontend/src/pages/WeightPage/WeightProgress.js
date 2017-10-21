@@ -11,15 +11,17 @@ class WeightProgress extends Component {
     // 공식 = {(시작체중-현재체중)/(시작체중 - 목표체중 )}*100
     let flagPosition = ''
     {
-      this.props.weightListItem.length !== 0
-        ? (flagPosition =
+      this.props.weightListItem
+        .map(item => item.day_log_kg)
+        .every(() => 'null')
+        ? (flagPosition = 0)
+        : (flagPosition =
             (60 -
               this.props.weightListItem.find(
                 Item => Item.day_log_kg !== null,
               ).day_log_kg) /
             10 *
             100)
-        : (flagPosition = 0)
     }
     return (
       <div className="weight-progress">
