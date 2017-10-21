@@ -139,7 +139,7 @@ function getKgByDate({ day_log_member_id }) {
   return knex('day_log')
     .where({ day_log_member_id })
     .orderBy('day_log_diary_date', 'desc')
-    .select('day_log_kg', 'day_log_member_id',
+    .select('day_log_kg', 'day_log_member_id', 'day_log_id'
     knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as diary_date'))
     .limit(4)
 }
@@ -296,7 +296,7 @@ function getRecipeByName(recipe_name) {
 function getWeightByDate({ day_log_member_id, day_log_diary_date }) {
   return knex('day_log')
     .join('member', 'day_log.day_log_member_id', '=', 'member.member_id')
-    .select('day_log.day_log_kg', 'member.member_goal_weight')
+    .select('day_log.day_log_kg', 'member.member_goal_weight', 'day_log.day_log_id')
     .where({ day_log_member_id, day_log_diary_date })
     .first()
 }
