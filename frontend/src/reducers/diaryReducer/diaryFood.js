@@ -28,6 +28,14 @@ export const diaryFoodReducer = (
       ],
     }
   }
+  if (action.type === 'DELETE_FOOD_OF_DATABASE') {
+    const deleteFoodResult = state.foodresult.filter(
+      item => item.eat_log_id !== action.payload,
+    )
+    return {
+      foodresult: [...deleteFoodResult],
+    }
+  }
   return {
     ...state,
   }

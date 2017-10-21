@@ -55,7 +55,6 @@ export const postFoodToDB = payload => {
           )
             .then(res => res.json())
             .then(data => {
-              console.log(data)
               dispatch({
                 type: types.POST_FOOD_TO_DATABASE,
                 payload: data,
@@ -68,17 +67,33 @@ export const postFoodToDB = payload => {
             })
         }
       })
-      // .then(() => fetchFoodLogsFromDB())
-
-      // .then(res => res.json())
-      // .then(result => {
-      //   dispatch({
-      //     type: types.POST_FOOD_TO_DATABASE,
-      //     payload: result,
-      //   })
-      // })
       .catch(error => {
         console.log('postFoodToDB error')
+      })
+  }
+}
+
+// 3. deleteFood
+export const deleteFoodOfDB = id => {
+  return dispatch => {
+    fetch(`${rootApi}/eat-logs/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
+      .then(result => {
+        if (result) {
+          // console.log(id)
+          return dispatch({
+            type: types.DELETE_FOOD_OF_DATABASE,
+            payload: id,
+          })
+        }
+      })
+      .catch(error => {
+        console.log('deleteFoodOfDB error')
       })
   }
 }

@@ -6,8 +6,13 @@ import {
   Popup,
 } from 'semantic-ui-react'
 import * as Style from './StyledDiaryFood'
+import { deleteFoodOfDB } from '../../../actions/diaryFood'
+import { connect } from 'react-redux'
 
 class DiaryFoodList extends React.Component {
+  deleteFoodOfDB = id => {
+    this.props.deleteFoodOfDB(id)
+  }
   render() {
     return (
       <div style={{ display: 'flex' }}>
@@ -43,6 +48,10 @@ class DiaryFoodList extends React.Component {
                     <Button
                       icon="trash outline"
                       style={Style.settingIcon}
+                      onClick={() =>
+                        this.deleteFoodOfDB(
+                          card.eat_log_id,
+                        )}
                     />
                   </Button.Group>
                 </Popup>
@@ -94,4 +103,18 @@ class DiaryFoodList extends React.Component {
   }
 }
 
-export default DiaryFoodList
+// const mapStateToProps = state => {
+//   return {
+//     dateState: state.today.date,
+//   }
+// }
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteFoodOfDB: id =>
+      dispatch(deleteFoodOfDB(id)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(
+  DiaryFoodList,
+)
