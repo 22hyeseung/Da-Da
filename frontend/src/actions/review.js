@@ -1,10 +1,17 @@
 import * as types from './ActionTypes'
 import rootApi from '../config'
 
-export const changeMode = isPostMode => {
+export const changeModeShort = currentMode => {
   return {
-    type: types.CHANGE_MODE,
-    payload: !isPostMode,
+    type: types.CHANGE_MODE_SHORT,
+    payload: !currentMode,
+  }
+}
+
+export const changeModeLong = currentMode => {
+  return {
+    type: types.CHANGE_MODE_LONG,
+    payload: !currentMode,
   }
 }
 
@@ -25,7 +32,6 @@ export const getShortLogFromDB = date => {
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         dispatch({
           type: types.GET_SHORTLOG_SUCCESS,
           payload: data,
@@ -70,6 +76,34 @@ export const postShortLogToDB = requestBody => {
   }
 }
 
+export const deleteShortLogOfDB = id => {
+  return dispatch => {
+    dispatch({
+      type: types.DELETE_SHORTLOG_REQUEST,
+    })
+    fetch(`${rootApi}/diary/regret/${id}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(result => {
+        dispatch({
+          type: types.DELETE_SHORTLOG_SUCCESS,
+          payload: result,
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: types.DELETE_SHORTLOG_FAILED,
+        })
+        console.error(error)
+      })
+  }
+}
+
 export const getLongLogFromDB = date => {
   return dispatch => {
     dispatch({
@@ -79,7 +113,7 @@ export const getLongLogFromDB = date => {
       `${rootApi}/diary/comment?date=${date}`,
       {
         method: 'GET',
-        header: {
+        headers: {
           Authorization: `Bearer ${window
             .localStorage.token}`,
         },
@@ -91,7 +125,6 @@ export const getLongLogFromDB = date => {
           type: types.GET_LONGLOG_SUCCESS,
           payload: data,
         })
-        console.log(data)
       })
       .catch(error => {
         dispatch({
@@ -127,6 +160,34 @@ export const postLongLogToDB = requestBody => {
         dispatch({
           type: types.POST_LONGLOG_FAILED,
         })
+      })
+  }
+}
+
+export const deleteLongLogOfDB = id => {
+  return dispatch => {
+    dispatch({
+      type: types.DELETE_LONGLOG_REQUEST,
+    })
+    fetch(`${rootApi}/diary/comment/${id}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(result => {
+        dispatch({
+          type: types.DELETE_LONGLOG_SUCCESS,
+          payload: result,
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: types.DELETE_LONGLOG_FAILED,
+        })
+        console.error(error)
       })
   }
 }

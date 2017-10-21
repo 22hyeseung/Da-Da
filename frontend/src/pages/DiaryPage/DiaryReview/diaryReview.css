@@ -1,6 +1,6 @@
 .savedShortLog {
   margin-left: 12px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .savedShortLog:hover {
@@ -8,4 +8,16 @@
   padding: 8px 17px;
   border-radius: 4px;
   margin: -10px -7px;
+}
+
+.savedLongLog {
+  padding: 20px;
+  background-color: rgba(245, 244, 240, 0.6);
+}
+
+.savedLongLog:hover {
+  border: 2px solid rgba(34, 36, 38, 0.15);
+  padding: 18px;
+  border-radius: 4px;
+  /* margin: -10px -7px; */
 }
