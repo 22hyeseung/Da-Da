@@ -14,10 +14,7 @@ import {
 } from '../StyledDiaryReview'
 
 // 리덕스 액션
-import {
-  postShortLogToDB,
-  changeMode,
-} from '../../../../actions/review'
+import { postShortLogToDB } from '../../../../actions/review'
 
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../../helper/date'
@@ -66,11 +63,7 @@ class ShortLogWriteMode extends Component {
       date,
     }
     // DB로 post
-    // console.log(requestBody)
     this.props.postShortLogToDB(requestBody)
-
-    // 이후 읽기 모드로 전환
-    this.props.changeMode(this.props.isPostMode)
   }
 
   render() {
@@ -136,8 +129,6 @@ const mapDispatchToprops = dispatch => {
   return {
     postShortLogToDB: requestBody =>
       dispatch(postShortLogToDB(requestBody)),
-    changeMode: isPostMode =>
-      dispatch(changeMode(isPostMode)),
   }
 }
 

@@ -1,26 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { convertFromRaw } from 'draft-js'
 
 // 스타일링
 import {
   Header,
-  Button,
   Dimmer,
-  Loader,
+  Message,
 } from 'semantic-ui-react'
-import {
-  longBox,
-  longSubmitBtn,
-  savedContainer,
-} from '../StyledDiaryReview'
+import { longBox } from '../StyledDiaryReview'
 
 // 컴포넌트
-import TextEditor from '../../../../components/TextEditor'
-
-// 컨버터(Converter)
-// EditorContent -> HTML
-import { stateToHTML } from 'draft-js-export-html'
+import ComponentLoader from '../../../../components/Loader/ComponentLoader'
+import LongLogReadMode from './LongLogReadMode'
+import LongLogWriteMode from './LongLogWriteMode'
 
 // 리덕스 액션 생성자
 import {
@@ -35,94 +27,73 @@ class DiaryReviewLongInput extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      errorState: false,
-      isVaild: true,
-      isPostMode: true,
+      isLoading: this.props.state,
       date: dateStringForApiQuery(
         this.props.dateState,
       ),
     }
   }
 
-  // 읽기모드 <-> 쓰기모드 상태 변경
-  changeMode = () => {
-    this.setState({
-      isPostMode: !this.state.isPostMode,
-    })
-  }
-
-  // local Storage의 content = 에디터에 가장 최근까지 작성된 내용
-  // local Storage에 저장하는 부분은 TextEditor/index.js에 있음
-  loadExistingContentFromLocalStorage = () => {
-    // String -> JSON
-    return JSON.parse(
-      window.localStorage.getItem('content'),
+  componentWillMount() {
+    this.props.getLongLogFromDB(this.state.date)
+    this.setState({ isLoading: true }, () =>
+      this.fetchData(),
     )
   }
-
-  convertContentStateToHtml = () => {
-    // JSON -> ContentState
-    const content = this.loadExistingContentFromLocalStorage()
-    // ContentState -> HTML
-    const editorContent = convertFromRaw(content)
-    return stateToHTML(editorContent)
-  }
-
-  // 작성된 LongLog를 DB로 POST
-  createLongLogAndPostToDB = () => {
-    let html = this.convertContentStateToHtml()
-    const requestBody = {
-      comment: html,
-      date: this.state.date,
-    }
-    // DB로 post
-    this.props.postLongLogToDB(requestBody)
-
-    // 이후 읽기모드로 전환
-    this.changeMode()
+  // 로딩 화면 위해 2초 지연
+  fetchData = () => {
+    setTimeout(() => {
+      this.setState({
+        isLoading: false,
+      })
+    }, 2000)
   }
 
   render() {
     const {
+      longLogSaved,
+      isEditorMode,
       errorState,
-      isLoading,
-      isPostMode,
-    } = this.state
-    const { longLogSaved } = this.props
+    } = this.props
 
+    // 시스템 에러 발생시
     if (errorState) {
-      return <h1>ERROR!</h1>
-    }
-    if (isLoading) {
       return (
-        <Dimmer active>
-          <Loader>Loading</Loader>
+        <Message negative>
+          <Message.Header>
+            죄송합니다. 예기치 못한 오류가 발생했어요. (◞‸◟；)
+          </Message.Header>
+          <p>잠시 후 다시 시도해 주세요. (; •͈́ ༚ •͈̀ )</p>
+        </Message>
+      )
+    }
+
+    // 로딩 중 (요청 후 응답이 오지 않은 상태)
+    if (this.state.isLoading) {
+      return (
+        <Dimmer active inverted>
+          <ComponentLoader />
         </Dimmer>
       )
     }
+
     return (
       <div style={longBox}>
         <Header as="h5">오늘의 일기</Header>
-        {isPostMode ? (
-          <div>
-            <TextEditor />
-            <Button
-              style={longSubmitBtn}
-              content={'등록'}
-              onClick={
-                this.createLongLogAndPostToDB
-              }
-            />
-          </div>
+        {/* 이미 작성한 로그가 있는 지 확인 */}
+        {longLogSaved.day_log_comment ? (
+          // 작성한 로그가 이미 있으면
+          !isEditorMode ? (
+            // 기본 화면: 읽기 모드
+            <LongLogReadMode />
+          ) : (
+            // 수정 시 화면: 쓰기 모드
+            <LongLogWriteMode />
+          )
         ) : (
-          <div style={savedContainer}>
-            <div
-              dangerouslySetInnerHTML={{
-                __html:
-                  longLogSaved.day_log_comment,
-              }}
-            />
-          </div>
+          // 오늘 작성한 로그가 없으면
+          // 기본 화면: 쓰기 모드
+          <LongLogWriteMode />
         )}
       </div>
     )
@@ -133,10 +104,13 @@ const mapStateToProps = state => {
   return {
     longLogSaved: state.longLog.longLogSaved,
     dateState: state.today.date,
+    isEditorMode: state.longLog.isEditorMode,
+    errorState: state.longLog.errorState,
+    isLoading: state.longLog.isLoading,
   }
 }
 
-const mapDispatchToprops = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
     getLongLogFromDB: date =>
       dispatch(getLongLogFromDB(date)),
@@ -147,5 +121,5 @@ const mapDispatchToprops = dispatch => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToprops,
+  mapDispatchToProps,
 )(DiaryReviewLongInput)

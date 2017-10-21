@@ -10,20 +10,13 @@ import {
 import { buttonIcon } from '../StyledDiaryReview'
 import '../diaryReview.css'
 
-// helper: 오늘 날짜 API Query형식
-import { dateStringForApiQuery } from '../../../../helper/date'
-
 // 리덕스 액션
-import { changeMode } from '../../../../actions/review'
+import { changeModeShort } from '../../../../actions/review'
 
 class ShortLogReadMode extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      date: dateStringForApiQuery(
-        this.props.dateState,
-      ),
-    }
+    this.state = {}
   }
 
   render() {
@@ -69,7 +62,6 @@ class ShortLogReadMode extends Component {
 const mapStateToProps = state => {
   return {
     shortLogSaved: state.shortLog.shortLogSaved,
-    dateState: state.today.date,
     isPostMode: state.shortLog.isPostMode,
   }
 }
@@ -77,7 +69,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     changeMode: isPostMode =>
-      dispatch(changeMode(isPostMode)),
+      dispatch(changeModeShort(isPostMode)),
   }
 }
 

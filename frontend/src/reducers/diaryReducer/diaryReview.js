@@ -1,13 +1,19 @@
-const INITIAL_STATE = {
+const SHORT_INITIAL_STATE = {
   isLoading: false,
   isPostMode: true,
   errorState: false,
   shortLogSaved: [],
+}
+
+const LONG_INITIAL_STATE = {
+  isLoading: false,
+  isEditorMode: true,
+  errorState: false,
   longLogSaved: [],
 }
 
 export const shortLogReducer = (
-  state = INITIAL_STATE,
+  state = SHORT_INITIAL_STATE,
   action,
 ) => {
   switch (action.type) {
@@ -47,7 +53,7 @@ export const shortLogReducer = (
         isLoading: false,
         errorState: true,
       }
-    case 'CHANGE_MODE':
+    case 'CHANGE_MODE_SHORT':
       return {
         ...state,
         isPostMode: action.payload,
@@ -58,7 +64,7 @@ export const shortLogReducer = (
 }
 
 export const longLogReducer = (
-  state = INITIAL_STATE,
+  state = LONG_INITIAL_STATE,
   action,
 ) => {
   switch (action.type) {
@@ -71,6 +77,7 @@ export const longLogReducer = (
       return {
         ...state,
         isLoading: false,
+        isEditorMode: false,
         longLogSaved: action.payload,
       }
     case 'GET_LONGLOG_FAILED':
@@ -87,6 +94,7 @@ export const longLogReducer = (
     case 'POST_LONGLOG_SUCCESS':
       return {
         ...state,
+        isEditorMode: false,
         longLogSaved: action.payload,
       }
     case 'POST_LONGLOG_FAILED':
@@ -95,10 +103,10 @@ export const longLogReducer = (
         isLoading: false,
         errorState: true,
       }
-    case 'CHANGE_MODE':
+    case 'CHANGE_MODE_LONG':
       return {
         ...state,
-        isPostMode: action.payload,
+        isEditorMode: action.payload,
       }
     default:
       return state

@@ -33,7 +33,9 @@ export const TOOGLE_SEARCH_HIDDEN =
 
 //==========================================
 // review.js
-export const CHANGE_MODE = 'CHANGE_MODE'
+export const CHANGE_MODE_SHORT =
+  'CHANGE_MODE_SHORT'
+export const CHANGE_MODE_LONG = 'CHANGE_MODE_LONG'
 
 // shortLog GET
 export const GET_SHORTLOG_REQUEST =

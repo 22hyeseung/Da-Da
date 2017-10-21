@@ -82,12 +82,12 @@ class DiaryReviewShortInput extends Component {
         {/* 이미 작성한 로그가 있는 지 확인 */}
         {shortLogSaved.day_log_regret ? (
           // 작성한 로그가 이미 있으면
-          isPostMode ? (
-            // 수정 시 화면: 쓰기 모드
-            <ShortLogWriteMode />
-          ) : (
+          !isPostMode ? (
             // 기본 화면: 읽기 모드
             <ShortLogReadMode />
+          ) : (
+            // 수정 시 화면: 쓰기 모드
+            <ShortLogWriteMode />
           )
         ) : (
           // 오늘 작성한 로그가 없으면

@@ -1,10 +1,17 @@
 import * as types from './ActionTypes'
 import rootApi from '../config'
 
-export const changeMode = isPostMode => {
+export const changeModeShort = currentMode => {
   return {
-    type: types.CHANGE_MODE,
-    payload: !isPostMode,
+    type: types.CHANGE_MODE_SHORT,
+    payload: !currentMode,
+  }
+}
+
+export const changeModeLong = currentMode => {
+  return {
+    type: types.CHANGE_MODE_LONG,
+    payload: !currentMode,
   }
 }
 
@@ -79,7 +86,7 @@ export const getLongLogFromDB = date => {
       `${rootApi}/diary/comment?date=${date}`,
       {
         method: 'GET',
-        header: {
+        headers: {
           Authorization: `Bearer ${window
             .localStorage.token}`,
         },
