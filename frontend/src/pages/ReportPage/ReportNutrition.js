@@ -4,7 +4,7 @@ import './Report.css'
 // import ReportSampleChart from './ReportSampleChart'
 import CaloriesChart from '../../components/Charts/CaloriesChart'
 
-class ReportNutrtion extends Component {
+class ReportNutrition extends Component {
   render() {
     return (
       <div className="report-nutrition">
@@ -12,7 +12,6 @@ class ReportNutrtion extends Component {
           style={{
             fontSize: '28px',
             fontWeight: '100',
-            fontFamily: 'Spoqa Han Sans',
             textAlign: 'left',
             color: '#16325C',
           }}
@@ -37,4 +36,4 @@ class ReportNutrtion extends Component {
   }
 }
 
-export default ReportNutrtion
+export default ReportNutrition
