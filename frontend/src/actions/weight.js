@@ -27,6 +27,7 @@ export const fetchWeightFromDB = () => {
 // 2. input에서 받은 값을 db로 보내는 action(post)
 export const postWeightToDB = payload => {
   return dispatch => {
+    // console.log(payload)
     fetch(`${rootApi}/diary/kg`, {
       method: 'POST',
       headers: {

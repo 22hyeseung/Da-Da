@@ -64,25 +64,21 @@ class WeightDaily extends Component {
 
   createPayloadAndPostToDB = () => {
     if (
-      !this.state.inputAmount ||
-      this.state.inputAmount < 1
+      !this.state.weight ||
+      this.state.weight < 1
     ) {
       return this.setState({
         disabled: true,
       })
     }
-
-    this.props.postFoodToDB({
+    console.log(this.props.dateState)
+    this.props.postWeightToDB({
       kg: this.state.weight,
       date: this.state.date,
     })
     this.setState({ loading: true }, () =>
       this.postDelay(),
     )
-
-    console.log(this.props.foodResult.food_id)
-    console.log(this.props.type)
-    console.log(this.state.inputAmount * 1)
   }
 
   render() {
@@ -124,6 +120,7 @@ class WeightDaily extends Component {
                     marginLeft: '7px',
                     width: '84px',
                   }}
+                  loading={this.state.loading}
                   disabled={
                     this.state.isPositiveNum
                   }
@@ -143,9 +140,6 @@ class WeightDaily extends Component {
               fluid
               style={Style.weightAddBtn}
               onClick={this.togglePostingMode}
-              onClick={
-                this.createPayloadAndPostToDB
-              }
             >
               <Icon
                 name="plus"
