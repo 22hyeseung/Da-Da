@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { convertFromRaw } from 'draft-js'
 
 // 스타일링
-import { Button } from 'semantic-ui-react'
+import { Button, Header } from 'semantic-ui-react'
 import { longSubmitBtn } from '../StyledDiaryReview'
 
 // 컴포넌트
@@ -62,25 +62,33 @@ class longLogWriteMode extends Component {
   }
 
   // 입력창에 값이 들어왔는지 확인
-  isInputValid = () => {
-    return this.state.longLog
-  }
+  // isInputValid = () => {
+  //   let contentHTML = this.convertContentStateToHtml()
+  //   contentHTML = contentHTML
+  //     .split('</p>')
+  //     .map(line =>
+  //       line
+  //         .replace('<p>', '')
+  //         .replace('<br>', '')
+  //         .trim(),
+  //     )
+  //     .join('')
 
-  // 엔터 버튼 클릭시 등록 이벤트
-  handleKeyPress = e => {
-    if (e.keyCode === 13) {
-      this.createLongLogAndPostToDB()
-    }
-  }
+  //   return !!contentHTML.length // 있으면 true 없으면 false
+  // }
 
   render() {
     return (
       <div>
+        <Header as="h4">오늘의 일기</Header>
         <TextEditor />
         <Button
+          secondary
           style={longSubmitBtn}
           content={'등록'}
           onClick={this.createLongLogAndPostToDB}
+          /* disabled={
+          this.isInputValid()} */
         />
       </div>
     )
@@ -91,7 +99,6 @@ const mapStateToProps = state => {
   return {
     longLogSaved: state.longLog.longLogSaved,
     dateState: state.today.date,
-    isPostMode: state.longLog.isPostMode,
   }
 }
 

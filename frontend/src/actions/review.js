@@ -32,7 +32,6 @@ export const getShortLogFromDB = date => {
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         dispatch({
           type: types.GET_SHORTLOG_SUCCESS,
           payload: data,
@@ -98,7 +97,6 @@ export const getLongLogFromDB = date => {
           type: types.GET_LONGLOG_SUCCESS,
           payload: data,
         })
-        console.log(data)
       })
       .catch(error => {
         dispatch({

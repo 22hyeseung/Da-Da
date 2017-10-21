@@ -69,7 +69,7 @@ class ShortLogWriteMode extends Component {
   render() {
     return (
       <div>
-        <Header as="h5">
+        <Header as="h4">
           오늘의 반성 일기 ( 30자 내외 )
         </Header>
         <Input
@@ -121,7 +121,6 @@ const mapStateToProps = state => {
   return {
     shortLogSaved: state.shortLog.shortLogSaved,
     dateState: state.today.date,
-    isPostMode: state.shortLog.isPostMode,
   }
 }
 

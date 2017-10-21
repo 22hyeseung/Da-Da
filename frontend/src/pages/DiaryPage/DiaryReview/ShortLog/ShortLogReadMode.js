@@ -22,7 +22,10 @@ class ShortLogReadMode extends Component {
   render() {
     return (
       <div>
-        <Header as="h5">
+        <Header
+          as="h4"
+          style={{ marginBottom: '24px' }}
+        >
           오늘의 반성 일기 ( 30자 내외 )
           {/* 수정 버튼 */}
           <Button

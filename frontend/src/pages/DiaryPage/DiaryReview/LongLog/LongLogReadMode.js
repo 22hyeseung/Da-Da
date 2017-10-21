@@ -7,7 +7,10 @@ import {
   Button,
   Icon,
 } from 'semantic-ui-react'
-import { savedContainer } from '../StyledDiaryReview'
+import {
+  savedContainer,
+  buttonIcon,
+} from '../StyledDiaryReview'
 import '../diaryReview.css'
 
 // 리덕스 액션
@@ -20,18 +23,45 @@ class LongLogReadMode extends Component {
   }
 
   render() {
-    const {
-      longLogSaved,
-      isEditorMode,
-    } = this.props
+    const { longLogSaved } = this.props
 
     return (
-      <div style={savedContainer}>
+      <div>
+        <Header as="h4">
+          오늘의 일기
+          {/* 수정 버튼 */}
+          <Button
+            style={{
+              ...buttonIcon,
+              marginLeft: '16px',
+            }}
+            onClick={() =>
+              this.props.changeMode(
+                this.props.isEditorMode,
+              )}
+          >
+            <Icon name="pencil" />
+          </Button>
+          {/* 삭제 버튼 */}
+          <Button style={buttonIcon}>
+            <Icon name="trash outline" />
+          </Button>
+        </Header>
         <div
-          dangerouslySetInnerHTML={{
-            __html: longLogSaved.day_log_comment,
-          }}
-        />
+          className="savedLongLog"
+          style={savedContainer}
+          onClick={() =>
+            this.props.changeMode(
+              this.props.isEditorMode,
+            )}
+        >
+          <div
+            dangerouslySetInnerHTML={{
+              __html:
+                longLogSaved.day_log_comment,
+            }}
+          />
+        </div>
       </div>
     )
   }
