@@ -11,7 +11,10 @@ import { buttonIcon } from '../StyledDiaryReview'
 import '../diaryReview.css'
 
 // 리덕스 액션
-import { changeModeShort } from '../../../../actions/review'
+import {
+  changeModeShort,
+  deleteShortLogOfDB,
+} from '../../../../actions/review'
 
 class ShortLogReadMode extends Component {
   constructor(props) {
@@ -19,7 +22,16 @@ class ShortLogReadMode extends Component {
     this.state = {}
   }
 
+  deleteLogAndChangeToWriteMode(id) {
+    this.props.deleteShortLogOfDB(id)
+  }
+
   render() {
+    const {
+      shortLogSaved,
+      changeMode,
+      isPostMode,
+    } = this.props
     return (
       <div>
         <Header
@@ -33,29 +45,26 @@ class ShortLogReadMode extends Component {
               ...buttonIcon,
               marginLeft: '16px',
             }}
-            onClick={() =>
-              this.props.changeMode(
-                this.props.isPostMode,
-              )}
+            onClick={() => changeMode(isPostMode)}
           >
             <Icon name="pencil" />
           </Button>
           {/* 삭제 버튼 */}
-          <Button style={buttonIcon}>
+          <Button
+            style={buttonIcon}
+            onClick={() =>
+              this.deleteLogAndChangeToWriteMode(
+                shortLogSaved.day_log_id,
+              )}
+          >
             <Icon name="trash outline" />
           </Button>
         </Header>
         <div
           className="savedShortLog"
-          onClick={() =>
-            this.props.changeMode(
-              this.props.isPostMode,
-            )}
+          onClick={() => changeMode(isPostMode)}
         >
-          {
-            this.props.shortLogSaved
-              .day_log_regret
-          }
+          {shortLogSaved.day_log_regret}
         </div>
       </div>
     )
@@ -73,6 +82,8 @@ const mapDispatchToProps = dispatch => {
   return {
     changeMode: isPostMode =>
       dispatch(changeModeShort(isPostMode)),
+    deleteShortLogOfDB: id =>
+      dispatch(deleteShortLogOfDB(id)),
   }
 }
 

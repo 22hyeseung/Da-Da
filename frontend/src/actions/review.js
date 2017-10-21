@@ -76,6 +76,34 @@ export const postShortLogToDB = requestBody => {
   }
 }
 
+export const deleteShortLogOfDB = id => {
+  return dispatch => {
+    dispatch({
+      type: types.DELETE_SHORTLOG_REQUEST,
+    })
+    fetch(`${rootApi}/diary/regret/${id}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(result => {
+        dispatch({
+          type: types.DELETE_SHORTLOG_SUCCESS,
+          payload: result,
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: types.DELETE_SHORTLOG_FAILED,
+        })
+        console.error(error)
+      })
+  }
+}
+
 export const getLongLogFromDB = date => {
   return dispatch => {
     dispatch({
