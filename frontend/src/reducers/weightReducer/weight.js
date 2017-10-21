@@ -13,12 +13,11 @@ export const weigthListReducer = (
       weightListItem: [...action.payload],
     }
   }
-  if (action.type === 'POST_WEIGHT_TO_DATABASE') {
+  if (
+    action.type === 'POST_AND_GET_WEIGHT_SUCCESS'
+  ) {
     return {
-      weightListItem: [
-        action.payload,
-        ...state.weightListItem,
-      ],
+      weightListItem: [...action.payload],
     }
   }
   return {

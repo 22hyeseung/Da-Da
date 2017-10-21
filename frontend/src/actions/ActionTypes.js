@@ -8,8 +8,8 @@ export const POST_FOOD_TO_DATABASE =
 // weight.js
 export const FETCHED_WEIGHT_SUCCESS =
   'FETCHED_WEIGHT_SUCCESS'
-export const POST_WEIGHT_TO_DATABASE =
-  'POST_WEIGHT_TO_DATABASE'
+export const POST_AND_GET_WEIGHT_SUCCESS =
+  'POST_AND_GET_WEIGHT_SUCCESS'
 //==========================================
 
 //==========================================

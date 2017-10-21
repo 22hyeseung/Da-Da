@@ -37,12 +37,29 @@ export const postWeightToDB = payload => {
       },
       body: JSON.stringify(payload),
     })
-      .then(res => res.json())
-      .then(result => {
-        dispatch({
-          type: types.POST_WEIGHT_TO_DATABASE,
-          payload: result,
-        })
+      .then(res => {
+        if (res.ok) {
+          return fetch(`${rootApi}/diary/kg`, {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${window
+                .localStorage.token}`,
+            },
+          })
+            .then(res => res.json())
+            .then(data => {
+              dispatch({
+                type:
+                  types.POST_AND_GET_WEIGHT_SUCCESS,
+                payload: data,
+              })
+            })
+            .catch(error => {
+              console.log(
+                'POSTandGETWeightLogsToDB error',
+              )
+            })
+        }
       })
       .catch(error => {
         console.log('postWeightToDB error')

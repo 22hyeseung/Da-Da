@@ -13,6 +13,7 @@ import {
   postWeightToDB,
   fetchWeightFromDB,
 } from '../../actions/weight'
+import trash from '../../static/img/trash_icon.svg'
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../helper/date'
 
@@ -53,6 +54,7 @@ class WeightDaily extends Component {
     this.setState({
       isPostMode: !this.state.isPostMode,
     })
+    this.closeAndResetValue()
   }
 
   closeAndResetValue = e =>
@@ -71,14 +73,16 @@ class WeightDaily extends Component {
         disabled: true,
       })
     }
-    console.log(this.props.dateState)
+    // console.log(this.props.dateState)
+    // console.log(this.state.date)
     this.props.postWeightToDB({
       kg: this.state.weight,
-      date: this.state.date,
+      date: 20171021,
     })
-    this.setState({ loading: true }, () =>
-      this.postDelay(),
-    )
+    this.togglePostingMode()
+    // this.setState({ loading: true }, () =>
+    //   this.postDelay(),
+    // )
   }
 
   render() {
@@ -151,6 +155,16 @@ class WeightDaily extends Component {
           <List divided verticalAlign="bottom">
             {this.props.weightListItem.map(
               Item => {
+                const dateArr = Item.day_log_diary_date
+                  .substring(0, 10)
+                  .split('-')
+                const dateRender =
+                  dateArr[0] +
+                  '년 ' +
+                  dateArr[1] +
+                  '월 ' +
+                  dateArr[2] +
+                  '일'
                 return (
                   <List.Item
                     style={Style.listItem}
@@ -158,15 +172,8 @@ class WeightDaily extends Component {
                     <List.Content
                       style={Style.date}
                     >
-                      {Item.day_log_diary_date
-                        .substring(0, 10)
-                        .split('-')}
+                      {dateRender}
                     </List.Content>
-                    <List.Content
-                      style={{
-                        padding: '0px 30px',
-                      }}
-                    />
                     <div className="weight-daily-value">
                       <List.Content
                         style={Style.weigthValue}
@@ -183,6 +190,13 @@ class WeightDaily extends Component {
                         <img
                           src={ArrowDown}
                           alt="이전 몸무게보다 낮음을 표시"
+                        />
+                      </List.Content>
+                      <List.Content floated="right">
+                        <img
+                          src={trash}
+                          alt="삭제버튼"
+                          onclick={}
                         />
                       </List.Content>
                     </div>
