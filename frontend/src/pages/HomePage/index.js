@@ -77,21 +77,21 @@ class HomePage extends Component {
             {/* 다이어리 Food 페이지로 이동하는 탭 */}
             <HomeTab
               tabName="FOOD"
-              message="오늘br무엇을br드셨나요?"
+              message="오늘\n무엇을\n드셨나요?"
               linkTo="/diary"
               order="first"
             />
             {/* 다이어리 Fitness 페이지로 이동하는 탭 */}
             <HomeTab
               tabName="FITNESS"
-              message="오늘br어떤 운동을br하셨나요?"
+              message="오늘\n어떤 운동을\n하셨나요?"
               linkTo="/diary/fitness"
               order="second"
             />
             {/* 다이어리 Review 페이지로 이동하는 탭 */}
             <HomeTab
               tabName="REVIEW"
-              message="오늘br하루를br기록해볼까요?"
+              message="오늘\n하루를\n기록해볼까요?"
               linkTo="/diary/review"
               order="third"
             />

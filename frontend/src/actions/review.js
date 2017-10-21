@@ -17,7 +17,7 @@ export const getShortLogFromDB = date => {
       `${rootApi}/diary/regret?date=${date}`,
       {
         method: 'GET',
-        header: {
+        headers: {
           Authorization: `Bearer ${window
             .localStorage.token}`,
         },
@@ -25,9 +25,10 @@ export const getShortLogFromDB = date => {
     )
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         dispatch({
           type: types.GET_SHORTLOG_SUCCESS,
-          payload: [...data],
+          payload: data,
         })
       })
       .catch(error => {
@@ -64,7 +65,7 @@ export const postShortLogToDB = requestBody => {
         dispatch({
           type: types.POST_SHORTLOG_FAILED,
         })
-        console.log(error)
+        console.error(error)
       })
   }
 }
@@ -88,7 +89,7 @@ export const getLongLogFromDB = date => {
       .then(data => {
         dispatch({
           type: types.GET_LONGLOG_SUCCESS,
-          payload: [...data],
+          payload: data,
         })
         console.log(data)
       })
