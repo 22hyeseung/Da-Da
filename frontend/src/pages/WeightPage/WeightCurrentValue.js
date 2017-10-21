@@ -5,6 +5,7 @@ import { Icon } from 'semantic-ui-react'
 
 class WeightCurrentValue extends Component {
   render() {
+    let beingWeight = ''
     return (
       <div className="weight-current-wrapper">
         <div>
@@ -18,9 +19,13 @@ class WeightCurrentValue extends Component {
             {/* 인터넷 느린경우 */}
             {this.props.weightListItem.length !==
             0 ? (
-              this.props.weightListItem[0]
-                .day_log_kg
+              // (beingWeight =
+              // null값이 아닌 첫번째 요소 등장
+              this.props.weightListItem.find(
+                Item => Item.day_log_kg !== null,
+              ).day_log_kg
             ) : (
+              // `${beingWeight.day_log_kg}`
               <Icon loading name="asterisk" />
             )}
           </span>

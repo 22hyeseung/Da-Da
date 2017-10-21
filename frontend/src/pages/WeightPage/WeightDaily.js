@@ -153,57 +153,67 @@ class WeightDaily extends Component {
           )}
           {/* 리스트 시작 */}
           <List divided verticalAlign="bottom">
-            {this.props.weightListItem.map(
-              Item => {
-                const dateArr = Item.day_log_diary_date
-                  .substring(0, 10)
-                  .split('-')
-                const dateRender =
-                  dateArr[0] +
-                  '년 ' +
-                  dateArr[1] +
-                  '월 ' +
-                  dateArr[2] +
-                  '일'
-                return (
-                  <List.Item
-                    style={Style.listItem}
-                  >
-                    <List.Content
-                      style={Style.date}
-                    >
-                      {dateRender}
-                    </List.Content>
-                    <div className="weight-daily-value">
-                      <List.Content
-                        style={Style.weigthValue}
+            {this.props.weightListItem.length !==
+            0
+              ? this.props.weightListItem.map(
+                  Item => {
+                    const dateArr = Item.diary_date.split(
+                      '-',
+                    )
+                    const dateRender =
+                      dateArr[0] +
+                      '년 ' +
+                      dateArr[1] +
+                      '월 ' +
+                      dateArr[2] +
+                      '일'
+                    return Item.day_log_kg !==
+                      null ? (
+                      <List.Item
+                        style={Style.listItem}
                       >
-                        {Item.day_log_kg}
-                      </List.Content>
-                      <List.Content
-                        className="weight-daily-value-unit"
-                        style={Style.weightUnit}
-                      >
-                        kg
-                      </List.Content>
-                      <List.Content floated="right">
-                        <img
-                          src={ArrowDown}
-                          alt="이전 몸무게보다 낮음을 표시"
-                        />
-                      </List.Content>
-                      <List.Content floated="right">
-                        <img
-                          src={trash}
-                          alt="삭제버튼"
-                          /* onclick={} */
-                        />
-                      </List.Content>
-                    </div>
-                  </List.Item>
+                        <List.Content
+                          style={Style.date}
+                        >
+                          {dateRender}
+                        </List.Content>
+                        <div className="weight-daily-value">
+                          <List.Content
+                            style={
+                              Style.weigthValue
+                            }
+                          >
+                            {Item.day_log_kg}
+                          </List.Content>
+                          <List.Content
+                            className="weight-daily-value-unit"
+                            style={
+                              Style.weightUnit
+                            }
+                          >
+                            kg
+                          </List.Content>
+                          <List.Content floated="right">
+                            <img
+                              src={ArrowDown}
+                              alt="이전 몸무게보다 낮음을 표시"
+                            />
+                          </List.Content>
+                          <List.Content floated="right">
+                            <img
+                              src={trash}
+                              alt="삭제버튼"
+                              /* onclick={} */
+                            />
+                          </List.Content>
+                        </div>
+                      </List.Item>
+                    ) : (
+                      ''
+                    )
+                  },
                 )
-              },
-            )}
+              : ''}
           </List>
           {/* 리스트 끝 */}
         </div>
