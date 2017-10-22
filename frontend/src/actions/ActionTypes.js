@@ -124,3 +124,13 @@ export const KCAL_GOALS_SUCCESS =
 export const KCAL_GOALS_FAILED =
   'KCAL_GOALS_FAILED'
 //==========================================
+
+//==========================================
+// getFoodSummary.js
+export const GET_FOOD_SUMMARY_REQUEST =
+  'GET_FOOD_SUMMARY_REQUEST'
+export const GET_FOOD_SUMMARY_SUCCESS =
+  'GET_FOOD_SUMMARY_SUCCESS'
+export const GET_FOOD_SUMMARY_FAILED =
+  'GET_FOOD_SUMMARY_FAILED'
+//==========================================
