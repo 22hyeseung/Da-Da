@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+// 차트
 import {
   BarChart,
   Bar,
@@ -11,73 +12,70 @@ import {
   ComposedChart,
   Line,
 } from 'recharts'
+// YYYY. MM. DD.(날짜 기본 포맷)를 api 요청 포맷(YYYYMMDD)으로 변환하는 함수
+import { dateStringForApiQuery } from '../../helper/date'
+// 리덕스 액션
 import { getNutritionFactsForAWeekFromDB } from '../../actions/reportAPIs'
+import { getCalorieGoalFromDB } from '../../actions/calorieGoalsAPI'
 
-const data = [
-  {
-    day: '4/12',
-    아침: 400,
-    점심: 380,
-    저녁: 210,
-    간식: 120,
-    목표칼로리: 1400,
-  },
-  {
-    day: '4/13',
-    아침: 421,
-    점심: 650,
-    저녁: 110,
-    간식: 0,
-    목표칼로리: 1300,
-  },
-  {
-    day: '4/14',
-    아침: 389,
-    점심: 260,
-    저녁: 280,
-    간식: 120,
-    목표칼로리: 1400,
-  },
-  {
-    day: '4/15',
-    아침: 430,
-    점심: 340,
-    저녁: 200,
-    간식: 140,
-    목표칼로리: 1200,
-  },
-  {
-    day: '4/16',
-    아침: 350,
-    점심: 480,
-    저녁: 400,
-    간식: 36,
-    목표칼로리: 1100,
-  },
-  {
-    day: '4/17',
-    아침: 392,
-    점심: 620,
-    저녁: 120,
-    간식: 100,
-    목표칼로리: 1400,
-  },
-  {
-    day: '4/18',
-    아침: 338,
-    점심: 610,
-    저녁: 280,
-    간식: 0,
-    목표칼로리: 1600,
-  },
-]
 class CaloriesChart extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      // 기준일의 6일 전 날짜 (YYYYMMDD)
+      startDate: dateStringForApiQuery(
+        this.props.beforeDateState,
+      ),
+      // 기준일 (오늘 혹은 사용자가 지정한 날짜)(YYYYMMDD)
+      endDate: dateStringForApiQuery(
+        this.props.lastDateState,
+      ),
+    }
+  }
+
+  componentWillMount() {
+    const { startDate, endDate } = this.state
+    // get
+    this.props.getNutritionFactsForAWeekFromDB(
+      startDate,
+      endDate,
+    )
+  }
+
   render() {
+    // {day,탄수화물,단백질,지방} => {day,탄수화물,단백질,지방,목표칼로리}
+    const {
+      nutritionLogs,
+      kcalGoal,
+      getCalorieGoalFromDB,
+    } = this.props
+    const { startDate } = this.state
+    const dateTypeDate = new Date(
+      startDate.substr(0, 4),
+      startDate.substr(4, 2) - 1,
+      startDate.substr(6, 2),
+    )
+    nutritionLogs.map((item, i) => {
+      // x7번 반복
+      // const date = new Date(
+      //   dateTypeDate.getFullYear(),
+      //   dateTypeDate.getMonth(),
+      //   dateTypeDate.getDate() + i,
+      // )
+      // getCalorieGoalFromDB(
+      //   dateStringForApiQuery(
+      //     date.toLocaleDateString(),
+      //   ),
+      // )
+
+      item['목표칼로리'] = 1600
+    })
+
     return (
       <ComposedChart
         width={850}
         height={300}
-        data={data}
+        data={nutritionLogs}
         margin={{
           top: 20,
           right: 20,
@@ -95,33 +93,27 @@ class CaloriesChart extends Component {
         />
         <Tooltip />
         <Bar
-          dataKey="아침"
+          dataKey="탄수화물"
           stackId="a"
           fill="#16325c"
           maxBarSize={55}
         />
         <Bar
-          dataKey="점심"
+          dataKey="단백질"
           stackId="a"
           fill="#54698d"
           maxBarSize={55}
         />
         <Bar
-          dataKey="저녁"
+          dataKey="지방"
           stackId="a"
           fill="#a8b7c7"
-          maxBarSize={55}
-        />
-        <Bar
-          dataKey="간식"
-          stackId="a"
-          fill="#e0e5ee"
           maxBarSize={55}
         />
         <Line
           type="monotone"
           dataKey="목표칼로리"
-          stroke="#26d0ce"
+          stroke="#ffb75d"
         />
       </ComposedChart>
     )
@@ -130,9 +122,12 @@ class CaloriesChart extends Component {
 
 const mapStateToProps = state => {
   return {
-    nutritionFactsLogsForAWeek:
+    nutritionLogs:
       state.nutritionChart
         .nutritionFactsLogsForAWeek,
+    lastDateState: state.today.date,
+    beforeDateState: state.beforeDay.beforeDate,
+    // kcalGoal: state.calorieGoals.kcalGoal,
   }
 }
 
@@ -148,6 +143,8 @@ const mapDispatchToProps = dispatch => {
           endDate,
         ),
       ),
+    //   getCalorieGoalFromDB: date =>
+    //     dispatch(getCalorieGoalFromDB(date)),
   }
 }
 

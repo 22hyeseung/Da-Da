@@ -16,6 +16,7 @@ export const getCaloriesForAWeekFromDB = (
         headers: {
           Authorization: `Bearer ${window
             .localStorage.token}`,
+          'Content-Type': 'application/json',
         },
       },
     )
@@ -55,10 +56,23 @@ export const getNutritionFactsForAWeekFromDB = (
     )
       .then(res => res.json())
       .then(data => {
+        const chartData = new Array()
+        data.map(aDay => {
+          chartData.push({
+            day:
+              aDay.eat_log_diary_date.substr(
+                8,
+                2,
+              ) + '일',
+            탄수화물: Math.round(aDay.carb * 4),
+            단백질: Math.round(aDay.protein * 4),
+            지방: Math.round(aDay.fat * 9),
+          })
+        })
         dispatch({
           type:
             types.GET_REPORTS_NUTRITION_SUCCESS,
-          payload: data,
+          payload: chartData,
         })
       })
       .catch(err => {

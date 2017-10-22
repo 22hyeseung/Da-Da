@@ -114,3 +114,13 @@ export const GET_REPORTS_NUTRITION_SUCCESS =
 export const GET_REPORTS_NUTRITION_FAILED =
   'GET_REPORTS_NUTRITION_FAILED'
 //==========================================
+
+//==========================================
+// calorieGoalsAPI.js
+export const KCAL_GOALS_REQUEST =
+  'KCAL_GOALS_REQUEST'
+export const KCAL_GOALS_SUCCESS =
+  'KCAL_GOALS_SUCCESS'
+export const KCAL_GOALS_FAILED =
+  'KCAL_GOALS_FAILED'
+//==========================================
