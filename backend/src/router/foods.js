@@ -19,6 +19,7 @@ router.use((req, res, next) => {
 
 router.use(bodyParser.json())
 router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
+router.options('*', cors())
 /**
  * @api {get} /foods Get FoodsSearch
  * @apiDescription 음식정보(영양소)를 검색한다.

@@ -18,7 +18,7 @@ router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
 
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ 'extended': false }))
-
+router.options('*', cors())
 /**
  * @api {get} /recipe/search?name Get RecipeSearch
  * @apiDescription 검색한 recipe들을 보여준다.

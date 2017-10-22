@@ -18,7 +18,7 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ 'extended': false }))
 router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-
+router.options('*', cors())
 /**
  * @api {get} /weight/all Get WeightAll
  * @apiDescription 체중기록 전체현황. 로그인한 사용자의 최초 기록시간부터 현재까지의 기록을 불러온다.
