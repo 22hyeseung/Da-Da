@@ -472,8 +472,11 @@ function PostGoalKgbyUser({ member_id, member_goal_weight }) {
   return knex('member')
     .where({ member_id })
     .update({ member_goal_weight })
-    .select('member_id', 'member_goal_weight')
-    .first()
+    .then(() => {
+      return knex('member')
+        .select('member_id', 'member_goal_weight')
+        .first()
+    })
 }
 
 function deleteBurnById({ burn_id }) {

@@ -15,7 +15,7 @@ router.use((req, res, next) => {
 
 router.use(bodyParser.json())
 router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
-
+router.options('*', cors())
 /**
  * @apiDefine report report
  */

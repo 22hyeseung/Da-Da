@@ -19,7 +19,7 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ 'extended': false }))
 router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-
+router.options('*', cors())
 /**
  * @api {post} /exercises Post Exercises
  * @apiDescription 운동을 통한 열량소모를 등록하기 위한 액션
