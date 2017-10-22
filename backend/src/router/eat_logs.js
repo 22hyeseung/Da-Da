@@ -108,6 +108,7 @@ router.post('/', (req, res) => {
  *     "eat_log_id": 3,
  *     "eat_log_picture": null,
  *     "eat_log_food_id": 1,
+ *     "eat_log_amount": 322,
  *     "food_name_ko": "도토리묵밥",
  *     "food_name_en": "Doritomi rice",
  *     "food_unit": "g",
