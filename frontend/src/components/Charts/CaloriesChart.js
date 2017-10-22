@@ -11,6 +11,7 @@ import {
   ComposedChart,
   Line,
 } from 'recharts'
+import { dateStringForApiQuery } from '../../helper/date'
 import { getCaloriesForAWeekFromDB } from '../../actions/reportAPIs'
 
 const data = [
@@ -72,6 +73,35 @@ const data = [
   },
 ]
 class CaloriesChart extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: [
+        {
+          day: '',
+          아침: 0,
+          점심: 0,
+          저녁: 0,
+          간식: 0,
+          목표칼로리: 0,
+        },
+      ],
+    }
+  }
+
+  componentWillMount() {
+    const startDate = dateStringForApiQuery(
+      this.props.beforeDateState,
+    )
+    const endDate = dateStringForApiQuery(
+      this.props.lastDateState,
+    )
+    this.props.getCaloriesForAWeekFromDB(
+      startDate,
+      endDate,
+    )
+  }
+
   render() {
     return (
       <ComposedChart
@@ -132,6 +162,8 @@ const mapStateToProps = state => {
   return {
     caloriesLogsForAWeek:
       state.caloriesChart.caloriesLogsForAWeek,
+    lastDateState: state.today.date,
+    beforeDateState: state.beforeDay.beforeDate,
   }
 }
 
