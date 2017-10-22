@@ -26,6 +26,7 @@ class DiaryFoodList extends React.Component {
       selectKey: -1,
       serve: null,
       food_id: null,
+      food_amount: null,
     }
   }
   deleteFoodOfDB = id => {
@@ -84,13 +85,14 @@ class DiaryFoodList extends React.Component {
   //   }, 2000)
   // }
 
-  show = (dimmer, name, id) => () => {
+  show = (dimmer, name, id, amount) => () => {
     this.setState({
       dimmer,
       open: true,
       // selectKey: i,
       food_name: name,
       food_id: id,
+      food_amount: amount,
     })
   }
   close = () => this.setState({ open: false })
@@ -99,11 +101,9 @@ class DiaryFoodList extends React.Component {
     const { open, dimmer, selectKey } = this.state
     return (
       <div style={{ display: 'flex' }}>
-        {console.log(this.state.food_id)}
         {this.props.foodresult.map((card, i) => {
           return (
             <Segment style={Style.mealCard}>
-              {console.log(this.props.foodresult)}
               <div className="diary-food-meal-list-card-firstRow">
                 <p className="diary-food-meal-list-card-firstRow-title">
                   {card.food_name_ko}
@@ -122,6 +122,7 @@ class DiaryFoodList extends React.Component {
                       'blurring',
                       card.food_name_ko,
                       card.eat_log_id,
+                      card.eat_log_amount,
                     )}
                     key={i}
                   />
@@ -216,7 +217,8 @@ class DiaryFoodList extends React.Component {
                   marginBottom: '12px',
                 }}
               >
-                기존 입력했던 양은 100g입니다.
+                기존 입력했던 양은{' '}
+                {this.state.food_amount}g입니다.
               </span>
               <Input
                 type="number"
