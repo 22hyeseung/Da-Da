@@ -7,12 +7,17 @@ import {
   Icon,
 } from 'semantic-ui-react'
 import ArrowDown from '../../static/img/weight-daily-arrowDown.svg'
+import ArrowUp from '../../static/img/weight-daily-arrowUp.svg'
 import * as Style from './StyledWeight'
 import { connect } from 'react-redux'
 import {
   postWeightToDB,
-  fetchWeightToDB,
-} from '../../actions/weight.js'
+  fetchWeightFromDB,
+  deleteWeightOfDB,
+} from '../../actions/weight'
+import trash from '../../static/img/trash_icon.svg'
+// helper: 오늘 날짜 API Query형식
+import { dateStringForApiQuery } from '../../helper/date'
 
 class WeightDaily extends Component {
   constructor(props) {
@@ -23,13 +28,14 @@ class WeightDaily extends Component {
       isFocusMode: false,
       valueAlert: '',
       isPositiveNum: false,
+      date: dateStringForApiQuery(
+        this.props.dateState,
+      ),
     }
   }
 
-  componentDidMount() {
-    {
-      // this.props.fetchWeight()
-    }
+  componentWillMount() {
+    this.props.fetchWeight()
   }
 
   handleWeightValueChange = e => {
@@ -50,6 +56,7 @@ class WeightDaily extends Component {
     this.setState({
       isPostMode: !this.state.isPostMode,
     })
+    this.closeAndResetValue()
   }
 
   closeAndResetValue = e =>
@@ -60,20 +67,25 @@ class WeightDaily extends Component {
     })
 
   createPayloadAndPostToDB = () => {
-    const dateTime = new Date()
-    const date = dateTime.toLocaleDateString()
-
-    if (!this.state.weight) {
-      return
+    if (
+      !this.state.weight ||
+      this.state.weight < 1
+    ) {
+      return this.setState({
+        disabled: true,
+      })
     }
     this.props.postWeightToDB({
-      id: '',
-      date: date,
-      weight: this.state.weight,
+      kg: this.state.weight,
+      date: 20171021,
     })
-    this.closeAndResetValue()
+    this.togglePostingMode()
   }
 
+  deleteWeight = id => {
+    // console.log(id)
+    this.props.deleteWeight(id)
+  }
   render() {
     return (
       <div>
@@ -113,6 +125,7 @@ class WeightDaily extends Component {
                     marginLeft: '7px',
                     width: '84px',
                   }}
+                  loading={this.state.loading}
                   disabled={
                     this.state.isPositiveNum
                   }
@@ -136,51 +149,93 @@ class WeightDaily extends Component {
               <Icon
                 name="plus"
                 style={{ marginRight: '10px' }}
-              />{' '}
-              */} 오늘 체중 기록하기
+              />오늘 체중 기록하기
             </Button>
           )}
           {/* 리스트 시작 */}
           <List divided verticalAlign="bottom">
-            {this.props.weightListItem.map(
-              Item => {
-                return (
-                  <List.Item
-                    style={Style.listItem}
-                  >
-                    <List.Content
-                      style={Style.date}
-                    >
-                      {Item.date}
-                    </List.Content>
-                    <List.Content
-                      style={{
-                        padding: '0px 30px',
-                      }}
-                    />
-                    <div className="weight-daily-value">
-                      <List.Content
-                        style={Style.weigthValue}
+            {this.props.weightListItem.length !==
+            0
+              ? this.props.weightListItem.map(
+                  (Item, index, arr) => {
+                    const dateArr = Item.diary_date.split(
+                      '-',
+                    )
+                    const dateRender =
+                      dateArr[0] +
+                      '년 ' +
+                      dateArr[1] +
+                      '월 ' +
+                      dateArr[2] +
+                      '일'
+                    return Item.day_log_kg !==
+                      null ? (
+                      <List.Item
+                        style={Style.listItem}
                       >
-                        {Item.weight}
-                      </List.Content>
-                      <List.Content
-                        className="weight-daily-value-unit"
-                        style={Style.weightUnit}
-                      >
-                        kg
-                      </List.Content>
-                      <List.Content floated="right">
-                        <img
-                          src={ArrowDown}
-                          alt="이전 몸무게보다 낮음을 표시"
-                        />
-                      </List.Content>
-                    </div>
-                  </List.Item>
+                        <List.Content
+                          style={Style.date}
+                        >
+                          {console.log(arr)}
+                          {dateRender}
+                        </List.Content>
+                        <div className="weight-daily-value">
+                          <List.Content
+                            style={
+                              Style.weigthValue
+                            }
+                          >
+                            {Item.day_log_kg}
+                          </List.Content>
+                          <List.Content
+                            className="weight-daily-value-unit"
+                            style={
+                              Style.weightUnit
+                            }
+                          >
+                            kg
+                          </List.Content>
+                          <List.Content floated="right">
+                            <img
+                              src={ArrowUp}
+                              alt="이전 몸무게보다 높음을 표시"
+                            />
+                            {/* {arr[index - 1]
+                              .day_log_kg <
+                            arr[index]
+                              .day_log_kg ? (
+                              <img
+                                src={ArrowUp}
+                                alt="이전 몸무게보다 높음을 표시"
+                              />
+                            ) : (
+                              <img
+                                src={ArrowDown}
+                                alt="이전 몸무게보다 낮음을 표시"
+                              />
+                            )} */}
+                          </List.Content>
+                          <List.Content floated="right">
+                            <img
+                              src={trash}
+                              alt="삭제버튼"
+                              style={{
+                                cursor: 'pointer',
+                              }}
+                              onClick={() =>
+                                this.deleteWeight(
+                                  Item.day_log_id,
+                                )}
+                            />
+                          </List.Content>
+                        </div>
+                      </List.Item>
+                    ) : (
+                      ''
+                    )
+                  },
                 )
-              },
-            )}
+              : ''}
           </List>
           {/* 리스트 끝 */}
         </div>
@@ -192,6 +247,7 @@ const mapStateToProps = state => {
   return {
     weightListItem:
       state.weightList.weightListItem,
+    dateState: state.today.date,
   }
 }
 
@@ -200,11 +256,13 @@ const mapDispatchToProps = dispatch => {
     postWeightToDB: payload =>
       dispatch(postWeightToDB(payload)),
     fetchWeight: () =>
-      dispatch(fetchWeightToDB()),
+      dispatch(fetchWeightFromDB()),
+    deleteWeight: id =>
+      dispatch(deleteWeightOfDB(id)),
   }
 }
 
-// export default WeightDaily
-export default connect(mapStateToProps, null)(
-  WeightDaily,
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(WeightDaily)
