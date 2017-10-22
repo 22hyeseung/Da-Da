@@ -1,5 +1,5 @@
 const DEFAULT_USER_KCAL = {
-  targetKcal: null,
+  kcal: null,
 }
 
 export const diaryKcalReducer = (
@@ -9,10 +9,10 @@ export const diaryKcalReducer = (
   if (
     action.type === 'GET_KCAL_SUCCESS'
   ) {
-    console.log(state, '<< [ state ]');
+    console.log(action.payload, '<< [ action.payload ]');
     return {
       ...state,
-      targetKcal: action.payload,
+      kcal: action.payload.day_log_kcal,
     }
   }
 

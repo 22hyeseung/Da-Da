@@ -27,14 +27,12 @@ import {
 class DiarySubNav extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      targetKcal: 0,
-    }
   }
 
   componentWillMount() {
     this.props.setTodayDate(todaysDate)
     this.props.setTodayDay(todaysDay)
+    this.props.getTargetKcal()
   }
 
   render() {
@@ -57,7 +55,7 @@ class DiarySubNav extends Component {
           </span>
           <div>
             <span className="diary-food-goal-kcal">
-              {this.state.userTagetKcal}
+              {this.props.targetKcal.kcal}
             </span>
             <span className="diary-food-goal-unit">
               kcal
