@@ -8,8 +8,6 @@ import {
 } from './StyledDiaryCommon'
 import './Diary.css'
 // 리덕스 액션생성자
-import { getUserInfo } from '../../actions/auth.js'
-// 리덕스 액션생성자
 import {
   setTodayDate,
   setTodayDay,

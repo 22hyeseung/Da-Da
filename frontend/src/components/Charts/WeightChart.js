@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   AreaChart,
   Area,
@@ -7,29 +8,39 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts'
+import { getAllWeightFromDB } from '../../actions/weight'
 
-const data = [
-  { date: '2/27', current: 70, goal: 50 },
-  { date: '2/28', current: 68, goal: 50 },
-  { date: '3/5', current: 64, goal: 50 },
-  { date: '3/12', current: 69, goal: 50 },
-  { date: '3/24', current: 64, goal: 50 },
-  { date: '4/1', current: 58, goal: 50 },
-  { date: '6/7', current: 50, goal: 50 },
-  { date: '7/2', current: 48, goal: 45 },
-  { date: '7/28', current: 52, goal: 45 },
-]
+// const data = [
+//   { date: '2/27', current: 70, goal: 50 },
+//   { date: '2/28', current: 68, goal: 50 },
+//   { date: '3/5', current: 64, goal: 50 },
+//   { date: '3/12', current: 69, goal: 50 },
+//   { date: '3/24', current: 64, goal: 50 },
+//   { date: '4/1', current: 58, goal: 50 },
+//   { date: '6/7', current: 50, goal: 50 },
+//   { date: '7/2', current: 48, goal: 45 },
+//   { date: '7/28', current: 52, goal: 45 },
+// ]
 
 class WeightChart extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+
+  componentWillMount() {
+    this.props.getAllWeightFromDB()
+  }
+
   render() {
     return (
       <AreaChart
-        width={730}
-        height={250}
-        data={data}
+        width={830}
+        height={260}
+        data={this.props.weightAllLog}
         margin={{
           top: 10,
-          right: 30,
+          right: 0,
           left: 0,
           bottom: 0,
         }}
@@ -94,5 +105,20 @@ class WeightChart extends Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+    weightAllLog: state.weightAll.allLog,
+  }
+}
 
-export default WeightChart
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllWeightFromDB: () =>
+      dispatch(getAllWeightFromDB()),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(WeightChart)

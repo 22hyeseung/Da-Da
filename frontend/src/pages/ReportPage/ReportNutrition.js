@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Header } from 'semantic-ui-react'
 import './Report.css'
 // import ReportSampleChart from './ReportSampleChart'
-import CaloriesChart from '../../components/Charts/CaloriesChart'
+import NutritionChart from '../../components/Charts/NutritionChart'
 
-class ReportNutrtion extends Component {
+class ReportNutrition extends Component {
   render() {
     return (
       <div className="report-nutrition">
@@ -12,7 +12,6 @@ class ReportNutrtion extends Component {
           style={{
             fontSize: '28px',
             fontWeight: '100',
-            fontFamily: 'Spoqa Han Sans',
             textAlign: 'left',
             color: '#16325C',
           }}
@@ -31,10 +30,10 @@ class ReportNutrtion extends Component {
         </Header>
         {/* <ReportSampleChart />
          */}
-        <CaloriesChart />
+        <NutritionChart />
       </div>
     )
   }
 }
 
-export default ReportNutrtion
+export default ReportNutrition
