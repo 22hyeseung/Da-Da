@@ -55,7 +55,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "http://localhost:5000/diary/comment?date=20171010\n{\n   \"day_log_id\": 2,\n   \"day_log_member_id\": 2,\n   \"day_log_comment\": \"나의 14일 일기이다.\",\n   \"day_log_diary_date\": \"2017-10-13T15:00:00.000Z\"\n}",
+          "content": "http://localhost:5000/diary/comment?date=20171010\n{\n   \"day_log_id\": 4,\n   \"day_log_member_id\": 1,\n   \"day_log_regret\": null,\n   \"day_log_comment\": \"오늘의 일기입니다.\",\n   \"day_log_diary_date\": \"2017-10-24\"\n}",
           "type": "json"
         }
       ]
@@ -250,7 +250,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "http://localhost:5000/diary/regret?date=20171011\n{\n   \"day_log_id\": 1,\n   \"day_log_member_id\": 2,\n   \"day_log_regret\": \"나의 14일 반성일기이다.\",\n   \"day_log_diary_date\": \"2017-10-13T15:00:00.000Z\"\n}",
+          "content": "http://localhost:5000/diary/regret?date=20171011\n{\n    \"day_log_id\": 3,\n    \"day_log_member_id\": 1,\n    \"day_log_regret\": \"오늘의 반성일기입니다.\",\n    \"day_log_comment\": \"오늘의 일기입니다.\",\n    \"day_log_diary_date\": \"2017-10-23\"\n}",
           "type": "json"
         }
       ]
@@ -322,7 +322,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "http://localhost:5000/diary/comment\n{\n   \"day_log_id\": 2,\n   \"day_log_member_id\": 2,\n   \"day_log_comment\": \"나의 14일 일기이다.\",\n   \"day_log_diary_date\": \"2017-10-13T15:00:00.000Z\"\n}",
+          "content": "http://localhost:5000/diary/comment\n{\n    \"day_log_id\": 2,\n    \"day_log_member_id\": 1,\n    \"day_log_regret\": null,\n    \"day_log_comment\": \"오늘의 일기입니다.\",\n    \"day_log_diary_date\": \"2017-10-22\"\n}",
           "type": "json"
         }
       ]
@@ -513,7 +513,137 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "http://localhost:5000/diary/regret\n\n{\n   \"day_log_id\": 1,\n   \"day_log_member_id\": 2,\n   \"day_log_regret\": \"나의 14일 반성일기이다.\",\n   \"day_log_diary_date\": \"2017-10-13T15:00:00.000Z\"\n}",
+          "content": "http://localhost:5000/diary/regret\n\n{\n    \"day_log_id\": 2,\n    \"day_log_member_id\": 1,\n    \"day_log_regret\": \"오늘의 반성일기입니다.\",\n    \"day_log_comment\": null,\n    \"day_log_diary_date\": \"2017-10-22\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/router/diary.js",
+    "groupTitle": ""
+  },
+  {
+    "type": "put",
+    "url": "/diary/comment/2",
+    "title": "Put Comment",
+    "description": "<p>원하는 날의 comment(일기)를 지운다.</p>",
+    "name": "PutComment",
+    "group": "diary",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "date",
+            "description": "<p>등록일</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>반성일기의 id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "member_id",
+            "description": "<p>반성일기를 작성한 유저의 id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>가져온 일기</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "date",
+            "description": "<p>페이지의 표시되어 있는 다이어리의 날짜</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "http://localhost:5000/diary/comment/2\n{\n    \"day_log_id\": 2,\n    \"day_log_member_id\": 1,\n    \"day_log_comment\": null,\n    \"day_log_diary_date\": \"2017-10-22\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/router/diary.js",
+    "groupTitle": ""
+  },
+  {
+    "type": "put",
+    "url": "/diary/regret/:id",
+    "title": "Put regret",
+    "description": "<p>오늘의 일기 작성 후 삭제 null로 치환</p>",
+    "name": "PutRegret",
+    "group": "diary",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "regret",
+            "description": "<p>반성일기</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>반성일기의 id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "member_id",
+            "description": "<p>반성일기를 작성한 유저의 id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "regret",
+            "description": "<p>작성한 반성일기</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "date",
+            "description": "<p>페이지의 표시되어 있는 다이어리의 날짜</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "http://localhost:5000/diary/regret/2\n{\n    \"day_log_id\": 2,\n    \"day_log_member_id\": 1,\n    \"day_log_regret\": null,\n    \"day_log_diary_date\": \"2017-10-22\"\n}",
           "type": "json"
         }
       ]
@@ -643,7 +773,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "http://localhost:5000/eat-logs?date=20171010\n{\n    \"foodresult\": [\n        {\n            \"eat_log_id\": 2,\n            \"eat_log_food_id\": 1,\n            \"food_unit\": \"g\",\n            \"eat_log_meal_tag\": \"저녁\",\n            \"food_kcal\": 60.1,\n            \"food_carb\": 10.8,\n            \"food_protein\": 2.2,\n            \"food_fat\": 0.9\n        },\n        {\n            \"eat_log_id\": 3,\n            \"eat_log_food_id\": 1,\n            \"food_unit\": \"g\",\n            \"eat_log_meal_tag\": \"저녁\",\n            \"food_kcal\": 120.2,\n            \"food_carb\": 21.6,\n            \"food_protein\": 4.4,\n            \"food_fat\": 1.8\n        },\n        {\n            \"eat_log_id\": 5,\n            \"eat_log_food_id\": 2,\n            \"food_unit\": \"g\",\n            \"eat_log_meal_tag\": \"점심\",\n            \"food_kcal\": 216.3,\n            \"food_carb\": 42,\n            \"food_protein\": 8.7,\n            \"food_fat\": 1.5\n        }\n    ],\n    \"reciperesult\": [\n        {\n            \"eat_log_id\": 1,\n            \"eat_log_recipe_id\": 1,\n            \"eat_log_meal_tag\": \"저녁\",\n            \"recipe_kcal\": 3400,\n            \"recipe_carb\": 200,\n            \"recipe_protein\": 200,\n            \"recipe_fat\": 200\n        }\n    ]\n}",
+          "content": "http://localhost:5000/eat-logs?date=20171016\n{\n    \"foodresult\": [\n        {\n            \"eat_log_id\": 2,\n            \"eat_log_picture\": null,\n            \"eat_log_food_id\": 1,\n            \"eat_log_amount\": 322,\n            \"food_name_ko\": \"도토리묵밥\",\n            \"food_name_en\": \"Doritomi rice\",\n            \"food_unit\": \"g\",\n            \"eat_log_meal_tag\": \"저녁\",\n            \"food_kcal\": 193.522,\n            \"food_carb\": 34.776,\n            \"food_protein\": 7.084,\n            \"food_fat\": 2.898\n        },\n        {\n            \"eat_log_id\": 3,\n            \"eat_log_picture\": null,\n            \"eat_log_food_id\": 1,\n            \"eat_log_amount\": 100,\n            \"food_name_ko\": \"도토리묵밥\",\n            \"food_name_en\": \"Doritomi rice\",\n            \"food_unit\": \"g\",\n            \"eat_log_meal_tag\": \"저녁\",\n            \"food_kcal\": 60.1,\n            \"food_carb\": 10.8,\n            \"food_protein\": 2.2,\n            \"food_fat\": 0.9\n        }\n    ],\n    \"reciperesult\": [\n        {\n            \"eat_log_id\": 1,\n            \"eat_log_picture\": null,\n            \"eat_log_recipe_id\": 1,\n            \"eat_log_serve\": 350,\n            \"recipe_name_ko\": \"피자\",\n            \"recipe_name_en\": \"pizza\",\n            \"eat_log_meal_tag\": \"저녁\",\n            \"recipe_kcal\": 595000,\n            \"recipe_carb\": 35000,\n            \"recipe_protein\": 35000,\n            \"recipe_fat\": 35000\n        }\n    ]\n}",
           "type": "json"
         }
       ]
@@ -729,7 +859,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "http://localhost:5000/eat-logs/10\n{\n    \"eat_log_id\": 3,\n    \"eat_log_picture\": null,\n    \"eat_log_food_id\": 1,\n    \"food_name_ko\": \"도토리묵밥\",\n    \"food_name_en\": \"Doritomi rice\",\n    \"food_unit\": \"g\",\n    \"eat_log_meal_tag\": \"저녁\",\n    \"food_kcal\": 120.2,\n    \"food_carb\": 21.6,\n    \"food_protein\": 4.4,\n    \"food_fat\": 1.8\n}",
+          "content": "http://localhost:5000/eat-logs/10\n{\n    \"eat_log_id\": 3,\n    \"eat_log_picture\": null,\n    \"eat_log_food_id\": 1,\n    \"eat_log_amount\": 322,\n    \"food_name_ko\": \"도토리묵밥\",\n    \"food_name_en\": \"Doritomi rice\",\n    \"food_unit\": \"g\",\n    \"eat_log_meal_tag\": \"저녁\",\n    \"food_kcal\": 120.2,\n    \"food_carb\": 21.6,\n    \"food_protein\": 4.4,\n    \"food_fat\": 1.8\n}",
           "type": "json"
         }
       ]
@@ -1948,6 +2078,141 @@
     "groupTitle": "report"
   },
   {
+    "type": "post",
+    "url": "/user/first",
+    "title": "Post UserData",
+    "description": "<p>사용자의 초기 정보를 입력한다.</p>",
+    "name": "Post_First_UserData",
+    "group": "user",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "birth",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Enum",
+            "optional": false,
+            "field": "gender",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": false,
+            "field": "goal_weight",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": false,
+            "field": "height",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": false,
+            "field": "kg",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "date",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "member_id",
+            "description": "<p>member 아이디값</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "member_birth",
+            "description": "<p>생년월일</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Enum",
+            "optional": false,
+            "field": "member_gender",
+            "description": "<p>성별</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Float",
+            "optional": false,
+            "field": "member_goal_weight",
+            "description": "<p>목표몸무게</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "day_log_id",
+            "description": "<p>day_log 아이디 값</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "day_log_member_id",
+            "description": "<p>기록한 유저 아이디값</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Float",
+            "optional": false,
+            "field": "day_log_height",
+            "description": "<p>사용자의 키</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Float",
+            "optional": false,
+            "field": "day_log_kg",
+            "description": "<p>사용자의 몸무게</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "day_log_diray_date",
+            "description": "<p>등록일</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Respoonse:",
+          "content": "http://localhost:5000/user/first\n{\n    \"MemberResult\": {\n        \"member_id\": 1,\n        \"member_birth\": \"1993-09-07\",\n        \"member_gender\": \"남\",\n        \"member_goal_weight\": 60\n    },\n    \"DaylogResult\": {\n        \"day_log_id\": 1,\n        \"day_log_member_id\": 1,\n        \"day_log_height\": 173,\n        \"day_log_kg\": 65,\n        \"diary_date\": \"2017-10-22\"\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/router/user.js",
+    "groupTitle": "user"
+  },
+  {
     "type": "get",
     "url": "/user",
     "title": "Get UserData",
@@ -2051,11 +2316,11 @@
     "groupTitle": ""
   },
   {
-    "type": "delete",
-    "url": "/:id",
-    "title": "Delete Weight",
-    "description": "<p>사용자가 지우고자하는 몸무게 기록을 삭제한다.</p>",
-    "name": "DeleteWeight",
+    "type": "post",
+    "url": "/weight",
+    "title": "Post Weight",
+    "description": "<p>사용자가 목표 체중을 수정한다.</p>",
+    "name": "PostWeight",
     "group": "weight",
     "parameter": {
       "fields": {
@@ -2064,8 +2329,8 @@
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "id",
-            "description": "<p>사용자가 선택한 몸무게 id</p>"
+            "field": "user.id",
+            "description": "<p>사용자 id</p>"
           },
           {
             "group": "Parameter",
