@@ -494,6 +494,40 @@ function patchBurnById({ burn_id, burn_kcal, burn_minute, burn_exercise_id }) {
     })
 }
 
+function postFirstMember({ member_id, member_birth, member_gender, member_goal_weight }) {
+  return knex('member')
+    .where({ member_id })
+    .update({ member_birth, member_gender, member_goal_weight })
+    .then(() => {
+      return knex('member')
+        .select(
+          'member_id', knex.raw('date_format(member_birth, \'%Y-%m-%d\') as member_birth'),
+          'member_gender', 'member_goal_weight'
+        )
+        .where({ member_id })
+        .first()
+    })
+}
+
+function postFirstDayLog({ day_log_member_id, day_log_height, day_log_kg, day_log_diary_date }) {
+  return knex('day_log')
+    .insert({
+      day_log_member_id,
+      day_log_height,
+      day_log_kg,
+      day_log_diary_date
+    })
+    .then(([day_log_id]) => {
+      return knex('day_log')
+        .select(
+          'day_log_id', 'day_log_member_id', 'day_log_height', 'day_log_kg',
+          knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as diary_date')
+        )
+        .where({ day_log_id })
+        .first()
+    })
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -533,5 +567,7 @@ module.exports = {
   WeightNullById,
   PostGoalKgbyUser,
   deleteBurnById,
-  patchBurnById
+  patchBurnById,
+  postFirstMember,
+  postFirstDayLog
 }
