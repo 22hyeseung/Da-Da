@@ -35,6 +35,9 @@ const authReducer = (
         userSNS: action.payload.member_provider,
         userAvatar:
           action.payload.member_avatar_url,
+        userGoalWeight:
+          action.payload.member_goal_weight,
+        userGender: action.payload.member_gender,
       },
       signingIn: false,
     }

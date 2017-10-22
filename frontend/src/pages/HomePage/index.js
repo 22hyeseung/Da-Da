@@ -23,7 +23,7 @@ class HomePage extends Component {
 
   // 유저 정보 및 오늘 날짜 SET
   componentWillMount() {
-    this.getUserInfo()
+    this.props.saveUserInfo()
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
@@ -37,21 +37,6 @@ class HomePage extends Component {
     }, 4000)
   }
 
-  // 로그인한 유저 정보 GET
-  getUserInfo = () => {
-    fetch(`${rootApi}/user`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${window
-          .localStorage.token}`,
-      },
-    })
-      .then(res => res.json())
-      .then(userInfo => {
-        this.props.saveUserInfo(userInfo)
-      })
-  }
-
   render() {
     if (this.state.loading) {
       return <Loader />
@@ -59,6 +44,7 @@ class HomePage extends Component {
     return (
       <div>
         <div className="home-grid">
+          {console.log(this.props.userInfo)}
           <Navigation
             color="#fff"
             inverted="true"
@@ -108,8 +94,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchtoProps = dispatch => ({
-  saveUserInfo: user =>
-    dispatch(getUserInfo(user)),
+  saveUserInfo: () => dispatch(getUserInfo()),
 })
 
 export default connect(
