@@ -150,7 +150,7 @@ router.delete('/:id', (req, res) => {
 })
 
 /**
- * @api {post} /weight Delete Weight
+ * @api {post} /weight Post Weight
  *
  * @apiDescription 사용자가 목표 체중을 수정한다.
  * @apiName PostWeight
