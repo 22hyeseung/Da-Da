@@ -1,36 +1,38 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { button, background } from './StyledHome'
-import { Button } from 'semantic-ui-react'
+import { Button, Input } from 'semantic-ui-react'
 import './Home.css'
 
 class HomeFirstUserInfo extends Component {
   render() {
     return (
-      <div className="home-dashboard">
+      <div className="home-userInfo">
         <div className="home-grid home-hero-content">
           <div className="home-hero-title">
-            오늘도 건강한 하루를 시작해볼까요?
+            <span>처음이신가요?</span>
+            <span>시작하기 전에 현재의 상태를 입력해주세요!</span>
           </div>
-          <Link
-            to="/diary"
-            style={{ padding: '12px' }}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '20%',
+              height: '50%',
+              margin: '0 auto',
+            }}
           >
-            <Button style={button}>시작하기</Button>
-          </Link>
+            <Input />
+            <Input
+              type="number"
+              placeholder="키를 입력하세요"
+            />
+            <Input
+              type="number"
+              placeholder="몸무게를 입력하세요"
+            />
+          </div>
         </div>
-        <div className="home-dashboard-filter" />
-        <video
-          className="home-hero"
-          autoPlay
-          loop
-          poster={background.poster}
-        >
-          <source
-            src={background.video}
-            type="video/mp4"
-          />
-        </video>
       </div>
     )
   }

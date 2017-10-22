@@ -12,6 +12,7 @@ import { getUserInfo } from '../../actions/auth.js'
 // 컴포넌트
 import Navigation from '../../components/Navigation'
 import Loader from '../../components/Loader/index'
+import HomeFirstUserInfo from './HomeFirstUserInfo'
 import HomeHero from './HomeHero'
 import HomeTab from './HomeTab'
 
@@ -43,46 +44,52 @@ class HomePage extends Component {
     }
     return (
       <div>
-        <div className="home-grid">
-          {console.log(this.props.userInfo)}
-          <Navigation
-            color="#fff"
-            inverted="true"
-          />
-        </div>
+        {(this.props.userInfo.userHeight &&
+          this.props.userInfo.userWegiht &&
+          this.props.userInfo.userGender) ===
+        null ? (
+          <HomeFirstUserInfo />
+        ) : (
+          <div>
+            <div className="home-grid">
+              <Navigation
+                color="#fff"
+                inverted="true"
+              />
+            </div>
+            <HomeHero />
 
-        {/* Hero 컴포넌트 */}
-        <HomeHero />
-
-        <div style={tabContainer}>
-          <Grid
-            columns={3}
-            padded
-            style={{ width: '100%' }}
-          >
-            {/* 다이어리 Food 페이지로 이동하는 탭 */}
-            <HomeTab
-              tabName="FOOD"
-              message="오늘\n무엇을\n드셨나요?"
-              linkTo="/diary"
-              order="first"
-            />
-            {/* 다이어리 Fitness 페이지로 이동하는 탭 */}
-            <HomeTab
-              tabName="FITNESS"
-              message="오늘\n어떤 운동을\n하셨나요?"
-              linkTo="/diary/fitness"
-              order="second"
-            />
-            {/* 다이어리 Review 페이지로 이동하는 탭 */}
-            <HomeTab
-              tabName="REVIEW"
-              message="오늘\n하루를\n기록해볼까요?"
-              linkTo="/diary/review"
-              order="third"
-            />
-          </Grid>
-        </div>
+            <div style={tabContainer}>
+              <Grid
+                columns={3}
+                padded
+                style={{ width: '100%' }}
+              >
+                {/* 다이어리 Food 페이지로 이동하는 탭 */}
+                <HomeTab
+                  tabName="FOOD"
+                  message="오늘\n무엇을\n드셨나요?"
+                  linkTo="/diary"
+                  order="first"
+                />
+                {/* 다이어리 Fitness 페이지로 이동하는 탭 */}
+                <HomeTab
+                  tabName="FITNESS"
+                  message="오늘\n어떤 운동을\n하셨나요?"
+                  linkTo="/diary/fitness"
+                  order="second"
+                />
+                {/* 다이어리 Review 페이지로 이동하는 탭 */}
+                <HomeTab
+                  tabName="REVIEW"
+                  message="오늘\n하루를\n기록해볼까요?"
+                  linkTo="/diary/review"
+                  order="third"
+                />
+              </Grid>
+            </div>
+          </div>
+        )}
       </div>
     )
   }

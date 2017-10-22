@@ -8,6 +8,20 @@
     transform: translateX(-50%);
 }
 
+
+/* userInfo 컴포넌트 시작 */
+
+.home-userInfo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background-image: linear-gradient(216deg, #26d0ce, #1a2980);
+}
+
 .home-hero-content {
     color: #fff;
     z-index: 2;

@@ -38,6 +38,7 @@ const authReducer = (
         userGoalWeight:
           action.payload.member_goal_weight,
         userGender: action.payload.member_gender,
+        userHeight: null,
       },
       signingIn: false,
     }
