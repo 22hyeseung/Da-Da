@@ -23,9 +23,38 @@ export const diaryFoodReducer = (
   if (action.type === 'POST_FOOD_TO_DATABASE') {
     return {
       foodresult: [
-        ...action.payload,
+        action.payload,
         ...state.foodresult,
       ],
+    }
+  }
+  if (action.type === 'UPDATE_FOOD_OF_DATABASE') {
+    console.log(state.foodresult)
+    const updateFoodIndex = state.foodresult
+      .map(item => item.eat_log_id)
+      .indexOf(action.payload.eat_log_id)
+    const updateFood = state.foodresult.splice(
+      updateFoodIndex,
+      1,
+      action.payload,
+    )
+    console.log(
+      updateFoodIndex,
+      updateFood,
+      action.payload,
+      state.foodresult,
+    )
+    // action.type.eat_log_id
+    return {
+      // foodresult: [...updateFood],
+    }
+  }
+  if (action.type === 'DELETE_FOOD_OF_DATABASE') {
+    const deleteFoodResult = state.foodresult.filter(
+      item => item.eat_log_id !== action.payload,
+    )
+    return {
+      foodresult: [...deleteFoodResult],
     }
   }
   return {
