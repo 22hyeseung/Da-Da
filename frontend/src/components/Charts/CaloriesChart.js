@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   BarChart,
   Bar,
@@ -10,6 +11,7 @@ import {
   ComposedChart,
   Line,
 } from 'recharts'
+import { getCaloriesForAWeekFromDB } from '../../actions/reportAPIs'
 
 const data = [
   {
@@ -126,4 +128,29 @@ class CaloriesChart extends Component {
   }
 }
 
-export default CaloriesChart
+const mapStateToProps = state => {
+  return {
+    caloriesLogsForAWeek:
+      state.caloriesChart.caloriesLogsForAWeek,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getCaloriesForAWeekFromDB: (
+      startDate,
+      endDate,
+    ) =>
+      dispatch(
+        getCaloriesForAWeekFromDB(
+          startDate,
+          endDate,
+        ),
+      ),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CaloriesChart)

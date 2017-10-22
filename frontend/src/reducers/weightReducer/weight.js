@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 }
 
 // Fetch한 데이터 변경해주는 reducer
-export const weigthListReducer = (
+export const weightListReducer = (
   state = INITIAL_STATE,
   action,
 ) => {

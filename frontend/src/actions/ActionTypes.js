@@ -86,4 +86,22 @@ export const DELETE_LONGLOG_FAILED =
 // setDate.js
 export const SET_TODAY_DATE = 'SET_TODAY_DATE'
 export const SET_TODAY_DAY = 'SET_TODAY_DAY'
+export const SET_BEFORE_DATE = 'SET_BEFORE_DATE'
+export const SET_BEFORE_DAY = 'SET_BEFORE_DAY'
+//==========================================
+
+//==========================================
+// reportAPI.js
+export const GET_REPORTS_CALORIES_REQUEST =
+  'GET_REPORTS_CALORIES_REQUEST'
+export const GET_REPORTS_CALORIES_SUCCESS =
+  'GET_REPORTS_CALORIES_SUCCESS'
+export const GET_REPORTS_CALORIES_FAILED =
+  'GET_REPORTS_CALORIES_FAILED'
+export const GET_REPORTS_NUTRITION_REQUEST =
+  'GET_REPORTS_NUTRITION_REQUEST '
+export const GET_REPORTS_NUTRITION_SUCCESS =
+  'GET_REPORTS_NUTRITION_SUCCESS'
+export const GET_REPORTS_NUTRITION_FAILED =
+  'GET_REPORTS_NUTRITION_FAILED'
 //==========================================
