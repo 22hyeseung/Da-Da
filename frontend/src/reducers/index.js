@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux'
-import { weightListReducer } from './weightReducer/weight'
+import {
+  weightListReducer,
+  weightAllReducer,
+} from './weightReducer/weight'
 import authReducer from './authReducer/auth'
 import navActiveItemReducer from './appReducer/navActiveItem'
 import {
@@ -22,6 +25,7 @@ const reducers = combineReducers({
   beforeDay: beforeDateReducer,
   auth: authReducer,
   weightList: weightListReducer,
+  weightAll: weightAllReducer,
   shortLog: shortLogReducer,
   longLog: longLogReducer,
   foodLogs: diaryFoodReducer,

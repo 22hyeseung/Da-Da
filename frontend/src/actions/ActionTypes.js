@@ -12,6 +12,13 @@ export const POST_AND_GET_WEIGHT_SUCCESS =
   'POST_AND_GET_WEIGHT_SUCCESS'
 export const DELETE_AND_GET_WEIGHT_SUCCESS =
   'DELETE_AND_GET_WEIGHT_SUCCESS'
+
+export const GET_WEIGHT_ALL_REQUEST =
+  'GET_WEIGHT_ALL_REQUEST'
+export const GET_WEIGHT_ALL_SUCCESS =
+  'GET_WEIGHT_ALL_SUCCESS'
+export const GET_WEIGHT_ALL_FAILED =
+  'GET_WEIGHT_ALL_FAILED'
 //==========================================
 
 //==========================================

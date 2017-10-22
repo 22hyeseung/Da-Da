@@ -108,3 +108,42 @@ export const deleteWeightOfDB = id => {
       })
   }
 }
+
+// 4. get All (등록된 모든 체중 get)
+export const getAllWeightFromDB = () => {
+  return dispatch => {
+    dispatch({
+      type: types.GET_WEIGHT_ALL_REQUEST,
+    })
+    fetch(`${rootApi}/weight/all`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        let chartData = []
+        let allDayLog = data.allDayLog
+        allDayLog.map(aDay => {
+          chartData.push({
+            current: aDay.day_log_kg,
+            date: aDay.day_log_diary_date
+              .substr(5, 5)
+              .replace('-', '/'),
+            goal: data.goal_weight,
+          })
+        })
+        dispatch({
+          type: types.GET_WEIGHT_ALL_SUCCESS,
+          payload: chartData.reverse(),
+        })
+      })
+      .then()
+      .catch(error => {
+        type: types.GET_WEIGHT_ALL_FAILED
+        console.error(error)
+      })
+  }
+}
