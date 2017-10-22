@@ -3,7 +3,7 @@ const DEFAULT_WEIGHT = {
 }
 
 // Fetch한 데이터 변경해주는 reducer
-export const weigthListReducer = (
+export const weightListReducer = (
   state = DEFAULT_WEIGHT,
   action,
 ) => {
