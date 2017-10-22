@@ -9,11 +9,14 @@ import {
 import './Diary.css'
 // 리덕스 액션생성자
 import { getUserInfo } from '../../actions/auth.js'
+
 // 리덕스 액션생성자
 import {
   setTodayDate,
   setTodayDay,
 } from '../../actions/setDate'
+
+import { getKcal } from '../../actions/diaryKcal'
 
 // helper: 오늘 날짜
 import {
@@ -22,9 +25,17 @@ import {
 } from '../../helper/date'
 
 class DiarySubNav extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      targetKcal: 0,
+    }
+  }
+
   componentWillMount() {
     this.props.setTodayDate(todaysDate)
     this.props.setTodayDay(todaysDay)
+    this.setState({ userTagetKcal: this.props.getKcal() })
   }
 
   render() {
@@ -47,7 +58,7 @@ class DiarySubNav extends Component {
           </span>
           <div>
             <span className="diary-food-goal-kcal">
-              100
+              {this.state.userTagetKcal}
             </span>
             <span className="diary-food-goal-unit">
               kcal
@@ -68,6 +79,7 @@ const mapStateToProps = state => {
   return {
     dateState: state.today.date,
     dayState: state.today.day,
+    targetKcal: state.targetKcal,
   }
 }
 
@@ -75,6 +87,8 @@ const mapDispatchtoProps = dispatch => ({
   setTodayDate: date =>
     dispatch(setTodayDate(date)),
   setTodayDay: day => dispatch(setTodayDay(day)),
+  getTargetKcal: date =>
+    dispatch(getKcal(date)),
 })
 
 export default connect(

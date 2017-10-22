@@ -8,6 +8,7 @@ import {
 } from './diaryReducer/diaryReview'
 import todayDateReducer from './appReducer/todayDate'
 import { diaryFoodReducer } from './diaryReducer/diaryFood'
+import { diaryKcalReducer } from './diaryReducer/diaryKcal'
 
 const reducers = combineReducers({
   navActiveItem: navActiveItemReducer,
@@ -17,6 +18,7 @@ const reducers = combineReducers({
   shortLog: shortLogReducer,
   longLog: longLogReducer,
   foodLogs: diaryFoodReducer,
+  targetKcal: diaryKcalReducer,
 })
 
 export default reducers

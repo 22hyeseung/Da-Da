@@ -87,3 +87,10 @@ export const DELETE_LONGLOG_FAILED =
 export const SET_TODAY_DATE = 'SET_TODAY_DATE'
 export const SET_TODAY_DAY = 'SET_TODAY_DAY'
 //==========================================
+
+//==========================================
+// diaryKcal.js
+export const GET_KCAL_REQUEST = 'GET_KCAL_REQUEST'
+export const GET_KCAL_SUCCESS = 'GET_KCAL_SUCCESS'
+export const GET_KCAL_FAILED = 'GET_KCAL_FAILED'
+//==========================================
