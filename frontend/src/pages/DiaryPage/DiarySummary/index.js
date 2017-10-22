@@ -1,29 +1,31 @@
 import React from 'react'
+// 스타일링
 import {
   Segment,
   Header,
   List,
 } from 'semantic-ui-react'
-// import pieGraph from '../../../static/img/diary-graph.svg'
+import * as Style from './StyledDiarySummary'
+
+// 컴포넌트
 import StaticPieChart from '../../../components/Charts/StaticPieChart'
 import DiarySocialBtns from './DiarySocialBtns'
-import * as Style from './StyledDiarySummary'
+import SummaryListItem from './SummaryListItem'
+import SectionHeader from './SectionHeader'
 
 const DiarySummary = () => {
   return (
     <div>
       <Segment style={Style.segment}>
         {/* title 시작 */}
-        <Header style={Style.header}>
-          <Header.Subheader
-            style={Style.subheader}
-          >
-            SUMMARY
-          </Header.Subheader>
-          요약
-        </Header>
+        <SectionHeader
+          headerStyle={Style.header}
+          subtitle="SUMMARY"
+          title="요약"
+        />
         {/* title 끝 */}
 
+        {/* 리스트 시작 */}
         <List
           divided
           verticalAlign="bottom"
@@ -37,124 +39,42 @@ const DiarySummary = () => {
               (kcal)
             </List.Content>
           </List.Item>
-          <List.Item
-            style={{
-              ...Style.listItem,
-              ...Style.listItemElse,
-            }}
-          >
-            <List.Content
-              style={Style.listContentLabel}
-            >
-              일일 권장량
-            </List.Content>
-            <List.Content
-              style={Style.listContentKcal}
-            >
-              1200
-            </List.Content>
-          </List.Item>
 
-          <List.Item
-            style={{
-              ...Style.listItem,
-              ...Style.listItemElse,
-            }}
-          >
-            <List.Content
-              style={Style.listContentLabel}
-            >
-              섭취 칼로리
-            </List.Content>
-            <List.Content
-              style={Style.listContentKcal}
-            >
-              -
-            </List.Content>
-            <List.Content
-              style={Style.listContentKcal}
-            >
-              300
-            </List.Content>
-          </List.Item>
-
-          <List.Item
-            style={{
-              ...Style.listItem,
-              ...Style.listItemElse,
-            }}
-          >
-            <List.Content
-              style={Style.listContentLabel}
-            >
-              운동 칼로리
-            </List.Content>
-            <List.Content
-              style={Style.listContentKcal}
-            >
-              +
-            </List.Content>
-            <List.Content
-              style={Style.listContentKcal}
-            >
-              100
-            </List.Content>
-          </List.Item>
-          <List.Item
-            style={{
-              ...Style.listItem,
-              ...Style.listItemElse,
-            }}
-          >
-            <List.Content
-              style={Style.listContentLabel}
-            >
-              남은 칼로리
-            </List.Content>
-            <List.Content
-              style={Style.listContentKcal}
-            >
-              1000
-            </List.Content>
-          </List.Item>
+          <SummaryListItem
+            label="일일 권장량"
+            kcal="1200"
+          />
+          <SummaryListItem
+            label="섭취 칼로리"
+            kcal="300"
+          />
+          <SummaryListItem
+            label="운동 칼로리"
+            kcal="100"
+          />
+          <SummaryListItem
+            label="남은 칼로리"
+            kcal="1000"
+          />
         </List>
         {/* 리스트 끝 */}
 
         {/* comment 시작 */}
-        <Header
-          style={{
-            marginBottom: '4px',
-          }}
-        >
-          <Header.Subheader
-            style={Style.subheader}
-          >
-            COMMENT
-          </Header.Subheader>
-        </Header>
+        <SectionHeader subtitle="COMMENT" />
 
         <Segment style={Style.comment}>
           더 열심히 운동하셔야겠어요 !
         </Segment>
         {/* comment 끝 */}
 
-        <Header
-          style={{
-            marginBottom: '4px',
-          }}
-        >
-          <Header.Subheader
-            style={Style.subheader}
-          >
-            NUTRITION<br /> GRAPH
-          </Header.Subheader>
-        </Header>
-        {/* <img
-          src={pieGraph}
-          style={Style.graph}
-          alt="영양분 그래프입니다"
-        /> */}
-        <StaticPieChart />
+        {/* 파이 차트 시작 */}
+
+        <SectionHeader subtitle="NUTRITION\nGRAPH" />
+
+        <StaticPieChart
+          style={{ marginTop: '4px' }}
+        />
+        {/* 파이 차트 끝 */}
       </Segment>
       <DiarySocialBtns />
     </div>
