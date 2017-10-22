@@ -5,6 +5,7 @@ import {
   Segment,
   Header,
   List,
+  Message,
 } from 'semantic-ui-react'
 import * as Style from './StyledDiarySummary'
 
@@ -105,17 +106,12 @@ class DiarySummary extends Component {
               </span>
             </Segment>
           ) : (
-            <Segment
-              style={{
-                ...Style.comment,
-                backgroundColor:
-                  'rgba(164, 37, 42, 0.9)',
-              }}
-            >
-              <span>
-                오류가 발생했습니다!<br /> 잠시 후 다시 시도해주세요.
-              </span>{' '}
-            </Segment>
+            <Message negative>
+              <Message.Header>
+                오류가 발생하였습니다.
+              </Message.Header>
+              <p>잠시 후 다시 시도해주세요.</p>
+            </Message>
           )}
 
           {/* comment 끝 */}
