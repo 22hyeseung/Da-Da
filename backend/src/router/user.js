@@ -19,6 +19,7 @@ router.use((req, res, next) => {
 
 router.use(bodyParser.json())
 router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
+router.options('*', cors())
 /**
  * @api {get} /user Get UserData
  * @apiDescription 현재 로그인된 사용자의 정보를 가져온다.
