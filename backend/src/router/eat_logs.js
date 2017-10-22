@@ -165,49 +165,51 @@ router.get('/:id', (req, res) => {
  * @apiSuccess {Date} eat_log_diary_date 등록일
  *
  * @apiSuccessExample {json} Success-Response:
- * http://localhost:5000/eat-logs?date=20171010
+ * http://localhost:5000/eat-logs?date=20171016
  * {
  *     "foodresult": [
  *         {
  *             "eat_log_id": 2,
+ *             "eat_log_picture": null,
  *             "eat_log_food_id": 1,
+ *             "eat_log_amount": 322,
+ *             "food_name_ko": "도토리묵밥",
+ *             "food_name_en": "Doritomi rice",
+ *             "food_unit": "g",
+ *             "eat_log_meal_tag": "저녁",
+ *             "food_kcal": 193.522,
+ *             "food_carb": 34.776,
+ *             "food_protein": 7.084,
+ *             "food_fat": 2.898
+ *         },
+ *         {
+ *             "eat_log_id": 3,
+ *             "eat_log_picture": null,
+ *             "eat_log_food_id": 1,
+ *             "eat_log_amount": 100,
+ *             "food_name_ko": "도토리묵밥",
+ *             "food_name_en": "Doritomi rice",
  *             "food_unit": "g",
  *             "eat_log_meal_tag": "저녁",
  *             "food_kcal": 60.1,
  *             "food_carb": 10.8,
  *             "food_protein": 2.2,
  *             "food_fat": 0.9
- *         },
- *         {
- *             "eat_log_id": 3,
- *             "eat_log_food_id": 1,
- *             "food_unit": "g",
- *             "eat_log_meal_tag": "저녁",
- *             "food_kcal": 120.2,
- *             "food_carb": 21.6,
- *             "food_protein": 4.4,
- *             "food_fat": 1.8
- *         },
- *         {
- *             "eat_log_id": 5,
- *             "eat_log_food_id": 2,
- *             "food_unit": "g",
- *             "eat_log_meal_tag": "점심",
- *             "food_kcal": 216.3,
- *             "food_carb": 42,
- *             "food_protein": 8.7,
- *             "food_fat": 1.5
  *         }
  *     ],
  *     "reciperesult": [
  *         {
  *             "eat_log_id": 1,
+ *             "eat_log_picture": null,
  *             "eat_log_recipe_id": 1,
+ *             "eat_log_serve": 350,
+ *             "recipe_name_ko": "피자",
+ *             "recipe_name_en": "pizza",
  *             "eat_log_meal_tag": "저녁",
- *             "recipe_kcal": 3400,
- *             "recipe_carb": 200,
- *             "recipe_protein": 200,
- *             "recipe_fat": 200
+ *             "recipe_kcal": 595000,
+ *             "recipe_carb": 35000,
+ *             "recipe_protein": 35000,
+ *             "recipe_fat": 35000
  *         }
  *     ]
  * }
