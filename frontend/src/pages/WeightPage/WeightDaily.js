@@ -7,6 +7,7 @@ import {
   Icon,
 } from 'semantic-ui-react'
 import ArrowDown from '../../static/img/weight-daily-arrowDown.svg'
+import ArrowUp from '../../static/img/weight-daily-arrowUp.svg'
 import * as Style from './StyledWeight'
 import { connect } from 'react-redux'
 import {
@@ -156,7 +157,7 @@ class WeightDaily extends Component {
             {this.props.weightListItem.length !==
             0
               ? this.props.weightListItem.map(
-                  Item => {
+                  (Item, index, arr) => {
                     const dateArr = Item.diary_date.split(
                       '-',
                     )
@@ -175,6 +176,7 @@ class WeightDaily extends Component {
                         <List.Content
                           style={Style.date}
                         >
+                          {console.log(arr)}
                           {dateRender}
                         </List.Content>
                         <div className="weight-daily-value">
@@ -195,9 +197,23 @@ class WeightDaily extends Component {
                           </List.Content>
                           <List.Content floated="right">
                             <img
-                              src={ArrowDown}
-                              alt="이전 몸무게보다 낮음을 표시"
+                              src={ArrowUp}
+                              alt="이전 몸무게보다 높음을 표시"
                             />
+                            {/* {arr[index - 1]
+                              .day_log_kg <
+                            arr[index]
+                              .day_log_kg ? (
+                              <img
+                                src={ArrowUp}
+                                alt="이전 몸무게보다 높음을 표시"
+                              />
+                            ) : (
+                              <img
+                                src={ArrowDown}
+                                alt="이전 몸무게보다 낮음을 표시"
+                              />
+                            )} */}
                           </List.Content>
                           <List.Content floated="right">
                             <img

@@ -20,16 +20,9 @@ class WeightCurrentValue extends Component {
             0 ? (
               // 인터넷 느린 경우 등, get 데이터가 안 왔을때
               <Icon loading name="asterisk" />
-            ) : // 삭제시, day_log_kg이 null이 되는데, 전체 리스트가 null일 경우의 렌더
-            this.props.weightListItem
-              .map(item => item.day_log_kg)
-              .every(el => el == null) ? (
-              '-'
             ) : (
-              // 하나라도 day_log_kg의 값이 있을 경우 첫번째 true값을 렌더링
-              this.props.weightListItem.find(
-                Item => Item.day_log_kg !== null,
-              ).day_log_kg
+              this.props.weightListItem[0]
+                .day_log_kg
             )}
           </span>
           <span className="weight-unit-kg">
