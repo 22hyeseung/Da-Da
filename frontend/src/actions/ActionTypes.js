@@ -91,4 +91,6 @@ export const SET_TODAY_DAY = 'SET_TODAY_DAY'
 export const GET_KCAL_REQUEST = 'GET_KCAL_REQUEST'
 export const GET_KCAL_SUCCESS = 'GET_KCAL_SUCCESS'
 export const GET_KCAL_FAILED = 'GET_KCAL_FAILED'
+export const POST_KCAL_SUCCESS = 'POST_KCAL_SUCCESS'
+export const POST_KCAL_FAILED = 'POST_KCAL_FAILED'
 //==========================================

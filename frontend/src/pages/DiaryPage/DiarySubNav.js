@@ -17,7 +17,7 @@ import {
   setTodayDay,
 } from '../../actions/setDate'
 
-import { getTargetKcal } from '../../actions/diaryKcal'
+import { getTargetKcal, postTargetKcal } from '../../actions/diaryKcal'
 
 // helper: 오늘 날짜
 import {
@@ -113,6 +113,8 @@ const mapDispatchtoProps = dispatch => ({
   setTodayDay: day => dispatch(setTodayDay(day)),
   getTargetKcal: date =>
     dispatch(getTargetKcal(date)),
+  postTargetKcal: date =>
+    dispatch(postTargetKcal()),
 })
 
 export default connect(
