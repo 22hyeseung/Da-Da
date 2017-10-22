@@ -82,8 +82,10 @@ function postDayLogComment({ day_log_member_id, day_log_comment, day_log_diary_d
 
 function getSelectDayLog({ day_log_member_id, day_log_diary_date }) {
   return knex('day_log')
-    .select('day_log_id', 'day_log_member_id', 'day_log_regret', 'day_log_comment',
-      knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as day_log_diary_date'))
+    .select(
+'day_log_id', 'day_log_member_id', 'day_log_regret', 'day_log_comment',
+      knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as day_log_diary_date')
+)
     .where({ day_log_diary_date, day_log_member_id })
     .first()
 }
@@ -94,8 +96,10 @@ function putRegretDayLogById({ day_log_id, day_log_regret }) {
     .update({ day_log_regret })
     .then(() => {
       return knex('day_log')
-        .select('day_log_id', 'day_log_member_id', 'day_log_regret',
-          knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as day_log_diary_date'))
+        .select(
+'day_log_id', 'day_log_member_id', 'day_log_regret',
+          knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as day_log_diary_date')
+)
         .where({ day_log_id })
         .first()
     })
@@ -107,12 +111,13 @@ function putCommentDayLogById({ day_log_id, day_log_comment }) {
     .update({ day_log_comment })
     .then(() => {
       return knex('day_log')
-        .select('day_log_id', 'day_log_member_id', 'day_log_comment',
-          knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\')as day_log_diary_date'))
+        .select(
+'day_log_id', 'day_log_member_id', 'day_log_comment',
+          knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\')as day_log_diary_date')
+)
         .where({ day_log_id })
         .first()
     })
-
 }
 
 function postDayKgbyUser({ day_log_member_id, day_log_kg, day_log_diary_date }) {
@@ -443,12 +448,33 @@ function postGoalKcalbyUser({ day_log_member_id, day_log_kcal, day_log_diary_dat
 function getKcalByDate({ day_log_diary_date, day_log_member_id }) {
   return knex('day_log')
     .where({ day_log_member_id, day_log_diary_date })
-
-    .select(
-      'day_log_kcal', 'day_log_member_id',
-      knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as diary_date')
-    )
+    .select('day_log_kcal')
     .first()
+    .then(data => {
+      if (!data.day_log_kcal) {
+        return knex('day_log')
+          .where({ day_log_member_id })
+          .whereNotNull('day_log_kcal')
+          .orderBy('day_log_diary_date')
+          .select('day_log_kcal')
+          .first()
+          .then(final => {
+            return knex('day_log')
+              .where({ day_log_member_id, day_log_diary_date })
+              .update('day_log_kcal', final.day_log_kcal)
+          })
+      }
+    })
+    .then(() => {
+      return knex('day_log')
+        .where({ day_log_member_id, day_log_diary_date })
+        .whereNotNull('day_log_kcal')
+        .select(
+          'day_log_kcal', 'day_log_member_id',
+          knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as diary_date')
+        )
+        .first()
+    })
 }
 
 function patchEatLogs({ eat_log_id, eat_log_amount, eat_log_serve }) {
