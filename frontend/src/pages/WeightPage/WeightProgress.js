@@ -18,7 +18,7 @@ class WeightProgress extends Component {
             (60 -
               this.props.weightListItem[0]
                 .day_log_kg) /
-            10 *
+            (60 - this.props.goalWeight) *
             100)
     }
     return (
