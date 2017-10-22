@@ -73,9 +73,9 @@ export const postFoodToDB = payload => {
   }
 }
 // 3. updateDB
-export const updateFoodOfDB = payload => {
+export const updateFoodOfDB = (payload, id) => {
   return dispatch => {
-    fetch(`${rootApi}/eat-logs`, {
+    fetch(`${rootApi}/eat-logs/${id}`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${window
@@ -87,9 +87,9 @@ export const updateFoodOfDB = payload => {
       .then(result => result.json())
       .then(result => {
         if (result) {
+          console.log(result)
           return fetch(
-            `${rootApi}/eat-logs/${result[0]
-              .eat_log_id}`,
+            `${rootApi}/eat-logs/${id}`,
             {
               method: 'GET',
               headers: {
@@ -100,14 +100,16 @@ export const updateFoodOfDB = payload => {
           )
             .then(res => res.json())
             .then(data => {
+              console.log(data)
               dispatch({
-                type: types.POST_FOOD_TO_DATABASE,
+                type:
+                  types.UPDATE_FOOD_OF_DATABASE,
                 payload: data,
               })
             })
             .catch(error => {
               console.log(
-                'fetchUpdateFoodToDB error',
+                'fetchUpdateFoodFromDB error',
               )
             })
         }

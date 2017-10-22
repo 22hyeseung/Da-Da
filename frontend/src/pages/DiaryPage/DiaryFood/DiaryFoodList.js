@@ -21,9 +21,11 @@ class DiaryFoodList extends React.Component {
     this.state = {
       isUpdateMode: false,
       open: false,
-      inputValue: false,
+      updateAmountVal: false,
       disabled: false,
       selectKey: -1,
+      serve: null,
+      food_id: null,
     }
   }
   deleteFoodOfDB = id => {
@@ -31,18 +33,22 @@ class DiaryFoodList extends React.Component {
   }
 
   createPayloadAndUpdateToDB = () => {
-    // if (
-    //   !this.state.inputAmount ||
-    //   this.state.inputAmount < 1
-    // ) {
-    //   return this.setState({
-    //     disabled: true,
-    //   })
-    // }
-    this.props.updateFoodOfDB({
-      amount: this.state.inputAmount * 1,
-      serve: this.state.serve,
-    })
+    if (
+      !this.state.updateAmountVal ||
+      this.state.updateAmountVal < 1
+    ) {
+      return this.setState({
+        disabled: true,
+      })
+    }
+    this.props.updateFoodOfDB(
+      {
+        amount: this.state.updateAmountVal * 1,
+        serve: this.state.serve,
+      },
+      this.state.food_id,
+    )
+    this.toggleUpdatingMode()
   }
 
   toggleUpdatingMode = () => {
@@ -53,7 +59,7 @@ class DiaryFoodList extends React.Component {
 
   handleUpdate = e => {
     this.setState({
-      inputValue: e.target.value,
+      updateAmountVal: e.target.value,
     })
     // 양 입력 안했을 경우 버튼 비활성화
     if (e.target.value > 0)
@@ -78,21 +84,26 @@ class DiaryFoodList extends React.Component {
   //   }, 2000)
   // }
 
-  show = (dimmer, name) => () =>
+  show = (dimmer, name, id) => () => {
     this.setState({
       dimmer,
       open: true,
       // selectKey: i,
       food_name: name,
+      food_id: id,
     })
+  }
   close = () => this.setState({ open: false })
+
   render() {
     const { open, dimmer, selectKey } = this.state
     return (
       <div style={{ display: 'flex' }}>
+        {console.log(this.state.food_id)}
         {this.props.foodresult.map((card, i) => {
           return (
             <Segment style={Style.mealCard}>
+              {console.log(this.props.foodresult)}
               <div className="diary-food-meal-list-card-firstRow">
                 <p className="diary-food-meal-list-card-firstRow-title">
                   {card.food_name_ko}
@@ -110,6 +121,7 @@ class DiaryFoodList extends React.Component {
                     onClick={this.show(
                       'blurring',
                       card.food_name_ko,
+                      card.eat_log_id,
                     )}
                     key={i}
                   />
@@ -236,7 +248,9 @@ class DiaryFoodList extends React.Component {
                 ...submitBtn,
                 padding: '10px',
               }}
-              onClick={this.close}
+              onClick={
+                this.createPayloadAndUpdateToDB
+              }
             >
               수정하기
             </Button>
@@ -256,8 +270,8 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteFoodOfDB: id =>
       dispatch(deleteFoodOfDB(id)),
-    updateFoodOfDB: payload =>
-      dispatch(updateFoodOfDB(payload)),
+    updateFoodOfDB: (payload, id) =>
+      dispatch(updateFoodOfDB(payload, id)),
   }
 }
 
