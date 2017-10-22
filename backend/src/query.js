@@ -202,7 +202,7 @@ function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, ea
 function getEatLogsFood({ eat_log_member_id, eat_log_diary_date }) {
   return knex('eat_log')
     .select(
-      'eat_log_id', 'eat_log.eat_log_picture', 'eat_log.eat_log_food_id', 'food.food_name_ko', 'food.food_name_en', 'food.food_unit', 'eat_log.eat_log_meal_tag',
+      'eat_log_id', 'eat_log.eat_log_picture', 'eat_log.eat_log_food_id', 'eat_log.eat_log_amount', 'food.food_name_ko', 'food.food_name_en', 'food.food_unit', 'eat_log.eat_log_meal_tag',
       knex.raw('(((food.food_carb*4) + (food.food_protein*4)+(food.food_fat*9))*eat_log.eat_log_amount) as food_kcal'),
       knex.raw('(eat_log.eat_log_amount * food.food_carb) as food_carb'),
       knex.raw('(eat_log.eat_log_amount * food.food_protein) as food_protein'),
