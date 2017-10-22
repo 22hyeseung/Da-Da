@@ -136,7 +136,7 @@ router.get('/', (req, res) => {
  *
  * @apiSuccess {String} weight null complete
  *
- * @apiSuccesExample {HTML-message} Success-Response:
+ * @apiSuccessExample {HTML-message} Success-Response:
  * res.status(200)
  * weight null complete
  */
@@ -159,7 +159,7 @@ router.delete('/:id', (req, res) => {
  * @apiParam {Number} user.id 사용자 id
  * @apiParam {Number} goal_weight 사용자가 입력한 목표 몸무게
  * @apiSuccess {Number} member_goal_weight 사용자가 입력한 목표 몸무게
- * @apiSuccesExample {JSON} Success-Response:
+ * @apiSuccessExample {JSON} Success-Response:
  *  {
  *    "member_id": 1,
  *    "member_goal_weight": 24
