@@ -1,12 +1,12 @@
 import * as types from '../actions/ActionTypes'
 import rootApi from '../config'
 
-export const getTargetKcal = () => {
+export const getTargetKcal = (date) => {
   return dispatch => {
     dispatch({
       type: types.GET_KCAL_REQUEST,
     })
-    fetch(`${rootApi}/diary/kcal?date=20171022`, {
+    fetch(`${rootApi}/diary/kcal?date=${date}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window.localStorage.token}`
@@ -14,7 +14,6 @@ export const getTargetKcal = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data, '<< [ data ]');
         dispatch({
           type: types.GET_KCAL_SUCCESS,
           payload: data

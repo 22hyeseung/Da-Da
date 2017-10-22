@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // 스타일링
-import { Segment, Icon } from 'semantic-ui-react'
+import { Segment, Icon, Input, Button } from 'semantic-ui-react'
 import {
   calorieGoal,
   iconSet,
+  kcalInput,
 } from './StyledDiaryCommon'
 import './Diary.css'
 // 리덕스 액션생성자
@@ -22,17 +23,33 @@ import { getTargetKcal } from '../../actions/diaryKcal'
 import {
   todaysDate,
   todaysDay,
+  dateStringForApiQuery,
 } from '../../helper/date'
 
 class DiarySubNav extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      targetKcal: null,
+      isPostMode: false,
+    }
+  }
+
+  changeMode = () => {
+    this.setState({
+      targetKcal: this.props.targetKcal.kcal,
+      isPostMode: !this.state.isPostMode,
+    })
+  }
+
+  handleTargetKcalChange = e => {
+    this.setState({ targetKcal: e.target.value })
   }
 
   componentWillMount() {
     this.props.setTodayDate(todaysDate)
     this.props.setTodayDay(todaysDay)
-    this.props.getTargetKcal()
+    this.props.getTargetKcal(dateStringForApiQuery(todaysDate))
   }
 
   render() {
@@ -54,9 +71,18 @@ class DiarySubNav extends Component {
             목표 칼로리
           </span>
           <div>
-            <span className="diary-food-goal-kcal">
-              {this.props.targetKcal.kcal}
-            </span>
+            {this.state.isPostMode ? (
+              <Input
+                style={kcalInput}
+                value={this.state.targetKcal}
+                onChange={this.handleTargetKcalChange}
+                size='mini'
+              />
+            ) : (
+              <span className="diary-food-goal-kcal">
+                {this.props.targetKcal.kcal}
+              </span>
+            )}
             <span className="diary-food-goal-unit">
               kcal
             </span>
@@ -64,6 +90,7 @@ class DiarySubNav extends Component {
               src={iconSet.editIcon}
               className="diary-food-goal-edit"
               alt="클릭하면 목표칼로리를 수정할 수 있습니다"
+              onClick={this.changeMode}
             />
           </div>
         </Segment>
