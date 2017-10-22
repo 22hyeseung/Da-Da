@@ -1,7 +1,7 @@
 import * as types from '../actions/ActionTypes'
 import rootApi from '../config'
 
-export const getKcal = () => {
+export const getTargetKcal = () => {
   return dispatch => {
     dispatch({
       type: types.GET_KCAL_REQUEST,

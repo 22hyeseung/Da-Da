@@ -1,5 +1,5 @@
 const DEFAULT_USER_KCAL = {
-  targetKcal: '',
+  targetKcal: null,
 }
 
 export const diaryKcalReducer = (
@@ -14,5 +14,9 @@ export const diaryKcalReducer = (
       ...state,
       targetKcal: action.payload,
     }
+  }
+
+  return {
+    ...state,
   }
 }

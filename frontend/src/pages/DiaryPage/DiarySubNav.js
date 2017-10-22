@@ -16,7 +16,7 @@ import {
   setTodayDay,
 } from '../../actions/setDate'
 
-import { getKcal } from '../../actions/diaryKcal'
+import { getTargetKcal } from '../../actions/diaryKcal'
 
 // helper: 오늘 날짜
 import {
@@ -35,7 +35,6 @@ class DiarySubNav extends Component {
   componentWillMount() {
     this.props.setTodayDate(todaysDate)
     this.props.setTodayDay(todaysDay)
-    this.setState({ userTagetKcal: this.props.getKcal() })
   }
 
   render() {
@@ -88,7 +87,7 @@ const mapDispatchtoProps = dispatch => ({
     dispatch(setTodayDate(date)),
   setTodayDay: day => dispatch(setTodayDay(day)),
   getTargetKcal: date =>
-    dispatch(getKcal(date)),
+    dispatch(getTargetKcal(date)),
 })
 
 export default connect(

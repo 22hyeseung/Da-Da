@@ -8,22 +8,19 @@ import { connect } from 'react-redux'
 
 class WeightProgress extends Component {
   render() {
-    // 임의의 값 넣음.
-    // 공식 = {(현재체중-시작체중)/(시작체중 - 목표체중 )}/33*100
-    let recentWeight = 0
-
-    this.props.weightListItem.forEach(item => {
-      if (
-        item.id ===
-        this.props.weightListItem.length
-      ) {
-        recentWeight = item.weight
-      }
-    })
-
-    const flagPosition =
-      (60 - `${recentWeight}`) / 10 * 100
-
+    // 공식 = {(시작체중-현재체중)/(시작체중 - 목표체중 )}*100
+    let flagPosition = ''
+    {
+      this.props.weightListItem.length === 0
+        ? // 인터넷 느린 경우 등, get 데이터가 안 왔을때
+          (flagPosition = 0)
+        : (flagPosition =
+            (60 -
+              this.props.weightListItem[0]
+                .day_log_kg) /
+            10 *
+            100)
+    }
     return (
       <div className="weight-progress">
         {/* 왼쪽 시작체중 그리드 시작 */}

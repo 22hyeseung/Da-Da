@@ -2,18 +2,24 @@ import * as types from '../actions/ActionTypes'
 import rootApi from '../config'
 
 // 1. db 값 받는 action
-export const fetchWeightToDB = () => {
+export const fetchWeightFromDB = () => {
   return dispatch => {
-    fetch(`${rootApi}/weightLists`)
+    fetch(`${rootApi}/diary/kg`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
       .then(res => res.json())
       .then(data => {
         dispatch({
           type: types.FETCHED_WEIGHT_SUCCESS,
-          payload: [...data].reverse(),
+          payload: data,
         })
       })
       .catch(error => {
-        console.log('error')
+        console.log('fetchWeightLogsToDB error')
       })
   }
 }
@@ -21,19 +27,84 @@ export const fetchWeightToDB = () => {
 // 2. input에서 받은 값을 db로 보내는 action(post)
 export const postWeightToDB = payload => {
   return dispatch => {
-    fetch(`${rootApi}/weightLists/`, {
+    // console.log(payload)
+    fetch(`${rootApi}/diary/kg`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+        'Content-type': 'application/json',
       },
       body: JSON.stringify(payload),
     })
-      .then(res => res.json())
-      .then(result => {
-        dispatch({
-          type: types.POST_WEIGHT_TO_DATABASE,
-          payload: result,
-        })
+      .then(res => {
+        if (res.ok) {
+          return fetch(`${rootApi}/diary/kg`, {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${window
+                .localStorage.token}`,
+            },
+          })
+            .then(res => res.json())
+            .then(data => {
+              dispatch({
+                type:
+                  types.POST_AND_GET_WEIGHT_SUCCESS,
+                payload: data,
+              })
+            })
+            .catch(error => {
+              console.log(
+                'POSTandGETWeightLogsToDB error',
+              )
+            })
+        }
+      })
+      .catch(error => {
+        console.log('postWeightToDB error')
+      })
+  }
+}
+
+// 3. delete
+export const deleteWeightOfDB = id => {
+  return dispatch => {
+    fetch(`${rootApi}/weight/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
+      .then(res => {
+        if (res.ok) {
+          return fetch(`${rootApi}/diary/kg`, {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${window
+                .localStorage.token}`,
+            },
+          })
+            .then(res => res.json())
+            .then(data => {
+              dispatch({
+                type:
+                  types.DELETE_AND_GET_WEIGHT_SUCCESS,
+                payload: data,
+              })
+            })
+            .catch(error => {
+              console.log(
+                'DeleteandGETWeightLogsToDB error',
+              )
+            })
+        }
+      })
+      .catch(error => {
+        console.log(
+          'DeleteandGETWeightLogsToDB error',
+        )
       })
   }
 }
