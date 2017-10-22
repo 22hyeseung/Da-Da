@@ -88,12 +88,12 @@ export const longBox = {
 
 export const longSubmitBtn = {
   ...submitBtn,
-  marginLeft: '744px',
+  marginLeft: '725px',
+  marginTop: '8px',
 }
 
 export const savedContainer = {
   border: '1px solid f5f7fa',
   borderRadius: '4px',
-  padding: '20px',
-  minHeight: '400px',
+  minHeight: '580px',
 }

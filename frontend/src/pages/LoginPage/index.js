@@ -47,12 +47,12 @@ class LoginPage extends Component {
     if (e.origin === `${rootApi}` && token) {
       window.localStorage.token = token // window에 토큰 저장
       this.props.saveToken(token)
+      this.state.popupWindow.close()
+      this.setState({
+        popupWindow: null,
+      })
+      this.props.history.push('/')
     }
-    this.state.popupWindow.close()
-    this.setState({
-      popupWindow: null,
-    })
-    this.props.history.push('/')
     // window.location.reload()
   }
 

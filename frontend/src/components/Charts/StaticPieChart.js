@@ -4,6 +4,7 @@ import {
   Pie,
   Tooltip,
   Cell,
+  Legend,
 } from 'recharts'
 
 const data = [
@@ -19,7 +20,7 @@ class StaticPieChart extends Component {
       <PieChart width={250} height={200}>
         <Pie
           data={data}
-          cx={115}
+          cx={100}
           cy={100}
           innerRadius={40}
           outerRadius={80}
@@ -31,6 +32,7 @@ class StaticPieChart extends Component {
             />
           ))}
         </Pie>
+        <Legend align="right" layout="vertical" />
         <Tooltip />
       </PieChart>
     )
