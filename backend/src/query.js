@@ -171,6 +171,7 @@ function getExercisesByName(exercise_name) {
 function getKgByDate({ day_log_member_id }) {
   return knex('day_log')
     .where({ day_log_member_id })
+    .whereNotNull('day_log_kg')
     .orderBy('day_log_diary_date', 'desc')
     .select(
       'day_log_kg', 'day_log_member_id', 'day_log_id',
