@@ -137,7 +137,10 @@ export const getAllWeightFromDB = () => {
         })
         dispatch({
           type: types.GET_WEIGHT_ALL_SUCCESS,
-          payload: chartData.reverse(),
+          payload: {
+            allLog: chartData.reverse(),
+            goalWeight: data.goal_weight,
+          },
         })
       })
       .then()

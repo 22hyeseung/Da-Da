@@ -5,7 +5,8 @@ const DEFAULT_WEIGHT = {
 const DEFAULT_ALL_LOG = {
   isLoading: false,
   errorState: false,
-  allLog: {},
+  allLog: [],
+  goalWeight: 0,
 }
 
 // Fetch한 데이터 변경해주는 reducer
@@ -53,7 +54,8 @@ export const weightAllReducer = (
       return {
         ...state,
         isLoading: false,
-        allLog: action.payload,
+        allLog: action.payload.allLog,
+        goalWeight: action.payload.goalWeight,
       }
     case 'GET_WEIGHT_ALL_FAILED':
       return {
