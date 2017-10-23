@@ -83,9 +83,9 @@ function postDayLogComment({ day_log_member_id, day_log_comment, day_log_diary_d
 function getSelectDayLog({ day_log_member_id, day_log_diary_date }) {
   return knex('day_log')
     .select(
-'day_log_id', 'day_log_member_id', 'day_log_regret', 'day_log_comment',
+      'day_log_id', 'day_log_member_id', 'day_log_regret', 'day_log_comment',
       knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as day_log_diary_date')
-)
+    )
     .where({ day_log_diary_date, day_log_member_id })
     .first()
 }
@@ -97,9 +97,9 @@ function putRegretDayLogById({ day_log_id, day_log_regret }) {
     .then(() => {
       return knex('day_log')
         .select(
-'day_log_id', 'day_log_member_id', 'day_log_regret',
+          'day_log_id', 'day_log_member_id', 'day_log_regret',
           knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as day_log_diary_date')
-)
+        )
         .where({ day_log_id })
         .first()
     })
@@ -112,9 +112,9 @@ function putCommentDayLogById({ day_log_id, day_log_comment }) {
     .then(() => {
       return knex('day_log')
         .select(
-'day_log_id', 'day_log_member_id', 'day_log_comment',
+          'day_log_id', 'day_log_member_id', 'day_log_comment',
           knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\')as day_log_diary_date')
-)
+        )
         .where({ day_log_id })
         .first()
     })
@@ -369,16 +369,14 @@ function getReportKcalByDate({ eat_log_member_id, start_date, end_date }) {
   return knex('view_eat_log_type3')
     .where({ eat_log_member_id })
     .select(
-      'view_eat_log_type3.eat_log_meal_tag', 'day_log.day_log_kcal',
+      'view_eat_log_type3.eat_log_meal_tag',
       knex.raw('date_format(view_eat_log_type3.eat_log_diary_date, \'%Y-%m-%d\') as diary_date'),
       knex.raw('sum(view_eat_log_type3.kcal) as kcal')
     )
-    .join('day_log', 'view_eat_log_type3.eat_log_member_id', '=', 'day_log.day_log_id')
     .whereNotNull('eat_log_meal_tag')
     .whereBetween('eat_log_diary_date', [start_date, end_date])
     .orderBy('eat_log_diary_date', 'eat_log_meal_tag')
     .groupBy('eat_log_meal_tag', 'eat_log_diary_date')
-    .then()
 }
 
 function getReportNutrition({ eat_log_member_id, start_date, end_date }) {
@@ -389,6 +387,7 @@ function getReportNutrition({ eat_log_member_id, start_date, end_date }) {
       knex.raw('round(sum(protein),3) as protein'),
       knex.raw('round(sum(fat),3) as fat')
     )
+    .join('day_log', 'view_eat_log_type2.eat_log_member_id', '=', 'day_log.day_log_member_id')
     .where({ eat_log_member_id })
     .andWhere('eat_log_diary_date', '>=', start_date)
     .andWhere('eat_log_diary_date', '<=', end_date)
@@ -403,7 +402,8 @@ function getReportNutritionSum({ eat_log_member_id, start_date, end_date }) {
       'eat_log_member_id',
       knex.raw('round(sum(carb),3) as carb'),
       knex.raw('round(sum(protein),3) as protein'),
-      knex.raw('round(sum(fat),3) as fat')
+      knex.raw('round(sum(fat),3) as fat'),
+
     )
     .where({ eat_log_member_id })
     .andWhere('eat_log_diary_date', '>=', start_date)
@@ -558,6 +558,24 @@ function postFirstDayLog({ day_log_member_id, day_log_height, day_log_kg, day_lo
     })
 }
 
+function getGoalKcalByDate({ day_log_member_id, start_date, end_date }) {
+  return knex('day_log')
+    .select(
+      'day_log_kcal',
+      knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as diary_date')
+    )
+    .where({ day_log_member_id })
+    .whereBetween('day_log_diary_date', [start_date, end_date])
+}
+
+function getFirstGoalKcalById({ day_log_member_id }) {
+  return knex('day_log')
+    .select('day_log_kcal')
+    .where({ day_log_member_id })
+    .orderBy('day_log_diary_date')
+    .first()
+}
+
 module.exports = {
   getUserById,
   firstOrCreateUserByProvider,
@@ -599,5 +617,7 @@ module.exports = {
   deleteBurnById,
   patchBurnById,
   postFirstMember,
-  postFirstDayLog
+  postFirstDayLog,
+  getGoalKcalByDate,
+  getFirstGoalKcalById
 }
