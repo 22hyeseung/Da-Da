@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import {
   PieChart,
   Pie,
@@ -7,28 +9,62 @@ import {
   Legend,
 } from 'recharts'
 
-const data = [
-  { nutrition: '탄수화물', value: 720 },
-  { nutrition: '단백질', value: 410 },
-  { nutrition: '지방', value: 120 },
-]
-const COLORS = ['#1a2980', '#a8b7c7', '#e5e5e5']
+// API 통신용 date형식 리턴하는 함수: YYYYMMDD
+import { dateStringForApiQuery } from '../../helper/date'
 
-class StaticPieChart extends Component {
+import {
+  getFoodSummaryFromDB, // 하루 단위 food summary
+} from '../../actions/getFoodSummary'
+
+const COLORS = ['#16325c', '#a8b7c7', '#e5e5e5']
+
+class SummaryPieChart extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentWillMount() {
+    const {
+      dateState,
+      getFoodSummaryFromDB,
+    } = this.props
+    const date = dateStringForApiQuery(dateState)
+    getFoodSummaryFromDB(date)
+  }
+
   render() {
+    const { calorieSummary } = this.props
+    const data = [
+      {
+        name: '탄수화물',
+        value: calorieSummary.today_carb,
+      },
+      {
+        name: '단백질',
+        value: calorieSummary.today_protein,
+      },
+      {
+        name: '지방',
+        value: calorieSummary.today_fat,
+      },
+    ]
+
     return (
-      <PieChart width={250} height={200}>
+      <PieChart width={250} height={260}>
         <Pie
           data={data}
-          cx={100}
+          cx={110}
           cy={100}
           innerRadius={40}
           outerRadius={80}
           fill="#8884d8"
+          legendType="square"
+          paddingAngle={1.3}
         >
           {data.map((entry, index) => (
             <Cell
-              fill={COLORS[index % COLORS.length]}
+              fill={COLORS[index]}
+              key={entry.nutrition}
             />
           ))}
         </Pie>
@@ -39,4 +75,22 @@ class StaticPieChart extends Component {
   }
 }
 
-export default StaticPieChart
+const mapStateToProps = state => {
+  return {
+    calorieSummary:
+      state.diarySummary.calorieSummary,
+    dateState: state.today.date,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getFoodSummaryFromDB: date =>
+      dispatch(getFoodSummaryFromDB(date)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SummaryPieChart)
