@@ -260,9 +260,9 @@ router.delete('/:id', (req, res) => {
 })
 
 /**
- * @api {petch} /eat-logs/:id Petch Eat-logs
- * @apiDescription 사용자가 먹은 음식의 기록을 변경
- * @apiName Petch EatLogs
+ * @api {put} /eat-logs/:id Put Eat-logs
+ * @apiDescription 사용자가 먹은 음식의 기록을 치환
+ * @apiName Put EatLogs
  * @apiGroup eatlog
  *
  * @apiParam {Float} amount 먹은양 기록
@@ -291,7 +291,7 @@ router.delete('/:id', (req, res) => {
  * }
  */
 
-router.patch('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const amount = req.body.amount ? req.body.amount : null
   const serve = req.body.serve ? req.body.serve : null
 
@@ -301,8 +301,8 @@ router.patch('/:id', (req, res) => {
     'eat_log_serve': serve
   }
 
-  query.patchEatLogs(update_eat_log)
-    .then((result) => {
+  query.putEatLogs(update_eat_log)
+    .then(result => {
       if (result) {
         res.send(result)
       } else {

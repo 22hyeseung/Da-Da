@@ -478,7 +478,7 @@ function getKcalByDate({ day_log_diary_date, day_log_member_id }) {
     })
 }
 
-function patchEatLogs({ eat_log_id, eat_log_amount, eat_log_serve }) {
+function putEatLogs({ eat_log_id, eat_log_amount, eat_log_serve }) {
   return knex('eat_log')
     .where({ eat_log_id })
     .update({ eat_log_amount, eat_log_serve })
@@ -593,7 +593,7 @@ module.exports = {
   postGoalKcalbyUser,
   getKcalByDate,
   deleteEatLogs,
-  patchEatLogs,
+  putEatLogs,
   WeightNullById,
   PostGoalKgbyUser,
   deleteBurnById,
