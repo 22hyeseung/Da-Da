@@ -312,9 +312,9 @@ router.put('/:id', (req, res) => {
 })
 
 /**
- * @api {get} /eat-logs/summary Get EatSummary
+ * @api {get} /eat-logs/summary/day Get EatSummary
  * @apiDescription 우측의 사용자 칼로리 요약
- * @apiName eatSummary
+ * @apiName eatSummary Day
  * @apiGroup eatlog
  *
  * @apiParam {String} date 요약할 날짜 ("YYYYMMDD")
@@ -329,7 +329,7 @@ router.put('/:id', (req, res) => {
  * @apiSuccess {Date} today_fat 하루 섭취 지방
  *
  * @apiSuccessExample {json} Success-Response:
- * /eat-logs/summary?date=20171010
+ * /eat-logs/summary/day?date=20171010
  *
  * {
  *     "member_id": 1,
@@ -343,7 +343,7 @@ router.put('/:id', (req, res) => {
  * }
  */
 
-router.get('/summary', (req, res) => {
+router.get('/summary/day', (req, res) => {
   const param = {
     'day_log_member_id': req.user.id,
     'day_log_diary_date': req.query.date,
