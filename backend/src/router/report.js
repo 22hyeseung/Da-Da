@@ -128,50 +128,98 @@ router.get('/nutrition/summary', (req, res) => {
  *
  * @apiSuccess {Number} eat_log_meal_tag 사용자가 섭취한 시기
  * @apiSuccess {Number} day_log_diary_date 사용자가 등록한 섭취일자
- * @apiSuccess {Number} sum(kcal) 사용자가 meal_tag에 섭취한 당일 열량
+ * @apiSuccess {Number} kcal 사용자가 meal_tag에 섭취한 당일 열량
  * @apiSuccess {Number} day_log_kcal 사용자가 입력한 당일 목표 섭취 칼로리
  *
  * @apiSuccessExample {json} Success-Respoonse:
  * http://localhost:5000/report/kcal/days?start_date=20170101&end_date=20170102
- *[
- *    {
- *        "eat_log_meal_tag": "간식",
- *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
- *        "sum(kcal)": 37.48,
- *        "day_log_kcal": 1200
- *    },
- *    {
- *        "eat_log_meal_tag": "아침",
- *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
- *        "sum(kcal)": 9.37,
- *        "day_log_kcal": 1200
- *    },
- *    {
- *        "eat_log_meal_tag": "저녁",
- *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
- *        "sum(kcal)": 28.11,
- *        "day_log_kcal": 1200
- *    },
- *    {
- *        "eat_log_meal_tag": "점심",
- *        "eat_log_diary_date": "2017-10-10T15:00:00.000Z",
- *        "sum(kcal)": 18.74,
- *        "day_log_kcal": 1200
+ *{
+ *    "meal_kcal": [
+ *        {
+ *            "eat_log_meal_tag": "아침",
+ *            "diary_date": "2017-10-11",
+ *            "kcal": 7.21
+ *        },
+ *        {
+ *            "eat_log_meal_tag": "저녁",
+ *            "diary_date": "2017-10-11",
+ *            "kcal": 21.63
+ *        },
+ *        {
+ *            "eat_log_meal_tag": "간식",
+ *            "diary_date": "2017-10-11",
+ *            "kcal": 28.84
+ *        },
+ *        {
+ *            "eat_log_meal_tag": "점심",
+ *            "diary_date": "2017-10-11",
+ *            "kcal": 14.42
+ *        },
+ *        {
+ *            "eat_log_meal_tag": "간식",
+ *            "diary_date": "2017-10-21",
+ *            "kcal": 28.84
+ *        },
+ *        {
+ *            "eat_log_meal_tag": "저녁",
+ *            "diary_date": "2017-10-21",
+ *            "kcal": 42.24
+ *        }
+ *    ],
+ *    "day_goal_kcal": [
+ *        {
+ *            "day_log_kcal": 1200,
+ *            "diary_date": "2017-10-11"
+ *        },
+ *        {
+ *            "day_log_kcal": null,
+ *            "diary_date": "2017-10-11"
+ *        },
+ *        {
+ *            "day_log_kcal": 1300,
+ *            "diary_date": "2017-10-10"
+ *        },
+ *        {
+ *            "day_log_kcal": 1200,
+ *            "diary_date": "2017-10-14"
+ *        },
+ *        {
+ *            "day_log_kcal": 1900,
+ *            "diary_date": "2017-10-16"
+ *        },
+ *        {
+ *            "day_log_kcal": 2000,
+ *            "diary_date": "2017-10-19"
+ *        },
+ *        {
+ *            "day_log_kcal": 2009,
+ *            "diary_date": "2017-10-27"
+ *        }
+ *    ],
+ *    "default_goal_kcal": {
+ *        "day_log_kcal": 1300
  *    }
- *]
- * */
+ *}
+ */
 router.get('/kcal/days', (req, res) => {
   const param = {
     'eat_log_member_id': req.user.id,
+    'day_log_member_id': req.user.id,
     'start_date': req.query.start_date,
     'end_date': req.query.end_date
   }
 
   if (param.start_date && param.end_date) {
     query.getReportKcalByDate(param)
-    .then(meal_kcal => {
-      res.send(meal_kcal)
-    })
+      .then(meal_kcal => {
+        query.getGoalKcalByDate(param)
+          .then(day_goal_kcal => {
+            query.getFirstGoalKcalById(param)
+              .then(default_goal_kcal => {
+                res.send({ meal_kcal, day_goal_kcal, default_goal_kcal })
+              })
+          })
+      })
   } else {
     res.status(405)
     res.send('조회 기간을 지정 해야합니다.')
@@ -224,4 +272,5 @@ router.get('/kcal/summary', (req, res) => {
       res.send(data)
     })
 })
+
 module.exports = router
