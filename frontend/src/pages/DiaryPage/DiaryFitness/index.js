@@ -7,11 +7,42 @@ import { container } from './StyledFitness'
 // 컴포넌트
 import DiarySubHeader from '../DiarySubHeader'
 import DiaryFitnessList from './DiaryFitnessList'
-import DiaryFitnessInput from './DiaryFitnessInput'
 import DiaryFitnessAdd from './DiaryFitnessAdd'
+import ComponentLoader from '../../../components/Loader/ComponentLoader'
+
+import { connect } from 'react-redux'
+import { getFitnessLogsFromDB } from '../../../actions/diaryFitness'
+// helper: 오늘 날짜 API Query형식
+import { dateStringForApiQuery } from '../../../helper/date'
 
 class DiaryFitness extends Component {
+  state = {
+    loading: false,
+    date: dateStringForApiQuery(
+      this.props.dateState,
+    ),
+  }
+
+  componentWillMount() {
+    // this.props.fetchFitnessLogs(this.state.date)
+    this.setState({ loading: true }, () =>
+      this.fetchData(),
+    )
+  }
+
+  // Loader 일정시간추가
+  fetchData = () => {
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+      })
+    }, 2000)
+  }
+
   render() {
+    if (this.state.loading) {
+      return <ComponentLoader />
+    }
     return (
       <Segment style={container}>
         <DiarySubHeader
@@ -19,13 +50,26 @@ class DiaryFitness extends Component {
           tabNameKR="운동 다이어리"
           icon="fitnessIcon"
         />
-        <DiaryFitnessList />
-        <DiaryFitnessList />
-        <DiaryFitnessInput />
         <DiaryFitnessAdd />
       </Segment>
     )
   }
 }
 
-export default DiaryFitness
+const mapStateToProps = state => {
+  return {
+    fitnessResult: state.fitness.fitnessResult,
+    dateState: state.today.date,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchFitnessLogs: date =>
+      dispatch(getFitnessLogsFromDB(date)),
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DiaryFitness)

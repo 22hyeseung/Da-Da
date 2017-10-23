@@ -125,6 +125,8 @@ export const addButton = {
   fontWeight: '200',
   display: 'flex',
   alignItems: 'center',
+  border: '1px dashed #A8B7C7',
+  borderRadius: '4px',
 }
 
 export const addIcon = { marginRight: '10px' }

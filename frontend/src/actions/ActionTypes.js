@@ -9,6 +9,20 @@ export const UPDATE_FOOD_OF_DATABASE =
 export const DELETE_FOOD_OF_DATABASE =
   'DELETE_FOOD_OF_DATABASE'
 //==========================================
+
+//==========================================
+// diaryFitness.js
+export const FETCHED_FITNESS_LOGS_SUCCESS =
+  'FETCHED_FITNESS_LOGS_SUCCESS'
+export const POST_FITNESS_TO_DATABASE =
+  'POST_FITNESS_TO_DATABASE'
+export const UPDATE_FITNESS_OF_DATABASE =
+  'UPDATE_FITNESS_OF_DATABASE'
+export const DELETE_FITNESS_OF_DATABASE =
+  'DELETE_FITNESS_OF_DATABASE'
+//==========================================
+
+//==========================================
 // weight.js
 export const FETCHED_WEIGHT_SUCCESS =
   'FETCHED_WEIGHT_SUCCESS'

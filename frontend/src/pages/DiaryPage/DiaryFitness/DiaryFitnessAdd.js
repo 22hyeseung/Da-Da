@@ -4,14 +4,37 @@ import {
   addButton,
   addIcon,
 } from './StyledFitness'
+import DiaryFitnessSearch from './DiaryFitnessSearch'
 
-const DiaryFitnessAdd = () => {
-  return (
-    <Button fluid style={addButton}>
-      <Icon name="plus" style={addIcon} />
-      운동 추가하기
-    </Button>
-  )
+class DiaryFitnessAdd extends React.Component {
+  state = {
+    isSearchMode: false,
+  }
+
+  toggleSearchMode = () => {
+    this.setState({
+      isSearchMode: !this.state.isSearchMode,
+    })
+  }
+  render() {
+    return (
+      <div>
+        {this.state.isSearchMode ? (
+          <DiaryFitnessSearch />
+        ) : (
+          <Button
+            fluid
+            className="diary-food-addBtn"
+            style={addButton}
+            onClick={this.toggleSearchMode}
+          >
+            <Icon name="plus" style={addIcon} />
+            운동 추가하기
+          </Button>
+        )}
+      </div>
+    )
+  }
 }
 
 export default DiaryFitnessAdd
