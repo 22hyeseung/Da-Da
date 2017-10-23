@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import rootApi from '../../config'
 // 스타일링
 import { Grid } from 'semantic-ui-react'
 import { tabContainer } from './StyledHome'

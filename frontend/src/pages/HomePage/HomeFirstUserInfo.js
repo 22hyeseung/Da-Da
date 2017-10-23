@@ -1,30 +1,17 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import * as Style from './StyledHome'
 import {
   Button,
-  Input,
   Grid,
   Form,
   Radio,
-  Checkbox,
   Modal,
-  List,
   Image,
 } from 'semantic-ui-react'
 import './Home.css'
 import { connect } from 'react-redux'
-import {
-  Route,
-  Redirect,
-  Switch,
-} from 'react-router-dom'
-import {
-  getUserInfo,
-  postUserInfo,
-} from '../../actions/auth'
+import { postUserInfo } from '../../actions/auth'
 import introImg from '../../static/img/home-intro-img.svg'
-import { withRouter } from 'react-router'
 import { dateStringForApiQuery } from '../../helper/date'
 
 class HomeFirstUserInfo extends Component {
@@ -85,7 +72,7 @@ class HomeFirstUserInfo extends Component {
   }
 
   componentDidMount() {
-    this.state.gender == '남자'
+    this.state.gender === '남자'
       ? this.setState({
           gender_enum: 1,
         })
