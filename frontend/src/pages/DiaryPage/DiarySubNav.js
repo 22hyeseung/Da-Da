@@ -17,7 +17,7 @@ import {
   setTodayDay,
 } from '../../actions/setDate'
 
-import { getTargetKcal, postTargetKcal } from '../../actions/diaryKcal'
+import { getGoalKcal, postGoalKcal } from '../../actions/diaryKcal'
 
 // helper: 오늘 날짜
 import {
@@ -30,26 +30,45 @@ class DiarySubNav extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      targetKcal: null,
+      goalKcal: null,
       isPostMode: false,
     }
   }
 
   changeMode = () => {
+    if(this.state.isPostMode&& this.state.goalKcal){
+      const param = {
+        goal_kcal: this.state.goalKcal,
+        date: dateStringForApiQuery(todaysDate),
+      }
+
+      this.props.postGoalKcal(param)
+    }
+
     this.setState({
-      targetKcal: this.props.targetKcal.kcal,
+      goalKcal: this.props.goalKcal.kcal,
       isPostMode: !this.state.isPostMode,
     })
   }
 
-  handleTargetKcalChange = e => {
-    this.setState({ targetKcal: e.target.value })
+  handleGoalKcalChange = e => {
+    if(e.target.value.length > 6){
+      return false
+    }
+    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+    this.setState({ goalKcal: e.target.value })
+  }
+
+  handleGoalKcalKey = e => {
+    if(e.keyCode === 13){
+      this.changeMode()
+    }
   }
 
   componentWillMount() {
     this.props.setTodayDate(todaysDate)
     this.props.setTodayDay(todaysDay)
-    this.props.getTargetKcal(dateStringForApiQuery(todaysDate))
+    this.props.getGoalKcal(dateStringForApiQuery(todaysDate))
   }
 
   render() {
@@ -74,13 +93,14 @@ class DiarySubNav extends Component {
             {this.state.isPostMode ? (
               <Input
                 style={kcalInput}
-                value={this.state.targetKcal}
-                onChange={this.handleTargetKcalChange}
+                value={this.state.goalKcal}
+                onChange={this.handleGoalKcalChange}
+                onKeyDown={this.handleGoalKcalKey}
                 size='mini'
               />
             ) : (
               <span className="diary-food-goal-kcal">
-                {this.props.targetKcal.kcal}
+                {this.props.goalKcal.kcal}
               </span>
             )}
             <span className="diary-food-goal-unit">
@@ -103,7 +123,7 @@ const mapStateToProps = state => {
   return {
     dateState: state.today.date,
     dayState: state.today.day,
-    targetKcal: state.targetKcal,
+    goalKcal: state.goalKcal,
   }
 }
 
@@ -111,10 +131,10 @@ const mapDispatchtoProps = dispatch => ({
   setTodayDate: date =>
     dispatch(setTodayDate(date)),
   setTodayDay: day => dispatch(setTodayDay(day)),
-  getTargetKcal: date =>
-    dispatch(getTargetKcal(date)),
-  postTargetKcal: date =>
-    dispatch(postTargetKcal()),
+  getGoalKcal: date =>
+    dispatch(getGoalKcal(date)),
+  postGoalKcal: param =>
+    dispatch(postGoalKcal(param)),
 })
 
 export default connect(

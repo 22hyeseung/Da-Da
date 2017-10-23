@@ -18,7 +18,7 @@ const reducers = combineReducers({
   shortLog: shortLogReducer,
   longLog: longLogReducer,
   foodLogs: diaryFoodReducer,
-  targetKcal: diaryKcalReducer,
+  goalKcal: diaryKcalReducer,
 })
 
 export default reducers
