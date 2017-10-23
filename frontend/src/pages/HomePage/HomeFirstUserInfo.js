@@ -31,6 +31,7 @@ class HomeFirstUserInfo extends Component {
       ),
     }
   }
+  // 성별을 받는 핸들러
   handleGenderChange = (e, { value }) => {
     this.setState({ gender: value })
     if (value > 0)
@@ -39,6 +40,7 @@ class HomeFirstUserInfo extends Component {
       })
   }
 
+  // 생일을 받는 핸들러
   handleBirthChange = e => {
     this.setState({ birth: e.target.value })
     if (e.target.value > 0)
@@ -47,6 +49,7 @@ class HomeFirstUserInfo extends Component {
       })
   }
 
+  // 목표체중 받는 핸들러
   handleGoalWeightChange = e => {
     this.setState({ goal_weight: e.target.value })
     if (e.target.value > 0)
@@ -54,7 +57,7 @@ class HomeFirstUserInfo extends Component {
         disabled: false,
       })
   }
-
+  // 키를 받는 핸들러
   handleHeightChange = e => {
     this.setState({ height: e.target.value })
     if (e.target.value > 0)
@@ -63,6 +66,7 @@ class HomeFirstUserInfo extends Component {
       })
   }
 
+  // 몸무게를 받는 핸들러
   handleWeightChange = e => {
     this.setState({ kg: e.target.value })
     if (e.target.value > 0)
@@ -71,6 +75,7 @@ class HomeFirstUserInfo extends Component {
       })
   }
 
+  // 성별을 Enum으로 바꾸기
   componentDidMount() {
     this.state.gender === '남자'
       ? this.setState({
@@ -81,6 +86,7 @@ class HomeFirstUserInfo extends Component {
         })
   }
 
+  // 모달 사이즈, toggle 함수
   show = size => () =>
     this.setState({ size, open: true })
   close = () => this.setState({ open: false })
