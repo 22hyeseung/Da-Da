@@ -374,7 +374,6 @@ function getReportKcalByDate({ eat_log_member_id, start_date, end_date }) {
       knex.raw('sum(view_eat_log_type3.kcal) as kcal')
     )
     .join('day_log', 'view_eat_log_type3.eat_log_member_id', '=', 'day_log.day_log_id')
-    .where({ eat_log_member_id })
     .whereNotNull('eat_log_meal_tag')
     .whereBetween('eat_log_diary_date', [start_date, end_date])
     .orderBy('eat_log_diary_date', 'eat_log_meal_tag')
