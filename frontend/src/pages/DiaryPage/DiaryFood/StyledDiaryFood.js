@@ -103,8 +103,11 @@ export const settingIconWrapper = {
 }
 
 export const settingIcon = {
-  padding: '9px',
+  padding: '0px',
   backgroundColor: '#fff',
+  display: 'flex',
+  flexDirection: 'column',
+  paddingLeft: '5px',
 }
 // 등록 후 카드리스트 끝
 

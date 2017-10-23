@@ -1,24 +1,38 @@
 import { combineReducers } from 'redux'
-import { weigthListReducer } from './weightReducer/weight'
+import {
+  weightListReducer,
+  weightAllReducer,
+} from './weightReducer/weight'
 import authReducer from './authReducer/auth'
 import navActiveItemReducer from './appReducer/navActiveItem'
 import {
   shortLogReducer,
   longLogReducer,
 } from './diaryReducer/diaryReview'
-import todayDateReducer from './appReducer/todayDate'
+import {
+  todayDateReducer,
+  beforeDateReducer,
+} from './appReducer/date'
 import { diaryFoodReducer } from './diaryReducer/diaryFood'
 import { diaryKcalReducer } from './diaryReducer/diaryKcal'
+import {
+  calorieCartReducer,
+  nutritionChartReducer,
+} from './reportReducer/chartData'
 
 const reducers = combineReducers({
   navActiveItem: navActiveItemReducer,
   today: todayDateReducer,
+  beforeDay: beforeDateReducer,
   auth: authReducer,
-  weightList: weigthListReducer,
+  weightList: weightListReducer,
+  weightAll: weightAllReducer,
   shortLog: shortLogReducer,
   longLog: longLogReducer,
   foodLogs: diaryFoodReducer,
   goalKcal: diaryKcalReducer,
+  caloriesChart: calorieCartReducer,
+  nutritionChart: nutritionChartReducer,
 })
 
 export default reducers

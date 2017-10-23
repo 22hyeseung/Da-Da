@@ -99,7 +99,6 @@ export const deleteShortLogOfDB = id => {
         dispatch({
           type: types.DELETE_SHORTLOG_FAILED,
         })
-        console.error(error)
       })
   }
 }

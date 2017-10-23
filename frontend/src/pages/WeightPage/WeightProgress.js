@@ -18,7 +18,7 @@ class WeightProgress extends Component {
             (60 -
               this.props.weightListItem[0]
                 .day_log_kg) /
-            10 *
+            (60 - this.props.goalWeight) *
             100)
     }
     return (
@@ -77,7 +77,7 @@ class WeightProgress extends Component {
         <ul className="weight-progress-bar-end">
           <li>
             <span className="weight-progress-end">
-              50
+              {this.props.goalWeight}
             </span>
             <span className="weight-progress-unit-kg">
               kg
@@ -102,6 +102,7 @@ const mapStateToProps = state => {
   return {
     weightListItem:
       state.weightList.weightListItem,
+    goalWeight: state.weightAll.goalWeight,
   }
 }
 
