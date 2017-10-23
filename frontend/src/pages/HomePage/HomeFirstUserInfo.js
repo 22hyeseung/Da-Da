@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { button, background } from './StyledHome'
+import * as Style from './StyledHome'
 import {
   Button,
   Input,
@@ -15,11 +15,16 @@ import {
 import './Home.css'
 import { connect } from 'react-redux'
 import {
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom'
+import {
   getUserInfo,
   postUserInfo,
 } from '../../actions/auth'
 import introImg from '../../static/img/home-intro-img.svg'
-
+import { withRouter } from 'react-router'
 import { dateStringForApiQuery } from '../../helper/date'
 
 class HomeFirstUserInfo extends Component {
@@ -94,10 +99,6 @@ class HomeFirstUserInfo extends Component {
   close = () => this.setState({ open: false })
 
   createPayloadAndPostToDB = () => {
-    console.log(this.state.gender_enum)
-    console.log(this.state.goal_weight)
-    console.log(this.state.height)
-    console.log(this.state.kg)
     if (
       !this.state.birth ||
       this.state.birth < 1 ||
@@ -124,17 +125,22 @@ class HomeFirstUserInfo extends Component {
       date: this.state.date,
     })
     this.close()
+    window.location.reload()
   }
 
   render() {
     const { open, size } = this.state
-    const list = {
-      padding: '14px 7px',
-      borderBottom:
-        '1px solid rgb(224, 229, 238)',
-      display: 'flex',
-      justifyContent: 'space-between',
-    }
+
+    // BMI 권장 체중 계산식
+    const BMIweight =
+      this.state.gender === '여자'
+        ? (Math.pow(this.state.height / 100, 2) *
+            21
+          ).toFixed(2)
+        : (Math.pow(this.state.height / 100, 2) *
+            22
+          ).toFixed(2)
+
     return (
       <div className="home-userInfo">
         <Grid
@@ -144,13 +150,7 @@ class HomeFirstUserInfo extends Component {
           }}
         >
           <Grid.Column width={8}>
-            <div
-              style={{
-                fontSize: '35px',
-                lineHeight: '45px',
-                marginBottom: '35px',
-              }}
-            >
+            <div style={Style.introTitle}>
               <span>
                 {this.props.userInfo.userName}
               </span>님 <br />
@@ -174,13 +174,7 @@ class HomeFirstUserInfo extends Component {
               정보가 필요합니다.
             </span>
             <div style={{ marginTop: '28px' }}>
-              <Form
-                style={{
-                  display: 'flex',
-                  width: '30%',
-                  justifyContent: 'space-between',
-                }}
-              >
+              <Form style={Style.form}>
                 <Form.Field>
                   <Radio
                     className="home-userInfo-radio"
@@ -271,7 +265,8 @@ class HomeFirstUserInfo extends Component {
                       fontSize: '12px',
                     }}
                   >
-                    김나영님의 권장 체중은 00kg입니다. (BMI 기준)
+                    김나영님의 권장 체중은
+                    {BMIweight}kg입니다. (BMI 기준)
                   </span>
                 </Form.Field>
                 <div
@@ -284,18 +279,7 @@ class HomeFirstUserInfo extends Component {
                     disabled={this.state.disabled}
                     onClick={this.show('mini')}
                     type="submit"
-                    style={{
-                      color: 'white',
-                      fontFamily:
-                        'Spoqa Han Sans',
-                      fontWeight: '100',
-                      padding: '10px 34px',
-                      backgroundImage:
-                        'linear-gradient(250deg, #26d0ce, #1a2980)',
-                      marginRight: '0px',
-                      boxShadow:
-                        '0 2px 4px 0 rgba(0, 0, 0, 0.5)',
-                    }}
+                    style={Style.fakeSubmitBtn}
                   >
                     입장하기
                   </Button>
@@ -317,12 +301,7 @@ class HomeFirstUserInfo extends Component {
                             .userAvatar
                         }
                         avatar
-                        style={{
-                          display: 'block',
-                          width: '70px',
-                          height: '70px',
-                          margin: '0px auto 14px',
-                        }}
+                        style={Style.modalAvatar}
                       />
                       <span
                         style={{
@@ -343,66 +322,20 @@ class HomeFirstUserInfo extends Component {
                       }}
                     >
                       <Modal.Description
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          marginTop: '14px',
-                        }}
+                        style={
+                          Style.modalDescription
+                        }
                       >
-                        {/*
-                        <List>
-                          <List.Item>
-                            <List.Content>
-                              성별
-                            </List.Content>
-                            <List.Content>
-                              {this.state.gender}
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Icon name="marker" />
-                            <List.Content>
-                              {this.state.birth}
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Icon name="mail" />
-                            <List.Content>
-                              {this.state.height}
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Icon name="linkify" />
-                            <List.Content>
-                              {this.state.kg}
-                            </List.Content>
-                          </List.Item>
-                          <List.Item>
-                            <List.Icon name="linkify" />
-                            <List.Content>
-                              {
-                                this.state
-                                  .goal_weight
-                              }
-                            </List.Content>
-                          </List.Item>
-                            </List>
-                            */}
-
                         <ul
                           style={{
                             listStyle: 'none',
                           }}
                         >
-                          <li style={list}>
+                          <li style={Style.list}>
                             <span
-                              style={{
-                                color: '#a8b7c7',
-                                width: '100px',
-                                display:
-                                  'inline-block',
-                              }}
+                              style={
+                                Style.listLabel
+                              }
                             >
                               성별
                             </span>
@@ -410,14 +343,11 @@ class HomeFirstUserInfo extends Component {
                               {this.state.gender}
                             </span>
                           </li>
-                          <li style={list}>
+                          <li style={Style.list}>
                             <span
-                              style={{
-                                color: '#a8b7c7',
-                                width: '100px',
-                                display:
-                                  'inline-block',
-                              }}
+                              style={
+                                Style.listLabel
+                              }
                             >
                               생일
                             </span>
@@ -425,14 +355,11 @@ class HomeFirstUserInfo extends Component {
                               {this.state.birth}
                             </span>
                           </li>
-                          <li style={list}>
+                          <li style={Style.list}>
                             <span
-                              style={{
-                                color: '#a8b7c7',
-                                width: '100px',
-                                display:
-                                  'inline-block',
-                              }}
+                              style={
+                                Style.listLabel
+                              }
                             >
                               키
                             </span>
@@ -440,14 +367,11 @@ class HomeFirstUserInfo extends Component {
                               {this.state.height}
                             </span>
                           </li>
-                          <li style={list}>
+                          <li style={Style.list}>
                             <span
-                              style={{
-                                color: '#a8b7c7',
-                                width: '100px',
-                                display:
-                                  'inline-block',
-                              }}
+                              style={
+                                Style.listLabel
+                              }
                             >
                               현재 체중
                             </span>
@@ -455,14 +379,11 @@ class HomeFirstUserInfo extends Component {
                               {this.state.kg}
                             </span>
                           </li>
-                          <li style={list}>
+                          <li style={Style.list}>
                             <span
-                              style={{
-                                color: '#a8b7c7',
-                                width: '100px',
-                                display:
-                                  'inline-block',
-                              }}
+                              style={
+                                Style.listLabel
+                              }
                             >
                               목표 체중
                             </span>
@@ -474,18 +395,7 @@ class HomeFirstUserInfo extends Component {
                             </span>
                           </li>
                         </ul>
-                        <p
-                          style={{
-                            fontSize: '14px',
-                            marginTop: '28px',
-                            fontWeight: '200',
-                            padding:
-                              '0px 14px 14px 14px',
-                            lineHeight: '2px',
-                            backgroundColor:
-                              'lemonchiffon',
-                          }}
-                        >
+                        <p style={Style.lastMsg}>
                           작성하신 정보가 확실한가요?
                         </p>
                       </Modal.Description>
@@ -497,12 +407,7 @@ class HomeFirstUserInfo extends Component {
                         basic
                         fluid
                         onClick={this.close}
-                        style={{
-                          fontFamily:
-                            'Spoqa Han Sans',
-                          fontWeight: '100',
-                          padding: '10px 34px',
-                        }}
+                        style={Style.cancleBtn}
                       >
                         수정하기
                       </Button>
@@ -511,16 +416,7 @@ class HomeFirstUserInfo extends Component {
                           this.state.disabled
                         }
                         fluid
-                        style={{
-                          color: 'white',
-                          fontFamily:
-                            'Spoqa Han Sans',
-                          fontWeight: '100',
-                          padding: '10px 34px',
-                          backgroundImage:
-                            'linear-gradient(249deg, #485563, #29323c)',
-                          marginRight: '0px',
-                        }}
+                        style={Style.submitBtn}
                         onClick={
                           this
                             .createPayloadAndPostToDB
@@ -554,7 +450,6 @@ class HomeFirstUserInfo extends Component {
 
 const mapStateToProps = state => ({
   userInfo: state.auth.userInfo,
-  token: state.auth.token,
   dateState: state.today.date,
 })
 

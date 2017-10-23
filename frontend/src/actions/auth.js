@@ -1,5 +1,6 @@
 import * as types from '../actions/ActionTypes'
 import rootApi from '../config'
+
 export const saveToken = token => {
   return {
     type: types.SAVE_TOKEN,

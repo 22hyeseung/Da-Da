@@ -26,6 +26,8 @@ export const CHANGE_TAB_ITEM_ACTIVE =
 // auth.js
 export const SAVE_TOKEN = 'SAVE_TOKEN'
 export const SAVE_USERINFO = 'SAVE_USERINFO'
+export const POST_USERINFO_SUCCESS =
+  'POST_USERINFO_SUCCESS'
 export const LOGOUT = 'LOGOUT'
 //==========================================
 

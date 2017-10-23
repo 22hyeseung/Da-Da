@@ -38,7 +38,7 @@ const authReducer = (
         userGoalWeight:
           action.payload.member_goal_weight,
         userGender: action.payload.member_gender,
-        userHeight: null,
+        userBirth: action.payload.member_birth, // test를 원하면 null를 넣으시면됩니다.
       },
       signingIn: false,
     }
