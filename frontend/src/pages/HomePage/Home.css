@@ -15,6 +15,17 @@
     color: white !important;
 }
 
+.home-userInfo-label>label {
+    color: #fff !important;
+    font-weight: 100 !important;
+}
+
+.home-userInfo-label>input {
+    background-color: transparent !important;
+    border: 1px solid #fff !important;
+    color: #fff !important;
+}
+
 
 /* userInfo 컴포넌트 시작 */
 

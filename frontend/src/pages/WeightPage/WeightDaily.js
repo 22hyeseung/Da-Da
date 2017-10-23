@@ -176,7 +176,6 @@ class WeightDaily extends Component {
                         <List.Content
                           style={Style.date}
                         >
-                          {console.log(arr)}
                           {dateRender}
                         </List.Content>
                         <div className="weight-daily-value">

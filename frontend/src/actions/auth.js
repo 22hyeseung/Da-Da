@@ -33,3 +33,17 @@ export const logOut = () => {
     payload: null,
   }
 }
+
+export const postUserInfo = payload => {
+  return dispatch => {
+    fetch(`${rootApi}/user/first`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+  }
+}
