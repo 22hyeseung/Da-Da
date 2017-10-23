@@ -4,7 +4,7 @@ import Navigation from '../../components/Navigation'
 import ReportSubNav from './ReportSubNav'
 import ReportCalory from './ReportCalory'
 import ReportCalorySummary from './ReportCalorySummary'
-import ReportNutrtion from './ReportNutrtion'
+import ReportNutrition from './ReportNutrition'
 import ReportNutritionSummary from './ReportNutritionSummary'
 import './Report.css'
 
@@ -53,7 +53,7 @@ class ReportPage extends Component {
             <Grid.Column
               style={{ padding: '0px' }}
             >
-              <ReportNutrtion />
+              <ReportNutrition />
             </Grid.Column>
             <Grid.Column
               width={4}

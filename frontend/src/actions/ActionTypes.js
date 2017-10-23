@@ -4,6 +4,10 @@ export const FETCHED_FOOD_LOGS_SUCCESS =
   'FETCHED_FOOD_LOGS_SUCCESS'
 export const POST_FOOD_TO_DATABASE =
   'POST_FOOD_TO_DATABASE'
+export const UPDATE_FOOD_OF_DATABASE =
+  'UPDATE_FOOD_OF_DATABASE'
+export const DELETE_FOOD_OF_DATABASE =
+  'DELETE_FOOD_OF_DATABASE'
 //==========================================
 // weight.js
 export const FETCHED_WEIGHT_SUCCESS =
@@ -12,6 +16,13 @@ export const POST_AND_GET_WEIGHT_SUCCESS =
   'POST_AND_GET_WEIGHT_SUCCESS'
 export const DELETE_AND_GET_WEIGHT_SUCCESS =
   'DELETE_AND_GET_WEIGHT_SUCCESS'
+
+export const GET_WEIGHT_ALL_REQUEST =
+  'GET_WEIGHT_ALL_REQUEST'
+export const GET_WEIGHT_ALL_SUCCESS =
+  'GET_WEIGHT_ALL_SUCCESS'
+export const GET_WEIGHT_ALL_FAILED =
+  'GET_WEIGHT_ALL_FAILED'
 //==========================================
 
 //==========================================
@@ -86,4 +97,22 @@ export const DELETE_LONGLOG_FAILED =
 // setDate.js
 export const SET_TODAY_DATE = 'SET_TODAY_DATE'
 export const SET_TODAY_DAY = 'SET_TODAY_DAY'
+export const SET_BEFORE_DATE = 'SET_BEFORE_DATE'
+export const SET_BEFORE_DAY = 'SET_BEFORE_DAY'
+//==========================================
+
+//==========================================
+// reportAPI.js
+export const GET_REPORTS_CALORIES_REQUEST =
+  'GET_REPORTS_CALORIES_REQUEST'
+export const GET_REPORTS_CALORIES_SUCCESS =
+  'GET_REPORTS_CALORIES_SUCCESS'
+export const GET_REPORTS_CALORIES_FAILED =
+  'GET_REPORTS_CALORIES_FAILED'
+export const GET_REPORTS_NUTRITION_REQUEST =
+  'GET_REPORTS_NUTRITION_REQUEST '
+export const GET_REPORTS_NUTRITION_SUCCESS =
+  'GET_REPORTS_NUTRITION_SUCCESS'
+export const GET_REPORTS_NUTRITION_FAILED =
+  'GET_REPORTS_NUTRITION_FAILED'
 //==========================================

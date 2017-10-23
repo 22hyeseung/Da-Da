@@ -12,20 +12,29 @@ import DiarySubHeader from '../DiarySubHeader'
 import DiaryFoodAdd from './DiaryFoodAdd'
 import DiaryFoodAlbum from './DiaryFoodAlbum'
 import DiaryFoodMeal from './DiaryFoodMeal'
-import { connect } from 'react-redux'
-import { fetchFoodLogsFromDB } from '../../../actions/diaryFood'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
+
+import { connect } from 'react-redux'
+import { getFoodLogsFromDB } from '../../../actions/diaryFood'
+// helper: 오늘 날짜 API Query형식
+import { dateStringForApiQuery } from '../../../helper/date'
 
 class DiaryFood extends React.Component {
   state = {
     loading: false,
+    date: dateStringForApiQuery(
+      this.props.dateState,
+    ),
   }
+
   componentWillMount() {
-    this.props.fetchFoodLogs()
+    this.props.fetchFoodLogs(this.state.date)
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
   }
+
+  // Loader 일정시간추가
   fetchData = () => {
     setTimeout(() => {
       this.setState({
@@ -33,7 +42,9 @@ class DiaryFood extends React.Component {
       })
     }, 2000)
   }
+
   render() {
+    // 끼니별 배열
     const breackfast = []
     const lunch = []
     const dinner = []
@@ -42,15 +53,16 @@ class DiaryFood extends React.Component {
     if (this.state.loading) {
       return <ComponentLoader />
     }
+
     return (
       <Segment style={Style.foodBox}>
-        {/* title 시작 */}
         <DiarySubHeader
           tabNameEN="FOOD"
           tabNameKR="식단 다이어리"
           icon="foodIcon"
         />
-        {/* title 끝 */}
+
+        {/* 받은 데이터를 끼니별 배열에 넣어준다 */}
         {this.props.foodresult.map(
           (result, i) => {
             if (
@@ -108,13 +120,14 @@ class DiaryFood extends React.Component {
 const mapStateToProps = state => {
   return {
     foodresult: state.foodLogs.foodresult,
+    dateState: state.today.date,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchFoodLogs: () =>
-      dispatch(fetchFoodLogsFromDB()),
+    fetchFoodLogs: date =>
+      dispatch(getFoodLogsFromDB(date)),
   }
 }
 export default connect(

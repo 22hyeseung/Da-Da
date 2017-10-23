@@ -89,7 +89,10 @@ class WeightDaily extends Component {
   render() {
     return (
       <div>
-        <div className="weight-daily">
+        <div
+          className="weight-daily"
+          style={{ minHeight: '645px' }}
+        >
           {/* title 시작 */}
           <Header style={Style.header}>
             <Header.Subheader

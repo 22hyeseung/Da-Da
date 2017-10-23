@@ -1,8 +1,8 @@
 // 오늘 날짜
-const dateTime = new Date()
+export const dateTime = new Date()
 const day = dateTime.getDay()
 
-const setDay = day => {
+export const setDay = day => {
   switch (day) {
     case 0:
       return '일'
@@ -35,4 +35,16 @@ export const dateStringForApiQuery = date => {
     .split('.')
     .join('')
     .replace(/ /gi, '')
+}
+
+// N일전 날짜(date타입) 구하는 함수
+export const getDateNDaysBefore = (
+  dateType,
+  n,
+) => {
+  return new Date(
+    dateType.getFullYear(),
+    dateType.getMonth(),
+    dateType.getDate() - n,
+  )
 }
