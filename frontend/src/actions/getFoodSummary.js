@@ -7,7 +7,7 @@ export const getFoodSummaryFromDB = date => {
       type: types.GET_FOOD_SUMMARY_REQUEST,
     })
     fetch(
-      `${rootApi}/eat-logs/summary?date=${date}`,
+      `${rootApi}/eat-logs/summary/day?date=${date}`,
       {
         method: 'GET',
         headers: {

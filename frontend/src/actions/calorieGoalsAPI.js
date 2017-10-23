@@ -14,7 +14,7 @@ export const getCalorieGoalFromDB = date => {
         'Content-Type': 'application/json',
       },
     })
-      .then(res => res.json)
+      .then(res => res.json())
       .then(data => {
         dispatch({
           type: types.KCAL_GOALS_SUCCESS,

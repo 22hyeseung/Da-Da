@@ -33,7 +33,7 @@ const reducers = combineReducers({
   foodLogs: diaryFoodReducer,
   caloriesChart: calorieCartReducer,
   nutritionChart: nutritionChartReducer,
-  calorieGoals: calorieGoalReducer,
+  calorieGoalAboutADay: calorieGoalReducer,
   diarySummary: diarySummaryReducer,
 })
 

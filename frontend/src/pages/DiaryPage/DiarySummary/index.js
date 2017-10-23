@@ -19,7 +19,10 @@ import StaticPieChart from '../../../components/Charts/StaticPieChart'
 import { dateStringForApiQuery } from '../../../helper/date'
 
 // 리덕스 액션
-import { getFoodSummaryFromDB } from '../../../actions/getFoodSummary'
+import {
+  getFoodSummaryFromDB, // 하루 단위 food summary
+} from '../../../actions/getFoodSummary'
+import { getCalorieGoalFromDB } from '../../../actions/calorieGoalsAPI' // 하루 단위 목표 칼로리 get
 
 class DiarySummary extends Component {
   constructor(props) {
@@ -29,19 +32,27 @@ class DiarySummary extends Component {
   componentWillMount() {
     const {
       getFoodSummaryFromDB,
+      getCalorieGoalFromDB,
       dateState,
     } = this.props
 
     const date = dateStringForApiQuery(dateState)
+
     getFoodSummaryFromDB(date)
+
+    getCalorieGoalFromDB(date)
   }
 
   render() {
-    const { calorieSummary } = this.props
-    const restCalorie =
-      calorieSummary.day_log_kcal -
-      calorieSummary.today_kcal +
-      calorieSummary.today_burn_kcal
+    const {
+      calorieSummary,
+      kcalGoal,
+    } = this.props
+    const restCalorie = Math.round(
+      kcalGoal.day_log_kcal -
+        calorieSummary.today_kcal +
+        calorieSummary.today_burn_kcal,
+    )
     return (
       <div>
         <Segment style={Style.segment}>
@@ -70,17 +81,21 @@ class DiarySummary extends Component {
 
             <SummaryListItem
               label="목표 칼로리"
-              kcal={calorieSummary.day_log_kcal}
+              kcal={Math.round(
+                kcalGoal.day_log_kcal,
+              )}
             />
             <SummaryListItem
               label="섭취 칼로리"
-              kcal={calorieSummary.today_kcal}
+              kcal={Math.round(
+                calorieSummary.today_kcal,
+              )}
             />
             <SummaryListItem
               label="운동 칼로리"
-              kcal={
-                calorieSummary.today_burn_kcal
-              }
+              kcal={Math.round(
+                calorieSummary.today_burn_kcal,
+              )}
             />
             <SummaryListItem
               label="남은 칼로리"
@@ -101,8 +116,8 @@ class DiarySummary extends Component {
           ) : restCalorie ? (
             <Segment style={Style.comment}>
               <span>
-                목표까지 {restCalorie}kcal! <br /> 정말
-                잘하고 계세요!
+                {restCalorie}kcal 남았어요! <br /> 너무
+                잘하고 있어요!
               </span>
             </Segment>
           ) : (
@@ -136,6 +151,7 @@ const mapStateToProps = state => {
     calorieSummary:
       state.diarySummary.calorieSummary,
     dateState: state.today.date,
+    kcalGoal: state.calorieGoalAboutADay.kcalGoal,
   }
 }
 
@@ -143,6 +159,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getFoodSummaryFromDB: date =>
       dispatch(getFoodSummaryFromDB(date)),
+    getCalorieGoalFromDB: date =>
+      dispatch(getCalorieGoalFromDB(date)),
   }
 }
 
