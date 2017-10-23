@@ -13,7 +13,7 @@ import * as Style from './StyledDiarySummary'
 import SectionHeader from './SectionHeader'
 import SummaryListItem from './SummaryListItem'
 import DiarySocialBtns from './DiarySocialBtns'
-import StaticPieChart from '../../../components/Charts/StaticPieChart'
+import SummaryPieChart from '../../../components/Charts/SummaryPieChart'
 
 // API 통신용 date형식 리턴하는 함수: YYYYMMDD
 import { dateStringForApiQuery } from '../../../helper/date'
@@ -135,7 +135,7 @@ class DiarySummary extends Component {
 
           <SectionHeader subtitle="NUTRITION\nGRAPH" />
 
-          <StaticPieChart
+          <SummaryPieChart
             style={{ marginTop: '4px' }}
           />
           {/* 파이 차트 끝 */}
