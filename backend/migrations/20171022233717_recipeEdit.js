@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.alter('recipe', t => {
+  return knex.schema.alterTable('recipe', t => {
     t.string('recipe_ingredient').notNullable()
     t.string('recipe').notNullable()
   })
