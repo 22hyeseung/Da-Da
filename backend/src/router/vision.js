@@ -111,11 +111,14 @@ router.post('/', upload.single('upload_img'), (req, res) => {
 
   Promise.all([googleVision(req.file.buffer), s3upload(req.file.buffer, fileName, mime)])
     .then(result => {
-      // console.log('모두 완료', result)
+      const regexr = /^((?!junk)(?!dish)(?!food)(?!snack)(?!cookie)(?!finger food)(?!cuisine)(?!asian food)(?!chinese)(?!baking)(?!baked goods)).*$/
+      const out = []
 
-      // googleVision결과에서 불필요 단어 (food, dish, recipe 등등) 걸러야함
+      result[0].forEach(item => {
+        out.push(item.description.match(regexr))
+      })
       res.render('vision.pug', {
-        'visionAnalysis': JSON.stringify(result[0]),
+        'visionAnalysis': JSON.stringify(out),
         'imgUrl': result[1].Location
       })
     })
