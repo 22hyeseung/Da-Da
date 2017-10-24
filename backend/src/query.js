@@ -413,7 +413,7 @@ function getReportNutritionSum({ eat_log_member_id, start_date, end_date }) {
 
 function getBurnByDate({ burn_member_id, burn_date }) {
   return knex('burn')
-    .select('burn.burn_id', 'burn.burn_member_id', 'burn.burn_kcal', 'burn.burn_minute', 'exercise.exercise_name')
+    .select('burn.burn_id', 'burn.burn_member_id', 'burn.burn_kcal', 'burn.burn_minute', 'exercise.exercise_name', 'burn.burn_exercise_id')
     .join('exercise', 'burn.burn_exercise_id', '=', 'exercise.exercise_id')
     .where({ burn_date, burn_member_id })
 }
@@ -512,7 +512,7 @@ function deleteBurnById({ burn_id }) {
     .delete(burn_id)
 }
 
-function patchBurnById({ burn_id, burn_kcal, burn_minute, burn_exercise_id }) {
+function updateBurnById({ burn_id, burn_kcal, burn_minute, burn_exercise_id }) {
   return knex('burn')
     .where({ burn_id })
     .update({ burn_kcal, burn_exercise_id, burn_minute })
@@ -615,7 +615,7 @@ module.exports = {
   WeightNullById,
   PostGoalKgbyUser,
   deleteBurnById,
-  patchBurnById,
+  updateBurnById,
   postFirstMember,
   postFirstDayLog,
   getGoalKcalByDate,
