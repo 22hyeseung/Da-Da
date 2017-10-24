@@ -10,23 +10,60 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import img1 from '../../../static/img/result1.png'
-import img2 from '../../../static/img/result2.png'
-import img3 from '../../../static/img/result3.png'
-import img4 from '../../../static/img/result4.png'
 import * as Style from './StyledResult'
+import ComponentLoader from '../../../components/Loader/ComponentLoader'
+import { connect } from 'react-redux'
+import rootApi from '../../../config'
 
 class ResultBox extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      searchResult: [],
+      isEmpty: true,
+      loading: true,
+    }
+  }
+
+  componentWillMount() {
+    this.getRecipeList(this.props.search)
+  }
+
+  getRecipeList(search) {
+    fetch(
+      `${rootApi}/recipe/search?name=${search}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${this.props.token}`,
+        },
+      },
+    )
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          searchResult: result,
+          isEmpty: false,
+        })
+
+        setTimeout(() => {
+          this.setState({
+            loading: false,
+          })
+        }, 1500)
+      })
   }
 
   render() {
+    if (this.state.loading) {
+      return <ComponentLoader />
+    }
+
     return (
       <Grid style={Style.wrapper}>
         <Grid.Row style={Style.messagewrap}>
           <span style={Style.message}>
-            ‘팬케익’ 검색 결과 8건
+            ‘{this.props.search}’ 검색 결과 {this.state.searchResult.length}건
           </span>
           <div
             style={{
@@ -47,166 +84,80 @@ class ResultBox extends Component {
           columns={4}
           style={Style.ImageWrap}
         >
-          <Grid.Column style={{ padding: '0' }}>
-            <div style={{ width: '279px' }}>
-              <Card>
-                <Image
-                  as="a"
-                  style={{
-                    ...Style.ResultImage,
-                    backgroundImage: `url(${img1})`,
-                  }}
-                  src="/"
-                  href="http://google.com"
-                  target="_blank"
-                />
-                <Card.Content
-                  style={Style.CardLabel}
-                >
-                  <Card.Header
-                    style={Style.CardLabelHeader}
-                  >
-                    트리플베리 팬케익
-                  </Card.Header>
-                  <Card.Meta
-                    style={Style.CardLabelLeftText}
-                  >
-                    <Icon name="clock" />
-                    소요시간: 60분
-                  </Card.Meta>
-                  <Card.Description
-                    style={Style.CardLabelRightText}
-                  >
-                    <span style={Style.dataText}>
-                      340
-                    </span>{' '}
-                    kcal
-                  </Card.Description>
-                </Card.Content>
-              </Card>
+        {
+          this.state.searchResult == 0 ? (
+            <div style={Style.noSearchContainer}>
+              <p style={Style.noSearchText}>
+                이런..찾으시는 레시피가 없나요? 다른 음식은 어떠세요?
+              </p>
+              <img
+                style={Style.noSearchImage}
+                src={Style.noSearchSvgSrc}
+                alt="No Search..."
+                aria-hidden="true"
+              />
             </div>
-          </Grid.Column>
-          <Grid.Column style={{ padding: '0' }}>
-            <div style={{ width: '279px' }}>
-              <Card>
-                <Image
-                  as="a"
-                  style={{
-                    ...Style.ResultImage,
-                    backgroundImage: `url(${img2})`,
-                  }}
-                  src="/"
-                  href="http://google.com"
-                  target="_blank"
-                />
-                <Card.Content
-                  style={Style.CardLabel}
-                >
-                  <Card.Header
-                    style={Style.CardLabelHeader}
-                  >
-                    스트로베리 팬케익
-                  </Card.Header>
-                  <Card.Meta
-                    style={Style.CardLabelLeftText}
-                  >
-                    <Icon name="clock" />
-                    소요시간: 60분
-                  </Card.Meta>
-                  <Card.Description
-                    style={Style.CardLabelRightText}
-                  >
-                    <span style={Style.dataText}>
-                      320
-                    </span>{' '}
-                    kcal
-                  </Card.Description>
-                </Card.Content>
-              </Card>
-            </div>
-          </Grid.Column>
-          <Grid.Column style={{ padding: '0' }}>
-            <div style={{ width: '279px' }}>
-              <Card>
-                <Image
-                  as="a"
-                  style={{
-                    ...Style.ResultImage,
-                    backgroundImage: `url(${img3})`,
-                  }}
-                  src="/"
-                  href="http://google.com"
-                  target="_blank"
-                />
-                <Card.Content
-                  style={Style.CardLabel}
-                >
-                  <Card.Header
-                    style={Style.CardLabelHeader}
-                  >
-                    블루베리 팬케익
-                  </Card.Header>
-                  <Card.Meta
-                    style={Style.CardLabelLeftText}
-                  >
-                    <Icon name="clock" />
-                    소요시간: 60분
-                  </Card.Meta>
-                  <Card.Description
-                    style={Style.CardLabelRightText}
-                  >
-                    <span style={Style.dataText}>
-                      270
-                    </span>{' '}
-                    kcal
-                  </Card.Description>
-                </Card.Content>
-              </Card>
-            </div>
-          </Grid.Column>
-          <Grid.Column style={{ padding: '0' }}>
-            <div style={{ width: '279px' }}>
-              <Card>
-                <Image
-                  as="a"
-                  style={{
-                    ...Style.ResultImage,
-                    backgroundImage: `url(${img4})`,
-                  }}
-                  src="/"
-                  href="http://google.com"
-                  target="_blank"
-                />
-                <Card.Content
-                  style={Style.CardLabel}
-                >
-                  <Card.Header
-                    style={Style.CardLabelHeader}
-                  >
-                    바나나 팬케익
-                  </Card.Header>
-                  <Card.Meta
-                    style={Style.CardLabelLeftText}
-                  >
-                    <Icon name="clock" />
-                    소요시간: 60분
-                  </Card.Meta>
-                  <Card.Description
-                    style={Style.CardLabelRightText}
-                  >
-                    <span style={Style.dataText}>
-                      380
-                    </span>{' '}
-                    kcal
-                  </Card.Description>
-                </Card.Content>
-              </Card>
-            </div>
-          </Grid.Column>
+          ) : (
+            this.state.searchResult.map((result, i) => {
+              console.log(result, '<< [ result ]');
+              return (
+                <Grid.Column style={{ padding: '0' }}>
+                  <div style={{ width: '279px' }}>
+                    <Card>
+                      <Image
+                        as="a"
+                        style={{
+                          ...Style.ResultImage,
+                          backgroundImage: `url(//s3.ap-northeast-2.amazonaws.com/dada-s3-file/recipe/thumb/${result.recipe_id}.jpg)`,
+                        }}
+                        src="/"
+                        href="http://google.com"
+                        target="_blank"
+                        //alt={result.recipe_name_ko}
+                      />
+                      <Card.Content
+                        style={Style.CardLabel}
+                      >
+                        <Card.Header
+                          style={Style.CardLabelHeader}
+                        >
+                          {result.recipe_name_ko}
+                        </Card.Header>
+                        <Card.Meta
+                          style={Style.CardLabelLeftText}
+                        >
+                          <Icon name="clock" />
+                          소요시간: {result.recipe_time}
+                        </Card.Meta>
+                        <Card.Description
+                          style={Style.CardLabelRightText}
+                        >
+                          <span style={Style.dataText}>
+                            {result.recipe_kcal}
+                          </span>{' '}
+                          kcal
+                        </Card.Description>
+                      </Card.Content>
+                    </Card>
+                  </div>
+                </Grid.Column>
+              )
+            })
+          )
+
+        }
         </Grid.Row>
       </Grid>
     )
   }
 }
 
-export default ResultBox
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token,
+  }
+}
+
+export default connect(mapStateToProps, null)(
+  ResultBox,
+)

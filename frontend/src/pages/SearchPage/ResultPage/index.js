@@ -15,7 +15,7 @@ class SearchResult extends Component {
         <Navigation />
         <div style={resultWrapper} />
         <TopSearchBar />
-        <ResultBox />
+        <ResultBox search={this.props.match.params.sc} />
       </div>
     )
   }

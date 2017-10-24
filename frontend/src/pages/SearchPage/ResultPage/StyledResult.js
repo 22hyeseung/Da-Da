@@ -132,11 +132,12 @@ export const CardSize = {
 // ===================================> NoSearch.js
 
 export const noSearchContainer = {
-  width: '1180px',
+/*  width: '1180px',
   height: '607px',
   position: 'absolute',
   top: '113px',
   left: '139px',
+  */
 }
 
 export const noSearchText = {
