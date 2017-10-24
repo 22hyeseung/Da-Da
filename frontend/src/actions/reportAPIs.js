@@ -105,7 +105,12 @@ export const getNutritionFactsForAWeekFromDB = (
     )
       .then(res => res.json())
       .then(data => {
-        // console.log(data)
+        data.map(aDay => {
+          // 날짜 string -> Date 타입으로
+          aDay.eat_log_diary_date = dateDashToDateType(
+            aDay.eat_log_diary_date,
+          )
+        })
         dispatch({
           type:
             types.GET_REPORTS_NUTRITION_SUCCESS,

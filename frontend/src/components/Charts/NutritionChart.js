@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 // 차트
 import {
   BarChart,
@@ -13,7 +14,10 @@ import {
   Line,
 } from 'recharts'
 // YYYY. MM. DD.(날짜 기본 포맷)를 api 요청 포맷(YYYYMMDD)으로 변환하는 함수
-import { dateStringForApiQuery } from '../../helper/date'
+import {
+  dateStringForApiQuery,
+  dateDotToDateType,
+} from '../../helper/date'
 // 리덕스 액션
 import { getNutritionFactsForAWeekFromDB } from '../../actions/reportAPIs'
 
@@ -42,38 +46,89 @@ class CaloriesChart extends Component {
   }
 
   render() {
-    // {day,탄수화물,단백질,지방} => {day,탄수화물,단백질,지방,목표칼로리}
     const {
+      beforeDateState,
+      defaultGoalCalorie,
       nutritionLogs,
-      caloriesLogsForAWeek,
+      goalCaloriePerWeek,
     } = this.props
 
-    console.log(nutritionLogs)
-    const chartData = new Array()
-    nutritionLogs.map(aDay => {
-      chartData.push({
-        day:
-          aDay.eat_log_diary_date.substr(8, 2) +
-          '일',
-        탄수화물: Math.round(aDay.carb),
-        단백질: Math.round(aDay.protein),
-        지방: Math.round(aDay.fat),
-      })
-    })
-    // // 이 부분 추후 지울 예정
-    // defaultGoalCalorie = '1200'
+    let dateType = dateDotToDateType(
+      beforeDateState,
+    )
 
-    chartData.map((item, i) => {
-      // console.log(caloriesLogsForAWeek)
-      item['목표칼로리'] = 1600
+    const defaultGoal = 1280 // test용 static값
+    // 일주일치 날짜
+    const dateArray = []
+    for (let i = 0; i < 7; i++) {
+      dateArray.push(
+        new Date(
+          dateType.getFullYear(),
+          dateType.getMonth(),
+          dateType.getDate() + i,
+        ),
+      )
+    }
+
+    dateArray.map((el, index, all) => {
+      const getMatched = _.reject(
+        goalCaloriePerWeek,
+        val => {
+          return (
+            val.diary_date.getTime() !==
+            el.getTime()
+          )
+        },
+      )
+
+      const kcal = _.mapValues(
+        getMatched,
+        val => {
+          return val.day_log_kcal
+        },
+      )
+
+      all[index] = {
+        day: el,
+        목표칼로리: Object.values(kcal)[0]
+          ? Object.values(kcal)[0]
+          : defaultGoal,
+      }
     })
-    // console.log(chartData)
+
+    dateArray.map((el, index, all) => {
+      const getMatched = _.reject(
+        nutritionLogs,
+        val => {
+          return (
+            val.eat_log_diary_date.getTime() !==
+            el.day.getTime()
+          )
+        },
+      )
+
+      const nutrition = _.mapValues(
+        getMatched,
+        val => {
+          return {
+            탄수화물: Math.round(val.carb) * 4,
+            단백질: Math.round(val.protein) * 4,
+            지방: Math.round(val.fat) * 9,
+          }
+        },
+      )
+      all[index] = {
+        ...all[index],
+        day: el.day.getDate() + '일',
+        ...Object.values(nutrition)[0],
+      }
+    })
 
     return (
       <ComposedChart
         width={850}
         height={300}
-        data={chartData}
+        data={dateArray}
         margin={{
           top: 20,
           right: 20,
@@ -123,8 +178,8 @@ const mapStateToProps = state => {
     nutritionLogs:
       state.nutritionChart
         .nutritionFactsLogsPerWeek,
-    caloriesLogsForAWeek:
-      state.caloriesChart.caloriesLogsForAWeek,
+    goalCaloriePerWeek:
+      state.caloriesChart.goalCaloriePerWeek,
     lastDateState: state.today.date,
     beforeDateState: state.beforeDay.beforeDate,
   }
