@@ -115,6 +115,7 @@ router.get('/search', (req, res) => {
  * @apiSuccess {Number} burn_kcal 운동별 소모 열량
  * @apiSuccess {Number} burn_minute 운동별 소요 시간
  * @apiSuccess {String} exercise_name 운동이름
+ * @apiSuccess {Number} burn_exercise_id 운동별 번호
  *
  * @apiSuccessExample {Json} Succes-Response:
  * http://localhost:5000/exercises?date=20170101
@@ -124,7 +125,8 @@ router.get('/search', (req, res) => {
  *        "burn_member_id": 1,
  *        "burn_kcal": 50,
  *        "burn_minute": 30,
- *        "exercise_name": "요리하기"
+ *        "exercise_name": "요리하기",
+ *        "burn_exercise_id": 4
  *    }
  *]
  */
@@ -166,7 +168,7 @@ router.delete('/:id', (req, res) => {
 })
 
 /**
- * @api {patch} /exercises/:id Patch Exercises
+ * @api {put} /exercises/:id Patch Exercises
  * @apiDescription burn_id를 선택해 사용자가 입력한 정보로 업데이트
  * @apiName PatchExercises
  * @apiGroup exercises
@@ -191,15 +193,16 @@ router.delete('/:id', (req, res) => {
  *   }
 * ]
  */
-router.patch('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const param = {
     'burn_member_id': req.user.id,
     'burn_id': req.params.id,
     'burn_minute': req.body.burn_minute,
-    'burn_kcal': req.body.kcal
+    'burn_kcal': req.body.kcal,
+    'burn_exercise_id': req.body.exercise_id
   }
 
-  query.patchBurnById(param)
+  query.updateBurnById(param)
     .then(data => {
       res.send(data)
     })
