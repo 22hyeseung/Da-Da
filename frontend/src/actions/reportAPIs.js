@@ -1,5 +1,7 @@
 import * as types from './ActionTypes'
 import rootApi from '../config'
+import { dateDashToDateType } from '../helper/date'
+import _ from 'lodash'
 
 export const getCaloriesForAWeekFromDB = (
   startDate,
@@ -16,12 +18,59 @@ export const getCaloriesForAWeekFromDB = (
         headers: {
           Authorization: `Bearer ${window
             .localStorage.token}`,
-          'Content-Type': 'application/json',
         },
       },
     )
       .then(res => res.json())
       .then(data => {
+        // 날짜 기준 오름차순 정렬
+        data.day_goal_kcal = _.orderBy(
+          data.day_goal_kcal,
+          ['diary_date'],
+          ['asc'],
+        )
+
+        // 날짜 String타입 YYYY-MM-DD -> Date타입으로 변환
+        data.day_goal_kcal.map(aDay => {
+          aDay.diary_date = dateDashToDateType(
+            aDay.diary_date,
+          )
+        })
+
+        data.meal_kcal.map(meal => {
+          meal.diary_date = dateDashToDateType(
+            meal.diary_date,
+          )
+        })
+
+        data.meal_kcal = _.groupBy(
+          data.meal_kcal,
+          'diary_date',
+        )
+
+        data.meal_kcal = _.map(
+          data.meal_kcal,
+          (val, key) => {
+            const newVal = _.map(val, meal => ({
+              [meal.eat_log_meal_tag]: meal.kcal,
+            }))
+            let destructuredObject = {}
+            const destructuredNewVal = _.forEach(
+              newVal,
+              val => {
+                destructuredObject[
+                  Object.keys(val)
+                ] = Object.values(val)[0]
+              },
+            )
+
+            return {
+              day: new Date(key),
+              ...destructuredObject,
+            }
+          },
+        )
+
         dispatch({
           type:
             types.GET_REPORTS_CALORIES_SUCCESS,
@@ -56,23 +105,11 @@ export const getNutritionFactsForAWeekFromDB = (
     )
       .then(res => res.json())
       .then(data => {
-        const chartData = new Array()
-        data.map(aDay => {
-          chartData.push({
-            day:
-              aDay.eat_log_diary_date.substr(
-                8,
-                2,
-              ) + '일',
-            탄수화물: Math.round(aDay.carb * 4),
-            단백질: Math.round(aDay.protein * 4),
-            지방: Math.round(aDay.fat * 9),
-          })
-        })
+        // console.log(data)
         dispatch({
           type:
             types.GET_REPORTS_NUTRITION_SUCCESS,
-          payload: chartData,
+          payload: data,
         })
       })
       .catch(err => {

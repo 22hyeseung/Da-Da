@@ -16,7 +16,6 @@ import {
 import { dateStringForApiQuery } from '../../helper/date'
 // 리덕스 액션
 import { getNutritionFactsForAWeekFromDB } from '../../actions/reportAPIs'
-import { getCalorieGoalFromDB } from '../../actions/calorieGoalsAPI'
 
 class CaloriesChart extends Component {
   constructor(props) {
@@ -46,36 +45,35 @@ class CaloriesChart extends Component {
     // {day,탄수화물,단백질,지방} => {day,탄수화물,단백질,지방,목표칼로리}
     const {
       nutritionLogs,
-      kcalGoal,
-      getCalorieGoalFromDB,
+      caloriesLogsForAWeek,
     } = this.props
-    const { startDate } = this.state
-    const dateTypeDate = new Date(
-      startDate.substr(0, 4),
-      startDate.substr(4, 2) - 1,
-      startDate.substr(6, 2),
-    )
-    nutritionLogs.map((item, i) => {
-      // x7번 반복
-      // const date = new Date(
-      //   dateTypeDate.getFullYear(),
-      //   dateTypeDate.getMonth(),
-      //   dateTypeDate.getDate() + i,
-      // )
-      // getCalorieGoalFromDB(
-      //   dateStringForApiQuery(
-      //     date.toLocaleDateString(),
-      //   ),
-      // )
 
+    console.log(nutritionLogs)
+    const chartData = new Array()
+    nutritionLogs.map(aDay => {
+      chartData.push({
+        day:
+          aDay.eat_log_diary_date.substr(8, 2) +
+          '일',
+        탄수화물: Math.round(aDay.carb),
+        단백질: Math.round(aDay.protein),
+        지방: Math.round(aDay.fat),
+      })
+    })
+    // // 이 부분 추후 지울 예정
+    // defaultGoalCalorie = '1200'
+
+    chartData.map((item, i) => {
+      // console.log(caloriesLogsForAWeek)
       item['목표칼로리'] = 1600
     })
+    // console.log(chartData)
 
     return (
       <ComposedChart
         width={850}
         height={300}
-        data={nutritionLogs}
+        data={chartData}
         margin={{
           top: 20,
           right: 20,
@@ -124,10 +122,11 @@ const mapStateToProps = state => {
   return {
     nutritionLogs:
       state.nutritionChart
-        .nutritionFactsLogsForAWeek,
+        .nutritionFactsLogsPerWeek,
+    caloriesLogsForAWeek:
+      state.caloriesChart.caloriesLogsForAWeek,
     lastDateState: state.today.date,
     beforeDateState: state.beforeDay.beforeDate,
-    // kcalGoal: state.calorieGoals.kcalGoal,
   }
 }
 
@@ -143,8 +142,6 @@ const mapDispatchToProps = dispatch => {
           endDate,
         ),
       ),
-    //   getCalorieGoalFromDB: date =>
-    //     dispatch(getCalorieGoalFromDB(date)),
   }
 }
 

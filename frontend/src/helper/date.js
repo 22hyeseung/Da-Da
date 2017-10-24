@@ -29,13 +29,56 @@ export const todaysDate = dateTime.toLocaleDateString()
 // 오늘 요일 형식: ex. '월'
 export const todaysDay = setDay(day)
 
-// API 통신용 date형식 리턴하는 함수: YYYYMMDD
-export const dateStringForApiQuery = date => {
-  return date
+// 날짜 포맷 변환 함수 ===============================================
+
+//-----------------------------------------------------------------
+// 1. String -> String
+//-----------------------------------------------------------------
+
+// API 통신용 날짜 포맷
+// YYYY. MM. DD. -> YYYYMMDD
+export const dateStringForApiQuery = dateString => {
+  return dateString
     .split('.')
     .join('')
     .replace(/ /gi, '')
 }
+
+// YYYY. MM. DD. -> YYYY-MM-DD
+export const dateDotToDateDash = dateString => {
+  return dateString
+    .replace(/ /gi, '')
+    .split('.')
+    .join('-')
+    .substr(0, 10)
+}
+
+// YYYY-MM-DD -> YYYY. MM. DD.
+export const dateDashToDateDote = dateString => {
+  return dateString.split('-').join('. ') + '. '
+}
+
+//-----------------------------------------------------------------
+// 2. String -> Date
+//-----------------------------------------------------------------
+
+// YYYY-MM-DD -> DATE
+export const dateDashToDateType = dateString => {
+  const yyyy = dateString.substr(0, 4)
+  const mm = dateString.substr(5, 2)
+  const dd = dateString.substr(8, 2)
+  return new Date(yyyy, mm - 1, dd)
+}
+
+// YYYY. MM. DD. -> DATE
+export const dateDotToDateType = dateString => {
+  const yyyy = dateString.substr(0, 4)
+  const mm = dateString.substr(6, 2) * 1
+  const dd = dateString.substr(10, 2)
+  return new Date(yyyy, mm - 1, dd)
+}
+
+// 날짜 계산하는 함수 ===================================================
 
 // N일전 날짜(date타입) 구하는 함수
 export const getDateNDaysBefore = (
