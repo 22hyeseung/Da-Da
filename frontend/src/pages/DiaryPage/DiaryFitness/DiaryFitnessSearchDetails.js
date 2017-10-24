@@ -29,7 +29,8 @@ class FitnessSelectDetails extends Component {
     this.state = {
       finalKcal: '-',
       inputTime: '',
-      disabled: false,
+      disabled: true,
+      error: false,
       loading: false,
       date: dateStringForApiQuery(
         this.props.dateState,
@@ -56,6 +57,7 @@ class FitnessSelectDetails extends Component {
     if (e.target.value > 0)
       this.setState({
         disabled: false,
+        error: false,
       })
   }
 
@@ -83,6 +85,7 @@ class FitnessSelectDetails extends Component {
     ) {
       return this.setState({
         disabled: true,
+        error: true,
       })
     }
     this.props.postFitnessToDB({
@@ -92,9 +95,10 @@ class FitnessSelectDetails extends Component {
       burn_kcal: this.state.finalKcal,
       burn_minute: this.state.inputTime,
     })
-    this.setState({ loading: true }, () =>
-      this.postDelay(),
-    )
+    this.props.toggleSearchMode()
+    // this.setState({ loading: true }, () =>
+    //   this.postDelay(),
+    // )
   }
 
   render() {
@@ -129,7 +133,7 @@ class FitnessSelectDetails extends Component {
             style={{ width: '177px' }}
             type="number"
             onKeyDown={this.handleKeyPress}
-            error={this.state.disabled}
+            error={this.state.error}
           />
           <img
             src={returnIcon}

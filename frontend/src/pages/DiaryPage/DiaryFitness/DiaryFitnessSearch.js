@@ -3,9 +3,14 @@ import rootApi from '../../../config'
 import { connect } from 'react-redux'
 
 // 스타일
-import { Input, List } from 'semantic-ui-react'
+import {
+  Input,
+  List,
+  Button,
+} from 'semantic-ui-react'
 import * as Style from './StyledFitness'
 import '../Diary.css'
+import { submitBtn } from '../StyledDiaryCommon'
 
 // 아이콘
 import notyet from '../../../static/img/diary-fitness-search-notyet.svg'
@@ -36,6 +41,7 @@ class DiaryFitnessSearch extends React.Component {
   handleSelect = key => {
     this.setState({ selectedKey: key })
   }
+
   getFitnessesList = () => {
     if (
       !this.state.userInput || // 입력값이 없으면 검색 안됨
@@ -77,9 +83,12 @@ class DiaryFitnessSearch extends React.Component {
   handleChange = e => {
     this.setState({
       userInput: e.target.value,
-      inputError: false,
-      btnState: false,
     })
+    if (e.target.value)
+      this.setState({
+        inputError: false,
+        btnState: false,
+      })
   }
 
   handleKeyPress = e => {
@@ -108,6 +117,17 @@ class DiaryFitnessSearch extends React.Component {
               value={this.state.userInput}
               onKeyDown={this.handleKeyPress}
             />
+            <Button
+              onClick={this.getFitnessesList}
+              disabled={this.state.btnState}
+              style={{
+                ...submitBtn,
+                width: '100px',
+                marginLeft: '14px',
+              }}
+            >
+              검색
+            </Button>
           </List.Item>
         </List>
         <List
@@ -286,7 +306,7 @@ class DiaryFitnessSearch extends React.Component {
           }
           toggleSearchMode={
             this.props.isSearchMode
-          } // 토글 이벤트 propsㄴ 내림
+          } // 토글 이벤트 props 내림
         />
       </div>
     )

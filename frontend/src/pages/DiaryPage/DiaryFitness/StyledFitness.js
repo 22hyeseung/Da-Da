@@ -96,6 +96,7 @@ export const buttonIcon = {
 export const listItemLeftWrap = {
   width: '100%',
   margin: '0',
+  display: 'flex',
 }
 
 export const listItemRightWrap = {
