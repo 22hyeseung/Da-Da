@@ -81,11 +81,11 @@ class FitnessSelectDetails extends Component {
         disabled: true,
       })
     }
-    this.props.postFoodToDB({
+    this.props.postFitnessToDB({
       date: this.state.date,
-      exercise_id: this.props.foodResult
+      exercise_id: this.props.fitnessResult
         .exercise_id,
-      burn_kcal: this.props.foodResult.burn_kcal,
+      burn_kcal: this.state.finalKcal,
       burn_minute: this.state.inputTime,
     })
     this.setState({ loading: true }, () =>

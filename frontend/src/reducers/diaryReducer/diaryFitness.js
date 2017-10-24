@@ -21,8 +21,8 @@ export const diaryFitnessReducer = (
   ) {
     return {
       fitnessResult: [
-        action.payload,
-        ...state.foodresult,
+        ...action.payload,
+        ...state.fitnessResult,
       ],
     }
   }
