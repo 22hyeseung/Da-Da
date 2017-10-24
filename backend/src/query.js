@@ -387,7 +387,6 @@ function getReportNutrition({ eat_log_member_id, start_date, end_date }) {
       knex.raw('round(sum(protein),3) as protein'),
       knex.raw('round(sum(fat),3) as fat')
     )
-    .join('day_log', 'view_eat_log_type2.eat_log_member_id', '=', 'day_log.day_log_member_id')
     .where({ eat_log_member_id })
     .andWhere('eat_log_diary_date', '>=', start_date)
     .andWhere('eat_log_diary_date', '<=', end_date)
