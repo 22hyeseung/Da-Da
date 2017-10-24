@@ -571,6 +571,7 @@ function getFirstGoalKcalById({ day_log_member_id }) {
   return knex('day_log')
     .select('day_log_kcal')
     .where({ day_log_member_id })
+    .whereNotNull('day_log_kcal')
     .orderBy('day_log_diary_date')
     .first()
 }
