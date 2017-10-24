@@ -47,6 +47,9 @@ class App extends Component {
             component={WeightPage}
           />
           <Route
+            path="/search/:sc"
+            component={SearchResultPage}/>
+          <Route
             path="/search"
             component={SearchPage}
           />

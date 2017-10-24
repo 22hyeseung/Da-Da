@@ -4,6 +4,9 @@ import {
   Header,
   Search,
 } from 'semantic-ui-react'
+import {
+  Link
+} from 'react-router-dom'
 import * as Style from './StyledSearch'
 import './Search.css'
 
@@ -31,7 +34,12 @@ class SearchBar extends Component {
                 inverted
               />
             </Grid.Row>
+
+            <Link
+              to='/search-result?search=김'
+            >
             <Search className="search-searchbar" />
+            </Link>
             <Header
               style={Style.h5}
               as="h5"

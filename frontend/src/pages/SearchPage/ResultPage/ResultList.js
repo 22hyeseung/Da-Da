@@ -1,201 +1,212 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   Grid,
   Image,
   Icon,
   Card,
 } from 'semantic-ui-react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 import img1 from '../../../static/img/result1.png'
 import img2 from '../../../static/img/result2.png'
 import img3 from '../../../static/img/result3.png'
 import img4 from '../../../static/img/result4.png'
 import * as Style from './StyledResult'
 
-const ResultBox = () => {
-  return (
-    <Grid style={Style.wrapper}>
-      <Grid.Row style={Style.messagewrap}>
-        <span style={Style.message}>
-          ‘팬케익’ 검색 결과 8건
-        </span>
-        <div
-          style={{
-            marginLeft: '83.5%',
-          }}
+class ResultBox extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <Grid style={Style.wrapper}>
+        <Grid.Row style={Style.messagewrap}>
+          <span style={Style.message}>
+            ‘팬케익’ 검색 결과 8건
+          </span>
+          <div
+            style={{
+              marginLeft: '83.5%',
+            }}
+          >
+            <Icon
+              style={Style.icon}
+              name="grid layout"
+            />
+            <Icon
+              style={Style.icon}
+              name="list layout"
+            />
+          </div>
+        </Grid.Row>
+        <Grid.Row
+          columns={4}
+          style={Style.ImageWrap}
         >
-          <Icon
-            style={Style.icon}
-            name="grid layout"
-          />
-          <Icon
-            style={Style.icon}
-            name="list layout"
-          />
-        </div>
-      </Grid.Row>
-      <Grid.Row
-        columns={4}
-        style={Style.ImageWrap}
-      >
-        <Grid.Column style={{ padding: '0' }}>
-          <div style={{ width: '279px' }}>
-            <Card>
-              <Image
-                as="a"
-                style={{
-                  ...Style.ResultImage,
-                  backgroundImage: `url(${img1})`,
-                }}
-                src="/"
-                href="http://google.com"
-                target="_blank"
-              />
-              <Card.Content
-                style={Style.CardLabel}
-              >
-                <Card.Header
-                  style={Style.CardLabelHeader}
+          <Grid.Column style={{ padding: '0' }}>
+            <div style={{ width: '279px' }}>
+              <Card>
+                <Image
+                  as="a"
+                  style={{
+                    ...Style.ResultImage,
+                    backgroundImage: `url(${img1})`,
+                  }}
+                  src="/"
+                  href="http://google.com"
+                  target="_blank"
+                />
+                <Card.Content
+                  style={Style.CardLabel}
                 >
-                  트리플베리 팬케익
-                </Card.Header>
-                <Card.Meta
-                  style={Style.CardLabelLeftText}
+                  <Card.Header
+                    style={Style.CardLabelHeader}
+                  >
+                    트리플베리 팬케익
+                  </Card.Header>
+                  <Card.Meta
+                    style={Style.CardLabelLeftText}
+                  >
+                    <Icon name="clock" />
+                    소요시간: 60분
+                  </Card.Meta>
+                  <Card.Description
+                    style={Style.CardLabelRightText}
+                  >
+                    <span style={Style.dataText}>
+                      340
+                    </span>{' '}
+                    kcal
+                  </Card.Description>
+                </Card.Content>
+              </Card>
+            </div>
+          </Grid.Column>
+          <Grid.Column style={{ padding: '0' }}>
+            <div style={{ width: '279px' }}>
+              <Card>
+                <Image
+                  as="a"
+                  style={{
+                    ...Style.ResultImage,
+                    backgroundImage: `url(${img2})`,
+                  }}
+                  src="/"
+                  href="http://google.com"
+                  target="_blank"
+                />
+                <Card.Content
+                  style={Style.CardLabel}
                 >
-                  <Icon name="clock" />
-                  소요시간: 60분
-                </Card.Meta>
-                <Card.Description
-                  style={Style.CardLabelRightText}
+                  <Card.Header
+                    style={Style.CardLabelHeader}
+                  >
+                    스트로베리 팬케익
+                  </Card.Header>
+                  <Card.Meta
+                    style={Style.CardLabelLeftText}
+                  >
+                    <Icon name="clock" />
+                    소요시간: 60분
+                  </Card.Meta>
+                  <Card.Description
+                    style={Style.CardLabelRightText}
+                  >
+                    <span style={Style.dataText}>
+                      320
+                    </span>{' '}
+                    kcal
+                  </Card.Description>
+                </Card.Content>
+              </Card>
+            </div>
+          </Grid.Column>
+          <Grid.Column style={{ padding: '0' }}>
+            <div style={{ width: '279px' }}>
+              <Card>
+                <Image
+                  as="a"
+                  style={{
+                    ...Style.ResultImage,
+                    backgroundImage: `url(${img3})`,
+                  }}
+                  src="/"
+                  href="http://google.com"
+                  target="_blank"
+                />
+                <Card.Content
+                  style={Style.CardLabel}
                 >
-                  <span style={Style.dataText}>
-                    340
-                  </span>{' '}
-                  kcal
-                </Card.Description>
-              </Card.Content>
-            </Card>
-          </div>
-        </Grid.Column>
-        <Grid.Column style={{ padding: '0' }}>
-          <div style={{ width: '279px' }}>
-            <Card>
-              <Image
-                as="a"
-                style={{
-                  ...Style.ResultImage,
-                  backgroundImage: `url(${img2})`,
-                }}
-                src="/"
-                href="http://google.com"
-                target="_blank"
-              />
-              <Card.Content
-                style={Style.CardLabel}
-              >
-                <Card.Header
-                  style={Style.CardLabelHeader}
+                  <Card.Header
+                    style={Style.CardLabelHeader}
+                  >
+                    블루베리 팬케익
+                  </Card.Header>
+                  <Card.Meta
+                    style={Style.CardLabelLeftText}
+                  >
+                    <Icon name="clock" />
+                    소요시간: 60분
+                  </Card.Meta>
+                  <Card.Description
+                    style={Style.CardLabelRightText}
+                  >
+                    <span style={Style.dataText}>
+                      270
+                    </span>{' '}
+                    kcal
+                  </Card.Description>
+                </Card.Content>
+              </Card>
+            </div>
+          </Grid.Column>
+          <Grid.Column style={{ padding: '0' }}>
+            <div style={{ width: '279px' }}>
+              <Card>
+                <Image
+                  as="a"
+                  style={{
+                    ...Style.ResultImage,
+                    backgroundImage: `url(${img4})`,
+                  }}
+                  src="/"
+                  href="http://google.com"
+                  target="_blank"
+                />
+                <Card.Content
+                  style={Style.CardLabel}
                 >
-                  스트로베리 팬케익
-                </Card.Header>
-                <Card.Meta
-                  style={Style.CardLabelLeftText}
-                >
-                  <Icon name="clock" />
-                  소요시간: 60분
-                </Card.Meta>
-                <Card.Description
-                  style={Style.CardLabelRightText}
-                >
-                  <span style={Style.dataText}>
-                    320
-                  </span>{' '}
-                  kcal
-                </Card.Description>
-              </Card.Content>
-            </Card>
-          </div>
-        </Grid.Column>
-        <Grid.Column style={{ padding: '0' }}>
-          <div style={{ width: '279px' }}>
-            <Card>
-              <Image
-                as="a"
-                style={{
-                  ...Style.ResultImage,
-                  backgroundImage: `url(${img3})`,
-                }}
-                src="/"
-                href="http://google.com"
-                target="_blank"
-              />
-              <Card.Content
-                style={Style.CardLabel}
-              >
-                <Card.Header
-                  style={Style.CardLabelHeader}
-                >
-                  블루베리 팬케익
-                </Card.Header>
-                <Card.Meta
-                  style={Style.CardLabelLeftText}
-                >
-                  <Icon name="clock" />
-                  소요시간: 60분
-                </Card.Meta>
-                <Card.Description
-                  style={Style.CardLabelRightText}
-                >
-                  <span style={Style.dataText}>
-                    270
-                  </span>{' '}
-                  kcal
-                </Card.Description>
-              </Card.Content>
-            </Card>
-          </div>
-        </Grid.Column>
-        <Grid.Column style={{ padding: '0' }}>
-          <div style={{ width: '279px' }}>
-            <Card>
-              <Image
-                as="a"
-                style={{
-                  ...Style.ResultImage,
-                  backgroundImage: `url(${img4})`,
-                }}
-                src="/"
-                href="http://google.com"
-                target="_blank"
-              />
-              <Card.Content
-                style={Style.CardLabel}
-              >
-                <Card.Header
-                  style={Style.CardLabelHeader}
-                >
-                  바나나 팬케익
-                </Card.Header>
-                <Card.Meta
-                  style={Style.CardLabelLeftText}
-                >
-                  <Icon name="clock" />
-                  소요시간: 60분
-                </Card.Meta>
-                <Card.Description
-                  style={Style.CardLabelRightText}
-                >
-                  <span style={Style.dataText}>
-                    380
-                  </span>{' '}
-                  kcal
-                </Card.Description>
-              </Card.Content>
-            </Card>
-          </div>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-  )
+                  <Card.Header
+                    style={Style.CardLabelHeader}
+                  >
+                    바나나 팬케익
+                  </Card.Header>
+                  <Card.Meta
+                    style={Style.CardLabelLeftText}
+                  >
+                    <Icon name="clock" />
+                    소요시간: 60분
+                  </Card.Meta>
+                  <Card.Description
+                    style={Style.CardLabelRightText}
+                  >
+                    <span style={Style.dataText}>
+                      380
+                    </span>{' '}
+                    kcal
+                  </Card.Description>
+                </Card.Content>
+              </Card>
+            </div>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    )
+  }
 }
 
 export default ResultBox
