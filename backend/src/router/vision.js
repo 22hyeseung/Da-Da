@@ -111,11 +111,9 @@ router.post('/', upload.single('upload_img'), (req, res) => {
 
   Promise.all([googleVision(req.file.buffer), s3upload(req.file.buffer, fileName, mime)])
     .then(result => {
-      const regexr = /^((?!junk)(?!dish)(?!food)(?!snack)(?!cookie)(?!finger food)(?!cuisine)(?!asian food)(?!chinese)(?!baking)(?!baked goods)).*$/
-      const out = []
-
-      result[0].forEach(item => {
-        out.push(item.description.match(regexr))
+      const regexr = /^((?!junk)(?!dish)(?!food)(?!snack)(?!cookie)(?!finger food)(?!cuisine)(?!asian food)(?!chinese)(?!baking)(?!baked goods)(?!dessert)(?!american food)(?!cook)(?!side dish)(?!vegetarian food)).*$/
+      const out = result[0].filter(item => {
+        return item.description.match(regexr)
       })
       res.render('vision.pug', {
         'visionAnalysis': JSON.stringify(out),
