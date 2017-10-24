@@ -50,6 +50,7 @@ class DiaryFitness extends Component {
           tabNameKR="운동 다이어리"
           icon="fitnessIcon"
         />
+        <DiaryFitnessList />
         <DiaryFitnessAdd />
       </Segment>
     )

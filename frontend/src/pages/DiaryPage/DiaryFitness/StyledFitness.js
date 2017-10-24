@@ -9,7 +9,7 @@ export const container = {
   border: '1px solid #D8DDE6',
   backgroundImage: `url(${bgImg})`,
   backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'center top',
+  backgroundPosition: 'right top',
   backgroundSize: '34%',
   backgroundAttachment: 'local',
 }
@@ -62,7 +62,7 @@ export const buttonIcon = {
 // ==========================> DiaryFitnessInput.js
 
 export const listItemLeftWrap = {
-  width: '60%',
+  width: '100%',
   margin: '0',
 }
 
@@ -72,7 +72,7 @@ export const listItemRightWrap = {
 }
 
 export const inputStyle = {
-  width: '90%',
+  width: '100%',
 }
 
 export const tiemsIcon = {

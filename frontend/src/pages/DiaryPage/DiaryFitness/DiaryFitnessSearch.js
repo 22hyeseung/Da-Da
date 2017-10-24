@@ -6,6 +6,7 @@ import {
   Divider,
 } from 'semantic-ui-react'
 import * as Style from './StyledFitness'
+import DiaryFitnessSearchDetails from './DiaryFitnessSearchDetails'
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import '../Diary.css'
 import returnIcon from '../../../static/img/diary-return.svg'
@@ -31,6 +32,10 @@ class DiaryFitnessSearch extends React.Component {
       finalKcal: '',
       token: `Bearer ${this.props.token}`,
     }
+  }
+
+  handleSelect = key => {
+    this.setState({ selectedKey: key })
   }
   getFitnessesList = () => {
     if (
@@ -100,43 +105,11 @@ class DiaryFitnessSearch extends React.Component {
               value={this.state.userInput}
               onKeyDown={this.handleKeyPress}
             />
-            <img
-              src={multiplyIcon}
-              alt="곱하기 모양의 아이콘입니다."
-              style={{ margin: '0px 18px' }}
-            />
-          </List.Item>
-          <List.Item
-            style={Style.listItemRightWrap}
-          >
-            <List.Content
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Input placeholder="얼마나 운동하셨나요?" />
-              <img
-                src={returnIcon}
-                alt="= 모양의 아이콘입니다."
-              />
-            </List.Content>
-          </List.Item>
-          <List.Item
-            style={Style.listItemRightAlign}
-          >
-            <List.Content
-              style={Style.textSmall_Input}
-            >
-              <span style={Style.textBig}>
-                0
-              </span>kcal
-            </List.Content>
           </List.Item>
         </List>
         <List
           style={{
-            width: '54%',
+            width: '100%',
             marginLeft: '14px',
           }}
         >
@@ -188,6 +161,11 @@ class DiaryFitnessSearch extends React.Component {
                                   '1px solid #d8dde6',
                                 cursor: 'pointer',
                               }}
+                              key={i}
+                              onClick={() =>
+                                this.handleSelect(
+                                  i,
+                                )}
                             >
                               <span
                                 style={{
@@ -284,7 +262,7 @@ class DiaryFitnessSearch extends React.Component {
                 </div>
                 <img
                   style={{
-                    width: '26%',
+                    width: '14%',
                     marginTop: '21px',
                   }}
                   src={notyet}
@@ -294,15 +272,17 @@ class DiaryFitnessSearch extends React.Component {
             )}
           </ul>
         </List>
-        <div style={Style.buttonWrap}>
-          <Button basic style={Style.button}>
-            취소
-          </Button>
-          <Button style={Style.submitButton}>
-            등록
-          </Button>
-        </div>
-        <Divider />
+        <DiaryFitnessSearchDetails
+          isSelected={
+            this.state.selectedKey !== -1
+          }
+          fitnessResult={
+            this.state.results[
+              this.state.selectedKey
+            ]
+          }
+          toggleSearchMode={this.toggleSearchMode} // 토글 이벤트 propsㄴ 내림
+        />
       </div>
     )
   }
