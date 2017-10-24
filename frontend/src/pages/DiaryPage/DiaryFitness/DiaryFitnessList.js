@@ -11,6 +11,7 @@ class DiaryFitnessAdd extends React.Component {
   constructor(props) {
     super(props)
   }
+
   render() {
     return (
       <div>
@@ -52,7 +53,13 @@ class DiaryFitnessAdd extends React.Component {
             <Button style={Style.buttonIcon}>
               <Icon name="pencil" />
             </Button>
-            <Button style={Style.buttonIcon}>
+            <Button
+              style={Style.buttonIcon}
+              onClick={() =>
+                this.props.deleteFitnessOfDB(
+                  this.props.id,
+                )}
+            >
               <Icon name="trash outline" />
             </Button>
           </List.Item>

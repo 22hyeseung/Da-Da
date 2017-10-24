@@ -11,7 +11,10 @@ import DiaryFitnessAdd from './DiaryFitnessAdd'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
 
 import { connect } from 'react-redux'
-import { getFitnessLogsFromDB } from '../../../actions/diaryFitness'
+import {
+  getFitnessLogsFromDB,
+  deleteFitnessOfDB,
+} from '../../../actions/diaryFitness'
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../helper/date'
 
@@ -38,7 +41,9 @@ class DiaryFitness extends Component {
       })
     }, 2000)
   }
-
+  deleteFitnessOfDB = id => {
+    this.props.deleteFitnessOfDB(id)
+  }
   render() {
     if (this.state.loading) {
       return <ComponentLoader />
@@ -57,6 +62,10 @@ class DiaryFitness extends Component {
               name={fitness.exercise_name}
               time={fitness.burn_minute}
               kcal={fitness.burn_kcal}
+              id={fitness.burn_id}
+              deleteFitnessOfDB={
+                this.deleteFitnessOfDB
+              }
             />
           ),
         )}
@@ -77,6 +86,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchFitnessLogs: date =>
       dispatch(getFitnessLogsFromDB(date)),
+    deleteFitnessOfDB: id =>
+      dispatch(deleteFitnessOfDB(id)),
   }
 }
 export default connect(

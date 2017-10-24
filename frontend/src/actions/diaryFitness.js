@@ -39,21 +39,6 @@ export const postFitnessToDB = payload => {
       body: JSON.stringify(payload),
     })
       .then(result => result.json())
-      // .then(result => {
-      //   if (result) {
-      //     console.log(payload.exercise_id)
-      //     return fetch(
-      //       `${rootApi}/exercises/${result[0]
-      //         .burn_id}`,
-      //       {
-      //         method: 'GET',
-      //         headers: {
-      //           Authorization: `Bearer ${window
-      //             .localStorage.token}`,
-      //         },
-      //       },
-      //     )
-      //       .then(res => res.json())
       .then(data => {
         // console.log(data, '<<')
         dispatch({
