@@ -359,3 +359,7 @@
     height: 100%;
     opacity: 0;
 }
+
+.diary-fitness-search>input {
+    width: 100%;
+}
