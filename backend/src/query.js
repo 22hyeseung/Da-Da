@@ -488,9 +488,9 @@ function putEatLogs({ eat_log_id, eat_log_amount, eat_log_serve }) {
     })
 }
 
-function WeightNullById(day_log_id) {
+function WeightNullById({ day_log_id, day_log_member_id }) {
   return knex('day_log')
-    .where({ day_log_id })
+    .where({ day_log_id, day_log_member_id })
     .update('day_log_kg', null)
 }
 
