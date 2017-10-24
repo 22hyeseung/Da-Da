@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 // 차트
 import {
-  BarChart,
   Bar,
   XAxis,
   YAxis,
@@ -13,11 +12,15 @@ import {
   ComposedChart,
   Line,
 } from 'recharts'
-// YYYY. MM. DD.(날짜 기본 포맷)를 api 요청 포맷(YYYYMMDD)으로 변환하는 함수
+
+// helper
 import {
+  // YYYY. MM. DD. 포맷 -> YYYYMMDD(API요청포맷)
   dateStringForApiQuery,
   dateDotToDateType,
+  getWeekArray, // 일주일치 날짜 배열을 반환하는 함수
 } from '../../helper/date'
+
 // 리덕스 액션
 import { getNutritionFactsForAWeekFromDB } from '../../actions/reportAPIs'
 
@@ -53,22 +56,14 @@ class CaloriesChart extends Component {
       goalCaloriePerWeek,
     } = this.props
 
-    let dateType = dateDotToDateType(
-      beforeDateState,
-    )
+    // 목표 칼로리 데이터 없을 시 default 값
+    const defaultGoal =
+      defaultGoalCalorie.day_log_kcal
 
-    const defaultGoal = 1280 // test용 static값
-    // 일주일치 날짜
-    const dateArray = []
-    for (let i = 0; i < 7; i++) {
-      dateArray.push(
-        new Date(
-          dateType.getFullYear(),
-          dateType.getMonth(),
-          dateType.getDate() + i,
-        ),
-      )
-    }
+    // 일주일치 날짜 배열
+    const dateArray = getWeekArray(
+      dateDotToDateType(beforeDateState),
+    )
 
     dateArray.map((el, index, all) => {
       const getMatched = _.reject(
@@ -88,12 +83,12 @@ class CaloriesChart extends Component {
         },
       )
 
-      all[index] = {
+      return (all[index] = {
         day: el,
         목표칼로리: Object.values(kcal)[0]
           ? Object.values(kcal)[0]
           : defaultGoal,
-      }
+      })
     })
 
     dateArray.map((el, index, all) => {
@@ -180,6 +175,8 @@ const mapStateToProps = state => {
         .nutritionFactsLogsPerWeek,
     goalCaloriePerWeek:
       state.caloriesChart.goalCaloriePerWeek,
+    defaultGoalCalorie:
+      state.caloriesChart.defaultGoalCalorie,
     lastDateState: state.today.date,
     beforeDateState: state.beforeDay.beforeDate,
   }

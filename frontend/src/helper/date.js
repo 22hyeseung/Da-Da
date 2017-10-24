@@ -91,3 +91,18 @@ export const getDateNDaysBefore = (
     dateType.getDate() - n,
   )
 }
+
+// 시작일부터 일주일치 Array 반환
+export const getWeekArray = dateTypeStartDate => {
+  const dateArray = []
+  for (let i = 0; i < 7; i++) {
+    dateArray.push(
+      new Date(
+        dateTypeStartDate.getFullYear(),
+        dateTypeStartDate.getMonth(),
+        dateTypeStartDate.getDate() + i,
+      ),
+    )
+  }
+  return dateArray
+}
