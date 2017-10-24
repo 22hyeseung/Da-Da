@@ -58,7 +58,7 @@ export const updateFitnessOfDB = (
 ) => {
   return dispatch => {
     fetch(`${rootApi}/exercises/${id}`, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${window
           .localStorage.token}`,
@@ -67,34 +67,12 @@ export const updateFitnessOfDB = (
       body: JSON.stringify(payload),
     })
       .then(result => result.json())
-      .then(result => {
-        if (result) {
-          console.log(result)
-          return fetch(
-            `${rootApi}/eat-logs/${id}`,
-            {
-              method: 'GET',
-              headers: {
-                Authorization: `Bearer ${window
-                  .localStorage.token}`,
-              },
-            },
-          )
-            .then(res => res.json())
-            .then(data => {
-              console.log(data)
-              dispatch({
-                type:
-                  types.UPDATE_FITNESS_OF_DATABASE,
-                payload: data,
-              })
-            })
-            .catch(error => {
-              console.log(
-                'fetchUpdateFitnessFromDB error',
-              )
-            })
-        }
+      .then(data => {
+        console.log(data)
+        dispatch({
+          type: types.UPDATE_FITNESS_OF_DATABASE,
+          payload: data[0],
+        })
       })
       .catch(error => {
         console.log('updateFitnessOfDB error')

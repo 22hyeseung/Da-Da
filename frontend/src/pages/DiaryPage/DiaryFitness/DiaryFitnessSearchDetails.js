@@ -1,21 +1,30 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+// 스타일
 import {
   Input,
   Icon,
   Button,
   Divider,
 } from 'semantic-ui-react'
-import ComponentLoader from '../../../components/Loader/ComponentLoader'
+import * as Style from './StyledFitness'
 import {
   segmentDefault,
   submitBtn,
   cancelBtn,
 } from '../StyledDiaryCommon'
-import { postFitnessToDB } from '../../../actions/diaryFitness'
-import { connect } from 'react-redux'
-import * as Style from './StyledFitness'
+
+// 아이콘
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import returnIcon from '../../../static/img/diary-return.svg'
+
+// 컴포넌트
+import ComponentLoader from '../../../components/Loader/ComponentLoader'
+
+// 액션
+import { postFitnessToDB } from '../../../actions/diaryFitness'
+
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../helper/date'
 

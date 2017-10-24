@@ -16,25 +16,12 @@ class DiaryFitnessAdd extends React.Component {
     return (
       <div>
         <List horizontal style={Style.listWrap}>
-          <div
-            style={{
-              width: '55%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
+          <div style={Style.listItemWrap}>
             <List.Header style={Style.text}>
               {this.props.name}
             </List.Header>
           </div>
-          <List.Item
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              width: '23%',
-            }}
-          >
+          <List.Item style={Style.listItemResult}>
             <List.Header>
               {this.props.time} 분
             </List.Header>
@@ -50,7 +37,16 @@ class DiaryFitnessAdd extends React.Component {
               display: 'flex',
             }}
           >
-            <Button style={Style.buttonIcon}>
+            <Button
+              style={Style.buttonIcon}
+              onClick={this.props.show(
+                'blurring',
+                this.props.id,
+                this.props.kcal,
+                this.props.name,
+                this.props.time,
+              )}
+            >
               <Icon name="pencil" />
             </Button>
             <Button

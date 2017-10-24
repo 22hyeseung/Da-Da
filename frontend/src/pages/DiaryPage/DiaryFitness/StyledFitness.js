@@ -19,6 +19,27 @@ export const icon = {
   marginBottom: '9px',
 }
 
+export const modalName = {
+  textAlign: 'center',
+  fontWeight: '100',
+  fontSize: '21px',
+  borderBottom: '1px solid #e0e5ee',
+  padding: '0px 0px 14px',
+}
+
+export const modalTime = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+}
+
+export const modalTimeInfo = {
+  color: '#54698d',
+  fontSize: '12px',
+  marginTop: '21px',
+  marginBottom: '12px',
+}
+
 // ==========================> DiaryFitnessList.js
 
 export const listWrap = {
@@ -31,10 +52,17 @@ export const listItemLeft = {
   margin: '0',
 }
 
-export const listItemRight = {
-  width: '30%',
-  margin: '0',
-  textAlign: 'right',
+export const listItemWrap = {
+  width: '55%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+}
+
+export const listItemResult = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '23%',
 }
 
 export const textSmall = {

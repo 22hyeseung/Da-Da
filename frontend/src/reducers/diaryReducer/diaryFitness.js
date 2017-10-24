@@ -1,3 +1,4 @@
+import _ from 'lodash'
 const DEFAULT_DIARY_FITNESS = {
   fitnessResult: [],
 }
@@ -29,23 +30,23 @@ export const diaryFitnessReducer = (
   if (
     action.type === 'UPDATE_FITNESS_OF_DATABASE'
   ) {
-    const updateFoodIndex = state.foodresult
-      .map(item => item.eat_log_id)
-      .indexOf(action.payload.eat_log_id)
-    const updateFood = state.foodresult.splice(
-      updateFoodIndex,
+    const updateFitnessIndex = state.fitnessResult
+      .map(item => item.burn_id)
+      .indexOf(action.payload.burn_id)
+    state.fitnessResult.splice(
+      updateFitnessIndex,
       1,
       action.payload,
     )
-    console.log(
-      updateFoodIndex,
-      updateFood,
-      action.payload,
-      state.foodresult,
-    )
-    // action.type.eat_log_id
+    // const updateFitness = _.fill(
+    //   state.fitnessResult,
+    //   action.payload,
+    //   updateFitnessIndex,
+    //   updateFitnessIndex + 1,
+    // )
+    console.log(state.fitnessResult)
     return {
-      // foodresult: [...updateFood],
+      ...state,
     }
   }
   if (

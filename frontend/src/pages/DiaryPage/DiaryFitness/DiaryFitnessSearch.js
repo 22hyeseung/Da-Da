@@ -1,4 +1,8 @@
 import React from 'react'
+import rootApi from '../../../config'
+import { connect } from 'react-redux'
+
+// 스타일
 import {
   Button,
   Input,
@@ -6,14 +10,16 @@ import {
   Divider,
 } from 'semantic-ui-react'
 import * as Style from './StyledFitness'
-import DiaryFitnessSearchDetails from './DiaryFitnessSearchDetails'
-import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import '../Diary.css'
+
+// 아이콘
+import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import returnIcon from '../../../static/img/diary-return.svg'
-import rootApi from '../../../config'
 import notyet from '../../../static/img/diary-fitness-search-notyet.svg'
 import error from '../../../static/img/diary-search-error.svg'
-import { connect } from 'react-redux'
+
+// 컴포넌트
+import DiaryFitnessSearchDetails from './DiaryFitnessSearchDetails'
 
 class DiaryFitnessSearch extends React.Component {
   constructor(props) {
@@ -74,6 +80,7 @@ class DiaryFitnessSearch extends React.Component {
         })
       })
   }
+
   handleChange = e => {
     this.setState({
       userInput: e.target.value,
@@ -81,11 +88,13 @@ class DiaryFitnessSearch extends React.Component {
       btnState: false,
     })
   }
+
   handleKeyPress = e => {
     if (e.keyCode === 13) {
       this.getFitnessesList()
     }
   }
+
   handleSelect = key => {
     this.setState({ selectedKey: key })
   }
