@@ -96,8 +96,46 @@ router.get('/search', (req, res) => {
  *     "recipe_carb": 100,
  *     "recipe_protein": 100,
  *     "recipe_fat": 100,
- *     "recipe_ingredient": "치즈, 감자",
- *     "recipe": "피자를 오븐에 넣는다.",
+ *     "recipe_ingredient": [
+ *      {
+ *          "id": 0,
+ *          "name": "달걀",
+ *          "num": 4,
+ *          "unit": "개"
+ *      },
+ *      {
+ *          "id": 1,
+ *          "name": "헤비 크림",
+ *          "num": 2,
+ *          "unit": "T스푼"
+ *      },
+ *      {
+ *          "id": 2,
+ *          "name": "고춧가루",
+ *          "num": 1,
+ *          "unit": "t스푼"
+ *      },
+ *      {
+ *          "id": 3,
+ *          "name": "저탄수화물 빵",
+ *          "num": 2,
+ *          "unit": "조각"
+ *      }
+ *     ],
+ *     "recipe": [
+ *      {
+ *          "step": 1,
+ *          "content": "달걀과 크림을 한곳에 합쳐 거품을 내어 저어준다."
+ *      },
+ *      {
+ *          "step": 2,
+ *          "content": "버터를 한 숟가락을 중강불의 팬에 넣어준다. 달걀 혼합물을 팬에 부은 후, 익을 때 까지 저어주며 섞은 후, 불을 끈다."
+ *      },
+ *      {
+ *          "step": 3,
+ *          "content": "고춧가루를 넣고 섞는다."
+ *      }
+ *     ],
  *     "recipe_serving": 1,
  *     "recipe_from": "www.naver.com",
  *     "recipe_kcal": 1700
@@ -110,6 +148,8 @@ router.get('/search/:id', (req, res) => {
   query.getRecipeById(recipe_id)
     .then(result => {
       if (result) {
+        result.recipe_ingredient = JSON.parse(result.recipe_ingredient)
+        result.recipe = JSON.parse(result.recipe)
         res.send(result)
       } else {
         console.log('Recipe GetById Error')
