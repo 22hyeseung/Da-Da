@@ -125,3 +125,77 @@ export const getNutritionFactsForAWeekFromDB = (
       })
   }
 }
+
+// SUMMARY
+
+export const getKcalSummaryFromDB = (
+  startDate,
+  endDate,
+) => {
+  return dispatch => {
+    dispatch({
+      type:
+        types.GET_REPORTS_CALORIES_SUMMARY_REQUEST,
+    })
+    fetch(
+      `${rootApi}/report/kcal/summary?start_date=${startDate}&end_date=${endDate}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${window
+            .localStorage.token}`,
+        },
+      },
+    )
+      .then(res => res.json())
+      .then(data => {
+        dispatch({
+          type:
+            types.GET_REPORTS_CALORIES_SUMMARY_SUCCESS,
+          payload: data,
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type:
+            types.GET_REPORTS_CALORIES_SUMMARY_FAILED,
+        })
+      })
+  }
+}
+
+export const getNutritionSummaryFromDB = (
+  startDate,
+  endDate,
+) => {
+  return dispatch => {
+    dispatch({
+      type:
+        types.GET_REPORTS_NUTRITION_SUMMARY_REQUEST,
+    })
+    fetch(
+      `${rootApi}/report/nutrition/summary?start_date=${startDate}&end_date=${endDate}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${window
+            .localStorage.token}`,
+        },
+      },
+    )
+      .then(res => res.json())
+      .then(data => {
+        dispatch({
+          type:
+            types.GET_REPORTS_NUTRITION_SUMMARY_SUCCESS,
+          payload: data,
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type:
+            types.GET_REPORTS_NUTRITION_SUMMARY_FAILED,
+        })
+      })
+  }
+}
