@@ -3,18 +3,11 @@ import rootApi from '../../../config'
 import { connect } from 'react-redux'
 
 // 스타일
-import {
-  Button,
-  Input,
-  List,
-  Divider,
-} from 'semantic-ui-react'
+import { Input, List } from 'semantic-ui-react'
 import * as Style from './StyledFitness'
 import '../Diary.css'
 
 // 아이콘
-import multiplyIcon from '../../../static/img/diary-multiply.svg'
-import returnIcon from '../../../static/img/diary-return.svg'
 import notyet from '../../../static/img/diary-fitness-search-notyet.svg'
 import error from '../../../static/img/diary-search-error.svg'
 

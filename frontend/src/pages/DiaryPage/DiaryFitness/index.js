@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import {
   Segment,
   Modal,
-  dimmer,
   Input,
   Button,
 } from 'semantic-ui-react'
@@ -118,7 +117,7 @@ class DiaryFitness extends Component {
   close = () => this.setState({ open: false })
 
   render() {
-    const { open, dimmer, selectKey } = this.state
+    const { open, dimmer } = this.state
 
     // 일정시간 로딩
     if (this.state.loading) {

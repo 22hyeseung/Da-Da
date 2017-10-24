@@ -6,11 +6,9 @@ import {
   Input,
   Icon,
   Button,
-  Divider,
 } from 'semantic-ui-react'
 import * as Style from './StyledFitness'
 import {
-  segmentDefault,
   submitBtn,
   cancelBtn,
 } from '../StyledDiaryCommon'
@@ -18,9 +16,6 @@ import {
 // 아이콘
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import returnIcon from '../../../static/img/diary-return.svg'
-
-// 컴포넌트
-import ComponentLoader from '../../../components/Loader/ComponentLoader'
 
 // 액션
 import { postFitnessToDB } from '../../../actions/diaryFitness'
@@ -75,8 +70,8 @@ class FitnessSelectDetails extends Component {
     setTimeout(() => {
       this.setState({
         loading: false,
-      }),
-        this.props.toggleSearchMode()
+      })
+      this.props.toggleSearchMode()
     }, 2000)
   }
 
@@ -170,13 +165,13 @@ class FitnessSelectDetails extends Component {
         <div style={Style.buttonWrap}>
           <Button
             basic
-            style={Style.button}
+            style={cancelBtn}
             onClick={this.props.toggleSearchMode}
           >
             취소
           </Button>
           <Button
-            style={Style.submitButton}
+            style={submitBtn}
             onClick={
               this.createPayloadAndPostToDB
             }

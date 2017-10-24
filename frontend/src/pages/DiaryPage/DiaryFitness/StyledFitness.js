@@ -134,20 +134,6 @@ export const buttonWrap = {
   justifyContent: 'flex-end',
 }
 
-export const button = {
-  width: '93px',
-  fontWeight: '300',
-}
-
-export const submitButton = {
-  width: '93px',
-  fontWeight: '300',
-  color: '#fff',
-  backgroundImage:
-    'linear-gradient(249deg, #485563, #29323c)',
-  marginLeft: '7px',
-}
-
 // ==========================> DiaryFitnessAdd.js
 
 export const addButton = {

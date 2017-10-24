@@ -8,10 +8,6 @@ import {
 import * as Style from './StyledFitness'
 
 class DiaryFitnessAdd extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div>
