@@ -45,14 +45,20 @@ class DiarySummary extends Component {
 
   render() {
     const {
+      defaultGoalCalorie,
       calorieSummary,
       kcalGoal,
     } = this.props
-    const restCalorie = Math.round(
-      kcalGoal.day_log_kcal -
-        calorieSummary.today_kcal +
-        calorieSummary.today_burn_kcal,
-    )
+
+    const goalCalorie = kcalGoal.day_log_kcal
+      ? kcalGoal.day_log_kcal
+      : defaultGoalCalorie.day_log_kcal
+
+    const restCalorie =
+      goalCalorie -
+      calorieSummary.today_kcal +
+      calorieSummary.today_burn_kcal
+
     return (
       <div>
         <Segment style={Style.segment}>
@@ -81,9 +87,7 @@ class DiarySummary extends Component {
 
             <SummaryListItem
               label="목표 칼로리"
-              kcal={Math.round(
-                kcalGoal.day_log_kcal,
-              )}
+              kcal={goalCalorie}
             />
             <SummaryListItem
               label="섭취 칼로리"
@@ -121,20 +125,17 @@ class DiarySummary extends Component {
               </span>
             </Segment>
           ) : (
-            <Message negative>
-              <Message.Header>
-                오류가 발생하였습니다.
-              </Message.Header>
-              <p>잠시 후 다시 시도해주세요.</p>
-            </Message>
+            <Segment style={Style.comment} t>
+              <span>
+                아직 오늘의 식사를 <br /> 기록하지 않으셨어요!
+              </span>
+            </Segment>
           )}
 
           {/* comment 끝 */}
 
           {/* 파이 차트 시작 */}
-
           <SectionHeader subtitle="NUTRITION\nGRAPH" />
-
           <SummaryPieChart
             style={{ marginTop: '4px' }}
           />
@@ -152,6 +153,8 @@ const mapStateToProps = state => {
       state.diarySummary.calorieSummary,
     dateState: state.today.date,
     kcalGoal: state.calorieGoalAboutADay.kcalGoal,
+    defaultGoalCalorie:
+      state.caloriesChart.defaultGoalCalorie,
   }
 }
 

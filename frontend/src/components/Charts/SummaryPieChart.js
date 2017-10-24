@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import { Message } from 'semantic-ui-react'
 import {
   PieChart,
   Pie,
@@ -33,7 +33,11 @@ class SummaryPieChart extends Component {
   }
 
   render() {
-    const { calorieSummary } = this.props
+    const {
+      calorieSummary,
+      errorState,
+    } = this.props
+
     const data = [
       {
         name: '탄수화물',
@@ -48,6 +52,27 @@ class SummaryPieChart extends Component {
         value: calorieSummary.today_fat,
       },
     ]
+
+    if (calorieSummary.today_kcal === 0) {
+      return (
+        <Message
+          warning
+          header="데이터가 충분하지 않습니다!"
+          content="차트를 표시하기 위해 하나 이상의 식사를 등록해주세요."
+        />
+      )
+    }
+
+    if (errorState) {
+      return (
+        <Message negative>
+          <Message.Header>
+            오류가 발생하였습니다.
+          </Message.Header>
+          <p>잠시 후 다시 시도해주세요.</p>
+        </Message>
+      )
+    }
 
     return (
       <PieChart width={250} height={260}>
@@ -79,6 +104,7 @@ const mapStateToProps = state => {
   return {
     calorieSummary:
       state.diarySummary.calorieSummary,
+    errorState: state.diarySummary.errorState,
     dateState: state.today.date,
   }
 }
