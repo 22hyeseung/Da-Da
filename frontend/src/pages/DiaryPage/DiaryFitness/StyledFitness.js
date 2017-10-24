@@ -4,7 +4,7 @@ import bgImg from '../../../static/img/fitness_bg.png'
 export const container = {
   // height: '574px',
   overflow: 'auto',
-  padding: '33px 36px',
+  padding: '33px 36px 14px',
   boxShadow: 'none',
   border: '1px solid #D8DDE6',
   backgroundImage: `url(${bgImg})`,
@@ -21,10 +21,13 @@ export const icon = {
 
 // ==========================> DiaryFitnessList.js
 
-export const listWrap = { width: '100%' }
+export const listWrap = {
+  display: 'flex',
+  justifyContent: 'space-between',
+}
 
 export const listItemLeft = {
-  width: '20%',
+  width: '6%',
   margin: '0',
 }
 
@@ -57,6 +60,7 @@ export const buttonIcon = {
   color: '#a8b7c7',
   backgroundColor: 'transparent',
   display: 'inline-block',
+  width: '46%',
 }
 
 // ==========================> DiaryFitnessInput.js

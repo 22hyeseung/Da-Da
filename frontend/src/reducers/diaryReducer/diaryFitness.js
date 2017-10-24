@@ -12,7 +12,7 @@ export const diaryFitnessReducer = (
     return {
       ...state,
       fitnessResult: [
-        ...action.payload.foodresult,
+        ...action.payload,
       ].reverse(),
     }
   }

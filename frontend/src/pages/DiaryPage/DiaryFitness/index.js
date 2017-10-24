@@ -24,7 +24,7 @@ class DiaryFitness extends Component {
   }
 
   componentWillMount() {
-    // this.props.fetchFitnessLogs(this.state.date)
+    this.props.fetchFitnessLogs(this.state.date)
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
@@ -50,7 +50,16 @@ class DiaryFitness extends Component {
           tabNameKR="운동 다이어리"
           icon="fitnessIcon"
         />
-        <DiaryFitnessList />
+        {console.log(this.props.fitnessResult)}
+        {this.props.fitnessResult.map(
+          (fitness, i) => (
+            <DiaryFitnessList
+              name={fitness.exercise_name}
+              time={fitness.burn_minute}
+              kcal={fitness.burn_kcal}
+            />
+          ),
+        )}
         <DiaryFitnessAdd />
       </Segment>
     )

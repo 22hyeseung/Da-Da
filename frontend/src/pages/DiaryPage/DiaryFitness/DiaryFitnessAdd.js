@@ -20,7 +20,9 @@ class DiaryFitnessAdd extends React.Component {
     return (
       <div>
         {this.state.isSearchMode ? (
-          <DiaryFitnessSearch />
+          <DiaryFitnessSearch
+            isSearchMode={this.toggleSearchMode}
+          />
         ) : (
           <Button
             fluid

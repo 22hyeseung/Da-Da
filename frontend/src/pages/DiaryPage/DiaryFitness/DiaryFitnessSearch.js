@@ -89,6 +89,7 @@ class DiaryFitnessSearch extends React.Component {
   handleSelect = key => {
     this.setState({ selectedKey: key })
   }
+
   render() {
     return (
       <div>
@@ -281,7 +282,9 @@ class DiaryFitnessSearch extends React.Component {
               this.state.selectedKey
             ]
           }
-          toggleSearchMode={this.toggleSearchMode} // 토글 이벤트 propsㄴ 내림
+          toggleSearchMode={
+            this.props.isSearchMode
+          } // 토글 이벤트 propsㄴ 내림
         />
       </div>
     )

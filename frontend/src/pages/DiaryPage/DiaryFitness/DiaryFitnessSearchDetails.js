@@ -45,7 +45,7 @@ class FitnessSelectDetails extends Component {
       this.props.fitnessResult
         .exercise_burn_kcal * e.target.value
     this.setState({
-      finalKcal: finalKcal.toFixed(3),
+      finalKcal: finalKcal.toFixed(1),
       inputTime: e.target.value,
     })
     // 양 입력 안했을 경우 버튼 비활성화
@@ -74,8 +74,8 @@ class FitnessSelectDetails extends Component {
   // payload 생성
   createPayloadAndPostToDB = () => {
     if (
-      !this.state.inputAmount ||
-      this.state.inputAmount < 1
+      !this.state.inputTime ||
+      this.state.inputTime < 1
     ) {
       return this.setState({
         disabled: true,
