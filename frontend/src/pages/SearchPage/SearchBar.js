@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
   Grid,
   Header,
-  Search,
+  Input,
 } from 'semantic-ui-react'
 import {
   Link
@@ -34,11 +34,13 @@ class SearchBar extends Component {
                 inverted
               />
             </Grid.Row>
-
             <Link
-              to='/search-result?search=김'
+              to='/search/김'
             >
-            <Search className="search-searchbar" />
+            <Input
+              className="search-searchbar"
+              icon={{ name: 'search', circular: true, link: true }}
+            />
             </Link>
             <Header
               style={Style.h5}

@@ -58,7 +58,7 @@ class App extends Component {
             component={SharePage}
           />
           <Route
-            path="/recipe"
+            path="/recipe/:id"
             component={RecipePage}
           />
           <Route
