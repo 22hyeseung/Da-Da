@@ -35,6 +35,7 @@ class DiaryFitness extends Component {
     burn_id: null,
     burn_kcal: null,
     burn_time: null,
+    unitKcal: null,
     exercise_name: null,
     disabled: false,
     date: dateStringForApiQuery(
@@ -95,9 +96,8 @@ class DiaryFitness extends Component {
 
     // 수정된 시간에 따라 칼로리 계산
     const finalKcal =
-      this.state.burn_kcal *
+      this.state.unitKcal *
       this.state.updateTimeVal
-
     this.props.updateFitnessOfDB(
       {
         burn_minute: this.state.updateTimeVal * 1,
@@ -106,7 +106,7 @@ class DiaryFitness extends Component {
       this.state.burn_id,
       this.close,
     )
-    // setTimeout(this.close, 100)
+    setTimeout(this.close, 100)
   }
 
   handleKeyPress = e => {
@@ -116,7 +116,14 @@ class DiaryFitness extends Component {
   }
 
   // Modal 보여주는 함수
-  show = (dimmer, id, kcal, name, time) => () => {
+  show = (
+    dimmer,
+    id,
+    kcal,
+    name,
+    time,
+    unitKcal,
+  ) => () => {
     this.setState({
       dimmer,
       open: true,
@@ -124,6 +131,7 @@ class DiaryFitness extends Component {
       burn_kcal: kcal,
       exercise_name: name,
       burn_time: time,
+      unitKcal: unitKcal,
     })
   }
 
@@ -151,6 +159,9 @@ class DiaryFitness extends Component {
               name={fitness.exercise_name}
               time={fitness.burn_minute}
               kcal={fitness.burn_kcal}
+              unitKcal={
+                fitness.exercise_burn_kcal
+              }
               id={fitness.burn_id}
               deleteFitnessOfDB={
                 this.deleteFitnessOfDB

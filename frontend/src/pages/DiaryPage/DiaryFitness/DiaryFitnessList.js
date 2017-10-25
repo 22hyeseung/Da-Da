@@ -45,6 +45,7 @@ class DiaryFitnessAdd extends React.Component {
                 this.props.kcal,
                 this.props.name,
                 this.props.time,
+                this.props.unitKcal,
               )}
             >
               <Icon name="pencil" />
