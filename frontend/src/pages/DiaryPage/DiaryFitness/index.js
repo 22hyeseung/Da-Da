@@ -97,8 +97,9 @@ class DiaryFitness extends Component {
         kcal: finalKcal,
       },
       this.state.burn_id,
+      this.close,
     )
-    this.close()
+    // setTimeout(this.close, 100)
   }
 
   // Modal 보여주는 함수
@@ -225,8 +226,18 @@ const mapDispatchToProps = dispatch => {
       dispatch(getFitnessLogsFromDB(date)),
     deleteFitnessOfDB: id =>
       dispatch(deleteFitnessOfDB(id)),
-    updateFitnessOfDB: (payload, id) =>
-      dispatch(updateFitnessOfDB(payload, id)),
+    updateFitnessOfDB: (
+      payload,
+      id,
+      onSuccessCb,
+    ) =>
+      dispatch(
+        updateFitnessOfDB(
+          payload,
+          id,
+          onSuccessCb,
+        ),
+      ),
   }
 }
 export default connect(
