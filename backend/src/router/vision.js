@@ -2,10 +2,6 @@ const express = require('express')
 const expressJwt = require('express-jwt')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const query = require('../query')
-const fs = require('fs')
-const util = require('util')
-const mime = require('mime')
 const multer = require('multer')
 const aws = require('aws-sdk')
 const uuid = require('uuid')
@@ -19,6 +15,7 @@ const gcloud = require('google-cloud')({
   'keyFilename': 'gkey.json',
   'projectId': 'my-project-1470459490848'
 })
+
 const vision = gcloud.vision()
 
 /**
@@ -32,23 +29,14 @@ const maxFileSize = 1024 * 1024 * 3
 
 const router = express.Router()
 
-/**
- * 도메인 CORS 제약조건 해제
- * 실서버 적용시 적용
- */
-// router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
 
 router.use((req, res, next) => {
   next()
 })
-
+router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
+router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(bodyParser.json())
-
-/**
- * 토큰유효성 검사 해제
- * 실서버 적용시 적용
- */
-// router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
+router.options('*', cors())
 
 function googleVision(fileBuffer) {
   return new Promise((resolve, reject) => {
@@ -111,9 +99,12 @@ router.post('/', upload.single('upload_img'), (req, res) => {
 
   Promise.all([googleVision(req.file.buffer), s3upload(req.file.buffer, fileName, mime)])
     .then(result => {
-      const regexr = /^((?!junk)(?!dish)(?!food)(?!snack)(?!cookie)(?!finger food)(?!cuisine)(?!asian food)(?!chinese)(?!baking)(?!baked goods)(?!dessert)(?!american food)(?!cook)(?!side dish)(?!vegetarian food)).*$/
+      const filterText = ['food', 'cuisine', 'american food', 'baking', 'flavor', 'recipe', 'fast food', 'dessert', 'dish', 'cookie', 'organism', 'snack', 'font', 'baked goods', 'finger food', 'junk food', 'side dish', 'vegetarian food']
+
       const out = result[0].filter(item => {
-        return item.description.match(regexr)
+        if (filterText.indexOf(item.description) < 0) {
+          return item
+        }
       })
       res.render('vision.pug', {
         'visionAnalysis': JSON.stringify(out),
