@@ -59,6 +59,11 @@ export const postFoodToDB = payload => {
                 type: types.POST_FOOD_TO_DATABASE,
                 payload: data,
               })
+              dispatch({
+                type:
+                  types.UPDATE_CALORIE_SUMMARY,
+                payload: data,
+              })
             })
             .catch(error => {
               console.log(
@@ -121,7 +126,7 @@ export const updateFoodOfDB = (payload, id) => {
 }
 
 // 4. deleteFood
-export const deleteFoodOfDB = id => {
+export const deleteFoodOfDB = (id, card) => {
   return dispatch => {
     fetch(`${rootApi}/eat-logs/${id}`, {
       method: 'DELETE',
@@ -138,6 +143,12 @@ export const deleteFoodOfDB = id => {
             payload: id,
           })
         }
+      })
+      .then(result => {
+        dispatch({
+          type: types.DELETE_CALORIE_SUMMARY,
+          payload: card,
+        })
       })
       .catch(error => {
         console.log('deleteFoodOfDB error')

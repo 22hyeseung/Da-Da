@@ -9,18 +9,7 @@ import {
   Tooltip,
 } from 'recharts'
 import { getAllWeightFromDB } from '../../actions/weight'
-
-// const data = [
-//   { date: '2/27', current: 70, goal: 50 },
-//   { date: '2/28', current: 68, goal: 50 },
-//   { date: '3/5', current: 64, goal: 50 },
-//   { date: '3/12', current: 69, goal: 50 },
-//   { date: '3/24', current: 64, goal: 50 },
-//   { date: '4/1', current: 58, goal: 50 },
-//   { date: '6/7', current: 50, goal: 50 },
-//   { date: '7/2', current: 48, goal: 45 },
-//   { date: '7/28', current: 52, goal: 45 },
-// ]
+import isEmpty from 'lodash/isEmpty'
 
 class WeightChart extends Component {
   constructor(props) {
@@ -33,8 +22,11 @@ class WeightChart extends Component {
   }
 
   render() {
+    if (isEmpty(this.props.weightAllLog))
+      return null
     return (
       <AreaChart
+        key={String(Math.random())}
         width={830}
         height={260}
         data={this.props.weightAllLog}

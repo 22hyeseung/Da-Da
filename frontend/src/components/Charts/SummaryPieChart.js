@@ -8,6 +8,7 @@ import {
   Cell,
   Legend,
 } from 'recharts'
+import isEmpty from 'lodash/isEmpty'
 
 // API 통신용 date형식 리턴하는 함수: YYYYMMDD
 import { dateStringForApiQuery } from '../../helper/date'
@@ -38,20 +39,23 @@ class SummaryPieChart extends Component {
       errorState,
     } = this.props
 
-    const data = [
-      {
-        name: '탄수화물',
-        value: calorieSummary.today_carb,
-      },
-      {
-        name: '단백질',
-        value: calorieSummary.today_protein,
-      },
-      {
-        name: '지방',
-        value: calorieSummary.today_fat,
-      },
-    ]
+    if (isEmpty(calorieSummary)) return null
+
+    const data = calorieSummary
+    // const data = [
+    //   {
+    //     name: '탄수화물',
+    //     value: calorieSummary.today_carb,
+    //   },
+    //   {
+    //     name: '단백질',
+    //     value: calorieSummary.today_protein,
+    //   },
+    //   {
+    //     name: '지방',
+    //     value: calorieSummary.today_fat,
+    //   },
+    // ]
 
     if (calorieSummary.today_kcal === 0) {
       return (
@@ -77,6 +81,7 @@ class SummaryPieChart extends Component {
     return (
       <PieChart width={250} height={260}>
         <Pie
+          key={String(Math.random())}
           data={data}
           cx={110}
           cy={100}

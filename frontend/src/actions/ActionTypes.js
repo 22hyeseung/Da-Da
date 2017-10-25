@@ -9,6 +9,20 @@ export const UPDATE_FOOD_OF_DATABASE =
 export const DELETE_FOOD_OF_DATABASE =
   'DELETE_FOOD_OF_DATABASE'
 //==========================================
+// action: diaryFood & reducer: getFoodSummary
+export const UPDATE_CALORIE_SUMMARY =
+  'UPDATE_CALORIE_SUMMARY'
+export const DELETE_CALORIE_SUMMARY =
+  'DELETE_CALORIE_SUMMARY'
+//==========================================
+// getFoodSummary.js
+export const GET_FOOD_SUMMARY_REQUEST =
+  'GET_FOOD_SUMMARY_REQUEST'
+export const GET_FOOD_SUMMARY_SUCCESS =
+  'GET_FOOD_SUMMARY_SUCCESS'
+export const GET_FOOD_SUMMARY_FAILED =
+  'GET_FOOD_SUMMARY_FAILED'
+//==========================================
 
 //==========================================
 // diaryFitness.js
@@ -155,18 +169,9 @@ export const KCAL_GOALS_FAILED =
 //==========================================
 
 //==========================================
-// getFoodSummary.js
-export const GET_FOOD_SUMMARY_REQUEST =
-  'GET_FOOD_SUMMARY_REQUEST'
-export const GET_FOOD_SUMMARY_SUCCESS =
-  'GET_FOOD_SUMMARY_SUCCESS'
-export const GET_FOOD_SUMMARY_FAILED =
-  'GET_FOOD_SUMMARY_FAILED'
-//==========================================
-
-//==========================================
 // diaryKcal.js
 export const GET_KCAL_REQUEST = 'GET_KCAL_REQUEST'
 export const GET_KCAL_SUCCESS = 'GET_KCAL_SUCCESS'
-export const POST_KCAL_SUCCESS = 'POST_KCAL_SUCCESS'
+export const POST_KCAL_SUCCESS =
+  'POST_KCAL_SUCCESS'
 //==========================================
