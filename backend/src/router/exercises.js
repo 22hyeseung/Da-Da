@@ -37,13 +37,15 @@ router.options('*', cors())
  * @apiSuccess {Date} burn_date 운동등록한 날짜
  * @apiSuccess {Number} burn_kcal 계산된 칼로리로 등록한 칼로리
  * @apiSuccess {Number} burn_minute 운동한 시간
+ * @apiSuccess {Number} burn_exercise_id 운동 pk
  * @apiSuccessExample {Json} Success-Response:
  * {
  *     "burn_id": 1,
  *     "burn_exercise_name": "요리하기",
  *     "burn_date": "2016-12-31T15:00:00.000Z",
  *     "burn_kcal": 50,
- *     "burn_minute": 30
+ *     "burn_minute": 30,
+ *     "burn_exercise_id": 3
  * }
  */
 router.post('/', (req, res) => {
@@ -149,7 +151,7 @@ router.get('/', (req, res) => {
  * @apiGroup exercises
  *
  * @apiParam {Number} id 사용자가 선택한 기록 id
- * @apiParam {Number} user.id user.id
+ * @apiParam {Number} userid user.id
  *
  * @apiSuccessExample {Json} Succes-Response:
  * http://localhost:5000/exercises/3
