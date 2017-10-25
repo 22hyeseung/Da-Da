@@ -119,3 +119,10 @@ export const GET_REPORTS_NUTRITION_FAILED =
 // recipe.js
 export const GET_RECIPE_SUCCESS = 'GET_RECIPE_SUCCESS'
 //==========================================
+
+//==========================================
+// diaryKcal.js
+export const GET_KCAL_REQUEST = 'GET_KCAL_REQUEST'
+export const GET_KCAL_SUCCESS = 'GET_KCAL_SUCCESS'
+export const POST_KCAL_SUCCESS = 'POST_KCAL_SUCCESS'
+//==========================================

@@ -14,6 +14,7 @@ import {
   beforeDateReducer,
 } from './appReducer/date'
 import { diaryFoodReducer } from './diaryReducer/diaryFood'
+import { diaryKcalReducer } from './diaryReducer/diaryKcal'
 import {
   calorieCartReducer,
   nutritionChartReducer,
@@ -30,6 +31,7 @@ const reducers = combineReducers({
   shortLog: shortLogReducer,
   longLog: longLogReducer,
   foodLogs: diaryFoodReducer,
+  goalKcal: diaryKcalReducer,
   caloriesChart: calorieCartReducer,
   nutritionChart: nutritionChartReducer,
   recipe: recipeReducer,
