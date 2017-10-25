@@ -18,13 +18,17 @@ class RecipePage extends Component {
   }
 
   componentWillMount() {
-    this.props.getRecipe()
+    console.log(this.props.match.params.id, '<< [ this.props.match.params.id ]');
+    this.props.getRecipe(this.props.match.params.id)
   }
 
   render() {
     return (
       <div style={styled.container}>
-        <div style={styled.topContainer}>
+        <div style={{
+          ...styled.topContainer,
+          backgroundImage: `url(//s3.ap-northeast-2.amazonaws.com/dada-s3-file/recipe/${this.props.recipeContent.recipe_id}.jpg)`,
+        }}>
           <div
             style={styled.navigationBackground}
           >
@@ -48,14 +52,14 @@ class RecipePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    recipeResult: state.recipe,
+    recipeContent: state.recipe.recipeContent,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getRecipe: () =>
-      dispatch(getRecipe()),
+    getRecipe: id =>
+      dispatch(getRecipe(id)),
   }
 }
 

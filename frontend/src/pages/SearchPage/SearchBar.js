@@ -3,14 +3,33 @@ import {
   Grid,
   Header,
   Input,
+  Icon,
 } from 'semantic-ui-react'
 import {
-  Link
+  Link,
+  Redirect,
 } from 'react-router-dom'
 import * as Style from './StyledSearch'
 import './Search.css'
 
 class SearchBar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchText: '',
+    }
+  }
+
+  handleSearch = e => {
+    if (e.keyCode === 13) {
+      this.props.history.push('/search/' + this.state.searchText)
+    }
+  }
+
+  handleSearchTextChange = e => {
+    this.setState({ searchText: e.target.value })
+  }
+
   render() {
     return (
       <div>
@@ -34,14 +53,13 @@ class SearchBar extends Component {
                 inverted
               />
             </Grid.Row>
-            <Link
-              to='/search/김'
-            >
             <Input
               className="search-searchbar"
-              icon={{ name: 'search', circular: true, link: true }}
+              icon={<Icon name='search' circular link to='/search/1' />}
+              value={this.state.searchText}
+              onKeyDown={this.handleSearch}
+              onChange={this.handleSearchTextChange}
             />
-            </Link>
             <Header
               style={Style.h5}
               as="h5"

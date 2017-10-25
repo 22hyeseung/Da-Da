@@ -103,42 +103,42 @@ class ResultBox extends Component {
               return (
                 <Grid.Column style={{ padding: '0' }}>
                   <div style={{ width: '279px' }}>
-                    <Card>
-                      <Image
-                        as="a"
-                        style={{
-                          ...Style.ResultImage,
-                          backgroundImage: `url(//s3.ap-northeast-2.amazonaws.com/dada-s3-file/recipe/thumb/${result.recipe_id}.jpg)`,
-                        }}
-                        src="/"
-                        href="http://google.com"
-                        target="_blank"
-                        //alt={result.recipe_name_ko}
-                      />
-                      <Card.Content
-                        style={Style.CardLabel}
-                      >
-                        <Card.Header
-                          style={Style.CardLabelHeader}
+                    <Link to={"/recipe/" + result.recipe_id}>
+                      <Card>
+                        <Image
+                          as="a"
+                          style={{
+                            ...Style.ResultImage,
+                            backgroundImage: `url(//s3.ap-northeast-2.amazonaws.com/dada-s3-file/recipe/thumb/${result.recipe_id}.jpg)`,
+                          }}
+                          src="/"
+                          target="_blank"
+                        />
+                        <Card.Content
+                          style={Style.CardLabel}
                         >
-                          {result.recipe_name_ko}
-                        </Card.Header>
-                        <Card.Meta
-                          style={Style.CardLabelLeftText}
-                        >
-                          <Icon name="clock" />
-                          소요시간: {result.recipe_time}
-                        </Card.Meta>
-                        <Card.Description
-                          style={Style.CardLabelRightText}
-                        >
-                          <span style={Style.dataText}>
-                            {result.recipe_kcal}
-                          </span>{' '}
-                          kcal
-                        </Card.Description>
-                      </Card.Content>
-                    </Card>
+                          <Card.Header
+                            style={Style.CardLabelHeader}
+                          >
+                            {result.recipe_name_ko}
+                          </Card.Header>
+                          <Card.Meta
+                            style={Style.CardLabelLeftText}
+                          >
+                            <Icon name="clock" />
+                            소요시간: {result.recipe_time}
+                          </Card.Meta>
+                          <Card.Description
+                            style={Style.CardLabelRightText}
+                          >
+                            <span style={Style.dataText}>
+                              {result.recipe_kcal}
+                            </span>{' '}
+                            kcal
+                          </Card.Description>
+                        </Card.Content>
+                      </Card>
+                    </Link>
                   </div>
                 </Grid.Column>
               )

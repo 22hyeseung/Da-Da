@@ -21,14 +21,14 @@ class RecipeTitleBox extends Component {
             style={styled.ribbonLabel}
           >
             <p style={{ paddingLeft: '15px' }}>
-              {this.props.recipe.recipe_level}. 소요시간{' '}
+              {this.props.recipeContent.recipe_level}. 소요시간{' '}
               <span style={{ fontWeight: '700' }}>
-              {this.props.recipe.recipe_time}
-              </span>분
+              {this.props.recipeContent.recipe_time}
+              </span>
             </p>
           </Label>
           <span style={styled.recipeTitle}>
-            {this.props.recipe.recipe_name_ko}
+            {this.props.recipeContent.recipe_name_ko}
           </span>
           <Table
             basic="very"
@@ -52,7 +52,7 @@ class RecipeTitleBox extends Component {
                   }}
                 >
                   <span style={styled.factsData}>
-                    {this.props.recipe.recipe_kcal}
+                    {this.props.recipeContent.recipe_kcal}
                   </span>kcal
                 </Table.Cell>
               </Table.Row>
@@ -67,7 +67,7 @@ class RecipeTitleBox extends Component {
                   style={styled.unitData}
                 >
                   <span style={styled.factsData}>
-                    80{this.props.recipe.recipe_carb}
+                  {this.props.recipeContent.recipe_carb}
                   </span>g
                 </Table.Cell>
               </Table.Row>
@@ -82,7 +82,7 @@ class RecipeTitleBox extends Component {
                   style={styled.unitData}
                 >
                   <span style={styled.factsData}>
-                  {this.props.recipe.recipe_protein}
+                  {this.props.recipeContent.recipe_protein}
                   </span>g
                 </Table.Cell>
               </Table.Row>
@@ -97,7 +97,7 @@ class RecipeTitleBox extends Component {
                   style={styled.unitData}
                 >
                   <span style={styled.factsData}>
-                  {this.props.recipe.recipe_fat}
+                  {this.props.recipeContent.recipe_fat}
                   </span>g
                 </Table.Cell>
               </Table.Row>
@@ -119,7 +119,7 @@ class RecipeTitleBox extends Component {
 
 const mapStateToProps = state => {
   return {
-    recipe: state.recipe.recipeContent,
+    recipeContent: state.recipe.recipeContent,
   }
 }
 

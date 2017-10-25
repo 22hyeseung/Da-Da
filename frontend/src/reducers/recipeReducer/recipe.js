@@ -1,5 +1,7 @@
 const DEFAULT_RECIPE = {
   recipeContent: {},
+  recipe: [],
+  recipeIngredient: [],
 }
 
 export const recipeReducer = (
@@ -11,6 +13,8 @@ export const recipeReducer = (
     return {
       ...state,
       recipeContent: action.payload,
+      recipe: action.payload.recipe,
+      recipeIngredient: action.payload.recipe_ingredient,
     }
   }
   return {

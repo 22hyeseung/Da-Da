@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   checkboxStyle,
   description,
@@ -31,62 +32,35 @@ class CookingProcess extends Component {
         }}
       >
         <form style={{ width: '884px' }}>
-          <label
-            htmlFor="num-circle"
-            style={checkboxStyle}
-          >
-            <input
-              id="num-circle"
-              className="num-circle"
-              type="checkbox"
-              value={1}
-              style={{ display: 'none' }}
-              onClick={this.handleCheckboxChange}
-            />
-            <span style={{ fontSize: '22px' }}>
-              1
-            </span>
-          </label>
-          <p style={description}>
-            볼에 재료를 전부 넣고 섞으면서 반죽합니다. 반죽이 부풀도록 5분
-            정도 기다려주세요.
-          </p>
-
-          <label style={checkboxStyle}>
-            <input
-              type="checkbox"
-              value={1}
-              style={{ display: 'none' }}
-            />
-            <span style={{ fontSize: '22px' }}>
-              2
-            </span>
-          </label>
-          <p style={description}>
-            {' '}
-            프라이팬에 버터나 오일을 두르세요. 앞 뒤 각각 3-4분정도 중불에
-            구워주세요. 반죽이 흩어질 수 있으니 살살 뒤집으셔야 해요. 코티지
-            치즈가 녹아 프라이팬에 눌러붙을 수 있으니 주의하세요.
-          </p>
-
-          <label style={checkboxStyle}>
-            <input
-              type="checkbox"
-              value={1}
-              style={{ display: 'none' }}
-            />
-            <span style={{ fontSize: '22px' }}>
-              3
-            </span>
-          </label>
-          <p style={description}>
-            블루베리 또는 다른 베리류와 헤비 휘핑 크림을 함께 곁들이면 더
-            맛있습니다.
-          </p>
+          {
+            this.props.recipe.map((val, i) => {
+              return (
+                <div>
+                  <label style={checkboxStyle}>
+                    <input
+                      type="checkbox"
+                      value={val.step}
+                      style={{ display: 'none' }}
+                    />
+                    <span style={{ fontSize: '22px' }}>
+                      {val.step}
+                    </span>
+                  </label>
+                  <p style={description}>{val.content}</p>
+                </div>
+              )
+            })
+          }
         </form>
       </div>
     )
   }
 }
 
-export default CookingProcess
+const mapStateToProps = state => {
+  return {
+    recipe: state.recipe.recipe,
+  }
+}
+
+export default connect(mapStateToProps, null)(CookingProcess)

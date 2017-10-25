@@ -23,13 +23,6 @@ class IngredientBox extends Component {
   }
 
   render() {
-    //const temp = JSON.parse(((this.props.recipe.recipe_ingredient)) || null)
-    //const ingredient = temp
-
-    const ingredient = eval("("+this.props.recipe.recipe_ingredient+")")
-
-    console.log(ingredient[0])
-
     return (
       <Card style={styled.cardWrap}>
         <Card.Content>
@@ -43,7 +36,7 @@ class IngredientBox extends Component {
               compact
               selection
               options={options}
-              defaultValue={this.props.recipe.recipe_serving}
+              defaultValue={this.props.recipeContent.recipe_serving}
             />
             <span
               style={{
@@ -57,18 +50,23 @@ class IngredientBox extends Component {
         </Card.Content>
         <Card.Content style={styled.cardContent}>
           <div style={styled.ingredientListWrap}>
-
             <List style={styled.ingredientNameList}>
-              <List.Item>계란</List.Item>
-              <List.Item>코티지 치즈</List.Item>
-              <List.Item>차전자피 가루</List.Item>
-              <List.Item>버터 또는 코코넛 오일</List.Item>
+              {
+                this.props.recipeIngredient.map((val, i) => {
+                  return (
+                    <List.Item>{val.name}</List.Item>
+                  )
+                })
+              }
             </List>
             <List style={styled.ingredientAmountList}>
-              <List.Item>1개</List.Item>
-              <List.Item>50g</List.Item>
-              <List.Item>1/4 Tsp</List.Item>
-              <List.Item>15g</List.Item>
+              {
+                this.props.recipeIngredient.map((val, i) => {
+                  return (
+                    <List.Item>{val.num} {val.unit}</List.Item>
+                  )
+                })
+              }
             </List>
             <span style={styled.subLabel}>
               * Tsp : 테이블스푼
@@ -82,7 +80,8 @@ class IngredientBox extends Component {
 
 const mapStateToProps = state => {
   return {
-    recipe: state.recipe.recipeContent,
+    recipeContent: state.recipe.recipeContent,
+    recipeIngredient: state.recipe.recipeIngredient,
   }
 }
 

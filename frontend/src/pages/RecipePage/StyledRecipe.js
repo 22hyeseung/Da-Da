@@ -118,7 +118,6 @@ export const cardContent = {
 
 export const ingredientListWrap = {
   width: '226px',
-  height: '100px',
   fontSize: '14px',
   textAlign: 'right',
   marginLeft: '12px',
@@ -145,6 +144,7 @@ export const subLabel = {
   fontWeight: '300',
   lineHeight: '2.08',
   color: '#a8b7c7',
+  display: 'block',
 }
 
 // =====================================> cooking process
