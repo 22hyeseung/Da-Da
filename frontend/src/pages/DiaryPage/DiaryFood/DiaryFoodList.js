@@ -48,8 +48,11 @@ class DiaryFoodList extends React.Component {
         serve: this.state.serve,
       },
       this.state.food_id,
+      this.close,
     )
-    this.toggleUpdatingMode()
+    // this.close()
+    setTimeout(this.close, 900)
+    // this.toggleUpdatingMode()
   }
 
   toggleUpdatingMode = () => {
@@ -89,7 +92,6 @@ class DiaryFoodList extends React.Component {
     this.setState({
       dimmer,
       open: true,
-      // selectKey: i,
       food_name: name,
       food_id: id,
       food_amount: amount,
@@ -272,8 +274,10 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteFoodOfDB: id =>
       dispatch(deleteFoodOfDB(id)),
-    updateFoodOfDB: (payload, id) =>
-      dispatch(updateFoodOfDB(payload, id)),
+    updateFoodOfDB: (payload, id, onSuccessCb) =>
+      dispatch(
+        updateFoodOfDB(payload, id, onSuccessCb),
+      ),
   }
 }
 

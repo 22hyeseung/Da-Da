@@ -25,7 +25,10 @@ export const getFoodLogsFromDB = date => {
 }
 
 // 2. input에서 받은 값을 db로 보내는 action(post)
-export const postFoodToDB = payload => {
+export const postFoodToDB = (
+  payload,
+  onSuccessCb,
+) => {
   return dispatch => {
     // console.log(payload)
     fetch(`${rootApi}/eat-logs`, {
@@ -59,6 +62,7 @@ export const postFoodToDB = payload => {
                 type: types.POST_FOOD_TO_DATABASE,
                 payload: data,
               })
+              onSuccessCb()
             })
             .catch(error => {
               console.log(
@@ -73,10 +77,14 @@ export const postFoodToDB = payload => {
   }
 }
 // 3. updateDB
-export const updateFoodOfDB = (payload, id) => {
+export const updateFoodOfDB = (
+  payload,
+  id,
+  onSuccessCb,
+) => {
   return dispatch => {
     fetch(`${rootApi}/eat-logs/${id}`, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${window
           .localStorage.token}`,
@@ -87,7 +95,6 @@ export const updateFoodOfDB = (payload, id) => {
       .then(result => result.json())
       .then(result => {
         if (result) {
-          console.log(result)
           return fetch(
             `${rootApi}/eat-logs/${id}`,
             {
@@ -100,7 +107,6 @@ export const updateFoodOfDB = (payload, id) => {
           )
             .then(res => res.json())
             .then(data => {
-              console.log(data)
               dispatch({
                 type:
                   types.UPDATE_FOOD_OF_DATABASE,
@@ -113,6 +119,7 @@ export const updateFoodOfDB = (payload, id) => {
               )
             })
         }
+        onSuccessCb()
       })
       .catch(error => {
         console.log('updateFoodOfDB error')

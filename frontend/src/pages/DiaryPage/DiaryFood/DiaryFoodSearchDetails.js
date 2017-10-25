@@ -85,15 +85,6 @@ class FoodSelectDetails extends Component {
     }
   }
 
-  postDelay = () => {
-    setTimeout(() => {
-      this.setState({
-        loading: false,
-      }),
-        this.props.toggleSearchMode()
-    }, 2000)
-  }
-
   // payload 생성
   createPayloadAndPostToDB = () => {
     if (
@@ -112,7 +103,7 @@ class FoodSelectDetails extends Component {
       picture: null,
     })
     this.setState({ loading: true }, () =>
-      this.postDelay(),
+      this.props.toggleSearchMode(),
     )
   }
 
