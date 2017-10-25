@@ -92,7 +92,7 @@ class FitnessSelectDetails extends Component {
       date: this.state.date,
       exercise_id: this.props.fitnessResult
         .exercise_id,
-      burn_kcal: this.state.finalKcal,
+      kcal: this.state.finalKcal,
       burn_minute: this.state.inputTime,
     })
     this.props.toggleSearchMode()
