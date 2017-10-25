@@ -8,8 +8,8 @@ import {
   Input,
   Button,
 } from 'semantic-ui-react'
-import { container } from './StyledFitness'
 import * as Style from './StyledFitness'
+import { submitBtn } from '../StyledDiaryCommon'
 
 // 컴포넌트
 import DiarySubHeader from '../DiarySubHeader'
@@ -29,6 +29,7 @@ import { dateStringForApiQuery } from '../../../helper/date'
 
 class DiaryFitness extends Component {
   state = {
+    open: false,
     loading: false,
     updateTimeVal: null,
     burn_id: null,
@@ -46,6 +47,12 @@ class DiaryFitness extends Component {
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
+  }
+
+  componentDidMount() {
+    if (this.state.open) {
+      this.textInput.focus()
+    }
   }
 
   // Loader 일정시간추가
@@ -102,6 +109,12 @@ class DiaryFitness extends Component {
     // setTimeout(this.close, 100)
   }
 
+  handleKeyPress = e => {
+    if (e.keyCode === 13) {
+      this.createPayloadAndUpdateToDB()
+    }
+  }
+
   // Modal 보여주는 함수
   show = (dimmer, id, kcal, name, time) => () => {
     this.setState({
@@ -126,7 +139,7 @@ class DiaryFitness extends Component {
     }
 
     return (
-      <Segment style={container}>
+      <Segment style={Style.container}>
         <DiarySubHeader
           tabNameEN="FITNESS"
           tabNameKR="운동 다이어리"
@@ -169,6 +182,8 @@ class DiaryFitness extends Component {
                 기존 입력했던 시간은 {this.state.burn_time}분입니다.
               </span>
               <Input
+                ref={input =>
+                  (this.textInput = input)}
                 type="number"
                 style={{
                   margin: '0px 0px 28px',
@@ -195,12 +210,13 @@ class DiaryFitness extends Component {
             <Button
               fluid
               style={{
-                // ...submitBtn,
+                ...submitBtn,
                 padding: '10px',
               }}
               onClick={
                 this.createPayloadAndUpdateToDB
               }
+              onKeyDown={this.handleKeyPress}
             >
               수정하기
             </Button>
