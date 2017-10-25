@@ -572,6 +572,7 @@ function getGoalKcalByDate({ day_log_member_id, start_date, end_date }) {
       knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as diary_date')
     )
     .where({ day_log_member_id })
+    .whereNotNull('day_log_kcal')
     .whereBetween('day_log_diary_date', [start_date, end_date])
 }
 
