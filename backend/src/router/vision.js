@@ -80,10 +80,6 @@ function s3upload(buffer, fileName, fileMime) {
   })
 }
 
-router.get('/debug', (req, res) => {
-  res.render('vision-debug.pug')
-})
-
 router.post('/', upload.single('upload_img'), (req, res) => {
   // jpg image/jpeg << [ ext, mime ]
   const { ext, mime } = fileType(req.file.buffer)
@@ -106,10 +102,11 @@ router.post('/', upload.single('upload_img'), (req, res) => {
           return item
         }
       })
-      res.render('vision.pug', {
+      const output = {
         'visionAnalysis': JSON.stringify(out),
         'imgUrl': result[1].Location
-      })
+      }
+      res.send(output)
     })
     .then(() => {
       sharp(req.file.buffer)
