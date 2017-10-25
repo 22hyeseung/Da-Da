@@ -47,18 +47,16 @@ router.options('*', cors())
  * }
  */
 router.get('/', (req, res) => {
-  query.getUserById(req.user.id)
+  const param = {
+    'day_log_member_id': req.user.id
+  }
+  query.getFirstGoalKcalById(param)
+  .then(default_kcal => {
+    query.getUserById(req.user.id)
     .then(user => {
-      res.send({
-        'member_provider': user.member_provider,
-        'member_provider_number': user.member_provider_number,
-        'member_provider_name': user.member_provider_name,
-        'member_avatar_url': user.member_avatar_url,
-        'member_birth': user.member_birth,
-        'member_goal_weight': user.member_goal_weight,
-        'member_gender': user.member_gender
-      })
+      res.send({ user, default_kcal })
     })
+  })
 })
 
 /**
