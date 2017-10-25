@@ -538,18 +538,19 @@ function postFirstMember({ member_id, member_birth, member_gender, member_goal_w
     })
 }
 
-function postFirstDayLog({ day_log_member_id, day_log_height, day_log_kg, day_log_diary_date }) {
+function postFirstDayLog({ day_log_member_id, day_log_height, day_log_kg, day_log_kcal, day_log_diary_date }) {
   return knex('day_log')
     .insert({
       day_log_member_id,
       day_log_height,
       day_log_kg,
+      day_log_kcal,
       day_log_diary_date
     })
     .then(([day_log_id]) => {
       return knex('day_log')
         .select(
-          'day_log_id', 'day_log_member_id', 'day_log_height', 'day_log_kg',
+          'day_log_id', 'day_log_member_id', 'day_log_height', 'day_log_kcal', 'day_log_kg',
           knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as diary_date')
         )
         .where({ day_log_id })

@@ -73,6 +73,7 @@ router.get('/', (req, res) => {
  * @apiParam {Float} height
  * @apiParam {Float} kg
  * @apiParam {Date} date
+ * @apiParam {Integer} kcal
  *
  * @apiSuccess {Integer} member_id member 아이디값
  * @apiSuccess {Date} member_birth 생년월일
@@ -82,6 +83,7 @@ router.get('/', (req, res) => {
  * @apiSuccess {Integer} day_log_member_id 기록한 유저 아이디값
  * @apiSuccess {Float} day_log_height 사용자의 키
  * @apiSuccess {Float} day_log_kg 사용자의 몸무게
+ * @apiSuccess {Integer} day_log_kcal 사용자의 목표 칼로리
  * @apiSuccess {Date} day_log_diray_date 등록일
  *
  * @apiSuccessExample {json} Success-Respoonse:
@@ -98,6 +100,7 @@ router.get('/', (req, res) => {
  *         "day_log_member_id": 1,
  *         "day_log_height": 173,
  *         "day_log_kg": 65,
+ *         "day_log_kcal": 2000,
  *         "diary_date": "2017-10-22"
  *     }
  * }
@@ -115,6 +118,7 @@ router.post('/first', (req, res) => {
     'day_log_member_id': req.user.id,
     'day_log_height': req.body.height,
     'day_log_kg': req.body.kg,
+    'day_log_kcal': req.body.kcal,
     'day_log_diary_date': req.body.date
   }
 
