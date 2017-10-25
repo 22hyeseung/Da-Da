@@ -33,10 +33,10 @@ const router = express.Router()
 router.use((req, res, next) => {
   next()
 })
-// router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-// router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
+router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
+router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(bodyParser.json())
-// router.options('*', cors())
+router.options('*', cors())
 
 function googleVision(fileBuffer) {
   return new Promise((resolve, reject) => {
