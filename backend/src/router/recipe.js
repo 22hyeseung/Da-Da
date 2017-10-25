@@ -47,19 +47,14 @@ router.options('*', cors())
 router.get('/search', (req, res) => {
   const recipe_name = req.query.name.toString()
 
-  if (recipe_name.length >= 1) {
-    query.getRecipeByName(recipe_name)
-      .then(result => {
-        if (result) {
-          res.send(result)
-        } else {
-          console.log('Recipe GetByname Error')
-        }
-      })
-  } else {
-    res.status(405)
-    res.send('검색어는 최소 한글자 이상 입력해야 합니다.')
-  }
+  query.getRecipeByName(recipe_name)
+    .then(result => {
+      if (result) {
+        res.send(result)
+      } else {
+        console.log('Recipe GetByname Error')
+      }
+    })
 })
 
 /**
