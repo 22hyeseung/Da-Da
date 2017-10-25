@@ -80,6 +80,53 @@ function s3upload(buffer, fileName, fileMime) {
   })
 }
 
+
+/**
+ * @api {post} /vision Post Vision
+ * @apiDescription Vision API의 분석을 요청한다.
+ * @apiName Post Vision
+ * @apiGroup vision
+ *
+ * @apiSuccess {String} description 설명
+ * @apiSuccess {Integer} score 점수
+ * @apiSuccess {String} imgUrl 이미지 URL
+ *
+ * @apiSuccessExample {json} Success-Respoonse:
+ * {
+ *     "visionAnalysis": [
+ *         {
+ *             "description": "fried food",
+ *             "score": 0.8693726062774658
+ *         },
+ *         {
+ *             "description": "animal source foods",
+ *             "score": 0.7274930477142334
+ *         },
+ *         {
+ *             "description": "chicken feet",
+ *             "score": 0.673576831817627
+ *         },
+ *         {
+ *             "description": "shanghai food",
+ *             "score": 0.5996443629264832
+ *         },
+ *         {
+ *             "description": "fried chicken",
+ *             "score": 0.5765524506568909
+ *         },
+ *         {
+ *             "description": "chicken meat",
+ *             "score": 0.5441357493400574
+ *         },
+ *         {
+ *             "description": "buffalo wing",
+ *             "score": 0.5280616879463196
+ *         }
+ *       }
+ *     ],
+ *     "imgUrl": "https://dada-sh-test.s3.ap-northeast-2.amazonaws.com/538d97c7-9c3e-4302-87ee-3eea4299a7c8.jpg"
+ * }
+ */
 router.post('/', upload.single('upload_img'), (req, res) => {
   // jpg image/jpeg << [ ext, mime ]
   const { ext, mime } = fileType(req.file.buffer)
@@ -103,7 +150,7 @@ router.post('/', upload.single('upload_img'), (req, res) => {
         }
       })
       const output = {
-        'visionAnalysis': JSON.stringify(out),
+        'visionAnalysis': out,
         'imgUrl': result[1].Location
       }
       res.send(output)
