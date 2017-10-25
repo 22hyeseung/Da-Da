@@ -25,20 +25,7 @@ class LoginPage extends Component {
       'message',
       this.tokenHandler,
     )
-  }
-
-  getUserInfo = () => {
-    fetch(`${rootApi}/user`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${window
-          .localStorage.token}`,
-      },
-    })
-      .then(res => res.json())
-      .then(userInfo => {
-        this.props.saveUserInfo(userInfo)
-      })
+    this.props.saveUserInfo()
   }
 
   // token 갖고오는 함수 작동. > 여기서 토큰 저장
@@ -181,8 +168,7 @@ const mapDispatchtoProps = dispatch => {
   return {
     saveToken: token =>
       dispatch(saveToken(token)),
-    saveUserInfo: user =>
-      dispatch(getUserInfo(user)),
+    saveUserInfo: () => dispatch(getUserInfo()),
   }
 }
 

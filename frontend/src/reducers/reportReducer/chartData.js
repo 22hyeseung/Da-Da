@@ -1,16 +1,18 @@
 const CALORIE_CHART_INITIAL_STATE = {
   isLoading: false,
   errorState: false,
-  caloriesLogsForAWeek: [],
+  goalCaloriePerWeek: [],
+  totalMealLogPerWeek: [],
+  defaultGoalCalorie: 0,
 }
 
 const NUTRITION_CHART_INITIAL_STATE = {
   isLoading: false,
   errorState: false,
-  nutritionFactsLogsForAWeek: [],
+  nutritionFactsLogsPerWeek: [],
 }
 
-export const calorieCartReducer = (
+export const calorieChartReducer = (
   state = CALORIE_CHART_INITIAL_STATE,
   action,
 ) => {
@@ -24,7 +26,12 @@ export const calorieCartReducer = (
       return {
         ...state,
         isLoading: false,
-        caloriesLogsForAWeek: action.payload,
+        goalCaloriePerWeek:
+          action.payload.day_goal_kcal,
+        totalMealLogPerWeek:
+          action.payload.meal_kcal,
+        defaultGoalCalorie:
+          action.payload.default_goal_kcal,
       }
     case 'GET_REPORTS_CALORIES_FAILED':
       return {
@@ -51,8 +58,7 @@ export const nutritionChartReducer = (
       return {
         ...state,
         isLoading: false,
-        nutritionFactsLogsForAWeek:
-          action.payload,
+        nutritionFactsLogsPerWeek: action.payload,
       }
     case 'GET_REPORTS_NUTRITION_FAILED':
       return {
