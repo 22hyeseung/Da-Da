@@ -58,6 +58,14 @@ export const dateDashToDateDote = dateString => {
   return dateString.split('-').join('. ') + '. '
 }
 
+// YYYY-MM-DD -> YYYY년 MM월 DD일
+export const dateDashToKR = dateString => {
+  const yyyy = dateString.substr(0, 4)
+  const mm = dateString.substr(5, 2)
+  const dd = dateString.substr(8, 2)
+  return `${yyyy}년 ${mm}월 ${dd}일`
+}
+
 //-----------------------------------------------------------------
 // 2. String -> Date
 //-----------------------------------------------------------------
