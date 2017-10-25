@@ -412,7 +412,7 @@ function getReportNutritionSum({ eat_log_member_id, start_date, end_date }) {
 
 function getBurnByDate({ burn_member_id, burn_date }) {
   return knex('burn')
-    .select('burn.burn_id', 'burn.burn_member_id', 'burn.burn_kcal', 'burn.burn_minute', 'exercise.exercise_name', 'burn.burn_exercise_id')
+    .select('burn.burn_id', 'burn.burn_member_id', 'burn.burn_kcal', 'burn.burn_minute', 'exercise.exercise_name', 'burn.burn_exercise_id', 'exercise.exercise_burn_kcal')
     .join('exercise', 'burn.burn_exercise_id', '=', 'exercise.exercise_id')
     .where({ burn_date, burn_member_id })
 }
