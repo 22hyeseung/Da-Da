@@ -31,11 +31,8 @@ const reducers = combineReducers({
   shortLog: shortLogReducer,
   longLog: longLogReducer,
   foodLogs: diaryFoodReducer,
-<<<<<<< HEAD
   fitness: diaryFitnessReducer,
-=======
   goalKcal: diaryKcalReducer,
->>>>>>> 246c2b47af48c0162dd0768bb2573dd57af0fee1
   caloriesChart: calorieCartReducer,
   nutritionChart: nutritionChartReducer,
 })
