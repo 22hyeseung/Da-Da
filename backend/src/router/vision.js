@@ -33,10 +33,10 @@ const router = express.Router()
 router.use((req, res, next) => {
   next()
 })
-router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
+// router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
+// router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(bodyParser.json())
-router.options('*', cors())
+// router.options('*', cors())
 
 function googleVision(fileBuffer) {
   return new Promise((resolve, reject) => {
@@ -99,9 +99,12 @@ router.post('/', upload.single('upload_img'), (req, res) => {
 
   Promise.all([googleVision(req.file.buffer), s3upload(req.file.buffer, fileName, mime)])
     .then(result => {
-      const regexr = /^((?!junk)(?!dish)(?!food)(?!snack)(?!cookie)(?!finger food)(?!cuisine)(?!asian food)(?!chinese)(?!baking)(?!baked goods)(?!dessert)(?!american food)(?!cook)(?!side dish)(?!vegetarian food)).*$/
+      const filterText = ['food', 'cuisine', 'american food', 'baking', 'flavor', 'recipe', 'fast food', 'dessert', 'dish', 'cookie', 'organism', 'snack', 'font', 'baked goods', 'finger food', 'junk food', 'side dish', 'vegetarian food']
+
       const out = result[0].filter(item => {
-        return item.description.match(regexr)
+        if (filterText.indexOf(item.description) < 0) {
+          return item
+        }
       })
       res.render('vision.pug', {
         'visionAnalysis': JSON.stringify(out),
