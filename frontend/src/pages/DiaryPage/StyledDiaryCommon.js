@@ -46,7 +46,7 @@ export const submitBtn = {
 // 공통 스타일 끝
 
 export const calorieGoal = {
-  width: '16%',
+  minWidth: '190px',
   position: 'absolute',
   top: '64px',
   right: '0px',
@@ -81,6 +81,15 @@ export const defaultFontStyle = {
 export const activeFontStyle = {
   ...defaultFontStyle,
   color: '#fff',
+}
+
+export const kcalInput = {
+  marginLeft: '10px',
+  width: '55px',
+  height: '28px',
+  borderRadius: '4px',
+  backgroundColor: '#ffffff',
+  border: 'solid 1px #d8dde6',
 }
 
 export const iconSet = {
