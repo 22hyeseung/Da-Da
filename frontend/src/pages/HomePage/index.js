@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import rootApi from '../../config'
 // 스타일링
 import { Grid } from 'semantic-ui-react'
 import { tabContainer } from './StyledHome'
@@ -12,6 +11,7 @@ import { getUserInfo } from '../../actions/auth.js'
 // 컴포넌트
 import Navigation from '../../components/Navigation'
 import Loader from '../../components/Loader/index'
+import HomeFirstUserInfo from './HomeFirstUserInfo'
 import HomeHero from './HomeHero'
 import HomeTab from './HomeTab'
 
@@ -23,7 +23,7 @@ class HomePage extends Component {
 
   // 유저 정보 및 오늘 날짜 SET
   componentWillMount() {
-    this.getUserInfo()
+    this.props.saveUserInfo()
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
@@ -37,66 +37,58 @@ class HomePage extends Component {
     }, 4000)
   }
 
-  // 로그인한 유저 정보 GET
-  getUserInfo = () => {
-    fetch(`${rootApi}/user`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${window
-          .localStorage.token}`,
-      },
-    })
-      .then(res => res.json())
-      .then(userInfo => {
-        this.props.saveUserInfo(userInfo)
-      })
-  }
-
   render() {
     if (this.state.loading) {
       return <Loader />
     }
     return (
       <div>
-        <div className="home-grid">
-          <Navigation
-            color="#fff"
-            inverted="true"
-          />
-        </div>
+        {(this.props.userInfo.userHeight &&
+          this.props.userInfo.userWegiht &&
+          this.props.userInfo.userGender) ===
+        null ? (
+          <HomeFirstUserInfo />
+        ) : (
+          <div>
+            <div className="home-grid">
+              <Navigation
+                color="#fff"
+                inverted="true"
+              />
+            </div>
+            <HomeHero />
 
-        {/* Hero 컴포넌트 */}
-        <HomeHero />
-
-        <div style={tabContainer}>
-          <Grid
-            columns={3}
-            padded
-            style={{ width: '100%' }}
-          >
-            {/* 다이어리 Food 페이지로 이동하는 탭 */}
-            <HomeTab
-              tabName="FOOD"
-              message="오늘\n무엇을\n드셨나요?"
-              linkTo="/diary"
-              order="first"
-            />
-            {/* 다이어리 Fitness 페이지로 이동하는 탭 */}
-            <HomeTab
-              tabName="FITNESS"
-              message="오늘\n어떤 운동을\n하셨나요?"
-              linkTo="/diary/fitness"
-              order="second"
-            />
-            {/* 다이어리 Review 페이지로 이동하는 탭 */}
-            <HomeTab
-              tabName="REVIEW"
-              message="오늘\n하루를\n기록해볼까요?"
-              linkTo="/diary/review"
-              order="third"
-            />
-          </Grid>
-        </div>
+            <div style={tabContainer}>
+              <Grid
+                columns={3}
+                padded
+                style={{ width: '100%' }}
+              >
+                {/* 다이어리 Food 페이지로 이동하는 탭 */}
+                <HomeTab
+                  tabName="FOOD"
+                  message="오늘\n무엇을\n드셨나요?"
+                  linkTo="/diary"
+                  order="first"
+                />
+                {/* 다이어리 Fitness 페이지로 이동하는 탭 */}
+                <HomeTab
+                  tabName="FITNESS"
+                  message="오늘\n어떤 운동을\n하셨나요?"
+                  linkTo="/diary/fitness"
+                  order="second"
+                />
+                {/* 다이어리 Review 페이지로 이동하는 탭 */}
+                <HomeTab
+                  tabName="REVIEW"
+                  message="오늘\n하루를\n기록해볼까요?"
+                  linkTo="/diary/review"
+                  order="third"
+                />
+              </Grid>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
@@ -108,8 +100,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchtoProps = dispatch => ({
-  saveUserInfo: user =>
-    dispatch(getUserInfo(user)),
+  saveUserInfo: () => dispatch(getUserInfo()),
 })
 
 export default connect(
