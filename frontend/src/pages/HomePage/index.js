@@ -43,8 +43,8 @@ class HomePage extends Component {
     }
     return (
       <div>
-        {(this.props.userInfo.userHeight &&
-          this.props.userInfo.userWegiht &&
+        {(this.props.userInfo.userHeight ||
+          this.props.userInfo.userWegiht ||
           this.props.userInfo.userGender) ===
         null ? (
           <HomeFirstUserInfo />
