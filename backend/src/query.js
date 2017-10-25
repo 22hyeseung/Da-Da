@@ -160,7 +160,7 @@ function insertBurnById({ burn_member_id, burn_exercise_id, burn_date, burn_kcal
     .then(burn_id => {
       return knex('burn')
         .select(
-          'exercise.exercise_name', 'burn.burn_minute', 'burn.burn_kcal', 'burn.burn_id', 'burn.burn_exercise_id',
+          'exercise.exercise_name', 'burn.burn_minute', 'burn.burn_kcal', 'burn.burn_id', 'burn.burn_exercise_id', 'burn.burn_member_id',
           knex.raw('date_format(burn.burn_date, \'%Y-%m-%d\') as burn_date')
         )
         .join('exercise', 'burn.burn_exercise_id', '=', 'exercise.exercise_id')
