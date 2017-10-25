@@ -77,7 +77,6 @@ export const ResultImage = {
   width: '279px',
   height: '271px',
   borderRadius: '4px',
-  backgroundSize: '100% 150%',
   backgroundPositionY: '70%',
   backgroundImage: `url(${noImg})`,
 }

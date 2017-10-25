@@ -7,7 +7,7 @@ import {
 } from 'semantic-ui-react'
 import {
   Link,
-  Redirect,
+  withRouter,
 } from 'react-router-dom'
 import * as Style from './StyledSearch'
 import './Search.css'
@@ -74,4 +74,4 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar
+export default withRouter(SearchBar)
