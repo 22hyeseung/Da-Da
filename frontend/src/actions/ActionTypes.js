@@ -118,6 +118,7 @@ export const GET_REPORTS_NUTRITION_FAILED =
 //==========================================
 // recipe.js
 export const GET_RECIPE_SUCCESS = 'GET_RECIPE_SUCCESS'
+export const GET_RECIPE_SEARCH_SUCCESS = 'GET_RECIPE_SEARCH_SUCCESS'
 //==========================================
 
 //==========================================

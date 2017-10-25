@@ -6,7 +6,6 @@ import {
   Icon,
 } from 'semantic-ui-react'
 import {
-  Link,
   withRouter,
 } from 'react-router-dom'
 import * as Style from './StyledSearch'
@@ -34,9 +33,9 @@ class SearchBar extends Component {
     return (
       <div>
         <Grid>
-          <Grid.Column width={4} />
+          <Grid.Column width={3} />
           <Grid.Column
-            width={8}
+            width={10}
             style={Style.centerGrid}
           >
             <Grid.Row style={Style.headerGrid}>
@@ -54,11 +53,18 @@ class SearchBar extends Component {
               />
             </Grid.Row>
             <Input
-              className="search-searchbar"
-              icon={<Icon name='search' circular link to='/search/1' />}
+              className={this.props.className}
+              icon={
+                <Icon name='search' circular link
+                  onClick={() => this.props.history.push('/search/' + this.state.searchText)}
+                />
+              }
               value={this.state.searchText}
               onKeyDown={this.handleSearch}
               onChange={this.handleSearchTextChange}
+            />
+            <Icon name='camera' link size='large' style={Style.searchCamera}
+              onClick={() => this.props.history.push('/search/' + this.state.searchText)}
             />
             <Header
               style={Style.h5}
@@ -67,7 +73,7 @@ class SearchBar extends Component {
               inverted
             />
           </Grid.Column>
-          <Grid.Column width={4} />
+          <Grid.Column width={3} />
         </Grid>
       </div>
     )

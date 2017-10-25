@@ -19,7 +19,10 @@ import {
   calorieCartReducer,
   nutritionChartReducer,
 } from './reportReducer/chartData'
-import { recipeReducer } from './recipeReducer/recipe'
+import {
+  recipeReducer,
+  recipeSearchReducer,
+} from './recipeReducer/recipe'
 
 const reducers = combineReducers({
   navActiveItem: navActiveItemReducer,
@@ -35,6 +38,7 @@ const reducers = combineReducers({
   caloriesChart: calorieCartReducer,
   nutritionChart: nutritionChartReducer,
   recipe: recipeReducer,
+  recipeSearchList: recipeSearchReducer,
 })
 
 export default reducers

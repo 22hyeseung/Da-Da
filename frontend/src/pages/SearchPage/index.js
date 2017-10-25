@@ -15,7 +15,7 @@ class SearchPage extends Component {
             inverted="true"
             color="#fff"
           />
-          <SearchBar />
+          <SearchBar className="search-searchbar"/>
         </div>
       </div>
     )

@@ -10,60 +10,30 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import * as Style from './StyledResult'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
 import { connect } from 'react-redux'
 import rootApi from '../../../config'
+import * as Style from './StyledResult'
 
 class ResultBox extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchResult: [],
-      isEmpty: true,
-      loading: true,
+      searchText: '',
     }
-  }
-
-  componentWillMount() {
-    this.getRecipeList(this.props.search)
-  }
-
-  getRecipeList(search) {
-    fetch(
-      `${rootApi}/recipe/search?name=${search}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${this.props.token}`,
-        },
-      },
-    )
-      .then(res => res.json())
-      .then(result => {
-        this.setState({
-          searchResult: result,
-          isEmpty: false,
-        })
-
-        setTimeout(() => {
-          this.setState({
-            loading: false,
-          })
-        }, 1500)
-      })
   }
 
   render() {
+    /*
     if (this.state.loading) {
       return <ComponentLoader />
     }
-
+    */
     return (
       <Grid style={Style.wrapper}>
         <Grid.Row style={Style.messagewrap}>
           <span style={Style.message}>
-            ‘{this.props.search}’ 검색 결과 {this.state.searchResult.length}건
+            ‘{this.props.searchText}’ 검색 결과 {this.props.recipeList.length}건
           </span>
           <div
             style={{
@@ -84,8 +54,9 @@ class ResultBox extends Component {
           columns={4}
           style={Style.ImageWrap}
         >
+        {console.log(this.props.recipeList)}
         {
-          this.state.searchResult == 0 ? (
+          this.props.recipeList.length == 0 ? (
             <div style={Style.noSearchContainer}>
               <p style={Style.noSearchText}>
                 이런..찾으시는 레시피가 없나요? 다른 음식은 어떠세요?
@@ -98,7 +69,7 @@ class ResultBox extends Component {
               />
             </div>
           ) : (
-            this.state.searchResult.map((result, i) => {
+            this.props.recipeList.map((result, i) => {
               console.log(result, '<< [ result ]');
               return (
                 <Grid.Column style={{ padding: '0' }}>
@@ -155,9 +126,10 @@ class ResultBox extends Component {
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
+    recipeList: state.recipeSearchList.recipeList,
   }
 }
 
-export default connect(mapStateToProps, null)(
-  ResultBox,
-)
+export default connect(
+  mapStateToProps,
+)(ResultBox)
