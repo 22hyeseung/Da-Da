@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 import {
-  BarChart,
   Bar,
   XAxis,
   YAxis,
@@ -11,91 +11,31 @@ import {
   ComposedChart,
   Line,
 } from 'recharts'
-import { dateStringForApiQuery } from '../../helper/date'
+import {
+  dateStringForApiQuery,
+  dateDotToDateType,
+  getWeekArray,
+} from '../../helper/date'
 import { getCaloriesForAWeekFromDB } from '../../actions/reportAPIs'
 
-const data = [
-  {
-    day: '4/12',
-    아침: 400,
-    점심: 380,
-    저녁: 210,
-    간식: 120,
-    목표칼로리: 1400,
-  },
-  {
-    day: '4/13',
-    아침: 421,
-    점심: 650,
-    저녁: 110,
-    간식: 0,
-    목표칼로리: 1300,
-  },
-  {
-    day: '4/14',
-    아침: 389,
-    점심: 260,
-    저녁: 280,
-    간식: 120,
-    목표칼로리: 1400,
-  },
-  {
-    day: '4/15',
-    아침: 430,
-    점심: 340,
-    저녁: 200,
-    간식: 140,
-    목표칼로리: 1200,
-  },
-  {
-    day: '4/16',
-    아침: 350,
-    점심: 480,
-    저녁: 400,
-    간식: 36,
-    목표칼로리: 1100,
-  },
-  {
-    day: '4/17',
-    아침: 392,
-    점심: 620,
-    저녁: 120,
-    간식: 100,
-    목표칼로리: 1400,
-  },
-  {
-    day: '4/18',
-    아침: 338,
-    점심: 610,
-    저녁: 280,
-    간식: 0,
-    목표칼로리: 1600,
-  },
-]
 class CaloriesChart extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: [
-        {
-          day: '',
-          아침: 0,
-          점심: 0,
-          저녁: 0,
-          간식: 0,
-          목표칼로리: 0,
-        },
-      ],
+      // 기준일의 6일 전 날짜 (YYYYMMDD)
+      startDate: dateStringForApiQuery(
+        this.props.beforeDateState,
+      ),
+      // 기준일 (오늘 혹은 사용자가 지정한 날짜)(YYYYMMDD)
+      endDate: dateStringForApiQuery(
+        this.props.lastDateState,
+      ),
     }
   }
 
   componentWillMount() {
-    const startDate = dateStringForApiQuery(
-      this.props.beforeDateState,
-    )
-    const endDate = dateStringForApiQuery(
-      this.props.lastDateState,
-    )
+    const { startDate, endDate } = this.state
+    // get
     this.props.getCaloriesForAWeekFromDB(
       startDate,
       endDate,
@@ -103,11 +43,82 @@ class CaloriesChart extends Component {
   }
 
   render() {
+    const {
+      beforeDateState,
+      defaultGoalCalorie,
+      goalCaloriePerWeek,
+      totalMealLogPerWeek,
+    } = this.props
+
+    // 목표 칼로리 데이터 없을 시 default 값
+    const defaultGoal =
+      defaultGoalCalorie.day_log_kcal
+
+    // 일주일치 날짜 배열
+    const dateArray = getWeekArray(
+      dateDotToDateType(beforeDateState),
+    )
+
+    dateArray.map((el, index, all) => {
+      const getMatched = _.reject(
+        goalCaloriePerWeek,
+        val => {
+          return (
+            val.diary_date.getTime() !==
+            el.getTime()
+          )
+        },
+      )
+
+      const kcal = _.mapValues(
+        getMatched,
+        val => {
+          return val.day_log_kcal
+        },
+      )
+
+      return (all[index] = {
+        day: el,
+        목표칼로리: Object.values(kcal)[0]
+          ? Object.values(kcal)[0]
+          : defaultGoal,
+      })
+    })
+
+    dateArray.map((el, index, all) => {
+      const getMatched = _.reject(
+        totalMealLogPerWeek,
+        val => {
+          return (
+            val.day.getTime() !== el.day.getTime()
+          )
+        },
+      )
+
+      const meal = _.mapValues(
+        getMatched,
+        val => {
+          return {
+            아침: val.아침,
+            점심: val.점심,
+            저녁: val.저녁,
+            간식: val.간식,
+          }
+        },
+      )
+
+      return (all[index] = {
+        ...all[index],
+        day: el.day.getDate() + '일',
+        ...Object.values(meal)[0],
+      })
+    })
+
     return (
       <ComposedChart
         width={850}
         height={300}
-        data={data}
+        data={dateArray}
         margin={{
           top: 20,
           right: 20,
@@ -160,15 +171,25 @@ class CaloriesChart extends Component {
 
 const mapStateToProps = state => {
   return {
-    caloriesLogsForAWeek:
-      state.caloriesChart.caloriesLogsForAWeek,
+    // 일주일간 등록한 목표 칼로리
+    goalCaloriePerWeek:
+      state.caloriesChart.goalCaloriePerWeek,
+    // 일주일간 기록한 전체 식사 정보
+    totalMealLogPerWeek:
+      state.caloriesChart.totalMealLogPerWeek,
+    // 목표칼로리 등록하지 않은 날의 기본 칼로리 (첫 가입시 입력한 칼로리)
+    defaultGoalCalorie:
+      state.caloriesChart.defaultGoalCalorie,
+    // 기준일 날짜 (string: YYYY. MM. DD.)
     lastDateState: state.today.date,
+    // 시작일(기준일-6일) 날짜 (string: YYYY. MM. DD.)
     beforeDateState: state.beforeDay.beforeDate,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    // 칼로리 차트 관련 데이터 불러오는 액션
     getCaloriesForAWeekFromDB: (
       startDate,
       endDate,

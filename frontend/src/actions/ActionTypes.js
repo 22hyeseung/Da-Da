@@ -115,6 +115,39 @@ export const GET_REPORTS_NUTRITION_SUCCESS =
   'GET_REPORTS_NUTRITION_SUCCESS'
 export const GET_REPORTS_NUTRITION_FAILED =
   'GET_REPORTS_NUTRITION_FAILED'
+export const GET_REPORTS_CALORIES_SUMMARY_REQUEST =
+  'GET_REPORTS_CALORIES_SUMMARY_REQUEST'
+export const GET_REPORTS_CALORIES_SUMMARY_SUCCESS =
+  'GET_REPORTS_CALORIES_SUMMARY_SUCCESS'
+export const GET_REPORTS_CALORIES_SUMMARY_FAILED =
+  'GET_REPORTS_CALORIES_SUMMARY_FAILED'
+export const GET_REPORTS_NUTRITION_SUMMARY_REQUEST =
+  'GET_REPORTS_NUTRITION_SUMMARY_REQUEST'
+export const GET_REPORTS_NUTRITION_SUMMARY_SUCCESS =
+  'GET_REPORTS_NUTRITION_SUMMARY_SUCCESS'
+export const GET_REPORTS_NUTRITION_SUMMARY_FAILED =
+  'GET_REPORTS_NUTRITION_SUMMARY_FAILED'
+
+//==========================================
+
+//==========================================
+// calorieGoalsAPI.js
+export const KCAL_GOALS_REQUEST =
+  'KCAL_GOALS_REQUEST'
+export const KCAL_GOALS_SUCCESS =
+  'KCAL_GOALS_SUCCESS'
+export const KCAL_GOALS_FAILED =
+  'KCAL_GOALS_FAILED'
+//==========================================
+
+//==========================================
+// getFoodSummary.js
+export const GET_FOOD_SUMMARY_REQUEST =
+  'GET_FOOD_SUMMARY_REQUEST'
+export const GET_FOOD_SUMMARY_SUCCESS =
+  'GET_FOOD_SUMMARY_SUCCESS'
+export const GET_FOOD_SUMMARY_FAILED =
+  'GET_FOOD_SUMMARY_FAILED'
 //==========================================
 
 //==========================================

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
+// 차트
 import {
-  BarChart,
   Bar,
   XAxis,
   YAxis,
@@ -11,73 +12,118 @@ import {
   ComposedChart,
   Line,
 } from 'recharts'
+
+// helper
+import {
+  // YYYY. MM. DD. 포맷 -> YYYYMMDD(API요청포맷)
+  dateStringForApiQuery,
+  dateDotToDateType,
+  getWeekArray, // 일주일치 날짜 배열을 반환하는 함수
+} from '../../helper/date'
+
+// 리덕스 액션
 import { getNutritionFactsForAWeekFromDB } from '../../actions/reportAPIs'
 
-const data = [
-  {
-    day: '4/12',
-    아침: 400,
-    점심: 380,
-    저녁: 210,
-    간식: 120,
-    목표칼로리: 1400,
-  },
-  {
-    day: '4/13',
-    아침: 421,
-    점심: 650,
-    저녁: 110,
-    간식: 0,
-    목표칼로리: 1300,
-  },
-  {
-    day: '4/14',
-    아침: 389,
-    점심: 260,
-    저녁: 280,
-    간식: 120,
-    목표칼로리: 1400,
-  },
-  {
-    day: '4/15',
-    아침: 430,
-    점심: 340,
-    저녁: 200,
-    간식: 140,
-    목표칼로리: 1200,
-  },
-  {
-    day: '4/16',
-    아침: 350,
-    점심: 480,
-    저녁: 400,
-    간식: 36,
-    목표칼로리: 1100,
-  },
-  {
-    day: '4/17',
-    아침: 392,
-    점심: 620,
-    저녁: 120,
-    간식: 100,
-    목표칼로리: 1400,
-  },
-  {
-    day: '4/18',
-    아침: 338,
-    점심: 610,
-    저녁: 280,
-    간식: 0,
-    목표칼로리: 1600,
-  },
-]
 class CaloriesChart extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      // 기준일의 6일 전 날짜 (YYYYMMDD)
+      startDate: dateStringForApiQuery(
+        this.props.beforeDateState,
+      ),
+      // 기준일 (오늘 혹은 사용자가 지정한 날짜)(YYYYMMDD)
+      endDate: dateStringForApiQuery(
+        this.props.lastDateState,
+      ),
+    }
+  }
+
+  componentWillMount() {
+    const { startDate, endDate } = this.state
+    // get
+    this.props.getNutritionFactsForAWeekFromDB(
+      startDate,
+      endDate,
+    )
+  }
+
   render() {
+    const {
+      beforeDateState,
+      defaultGoalCalorie,
+      nutritionLogs,
+      goalCaloriePerWeek,
+    } = this.props
+
+    // 목표 칼로리 데이터 없을 시 default 값
+    const defaultGoal =
+      defaultGoalCalorie.day_log_kcal
+
+    // 일주일치 날짜 배열
+    const dateArray = getWeekArray(
+      dateDotToDateType(beforeDateState),
+    )
+
+    dateArray.map((el, index, all) => {
+      const getMatched = _.reject(
+        goalCaloriePerWeek,
+        val => {
+          return (
+            val.diary_date.getTime() !==
+            el.getTime()
+          )
+        },
+      )
+
+      const kcal = _.mapValues(
+        getMatched,
+        val => {
+          return val.day_log_kcal
+        },
+      )
+
+      return (all[index] = {
+        day: el,
+        목표칼로리: Object.values(kcal)[0]
+          ? Object.values(kcal)[0]
+          : defaultGoal,
+      })
+    })
+
+    dateArray.map((el, index, all) => {
+      const getMatched = _.reject(
+        nutritionLogs,
+        val => {
+          return (
+            val.eat_log_diary_date.getTime() !==
+            el.day.getTime()
+          )
+        },
+      )
+
+      const nutrition = _.mapValues(
+        getMatched,
+        val => {
+          return {
+            탄수화물: Math.round(val.carb) * 4,
+            단백질: Math.round(val.protein) * 4,
+            지방: Math.round(val.fat) * 9,
+          }
+        },
+      )
+      all[index] = {
+        ...all[index],
+        day: el.day.getDate() + '일',
+        ...Object.values(nutrition)[0],
+      }
+    })
+
     return (
       <ComposedChart
         width={850}
         height={300}
-        data={data}
+        data={dateArray}
         margin={{
           top: 20,
           right: 20,
@@ -95,33 +141,27 @@ class CaloriesChart extends Component {
         />
         <Tooltip />
         <Bar
-          dataKey="아침"
+          dataKey="탄수화물"
           stackId="a"
           fill="#16325c"
           maxBarSize={55}
         />
         <Bar
-          dataKey="점심"
+          dataKey="단백질"
           stackId="a"
           fill="#54698d"
           maxBarSize={55}
         />
         <Bar
-          dataKey="저녁"
+          dataKey="지방"
           stackId="a"
           fill="#a8b7c7"
-          maxBarSize={55}
-        />
-        <Bar
-          dataKey="간식"
-          stackId="a"
-          fill="#e0e5ee"
           maxBarSize={55}
         />
         <Line
           type="monotone"
           dataKey="목표칼로리"
-          stroke="#26d0ce"
+          stroke="#ffb75d"
         />
       </ComposedChart>
     )
@@ -130,9 +170,15 @@ class CaloriesChart extends Component {
 
 const mapStateToProps = state => {
   return {
-    nutritionFactsLogsForAWeek:
+    nutritionLogs:
       state.nutritionChart
-        .nutritionFactsLogsForAWeek,
+        .nutritionFactsLogsPerWeek,
+    goalCaloriePerWeek:
+      state.caloriesChart.goalCaloriePerWeek,
+    defaultGoalCalorie:
+      state.caloriesChart.defaultGoalCalorie,
+    lastDateState: state.today.date,
+    beforeDateState: state.beforeDay.beforeDate,
   }
 }
 
