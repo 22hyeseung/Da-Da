@@ -37,6 +37,8 @@ export const CHANGE_TAB_ITEM_ACTIVE =
 // auth.js
 export const SAVE_TOKEN = 'SAVE_TOKEN'
 export const SAVE_USERINFO = 'SAVE_USERINFO'
+export const POST_USERINFO_SUCCESS =
+  'POST_USERINFO_SUCCESS'
 export const LOGOUT = 'LOGOUT'
 //==========================================
 
@@ -146,4 +148,11 @@ export const GET_FOOD_SUMMARY_SUCCESS =
   'GET_FOOD_SUMMARY_SUCCESS'
 export const GET_FOOD_SUMMARY_FAILED =
   'GET_FOOD_SUMMARY_FAILED'
+//==========================================
+
+//==========================================
+// diaryKcal.js
+export const GET_KCAL_REQUEST = 'GET_KCAL_REQUEST'
+export const GET_KCAL_SUCCESS = 'GET_KCAL_SUCCESS'
+export const POST_KCAL_SUCCESS = 'POST_KCAL_SUCCESS'
 //==========================================
