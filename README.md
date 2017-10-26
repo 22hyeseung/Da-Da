@@ -69,8 +69,17 @@
 <br>
 
 ## 팀 구성원
-* 프론트엔드: 김나영, 이혜승
-* 백엔드: 김세준, 임옥택, 조수현
+
+#### 프론트엔드
+
+ - [김나영](https://github.com/feel5ny)
+ - [이혜승](https://github.com/huusz)
+
+#### 백엔드
+
+- [김세준](https://github.com/KimSejune)
+- [임옥택](https://github.com/downmix)
+- [조수현](https://github.com/suhyeon)
 
 <br>
 
