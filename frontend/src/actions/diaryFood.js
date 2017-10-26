@@ -163,37 +163,14 @@ export const postFoodImgToDB = payload => {
       body: formData,
     }) // 원래는 응답값을 바로 추가했지만, 현재 칼로리 계산등을 백엔드에서 처리하므로 다시 fetch로 get하였다.
       .then(result => result.json())
-      .then(res => console.log(res))
-      // .then(result => {
-      //   // console.log(result, '<<')
-      //   if (result) {
-      //     // console.log(payload.food_id)
-      //     return fetch(
-      //       `${rootApi}/eat-logs/${result[0]
-      //         .eat_log_id}`,
-      //       {
-      //         method: 'GET',
-      //         headers: {
-      //           Authorization: `Bearer ${window
-      //             .localStorage.token}`,
-      //         },
-      //       },
-      //     )
-      //       .then(res => res.json())
-      //       .then(data => {
-      //         dispatch({
-      //           type:
-      //             types.POST_FOOD_IMG_TO_DATABASE,
-      //           payload: data,
-      //         })
-      //       })
-      //       .catch(error => {
-      //         console.log(
-      //           'fetchFoodImgLogsToDB error',
-      //         )
-      //       })
-      //   }
-      // })
+      // .then(res => console.log(res))
+      .then(visionData => {
+        console.log(visionData)
+        dispatch({
+          type: types.POST_FOOD_IMG_TO_DATABASE,
+          payload: visionData,
+        })
+      })
       .catch(error => {
         console.log('postFoodImgToDB error')
       })

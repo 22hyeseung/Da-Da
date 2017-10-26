@@ -1,6 +1,8 @@
 const DEFAULT_DIARY_FOOD = {
   foodresult: [],
   reciperesult: [],
+  foodAlbumResult: [],
+  visionresult: [],
 }
 
 export const diaryFoodReducer = (
@@ -26,6 +28,15 @@ export const diaryFoodReducer = (
         action.payload,
         ...state.foodresult,
       ],
+    }
+  }
+  if (
+    action.type === 'POST_FOOD_IMG_TO_DATABASE'
+  ) {
+    return {
+      ...state,
+      foodAlbumResult: action.payload.imgUrl,
+      visionresult: action.payload.visionAnalysis,
     }
   }
   if (action.type === 'UPDATE_FOOD_OF_DATABASE') {

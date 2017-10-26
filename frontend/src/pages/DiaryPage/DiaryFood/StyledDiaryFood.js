@@ -86,10 +86,12 @@ export const modalThirdGrid = {
 export const modalThirdGridHeader = {
   fontFamily: 'Spoqa Han Sans',
   fontWeight: '100',
+  textAlign: 'center',
+  marginTop: '7px',
 }
 export const modalThirdGridBox = {
-  height: '288px',
-  marginBottom: '0px',
+  margin: '0px 0px 0px 14px',
+  width: '50%',
 }
 // add버튼 click 이후 컴포넌트 끝
 
