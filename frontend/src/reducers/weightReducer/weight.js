@@ -78,6 +78,8 @@ export const weightAllReducer = (
       })
       return {
         allLog: state.allLog,
+        goalWeight: state.goalWeight,
+        startWeight: state.startWeight,
       }
     default:
       return state
