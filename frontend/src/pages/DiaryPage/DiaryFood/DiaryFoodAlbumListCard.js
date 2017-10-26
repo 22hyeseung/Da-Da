@@ -4,15 +4,7 @@ import {
   Label,
   Modal,
   Image,
-  Button,
 } from 'semantic-ui-react'
-import {
-  cancelBtn,
-  submitBtn,
-} from '../StyledDiaryCommon'
-import foodImg from '../../../static/img/diary_food_album.jpg'
-import trashIcon from '../../../static/img/diary-trash.svg'
-import eidtIcon from '../../../static/img/diary-edit.svg'
 import zoomIcon from '../../../static/img/diary-zoom.svg'
 import * as Style from './StyledDiaryFood'
 
@@ -23,7 +15,6 @@ class DiaryFoodAlbumListCard extends Component {
     this.setState({ size, open: true })
   close = () => this.setState({ open: false })
   render() {
-    const { open, size } = this.state
     return (
       <Segment
         style={{

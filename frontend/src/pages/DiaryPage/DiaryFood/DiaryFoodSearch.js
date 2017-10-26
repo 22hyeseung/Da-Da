@@ -139,7 +139,6 @@ class DiaryFoodSearch extends Component {
       isLoading,
       inputError,
       btnState,
-      isFocus,
     } = this.state
 
     return (
@@ -370,20 +369,8 @@ class DiaryFoodSearch extends Component {
 
                             backgroundPositionX:
                               '100%',
-                            width: '30%',
                           }}
-                        >
-                          {/* <img
-                            style={{
-                              width: '17%',
-                            }}
-                            src={
-                              this.props
-                                .foodAlbumResult
-                            }
-                            alt="검색 전 검색을 유도하는 이미지입니다"
-                          /> */}
-                        </div>
+                        />
                       )}
                     </div>
                   )}

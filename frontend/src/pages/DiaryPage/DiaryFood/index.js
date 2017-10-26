@@ -1,15 +1,9 @@
 import React from 'react'
-import {
-  Segment,
-  Label,
-  Header,
-} from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 import * as Style from './StyledDiaryFood'
-import { iconSet } from '../StyledDiaryCommon'
 
 // 컴포넌트
 import DiarySubHeader from '../DiarySubHeader'
-import DiaryFoodAdd from './DiaryFoodAdd'
 import DiaryFoodAlbum from './DiaryFoodAlbum'
 import DiaryFoodMeal from './DiaryFoodMeal'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'

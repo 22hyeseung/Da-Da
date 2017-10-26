@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import DiaryFoodAlbumListCard from './DiaryFoodAlbumListCard'
 
 class DiaryFoodAlbumList extends React.Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     return (
       <div className="diary-food-album-list-scroll">
@@ -44,16 +41,6 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    // deleteFoodOfDB: id =>
-    //   dispatch(deleteFoodOfDB(id)),
-    // updateFoodOfDB: (payload, id) =>
-    //   dispatch(updateFoodOfDB(payload, id)),
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(DiaryFoodAlbumList)
+export default connect(mapStateToProps, null)(
+  DiaryFoodAlbumList,
+)

@@ -6,7 +6,6 @@ import {
   Label,
   Grid,
   Modal,
-  Image,
   Header,
   List,
   Checkbox,
@@ -119,6 +118,7 @@ class DiaryFoodSearchModal extends Component {
               width: '100%',
               marginBottom: '7px',
             }}
+            alt="업로드한 사진 미리 확인하는 이미지입니다."
           />
           <label
             for="upload"
@@ -169,8 +169,11 @@ class DiaryFoodSearchModal extends Component {
             <img
               src={vision}
               style={{ width: '56%' }}
+              alt="이미지 업로드 캐릭터 아이콘"
             />
-            <span>이미지를 업로드하세요</span>
+            <span style={{ marginTop: '28px' }}>
+              이미지를 업로드하세요
+            </span>
           </label>
           <input
             id="upload"

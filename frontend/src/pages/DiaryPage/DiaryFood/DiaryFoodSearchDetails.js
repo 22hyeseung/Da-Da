@@ -4,9 +4,7 @@ import {
   Icon,
   Button,
 } from 'semantic-ui-react'
-import ComponentLoader from '../../../components/Loader/ComponentLoader'
 import {
-  segmentDefault,
   submitBtn,
   cancelBtn,
 } from '../StyledDiaryCommon'
@@ -16,7 +14,6 @@ import {
   clearImgUrl,
 } from '../../../actions/diaryFood'
 import { connect } from 'react-redux'
-import * as Styled from './StyledDiaryFood'
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import returnIcon from '../../../static/img/diary-return.svg'
 // helper: 오늘 날짜 API Query형식
