@@ -9,17 +9,28 @@ import {
 import * as styled from './StyledRecipe'
 
 const options = [
-  { key: 1, text: '1', value: '1' },
-  { key: 2, text: '2', value: '2' },
-  { key: 3, text: '3', value: '3' },
-  { key: 4, text: '4', value: '4' },
-  { key: 5, text: '5', value: '5' },
-  { key: 6, text: '6', value: '6' },
+  { key: 1, text: '1', value: 1 },
+  { key: 2, text: '2', value: 2 },
+  { key: 3, text: '3', value: 3 },
+  { key: 4, text: '4', value: 4 },
+  { key: 5, text: '5', value: 5 },
+  { key: 6, text: '6', value: 6 },
 ]
 
 class IngredientBox extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      recipe_serving: 1
+    }
+  }
+
+  handleAmount = (e, data) => {
+    this.props.updateRecipeAmount(data.value)
+  }
+
+  componentWillUpdate() {
+
   }
 
   render() {
@@ -36,7 +47,8 @@ class IngredientBox extends Component {
               compact
               selection
               options={options}
-              defaultValue={this.props.recipeContent.recipe_serving}
+              defaultValue={this.props.recipeAmount}
+              onChange={this.handleAmount}
             />
             <span
               style={{

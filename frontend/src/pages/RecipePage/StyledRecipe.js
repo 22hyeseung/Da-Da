@@ -173,3 +173,12 @@ export const description = {
   color: '#54698d',
   width: '780px',
 }
+
+export const btnDiarySubmit = {
+  margin: '37px',
+  boxShadow: '4px 4px 4px #888888',
+  border: 'none',
+  fontWeight: '100',
+  color: '#fff',
+  backgroundImage: 'linear-gradient(216deg, #26d0ce, #1a2980)'
+}

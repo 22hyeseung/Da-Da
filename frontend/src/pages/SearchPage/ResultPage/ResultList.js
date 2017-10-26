@@ -20,15 +20,25 @@ class ResultBox extends Component {
     super(props)
     this.state = {
       searchText: '',
+      loading: false,
     }
   }
 
+  componentWillMount() {
+    this.setState({ loading: true }, () =>
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+        })
+      }, 1500)
+    )
+  }
+
   render() {
-    /*
     if (this.state.loading) {
-      return <ComponentLoader />
+      return <ComponentLoader posiStyle={{top: '200px'}} />
     }
-    */
+
     return (
       <Grid style={Style.wrapper}>
         <Grid.Row style={Style.messagewrap}>
@@ -72,7 +82,7 @@ class ResultBox extends Component {
             this.props.recipeList.map((result, i) => {
               console.log(result, '<< [ result ]');
               return (
-                <Grid.Column style={{ padding: '0' }}>
+                <Grid.Column style={{ paddingTop: '20px' }}>
                   <div style={{ width: '279px' }}>
                     <Link to={"/recipe/" + result.recipe_id}>
                       <Card>
