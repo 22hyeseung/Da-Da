@@ -188,15 +188,13 @@
 
 #### 2) 디자인 시안
 
-![Login Page](./ReadmeImages/design-login.jpg)
+> [더 많은 디자인 시안 보기](https://invis.io/DCE154SUH)
 
 ![Diary-Food Page](./ReadmeImages/design-food.jpg)
-
-![Recipe Search Page](./ReadmeImages/design-search.jpg)
 
 <br>
 
 #### 3) 프로토타입
 
-> [프로토타입 보기](https://invis.io/DCE154SUH)
+> [프로토타입 보기](https://invis.io/2GDPBHAT5)
 
