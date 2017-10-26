@@ -143,13 +143,13 @@ router.get('/', (req, res) => {
  */
 router.delete('/:id', (req, res) => {
   const param = {
-    'day_log_id': req.param.id,
+    'day_log_id': req.params.id,
     'day_log_member_id': req.user.id
   }
 
   query.WeightNullById(param)
   .then(() => {
-    res.end()
+    res.end('weight null complete')
   })
 })
 
