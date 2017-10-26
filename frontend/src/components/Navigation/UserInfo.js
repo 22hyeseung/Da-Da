@@ -8,6 +8,7 @@ import {
 import {
   userInfoWrap,
   avatar,
+  button,
 } from './StyledNavigation'
 import UserInfoPopup from './UserInfoPopup'
 import { connect } from 'react-redux'
@@ -25,6 +26,7 @@ class UserInfo extends Component {
           wide
           trigger={
             <Button
+              style={button}
               inverted={this.props.inverted}
               content={
                 this.props.userInfo.userName

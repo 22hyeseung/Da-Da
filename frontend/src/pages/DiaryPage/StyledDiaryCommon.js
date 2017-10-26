@@ -48,7 +48,7 @@ export const submitBtn = {
 export const calorieGoal = {
   minWidth: '190px',
   position: 'absolute',
-  top: '64px',
+  top: '58px',
   right: '0px',
   padding: '7px 14px',
   margin: '0px',
