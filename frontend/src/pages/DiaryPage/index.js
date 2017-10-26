@@ -1,6 +1,7 @@
 import React from 'react'
 import Navigation from '../../components/Navigation'
 import { Grid } from 'semantic-ui-react'
+import Footer from '../../components/Footer'
 import DiarySummary from './DiarySummary/'
 import DiarySubNav from './DiarySubNav'
 import DiaryTabNav from './DiaryTabNav'
@@ -31,6 +32,7 @@ const DiaryPage = () => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <Footer />
     </div>
   )
 }
