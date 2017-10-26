@@ -203,8 +203,7 @@ function postEatLogs({ eat_log_member_id, eat_log_food_id, eat_log_recipe_id, ea
     })
 }
 
-
-function getEatLogsFood({ eat_log_member_id, eat_log_diary_date }) {
+function querygetEatlogfood() {
   return knex('eat_log')
     .select(
       'eat_log_id', 'eat_log.eat_log_picture', 'eat_log.eat_log_food_id', 'eat_log.eat_log_amount', 'food.food_name_ko', 'food.food_name_en', 'food.food_unit', 'eat_log.eat_log_meal_tag',
@@ -214,10 +213,14 @@ function getEatLogsFood({ eat_log_member_id, eat_log_diary_date }) {
       knex.raw('(eat_log.eat_log_amount * food.food_fat) as food_fat')
     )
     .join('food', 'eat_log.eat_log_food_id', '=', 'food.food_id')
+}
+
+function getEatLogsFood({ eat_log_member_id, eat_log_diary_date }) {
+  return querygetEatlogfood()
     .where({ eat_log_member_id, eat_log_diary_date })
 }
 
-function getEatLogsRecipe({ eat_log_member_id, eat_log_diary_date }) {
+function querygetEatlogrecipe() {
   return knex('eat_log')
     .select(
       'eat_log_id', 'eat_log.eat_log_picture', 'eat_log.eat_log_recipe_id', 'eat_log.eat_log_serve', 'recipe.recipe_name_ko', 'recipe.recipe_name_en', 'eat_log.eat_log_meal_tag',
@@ -227,33 +230,21 @@ function getEatLogsRecipe({ eat_log_member_id, eat_log_diary_date }) {
       knex.raw('((recipe.recipe_fat/recipe.recipe_serving) * eat_log.eat_log_serve) as recipe_fat')
     )
     .join('recipe', 'eat_log.eat_log_recipe_id', '=', 'recipe.recipe_id')
+}
+
+function getEatLogsRecipe({ eat_log_member_id, eat_log_diary_date }) {
+  return querygetEatlogrecipe()
     .where({ eat_log_member_id, eat_log_diary_date })
 }
 
 function getEatLogsFoodFirst({ eat_log_id }) {
-  return knex('eat_log')
-    .select(
-      'eat_log_id', 'eat_log_picture', 'eat_log.eat_log_food_id', 'eat_log.eat_log_amount', 'food.food_name_ko', 'food.food_name_en', 'food.food_unit', 'eat_log.eat_log_meal_tag',
-      knex.raw('(((food.food_carb*4) + (food.food_protein*4)+(food.food_fat*9))*eat_log.eat_log_amount) as food_kcal'),
-      knex.raw('(eat_log.eat_log_amount * food.food_carb) as food_carb'),
-      knex.raw('(eat_log.eat_log_amount * food.food_protein) as food_protein'),
-      knex.raw('(eat_log.eat_log_amount * food.food_fat) as food_fat')
-    )
-    .join('food', 'eat_log.eat_log_food_id', '=', 'food.food_id')
+  return this.querygetEatlogfood()
     .where({ eat_log_id })
     .first()
 }
 
 function getEatLogsRecipeFirst({ eat_log_id }) {
-  return knex('eat_log')
-    .select(
-      'eat_log_id', 'eat_log_picture', 'eat_log.eat_log_recipe_id', 'eat_log.eat_log_serve', 'recipe.recipe_name_ko', 'recipe.recipe_name_en', 'eat_log.eat_log_meal_tag',
-      knex.raw('((((recipe.recipe_carb * 4) + (recipe.recipe_protein * 4) + (recipe.recipe_fat * 9))/recipe.recipe_serving)*eat_log.eat_log_serve) as recipe_kcal'),
-      knex.raw('((recipe.recipe_carb/recipe.recipe_serving) * eat_log.eat_log_serve ) as recipe_carb'),
-      knex.raw('((recipe.recipe_protein/recipe.recipe_serving) * eat_log.eat_log_serve) as recipe_protein'),
-      knex.raw('((recipe.recipe_fat/recipe.recipe_serving) * eat_log.eat_log_serve) as recipe_fat')
-    )
-    .join('recipe', 'eat_log.eat_log_recipe_id', '=', 'recipe.recipe_id')
+  return querygetEatlogrecipe()
     .where({ eat_log_id })
     .first()
 }
