@@ -183,3 +183,15 @@ export const clearSearchData = () => {
     payload: [],
   }
 }
+export const saveSelect = text => {
+  return {
+    type: types.SAVE_SELECT_FOOD,
+    payload: text,
+  }
+}
+export const clearSelect = () => {
+  return {
+    type: types.CLEAR_SELECT_FOOD,
+    payload: '',
+  }
+}

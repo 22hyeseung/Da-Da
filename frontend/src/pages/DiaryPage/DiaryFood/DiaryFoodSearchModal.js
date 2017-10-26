@@ -19,6 +19,7 @@ import {
 import {
   postFoodImgToDB,
   clearSearchData,
+  saveSelect,
 } from '../../../actions/diaryFood'
 import cameraIcon from '../../../static/img/diary-camera-icon.svg'
 import vision from '../../../static/img/diary-food-vision.svg'
@@ -35,8 +36,10 @@ class DiaryFoodSearchModal extends Component {
   }
 
   // modal
-  show = dimmer => () =>
+  show = dimmer => () => {
     this.setState({ dimmer, open: true })
+    this.props.clearSearchData()
+  }
 
   close = () => {
     this.setState({
@@ -44,8 +47,15 @@ class DiaryFoodSearchModal extends Component {
       value: '',
       imagePreviewUrl: '',
     })
+    this.props.saveSelect(this.state.value)
     this.props.clearSearchData()
+    {
+      this.state.value === undefined
+        ? ''
+        : this.props.isSearchMode()
+    }
   }
+
   _handleSubmit(e) {
     e.preventDefault()
     if (!this.state.imagePreviewUrl) {
@@ -166,11 +176,6 @@ class DiaryFoodSearchModal extends Component {
       >
         <img
           src={cameraIcon}
-          style={{
-            top: '50%',
-            transform: 'translateY(-50%)',
-            position: 'absolute',
-          }}
           className="diary-camera-icon"
           onClick={this.show('blurring')}
           alt="이미지를 업로드하여 식단을 검색"
@@ -201,8 +206,8 @@ class DiaryFoodSearchModal extends Component {
                 {$imagePreview}
               </div>
             </Segment>
-            {this.props.visionResult.length !==
-            0 ? (
+            {new Object(this.props.visionResult)
+              .length !== 0 ? (
               <Segment
                 style={Style.modalThirdGridBox}
               >
@@ -216,27 +221,35 @@ class DiaryFoodSearchModal extends Component {
                 </Header>
                 <div className="diary-food-search-photo-modal-list">
                   <List divided relaxed>
-                    {this.props.visionResult.map(
-                      (item, i) => (
-                        <List.Item>
-                          <Checkbox
-                            label={
-                              item.description
-                            }
-                            value={
-                              item.description
-                            }
-                            checked={
-                              this.state.value ===
-                              item.description
-                            }
-                            onChange={
-                              this
-                                .handleCheckChange
-                            }
-                          />
-                        </List.Item>
-                      ),
+                    {this.props.visionResult ===
+                    undefined ? (
+                      ''
+                    ) : (
+                      <div>
+                        {this.props.visionResult.map(
+                          (item, i) => (
+                            <List.Item>
+                              <Checkbox
+                                label={
+                                  item.description
+                                }
+                                value={
+                                  item.description
+                                }
+                                checked={
+                                  this.state
+                                    .value ===
+                                  item.description
+                                }
+                                onChange={
+                                  this
+                                    .handleCheckChange
+                                }
+                              />
+                            </List.Item>
+                          ),
+                        )}
+                      </div>
                     )}
                   </List>
                 </div>
@@ -290,7 +303,10 @@ class DiaryFoodSearchModal extends Component {
               >
                 취소
               </Button>
-              <Button style={submitBtn}>
+              <Button
+                style={submitBtn}
+                onClick={this.close}
+              >
                 등록
               </Button>
             </div>
@@ -313,6 +329,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(postFoodImgToDB(file)),
     clearSearchData: () =>
       dispatch(clearSearchData()),
+    saveSelect: food =>
+      dispatch(saveSelect(food)),
   }
 }
 

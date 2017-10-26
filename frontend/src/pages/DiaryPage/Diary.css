@@ -128,9 +128,6 @@
 }
 
 .diary-camera-icon {
-    border-style: none;
-    top: 20px;
-    position: absolute;
     cursor: pointer;
 }
 

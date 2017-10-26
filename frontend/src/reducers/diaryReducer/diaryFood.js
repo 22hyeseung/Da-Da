@@ -3,6 +3,7 @@ const DEFAULT_DIARY_FOOD = {
   reciperesult: [],
   foodAlbumResult: [],
   visionresult: [],
+  visionresultKeyword: '',
 }
 
 export const diaryFoodReducer = (
@@ -43,6 +44,18 @@ export const diaryFoodReducer = (
     return {
       ...state,
       visionresult: action.payload,
+    }
+  }
+  if (action.type === 'SAVE_SELECT_FOOD') {
+    return {
+      ...state,
+      visionresultKeyword: action.payload,
+    }
+  }
+  if (action.type === 'CLEAR_SELECT_FOOD') {
+    return {
+      ...state,
+      visionresultKeyword: action.payload,
     }
   }
   if (action.type === 'UPDATE_FOOD_OF_DATABASE') {

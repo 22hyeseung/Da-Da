@@ -46,8 +46,8 @@ export const searchLabel = {
 }
 
 export const modalGrid = {
-  paddingLeft: '0px',
-  paddingRight: '21px',
+  padding: '0px 14px',
+  display: 'flex',
 }
 
 export const modalUpload = {

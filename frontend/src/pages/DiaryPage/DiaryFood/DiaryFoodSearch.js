@@ -11,8 +11,9 @@ import {
   segmentDefault,
   submitBtn,
 } from '../StyledDiaryCommon'
+import { clearSelect } from '../../../actions/diaryFood'
 import FoodSelectDetails from './DiaryFoodSearchDetails'
-import DiaryFoodSearchModal from './DiaryFoodSearchModal'
+// import DiaryFoodSearchModal from './DiaryFoodSearchModal'
 import DiaryFoodAdd from './DiaryFoodAdd'
 import notyet from '../../../static/img/diary-food-search-notyet.svg'
 import error from '../../../static/img/diary-search-error.svg'
@@ -40,6 +41,11 @@ class DiaryFoodSearch extends Component {
 
   componentDidMount() {
     this.textInput.focus()
+    if (this.props.keyword) {
+      this.setState({
+        userInput: this.props.keyword,
+      })
+    }
   }
 
   // foodsSearch api : 현재 컴포넌트에서만 사용하므로 따로 action으로 분리하지 않았다.
@@ -120,7 +126,8 @@ class DiaryFoodSearch extends Component {
     this.setState({
       isSearchMode: !this.state.isSearchMode,
       userInput: '',
-    })
+    }),
+      this.props.clearSelect()
   }
 
   render() {
@@ -146,12 +153,14 @@ class DiaryFoodSearch extends Component {
               {/* 검색창 첫번째 줄 시작 */}
               <Grid.Row>
                 <Grid.Column
-                  width={15}
                   style={{
                     paddingRight: '21px',
                     display: 'flex',
                   }}
                 >
+                  {console.log(
+                    this.props.keyword,
+                  )}
                   <Input
                     ref={input =>
                       (this.textInput = input)}
@@ -178,7 +187,7 @@ class DiaryFoodSearch extends Component {
                     검색
                   </Button>
                 </Grid.Column>
-                <DiaryFoodSearchModal />
+                {/* <DiaryFoodSearchModal /> */}
               </Grid.Row>
               {/* 검색창 첫번째 줄 끝 */}
 
@@ -382,9 +391,17 @@ class DiaryFoodSearch extends Component {
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
+    keyword: state.foodLogs.visionresultKeyword,
   }
 }
 
-export default connect(mapStateToProps, null)(
-  DiaryFoodSearch,
-)
+const mapDispatchToProps = dispatch => {
+  return {
+    clearSelect: () => dispatch(clearSelect()),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DiaryFoodSearch)

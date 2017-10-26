@@ -10,7 +10,10 @@ import {
   submitBtn,
   cancelBtn,
 } from '../StyledDiaryCommon'
-import { postFoodToDB } from '../../../actions/diaryFood'
+import {
+  postFoodToDB,
+  clearSelect,
+} from '../../../actions/diaryFood'
 import { connect } from 'react-redux'
 import * as Styled from './StyledDiaryFood'
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
@@ -91,7 +94,7 @@ class FoodSelectDetails extends Component {
         loading: false,
       }),
         this.props.toggleSearchMode()
-    }, 2000)
+    }, 200)
   }
 
   // payload 생성
@@ -221,12 +224,14 @@ FoodSelectDetails.defaultProps = {
 const mapStateToProps = state => {
   return {
     dateState: state.today.date,
+    keyword: state.foodLogs.visionresultKeyword,
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
     postFoodToDB: payload =>
       dispatch(postFoodToDB(payload)),
+    clearSelect: () => dispatch(clearSelect()),
   }
 }
 
