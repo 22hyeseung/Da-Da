@@ -103,6 +103,14 @@ class WeightDaily extends Component {
     this.props.deleteWeight(id)
   }
   render() {
+    const {
+      isPostMode,
+      isPositiveNum,
+      loading,
+      valueAlert,
+    } = this.state
+    const { weightListItem } = this.props
+
     return (
       <div>
         <div
@@ -120,13 +128,13 @@ class WeightDaily extends Component {
           </Header>
           {/* title 끝 */}
 
-          {this.state.isPostMode ? (
+          {isPostMode ? (
             <div>
               <div className="weight-add-wrapper">
                 <Input
                   focus
                   fluid
-                  error={this.state.isPositiveNum}
+                  error={isPositiveNum}
                   type="number"
                   style={{
                     width: '100%',
@@ -144,10 +152,8 @@ class WeightDaily extends Component {
                     marginLeft: '7px',
                     width: '84px',
                   }}
-                  loading={this.state.loading}
-                  disabled={
-                    this.state.isPositiveNum
-                  }
+                  loading={loading}
+                  disabled={isPositiveNum}
                   onClick={
                     this.createPayloadAndPostToDB
                   }
@@ -156,7 +162,7 @@ class WeightDaily extends Component {
                 </Button>
               </div>
               <span className="weight-alert">
-                {this.state.valueAlert}
+                {valueAlert}
               </span>
             </div>
           ) : (
@@ -173,11 +179,9 @@ class WeightDaily extends Component {
           )}
           {/* 리스트 시작 */}
           <List divided verticalAlign="bottom">
-            {this.props.weightListItem.length !==
-            0
-              ? this.props.weightListItem.map(
+            {weightListItem.length !== 0
+              ? weightListItem.map(
                   (item, index, arr) => {
-                    console.log(item.day_log_id)
                     // yyyy-mm-dd -> yyyy년 mm월 dd일
                     const dateRender = dateDashToKR(
                       item.diary_date,
@@ -235,9 +239,10 @@ class WeightDaily extends Component {
                               style={{
                                 cursor: 'pointer',
                               }}
-                              onClick={this.deleteWeight(
-                                item.day_log_id,
-                              )}
+                              onClick={() =>
+                                this.deleteWeight(
+                                  item.day_log_id,
+                                )}
                             />
                           </List.Content>
                         </div>

@@ -11,17 +11,18 @@ import weightHand from '../../static/img/weight-hand.svg'
 import { getAllWeightFromDB } from '../../actions/weight'
 
 class WeightProgress extends Component {
+  constructor(props) {
+    super(props)
+  }
   componentWillMount() {
     this.props.getAllWeightFromDB()
   }
   render() {
-    const { goalWeight } = this.props
-    const currentWeight = new Object(
-      this.props.weightListItem[0],
-    ).day_log_kg
-    const startWeight = new Object(
-      this.props.allWeightLog[0],
-    ).current
+    const {
+      goalWeight,
+      startWeight,
+      currentWeight,
+    } = this.props
 
     // 공식 = {(시작체중-현재체중)/(시작체중 - 목표체중 )}*100
     let flagPosition = ''
@@ -122,7 +123,8 @@ const mapStateToProps = state => {
   return {
     weightListItem:
       state.weightList.weightListItem,
-    allWeightLog: state.weightAll.allLog,
+    currentWeight: state.weightList.currentWeight,
+    startWeight: state.weightAll.startWeight,
     goalWeight: state.weightAll.goalWeight,
   }
 }

@@ -47,6 +47,7 @@ export const postWeightToDB = payload => {
           })
             .then(res => res.json())
             .then(data => {
+              // console.log(data)
               dispatch({
                 type:
                   types.POST_AND_GET_WEIGHT_SUCCESS,
@@ -54,6 +55,7 @@ export const postWeightToDB = payload => {
               })
               dispatch({
                 type: types.UPDATE_WEIGHT_CHART,
+                payload: data.shift(),
               })
             })
             .catch(error => {
@@ -127,8 +129,7 @@ export const getAllWeightFromDB = () => {
       .then(res => res.json())
       .then(data => {
         let chartData = []
-        let allDayLog = data.allDayLog
-        allDayLog.map(aDay => {
+        data.allDayLog.map(aDay => {
           if (aDay.day_log_kg) {
             chartData.push({
               current: aDay.day_log_kg,

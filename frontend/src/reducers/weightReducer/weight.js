@@ -6,7 +6,8 @@ const DEFAULT_ALL_LOG = {
   isLoading: false,
   errorState: false,
   allLog: [],
-  goalWeight: 0,
+  goalWeight: null,
+  startWeight: null,
 }
 
 // Fetch한 데이터 변경해주는 reducer
@@ -18,6 +19,8 @@ export const weightListReducer = (
     return {
       ...state,
       weightListItem: [...action.payload],
+      currentWeight: action.payload.shift()
+        .day_log_kg,
     }
   }
   if (
@@ -55,6 +58,8 @@ export const weightAllReducer = (
         ...state,
         isLoading: false,
         allLog: action.payload.allLog,
+        startWeight: action.payload.allLog.shift()
+          .current,
         goalWeight: action.payload.goalWeight,
       }
     case 'GET_WEIGHT_ALL_FAILED':
@@ -64,15 +69,15 @@ export const weightAllReducer = (
         errorState: false,
       }
     case 'UPDATE_WEIGHT_CHART':
-      console.log('업데이트해줄 부분이다.')
+      state.allLog.push({
+        current: action.payload.day_log_kg,
+        date: action.payload.diary_date
+          .substr(5, 5)
+          .replace('-', '/'),
+        goal: state.goalWeight,
+      })
       return {
-        // allLog: state.allLog.push({
-        //   current: action.payload.day_log_kg,
-        //   date: action.payload.day_log_diary_date
-        //     .substr(5, 5)
-        //     .replace('-', '/'),
-        //   goal: action.payload.goal_weight,
-        // })
+        allLog: state.allLog,
       }
     default:
       return state
