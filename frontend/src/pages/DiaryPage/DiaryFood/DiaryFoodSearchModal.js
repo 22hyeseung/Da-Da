@@ -20,6 +20,7 @@ import {
   clearSearchData,
   saveSelect,
 } from '../../../actions/diaryFood'
+import Dropzone from 'react-dropzone'
 import cameraIcon from '../../../static/img/diary-camera-icon.svg'
 import vision from '../../../static/img/diary-food-vision.svg'
 import * as Style from './StyledDiaryFood'
@@ -83,7 +84,13 @@ class DiaryFoodSearchModal extends Component {
     }
     reader.readAsDataURL(file)
   }
-
+  onDrop(files) {
+    this.setState({
+      file: files[0],
+      imagePreviewUrl: files[0].preview,
+    })
+    console.log(files[0], files[0].preview)
+  }
   // 리스크중 체크한 항목을 value에 저장한다.
   handleCheckChange = (e, { value }) =>
     this.setState({ value })
@@ -109,14 +116,19 @@ class DiaryFoodSearchModal extends Component {
           }}
           id="postImg"
         >
-          <img
-            src={imagePreviewUrl}
-            style={{
-              width: '100%',
-              marginBottom: '7px',
-            }}
-            alt="업로드한 사진 미리 확인하는 이미지입니다."
-          />
+          <Dropzone
+            style={{ width: 'none' }}
+            onDrop={this.onDrop.bind(this)}
+          >
+            <img
+              src={imagePreviewUrl}
+              style={{
+                width: '100%',
+                marginBottom: '7px',
+              }}
+              alt="업로드한 사진 미리 확인하는 이미지입니다."
+            />
+          </Dropzone>
           <label
             for="upload"
             style={{ display: 'flex' }}
@@ -154,34 +166,50 @@ class DiaryFoodSearchModal extends Component {
             onChange={e =>
               this.handleImageChange(e)}
           />
+          <span
+            style={{
+              marginTop: '7px',
+              color: '#a8b7c7',
+            }}
+          >
+            이미지를 다시 드래그로 갖고와도 변경됩니다.
+          </span>
         </form>
       )
     } else {
       // 이미지를 아직 업로드 안했을 경우
       $imagePreview = (
-        <div>
-          <label
-            for="upload"
-            className="diary-food-meal-file-upload__label"
-          >
-            <img
-              src={vision}
-              style={{ width: '56%' }}
-              alt="이미지 업로드 캐릭터 아이콘"
+        <Dropzone
+          style={{ width: 'none' }}
+          onDrop={this.onDrop.bind(this)}
+        >
+          <div>
+            <label
+              for="upload"
+              className="diary-food-meal-file-upload__label"
+            >
+              <img
+                src={vision}
+                style={{ width: '56%' }}
+                alt="이미지 업로드 캐릭터 아이콘"
+              />
+              <span style={{ marginTop: '28px' }}>
+                이미지를 업로드하세요
+              </span>
+              <span style={{ marginTop: '14px' }}>
+                직접 드래그하여 등록도 가능합니다.
+              </span>
+            </label>
+            <input
+              id="upload"
+              className="diary-food-meal-file-upload__input"
+              type="file"
+              name="file-upload"
+              onChange={e =>
+                this.handleImageChange(e)}
             />
-            <span style={{ marginTop: '28px' }}>
-              이미지를 업로드하세요
-            </span>
-          </label>
-          <input
-            id="upload"
-            className="diary-food-meal-file-upload__input"
-            type="file"
-            name="file-upload"
-            onChange={e =>
-              this.handleImageChange(e)}
-          />
-        </div>
+          </div>
+        </Dropzone>
       )
     }
 
