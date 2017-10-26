@@ -127,8 +127,7 @@ export const albumCard = {
   border: '1px solid #d8dde6',
   width: '210px',
   height: '210px',
-  background: `url(${foodImg})`,
-  backgroundPosition: 'center',
+  backgroundPositionX: '50%',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
 }

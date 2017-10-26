@@ -25,7 +25,13 @@ class DiaryFoodAlbumListCard extends Component {
   render() {
     const { open, size } = this.state
     return (
-      <Segment style={Style.albumCard}>
+      <Segment
+        style={{
+          ...Style.albumCard,
+          backgroundImage: `url(${this.props
+            .picture})`,
+        }}
+      >
         <Label
           attached="top"
           style={{
@@ -33,7 +39,7 @@ class DiaryFoodAlbumListCard extends Component {
             ...Style.albumCardLabelTop,
           }}
         >
-          아침식사
+          {this.props.meal_tag} 식사
           <div>
             <Modal
               trigger={
@@ -48,14 +54,14 @@ class DiaryFoodAlbumListCard extends Component {
             >
               <Modal.Content>
                 <Image
-                  src={foodImg}
+                  src={this.props.picture}
                   size="big"
                   shape="rounded"
                   centered
                 />
               </Modal.Content>
             </Modal>
-            <img
+            {/*<img
               src={eidtIcon}
               onClick={this.show('mini')}
               className="diary-food-meal-list-card-icon"
@@ -81,7 +87,7 @@ class DiaryFoodAlbumListCard extends Component {
                   style={{
                     fontSize: '14px',
                   }}
-                /> */}
+                />
               </Modal.Header>
               <Modal.Content>
                 <div className="diary-file-upload">
@@ -117,11 +123,12 @@ class DiaryFoodAlbumListCard extends Component {
                 </Button>
               </Modal.Actions>
             </Modal>
+
             <img
               src={trashIcon}
               className="diary-food-meal-list-card-icon"
               alt="클릭하면 해당 음식사진이 삭제됩니다."
-            />
+            />*/}
           </div>
         </Label>
         <Label
@@ -131,7 +138,7 @@ class DiaryFoodAlbumListCard extends Component {
             ...Style.albumCardLabelBtoom,
           }}
         >
-          CSS
+          {this.props.name}
         </Label>
       </Segment>
     )

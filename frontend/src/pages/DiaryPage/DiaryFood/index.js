@@ -112,6 +112,7 @@ class DiaryFood extends React.Component {
           type="간식"
           foodresult={desert}
         />
+        <DiaryFoodAlbum />
       </Segment>
     )
   }
