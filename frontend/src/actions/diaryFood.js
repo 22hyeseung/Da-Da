@@ -72,6 +72,7 @@ export const postFoodToDB = payload => {
       })
   }
 }
+
 // 3. updateDB
 export const updateFoodOfDB = (payload, id) => {
   return dispatch => {
@@ -141,6 +142,60 @@ export const deleteFoodOfDB = id => {
       })
       .catch(error => {
         console.log('deleteFoodOfDB error')
+      })
+  }
+}
+
+// 5. vision post
+export const postFoodImgToDB = payload => {
+  return dispatch => {
+    // vision으로 보낼때, form-data형식으로 보내는 방법
+    // FormData의 인자로는 key, value값을 추가한다.
+    const formData = new FormData()
+    formData.append('upload_img', payload)
+
+    fetch(`${rootApi}/vision`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+      body: formData,
+    }) // 원래는 응답값을 바로 추가했지만, 현재 칼로리 계산등을 백엔드에서 처리하므로 다시 fetch로 get하였다.
+      .then(result => result.json())
+      .then(res => console.log(res))
+      // .then(result => {
+      //   // console.log(result, '<<')
+      //   if (result) {
+      //     // console.log(payload.food_id)
+      //     return fetch(
+      //       `${rootApi}/eat-logs/${result[0]
+      //         .eat_log_id}`,
+      //       {
+      //         method: 'GET',
+      //         headers: {
+      //           Authorization: `Bearer ${window
+      //             .localStorage.token}`,
+      //         },
+      //       },
+      //     )
+      //       .then(res => res.json())
+      //       .then(data => {
+      //         dispatch({
+      //           type:
+      //             types.POST_FOOD_IMG_TO_DATABASE,
+      //           payload: data,
+      //         })
+      //       })
+      //       .catch(error => {
+      //         console.log(
+      //           'fetchFoodImgLogsToDB error',
+      //         )
+      //       })
+      //   }
+      // })
+      .catch(error => {
+        console.log('postFoodImgToDB error')
       })
   }
 }

@@ -49,6 +49,7 @@ export const modalGrid = {
   paddingLeft: '0px',
   paddingRight: '21px',
 }
+
 export const modalUpload = {
   boxShadow: 'none',
   border: '1px dashed #A8B7C7',
@@ -56,6 +57,10 @@ export const modalUpload = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  alignItems: 'center',
+  margin: '0px',
+  width: '50%',
+  padding: '7px',
 }
 
 export const modalPhotoView = {

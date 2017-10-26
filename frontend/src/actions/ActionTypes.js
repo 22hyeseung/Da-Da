@@ -4,6 +4,8 @@ export const FETCHED_FOOD_LOGS_SUCCESS =
   'FETCHED_FOOD_LOGS_SUCCESS'
 export const POST_FOOD_TO_DATABASE =
   'POST_FOOD_TO_DATABASE'
+export const POST_FOOD_IMG_TO_DATABASE =
+  'POST_FOOD_IMG_TO_DATABASE'
 export const UPDATE_FOOD_OF_DATABASE =
   'UPDATE_FOOD_OF_DATABASE'
 export const DELETE_FOOD_OF_DATABASE =
@@ -168,5 +170,6 @@ export const GET_FOOD_SUMMARY_FAILED =
 // diaryKcal.js
 export const GET_KCAL_REQUEST = 'GET_KCAL_REQUEST'
 export const GET_KCAL_SUCCESS = 'GET_KCAL_SUCCESS'
-export const POST_KCAL_SUCCESS = 'POST_KCAL_SUCCESS'
+export const POST_KCAL_SUCCESS =
+  'POST_KCAL_SUCCESS'
 //==========================================
