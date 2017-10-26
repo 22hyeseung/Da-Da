@@ -35,10 +35,14 @@
   - 시작/목표/현재 체중을 사용자가 직접 입력하거나 삭제 할 수 있다.
   - 시작 체중으로부터 현재 체중까지 변화 양상을 확인할 수 있는 그래프를 제공한다.
 
+<br>
+
 ### 2. 리포트
 
 - 주 별 통계 (차트)
   사용자의 식사 패턴(식사 시간대, 3대 영양소 비율)에 대한 막대그래프와 요약 정보를 제공한다.
+
+<br>
 
 ### 3. 레시피 검색
 
@@ -51,9 +55,13 @@
   - 레시피 재료의 양 정보를 기준 인분 수  입력을 통해 조정된 값으로 제공받을 수 있다.
   - 레시피로 조리된 음식을 식단에 기록할 수 있다.
 
+<br>
+
 ### 4. 로그인
 - 로그인은 소셜로그인만 지원한다.
 - 네이버, 카카오, 페이스북, 인스타그램 로그인을 지원한다.
+
+<br>
 
 ### 5. SNS공유
 - 식단 및 통계를 미리 디자인된 정적 페이지로 각 소셜에 공유할 수 있다.
@@ -66,7 +74,7 @@
 
 <br>
 
-## 활용 기술
+## 기술 스택 & 툴
 
 ### ProtoType & Design
 - Google spread sheet
@@ -77,24 +85,32 @@
 
 ### Frontend
 
-**1. UI**
-- React.js
+**1) UI**
+- React
 - React-Router
 - Redux
 - CSS
 
-**1-1. Extension or Frameworks**
+<br>
+
+**1-1) Extension or Frameworks**
 - [Semantic-ui-react](https://react.semantic-ui.com/) (CSS Framework)
 - [Draft.js](https://draftjs.org/) (Text editor Framework)
 - [recharts.js](http://recharts.org/#/en-US) (Chart Package)
 
-**2. Network**
+<br>
+
+**2) Network**
 - fetch API
 
-**3.Package Manager**
+<br>
+
+**3) Package Manager**
 - yarn
 
-**4. Convention & Task Manager**
+<br>
+
+**4) Convention & Task Manager**
 - editor config
 - prettier (formatter)
 - eslint
@@ -104,32 +120,39 @@
 
 ### Backend
 
-**1. SEREVER**
+**1) SEREVER**
 - Node.js
 - Express
 
-**2. Database**
-- MYSQL
+<br>
 
-**3. Open API**
+**2) Database**
+- MYSQL
+- KNEX (node-mysql connector)
+
+<br>
+
+**3) Open API**
 
 - [Googl Vision API](https://cloud.google.com/vision/)
+- AWS (supported: EC2, S3(Image Storage), Caddy): Cloud Web Server
+- Redis(supported: KUE): In-memory data structure store
 
-**4.Package Manager**
+<br>
+
+**4) Package Manager**
 - npm
 
-**5. Convention**
+<br>
+
+**5) Convention**
 - editor config
 - eslint
 
-**6. ETC**
-- KNEX
-- EC2
-- S3
-- CADDY
+<br>
+
+**6) Error Reporting Manager**
 - BugSnag
-- Redis
-- KUE
 
 <br>
 
