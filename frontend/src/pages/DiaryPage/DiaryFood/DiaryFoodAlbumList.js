@@ -10,7 +10,6 @@ class DiaryFoodAlbumList extends React.Component {
           style={{ display: 'flex' }}
           className="diary-food-meal-list-card"
         >
-          {console.log(this.props.foodresult)}
           {this.props.foodresult.map(
             (item, i) => (
               <div>

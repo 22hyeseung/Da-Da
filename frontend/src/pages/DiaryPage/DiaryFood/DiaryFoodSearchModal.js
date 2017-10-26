@@ -35,51 +35,41 @@ class DiaryFoodSearchModal extends Component {
     }
   }
 
-  // modal
+  // modal show
   show = dimmer => () => {
     this.setState({ dimmer, open: true })
-    this.props.clearSearchData()
+    this.props.clearSearchData() //사진 검색시, 기존에 검색결과가 남아있는 경우를 초기화시켜준다.
   }
 
+  // modal close
   close = () => {
     this.setState({
       open: false,
       value: '',
       imagePreviewUrl: '',
     })
-    this.props.saveSelect(this.state.value)
-    this.props.clearSearchData()
+    this.props.saveSelect(this.state.value) // modal이 닫히면서 input에 검색결과의 네이밍이 들어갈 수 있도록 하기 위해 reducer에 저장해둔다.
+    this.props.clearSearchData() // show때와 마찬가지로 기존의 검색결과를 초기화 한다.
     {
       this.state.value === undefined
-        ? ''
-        : this.props.isSearchMode()
+        ? '' // 아무 이미지 검색없이 닫을 경우, 검색창은 자동으로 열리지 않는다.
+        : this.props.isSearchMode() // 이미지 검색후 닫히는 경우, 검색창이 자동으로 open된다.
     }
   }
 
-  componentDidMount() {
-    // console.log(this.props.foodAlbumResult)
-    // if (this.props.foodAlbumResult.length !== 0) {
-    //   this.setState({
-    //     loading: true,
-    //   })
-    // }
-    // this.setState({
-    //   loading: false,
-    // })
-  }
-
-  _handleSubmit(e) {
+  // 업로드한 파일을 post보냄
+  handleSubmit = e => {
     e.preventDefault()
     if (!this.state.imagePreviewUrl) {
       return this.setState({
         disabled: true,
       })
     }
-
     this.props.postFoodImgToDB(this.state.file)
   }
 
-  _handleImageChange(e) {
+  // 이미지 미리보기 함수
+  handleImageChange(e) {
     e.preventDefault()
 
     let reader = new FileReader()
@@ -94,17 +84,24 @@ class DiaryFoodSearchModal extends Component {
     reader.readAsDataURL(file)
   }
 
+  // 리스크중 체크한 항목을 value에 저장한다.
   handleCheckChange = (e, { value }) =>
     this.setState({ value })
 
   render() {
-    const { open, dimmer } = this.state
-    let { imagePreviewUrl } = this.state
+    const {
+      open,
+      dimmer,
+      imagePreviewUrl,
+    } = this.state
+
+    // 초기화
     let $imagePreview = null
+    // 이미지를 업로드했을 경우,
     if (imagePreviewUrl) {
       $imagePreview = (
         <form
-          onSubmit={e => this._handleSubmit(e)}
+          onSubmit={e => this.handleSubmit(e)}
           style={{
             display: 'flex',
             flexDirection: 'column',
@@ -155,11 +152,12 @@ class DiaryFoodSearchModal extends Component {
             type="file"
             name="file-upload"
             onChange={e =>
-              this._handleImageChange(e)}
+              this.handleImageChange(e)}
           />
         </form>
       )
     } else {
+      // 이미지를 아직 업로드 안했을 경우
       $imagePreview = (
         <div>
           <label
@@ -181,11 +179,12 @@ class DiaryFoodSearchModal extends Component {
             type="file"
             name="file-upload"
             onChange={e =>
-              this._handleImageChange(e)}
+              this.handleImageChange(e)}
           />
         </div>
       )
     }
+
     return (
       <Grid.Column
         width={1}
@@ -223,6 +222,7 @@ class DiaryFoodSearchModal extends Component {
                 {$imagePreview}
               </div>
             </Segment>
+            {/* vision 분석결과가 있을 때 와 없을 때 분기 */}
             {new Object(this.props.visionResult)
               .length !== 0 ? (
               <Segment
@@ -238,6 +238,7 @@ class DiaryFoodSearchModal extends Component {
                 </Header>
                 <div className="diary-food-search-photo-modal-list">
                   <List divided relaxed>
+                    {/* 분석결과가 없을 때 분기 */}
                     {this.props.visionResult ===
                     undefined ? (
                       ''
@@ -303,6 +304,7 @@ class DiaryFoodSearchModal extends Component {
               alignItems: 'center',
             }}
           >
+            {/* 리스트 중 체크한 항목이 있을 경우 분기 */}
             {this.state.value ? (
               <div>
                 <Icon
@@ -343,10 +345,7 @@ class DiaryFoodSearchModal extends Component {
 
 const mapStateToProps = state => {
   return {
-    dateState: state.today.date,
     visionResult: state.foodLogs.visionresult,
-    foodAlbumResult:
-      state.foodLogs.foodAlbumResult,
   }
 }
 const mapDispatchToProps = dispatch => {

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { clearSelect } from '../../../actions/diaryFood'
 import { Button, Icon } from 'semantic-ui-react'
 import * as Style from './StyledDiaryFood'
 import DiaryFoodSearch from './DiaryFoodSearch'
 import DiaryFoodSearchModal from './DiaryFoodSearchModal'
+
 class DiaryFoodAdd extends Component {
   constructor(props) {
     super(props)
@@ -50,12 +50,4 @@ class DiaryFoodAdd extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    clearSelect: () => dispatch(clearSelect()),
-  }
-}
-
-export default connect(null, mapDispatchToProps)(
-  DiaryFoodAdd,
-)
+export default DiaryFoodAdd
