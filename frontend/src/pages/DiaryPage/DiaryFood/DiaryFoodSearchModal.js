@@ -16,7 +16,10 @@ import {
   cancelBtn,
   submitBtn,
 } from '../StyledDiaryCommon'
-import { postFoodImgToDB } from '../../../actions/diaryFood'
+import {
+  postFoodImgToDB,
+  clearSearchData,
+} from '../../../actions/diaryFood'
 import cameraIcon from '../../../static/img/diary-camera-icon.svg'
 import vision from '../../../static/img/diary-food-vision.svg'
 import * as Style from './StyledDiaryFood'
@@ -34,8 +37,15 @@ class DiaryFoodSearchModal extends Component {
   // modal
   show = dimmer => () =>
     this.setState({ dimmer, open: true })
-  close = () => this.setState({ open: false })
 
+  close = () => {
+    this.setState({
+      open: false,
+      value: '',
+      imagePreviewUrl: '',
+    })
+    this.props.clearSearchData()
+  }
   _handleSubmit(e) {
     e.preventDefault()
     if (!this.state.imagePreviewUrl) {
@@ -301,6 +311,8 @@ const mapDispatchToProps = dispatch => {
   return {
     postFoodImgToDB: file =>
       dispatch(postFoodImgToDB(file)),
+    clearSearchData: () =>
+      dispatch(clearSearchData()),
   }
 }
 

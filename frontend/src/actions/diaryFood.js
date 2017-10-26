@@ -176,3 +176,10 @@ export const postFoodImgToDB = payload => {
       })
   }
 }
+
+export const clearSearchData = () => {
+  return {
+    type: types.CLEAR_IMG_SEARCH_DATA,
+    payload: [],
+  }
+}
