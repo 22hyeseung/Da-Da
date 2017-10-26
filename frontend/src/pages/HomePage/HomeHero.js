@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { button, background } from './StyledHome'
 import { Button } from 'semantic-ui-react'
@@ -10,7 +11,12 @@ class HomeHero extends Component {
       <div className="home-dashboard">
         <div className="home-grid home-hero-content">
           <div className="home-hero-title">
-            오늘도 건강한 하루를 시작해볼까요?
+            <span>
+              {this.props.userInfo.userName}님!
+            </span>
+            <span style={{ marginTop: '14px' }}>
+              오늘도 건강한 하루를 시작해볼까요?
+            </span>
           </div>
           <Link
             to="/diary"
@@ -36,4 +42,12 @@ class HomeHero extends Component {
   }
 }
 
-export default HomeHero
+const mapStateToProps = state => {
+  return {
+    userInfo: state.auth.userInfo,
+  }
+}
+
+export default connect(mapStateToProps, null)(
+  HomeHero,
+)
