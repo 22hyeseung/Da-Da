@@ -113,7 +113,6 @@ export const cardHeader = {
 
 export const cardContent = {
   width: '280px',
-  height: '388px',
 }
 
 export const ingredientListWrap = {
@@ -121,6 +120,7 @@ export const ingredientListWrap = {
   fontSize: '14px',
   textAlign: 'right',
   marginLeft: '12px',
+  marginBottom: '70px',
 }
 
 export const ingredientNameList = {
@@ -128,6 +128,7 @@ export const ingredientNameList = {
   textAlign: 'left',
   color: '#16325c',
   fontWeight: '300',
+  width: '140px',
 }
 
 export const ingredientAmountList = {
@@ -136,7 +137,7 @@ export const ingredientAmountList = {
   fontWeight: '700',
   textAlign: 'right',
   color: '#16325c',
-  marginLeft: '49px',
+  width: '75px',
 }
 
 export const subLabel = {

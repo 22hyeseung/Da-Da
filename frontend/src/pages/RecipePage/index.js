@@ -23,7 +23,7 @@ class RecipePage extends Component {
   componentWillMount() {
     this.props.getRecipe(this.props.match.params.id)
     this.setState({
-      recipeAmount: this.props.recipeContent,
+      recipeAmount: this.props.recipeContent.recipe_serving,
       loading: true,
     })
 

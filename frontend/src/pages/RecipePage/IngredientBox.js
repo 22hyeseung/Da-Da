@@ -15,24 +15,28 @@ const options = [
   { key: 4, text: '4', value: 4 },
   { key: 5, text: '5', value: 5 },
   { key: 6, text: '6', value: 6 },
+  { key: 7, text: '7', value: 7 },
+  { key: 8, text: '8', value: 8 },
+  { key: 9, text: '9', value: 9 },
 ]
 
 class IngredientBox extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      recipe_serving: 1
+      recipeAmount: 1,
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.setState({
-      recipe_serving: this.props.recipeAmount
+      recipeAmount: this.props.recipeContent.recipe_serving,
     })
   }
 
   handleAmount = (e, data) => {
     this.props.updateRecipeAmount(data.value)
+    this.setState({ recipeAmount: data.value })
   }
 
   render() {
@@ -50,7 +54,7 @@ class IngredientBox extends Component {
               selection
               options={options}
               onChange={this.handleAmount}
-              defaultValue={this.state.recipe_serving}
+              defaultValue={this.state.recipeAmount}
             />
             <span
               style={{
@@ -77,7 +81,7 @@ class IngredientBox extends Component {
               {
                 this.props.recipeIngredient.map((val, i) => {
                   return (
-                    <List.Item>{val.num} {val.unit}</List.Item>
+                    <List.Item>{(val.num/this.props.recipeContent.recipe_serving)*this.state.recipeAmount} {val.unit}</List.Item>
                   )
                 })
               }

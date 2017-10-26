@@ -38,8 +38,15 @@ class CookingProcess extends Component {
     this.setState({ popupWindow: false })
   }
 
-  handleCheckboxChange = e => {
-    console.log(this.state.cookingStep, '<< [ this.state.cookingStep ]');
+  handleCheckboxChange = (e, data) => {
+    const stepTemp = this.state.cookingStep
+    if(stepTemp[e.target.value-1].isProcess){
+      stepTemp[e.target.value-1].isProcess = false
+    }else{
+      stepTemp[e.target.value-1].isProcess = true
+    }
+
+    this.setState({ cookingStep: stepTemp })
   }
 
   handleMealTegChange = (e, data) => {
@@ -78,7 +85,7 @@ class CookingProcess extends Component {
             this.props.recipe.map((val, i) => {
               const divNaming = `cookingstep${i+1}`
               return (
-                <div id={divNaming}>
+                <div id={divNaming} className={(val.isProcess ? 'cooking-on' : '')}>
                   <label style={checkboxStyle}>
                     <input
                       type="checkbox"
