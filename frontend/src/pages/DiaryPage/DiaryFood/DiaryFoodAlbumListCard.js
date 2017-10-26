@@ -136,9 +136,15 @@ class DiaryFoodAlbumListCard extends Component {
           style={{
             ...Style.albumLabel,
             ...Style.albumCardLabelBtoom,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
           }}
         >
-          {this.props.name}
+          <span>{this.props.name}</span>
+          <span style={{ textAlign: 'right' }}>
+            {this.props.kcal} kcal
+          </span>
         </Label>
       </Segment>
     )

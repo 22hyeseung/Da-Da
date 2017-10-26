@@ -26,6 +26,7 @@ class DiaryFoodAlbumList extends React.Component {
                     meal_tag={
                       item.eat_log_meal_tag
                     }
+                    kcal={item.food_kcal}
                   />
                 )}
               </div>

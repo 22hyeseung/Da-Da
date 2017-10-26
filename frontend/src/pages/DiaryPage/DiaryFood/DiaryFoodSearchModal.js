@@ -32,6 +32,7 @@ class DiaryFoodSearchModal extends Component {
       file: '',
       imagePreviewUrl: '',
       open: false,
+      loading: false,
     }
   }
 
@@ -54,6 +55,18 @@ class DiaryFoodSearchModal extends Component {
         ? ''
         : this.props.isSearchMode()
     }
+  }
+
+  componentDidMount() {
+    // console.log(this.props.foodAlbumResult)
+    // if (this.props.foodAlbumResult.length !== 0) {
+    //   this.setState({
+    //     loading: true,
+    //   })
+    // }
+    // this.setState({
+    //   loading: false,
+    // })
   }
 
   _handleSubmit(e) {
@@ -131,6 +144,7 @@ class DiaryFoodSearchModal extends Component {
               onClick={
                 this.createPayloadAndPostToDB
               }
+              loading={this.state.loading}
             >
               사진 분석하기
             </Button>
@@ -328,6 +342,8 @@ const mapStateToProps = state => {
   return {
     dateState: state.today.date,
     visionResult: state.foodLogs.visionresult,
+    foodAlbumResult:
+      state.foodLogs.foodAlbumResult,
   }
 }
 const mapDispatchToProps = dispatch => {
