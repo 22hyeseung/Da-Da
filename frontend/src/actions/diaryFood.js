@@ -189,9 +189,17 @@ export const saveSelect = text => {
     payload: text,
   }
 }
+
 export const clearSelect = () => {
   return {
     type: types.CLEAR_SELECT_FOOD,
+    payload: '',
+  }
+}
+
+export const clearImgUrl = () => {
+  return {
+    type: types.CLEAR_IMG_URL,
     payload: '',
   }
 }

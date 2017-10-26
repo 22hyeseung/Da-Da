@@ -58,6 +58,12 @@ export const diaryFoodReducer = (
       visionresultKeyword: action.payload,
     }
   }
+  if (action.type === 'CLEAR_IMG_URL') {
+    return {
+      ...state,
+      foodAlbumResult: action.payload,
+    }
+  }
   if (action.type === 'UPDATE_FOOD_OF_DATABASE') {
     console.log(state.foodresult)
     const updateFoodIndex = state.foodresult

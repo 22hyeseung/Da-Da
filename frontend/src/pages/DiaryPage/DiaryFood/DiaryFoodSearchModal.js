@@ -228,7 +228,14 @@ class DiaryFoodSearchModal extends Component {
                       <div>
                         {this.props.visionResult.map(
                           (item, i) => (
-                            <List.Item>
+                            <List.Item
+                              style={{
+                                padding:
+                                  '7px 0px',
+                                borderBottom:
+                                  '1px solid #e0e1e2',
+                              }}
+                            >
                               <Checkbox
                                 label={
                                   item.description

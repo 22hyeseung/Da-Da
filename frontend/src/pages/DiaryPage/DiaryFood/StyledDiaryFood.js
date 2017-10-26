@@ -88,6 +88,8 @@ export const modalThirdGridHeader = {
   fontWeight: '100',
   textAlign: 'center',
   marginTop: '7px',
+  paddingBottom: '14px',
+  borderBottom: '1px solid #e0e1e2',
 }
 export const modalThirdGridBox = {
   margin: '0px 0px 0px 14px',

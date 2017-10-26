@@ -11,7 +11,10 @@ import {
   segmentDefault,
   submitBtn,
 } from '../StyledDiaryCommon'
-import { clearSelect } from '../../../actions/diaryFood'
+import {
+  clearSelect,
+  clearImgUrl,
+} from '../../../actions/diaryFood'
 import FoodSelectDetails from './DiaryFoodSearchDetails'
 // import DiaryFoodSearchModal from './DiaryFoodSearchModal'
 import DiaryFoodAdd from './DiaryFoodAdd'
@@ -127,7 +130,8 @@ class DiaryFoodSearch extends Component {
       isSearchMode: !this.state.isSearchMode,
       userInput: '',
     }),
-      this.props.clearSelect()
+      this.props.clearSelect(),
+      this.props.clearImgUrl()
   }
 
   render() {
@@ -154,13 +158,9 @@ class DiaryFoodSearch extends Component {
               <Grid.Row>
                 <Grid.Column
                   style={{
-                    paddingRight: '21px',
                     display: 'flex',
                   }}
                 >
-                  {console.log(
-                    this.props.keyword,
-                  )}
                   <Input
                     ref={input =>
                       (this.textInput = input)}
@@ -181,7 +181,7 @@ class DiaryFoodSearch extends Component {
                     style={{
                       ...submitBtn,
                       width: '100px',
-                      marginLeft: '14px',
+                      marginLeft: '7px',
                     }}
                   >
                     검색
@@ -345,11 +345,46 @@ class DiaryFoodSearch extends Component {
                           아직 안먹으셨다면 검색!
                         </span>
                       </div>
-                      <img
-                        style={{ width: '17%' }}
-                        src={notyet}
-                        alt="검색 전 검색을 유도하는 이미지입니다"
-                      />
+                      {this.props.foodAlbumResult
+                        .length === 0 ? (
+                        <img
+                          style={{ width: '17%' }}
+                          src={notyet}
+                          alt="검색 전 검색을 유도하는 이미지입니다"
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            overflow: 'hidden',
+                            backgroundImage: `url(${this
+                              .props
+                              .foodAlbumResult})`,
+                            backgroundSize:
+                              'contain',
+                            backgroundRepeat:
+                              'no-repeat',
+                            width: '30%',
+                            display: 'flex',
+                            backgroundPositionY:
+                              '50%',
+
+                            backgroundPositionX:
+                              '100%',
+                            width: '30%',
+                          }}
+                        >
+                          {/* <img
+                            style={{
+                              width: '17%',
+                            }}
+                            src={
+                              this.props
+                                .foodAlbumResult
+                            }
+                            alt="검색 전 검색을 유도하는 이미지입니다"
+                          /> */}
+                        </div>
+                      )}
                     </div>
                   )}
                   {/* 검색결과 끝 */}
@@ -392,12 +427,15 @@ const mapStateToProps = state => {
   return {
     token: state.auth.token,
     keyword: state.foodLogs.visionresultKeyword,
+    foodAlbumResult:
+      state.foodLogs.foodAlbumResult,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     clearSelect: () => dispatch(clearSelect()),
+    clearImgUrl: () => dispatch(clearImgUrl()),
   }
 }
 

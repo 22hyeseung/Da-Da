@@ -13,6 +13,7 @@ import {
 import {
   postFoodToDB,
   clearSelect,
+  clearImgUrl,
 } from '../../../actions/diaryFood'
 import { connect } from 'react-redux'
 import * as Styled from './StyledDiaryFood'
@@ -112,11 +113,12 @@ class FoodSelectDetails extends Component {
       date: this.state.date,
       food_id: this.props.foodResult.food_id,
       meal_tag: `${this.state.meal_tag}`,
-      picture: null,
+      picture: this.props.foodAlbumResult,
     })
     this.setState({ loading: true }, () =>
       this.postDelay(),
     )
+    this.props.clearImgUrl()
   }
 
   render() {
@@ -225,6 +227,8 @@ const mapStateToProps = state => {
   return {
     dateState: state.today.date,
     keyword: state.foodLogs.visionresultKeyword,
+    foodAlbumResult:
+      state.foodLogs.foodAlbumResult,
   }
 }
 const mapDispatchToProps = dispatch => {
@@ -232,6 +236,7 @@ const mapDispatchToProps = dispatch => {
     postFoodToDB: payload =>
       dispatch(postFoodToDB(payload)),
     clearSelect: () => dispatch(clearSelect()),
+    clearImgUrl: () => dispatch(clearImgUrl()),
   }
 }
 
