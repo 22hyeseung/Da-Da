@@ -179,14 +179,22 @@
 
 ## Summary
 
-### 기획 및 프로토타입
+### 1. 기획
 
 #### 1) 와이어프레임
 ![WireFrame](./ReadmeImages/wire-frame-1.png)
 
 <br>
 
-#### 2) 디자인 시안
+#### 2) 프로토타입
+
+> [프로토타입 보기](https://invis.io/2GDPBHAT5)
+
+<br>
+
+### 2. 디자인
+
+#### 1) 디자인 시안
 
 > [더 많은 디자인 시안 보기](https://invis.io/DCE154SUH)
 
@@ -194,7 +202,4 @@
 
 <br>
 
-#### 3) 프로토타입
-
-> [프로토타입 보기](https://invis.io/2GDPBHAT5)
-
+### 3. 개발
