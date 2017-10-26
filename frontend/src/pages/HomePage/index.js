@@ -6,7 +6,6 @@ import { Grid } from 'semantic-ui-react'
 import { tabContainer } from './StyledHome'
 import './Home.css'
 // 리덕스 액션생성자
-import { getUserInfo } from '../../actions/auth.js'
 
 // 컴포넌트
 import Navigation from '../../components/Navigation'
@@ -23,7 +22,6 @@ class HomePage extends Component {
 
   // 유저 정보 및 오늘 날짜 SET
   componentWillMount() {
-    this.props.saveUserInfo()
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
@@ -99,11 +97,6 @@ const mapStateToProps = state => ({
   token: state.auth.token,
 })
 
-const mapDispatchtoProps = dispatch => ({
-  saveUserInfo: () => dispatch(getUserInfo()),
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchtoProps,
-)(HomePage)
+export default connect(mapStateToProps, null)(
+  HomePage,
+)

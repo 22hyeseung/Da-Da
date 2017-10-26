@@ -86,10 +86,8 @@ export const activeFontStyle = {
 export const kcalInput = {
   marginLeft: '10px',
   width: '55px',
-  height: '28px',
-  borderRadius: '4px',
-  backgroundColor: '#ffffff',
-  border: 'solid 1px #d8dde6',
+  fontFamily: 'montserrat-bold',
+  fontSize: '14px',
 }
 
 export const iconSet = {
