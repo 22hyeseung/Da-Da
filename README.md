@@ -129,7 +129,7 @@
 
 ### Backend
 
-**1) SEREVER**
+**1) Server**
 - Node.js
 - Express
 
