@@ -168,8 +168,9 @@
 ## Team Work
 - Git (소스 코드 버전 관리)
 - Zeplin (디자인 시안 공유)
-- 오프라인 회의(수/금) & HangOut 온라인 회의 (월/화/목)
-- Scrum Board: Google Spread Sheet (매일 진행 사항 공유 & 일정 관리)
+- 매주 월/화/목 HangOut 온라인 회의: 데일리 스크럼
+- 매주 수/금 오프라인 정기 회의: 이슈 공유 및 논의, 코드 리뷰
+- Scrum Board 작성: Google Spread Sheet (매일 진행 사항 공유 & 일정 관리)
 - [Github](https://github.com/huusz/Da-Da) & [Github Projects](https://github.com/huusz/Da-Da/projects) (작업 분담(기능별 & 페이지별) 및 이슈 관리)
 - [API Document](https://api.downmix.net/)
 
