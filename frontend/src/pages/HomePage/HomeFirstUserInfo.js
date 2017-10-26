@@ -24,7 +24,7 @@ class HomeFirstUserInfo extends Component {
       gender_enum: null,
       birth: '20001010',
       goal_weight: null,
-      goal_kcal: null,
+      recommend_kcal: null,
       height: null,
       kg: null,
       date: dateStringForApiQuery(
@@ -61,7 +61,9 @@ class HomeFirstUserInfo extends Component {
 
   // 목표칼로리 받는 핸들러
   handleGoalKcalChange = e => {
-    this.setState({ goal_kcal: e.target.value })
+    this.setState({
+      recommend_kcal: e.target.value,
+    })
     if (e.target.value > 0)
       this.setState({
         disabled: false,
@@ -110,8 +112,8 @@ class HomeFirstUserInfo extends Component {
       this.state.gender_enum < 1 ||
       !this.state.goal_weight ||
       this.state.goal_weight < 1 ||
-      !this.state.goal_kcal ||
-      this.state.goal_kcal < 1 ||
+      !this.state.recommend_kcal ||
+      this.state.recommend_kcal < 1 ||
       !this.state.height ||
       this.state.height < 1 ||
       !this.state.kg ||
@@ -125,13 +127,14 @@ class HomeFirstUserInfo extends Component {
       birth: this.state.birth,
       gender: this.state.gender_enum,
       goal_weight: this.state.goal_weight,
-      goal_kcal: this.state.goal_kcal,
       height: this.state.height,
       kg: this.state.kg,
       date: this.state.date,
+      kcal: this.state.recommend_kcal,
     })
-    this.close()
-    window.location.reload()
+    // 좋은 방법이 아니다.
+    setTimeout(this.close, 100)
+    setTimeout(window.location.reload(), 300)
   }
 
   render() {
@@ -171,7 +174,6 @@ class HomeFirstUserInfo extends Component {
             margin: '2% auto',
           }}
         >
-          {console.log(age)}
           <Grid.Column width={8}>
             <div style={Style.introTitle}>
               <span>
@@ -334,7 +336,7 @@ class HomeFirstUserInfo extends Component {
                         fontSize: '12px',
                       }}
                     >
-                      김나영님의 권장 칼로리는
+                      김나영님의 하루 권장 칼로리는
                       {BEEkcal.toFixed(2)}kcal입니다.
                       (BEE 기준)
                     </span>
@@ -462,6 +464,21 @@ class HomeFirstUserInfo extends Component {
                               {
                                 this.state
                                   .goal_weight
+                              }
+                            </span>
+                          </li>
+                          <li style={Style.list}>
+                            <span
+                              style={
+                                Style.listLabel
+                              }
+                            >
+                              목표 칼로리
+                            </span>
+                            <span>
+                              {
+                                this.state
+                                  .recommend_kcal
                               }
                             </span>
                           </li>
