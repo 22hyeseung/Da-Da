@@ -6,13 +6,10 @@ import {
   Card,
 } from 'semantic-ui-react'
 import {
-  BrowserRouter as Router,
-  Route,
   Link
 } from 'react-router-dom'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
 import { connect } from 'react-redux'
-import rootApi from '../../../config'
 import * as Style from './StyledResult'
 
 class ResultBox extends Component {
@@ -66,7 +63,7 @@ class ResultBox extends Component {
         >
         {console.log(this.props.recipeList)}
         {
-          this.props.recipeList.length == 0 ? (
+          this.props.recipeList.length === 0 ? (
             <div style={Style.noSearchContainer}>
               <p style={Style.noSearchText}>
                 이런..찾으시는 레시피가 없나요? 다른 음식은 어떠세요?

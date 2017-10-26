@@ -6,7 +6,7 @@ import {
   btnDiarySubmit,
 } from './StyledRecipe'
 import { postFoodToDB } from '../../actions/diaryFood'
-import { Checkbox, Button, Modal, Dropdown } from 'semantic-ui-react'
+import { Button, Modal, Dropdown } from 'semantic-ui-react'
 import { dateStringForApiQuery } from '../../helper/date'
 
 const options = [

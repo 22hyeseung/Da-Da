@@ -25,12 +25,14 @@ class IngredientBox extends Component {
     }
   }
 
-  handleAmount = (e, data) => {
-    this.props.updateRecipeAmount(data.value)
+  componentDidMount() {
+    this.setState({
+      recipe_serving: this.props.recipeAmount
+    })
   }
 
-  componentWillUpdate() {
-
+  handleAmount = (e, data) => {
+    this.props.updateRecipeAmount(data.value)
   }
 
   render() {
@@ -47,8 +49,8 @@ class IngredientBox extends Component {
               compact
               selection
               options={options}
-              defaultValue={this.props.recipeAmount}
               onChange={this.handleAmount}
+              defaultValue={this.state.recipe_serving}
             />
             <span
               style={{

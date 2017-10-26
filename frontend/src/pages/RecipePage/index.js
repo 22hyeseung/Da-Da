@@ -7,7 +7,6 @@ import IngredientBox from './IngredientBox'
 import CookingProcess from './CookingProcess'
 import ComponentLoader from '../../components/Loader/ComponentLoader'
 import { getRecipe } from '../../actions/recipe'
-import rootApi from '../../config'
 
 class RecipePage extends Component {
   constructor(props) {
