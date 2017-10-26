@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import isEmpty from 'lodash/isEmpty'
+// 스타일링
 import { Message } from 'semantic-ui-react'
+// helper
+import { dateStringForApiQuery } from '../../helper/date'
+// 리덕스 action
+import {
+  getFoodSummaryFromDB, // 하루 단위 food summary
+} from '../../actions/getFoodSummary'
+//차트
 import {
   PieChart,
   Pie,
@@ -8,29 +17,23 @@ import {
   Cell,
   Legend,
 } from 'recharts'
-import isEmpty from 'lodash/isEmpty'
 
-// API 통신용 date형식 리턴하는 함수: YYYYMMDD
-import { dateStringForApiQuery } from '../../helper/date'
-
-import {
-  getFoodSummaryFromDB, // 하루 단위 food summary
-} from '../../actions/getFoodSummary'
-
+// 파이 차트 colors
 const COLORS = ['#16325c', '#a8b7c7', '#e5e5e5']
 
 class SummaryPieChart extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      date: this.props.dateState,
+    }
   }
 
   componentWillMount() {
-    const {
-      dateState,
-      getFoodSummaryFromDB,
-    } = this.props
-    const date = dateStringForApiQuery(dateState)
-    getFoodSummaryFromDB(date)
+    const { getFoodSummaryFromDB } = this.props
+    getFoodSummaryFromDB(
+      dateStringForApiQuery(this.state.date),
+    )
   }
 
   render() {
@@ -39,25 +42,7 @@ class SummaryPieChart extends Component {
       errorState,
     } = this.props
 
-    if (isEmpty(calorieSummary)) return null
-
-    const data = calorieSummary
-    // const data = [
-    //   {
-    //     name: '탄수화물',
-    //     value: calorieSummary.today_carb,
-    //   },
-    //   {
-    //     name: '단백질',
-    //     value: calorieSummary.today_protein,
-    //   },
-    //   {
-    //     name: '지방',
-    //     value: calorieSummary.today_fat,
-    //   },
-    // ]
-
-    if (calorieSummary.today_kcal === 0) {
+    if (isEmpty(calorieSummary)) {
       return (
         <Message
           warning
@@ -82,7 +67,7 @@ class SummaryPieChart extends Component {
       <PieChart width={250} height={260}>
         <Pie
           key={String(Math.random())}
-          data={data}
+          data={calorieSummary}
           cx={110}
           cy={100}
           innerRadius={40}
@@ -91,7 +76,7 @@ class SummaryPieChart extends Component {
           legendType="square"
           paddingAngle={1.3}
         >
-          {data.map((entry, index) => (
+          {calorieSummary.map((entry, index) => (
             <Cell
               fill={COLORS[index]}
               key={entry.nutrition}

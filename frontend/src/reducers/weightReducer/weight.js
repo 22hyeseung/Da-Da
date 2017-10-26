@@ -63,6 +63,17 @@ export const weightAllReducer = (
         isLoading: false,
         errorState: false,
       }
+    case 'UPDATE_WEIGHT_CHART':
+      console.log('업데이트해줄 부분이다.')
+      return {
+        // allLog: state.allLog.push({
+        //   current: action.payload.day_log_kg,
+        //   date: action.payload.day_log_diary_date
+        //     .substr(5, 5)
+        //     .replace('-', '/'),
+        //   goal: action.payload.goal_weight,
+        // })
+      }
     default:
       return state
   }

@@ -16,8 +16,14 @@ import {
   deleteWeightOfDB,
 } from '../../actions/weight'
 import trash from '../../static/img/trash_icon.svg'
+// 리덕스 액션
+import { setTodayDate } from '../../actions/setDate'
 // helper: 오늘 날짜 API Query형식
-import { dateStringForApiQuery } from '../../helper/date'
+import {
+  todaysDate,
+  dateStringForApiQuery,
+  dateDashToKR,
+} from '../../helper/date'
 
 class WeightDaily extends Component {
   constructor(props) {
@@ -35,13 +41,15 @@ class WeightDaily extends Component {
   }
 
   componentWillMount() {
+    this.props.setTodayDate(todaysDate)
     this.props.fetchWeight()
   }
 
+  // weight 입력값 유효성 검사
   handleWeightValueChange = e => {
-    if (e.target.value < 1) {
+    if (e.target.value < 20) {
       return this.setState({
-        valueAlert: '1 이상의 값을 입력하세요 ',
+        valueAlert: '정말인가요? 다이어트 하시면 안 돼요!',
         isPositiveNum: true,
       })
     }
@@ -52,6 +60,7 @@ class WeightDaily extends Component {
     })
   }
 
+  // 입력창 여닫기
   togglePostingMode = e => {
     this.setState({
       isPostMode: !this.state.isPostMode,
@@ -59,26 +68,33 @@ class WeightDaily extends Component {
     this.closeAndResetValue()
   }
 
+  // 입력창 닫을 시 weight value 초기화
   closeAndResetValue = e =>
     this.setState({
-      date: '',
       weight: '',
-      isPostMode: !this.state.isPostMode,
+      // isPostMode: !this.state.isPostMode, -> 중복인것 같아 주석처리했어요!
     })
 
+  // 입력 받은 체중 post
   createPayloadAndPostToDB = () => {
-    if (
-      !this.state.weight ||
-      this.state.weight < 1
-    ) {
+    const { weight } = this.state
+    const {
+      postWeightToDB,
+      dateState,
+    } = this.props
+
+    // 입력 값 유효성 검사: 유효하지 않으면 input 비활성화
+    if (!weight || weight < 1) {
       return this.setState({
         disabled: true,
       })
     }
-    this.props.postWeightToDB({
-      kg: this.state.weight,
-      date: 20171021,
-    })
+
+    const requestBody = {
+      kg: weight,
+      date: dateStringForApiQuery(dateState),
+    }
+    postWeightToDB(requestBody)
     this.togglePostingMode()
   }
 
@@ -160,18 +176,13 @@ class WeightDaily extends Component {
             {this.props.weightListItem.length !==
             0
               ? this.props.weightListItem.map(
-                  (Item, index, arr) => {
-                    const dateArr = Item.diary_date.split(
-                      '-',
+                  (item, index, arr) => {
+                    console.log(item.day_log_id)
+                    // yyyy-mm-dd -> yyyy년 mm월 dd일
+                    const dateRender = dateDashToKR(
+                      item.diary_date,
                     )
-                    const dateRender =
-                      dateArr[0] +
-                      '년 ' +
-                      dateArr[1] +
-                      '월 ' +
-                      dateArr[2] +
-                      '일'
-                    return Item.day_log_kg !==
+                    return item.day_log_kg !==
                       null ? (
                       <List.Item
                         style={Style.listItem}
@@ -187,7 +198,7 @@ class WeightDaily extends Component {
                               Style.weigthValue
                             }
                           >
-                            {Item.day_log_kg}
+                            {item.day_log_kg}
                           </List.Content>
                           <List.Content
                             className="weight-daily-value-unit"
@@ -202,7 +213,7 @@ class WeightDaily extends Component {
                               src={ArrowUp}
                               alt="이전 몸무게보다 높음을 표시"
                             />
-                            {/* {arr[index - 1]
+                            {/*arr[index - 1]
                               .day_log_kg <
                             arr[index]
                               .day_log_kg ? (
@@ -215,7 +226,7 @@ class WeightDaily extends Component {
                                 src={ArrowDown}
                                 alt="이전 몸무게보다 낮음을 표시"
                               />
-                            )} */}
+                            )*/}
                           </List.Content>
                           <List.Content floated="right">
                             <img
@@ -224,10 +235,9 @@ class WeightDaily extends Component {
                               style={{
                                 cursor: 'pointer',
                               }}
-                              onClick={() =>
-                                this.deleteWeight(
-                                  Item.day_log_id,
-                                )}
+                              onClick={this.deleteWeight(
+                                item.day_log_id,
+                              )}
                             />
                           </List.Content>
                         </div>
@@ -255,8 +265,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postWeightToDB: payload =>
-      dispatch(postWeightToDB(payload)),
+    postWeightToDB: requestBody =>
+      dispatch(postWeightToDB(requestBody)),
+    setTodayDate: date =>
+      dispatch(setTodayDate(date)),
     fetchWeight: () =>
       dispatch(fetchWeightFromDB()),
     deleteWeight: id =>

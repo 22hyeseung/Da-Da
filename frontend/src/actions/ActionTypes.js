@@ -51,6 +51,16 @@ export const GET_WEIGHT_ALL_SUCCESS =
   'GET_WEIGHT_ALL_SUCCESS'
 export const GET_WEIGHT_ALL_FAILED =
   'GET_WEIGHT_ALL_FAILED'
+
+export const GET_WEIGHT_BY_DATE_REQUEST =
+  'GET_WEIGHT_BY_DATE_REQUEST'
+export const GET_WEIGHT_BY_DATE_SUCCESS =
+  'GET_WEIGHT_BY_DATE_SUCCESS'
+export const GET_WEIGHT_BY_DATE_FAILED =
+  'GET_WEIGHT_BY_DATE_FAILED'
+export const UPDATE_WEIGHT_CHART =
+  'UPDATE_WEIGHT_CHART'
+
 //==========================================
 
 //==========================================

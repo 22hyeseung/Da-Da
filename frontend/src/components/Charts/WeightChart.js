@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import isEmpty from 'lodash/isEmpty'
+// 스타일링
+import { Message } from 'semantic-ui-react'
+// 리덕스 액션
+import { getAllWeightFromDB } from '../../actions/weight'
+// 차트
 import {
   AreaChart,
   Area,
@@ -8,8 +14,6 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts'
-import { getAllWeightFromDB } from '../../actions/weight'
-import isEmpty from 'lodash/isEmpty'
 
 class WeightChart extends Component {
   constructor(props) {
@@ -22,14 +26,29 @@ class WeightChart extends Component {
   }
 
   render() {
-    if (isEmpty(this.props.weightAllLog))
-      return null
+    const {
+      weightAllLog,
+      errorState,
+    } = this.props
+
+    if (isEmpty(weightAllLog)) return null
+    if (errorState) {
+      return (
+        <Message negative>
+          <Message.Header>
+            오류가 발생하였습니다.
+          </Message.Header>
+          <p>잠시 후 다시 시도해주세요.</p>
+        </Message>
+      )
+    }
+
     return (
       <AreaChart
         key={String(Math.random())}
         width={830}
         height={260}
-        data={this.props.weightAllLog}
+        data={weightAllLog}
         margin={{
           top: 10,
           right: 0,
@@ -100,6 +119,7 @@ class WeightChart extends Component {
 const mapStateToProps = state => {
   return {
     weightAllLog: state.weightAll.allLog,
+    errorState: state.weightAll.errorState,
   }
 }
 
