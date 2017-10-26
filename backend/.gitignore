@@ -59,4 +59,5 @@ typings/
 
 gkey.json
 
+# vscode 제거
 .vscode/
