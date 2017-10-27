@@ -63,10 +63,13 @@ router.options('*', cors())
  * }
  */
 router.get('/', (req, res) => {
-  const param = {'day_log_member_id': req.user.id}
+  const param = {
+    'day_log_member_id': req.user.id,
+    'member_id': req.user.id
+  }
   query.getFirstGoalKcalById(param)
     .then(default_kcal => {
-      query.getUserById(req.user.id)
+      query.getUserById(param)
         .then(user => {
           res.send({ user, default_kcal })
         })
