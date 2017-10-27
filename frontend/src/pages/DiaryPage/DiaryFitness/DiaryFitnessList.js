@@ -18,10 +18,14 @@ class DiaryFitnessAdd extends React.Component {
             </List.Header>
           </div>
           <List.Item style={Style.listItemResult}>
-            <List.Header>
+            <List.Header
+              style={Style.listItemTime}
+            >
               {this.props.time} 분
             </List.Header>
-            <List.Header>
+            <List.Header
+              style={Style.listItemKcal}
+            >
               <span style={Style.textBig}>
                 {this.props.kcal}{' '}
               </span>kcal
@@ -41,6 +45,7 @@ class DiaryFitnessAdd extends React.Component {
                 this.props.kcal,
                 this.props.name,
                 this.props.time,
+                this.props.unitKcal,
               )}
             >
               <Icon name="pencil" />

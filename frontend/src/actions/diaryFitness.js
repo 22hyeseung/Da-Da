@@ -55,6 +55,7 @@ export const postFitnessToDB = payload => {
 export const updateFitnessOfDB = (
   payload,
   id,
+  onSuccessCb,
 ) => {
   return dispatch => {
     fetch(`${rootApi}/exercises/${id}`, {
@@ -73,6 +74,7 @@ export const updateFitnessOfDB = (
           type: types.UPDATE_FITNESS_OF_DATABASE,
           payload: data[0],
         })
+        onSuccessCb()
       })
       .catch(error => {
         console.log('updateFitnessOfDB error')
@@ -92,7 +94,7 @@ export const deleteFitnessOfDB = id => {
     })
       .then(result => {
         if (result) {
-          return dispatch({
+          dispatch({
             type:
               types.DELETE_FITNESS_OF_DATABASE,
             payload: id,

@@ -4,6 +4,14 @@ export const FETCHED_FOOD_LOGS_SUCCESS =
   'FETCHED_FOOD_LOGS_SUCCESS'
 export const POST_FOOD_TO_DATABASE =
   'POST_FOOD_TO_DATABASE'
+export const POST_FOOD_IMG_TO_DATABASE =
+  'POST_FOOD_IMG_TO_DATABASE'
+export const CLEAR_IMG_SEARCH_DATA =
+  'CLEAR_IMG_SEARCH_DATA'
+export const CLEAR_SELECT_FOOD =
+  'CLEAR_SELECT_FOOD'
+export const CLEAR_IMG_URL = 'CLEAR_IMG_URL'
+export const SAVE_SELECT_FOOD = 'SAVE_SELECT_FOOD'
 export const UPDATE_FOOD_OF_DATABASE =
   'UPDATE_FOOD_OF_DATABASE'
 export const DELETE_FOOD_OF_DATABASE =
@@ -16,14 +24,6 @@ export const DELETE_CALORIE_SUMMARY =
   'DELETE_CALORIE_SUMMARY'
 export const UPDATE_LIST_SUMMARY =
   'UPDATE_LIST_SUMMARY'
-//==========================================
-// getFoodSummary.js
-export const GET_FOOD_SUMMARY_REQUEST =
-  'GET_FOOD_SUMMARY_REQUEST'
-export const GET_FOOD_SUMMARY_SUCCESS =
-  'GET_FOOD_SUMMARY_SUCCESS'
-export const GET_FOOD_SUMMARY_FAILED =
-  'GET_FOOD_SUMMARY_FAILED'
 //==========================================
 
 //==========================================
@@ -178,6 +178,22 @@ export const KCAL_GOALS_SUCCESS =
   'KCAL_GOALS_SUCCESS'
 export const KCAL_GOALS_FAILED =
   'KCAL_GOALS_FAILED'
+//==========================================
+
+//==========================================
+// getFoodSummary.js
+export const GET_FOOD_SUMMARY_REQUEST =
+  'GET_FOOD_SUMMARY_REQUEST'
+export const GET_FOOD_SUMMARY_SUCCESS =
+  'GET_FOOD_SUMMARY_SUCCESS'
+export const GET_FOOD_SUMMARY_FAILED =
+  'GET_FOOD_SUMMARY_FAILED'
+//==========================================
+
+//==========================================
+// recipe.js
+export const GET_RECIPE_SUCCESS = 'GET_RECIPE_SUCCESS'
+export const GET_RECIPE_SEARCH_SUCCESS = 'GET_RECIPE_SEARCH_SUCCESS'
 //==========================================
 
 //==========================================

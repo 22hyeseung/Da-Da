@@ -24,6 +24,10 @@ import {
   nutritionChartReducer,
 } from './reportReducer/chartData'
 import {
+  recipeReducer,
+  recipeSearchReducer,
+} from './recipeReducer/recipe'
+import {
   calorySummaryReducer,
   nutritionSummaryReducer,
 } from './reportReducer/summaryData'
@@ -42,6 +46,8 @@ const reducers = combineReducers({
   caloriesChart: calorieChartReducer,
   goalKcal: diaryKcalReducer,
   nutritionChart: nutritionChartReducer,
+  recipe: recipeReducer,
+  recipeSearchList: recipeSearchReducer,
   calorieGoalAboutADay: calorieGoalReducer,
   diarySummary: diarySummaryReducer,
   calorySummary: calorySummaryReducer,

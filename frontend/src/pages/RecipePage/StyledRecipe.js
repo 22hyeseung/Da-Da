@@ -113,15 +113,14 @@ export const cardHeader = {
 
 export const cardContent = {
   width: '280px',
-  height: '388px',
 }
 
 export const ingredientListWrap = {
   width: '226px',
-  height: '100px',
   fontSize: '14px',
   textAlign: 'right',
   marginLeft: '12px',
+  marginBottom: '70px',
 }
 
 export const ingredientNameList = {
@@ -129,6 +128,7 @@ export const ingredientNameList = {
   textAlign: 'left',
   color: '#16325c',
   fontWeight: '300',
+  width: '140px',
 }
 
 export const ingredientAmountList = {
@@ -137,7 +137,7 @@ export const ingredientAmountList = {
   fontWeight: '700',
   textAlign: 'right',
   color: '#16325c',
-  marginLeft: '49px',
+  width: '75px',
 }
 
 export const subLabel = {
@@ -145,6 +145,7 @@ export const subLabel = {
   fontWeight: '300',
   lineHeight: '2.08',
   color: '#a8b7c7',
+  display: 'block',
 }
 
 // =====================================> cooking process
@@ -172,4 +173,13 @@ export const description = {
   letterSpacing: '-0.2px',
   color: '#54698d',
   width: '780px',
+}
+
+export const btnDiarySubmit = {
+  margin: '37px',
+  boxShadow: '4px 4px 4px #888888',
+  border: 'none',
+  fontWeight: '100',
+  color: '#fff',
+  backgroundImage: 'linear-gradient(216deg, #26d0ce, #1a2980)'
 }

@@ -42,13 +42,15 @@ const authReducer = (
         userGender:
           action.payload.user.member_gender,
         userBirth:
-          action.payload.user.member_birth, // test를 원하면 null를 넣으시면됩니다.
+          action.payload.user.member_birth,
         userJoinDate: new Date(
           action.payload.user.member_join_date,
         ).toLocaleDateString(),
-        userDefaultKcal:
-          action.payload.default_kcal
-            .day_log_kcal,
+        userDefaultKcal: action.payload
+          .default_kcal
+          ? action.payload.default_kcal
+              .day_log_kcal
+          : '',
       },
       signingIn: false,
     }

@@ -1,9 +1,7 @@
 import React from 'react'
 import {
   Segment,
-  Icon,
   Button,
-  Popup,
   Input,
   Modal,
 } from 'semantic-ui-react'
@@ -98,7 +96,7 @@ class DiaryFoodList extends React.Component {
   close = () => this.setState({ open: false })
 
   render() {
-    const { open, dimmer, selectKey } = this.state
+    const { open, dimmer } = this.state
     return (
       <div style={{ display: 'flex' }}>
         {this.props.foodresult.map((card, i) => {

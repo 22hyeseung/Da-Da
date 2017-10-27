@@ -48,8 +48,12 @@ export const headerGrid = {
 
 export const h5 = {
   width: '349px',
-  height: '20px',
   fontWeight: '100',
   fontSize: '14px',
-  margin: '22px 0 0 20%',
+  margin: 'auto',
+  lineHeight: '50px',
+}
+
+export const searchCamera = {
+  'paddingLeft': '10px',
 }
