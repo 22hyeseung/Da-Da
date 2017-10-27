@@ -55,7 +55,10 @@
 .home-hero-title {
     font-size: 42px;
     line-height: initial;
-    padding-top: 91px;
+    padding-top: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .home-userInfo-input>input {

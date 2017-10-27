@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // 스타일링
-import { Segment, Icon, Input, Button } from 'semantic-ui-react'
+import {
+  Segment,
+  Icon,
+  Input,
+  Button,
+} from 'semantic-ui-react'
 import {
   calorieGoal,
   iconSet,
@@ -17,7 +22,10 @@ import {
   setTodayDay,
 } from '../../actions/setDate'
 
-import { getGoalKcal, postGoalKcal } from '../../actions/diaryKcal'
+import {
+  getGoalKcal,
+  postGoalKcal,
+} from '../../actions/diaryKcal'
 
 // helper: 오늘 날짜
 import {
@@ -36,7 +44,10 @@ class DiarySubNav extends Component {
   }
 
   changeMode = () => {
-    if(this.state.isPostMode&& this.state.goalKcal){
+    if (
+      this.state.isPostMode &&
+      this.state.goalKcal
+    ) {
       const param = {
         goal_kcal: this.state.goalKcal,
         date: dateStringForApiQuery(todaysDate),
@@ -52,15 +63,18 @@ class DiarySubNav extends Component {
   }
 
   handleGoalKcalChange = e => {
-    if(e.target.value.length > 6){
+    if (e.target.value.length > 6) {
       return false
     }
-    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+    e.target.value = e.target.value.replace(
+      /[^0-9]/g,
+      '',
+    )
     this.setState({ goalKcal: e.target.value })
   }
 
   handleGoalKcalKey = e => {
-    if(e.keyCode === 13){
+    if (e.keyCode === 13) {
       this.changeMode()
     }
   }
@@ -68,7 +82,9 @@ class DiarySubNav extends Component {
   componentWillMount() {
     this.props.setTodayDate(todaysDate)
     this.props.setTodayDay(todaysDay)
-    this.props.getGoalKcal(dateStringForApiQuery(todaysDate))
+    this.props.getGoalKcal(
+      dateStringForApiQuery(todaysDate),
+    )
   }
 
   render() {
@@ -92,11 +108,14 @@ class DiarySubNav extends Component {
           <div>
             {this.state.isPostMode ? (
               <Input
+                className="diary-food-goal-label-input"
                 style={kcalInput}
                 value={this.state.goalKcal}
-                onChange={this.handleGoalKcalChange}
+                onChange={
+                  this.handleGoalKcalChange
+                }
                 onKeyDown={this.handleGoalKcalKey}
-                size='mini'
+                size="mini"
               />
             ) : (
               <span className="diary-food-goal-kcal">

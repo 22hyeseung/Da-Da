@@ -11,7 +11,6 @@ import 'wfk-montserrat/montserrat.css'
 import './Root.css'
 import 'semantic-ui-css/semantic.min.css'
 import App from './App'
-
 import LoginPage from './pages/LoginPage'
 
 class Root extends Component {

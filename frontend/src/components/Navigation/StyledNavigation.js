@@ -2,6 +2,7 @@
 // 전체 컨테이너
 export const container = {
   border: 'none',
+  // margin: '7px 0px',
 }
 
 // ===============================  Logo.js
@@ -9,7 +10,8 @@ export const container = {
 // 홈페이지 로고
 export const logoWrap = {
   fontSize: '25px',
-  paddingLeft: '0',
+  padding: '0',
+  margin: '3px 0px',
 }
 
 export const logo = {
@@ -22,16 +24,15 @@ export const logo = {
 // 네비게이션 아이템 전체 래퍼
 export const itemWrap = {
   display: 'flex',
-  width: '618px',
 }
 
 // =============================== RightMenu > NavItem.js
 
 // 네비게이션 개별 아이템(a태그) 래퍼
 export const linkTagWrap = {
-  padding: '0px 9.5px 7px',
+  padding: '7px',
   marginLeft: '37px',
-  marginBottom: '16.8px',
+  marginBottom: '6px',
 }
 
 // 네비게이션 개별 아이템(a태그)
@@ -48,7 +49,6 @@ export const userInfoWrap = {
   fontSize: '14px',
   color: '#16325c',
   fontWeight: '700',
-  paddingBottom: '18px',
   marginBottom: '0px',
 }
 
@@ -56,9 +56,16 @@ export const userInfoWrap = {
 export const avatar = {
   width: '34px',
   height: '34px',
-  marginRight: '18px',
+  marginRight: '7px',
 }
 
+export const button = {
+  padding: '7px 14px',
+  backgroundColor: 'transparent',
+  fontWeight: '200',
+  border: '1px solid #e0e1e2',
+  fontSize: '12px',
+}
 // =============================== RightMenu > UseInfo.js > UserInfoPopup.js
 
 // 팝업창 전체 래퍼

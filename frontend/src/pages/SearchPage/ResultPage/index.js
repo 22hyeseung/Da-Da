@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Navigation from '../../../components/Navigation'
+import Footer from '../../../components/Footer'
 import TopSearchBar from './ResultSearchBar'
 import ResultBox from './ResultList'
 import './Result.css'
@@ -16,6 +17,7 @@ class SearchResult extends Component {
         <div style={resultWrapper} />
         <TopSearchBar />
         <ResultBox />
+        {/* <Footer />  스타일 수정 후 추가 */}
       </div>
     )
   }

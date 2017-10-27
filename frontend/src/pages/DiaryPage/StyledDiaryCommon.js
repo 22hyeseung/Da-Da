@@ -48,7 +48,7 @@ export const submitBtn = {
 export const calorieGoal = {
   minWidth: '190px',
   position: 'absolute',
-  top: '64px',
+  top: '58px',
   right: '0px',
   padding: '7px 14px',
   margin: '0px',
@@ -86,10 +86,8 @@ export const activeFontStyle = {
 export const kcalInput = {
   marginLeft: '10px',
   width: '55px',
-  height: '28px',
-  borderRadius: '4px',
-  backgroundColor: '#ffffff',
-  border: 'solid 1px #d8dde6',
+  fontFamily: 'montserrat-bold',
+  fontSize: '14px',
 }
 
 export const iconSet = {
