@@ -25,7 +25,10 @@ export const getFoodLogsFromDB = date => {
 }
 
 // 2. input에서 받은 값을 db로 보내는 action(post)
-export const postFoodToDB = payload => {
+export const postFoodToDB = (
+  requestBody,
+  requestDate, //20171027
+) => {
   return dispatch => {
     fetch(`${rootApi}/eat-logs`, {
       method: 'POST',
@@ -34,9 +37,9 @@ export const postFoodToDB = payload => {
           .localStorage.token}`,
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(requestBody),
     }) // 원래는 응답값을 바로 추가했지만, 현재 칼로리 계산등을 백엔드에서 처리하므로 다시 fetch로 get하였다.
-      .then(result => result.json())
+      .then(res => res.json())
       .then(result => {
         if (result) {
           return fetch(
@@ -52,16 +55,41 @@ export const postFoodToDB = payload => {
           )
             .then(res => res.json())
             .then(data => {
-              dispatch({
-                type: types.POST_FOOD_TO_DATABASE,
-                payload: data,
-              })
+              // console.log(data)
+              if (data) {
+                dispatch({
+                  type:
+                    types.POST_FOOD_TO_DATABASE,
+                  payload: data,
+                })
+                dispatch({
+                  type:
+                    types.UPDATE_CALORIE_SUMMARY,
+                  payload: data,
+                })
+              }
               // 차트도 같이 업데이트하기 위한 액션
-              dispatch({
-                type:
-                  types.UPDATE_CALORIE_SUMMARY,
-                payload: data,
-              })
+            })
+            .then(() => {
+              fetch(
+                `${rootApi}/eat-logs/summary/day?date=${requestDate}`,
+                {
+                  method: 'GET',
+                  headers: {
+                    Authorization: `Bearer ${window
+                      .localStorage.token}`,
+                  },
+                },
+              )
+                .then(res => res.json())
+                .then(data => {
+                  dispatch({
+                    type:
+                      types.UPDATE_LIST_SUMMARY,
+                    payload: data,
+                  })
+                })
+                .catch(err => console.error(err))
             })
             .catch(error => {
               console.log(

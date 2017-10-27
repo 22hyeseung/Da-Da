@@ -9,11 +9,13 @@ export const UPDATE_FOOD_OF_DATABASE =
 export const DELETE_FOOD_OF_DATABASE =
   'DELETE_FOOD_OF_DATABASE'
 //==========================================
-// action: diaryFood & reducer: getFoodSummary
+// action: diaryFood & reducer: dairySummary
 export const UPDATE_CALORIE_SUMMARY =
   'UPDATE_CALORIE_SUMMARY'
 export const DELETE_CALORIE_SUMMARY =
   'DELETE_CALORIE_SUMMARY'
+export const UPDATE_LIST_SUMMARY =
+  'UPDATE_LIST_SUMMARY'
 //==========================================
 // getFoodSummary.js
 export const GET_FOOD_SUMMARY_REQUEST =

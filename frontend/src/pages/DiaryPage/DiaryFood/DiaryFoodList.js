@@ -107,7 +107,6 @@ class DiaryFoodList extends React.Component {
               <div className="diary-food-meal-list-card-firstRow">
                 <p className="diary-food-meal-list-card-firstRow-title">
                   {card.food_name_ko}
-                  {/* {card.food_name_ko} 서버 업데이트되면 적용하면 됩니다. */}
                 </p>
                 <Button.Group
                   style={{
