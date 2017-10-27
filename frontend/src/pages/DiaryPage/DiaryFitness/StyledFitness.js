@@ -9,7 +9,7 @@ export const container = {
   border: '1px solid #D8DDE6',
   backgroundImage: `url(${bgImg})`,
   backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right top',
+  backgroundPositionX: '98%',
   backgroundSize: '34%',
   backgroundAttachment: 'local',
 }
@@ -63,6 +63,7 @@ export const listItemResult = {
   display: 'flex',
   justifyContent: 'space-between',
   width: '23%',
+  alignItems: 'center',
 }
 
 export const textSmall = {
@@ -70,9 +71,23 @@ export const textSmall = {
 }
 
 export const text = {
-  fontSize: '17px',
+  fontSize: '14px',
   letterSpacing: '-0.3px',
   color: '#16325c',
+}
+
+export const listItemTime = {
+  fontFamily: 'Spoqa Han Sans',
+  letterSpacing: '-.3px',
+  color: '#16325c',
+  fontWeight: '400',
+  textAlign: 'right',
+  width: '42px',
+}
+
+export const listItemKcal = {
+  fontFamily: 'Spoqa Han Sans',
+  fontWeight: '100',
 }
 
 export const textBig = {
@@ -80,7 +95,6 @@ export const textBig = {
   letterSpacing: '-1px',
   color: '#16325c',
   fontFamily: 'Montserrat-Bold',
-  marginRight: '7px',
 }
 
 export const buttonIcon = {

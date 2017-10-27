@@ -43,7 +43,7 @@ export const diaryFitnessReducer = (
     //   updateFitnessIndex,
     //   updateFitnessIndex + 1,
     // )
-    console.log(state.fitnessResult)
+    console.log(action.payload)
     return {
       ...state,
     }
