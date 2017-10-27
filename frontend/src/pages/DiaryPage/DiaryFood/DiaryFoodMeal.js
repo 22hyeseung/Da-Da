@@ -3,12 +3,8 @@ import { Segment, Label } from 'semantic-ui-react'
 import DiaryFoodAdd from './DiaryFoodAdd'
 import DiaryFoodList from './DiaryFoodList'
 import * as Style from './StyledDiaryFood'
-import ComponentLoader from '../../../components/Loader/ComponentLoader'
 
 class DiaryFoodMeal extends React.Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     // 끼니별 등록된 칼로리 계산식
     let totalKcal =

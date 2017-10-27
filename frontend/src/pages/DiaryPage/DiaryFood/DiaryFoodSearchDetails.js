@@ -4,15 +4,16 @@ import {
   Icon,
   Button,
 } from 'semantic-ui-react'
-import ComponentLoader from '../../../components/Loader/ComponentLoader'
 import {
-  segmentDefault,
   submitBtn,
   cancelBtn,
 } from '../StyledDiaryCommon'
-import { postFoodToDB } from '../../../actions/diaryFood'
+import {
+  postFoodToDB,
+  clearSelect,
+  clearImgUrl,
+} from '../../../actions/diaryFood'
 import { connect } from 'react-redux'
-import * as Styled from './StyledDiaryFood'
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import returnIcon from '../../../static/img/diary-return.svg'
 // helper: 오늘 날짜 API Query형식
@@ -91,7 +92,7 @@ class FoodSelectDetails extends Component {
         loading: false,
       }),
         this.props.toggleSearchMode()
-    }, 2000)
+    }, 200)
   }
 
   // payload 생성
@@ -109,11 +110,12 @@ class FoodSelectDetails extends Component {
       date: this.state.date,
       food_id: this.props.foodResult.food_id,
       meal_tag: `${this.state.meal_tag}`,
-      picture: null,
+      picture: this.props.foodAlbumResult,
     })
     this.setState({ loading: true }, () =>
       this.postDelay(),
     )
+    this.props.clearImgUrl()
   }
 
   render() {
@@ -221,12 +223,17 @@ FoodSelectDetails.defaultProps = {
 const mapStateToProps = state => {
   return {
     dateState: state.today.date,
+    keyword: state.foodLogs.visionresultKeyword,
+    foodAlbumResult:
+      state.foodLogs.foodAlbumResult,
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
     postFoodToDB: payload =>
       dispatch(postFoodToDB(payload)),
+    clearSelect: () => dispatch(clearSelect()),
+    clearImgUrl: () => dispatch(clearImgUrl()),
   }
 }
 

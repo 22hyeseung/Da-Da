@@ -1,6 +1,9 @@
 const DEFAULT_DIARY_FOOD = {
   foodresult: [],
   reciperesult: [],
+  foodAlbumResult: [],
+  visionresult: [],
+  visionresultKeyword: '',
 }
 
 export const diaryFoodReducer = (
@@ -26,6 +29,39 @@ export const diaryFoodReducer = (
         action.payload,
         ...state.foodresult,
       ],
+    }
+  }
+  if (
+    action.type === 'POST_FOOD_IMG_TO_DATABASE'
+  ) {
+    return {
+      ...state,
+      foodAlbumResult: action.payload.imgUrl,
+      visionresult: action.payload.visionAnalysis,
+    }
+  }
+  if (action.type === 'CLEAR_IMG_SEARCH_DATA') {
+    return {
+      ...state,
+      visionresult: action.payload,
+    }
+  }
+  if (action.type === 'SAVE_SELECT_FOOD') {
+    return {
+      ...state,
+      visionresultKeyword: action.payload,
+    }
+  }
+  if (action.type === 'CLEAR_SELECT_FOOD') {
+    return {
+      ...state,
+      visionresultKeyword: action.payload,
+    }
+  }
+  if (action.type === 'CLEAR_IMG_URL') {
+    return {
+      ...state,
+      foodAlbumResult: action.payload,
     }
   }
   if (action.type === 'UPDATE_FOOD_OF_DATABASE') {
