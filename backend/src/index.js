@@ -12,6 +12,7 @@ const weightRouter = require('./router/weight')
 const recipeRouter = require('./router/recipe')
 const reportRouter = require('./router/report')
 const visionRouter = require('./router/vision')
+const shareRouter = require('./router/share')
 
 const app = express()
 
@@ -31,6 +32,7 @@ app.use('/weight', weightRouter)
 app.use('/recipe', recipeRouter)
 app.use('/report', reportRouter)
 app.use('/vision', visionRouter)
+app.use('/share', shareRouter)
 
 app.listen(PORT, () => {
   console.log(`listening ${PORT}...`)
