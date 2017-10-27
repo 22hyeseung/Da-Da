@@ -4,15 +4,7 @@ import {
   Label,
   Modal,
   Image,
-  Button,
 } from 'semantic-ui-react'
-import {
-  cancelBtn,
-  submitBtn,
-} from '../StyledDiaryCommon'
-import foodImg from '../../../static/img/diary_food_album.jpg'
-import trashIcon from '../../../static/img/diary-trash.svg'
-import eidtIcon from '../../../static/img/diary-edit.svg'
 import zoomIcon from '../../../static/img/diary-zoom.svg'
 import * as Style from './StyledDiaryFood'
 
@@ -23,9 +15,14 @@ class DiaryFoodAlbumListCard extends Component {
     this.setState({ size, open: true })
   close = () => this.setState({ open: false })
   render() {
-    const { open, size } = this.state
     return (
-      <Segment style={Style.albumCard}>
+      <Segment
+        style={{
+          ...Style.albumCard,
+          backgroundImage: `url(${this.props
+            .picture})`,
+        }}
+      >
         <Label
           attached="top"
           style={{
@@ -33,7 +30,7 @@ class DiaryFoodAlbumListCard extends Component {
             ...Style.albumCardLabelTop,
           }}
         >
-          아침식사
+          {this.props.meal_tag} 식사
           <div>
             <Modal
               trigger={
@@ -48,14 +45,14 @@ class DiaryFoodAlbumListCard extends Component {
             >
               <Modal.Content>
                 <Image
-                  src={foodImg}
+                  src={this.props.picture}
                   size="big"
                   shape="rounded"
                   centered
                 />
               </Modal.Content>
             </Modal>
-            <img
+            {/*<img
               src={eidtIcon}
               onClick={this.show('mini')}
               className="diary-food-meal-list-card-icon"
@@ -81,7 +78,7 @@ class DiaryFoodAlbumListCard extends Component {
                   style={{
                     fontSize: '14px',
                   }}
-                /> */}
+                />
               </Modal.Header>
               <Modal.Content>
                 <div className="diary-file-upload">
@@ -117,11 +114,12 @@ class DiaryFoodAlbumListCard extends Component {
                 </Button>
               </Modal.Actions>
             </Modal>
+
             <img
               src={trashIcon}
               className="diary-food-meal-list-card-icon"
               alt="클릭하면 해당 음식사진이 삭제됩니다."
-            />
+            />*/}
           </div>
         </Label>
         <Label
@@ -129,9 +127,15 @@ class DiaryFoodAlbumListCard extends Component {
           style={{
             ...Style.albumLabel,
             ...Style.albumCardLabelBtoom,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
           }}
         >
-          CSS
+          <span>{this.props.name}</span>
+          <span style={{ textAlign: 'right' }}>
+            {this.props.kcal} kcal
+          </span>
         </Label>
       </Segment>
     )

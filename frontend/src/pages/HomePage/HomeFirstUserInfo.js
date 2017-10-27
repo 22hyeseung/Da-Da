@@ -22,8 +22,9 @@ class HomeFirstUserInfo extends Component {
       disabled: true,
       gender: '여자',
       gender_enum: null,
-      birth: null,
+      birth: '20001010',
       goal_weight: null,
+      recommend_kcal: null,
       height: null,
       kg: null,
       date: dateStringForApiQuery(
@@ -52,6 +53,17 @@ class HomeFirstUserInfo extends Component {
   // 목표체중 받는 핸들러
   handleGoalWeightChange = e => {
     this.setState({ goal_weight: e.target.value })
+    if (e.target.value > 0)
+      this.setState({
+        disabled: false,
+      })
+  }
+
+  // 목표칼로리 받는 핸들러
+  handleGoalKcalChange = e => {
+    this.setState({
+      recommend_kcal: e.target.value,
+    })
     if (e.target.value > 0)
       this.setState({
         disabled: false,
@@ -100,6 +112,8 @@ class HomeFirstUserInfo extends Component {
       this.state.gender_enum < 1 ||
       !this.state.goal_weight ||
       this.state.goal_weight < 1 ||
+      !this.state.recommend_kcal ||
+      this.state.recommend_kcal < 1 ||
       !this.state.height ||
       this.state.height < 1 ||
       !this.state.kg ||
@@ -116,9 +130,11 @@ class HomeFirstUserInfo extends Component {
       height: this.state.height,
       kg: this.state.kg,
       date: this.state.date,
+      kcal: this.state.recommend_kcal,
     })
-    this.close()
-    window.location.reload()
+    // 좋은 방법이 아니다.
+    setTimeout(this.close, 100)
+    setTimeout(window.location.reload(), 300)
   }
 
   render() {
@@ -134,12 +150,28 @@ class HomeFirstUserInfo extends Component {
             22
           ).toFixed(2)
 
+    const today = new Date()
+    const todayYear = today.getFullYear()
+    const age =
+      todayYear - this.state.birth.slice(0, 4)
+
+    const BEEkcal =
+      this.state.gender === '여자'
+        ? 65.51 +
+          9.56 * this.state.kg +
+          1.85 * this.state.height -
+          4.68 * age
+        : 66.47 +
+          9.56 * this.state.kg +
+          1.85 * this.state.height -
+          4.68 * age
+
     return (
       <div className="home-userInfo">
         <Grid
           style={{
             width: '800px',
-            margin: '5% auto',
+            margin: '2% auto',
           }}
         >
           <Grid.Column width={8}>
@@ -211,32 +243,40 @@ class HomeFirstUserInfo extends Component {
                     }
                   />
                 </Form.Field>
-                <Form.Field
-                  required
-                  className="home-userInfo-label"
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent:
+                      'space-between',
+                  }}
                 >
-                  <label>키</label>
-                  <input
-                    type="number"
-                    placeholder="cm"
-                    onChange={
-                      this.handleHeightChange
-                    }
-                  />
-                </Form.Field>
-                <Form.Field
-                  required
-                  className="home-userInfo-label"
-                >
-                  <label>현재 체중</label>
-                  <input
-                    type="number"
-                    placeholder="kg"
-                    onChange={
-                      this.handleWeightChange
-                    }
-                  />
-                </Form.Field>
+                  <Form.Field
+                    required
+                    className="home-userInfo-label"
+                  >
+                    <label>키</label>
+                    <input
+                      type="number"
+                      placeholder="cm"
+                      onChange={
+                        this.handleHeightChange
+                      }
+                    />
+                  </Form.Field>
+                  <Form.Field
+                    required
+                    className="home-userInfo-label"
+                  >
+                    <label>현재 체중</label>
+                    <input
+                      type="number"
+                      placeholder="kg"
+                      onChange={
+                        this.handleWeightChange
+                      }
+                    />
+                  </Form.Field>
+                </div>
                 <Form.Field
                   required
                   className="home-userInfo-label"
@@ -261,6 +301,46 @@ class HomeFirstUserInfo extends Component {
                     김나영님의 권장 체중은
                     {BMIweight}kg입니다. (BMI 기준)
                   </span>
+                </Form.Field>
+                <Form.Field
+                  required
+                  className="home-userInfo-label"
+                  style={{ marginBottom: '5px' }}
+                >
+                  <label>목표 칼로리</label>
+                  <input
+                    type="number"
+                    placeholder="kcal"
+                    onChange={
+                      this.handleGoalKcalChange
+                    }
+                  />
+                </Form.Field>
+                <Form.Field>
+                  {BEEkcal < 0 ||
+                  !this.state.height ||
+                  !this.state.kg ? (
+                    <span
+                      style={{
+                        color: '#26d0ce',
+                        fontSize: '12px',
+                      }}
+                    >
+                      김나영님의 권장 칼로리는 0kcal입니다. (BEE
+                      기준)
+                    </span>
+                  ) : (
+                    <span
+                      style={{
+                        color: '#26d0ce',
+                        fontSize: '12px',
+                      }}
+                    >
+                      김나영님의 하루 권장 칼로리는
+                      {BEEkcal.toFixed(2)}kcal입니다.
+                      (BEE 기준)
+                    </span>
+                  )}
                 </Form.Field>
                 <div
                   style={{
@@ -384,6 +464,21 @@ class HomeFirstUserInfo extends Component {
                               {
                                 this.state
                                   .goal_weight
+                              }
+                            </span>
+                          </li>
+                          <li style={Style.list}>
+                            <span
+                              style={
+                                Style.listLabel
+                              }
+                            >
+                              목표 칼로리
+                            </span>
+                            <span>
+                              {
+                                this.state
+                                  .recommend_kcal
                               }
                             </span>
                           </li>
