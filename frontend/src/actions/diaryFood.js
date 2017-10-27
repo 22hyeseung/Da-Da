@@ -38,6 +38,8 @@ export const postFoodToDB = payload => {
     }) // 원래는 응답값을 바로 추가했지만, 현재 칼로리 계산등을 백엔드에서 처리하므로 다시 fetch로 get하였다.
       .then(result => result.json())
       .then(result => {
+        console.log(result[0].eat_log_id)
+        console.log(result)
         if (result) {
           return fetch(
             `${rootApi}/eat-logs/${result[0]
