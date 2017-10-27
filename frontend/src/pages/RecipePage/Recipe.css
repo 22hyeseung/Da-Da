@@ -5,3 +5,11 @@
 .ui.ribbon.label:after {
   left: -1px;
 }
+
+.cooking-on {
+  opacity: 0.3;
+}
+
+.cooking-on label {
+  background: #bbbbbb;
+}

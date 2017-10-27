@@ -77,7 +77,6 @@ export const ResultImage = {
   width: '279px',
   height: '271px',
   borderRadius: '4px',
-  backgroundSize: '100% 150%',
   backgroundPositionY: '70%',
   backgroundImage: `url(${noImg})`,
 }
@@ -132,11 +131,12 @@ export const CardSize = {
 // ===================================> NoSearch.js
 
 export const noSearchContainer = {
-  width: '1180px',
+/*  width: '1180px',
   height: '607px',
   position: 'absolute',
   top: '113px',
   left: '139px',
+  */
 }
 
 export const noSearchText = {

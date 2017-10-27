@@ -23,14 +23,6 @@ export const UPDATE_CALORIE_SUMMARY =
 export const DELETE_CALORIE_SUMMARY =
   'DELETE_CALORIE_SUMMARY'
 //==========================================
-// getFoodSummary.js
-export const GET_FOOD_SUMMARY_REQUEST =
-  'GET_FOOD_SUMMARY_REQUEST'
-export const GET_FOOD_SUMMARY_SUCCESS =
-  'GET_FOOD_SUMMARY_SUCCESS'
-export const GET_FOOD_SUMMARY_FAILED =
-  'GET_FOOD_SUMMARY_FAILED'
-//==========================================
 
 //==========================================
 // diaryFitness.js
@@ -184,6 +176,22 @@ export const KCAL_GOALS_SUCCESS =
   'KCAL_GOALS_SUCCESS'
 export const KCAL_GOALS_FAILED =
   'KCAL_GOALS_FAILED'
+//==========================================
+
+//==========================================
+// getFoodSummary.js
+export const GET_FOOD_SUMMARY_REQUEST =
+  'GET_FOOD_SUMMARY_REQUEST'
+export const GET_FOOD_SUMMARY_SUCCESS =
+  'GET_FOOD_SUMMARY_SUCCESS'
+export const GET_FOOD_SUMMARY_FAILED =
+  'GET_FOOD_SUMMARY_FAILED'
+//==========================================
+
+//==========================================
+// recipe.js
+export const GET_RECIPE_SUCCESS = 'GET_RECIPE_SUCCESS'
+export const GET_RECIPE_SEARCH_SUCCESS = 'GET_RECIPE_SEARCH_SUCCESS'
 //==========================================
 
 //==========================================

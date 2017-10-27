@@ -2,19 +2,40 @@ import React, { Component } from 'react'
 import {
   Grid,
   Header,
-  Search,
+  Input,
+  Icon,
 } from 'semantic-ui-react'
+import {
+  withRouter,
+} from 'react-router-dom'
 import * as Style from './StyledSearch'
 import './Search.css'
 
 class SearchBar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchText: '',
+    }
+  }
+
+  handleSearch = e => {
+    if (e.keyCode === 13) {
+      this.props.history.push('/search/' + this.state.searchText)
+    }
+  }
+
+  handleSearchTextChange = e => {
+    this.setState({ searchText: e.target.value })
+  }
+
   render() {
     return (
       <div>
         <Grid>
-          <Grid.Column width={4} />
+          <Grid.Column width={3} />
           <Grid.Column
-            width={8}
+            width={10}
             style={Style.centerGrid}
           >
             <Grid.Row style={Style.headerGrid}>
@@ -31,7 +52,20 @@ class SearchBar extends Component {
                 inverted
               />
             </Grid.Row>
-            <Search className="search-searchbar" />
+            <Input
+              className={this.props.className}
+              icon={
+                <Icon name='search' circular link
+                  onClick={() => this.props.history.push('/search/' + this.state.searchText)}
+                />
+              }
+              value={this.state.searchText}
+              onKeyDown={this.handleSearch}
+              onChange={this.handleSearchTextChange}
+            />
+            <Icon name='camera' link size='large' style={Style.searchCamera}
+              onClick={() => this.props.history.push('/search/' + this.state.searchText)}
+            />
             <Header
               style={Style.h5}
               as="h5"
@@ -39,11 +73,11 @@ class SearchBar extends Component {
               inverted
             />
           </Grid.Column>
-          <Grid.Column width={4} />
+          <Grid.Column width={3} />
         </Grid>
       </div>
     )
   }
 }
 
-export default SearchBar
+export default withRouter(SearchBar)

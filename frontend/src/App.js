@@ -59,6 +59,9 @@ class App extends Component {
             component={WeightPage}
           />
           <Route
+            path="/search/:sc"
+            component={SearchResultPage}/>
+          <Route
             path="/search"
             component={SearchPage}
           />
@@ -67,7 +70,7 @@ class App extends Component {
             component={SharePage}
           />
           <Route
-            path="/recipe"
+            path="/recipe/:id"
             component={RecipePage}
           />
           <Route
