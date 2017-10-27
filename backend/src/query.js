@@ -569,7 +569,10 @@ function getGoalKcalByDate({ day_log_member_id, start_date, end_date }) {
 
 function getFirstGoalKcalById({ day_log_member_id }) {
   return knex('day_log')
-    .select('day_log_kcal')
+    .select(
+      'day_log_height', 'day_log_kg', 'day_log_kcal',
+      knex.raw('date_format(day_log_diary_date, \'%Y-%m-%d\') as diary_date')
+    )
     .where({ day_log_member_id })
     .whereNotNull('day_log_kcal')
     .orderBy('day_log_diary_date')

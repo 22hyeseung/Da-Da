@@ -34,29 +34,43 @@ router.options('*', cors())
  * @apiSuccess {String} member_avatar_url sns 프로필이미지
  * @apiSuccess {String} member_age 나이
  * @apiSuccess {String} member_gender 성별
+ * @apiSuccess {Float} member_goal_weight 목표몸무게
+ * @apiSuccess {Float} day_log_height 사용자의 키
+ * @apiSuccess {Float} day_log_kg 사용자의 몸무게
+ * @apiSuccess {Integer} day_log_kcal 사용자의 목표 칼로리
+ * @apiSuccess {Date} day_log_diray_date 등록일
  *
  * @apiSuccessExample {json} Success-Respoonse:
  * {
- *     "member_provider": "kakao",
- *     "member_provider_number": "532971400",
- *     "member_provider_name": "홍길동",
- *     "member_avatar_url": "http://k.kakaocdn.net/dn/beeqib/btqhlVJQRrn/8bFQnlKKwFyOd4xyvNIjTk/img_640x640.jpg",
- *     "member_birth": "1990-06-14T15:00:00.000Z",
- *     "member_goal_weight": 70,
- *     "member_gender": "남"
+ *     "user": {
+ *         "member_id": 1,
+ *         "member_provider": "instagram",
+ *         "member_provider_number": "2363166673",
+ *         "member_provider_name": "홍길동",
+ *         "member_avatar_url": "https://api.com/t51.2885-19/s150x150/12338858_143349276035695_1001177438_a.jpg",
+ *         "member_birth": "1992-09-06T15:00:00.000Z",
+ *         "member_gender": "남",
+ *         "member_goal_weight": 65,
+ *         "token": "2363166673.f5e2267.dd9a39cc92194f4bb9edbe63738c4f41",
+ *         "member_join_date": "2017-10-25T06:17:05.000Z"
+ *     },
+ *     "default_kcal": {
+ *         "day_log_height": 180,
+ *         "day_log_kg": 70,
+ *         "day_log_kcal": 2000,
+ *         "diary_date": "2017-10-25"
+ *     }
  * }
  */
 router.get('/', (req, res) => {
-  const param = {
-    'day_log_member_id': req.user.id
-  }
+  const param = {'day_log_member_id': req.user.id}
   query.getFirstGoalKcalById(param)
-  .then(default_kcal => {
-    query.getUserById(req.user.id)
-    .then(user => {
-      res.send({ user, default_kcal })
+    .then(default_kcal => {
+      query.getUserById(req.user.id)
+        .then(user => {
+          res.send({ user, default_kcal })
+        })
     })
-  })
 })
 
 /**
