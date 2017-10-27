@@ -27,8 +27,8 @@ class DiaryFoodList extends React.Component {
       food_amount: null,
     }
   }
-  deleteFoodOfDB = id => {
-    this.props.deleteFoodOfDB(id)
+  deleteFoodOfDB = (id, card) => {
+    this.props.deleteFoodOfDB(id, card)
   }
 
   createPayloadAndUpdateToDB = () => {
@@ -131,6 +131,7 @@ class DiaryFoodList extends React.Component {
                     onClick={() =>
                       this.deleteFoodOfDB(
                         card.eat_log_id,
+                        card,
                       )}
                   />
                 </Button.Group>
@@ -268,8 +269,8 @@ class DiaryFoodList extends React.Component {
 // }
 const mapDispatchToProps = dispatch => {
   return {
-    deleteFoodOfDB: id =>
-      dispatch(deleteFoodOfDB(id)),
+    deleteFoodOfDB: (id, card) =>
+      dispatch(deleteFoodOfDB(id, card)),
     updateFoodOfDB: (payload, id) =>
       dispatch(updateFoodOfDB(payload, id)),
   }

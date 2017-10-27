@@ -52,7 +52,7 @@ class DiarySummary extends Component {
 
     const goalCalorie = kcalGoal.day_log_kcal
       ? kcalGoal.day_log_kcal
-      : defaultGoalCalorie.day_log_kcal
+      : defaultGoalCalorie
 
     const restCalorie =
       goalCalorie -
@@ -154,7 +154,7 @@ const mapStateToProps = state => {
     dateState: state.today.date,
     kcalGoal: state.calorieGoalAboutADay.kcalGoal,
     defaultGoalCalorie:
-      state.caloriesChart.defaultGoalCalorie,
+      state.auth.userInfo.userDefaultKcal,
   }
 }
 
