@@ -69,7 +69,7 @@ router.get('/', (req, res) => {
   }
   query.getFirstGoalKcalById(param)
     .then(default_kcal => {
-      query.getUserById(param)
+      query.getUserById(param.member_id)
         .then(user => {
           res.send({ user, default_kcal })
         })

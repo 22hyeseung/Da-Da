@@ -195,13 +195,13 @@ router.get('/', (req, res) => {
     'eat_log_member_id': req.user.id,
     'day_log_member_id': req.user.id,
     'burn_member_id': req.user.id,
+    'member_id': req.user.id,
     'eat_log_diary_date': req.query.date,
     'day_log_diary_date': req.query.date,
     'burn_date': req.query.date,
     'start_date': req.query.date,
     'end_date': req.query.date
   }
-  const member_id = req.user.id
 
   function getEatlogs() {
     return new Promise((resolve, reject) => {
@@ -253,7 +253,7 @@ router.get('/', (req, res) => {
   }
   function getUser() {
     return new Promise((resolve, reject) => {
-      query.getUserById(member_id)
+      query.getUserById(param.member_id)
         .then(user => {
           resolve(user)
         })
