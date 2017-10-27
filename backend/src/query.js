@@ -238,7 +238,7 @@ function getEatLogsRecipe({ eat_log_member_id, eat_log_diary_date }) {
 }
 
 function getEatLogsFoodFirst({ eat_log_id }) {
-  return this.querygetEatlogfood()
+  return querygetEatlogfood()
     .where({ eat_log_id })
     .first()
 }
