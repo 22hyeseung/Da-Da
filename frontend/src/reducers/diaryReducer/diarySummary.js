@@ -113,6 +113,12 @@ export const diarySummaryReducer = (
           },
         ],
       }
+
+    case 'UPDATE_SUMMARY_OF_BURN_CALORIE':
+      return {
+        ...state,
+        burnKcal: state.burnKcal + action.payload,
+      }
     default:
       return state
   }

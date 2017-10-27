@@ -66,14 +66,14 @@ class WeightChart extends Component {
           >
             <stop
               offset="5%"
-              stopColor="#26d0ce"
-              stopOpacity={0.8}
+              stopColor="#485563"
+              stopOpacity={0.04}
             />
-            <stop
-              offset="45%"
-              stopColor="#2A8CAD"
+            {/* <stop
+              offset="98%"
+              stopColor="#485563"
               stopOpacity={0}
-            />
+            /> */}
           </linearGradient>
           <linearGradient
             id="colorGoal"
@@ -84,12 +84,12 @@ class WeightChart extends Component {
           >
             <stop
               offset="5%"
-              stopColor="#2A8CAD"
+              stopColor="transparent"
               stopOpacity={0.8}
             />
             <stop
               offset="98%"
-              stopColor="#1a2980"
+              stopColor="transparent"
               stopOpacity={0}
             />
           </linearGradient>
@@ -101,7 +101,7 @@ class WeightChart extends Component {
         <Area
           type="monotone"
           dataKey="current"
-          stroke="#26d0ce"
+          stroke="#485563"
           fillOpacity={1}
           fill="url(#colorCurrent)"
         />

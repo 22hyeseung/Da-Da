@@ -36,6 +36,9 @@ export const UPDATE_FITNESS_OF_DATABASE =
   'UPDATE_FITNESS_OF_DATABASE'
 export const DELETE_FITNESS_OF_DATABASE =
   'DELETE_FITNESS_OF_DATABASE'
+
+export const UPDATE_SUMMARY_OF_BURN_CALORIE =
+  'UPDATE_SUMMARY_OF_BURN_CALORIE'
 //==========================================
 
 //==========================================
@@ -192,8 +195,10 @@ export const GET_FOOD_SUMMARY_FAILED =
 
 //==========================================
 // recipe.js
-export const GET_RECIPE_SUCCESS = 'GET_RECIPE_SUCCESS'
-export const GET_RECIPE_SEARCH_SUCCESS = 'GET_RECIPE_SEARCH_SUCCESS'
+export const GET_RECIPE_SUCCESS =
+  'GET_RECIPE_SUCCESS'
+export const GET_RECIPE_SEARCH_SUCCESS =
+  'GET_RECIPE_SEARCH_SUCCESS'
 //==========================================
 
 //==========================================
