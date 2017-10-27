@@ -24,7 +24,7 @@ const translate = gcloud.translate()
 
 const target = 'ko'
 
-const filterText = ['food', 'cuisine', 'american food', 'baking', 'flavor', 'recipe', 'fast food', 'dessert', 'dish', 'cookie', 'organism', 'snack', 'font', 'baked goods', 'finger food', 'junk food', 'side dish', 'vegetarian food', 'asian food', 'chinese food', 'animal source foods', 'fried food', 'shanghai food']
+const filterText = ['food', 'sweet and sour', 'plant', 'grilled food', 'local food', 'natural foods', 'fruit', 'produce', 'mcintosh', 'cuisine', 'american food', 'baking', 'flavor', 'recipe', 'fast food', 'dessert', 'dish', 'cookie', 'organism', 'snack', 'font', 'baked goods', 'finger food', 'junk food', 'side dish', 'vegetarian food', 'asian food', 'chinese food', 'animal source foods', 'fried food', 'shanghai food']
 
 /**
  * AWS S3
