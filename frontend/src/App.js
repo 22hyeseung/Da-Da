@@ -12,8 +12,8 @@ import WeightPage from './pages/WeightPage'
 import SearchPage from './pages/SearchPage'
 import SharePage from './pages/SharePage'
 import RecipePage from './pages/RecipePage'
-import Helmet from 'react-helmet'
-import favicon from './static/img/favicon-96x96.png'
+// import Helmet from 'react-helmet'
+// import favicon from './static/img/favicon-96x96.png'
 /* 페이지 확인용 라우터 -> 나중에 ajax로 처리할 화면입니다.*/
 import SearchResultPage from './pages/SearchPage/ResultPage'
 import NoSearchPage from './pages/SearchPage/ResultPage/NoSearch'
@@ -29,17 +29,6 @@ class App extends Component {
     }
     return (
       <div>
-        <Helmet>
-          <html lang="en" amp />
-
-          {/* body attributes */}
-          <body className="root" />
-          <title itemProp="name">Da, DA</title>
-          <link
-            rel="shortcut icon"
-            href={favicon}
-          />
-        </Helmet>
         <Switch>
           <Route
             exact
@@ -60,7 +49,8 @@ class App extends Component {
           />
           <Route
             path="/search/:sc"
-            component={SearchResultPage}/>
+            component={SearchResultPage}
+          />
           <Route
             path="/search"
             component={SearchPage}
