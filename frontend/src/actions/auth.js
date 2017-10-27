@@ -22,7 +22,7 @@ export const getUserInfo = () => {
       .then(userInfo => {
         dispatch({
           type: types.SAVE_USERINFO,
-          payload: userInfo.user,
+          payload: userInfo,
         })
       })
   }
