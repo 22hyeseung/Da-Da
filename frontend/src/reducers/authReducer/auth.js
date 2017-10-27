@@ -46,9 +46,11 @@ const authReducer = (
         userJoinDate: new Date(
           action.payload.user.member_join_date,
         ).toLocaleDateString(),
-        userDefaultKcal:
-          action.payload.default_kcal
-            .day_log_kcal,
+        userDefaultKcal: action.payload
+          .default_kcal
+          ? action.payload.default_kcal
+              .day_log_kcal
+          : '',
       },
       signingIn: false,
     }
