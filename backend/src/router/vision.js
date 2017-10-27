@@ -5,9 +5,16 @@ const cors = require('cors')
 const multer = require('multer')
 const aws = require('aws-sdk')
 const uuid = require('uuid')
-const sharp = require('sharp')
 const fileType = require('file-type')
+const kue = require('kue')
 
+const queue = kue.createQueue()
+// const queue = kue.createQueue({
+//   'redis': {
+//     'port': '6379',
+//     'host': 'dada-project.kcxnip.0001.use1.cache.amazonaws.com'
+//   }
+// })
 /**
  * Google Vision
  */
@@ -154,15 +161,20 @@ router.post('/', upload.single('upload_img'), (req, res) => {
         'imgUrl': result[1].Location
       }
       res.send(output)
+      return output
     })
-    .then(() => {
-      sharp(req.file.buffer)
-        .resize(200, 200)
-        .crop(sharp.gravity.center)
-        .toBuffer()
-        .then(resizeFile => {
-          s3upload(resizeFile, `thumb/${fileName}`)
-        })
+    .then(result => {
+      return new Promise((resolve, reject) => {
+        queue.create('thumbnail', { 'imgUrl': result.imgUrl })
+          .removeOnComplete(true)
+          .save(err => {
+            if (err) {
+              reject(err)
+            } else {
+              resolve()
+            }
+          })
+      })
     })
     .catch(err => {
       res.status(400)
