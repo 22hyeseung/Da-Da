@@ -21,7 +21,7 @@ class SharePage extends Component {
           <span className="share-bg-logo">
             DA, DA
           </span>
-          <ShareTitle />
+          <ShareTitle userId={this.state.params.get('user_id')} />
           <ShareDiaryFood />
           <ShareDiaryFitness />
         </div>
