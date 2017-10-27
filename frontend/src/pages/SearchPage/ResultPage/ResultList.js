@@ -47,14 +47,14 @@ class ResultBox extends Component {
               marginLeft: '83.5%',
             }}
           >
-            <Icon
+            {/* <Icon
               style={Style.icon}
               name="grid layout"
             />
             <Icon
               style={Style.icon}
               name="list layout"
-            />
+            /> */}
           </div>
         </Grid.Row>
         <Grid.Row

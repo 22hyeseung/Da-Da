@@ -20,6 +20,12 @@ class RecipePage extends Component {
     this.updateRecipeAmount = this.updateRecipeAmount.bind(this)
   }
 
+  componentDidMount() {
+    this.setState({
+      recipeAmount: this.props.recipeContent.recipe_serving,
+    })
+  }
+
   componentWillMount() {
     this.props.getRecipe(this.props.match.params.id)
     this.setState({

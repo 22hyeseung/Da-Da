@@ -8,6 +8,8 @@ import {
 import { postFoodToDB } from '../../actions/diaryFood'
 import { Button, Modal, Dropdown } from 'semantic-ui-react'
 import { dateStringForApiQuery } from '../../helper/date'
+import { setTodayDate } from '../../actions/setDate'
+import { todaysDate } from '../../helper/date'
 
 const options = [
   { key: 1, text: '아침', value: '아침' },
@@ -25,12 +27,15 @@ class CookingProcess extends Component {
       selectMeal: null,
       cookingStep: this.props.recipe,
       date: dateStringForApiQuery(
-        this.props.dateState,
+        todaysDate,
       ),
     }
   }
 
   handlePopupWindowOpen = () => {
+    if(!this.props.recipeAmount){
+
+    }
     this.setState({ popupWindow: true })
   }
 
@@ -58,11 +63,14 @@ class CookingProcess extends Component {
     console.log(this.state.date, '<< [ this.state.date ]');
     console.log(this.state.selectMeal, '<< [ this.state.selectMeal ]');
     console.log(this.props.recipeContent.recipe_id, '<< [ this.props.recipe.recipe_id ]');
-    console.log(this.props.dateState, '<< [ this.props.dateState ]');
+
+    if(!this.state.selectMeal){
+      return false;
+    }
 
     this.props.postFoodToDB({
-      serve: this.props.recipeAmount * 1,
-      date: '20171026',
+      serve: this.props.recipeAmount ? this.props.recipeAmount * 1 : this.props.recipeContent.recipe_serving,
+      date: this.state.date,
       recipe_id: this.props.recipeContent.recipe_id,
       meal_tag: this.state.selectMeal,
       picture: null,
@@ -104,7 +112,7 @@ class CookingProcess extends Component {
           }
         </form>
         <div style={{textAlign: 'right'}}>
-          <Button size='Large' icon='plus' content='식단 다이어리에 등록하기'
+          <Button size='Large' icon='plus' content='기록 다이어리에 등록하기'
             style={btnDiarySubmit}
             onClick={this.handlePopupWindowOpen}
           />
@@ -119,7 +127,7 @@ class CookingProcess extends Component {
                 fluid
                 selection
                 options={options}
-                defaultValue='아침'
+                placeholder=' >> 시간을 선택하세요 << '
                 onChange={this.handleMealTegChange}
               />
             </div>
@@ -151,6 +159,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
+    setTodayDate: date =>
+      dispatch(setTodayDate(date)),
     postFoodToDB: payload =>
       dispatch(postFoodToDB(payload)),
   }
