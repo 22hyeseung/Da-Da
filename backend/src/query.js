@@ -36,7 +36,7 @@ function firstOrCreateUserByProvider({
     })
 }
 
-function getUserById(member_id) {
+function getUserById({ member_id }) {
   return knex('member')
     .where({ member_id })
     .first()
