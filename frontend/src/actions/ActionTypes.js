@@ -4,10 +4,24 @@ export const FETCHED_FOOD_LOGS_SUCCESS =
   'FETCHED_FOOD_LOGS_SUCCESS'
 export const POST_FOOD_TO_DATABASE =
   'POST_FOOD_TO_DATABASE'
+export const POST_FOOD_IMG_TO_DATABASE =
+  'POST_FOOD_IMG_TO_DATABASE'
+export const CLEAR_IMG_SEARCH_DATA =
+  'CLEAR_IMG_SEARCH_DATA'
+export const CLEAR_SELECT_FOOD =
+  'CLEAR_SELECT_FOOD'
+export const CLEAR_IMG_URL = 'CLEAR_IMG_URL'
+export const SAVE_SELECT_FOOD = 'SAVE_SELECT_FOOD'
 export const UPDATE_FOOD_OF_DATABASE =
   'UPDATE_FOOD_OF_DATABASE'
 export const DELETE_FOOD_OF_DATABASE =
   'DELETE_FOOD_OF_DATABASE'
+//==========================================
+// action: diaryFood & reducer: getFoodSummary
+export const UPDATE_CALORIE_SUMMARY =
+  'UPDATE_CALORIE_SUMMARY'
+export const DELETE_CALORIE_SUMMARY =
+  'DELETE_CALORIE_SUMMARY'
 //==========================================
 
 //==========================================
@@ -37,6 +51,16 @@ export const GET_WEIGHT_ALL_SUCCESS =
   'GET_WEIGHT_ALL_SUCCESS'
 export const GET_WEIGHT_ALL_FAILED =
   'GET_WEIGHT_ALL_FAILED'
+
+export const GET_WEIGHT_BY_DATE_REQUEST =
+  'GET_WEIGHT_BY_DATE_REQUEST'
+export const GET_WEIGHT_BY_DATE_SUCCESS =
+  'GET_WEIGHT_BY_DATE_SUCCESS'
+export const GET_WEIGHT_BY_DATE_FAILED =
+  'GET_WEIGHT_BY_DATE_FAILED'
+export const UPDATE_WEIGHT_CHART =
+  'UPDATE_WEIGHT_CHART'
+
 //==========================================
 
 //==========================================
@@ -174,5 +198,6 @@ export const GET_RECIPE_SEARCH_SUCCESS = 'GET_RECIPE_SEARCH_SUCCESS'
 // diaryKcal.js
 export const GET_KCAL_REQUEST = 'GET_KCAL_REQUEST'
 export const GET_KCAL_SUCCESS = 'GET_KCAL_SUCCESS'
-export const POST_KCAL_SUCCESS = 'POST_KCAL_SUCCESS'
+export const POST_KCAL_SUCCESS =
+  'POST_KCAL_SUCCESS'
 //==========================================

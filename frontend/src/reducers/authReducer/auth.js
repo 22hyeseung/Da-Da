@@ -31,14 +31,24 @@ const authReducer = (
       ...state,
       userInfo: {
         userName:
-          action.payload.member_provider_name,
-        userSNS: action.payload.member_provider,
+          action.payload.user
+            .member_provider_name,
+        userSNS:
+          action.payload.user.member_provider,
         userAvatar:
-          action.payload.member_avatar_url,
+          action.payload.user.member_avatar_url,
         userGoalWeight:
-          action.payload.member_goal_weight,
-        userGender: action.payload.member_gender,
-        userBirth: action.payload.member_birth, // test를 원하면 null를 넣으시면됩니다.
+          action.payload.user.member_goal_weight,
+        userGender:
+          action.payload.user.member_gender,
+        userBirth:
+          action.payload.user.member_birth, // test를 원하면 null를 넣으시면됩니다.
+        userJoinDate: new Date(
+          action.payload.user.member_join_date,
+        ).toLocaleDateString(),
+        userDefaultKcal:
+          action.payload.default_kcal
+            .day_log_kcal,
       },
       signingIn: false,
     }

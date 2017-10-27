@@ -33,7 +33,7 @@ class CaloriesChart extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { startDate, endDate } = this.state
     // get
     this.props.getCaloriesForAWeekFromDB(

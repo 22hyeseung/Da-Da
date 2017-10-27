@@ -6,7 +6,6 @@ import { Grid } from 'semantic-ui-react'
 import { tabContainer } from './StyledHome'
 import './Home.css'
 // 리덕스 액션생성자
-import { getUserInfo } from '../../actions/auth.js'
 
 // 컴포넌트
 import Navigation from '../../components/Navigation'
@@ -23,7 +22,6 @@ class HomePage extends Component {
 
   // 유저 정보 및 오늘 날짜 SET
   componentWillMount() {
-    this.props.saveUserInfo()
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
@@ -43,13 +41,16 @@ class HomePage extends Component {
     }
     return (
       <div>
-        {(this.props.userInfo.userHeight &&
-          this.props.userInfo.userWegiht &&
-          this.props.userInfo.userGender) ===
-        null ? (
-          <HomeFirstUserInfo />
-        ) : (
+        {!!this.props.userInfo.userBirth &&
+        !!this.props.userInfo.userGoalWeight &&
+        !!this.props.userInfo.userGender ? (
           <div>
+            {console.log(
+              !!this.props.userInfo.userBirth,
+              !!this.props.userInfo
+                .userGoalWeight,
+              !!this.props.userInfo.userGender,
+            )}
             <div className="home-grid">
               <Navigation
                 color="#fff"
@@ -57,7 +58,6 @@ class HomePage extends Component {
               />
             </div>
             <HomeHero />
-
             <div style={tabContainer}>
               <Grid
                 columns={3}
@@ -88,6 +88,8 @@ class HomePage extends Component {
               </Grid>
             </div>
           </div>
+        ) : (
+          <HomeFirstUserInfo />
         )}
       </div>
     )
@@ -99,11 +101,6 @@ const mapStateToProps = state => ({
   token: state.auth.token,
 })
 
-const mapDispatchtoProps = dispatch => ({
-  saveUserInfo: () => dispatch(getUserInfo()),
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchtoProps,
-)(HomePage)
+export default connect(mapStateToProps, null)(
+  HomePage,
+)

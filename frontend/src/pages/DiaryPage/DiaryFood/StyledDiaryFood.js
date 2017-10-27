@@ -46,9 +46,10 @@ export const searchLabel = {
 }
 
 export const modalGrid = {
-  paddingLeft: '0px',
-  paddingRight: '21px',
+  padding: '0px 14px',
+  display: 'flex',
 }
+
 export const modalUpload = {
   boxShadow: 'none',
   border: '1px dashed #A8B7C7',
@@ -56,6 +57,10 @@ export const modalUpload = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  alignItems: 'center',
+  margin: '0px',
+  width: '50%',
+  padding: '7px',
 }
 
 export const modalPhotoView = {
@@ -81,10 +86,14 @@ export const modalThirdGrid = {
 export const modalThirdGridHeader = {
   fontFamily: 'Spoqa Han Sans',
   fontWeight: '100',
+  textAlign: 'center',
+  marginTop: '7px',
+  paddingBottom: '14px',
+  borderBottom: '1px solid #e0e1e2',
 }
 export const modalThirdGridBox = {
-  height: '288px',
-  marginBottom: '0px',
+  margin: '0px 0px 0px 14px',
+  width: '50%',
 }
 // add버튼 click 이후 컴포넌트 끝
 
@@ -118,8 +127,7 @@ export const albumCard = {
   border: '1px solid #d8dde6',
   width: '210px',
   height: '210px',
-  background: `url(${foodImg})`,
-  backgroundPosition: 'center',
+  backgroundPositionX: '50%',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
 }

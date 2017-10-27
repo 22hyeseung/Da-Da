@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as styled from './StyledRecipe'
 import Navigation from '../../components/Navigation'
+import Footer from '../../components/Footer'
 import RecipeTitleBox from './RecipeTitleBox'
 import IngredientBox from './IngredientBox'
 import CookingProcess from './CookingProcess'
@@ -76,6 +77,7 @@ class RecipePage extends Component {
             recipeAmount={this.state.recipeAmount}
           />
         </div>
+        <Footer />
       </div>
     )
   }

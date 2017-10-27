@@ -11,8 +11,12 @@ import {
   segmentDefault,
   submitBtn,
 } from '../StyledDiaryCommon'
+import {
+  clearSelect,
+  clearImgUrl,
+} from '../../../actions/diaryFood'
 import FoodSelectDetails from './DiaryFoodSearchDetails'
-import DiaryFoodSearchModal from './DiaryFoodSearchModal'
+// import DiaryFoodSearchModal from './DiaryFoodSearchModal'
 import DiaryFoodAdd from './DiaryFoodAdd'
 import notyet from '../../../static/img/diary-food-search-notyet.svg'
 import error from '../../../static/img/diary-search-error.svg'
@@ -40,6 +44,11 @@ class DiaryFoodSearch extends Component {
 
   componentDidMount() {
     this.textInput.focus()
+    if (this.props.keyword) {
+      this.setState({
+        userInput: this.props.keyword,
+      })
+    }
   }
 
   // foodsSearch api : 현재 컴포넌트에서만 사용하므로 따로 action으로 분리하지 않았다.
@@ -120,7 +129,9 @@ class DiaryFoodSearch extends Component {
     this.setState({
       isSearchMode: !this.state.isSearchMode,
       userInput: '',
-    })
+    }),
+      this.props.clearSelect(),
+      this.props.clearImgUrl()
   }
 
   render() {
@@ -128,7 +139,6 @@ class DiaryFoodSearch extends Component {
       isLoading,
       inputError,
       btnState,
-      isFocus,
     } = this.state
 
     return (
@@ -146,9 +156,7 @@ class DiaryFoodSearch extends Component {
               {/* 검색창 첫번째 줄 시작 */}
               <Grid.Row>
                 <Grid.Column
-                  width={15}
                   style={{
-                    paddingRight: '21px',
                     display: 'flex',
                   }}
                 >
@@ -172,13 +180,13 @@ class DiaryFoodSearch extends Component {
                     style={{
                       ...submitBtn,
                       width: '100px',
-                      marginLeft: '14px',
+                      marginLeft: '7px',
                     }}
                   >
                     검색
                   </Button>
                 </Grid.Column>
-                <DiaryFoodSearchModal />
+                {/* <DiaryFoodSearchModal /> */}
               </Grid.Row>
               {/* 검색창 첫번째 줄 끝 */}
 
@@ -336,11 +344,34 @@ class DiaryFoodSearch extends Component {
                           아직 안먹으셨다면 검색!
                         </span>
                       </div>
-                      <img
-                        style={{ width: '17%' }}
-                        src={notyet}
-                        alt="검색 전 검색을 유도하는 이미지입니다"
-                      />
+                      {this.props.foodAlbumResult
+                        .length === 0 ? (
+                        <img
+                          style={{ width: '17%' }}
+                          src={notyet}
+                          alt="검색 전 검색을 유도하는 이미지입니다"
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            overflow: 'hidden',
+                            backgroundImage: `url(${this
+                              .props
+                              .foodAlbumResult})`,
+                            backgroundSize:
+                              'contain',
+                            backgroundRepeat:
+                              'no-repeat',
+                            width: '30%',
+                            display: 'flex',
+                            backgroundPositionY:
+                              '50%',
+
+                            backgroundPositionX:
+                              '100%',
+                          }}
+                        />
+                      )}
                     </div>
                   )}
                   {/* 검색결과 끝 */}
@@ -382,9 +413,20 @@ class DiaryFoodSearch extends Component {
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
+    keyword: state.foodLogs.visionresultKeyword,
+    foodAlbumResult:
+      state.foodLogs.foodAlbumResult,
   }
 }
 
-export default connect(mapStateToProps, null)(
-  DiaryFoodSearch,
-)
+const mapDispatchToProps = dispatch => {
+  return {
+    clearSelect: () => dispatch(clearSelect()),
+    clearImgUrl: () => dispatch(clearImgUrl()),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DiaryFoodSearch)

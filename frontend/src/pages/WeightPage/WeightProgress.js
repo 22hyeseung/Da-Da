@@ -1,13 +1,29 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+// 스타일링
 import './WeightProgress.css'
 import './Weight.css'
 import weightFlag from '../../static/img/weight-flag.svg'
 import startPoint from '../../static/img/Step-Active.svg'
 import endPoint from '../../static/img/Step-Not_Completed.svg'
-import { connect } from 'react-redux'
+import weightHand from '../../static/img/weight-hand.svg'
+// 리덕스 액션
+import { getAllWeightFromDB } from '../../actions/weight'
 
 class WeightProgress extends Component {
+  constructor(props) {
+    super(props)
+  }
+  componentWillMount() {
+    this.props.getAllWeightFromDB()
+  }
   render() {
+    const {
+      goalWeight,
+      startWeight,
+      currentWeight,
+    } = this.props
+
     // 공식 = {(시작체중-현재체중)/(시작체중 - 목표체중 )}*100
     let flagPosition = ''
     {
@@ -15,10 +31,8 @@ class WeightProgress extends Component {
         ? // 인터넷 느린 경우 등, get 데이터가 안 왔을때
           (flagPosition = 0)
         : (flagPosition =
-            (60 -
-              this.props.weightListItem[0]
-                .day_log_kg) /
-            (60 - this.props.goalWeight) *
+            (startWeight - currentWeight) /
+            (startWeight - goalWeight) *
             100)
     }
     return (
@@ -27,7 +41,7 @@ class WeightProgress extends Component {
         <ul className="weight-progress-bar-start">
           <li>
             <span className="weight-progress-start">
-              60
+              {startWeight}
             </span>
             <span className="weight-progress-unit-kg">
               kg
@@ -65,10 +79,17 @@ class WeightProgress extends Component {
             <img
               src={weightFlag}
               alt="목표체중과 시작체중 사이의 현재체중을 표시하는 플래그 아이콘입니다."
-              style={{
-                left: `${flagPosition}%`,
-                position: 'relative',
-              }}
+              style={
+                currentWeight > startWeight ||
+                currentWeight < goalWeight
+                  ? {
+                      display: 'none',
+                    }
+                  : {
+                      left: `${flagPosition}%`,
+                      position: 'relative',
+                    }
+              }
             />
           </li>
           <li style={{ padding: '10px' }} />
@@ -77,7 +98,7 @@ class WeightProgress extends Component {
         <ul className="weight-progress-bar-end">
           <li>
             <span className="weight-progress-end">
-              {this.props.goalWeight}
+              {goalWeight}
             </span>
             <span className="weight-progress-unit-kg">
               kg
@@ -102,10 +123,20 @@ const mapStateToProps = state => {
   return {
     weightListItem:
       state.weightList.weightListItem,
+    currentWeight: state.weightList.currentWeight,
+    startWeight: state.weightAll.startWeight,
     goalWeight: state.weightAll.goalWeight,
   }
 }
 
-export default connect(mapStateToProps, null)(
-  WeightProgress,
-)
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllWeightFromDB: () =>
+      dispatch(getAllWeightFromDB()),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(WeightProgress)

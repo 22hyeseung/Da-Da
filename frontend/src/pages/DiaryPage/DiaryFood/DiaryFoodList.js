@@ -1,9 +1,7 @@
 import React from 'react'
 import {
   Segment,
-  Icon,
   Button,
-  Popup,
   Input,
   Modal,
 } from 'semantic-ui-react'
@@ -29,8 +27,8 @@ class DiaryFoodList extends React.Component {
       food_amount: null,
     }
   }
-  deleteFoodOfDB = id => {
-    this.props.deleteFoodOfDB(id)
+  deleteFoodOfDB = (id, card) => {
+    this.props.deleteFoodOfDB(id, card)
   }
 
   createPayloadAndUpdateToDB = () => {
@@ -98,7 +96,7 @@ class DiaryFoodList extends React.Component {
   close = () => this.setState({ open: false })
 
   render() {
-    const { open, dimmer, selectKey } = this.state
+    const { open, dimmer } = this.state
     return (
       <div style={{ display: 'flex' }}>
         {this.props.foodresult.map((card, i) => {
@@ -133,6 +131,7 @@ class DiaryFoodList extends React.Component {
                     onClick={() =>
                       this.deleteFoodOfDB(
                         card.eat_log_id,
+                        card,
                       )}
                   />
                 </Button.Group>
@@ -270,8 +269,8 @@ class DiaryFoodList extends React.Component {
 // }
 const mapDispatchToProps = dispatch => {
   return {
-    deleteFoodOfDB: id =>
-      dispatch(deleteFoodOfDB(id)),
+    deleteFoodOfDB: (id, card) =>
+      dispatch(deleteFoodOfDB(id, card)),
     updateFoodOfDB: (payload, id) =>
       dispatch(updateFoodOfDB(payload, id)),
   }

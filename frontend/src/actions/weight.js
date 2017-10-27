@@ -27,7 +27,6 @@ export const fetchWeightFromDB = () => {
 // 2. input에서 받은 값을 db로 보내는 action(post)
 export const postWeightToDB = payload => {
   return dispatch => {
-    // console.log(payload)
     fetch(`${rootApi}/diary/kg`, {
       method: 'POST',
       headers: {
@@ -48,10 +47,15 @@ export const postWeightToDB = payload => {
           })
             .then(res => res.json())
             .then(data => {
+              // console.log(data)
               dispatch({
                 type:
                   types.POST_AND_GET_WEIGHT_SUCCESS,
                 payload: data,
+              })
+              dispatch({
+                type: types.UPDATE_WEIGHT_CHART,
+                payload: data.shift(),
               })
             })
             .catch(error => {
@@ -125,15 +129,16 @@ export const getAllWeightFromDB = () => {
       .then(res => res.json())
       .then(data => {
         let chartData = []
-        let allDayLog = data.allDayLog
-        allDayLog.map(aDay => {
-          chartData.push({
-            current: aDay.day_log_kg,
-            date: aDay.day_log_diary_date
-              .substr(5, 5)
-              .replace('-', '/'),
-            goal: data.goal_weight,
-          })
+        data.allDayLog.map(aDay => {
+          if (aDay.day_log_kg) {
+            chartData.push({
+              current: aDay.day_log_kg,
+              date: aDay.day_log_diary_date
+                .substr(5, 5)
+                .replace('-', '/'),
+              goal: data.goal_weight,
+            })
+          }
         })
         dispatch({
           type: types.GET_WEIGHT_ALL_SUCCESS,
@@ -147,6 +152,34 @@ export const getAllWeightFromDB = () => {
       .catch(error => {
         type: types.GET_WEIGHT_ALL_FAILED
         console.error(error)
+      })
+  }
+}
+
+// 5. 특정 날짜의 체중 get
+export const getWeightByDate = date => {
+  return dispatch => {
+    dispatch({
+      type: types.GET_WEIGHT_BY_DATE_REQUEST,
+    })
+    fetch(`${rootApi}/weight?date=${date}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        dispatch({
+          type: types.GET_WEIGHT_BY_DATE_SUCCESS,
+          payload: data,
+        }).catch(error => {
+          dispatch({
+            type: types.GET_WEIGHT_BY_DATE_FAILED,
+          })
+          console.error(error)
+        })
       })
   }
 }

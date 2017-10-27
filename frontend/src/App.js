@@ -12,12 +12,13 @@ import WeightPage from './pages/WeightPage'
 import SearchPage from './pages/SearchPage'
 import SharePage from './pages/SharePage'
 import RecipePage from './pages/RecipePage'
-
+import Helmet from 'react-helmet'
+import favicon from './static/img/favicon-96x96.png'
 /* 페이지 확인용 라우터 -> 나중에 ajax로 처리할 화면입니다.*/
 import SearchResultPage from './pages/SearchPage/ResultPage'
 import NoSearchPage from './pages/SearchPage/ResultPage/NoSearch'
 import NotFoundPage from './pages/404Page'
-
+// import Helmet from 'react-helmet'
 class App extends Component {
   render() {
     /* Login 상태가 아닌 경우에 다른 페이지로 접근하면
@@ -28,6 +29,17 @@ class App extends Component {
     }
     return (
       <div>
+        <Helmet>
+          <html lang="en" amp />
+
+          {/* body attributes */}
+          <body className="root" />
+          <title itemProp="name">Da, DA</title>
+          <link
+            rel="shortcut icon"
+            href={favicon}
+          />
+        </Helmet>
         <Switch>
           <Route
             exact
