@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Helmet } from "react-helmet";
 import './Share.css'
 import './ShareDiary.css'
 import ShareDiaryFood from './ShareDiaryFood'
@@ -38,9 +39,24 @@ class SharePage extends Component {
     if(typeof result === "undefined") {
       return null
     }
+
     console.log(result, '<< [ result ]');
+    const metaDesc = `${result.User.member_provider_name}님의 다이어트 다이어리를 확인 할 수 있습니다.`
     return (
       <div className="share-wrapper">
+        <Helmet>
+          <link rel="image_src" href="//youdie.net/dev/dada.png" />
+          <meta name="description" content="<기록과 통계>를 통해 식습관을 모니터링 할 수 있고, 칼로리 카운트를 통해 식단을 관리할 수 있는 <다이어트 다이어리> 서비스" />
+          <meta property="og:title" content="다이어트 다이어리 Da, Da" />
+          <meta property="og:type" content="website" />
+          <meta property="og:description" content={metaDesc} />
+          <meta property="og:image" content="//youdie.net/dev/dada.png" />
+          <meta property="og:url" content={window.location.href} />
+          <meta name="twitter:card" content={metaDesc} />
+          <meta name="twitter:url" content={window.location.href} />
+          <meta name="twitter:description" content={metaDesc} />
+          <meta name="twitter:image" content="//youdie.net/dev/dada.png" />
+        </Helmet>
         <div className="share-grid">
           <span className="share-bg-logo">
             DA, DA
