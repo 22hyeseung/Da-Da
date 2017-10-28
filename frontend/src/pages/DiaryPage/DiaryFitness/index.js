@@ -43,6 +43,7 @@ class DiaryFitness extends Component {
     ),
   }
 
+  // 기존에 기록된 로그를 불러온다.
   componentWillMount() {
     this.props.fetchFitnessLogs(this.state.date)
     this.setState({ loading: true }, () =>
@@ -50,6 +51,7 @@ class DiaryFitness extends Component {
     )
   }
 
+  // 인풋 창이 열리면 인풋에 포커싱
   componentDidMount() {
     if (this.state.open) {
       this.textInput.focus()
@@ -84,29 +86,39 @@ class DiaryFitness extends Component {
 
   // post보낼 json 만드는 함수
   createPayloadAndUpdateToDB = () => {
+    const {
+      updateTimeVal,
+      unitKcal,
+      burn_id,
+    } = this.state
+
+    const { updateFitnessOfDB } = this.props
+
     // 수정값이 없을 경우 반환
-    if (
-      !this.state.updateTimeVal ||
-      this.state.updateTimeVal < 1
-    ) {
+    if (!updateTimeVal || updateTimeVal < 1) {
       return this.setState({
         disabled: true,
       })
     }
 
     // 수정된 시간에 따라 칼로리 계산
-    const finalKcal =
-      this.state.unitKcal *
-      this.state.updateTimeVal
-    this.props.updateFitnessOfDB(
-      {
-        burn_minute: this.state.updateTimeVal * 1,
-        kcal: finalKcal,
+    const finalKcal = unitKcal * updateTimeVal
+
+    const requestBody = {
+      burn_minute: updateTimeVal * 1,
+      kcal: finalKcal,
+    }
+
+    // 입력 받은 값으로 업데이트
+    updateFitnessOfDB(requestBody, burn_id).then(
+      text => {
+        console.log(text)
+        this.close() // 성공 시 모달창 close
       },
-      this.state.burn_id,
-      this.close,
+      error => {
+        console.log(error)
+      },
     )
-    setTimeout(this.close, 100)
   }
 
   handleKeyPress = e => {

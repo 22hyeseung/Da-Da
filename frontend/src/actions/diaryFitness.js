@@ -61,30 +61,36 @@ export const postFitnessToDB = payload => {
 export const updateFitnessOfDB = (
   payload,
   id,
-  onSuccessCb,
 ) => {
   return dispatch => {
-    fetch(`${rootApi}/exercises/${id}`, {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${window
-          .localStorage.token}`,
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    })
-      .then(result => result.json())
-      .then(data => {
-        console.log(data)
-        dispatch({
-          type: types.UPDATE_FITNESS_OF_DATABASE,
-          payload: data,
+    return new Promise((resolve, reject) => {
+      fetch(`${rootApi}/exercises/${id}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${window
+            .localStorage.token}`,
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+        .then(result => result.json())
+        .then(data => {
+          if (data) {
+            dispatch({
+              type:
+                types.UPDATE_FITNESS_OF_DATABASE,
+              payload: data,
+            })
+            resolve('data updated successfully.')
+            // console.log(data)
+          } else {
+            reject('Failed to update data.')
+          }
         })
-        onSuccessCb()
-      })
-      .catch(error => {
-        console.log('updateFitnessOfDB error')
-      })
+        .catch(error => {
+          console.log('updateFitnessOfDB error')
+        })
+    })
   }
 }
 
