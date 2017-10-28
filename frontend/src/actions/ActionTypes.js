@@ -17,11 +17,13 @@ export const UPDATE_FOOD_OF_DATABASE =
 export const DELETE_FOOD_OF_DATABASE =
   'DELETE_FOOD_OF_DATABASE'
 //==========================================
-// action: diaryFood & reducer: getFoodSummary
+// action: diaryFood & reducer: dairySummary
 export const UPDATE_CALORIE_SUMMARY =
   'UPDATE_CALORIE_SUMMARY'
 export const DELETE_CALORIE_SUMMARY =
   'DELETE_CALORIE_SUMMARY'
+export const UPDATE_LIST_SUMMARY =
+  'UPDATE_LIST_SUMMARY'
 //==========================================
 
 //==========================================
@@ -34,6 +36,9 @@ export const UPDATE_FITNESS_OF_DATABASE =
   'UPDATE_FITNESS_OF_DATABASE'
 export const DELETE_FITNESS_OF_DATABASE =
   'DELETE_FITNESS_OF_DATABASE'
+
+export const UPDATE_SUMMARY_OF_BURN_CALORIE =
+  'UPDATE_SUMMARY_OF_BURN_CALORIE'
 //==========================================
 
 //==========================================
@@ -190,8 +195,10 @@ export const GET_FOOD_SUMMARY_FAILED =
 
 //==========================================
 // recipe.js
-export const GET_RECIPE_SUCCESS = 'GET_RECIPE_SUCCESS'
-export const GET_RECIPE_SEARCH_SUCCESS = 'GET_RECIPE_SEARCH_SUCCESS'
+export const GET_RECIPE_SUCCESS =
+  'GET_RECIPE_SUCCESS'
+export const GET_RECIPE_SEARCH_SUCCESS =
+  'GET_RECIPE_SEARCH_SUCCESS'
 //==========================================
 
 //==========================================

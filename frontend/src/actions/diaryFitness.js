@@ -44,6 +44,11 @@ export const postFitnessToDB = payload => {
           type: types.POST_FITNESS_TO_DATABASE,
           payload: data,
         })
+        dispatch({
+          type:
+            types.UPDATE_SUMMARY_OF_BURN_CALORIE,
+          payload: data[0].burn_kcal,
+        })
       })
       .catch(error => {
         console.log('fetchFitnessLogsToDB error')
@@ -71,7 +76,7 @@ export const updateFitnessOfDB = (
         console.log(data)
         dispatch({
           type: types.UPDATE_FITNESS_OF_DATABASE,
-          payload: data[0],
+          payload: data,
         })
         onSuccessCb()
       })

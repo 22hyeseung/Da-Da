@@ -38,11 +38,11 @@ class SummaryPieChart extends Component {
 
   render() {
     const {
-      calorieSummary,
+      nutritionKcals,
       errorState,
     } = this.props
 
-    if (isEmpty(calorieSummary)) {
+    if (isEmpty(nutritionKcals)) {
       return (
         <Message
           warning
@@ -67,7 +67,7 @@ class SummaryPieChart extends Component {
       <PieChart width={250} height={260}>
         <Pie
           key={String(Math.random())}
-          data={calorieSummary}
+          data={nutritionKcals}
           cx={110}
           cy={100}
           innerRadius={40}
@@ -76,7 +76,7 @@ class SummaryPieChart extends Component {
           legendType="square"
           paddingAngle={1.3}
         >
-          {calorieSummary.map((entry, index) => (
+          {nutritionKcals.map((entry, index) => (
             <Cell
               fill={COLORS[index]}
               key={entry.nutrition}
@@ -92,8 +92,8 @@ class SummaryPieChart extends Component {
 
 const mapStateToProps = state => {
   return {
-    calorieSummary:
-      state.diarySummary.calorieSummary,
+    nutritionKcals:
+      state.diarySummary.nutritionKcals,
     errorState: state.diarySummary.errorState,
     dateState: state.today.date,
   }

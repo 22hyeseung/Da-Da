@@ -105,13 +105,19 @@ class FoodSelectDetails extends Component {
         disabled: true,
       })
     }
-    this.props.postFoodToDB({
+    const requestBody = {
       amount: this.state.inputAmount * 1,
       date: this.state.date,
       food_id: this.props.foodResult.food_id,
       meal_tag: `${this.state.meal_tag}`,
       picture: this.props.foodAlbumResult,
-    })
+    }
+
+    this.props.postFoodToDB(
+      requestBody,
+      this.state.date,
+    )
+
     this.setState({ loading: true }, () =>
       this.postDelay(),
     )
@@ -230,8 +236,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    postFoodToDB: payload =>
-      dispatch(postFoodToDB(payload)),
+    postFoodToDB: (requestBody, date) =>
+      dispatch(postFoodToDB(requestBody, date)),
     clearSelect: () => dispatch(clearSelect()),
     clearImgUrl: () => dispatch(clearImgUrl()),
   }

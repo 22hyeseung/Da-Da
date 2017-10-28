@@ -121,6 +121,7 @@ class CaloriesChart extends Component {
 
     return (
       <ComposedChart
+        key={String(Math.random())}
         width={850}
         height={300}
         data={dateArray}

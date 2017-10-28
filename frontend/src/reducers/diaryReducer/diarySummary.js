@@ -1,7 +1,9 @@
 const SUMMARY_INITIAL_STATE = {
   isLoading: false,
   errorState: false,
-  calorieSummary: [],
+  nutritionKcals: [],
+  eatKcal: 0,
+  burnKcal: 0,
 }
 
 export const diarySummaryReducer = (
@@ -18,7 +20,7 @@ export const diarySummaryReducer = (
       return {
         ...state,
         isLoading: false,
-        calorieSummary: [
+        nutritionKcals: [
           {
             name: '탄수화물',
             value: action.payload.today_carb,
@@ -32,6 +34,12 @@ export const diarySummaryReducer = (
             value: action.payload.today_fat,
           },
         ],
+        eatKcal: Math.round(
+          action.payload.today_kcal,
+        ),
+        burnKcal: Math.round(
+          action.payload.today_burn_kcal,
+        ),
       }
     case 'GET_FOOD_SUMMARY_FAILED':
       return {
@@ -45,51 +53,71 @@ export const diarySummaryReducer = (
     case 'UPDATE_CALORIE_SUMMARY':
       return {
         ...state,
-        calorieSummary: [
+        nutritionKcals: [
           {
             name: '탄수화물',
-            value:
-              state.calorieSummary[0].value +
-              action.payload.food_carb,
+            value: Math.round(
+              state.nutritionKcals[0].value +
+                action.payload.food_carb,
+            ),
           },
           {
             name: '단백질',
-            value:
-              state.calorieSummary[1].value +
-              action.payload.food_protein,
+            value: Math.round(
+              state.nutritionKcals[1].value +
+                action.payload.food_protein,
+            ),
           },
           {
             name: '지방',
-            value:
-              state.calorieSummary[2].value +
-              action.payload.food_fat,
+            value: Math.round(
+              state.nutritionKcals[2].value +
+                action.payload.food_fat,
+            ),
           },
         ],
+      }
+
+    case 'UPDATE_LIST_SUMMARY':
+      return {
+        ...state,
+        eatKcal: Math.round(
+          action.payload.today_kcal,
+        ),
+        burnKcal: Math.round(
+          action.payload.today_burn_kcal,
+        ),
       }
 
     case 'DELETE_CALORIE_SUMMARY':
       return {
         ...state,
-        calorieSummary: [
+        nutritionKcals: [
           {
             name: '탄수화물',
             value:
-              state.calorieSummary[0].value -
+              state.nutritionKcals[0].value -
               action.payload.food_carb,
           },
           {
             name: '단백질',
             value:
-              state.calorieSummary[1].value -
+              state.nutritionKcals[1].value -
               action.payload.food_protein,
           },
           {
             name: '지방',
             value:
-              state.calorieSummary[2].value -
+              state.nutritionKcals[2].value -
               action.payload.food_fat,
           },
         ],
+      }
+
+    case 'UPDATE_SUMMARY_OF_BURN_CALORIE':
+      return {
+        ...state,
+        burnKcal: state.burnKcal + action.payload,
       }
     default:
       return state

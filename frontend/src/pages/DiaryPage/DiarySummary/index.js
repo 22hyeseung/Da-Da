@@ -46,7 +46,8 @@ class DiarySummary extends Component {
   render() {
     const {
       defaultGoalCalorie,
-      calorieSummary,
+      eatKcal,
+      burnKcal,
       kcalGoal,
     } = this.props
 
@@ -54,10 +55,11 @@ class DiarySummary extends Component {
       ? kcalGoal.day_log_kcal
       : defaultGoalCalorie
 
+    console.log(this.props.eatKcal)
+    console.log(this.props.burnKcal)
+
     const restCalorie =
-      goalCalorie -
-      calorieSummary.today_kcal +
-      calorieSummary.today_burn_kcal
+      goalCalorie - eatKcal + burnKcal
 
     return (
       <div>
@@ -91,15 +93,11 @@ class DiarySummary extends Component {
             />
             <SummaryListItem
               label="섭취 칼로리"
-              kcal={Math.round(
-                calorieSummary.today_kcal,
-              )}
+              kcal={eatKcal}
             />
             <SummaryListItem
               label="운동 칼로리"
-              kcal={Math.round(
-                calorieSummary.today_burn_kcal,
-              )}
+              kcal={burnKcal}
             />
             <SummaryListItem
               label="남은 칼로리"
@@ -149,8 +147,10 @@ class DiarySummary extends Component {
 
 const mapStateToProps = state => {
   return {
-    calorieSummary:
-      state.diarySummary.calorieSummary,
+    // nutritionKcals:
+    //   state.diarySummary.nutritionKcals,
+    eatKcal: state.diarySummary.eatKcal,
+    burnKcal: state.diarySummary.burnKcal,
     dateState: state.today.date,
     kcalGoal: state.calorieGoalAboutADay.kcalGoal,
     defaultGoalCalorie:
