@@ -1,9 +1,9 @@
 const SUMMARY_INITIAL_STATE = {
   isLoading: false,
   errorState: false,
-  nutritionKcals: [],
   eatKcal: 0,
   burnKcal: 0,
+  nutritionKcals: [],
 }
 
 export const diarySummaryReducer = (
@@ -20,26 +20,32 @@ export const diarySummaryReducer = (
       return {
         ...state,
         isLoading: false,
-        nutritionKcals: [
-          {
-            name: '탄수화물',
-            value: action.payload.today_carb,
-          },
-          {
-            name: '단백질',
-            value: action.payload.today_protein,
-          },
-          {
-            name: '지방',
-            value: action.payload.today_fat,
-          },
-        ],
         eatKcal: Math.round(
           action.payload.today_kcal,
         ),
         burnKcal: Math.round(
           action.payload.today_burn_kcal,
         ),
+        nutritionKcals: [
+          {
+            name: '탄수화물',
+            value: Math.round(
+              action.payload.today_carb,
+            ),
+          },
+          {
+            name: '단백질',
+            value: Math.round(
+              action.payload.today_protein,
+            ),
+          },
+          {
+            name: '지방',
+            value: Math.round(
+              action.payload.today_fat,
+            ),
+          },
+        ],
       }
     case 'GET_FOOD_SUMMARY_FAILED':
       return {
@@ -50,69 +56,83 @@ export const diarySummaryReducer = (
 
     // DIARY FOOD 컴포넌트가 업데이트 (아이템 추가/수정/삭제)되는 경우
     // 차트도 함께 업데이트 해준다.
-    case 'UPDATE_CALORIE_SUMMARY':
+    case 'UPDATE_CHART_SUMMARY':
       return {
         ...state,
+
+        eatKcal: Math.round(
+          state.eatKcal +
+            action.payload.food_carb * 4 +
+            action.payload.food_protein * 4 +
+            action.payload.food_fat * 9,
+        ),
+
         nutritionKcals: [
           {
             name: '탄수화물',
             value: Math.round(
               state.nutritionKcals[0].value +
-                action.payload.food_carb,
+                action.payload.food_carb * 4,
             ),
           },
           {
             name: '단백질',
             value: Math.round(
               state.nutritionKcals[1].value +
-                action.payload.food_protein,
+                action.payload.food_protein * 4,
             ),
           },
           {
             name: '지방',
             value: Math.round(
               state.nutritionKcals[2].value +
-                action.payload.food_fat,
+                action.payload.food_fat * 9,
             ),
           },
         ],
       }
 
-    case 'UPDATE_LIST_SUMMARY':
+    case 'DELETE_CHART_SUMMARY':
       return {
         ...state,
         eatKcal: Math.round(
-          action.payload.today_kcal,
+          state.eatKcal -
+            action.payload.food_carb * 4 -
+            action.payload.food_protein * 4 -
+            action.payload.food_fat * 9,
         ),
-        burnKcal: Math.round(
-          action.payload.today_burn_kcal,
-        ),
-      }
-
-    case 'DELETE_CALORIE_SUMMARY':
-      return {
-        ...state,
         nutritionKcals: [
           {
             name: '탄수화물',
-            value:
+            value: Math.round(
               state.nutritionKcals[0].value -
-              action.payload.food_carb,
+                action.payload.food_carb * 4,
+            ),
           },
           {
             name: '단백질',
-            value:
+            value: Math.round(
               state.nutritionKcals[1].value -
-              action.payload.food_protein,
+                action.payload.food_protein * 4,
+            ),
           },
           {
             name: '지방',
-            value:
+            value: Math.round(
               state.nutritionKcals[2].value -
-              action.payload.food_fat,
+                action.payload.food_fat * 9,
+            ),
           },
         ],
       }
+
+    // case 'DELETE_SUMMARY_OF_EAT_CALORIE':
+    //   return {
+    //     ...state,
+    //     eatKcal: Math.round(
+    //       action.payload.today_kcal,
+    //     ),
+    //   }
 
     case 'UPDATE_SUMMARY_OF_BURN_CALORIE':
       return {
