@@ -29,7 +29,6 @@ class SharePage extends Component {
       .then(res => res.json())
       .then(result => {
         this.setState({result, date:paramDate})
-        console.log(result, '<< [ result ]');
       })
   }
 
@@ -40,7 +39,6 @@ class SharePage extends Component {
       return null
     }
 
-    console.log(result, '<< [ result ]');
     const metaDesc = `${result.User.member_provider_name}님의 다이어트 다이어리를 확인 할 수 있습니다.`
     return (
       <div className="share-wrapper">

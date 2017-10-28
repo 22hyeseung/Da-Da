@@ -5,7 +5,6 @@ import {
   Modal,
   Image,
 } from 'semantic-ui-react'
-import foodImg from '../../static/img/diary_food_album.jpg'
 import zoomIcon from '../../static/img/diary-zoom.svg'
 import * as Style from './StyledDiaryFood'
 
@@ -16,7 +15,6 @@ class ShareDiaryFoodAlbumListCard extends Component {
     this.setState({ size, open: true })
   close = () => this.setState({ open: false })
   render() {
-    console.log(this.props.food, '<< [ this.props.food ]');
     return (
       <Segment style={{
         ...Style.albumCard,

@@ -4,9 +4,6 @@ import ShareDiaryFoodAlbumList from './ShareDiaryFoodAlbumList'
 import * as Style from './StyledDiaryFood'
 
 class ShareDiaryFoodAlbum extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     return (

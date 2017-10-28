@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import ShareDiaryFoodListCard from './ShareDiaryFoodListCard'
 
 class ShareDiaryFoodList extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     if(typeof this.props.foodList === "undefined") {

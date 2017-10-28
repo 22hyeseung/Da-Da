@@ -15,9 +15,6 @@ const listWrapper = {
 
 
 class ShareDiaryFitness extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     return (

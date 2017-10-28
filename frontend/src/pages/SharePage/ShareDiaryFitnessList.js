@@ -19,9 +19,6 @@ const textBig = {
 }
 
 class ShareDiaryFitnessAdd extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     return (

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Share.css'
-import graph from '../../static/img/share-graph.svg'
 import Chart from '../../components/Charts/ShareChart'
 
 class ShareTitle extends Component {

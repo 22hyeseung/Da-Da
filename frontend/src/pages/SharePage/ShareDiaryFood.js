@@ -11,9 +11,6 @@ import * as Style from './StyledDiaryFood'
 import './ShareDiary.css'
 
 class ShareDiaryFood extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   componentWillMount() {
     const breackfast = [];  //아침
@@ -54,7 +51,6 @@ class ShareDiaryFood extends Component {
       }
     })
 
-    console.log(breackfast, '<< [ breackfast ]');
     this.setState({
       breackfast,
       lunch,

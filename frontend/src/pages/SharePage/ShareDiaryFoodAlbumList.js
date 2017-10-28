@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import ShareDiaryFoodAlbumListCard from './ShareDiaryFoodAlbumListCard'
 
 class ShareDiaryFoodAlbumList extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     return (

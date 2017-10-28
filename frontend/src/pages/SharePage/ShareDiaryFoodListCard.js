@@ -4,16 +4,12 @@ import * as Style from './StyledDiaryFood'
 
 
 class DiaryFoodListCard extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render(){
     if(typeof this.props.foodData === "undefined") {
       return null
     }
 
-    console.log(this.props.foodData, '<< [ this.props.foodData ]');
     return (
       <Segment style={Style.mealCard}>
         <div className="diary-food-meal-list-card-firstRow">
