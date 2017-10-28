@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Share.css'
 import graph from '../../static/img/share-graph.svg'
+import Chart from '../../components/Charts/ShareChart'
 
 class ShareTitle extends Component {
   constructor(props) {
@@ -13,19 +14,33 @@ class ShareTitle extends Component {
   componentDidMount() {
     let total_kcal = 0;
     let burn_kcal = 0;
+    let reportKcalChart = [];
 
     this.props.reportKcal.map(val => {
       total_kcal += val['sum(kcal)']
+      reportKcalChart.push({
+        name: val['eat_log_meal_tag'],
+        value: val['sum(kcal)'],
+      })
     })
+
+    let reportNutriChart = [
+      {name: '탄수화물', value: this.props.reportNutri.carb},
+      {name: '단백질', value: this.props.reportNutri.protein},
+      {name: '지방', value: this.props.reportNutri.fat},
+    ]
 
     this.props.burn.map(val => {
       burn_kcal += val['burn_kcal']
     })
 
+    //{name: "탄수화물", value: 474.6}
     this.setState({
       member_provider_name: this.props.userData.member_provider_name,
       total_kcal,
       burn_kcal,
+      reportKcalChart,
+      reportNutriChart,
     })
   }
 
@@ -69,20 +84,13 @@ class ShareTitle extends Component {
             <span>끼니별</span>
             <span>칼로리</span>
             <span>그래프</span>
-            <img
-              src={graph}
-              alt="칼로리 그래프"
-              className="share-summary-meal-graph"
-            />
+            <Chart chartData={this.state.reportKcalChart} />
           </div>
           <div className="share-summary-nutritions">
             <span>영양분</span>
             <span>그래프</span>
-            <img
-              src={graph}
-              alt="영양분 그래프"
-              className="share-summary-nutritions-graph"
-            />
+            <span>&nbsp;</span>
+            <Chart chartData={this.state.reportNutriChart} />
           </div>
         </div>
       </div>

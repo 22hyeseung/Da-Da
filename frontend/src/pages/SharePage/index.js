@@ -45,7 +45,7 @@ class SharePage extends Component {
           <span className="share-bg-logo">
             DA, DA
           </span>
-          <ShareTitle userData={result.User} reportKcal={result.Report_kcal} burn={result.Burn} reportDate={date} />
+          <ShareTitle userData={result.User} reportKcal={result.Report_kcal} reportNutri={result.Report_nutri} burn={result.Burn} reportDate={date} />
           <ShareDiaryFood foodLogs={result.FoodLogs} reportKcal={result.Report_kcal} />
           <ShareDiaryFitness burn={result.Burn}/>
         </div>
