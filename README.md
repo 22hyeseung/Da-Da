@@ -132,6 +132,8 @@
 **1) Server**
 - Node.js
 - Express
+- AWS (supported: EC2, S3(Image Storage), Caddy): Cloud Web Server
+- Redis(supported: KUE): In-memory data structure store
 
 <br>
 
@@ -143,9 +145,8 @@
 
 **3) Open API**
 
-- [Googl Vision API](https://cloud.google.com/vision/)
-- AWS (supported: EC2, S3(Image Storage), Caddy): Cloud Web Server
-- Redis(supported: KUE): In-memory data structure store
+- [Google Vision API](https://cloud.google.com/vision/)
+
 
 <br>
 
@@ -204,3 +205,5 @@
 <br>
 
 ### 3. 개발
+
+[완성본 동영상 보기](https://youtu.be/DWtnFShrpKM)
