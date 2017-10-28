@@ -77,7 +77,6 @@ class RecipePage extends Component {
             recipeAmount={this.state.recipeAmount}
           />
         </div>
-        <Footer />
       </div>
     )
   }

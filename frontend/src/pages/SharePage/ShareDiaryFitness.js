@@ -5,6 +5,8 @@ import {
 } from 'semantic-ui-react'
 import bgImg from '../../static/img/fitness_bg.png'
 import FitnessIcon from '../../static/img/diary-fitness_default.svg'
+import ShareDiaryFitnessList from './ShareDiaryFitnessList'
+
 
 const listWrapper = {
   width: '80%',
@@ -62,8 +64,13 @@ class ShareDiaryFitness extends Component {
           />
         </Header>
         <div style={listWrapper}>
-          오늘은 운동을 하지 않았어요..
-          {/* <ShareDiaryFitnessList /> */}
+          {
+            this.props.burn.length > 0 ? (
+              this.props.burn.map(val => <ShareDiaryFitnessList burn={val} />)
+            ) : (
+              '오늘은 운동을 하지 않았어요..'
+            )
+          }
         </div>
       </Segment>
     )
