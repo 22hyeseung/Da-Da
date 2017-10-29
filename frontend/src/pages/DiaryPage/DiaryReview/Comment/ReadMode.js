@@ -7,49 +7,46 @@ import {
   Button,
   Icon,
 } from 'semantic-ui-react'
-import {
-  savedContainer,
-  buttonIcon,
-} from '../StyledDiaryReview'
+import { buttonIcon } from '../StyledDiaryReview'
 import '../diaryReview.css'
 
 // 리덕스 액션
 import {
-  changeModeLong,
-  deleteLongLogOfDB,
+  changeModeShort,
+  deleteCommentOfDB,
 } from '../../../../actions/review'
 
-class LongLogReadMode extends Component {
+class ReadMode extends Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
 
   deleteLogAndChangeToWriteMode(id) {
-    this.props.deleteLongLogOfDB(id)
+    this.props.deleteCommentOfDB(id)
     this.props.changeMode(this.props.isPostMode)
-    window.localStorage.setItem('content', '')
   }
 
   render() {
     const {
-      longLogSaved,
+      commentSaved,
       changeMode,
-      isEditorMode,
+      isPostMode,
     } = this.props
-
     return (
       <div>
-        <Header as="h4">
-          오늘의 일기
+        <Header
+          as="h4"
+          style={{ marginBottom: '24px' }}
+        >
+          오늘의 반성 일기 ( 30자 내외 )
           {/* 수정 버튼 */}
           <Button
             style={{
               ...buttonIcon,
               marginLeft: '16px',
             }}
-            onClick={() =>
-              changeMode(isEditorMode)}
+            onClick={() => changeMode(isPostMode)}
           >
             <Icon name="pencil" />
           </Button>
@@ -58,23 +55,17 @@ class LongLogReadMode extends Component {
             style={buttonIcon}
             onClick={() =>
               this.deleteLogAndChangeToWriteMode(
-                longLogSaved.day_log_id,
+                commentSaved.day_log_id,
               )}
           >
             <Icon name="trash outline" />
           </Button>
         </Header>
         <div
-          className="savedLongLog"
-          style={savedContainer}
-          onClick={() => changeMode(isEditorMode)}
+          className="savedComment"
+          onClick={() => changeMode(isPostMode)}
         >
-          <div
-            dangerouslySetInnerHTML={{
-              __html:
-                longLogSaved.day_log_comment,
-            }}
-          />
+          {commentSaved.day_log_regret}
         </div>
       </div>
     )
@@ -83,21 +74,21 @@ class LongLogReadMode extends Component {
 
 const mapStateToProps = state => {
   return {
-    longLogSaved: state.longLog.longLogSaved,
-    isEditorMode: state.longLog.isEditorMode,
+    commentSaved: state.comment.commentSaved,
+    isPostMode: state.comment.isPostMode,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeMode: isEditorMode =>
-      dispatch(changeModeLong(isEditorMode)),
-    deleteLongLogOfDB: id =>
-      dispatch(deleteLongLogOfDB(id)),
+    changeMode: isPostMode =>
+      dispatch(changeModeShort(isPostMode)),
+    deleteCommentOfDB: id =>
+      dispatch(deleteCommentOfDB(id)),
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LongLogReadMode)
+)(ReadMode)

@@ -1,12 +1,13 @@
 import * as types from '../actions/ActionTypes'
-import rootApi from '../config'
+import API_HOST from '../config'
 
-export const getRecipe = (id) => {
+export const getRecipe = id => {
   return dispatch => {
-    fetch(`${rootApi}/recipe/search/${id}`, {
+    fetch(`${API_HOST}/recipe/search/${id}`, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${window.localStorage.token}`,
+        Authorization: `Bearer ${window
+          .localStorage.token}`,
       },
     })
       .then(res => res.json())
@@ -22,12 +23,15 @@ export const getRecipe = (id) => {
   }
 }
 
-export const getRecipeSearch = (searchText) => {
+export const getRecipeSearch = searchText => {
   return dispatch => {
-    fetch(`${rootApi}/recipe/search?name=${searchText}`, {
+    fetch(
+      `${API_HOST}/recipe/search?name=${searchText}`,
+      {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${window.localStorage.token}`,
+          Authorization: `Bearer ${window
+            .localStorage.token}`,
         },
       },
     )

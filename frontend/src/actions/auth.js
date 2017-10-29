@@ -1,5 +1,5 @@
 import * as types from '../actions/ActionTypes'
-import rootApi from '../config'
+import API_HOST from '../config'
 
 export const saveToken = token => {
   return {
@@ -11,7 +11,7 @@ export const saveToken = token => {
 // 로그인 이후 토큰 값으로 사용자정보를 갖고오는 action
 export const getUserInfo = () => {
   return dispatch => {
-    fetch(`${rootApi}/user`, {
+    fetch(`${API_HOST}/user`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window
@@ -37,7 +37,7 @@ export const logOut = () => {
 
 export const postUserInfo = payload => {
   return dispatch => {
-    fetch(`${rootApi}/user/first`, {
+    fetch(`${API_HOST}/user/first`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${window

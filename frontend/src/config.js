@@ -1,3 +1,3 @@
-export const rootApi = 'https://api.downmix.net'
+export const API_HOST = 'https://api.downmix.net'
 
-export default rootApi
+export default API_HOST

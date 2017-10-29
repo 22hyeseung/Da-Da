@@ -1,10 +1,10 @@
 import * as types from '../actions/ActionTypes'
-import rootApi from '../config'
+import API_HOST from '../config'
 
 // 1. db 값 받는 action
 export const fetchWeightFromDB = () => {
   return dispatch => {
-    fetch(`${rootApi}/diary/kg`, {
+    fetch(`${API_HOST}/diary/kg`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window
@@ -27,7 +27,7 @@ export const fetchWeightFromDB = () => {
 // 2. input에서 받은 값을 db로 보내는 action(post)
 export const postWeightToDB = payload => {
   return dispatch => {
-    fetch(`${rootApi}/diary/kg`, {
+    fetch(`${API_HOST}/diary/kg`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${window
@@ -38,7 +38,7 @@ export const postWeightToDB = payload => {
     })
       .then(res => {
         if (res.ok) {
-          return fetch(`${rootApi}/diary/kg`, {
+          return fetch(`${API_HOST}/diary/kg`, {
             method: 'GET',
             headers: {
               Authorization: `Bearer ${window
@@ -74,7 +74,7 @@ export const postWeightToDB = payload => {
 // 3. delete
 export const deleteWeightOfDB = id => {
   return dispatch => {
-    fetch(`${rootApi}/weight/${id}`, {
+    fetch(`${API_HOST}/weight/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${window
@@ -83,7 +83,7 @@ export const deleteWeightOfDB = id => {
     })
       .then(res => {
         if (res.ok) {
-          return fetch(`${rootApi}/diary/kg`, {
+          return fetch(`${API_HOST}/diary/kg`, {
             method: 'GET',
             headers: {
               Authorization: `Bearer ${window
@@ -119,7 +119,7 @@ export const getAllWeightFromDB = () => {
     dispatch({
       type: types.GET_WEIGHT_ALL_REQUEST,
     })
-    fetch(`${rootApi}/weight/all`, {
+    fetch(`${API_HOST}/weight/all`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window
@@ -162,7 +162,7 @@ export const getWeightByDate = date => {
     dispatch({
       type: types.GET_WEIGHT_BY_DATE_REQUEST,
     })
-    fetch(`${rootApi}/weight?date=${date}`, {
+    fetch(`${API_HOST}/weight?date=${date}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window

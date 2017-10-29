@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import { longBox } from '../StyledDiaryReview'
 
 // 컴포넌트
-import LongLogReadMode from './LongLogReadMode'
-import LongLogWriteMode from './LongLogWriteMode'
+import ReadMode from './ReadMode'
+import WriteMode from './WriteMode'
 
-class DiaryReviewLongInput extends Component {
+class ArticleMain extends Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -16,26 +16,26 @@ class DiaryReviewLongInput extends Component {
 
   render() {
     const {
-      longLogSaved,
+      articleSaved,
       isEditorMode,
     } = this.props
 
     return (
       <div style={longBox}>
         {/* 이미 작성한 로그가 있는 지 확인 */}
-        {longLogSaved.day_log_comment ? (
+        {articleSaved.day_log_comment ? (
           // 작성한 로그가 이미 있으면
           !isEditorMode ? (
             // 기본 화면: 읽기 모드
-            <LongLogReadMode />
+            <ReadMode />
           ) : (
             // 수정 시 화면: 쓰기 모드
-            <LongLogWriteMode />
+            <WriteMode />
           )
         ) : (
           // 오늘 작성한 로그가 없으면
           // 기본 화면: 쓰기 모드
-          <LongLogWriteMode />
+          <WriteMode />
         )}
       </div>
     )
@@ -44,11 +44,11 @@ class DiaryReviewLongInput extends Component {
 
 const mapStateToProps = state => {
   return {
-    longLogSaved: state.longLog.longLogSaved,
-    isEditorMode: state.longLog.isEditorMode,
+    articleSaved: state.article.articleSaved,
+    isEditorMode: state.article.isEditorMode,
   }
 }
 
 export default connect(mapStateToProps, null)(
-  DiaryReviewLongInput,
+  ArticleMain,
 )

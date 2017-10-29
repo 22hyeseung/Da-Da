@@ -8,13 +8,13 @@ import { reviewBox } from './StyledDiaryReview'
 
 // 컴포넌트
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
-import ShortLog from './ShortLog'
-import LongLog from './LongLog'
+import Comment from './Comment'
+import Article from './Article'
 import DiarySubHeader from '../DiarySubHeader'
 
 // 리덕스 액션
-import { getShortLogFromDB } from '../../../actions/review'
-import { getLongLogFromDB } from '../../../actions/review'
+import { getCommentFromDB } from '../../../actions/review'
+import { getArticleFromDB } from '../../../actions/review'
 
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../helper/date'
@@ -41,8 +41,8 @@ class DiaryReview extends Component {
   // db에 작성된 로그가 이미 있는지 확인하기 위함.
   // 데이터 유무에 따라 보여지는 화면이 다름. (읽기모드/쓰기모드)
   componentWillMount() {
-    this.props.getLongLogFromDB(this.state.date)
-    this.props.getShortLogFromDB(this.state.date)
+    this.props.getArticleFromDB(this.state.date)
+    this.props.getCommentFromDB(this.state.date)
     this.setState({ isLoading: true }, () =>
       this.fetchData(),
     )
@@ -85,9 +85,9 @@ class DiaryReview extends Component {
             icon="reviewIcon"
           />
           {/* 오늘의 반성일기 */}
-          <ShortLog />
+          <Comment />
           {/* 오늘의 일기*/}
-          <LongLog />
+          <Article />
         </Segment>
       </div>
     )
@@ -97,19 +97,19 @@ class DiaryReview extends Component {
 const mapStateToProps = state => {
   return {
     dateState: state.today.date,
-    errorStateShort: state.shortLog.errorState,
-    errorStateLong: state.longLog.errorState,
-    isLoadingShort: state.shortLog.isLoading,
-    isLoadingLong: state.longLog.isLoading,
+    errorStateShort: state.comment.errorState,
+    errorStateLong: state.article.errorState,
+    isLoadingShort: state.comment.isLoading,
+    isLoadingLong: state.article.isLoading,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getShortLogFromDB: date =>
-      dispatch(getShortLogFromDB(date)),
-    getLongLogFromDB: date =>
-      dispatch(getLongLogFromDB(date)),
+    getCommentFromDB: date =>
+      dispatch(getCommentFromDB(date)),
+    getArticleFromDB: date =>
+      dispatch(getArticleFromDB(date)),
   }
 }
 

@@ -4,7 +4,7 @@ import './pageLoader.css'
 import { connect } from 'react-redux'
 
 // 리덕스 액션
-import { getShortLogFromDB } from '../../actions/review'
+import { getCommentFromDB } from '../../actions/review'
 
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../helper/date'
@@ -26,14 +26,14 @@ class PageLoader extends Component {
   }
 
   componentWillMount() {
-    this.props.getShortLogFromDB(
+    this.props.getCommentFromDB(
       this.getYesterday(),
     )
   }
 
-  getYesterDayShortLog() {
-    return this.props.shortLogSaved.day_log_regret
-      ? this.props.shortLogSaved.day_log_regret
+  getYesterDayComment() {
+    return this.props.commentSaved.day_log_regret
+      ? this.props.commentSaved.day_log_regret
       : '오늘도 어제처럼 완벽한 하루를!'
   }
 
@@ -41,8 +41,8 @@ class PageLoader extends Component {
     return (
       <div className="loader-body">
         <div className="loader-container">
-          <span className="loader-shortLog">
-            {this.getYesterDayShortLog()}
+          <span className="loader-comment">
+            {this.getYesterDayComment()}
           </span>
           <div>
             <div className="loader-dot" />
@@ -57,15 +57,15 @@ class PageLoader extends Component {
 
 const mapStateToProps = state => {
   return {
-    shortLogSaved: state.shortLog.shortLogSaved,
+    commentSaved: state.comment.commentSaved,
     dateState: state.today.date,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getShortLogFromDB: date =>
-      dispatch(getShortLogFromDB(date)),
+    getCommentFromDB: date =>
+      dispatch(getCommentFromDB(date)),
   }
 }
 

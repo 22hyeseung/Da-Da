@@ -1,5 +1,5 @@
 import * as types from './ActionTypes'
-import rootApi from '../config'
+import API_HOST from '../config'
 import { dateDashToDateType } from '../helper/date'
 import _ from 'lodash'
 
@@ -12,7 +12,7 @@ export const getCaloriesForAWeekFromDB = (
       type: types.GET_REPORTS_CALORIES_REQUEST,
     })
     fetch(
-      `${rootApi}/report/kcal/days?start_date=${startDate}&end_date=${endDate}`,
+      `${API_HOST}/report/kcal/days?start_date=${startDate}&end_date=${endDate}`,
       {
         method: 'GET',
         headers: {
@@ -94,7 +94,7 @@ export const getNutritionFactsForAWeekFromDB = (
       type: types.GET_REPORTS_NUTRITION_REQUEST,
     })
     fetch(
-      `${rootApi}/report/nutrition/days?start_date=${startDate}&end_date=${endDate}`,
+      `${API_HOST}/report/nutrition/days?start_date=${startDate}&end_date=${endDate}`,
       {
         method: 'GET',
         headers: {
@@ -138,7 +138,7 @@ export const getKcalSummaryFromDB = (
         types.GET_REPORTS_CALORIES_SUMMARY_REQUEST,
     })
     fetch(
-      `${rootApi}/report/kcal/summary?start_date=${startDate}&end_date=${endDate}`,
+      `${API_HOST}/report/kcal/summary?start_date=${startDate}&end_date=${endDate}`,
       {
         method: 'GET',
         headers: {
@@ -174,7 +174,7 @@ export const getNutritionSummaryFromDB = (
         types.GET_REPORTS_NUTRITION_SUMMARY_REQUEST,
     })
     fetch(
-      `${rootApi}/report/nutrition/summary?start_date=${startDate}&end_date=${endDate}`,
+      `${API_HOST}/report/nutrition/summary?start_date=${startDate}&end_date=${endDate}`,
       {
         method: 'GET',
         headers: {

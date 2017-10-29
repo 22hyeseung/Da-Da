@@ -8,7 +8,7 @@ import './Login.css'
 import bgVideo from '../../static/video/bg_login_1m.mp4'
 import bgImg from '../../static/img/login_img.jpg'
 import * as Style from './StyledLogin'
-import rootApi from '../../config'
+import API_HOST from '../../config'
 import { connect } from 'react-redux'
 import {
   saveToken,
@@ -31,7 +31,7 @@ class LoginPage extends Component {
   // token 갖고오는 함수 작동. > 여기서 토큰 저장
   tokenHandler = e => {
     const token = e.data
-    if (e.origin === `${rootApi}` && token) {
+    if (e.origin === `${API_HOST}` && token) {
       window.localStorage.token = token // window에 토큰 저장
       this.props.saveToken(token)
       this.state.popupWindow.close()
@@ -50,7 +50,7 @@ class LoginPage extends Component {
       this.tokenHandler,
     )
     const popupWindow = window.open(
-      `${rootApi}/auth/${target}`,
+      `${API_HOST}/auth/${target}`,
       '_blank',
       'width=475, height=630;',
     )
