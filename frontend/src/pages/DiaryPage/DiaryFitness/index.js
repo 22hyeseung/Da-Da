@@ -265,18 +265,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(getFitnessLogsFromDB(date)),
     deleteFitnessOfDB: id =>
       dispatch(deleteFitnessOfDB(id)),
-    updateFitnessOfDB: (
-      payload,
-      id,
-      onSuccessCb,
-    ) =>
-      dispatch(
-        updateFitnessOfDB(
-          payload,
-          id,
-          onSuccessCb,
-        ),
-      ),
+    updateFitnessOfDB: (payload, id) =>
+      dispatch(updateFitnessOfDB(payload, id)),
   }
 }
 export default connect(
