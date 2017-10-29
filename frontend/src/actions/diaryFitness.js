@@ -95,7 +95,10 @@ export const updateFitnessOfDB = (
 }
 
 // 4. deleteFood
-export const deleteFitnessOfDB = id => {
+export const deleteFitnessOfDB = (
+  id,
+  burnKcal,
+) => {
   return dispatch => {
     fetch(`${rootApi}/exercises/${id}`, {
       method: 'DELETE',
@@ -104,12 +107,17 @@ export const deleteFitnessOfDB = id => {
           .localStorage.token}`,
       },
     })
-      .then(result => {
-        if (result) {
+      .then(res => {
+        if (res.ok) {
           dispatch({
             type:
               types.DELETE_FITNESS_OF_DATABASE,
             payload: id,
+          })
+          dispatch({
+            type:
+              types.DELETE_SUMMARY_OF_BURN_CALORIE,
+            payload: burnKcal,
           })
         }
       })

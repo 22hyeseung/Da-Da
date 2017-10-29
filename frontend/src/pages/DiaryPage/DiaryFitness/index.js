@@ -67,11 +67,6 @@ class DiaryFitness extends Component {
     }, 2000)
   }
 
-  // 삭제 actionDispatch
-  deleteFitnessOfDB = id => {
-    this.props.deleteFitnessOfDB(id)
-  }
-
   // 수정 value 받는 핸들러
   handleUpdate = e => {
     this.setState({
@@ -176,7 +171,7 @@ class DiaryFitness extends Component {
               }
               id={fitness.burn_id}
               deleteFitnessOfDB={
-                this.deleteFitnessOfDB
+                this.props.deleteFitnessOfDB
               }
               show={this.show}
               key={i}
@@ -263,8 +258,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchFitnessLogs: date =>
       dispatch(getFitnessLogsFromDB(date)),
-    deleteFitnessOfDB: id =>
-      dispatch(deleteFitnessOfDB(id)),
+    deleteFitnessOfDB: (id, burnKcal) =>
+      dispatch(deleteFitnessOfDB(id, burnKcal)),
     updateFitnessOfDB: (payload, id) =>
       dispatch(updateFitnessOfDB(payload, id)),
   }
