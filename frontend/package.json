@@ -33,7 +33,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "backend": "json-server --watch db.json --port 3333"
+    "eject": "react-scripts eject"
   }
 }
