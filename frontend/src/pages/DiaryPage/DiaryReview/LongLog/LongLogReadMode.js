@@ -28,6 +28,7 @@ class LongLogReadMode extends Component {
   deleteLogAndChangeToWriteMode(id) {
     this.props.deleteLongLogOfDB(id)
     this.props.changeMode(this.props.isPostMode)
+    window.localStorage.setItem('content', '')
   }
 
   render() {
