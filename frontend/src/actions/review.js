@@ -1,14 +1,14 @@
 import * as types from './ActionTypes'
 import API_HOST from '../config'
 
-export const changeModeShort = currentMode => {
+export const changeModeComment = currentMode => {
   return {
     type: types.CHANGE_MODE_COMMENT,
     payload: !currentMode,
   }
 }
 
-export const changeModeLong = currentMode => {
+export const changeModeArticle = currentMode => {
   return {
     type: types.CHANGE_MODE_ARTICLE,
     payload: !currentMode,

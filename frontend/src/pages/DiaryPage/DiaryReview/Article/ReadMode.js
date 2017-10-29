@@ -15,7 +15,7 @@ import '../diaryReview.css'
 
 // 리덕스 액션
 import {
-  changeModeLong,
+  changeModeArticle,
   deleteArticleOfDB,
 } from '../../../../actions/review'
 
@@ -91,7 +91,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     changeMode: isEditorMode =>
-      dispatch(changeModeLong(isEditorMode)),
+      dispatch(changeModeArticle(isEditorMode)),
     deleteArticleOfDB: id =>
       dispatch(deleteArticleOfDB(id)),
   }

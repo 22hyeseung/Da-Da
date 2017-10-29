@@ -12,7 +12,7 @@ import '../diaryReview.css'
 
 // 리덕스 액션
 import {
-  changeModeShort,
+  changeModeComment,
   deleteCommentOfDB,
 } from '../../../../actions/review'
 
@@ -82,7 +82,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     changeMode: isPostMode =>
-      dispatch(changeModeShort(isPostMode)),
+      dispatch(changeModeComment(isPostMode)),
     deleteCommentOfDB: id =>
       dispatch(deleteCommentOfDB(id)),
   }

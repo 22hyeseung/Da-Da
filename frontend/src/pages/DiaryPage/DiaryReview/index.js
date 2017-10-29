@@ -25,12 +25,12 @@ class DiaryReview extends Component {
     this.state = {
       // 둘 중 하나라도 error이면 true
       errorState:
-        this.props.errorStateShort ||
-        this.props.errorStateLong,
+        this.props.errorStateComment ||
+        this.props.errorStateArticle,
       // 둘 중 하나라도 loading이면 true
       isLoading:
-        this.props.isLoadingShort ||
-        this.props.isLoadingLong,
+        this.props.isLoadingComment ||
+        this.props.isLoadingArticle,
       date: dateStringForApiQuery(
         this.props.dateState,
       ),
@@ -97,10 +97,10 @@ class DiaryReview extends Component {
 const mapStateToProps = state => {
   return {
     dateState: state.today.date,
-    errorStateShort: state.comment.errorState,
-    errorStateLong: state.article.errorState,
-    isLoadingShort: state.comment.isLoading,
-    isLoadingLong: state.article.isLoading,
+    errorStateComment: state.comment.errorState,
+    errorStateArticle: state.article.errorState,
+    isLoadingComment: state.comment.isLoading,
+    isLoadingArticle: state.article.isLoading,
   }
 }
 

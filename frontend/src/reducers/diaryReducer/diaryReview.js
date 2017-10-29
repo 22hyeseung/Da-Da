@@ -1,11 +1,11 @@
-const SHORT_INITIAL_STATE = {
+const COMMENT_INITIAL_STATE = {
   isLoading: false,
   isPostMode: true,
   errorState: false,
   commentSaved: [],
 }
 
-const LONG_INITIAL_STATE = {
+const ARTICLE_INITIAL_STATE = {
   isLoading: false,
   isEditorMode: true,
   errorState: false,
@@ -13,7 +13,7 @@ const LONG_INITIAL_STATE = {
 }
 
 export const commentReducer = (
-  state = SHORT_INITIAL_STATE,
+  state = COMMENT_INITIAL_STATE,
   action,
 ) => {
   switch (action.type) {
@@ -70,7 +70,7 @@ export const commentReducer = (
         isLoading: false,
         errorState: true,
       }
-    case 'CHANGE_MODE_SHORT':
+    case 'CHANGE_MODE_COMMENT':
       return {
         ...state,
         isPostMode: action.payload,
@@ -81,7 +81,7 @@ export const commentReducer = (
 }
 
 export const articleReducer = (
-  state = LONG_INITIAL_STATE,
+  state = ARTICLE_INITIAL_STATE,
   action,
 ) => {
   switch (action.type) {
