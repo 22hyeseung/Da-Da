@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { convertFromRaw } from 'draft-js'
-
+// 컨버터(Converter): EditorContent -> HTML
+import { stateToHTML } from 'draft-js-export-html'
+import { options } from './draftConvertOptions'
 // 스타일링
 import { Button, Header } from 'semantic-ui-react'
 import { longSubmitBtn } from '../StyledDiaryReview'
-
 // 컴포넌트
 import TextEditor from '../../../../components/TextEditor'
-
-// 컨버터(Converter)
-// EditorContent -> HTML
-import { stateToHTML } from 'draft-js-export-html'
-
 // 리덕스 액션
 import { postArticleToDB } from '../../../../actions/review'
-
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../../helper/date'
 
@@ -47,7 +42,8 @@ class WriteMode extends Component {
     const content = this.loadExistingContentFromLocalStorage()
     // ContentState -> HTML
     const editorContent = convertFromRaw(content)
-    return stateToHTML(editorContent)
+
+    return stateToHTML(editorContent, options)
   }
 
   // 작성된 일기(article)를 DB로 POST
@@ -86,7 +82,7 @@ class WriteMode extends Component {
           secondary
           style={longSubmitBtn}
           content={'등록'}
-          onClick={this.createArticlegAndPostToDB}
+          onClick={this.createArticleAndPostToDB}
           /* disabled={
           this.isInputValid()} */
         />
