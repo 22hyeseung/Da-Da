@@ -24,7 +24,7 @@ class ShortLogReadMode extends Component {
 
   deleteLogAndChangeToWriteMode(id) {
     this.props.deleteShortLogOfDB(id)
-    this.changeMode(this.props.isPostMode)
+    this.props.changeMode(this.props.isPostMode)
   }
 
   render() {
