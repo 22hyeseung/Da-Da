@@ -62,9 +62,11 @@ export const avatar = {
 export const button = {
   padding: '7px 14px',
   backgroundColor: 'transparent',
-  fontWeight: '200',
-  border: '1px solid #e0e1e2',
-  fontSize: '12px',
+  fontWeight: '400',
+  cursor: 'pointer',
+  fontSize: '14px',
+  height: '24px',
+  margin: '0',
 }
 // =============================== RightMenu > UseInfo.js > UserInfoPopup.js
 

@@ -67,9 +67,7 @@ class componentName extends Component {
         })}
 
         {/* 유저 정보 + 팝업*/}
-        <UserInfo
-          inverted={this.props.inverted}
-        />
+        <UserInfo color={this.props.color} />
       </Menu.Menu>
     )
   }

@@ -18,10 +18,7 @@ export default class NotFoundPage extends Component {
     return (
       <div className="notFound-wrapper">
         <div className="notFound-grid">
-          <Navigation
-            color="#fff"
-            inverted="true"
-          />
+          <Navigation color="#fff" />
           <div class="notFound-content">
             <span className="notFound-header">
               404

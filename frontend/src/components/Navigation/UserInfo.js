@@ -4,6 +4,7 @@ import {
   Image,
   Popup,
   Button,
+  Icon,
 } from 'semantic-ui-react'
 import {
   userInfoWrap,
@@ -25,13 +26,20 @@ class UserInfo extends Component {
         <Popup
           wide
           trigger={
-            <Button
-              style={button}
-              inverted={this.props.inverted}
-              content={
-                this.props.userInfo.userName
-              }
-            />
+            <div
+              style={{
+                ...button,
+                color: this.props.color,
+              }}
+            >
+              {this.props.userInfo.userName}
+              <Icon
+                name="caret down"
+                style={{
+                  fontSize: '16px',
+                }}
+              />
+            </div>
           }
           on="click"
         >

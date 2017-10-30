@@ -54,10 +54,7 @@ class HomePage extends Component {
               !!this.props.userInfo.userGender,
             )}
             <div className="home-grid">
-              <Navigation
-                color="#fff"
-                inverted="true"
-              />
+              <Navigation color="#fff" />
             </div>
             <HomeHero />
             <div style={tabContainer}>
