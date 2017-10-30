@@ -182,10 +182,11 @@ class DiaryFoodSearchModal extends Component {
         <Dropzone
           style={{ width: 'none' }}
           onDrop={this.onDrop.bind(this)}
+          disableClick
         >
           <div>
             <label
-              for="upload"
+              htmlFor="upload"
               className="diary-food-meal-file-upload__label"
             >
               <img
