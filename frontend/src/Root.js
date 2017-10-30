@@ -23,7 +23,7 @@ class Root extends Component {
             <Helmet>
               {/* body attributes */}
               <title itemProp="name">
-                Da, DA
+                DA, DA
               </title>
             </Helmet>
             <Switch>

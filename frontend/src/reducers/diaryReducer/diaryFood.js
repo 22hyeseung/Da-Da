@@ -1,7 +1,7 @@
 const DEFAULT_DIARY_FOOD = {
   foodresult: [],
   reciperesult: [],
-  foodAlbumResult: [],
+  foodAlbumResult: '',
   visionresult: [],
   visionresultKeyword: '',
 }

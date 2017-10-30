@@ -344,8 +344,8 @@ class DiaryFoodSearch extends Component {
                           아직 안먹으셨다면 검색!
                         </span>
                       </div>
-                      {this.props.foodAlbumResult
-                        .length === 0 ? (
+                      {this.props
+                        .foodAlbumResult ? (
                         <img
                           style={{ width: '17%' }}
                           src={notyet}
