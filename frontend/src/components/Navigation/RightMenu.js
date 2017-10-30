@@ -42,7 +42,15 @@ class componentName extends Component {
             route.linkTo
           return (
             <Menu.Item
-              style={linkTagWrap}
+              style={
+                isLinkMatched // active일때만 border-color 적용
+                  ? {
+                      ...linkTagWrap,
+                      borderColor: this.props
+                        .color,
+                    }
+                  : linkTagWrap
+              }
               active={isLinkMatched}
             >
               <Link
