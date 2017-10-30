@@ -185,17 +185,19 @@ router.delete('/:id', (req, res) => {
  * @apiSuccess {Number} burn_kcal 사용자가 선택해 수정한 소모열량
  * @apiSuccess {Number} burn_minute 사용자가 선택해 수정한 소모 운동시간
  * @apiSuccess {String} exercise_name 사용자가 선택한 수정하고자 한 운동이름
+ * @apiSuccess {Number} exercise_burn_kcal 운동별 1분당 소모 칼로리
  * @apiSuccessExample {JSON} Succes-Response:
  * http://localhost:5000/exercises/3
  *
  * [
- *   {
- *       "burn_id": 3,
- *       "burn_kcal": 300,
- *       "burn_minute": 50,
- *       "exercise_name": "요리하기"
- *   }
-* ]
+ *     {
+ *         "burn_id": 3,
+ *         "burn_kcal": 500,
+ *         "burn_minute": 5,
+ *         "exercise_name": "줄넘기",
+ *         "exercise_burn_kcal": 4.7
+ *     }
+ * ]
  */
 router.put('/:id', (req, res) => {
   const param = {
