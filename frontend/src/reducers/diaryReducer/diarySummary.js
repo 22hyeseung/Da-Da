@@ -119,6 +119,11 @@ export const diarySummaryReducer = (
         ...state,
         burnKcal: state.burnKcal + action.payload,
       }
+    case 'DELETE_SUMMARY_OF_BURN_CALORIE,':
+      return {
+        ...state,
+        burnKcal: state.burnKcal - action.payload,
+      }
     default:
       return state
   }
