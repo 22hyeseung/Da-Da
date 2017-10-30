@@ -48,13 +48,7 @@ class DiaryFoodList extends React.Component {
       },
       this.state.food_id,
     )
-    this.toggleUpdatingMode()
-  }
-
-  toggleUpdatingMode = () => {
-    this.setState({
-      isUpdateMode: !this.state.isUpdateMode,
-    })
+    this.close()
   }
 
   handleUpdate = e => {
@@ -71,24 +65,14 @@ class DiaryFoodList extends React.Component {
   // keydown 이벤트
   handleKeyPress = e => {
     if (e.keyCode === 13) {
-      // this.createPayloadAndPostToDB()
+      this.createPayloadAndPostToDB()
     }
   }
-
-  // postDelay = () => {
-  //   setTimeout(() => {
-  //     this.setState({
-  //       loading: false,
-  //     }),
-  //       this.props.toggleSearchMode()
-  //   }, 2000)
-  // }
 
   show = (dimmer, name, id, amount) => () => {
     this.setState({
       dimmer,
       open: true,
-      // selectKey: i,
       food_name: name,
       food_id: id,
       food_amount: amount,
@@ -216,7 +200,7 @@ class DiaryFoodList extends React.Component {
                   marginBottom: '12px',
                 }}
               >
-                기존 입력했던 양은{' '}
+                기존 입력했던 양은
                 {this.state.food_amount}g입니다.
               </span>
               <Input
