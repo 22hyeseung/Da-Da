@@ -36,6 +36,10 @@ export const UPDATE_FITNESS_OF_DATABASE =
   'UPDATE_FITNESS_OF_DATABASE'
 export const DELETE_FITNESS_OF_DATABASE =
   'DELETE_FITNESS_OF_DATABASE'
+export const UPDATE_SUMMARY_OF_BURN_CALORIE =
+  'UPDATE_SUMMARY_OF_BURN_CALORIE'
+export const DELETE_SUMMARY_OF_BURN_CALORIE =
+  'DELETE_SUMMARY_OF_BURN_CALORIE,'
 //==========================================
 
 //==========================================

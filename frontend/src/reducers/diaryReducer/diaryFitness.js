@@ -29,21 +29,21 @@ export const diaryFitnessReducer = (
   if (
     action.type === 'UPDATE_FITNESS_OF_DATABASE'
   ) {
+    const target = Object.values(
+      action.payload,
+    )[0]
     const updateFitnessIndex = state.fitnessResult
       .map(item => item.burn_id)
-      .indexOf(action.payload.burn_id)
+      .indexOf(target.burn_id)
+
+    // console.log(updateFitnessIndex)
+
     state.fitnessResult.splice(
       updateFitnessIndex,
       1,
-      action.payload,
+      target,
     )
-    // const updateFitness = _.fill(
-    //   state.fitnessResult,
-    //   action.payload,
-    //   updateFitnessIndex,
-    //   updateFitnessIndex + 1,
-    // )
-    console.log(action.payload)
+
     return {
       ...state,
     }
