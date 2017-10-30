@@ -21,7 +21,7 @@ import DiaryFoodAdd from './DiaryFoodAdd'
 import notyet from '../../../static/img/diary-food-search-notyet.svg'
 import error from '../../../static/img/diary-search-error.svg'
 import { connect } from 'react-redux'
-import rootApi from '../../../config'
+import API_HOST from '../../../config'
 
 class DiaryFoodSearch extends Component {
   constructor(props) {
@@ -70,7 +70,7 @@ class DiaryFoodSearch extends Component {
 
     // 검색 get
     fetch(
-      `${rootApi}/foods?name=${this.state
+      `${API_HOST}/foods?name=${this.state
         .userInput}`,
       {
         method: 'GET',

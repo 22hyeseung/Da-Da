@@ -6,7 +6,6 @@
     "apidoc": "^0.17.6",
     "draft-js": "^0.10.3",
     "draft-js-export-html": "^1.2.0",
-    "draft-js-import-html": "^1.2.1",
     "faker": "^4.1.0",
     "global": "^4.3.2",
     "json-server": "^0.12.0",
@@ -33,7 +32,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "backend": "json-server --watch db.json --port 3333"
+    "eject": "react-scripts eject"
   }
 }

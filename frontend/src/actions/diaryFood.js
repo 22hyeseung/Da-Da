@@ -1,10 +1,10 @@
 import * as types from '../actions/ActionTypes'
-import rootApi from '../config'
+import API_HOST from '../config'
 
 // 1. db 값 받는 action
 export const getFoodLogsFromDB = date => {
   return dispatch => {
-    fetch(`${rootApi}/eat-logs?date=${date}`, {
+    fetch(`${API_HOST}/eat-logs?date=${date}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window
@@ -30,7 +30,7 @@ export const postFoodToDB = (
   requestDate, //20171027
 ) => {
   return dispatch => {
-    fetch(`${rootApi}/eat-logs`, {
+    fetch(`${API_HOST}/eat-logs`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${window
@@ -43,7 +43,7 @@ export const postFoodToDB = (
       .then(result => {
         if (result) {
           return fetch(
-            `${rootApi}/eat-logs/${result[0]
+            `${API_HOST}/eat-logs/${result[0]
               .eat_log_id}`,
             {
               method: 'GET',
@@ -69,6 +69,27 @@ export const postFoodToDB = (
                 })
               }
             })
+            .then(() => {
+              fetch(
+                `${API_HOST}/eat-logs/summary/day?date=${requestDate}`,
+                {
+                  method: 'GET',
+                  headers: {
+                    Authorization: `Bearer ${window
+                      .localStorage.token}`,
+                  },
+                },
+              )
+                .then(res => res.json())
+                .then(data => {
+                  dispatch({
+                    type:
+                      types.UPDATE_LIST_SUMMARY,
+                    payload: data,
+                  })
+                })
+                .catch(err => console.error(err))
+            })
             .catch(error => {
               console.log(
                 'fetchFoodLogsToDB error',
@@ -85,7 +106,7 @@ export const postFoodToDB = (
 // 3. updateDB
 export const updateFoodOfDB = (payload, id) => {
   return dispatch => {
-    fetch(`${rootApi}/eat-logs/${id}`, {
+    fetch(`${API_HOST}/eat-logs/${id}`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${window
@@ -99,7 +120,7 @@ export const updateFoodOfDB = (payload, id) => {
         if (result) {
           console.log(result)
           return fetch(
-            `${rootApi}/eat-logs/${id}`,
+            `${API_HOST}/eat-logs/${id}`,
             {
               method: 'GET',
               headers: {
@@ -132,7 +153,7 @@ export const updateFoodOfDB = (payload, id) => {
 // 4. deleteFood
 export const deleteFoodOfDB = (id, card) => {
   return dispatch => {
-    fetch(`${rootApi}/eat-logs/${id}`, {
+    fetch(`${API_HOST}/eat-logs/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${window
@@ -168,7 +189,7 @@ export const postFoodImgToDB = payload => {
     const formData = new FormData()
     formData.append('upload_img', payload)
 
-    fetch(`${rootApi}/vision`, {
+    fetch(`${API_HOST}/vision`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${window

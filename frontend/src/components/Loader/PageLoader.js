@@ -1,48 +1,51 @@
 import React, { Component } from 'react'
-import './pageLoader.css'
-
 import { connect } from 'react-redux'
-
+// 스타일링
+import './pageLoader.css'
 // 리덕스 액션
-import { getShortLogFromDB } from '../../actions/review'
-
-// helper: 오늘 날짜 API Query형식
-import { dateStringForApiQuery } from '../../helper/date'
+import { getCommentFromDB } from '../../actions/review'
+// helper: 날짜 함수
+import {
+  dateStringForApiQuery,
+  getDateNDaysBefore,
+  dateTime,
+} from '../../helper/date'
 
 class PageLoader extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      date: dateStringForApiQuery(
-        this.props.dateState,
-      ),
-    }
   }
 
   // 어제 날짜 구하는 함수
   getYesterday() {
-    const yesterday = this.state.date * 1 - 1
-    return yesterday + ''
+    // YYYY. MM. DD -> YYYYMMDD
+    return dateStringForApiQuery(
+      getDateNDaysBefore(
+        // 1일전 Date형식의 날짜
+        dateTime,
+        1,
+      ).toLocaleDateString(), // date -> string으로 변환
+    )
   }
 
   componentWillMount() {
-    this.props.getShortLogFromDB(
+    this.props.getCommentFromDB(
       this.getYesterday(),
     )
   }
 
-  getYesterDayShortLog() {
-    return this.props.shortLogSaved.day_log_regret
-      ? this.props.shortLogSaved.day_log_regret
-      : '오늘도 어제처럼 완벽한 하루를!'
+  getYesterDayComment() {
+    const comment = this.props.commentSaved
+      .day_log_regret
+    return comment ? comment : '오늘도 어제처럼 완벽한 하루를!'
   }
 
   render() {
     return (
       <div className="loader-body">
         <div className="loader-container">
-          <span className="loader-shortLog">
-            {this.getYesterDayShortLog()}
+          <span className="loader-comment">
+            {this.getYesterDayComment()}
           </span>
           <div>
             <div className="loader-dot" />
@@ -57,15 +60,14 @@ class PageLoader extends Component {
 
 const mapStateToProps = state => {
   return {
-    shortLogSaved: state.shortLog.shortLogSaved,
-    dateState: state.today.date,
+    commentSaved: state.comment.commentSaved,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getShortLogFromDB: date =>
-      dispatch(getShortLogFromDB(date)),
+    getCommentFromDB: date =>
+      dispatch(getCommentFromDB(date)),
   }
 }
 

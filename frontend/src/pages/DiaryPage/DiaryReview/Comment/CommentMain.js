@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import { shortBox } from '../StyledDiaryReview'
 
 // 컴포넌트
-import ShortLogWriteMode from './ShortLogWriteMode'
-import ShortLogReadMode from './ShortLogReadMode'
+import WriteMode from './WriteMode'
+import ReadMode from './ReadMode'
 
-class DiaryReviewShortInput extends Component {
+class CommentMain extends Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -17,25 +17,25 @@ class DiaryReviewShortInput extends Component {
   render() {
     const {
       isPostMode,
-      shortLogSaved,
+      commentSaved,
     } = this.props
 
     return (
       <div style={shortBox}>
         {/* 이미 작성한 로그가 있는 지 확인 */}
-        {shortLogSaved.day_log_regret ? (
+        {commentSaved.day_log_regret ? (
           // 작성한 로그가 이미 있으면
           !isPostMode ? (
             // 기본 화면: 읽기 모드
-            <ShortLogReadMode />
+            <ReadMode />
           ) : (
             // 수정 시 화면: 쓰기 모드
-            <ShortLogWriteMode />
+            <WriteMode />
           )
         ) : (
           // 오늘 작성한 로그가 없으면
           // 기본 화면: 쓰기 모드
-          <ShortLogWriteMode />
+          <WriteMode />
         )}
       </div>
     )
@@ -44,11 +44,11 @@ class DiaryReviewShortInput extends Component {
 
 const mapStateToProps = state => {
   return {
-    shortLogSaved: state.shortLog.shortLogSaved,
-    isPostMode: state.shortLog.isPostMode,
+    commentSaved: state.comment.commentSaved,
+    isPostMode: state.comment.isPostMode,
   }
 }
 
 export default connect(mapStateToProps, null)(
-  DiaryReviewShortInput,
+  CommentMain,
 )

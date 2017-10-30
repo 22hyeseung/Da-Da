@@ -7,46 +7,49 @@ import {
   Button,
   Icon,
 } from 'semantic-ui-react'
-import { buttonIcon } from '../StyledDiaryReview'
+import {
+  savedContainer,
+  buttonIcon,
+} from '../StyledDiaryReview'
 import '../diaryReview.css'
 
 // 리덕스 액션
 import {
-  changeModeShort,
-  deleteShortLogOfDB,
+  changeModeArticle,
+  deleteArticleOfDB,
 } from '../../../../actions/review'
 
-class ShortLogReadMode extends Component {
+class ReadMode extends Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
 
   deleteLogAndChangeToWriteMode(id) {
-    this.props.deleteShortLogOfDB(id)
-    this.changeMode(this.props.isPostMode)
+    this.props.deleteArticleOfDB(id)
+    this.props.changeMode(this.props.isPostMode)
+    window.localStorage.setItem('content', '')
   }
 
   render() {
     const {
-      shortLogSaved,
+      articleSaved,
       changeMode,
-      isPostMode,
+      isEditorMode,
     } = this.props
+
     return (
       <div>
-        <Header
-          as="h4"
-          style={{ marginBottom: '24px' }}
-        >
-          오늘의 반성 일기 ( 30자 내외 )
+        <Header as="h4">
+          오늘의 일기
           {/* 수정 버튼 */}
           <Button
             style={{
               ...buttonIcon,
               marginLeft: '16px',
             }}
-            onClick={() => changeMode(isPostMode)}
+            onClick={() =>
+              changeMode(isEditorMode)}
           >
             <Icon name="pencil" />
           </Button>
@@ -55,17 +58,23 @@ class ShortLogReadMode extends Component {
             style={buttonIcon}
             onClick={() =>
               this.deleteLogAndChangeToWriteMode(
-                shortLogSaved.day_log_id,
+                articleSaved.day_log_id,
               )}
           >
             <Icon name="trash outline" />
           </Button>
         </Header>
         <div
-          className="savedShortLog"
-          onClick={() => changeMode(isPostMode)}
+          className="savedArticle"
+          style={savedContainer}
+          onClick={() => changeMode(isEditorMode)}
         >
-          {shortLogSaved.day_log_regret}
+          <div
+            dangerouslySetInnerHTML={{
+              __html:
+                articleSaved.day_log_comment,
+            }}
+          />
         </div>
       </div>
     )
@@ -74,21 +83,21 @@ class ShortLogReadMode extends Component {
 
 const mapStateToProps = state => {
   return {
-    shortLogSaved: state.shortLog.shortLogSaved,
-    isPostMode: state.shortLog.isPostMode,
+    articleSaved: state.article.articleSaved,
+    isEditorMode: state.article.isEditorMode,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeMode: isPostMode =>
-      dispatch(changeModeShort(isPostMode)),
-    deleteShortLogOfDB: id =>
-      dispatch(deleteShortLogOfDB(id)),
+    changeMode: isEditorMode =>
+      dispatch(changeModeArticle(isEditorMode)),
+    deleteArticleOfDB: id =>
+      dispatch(deleteArticleOfDB(id)),
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ShortLogReadMode)
+)(ReadMode)

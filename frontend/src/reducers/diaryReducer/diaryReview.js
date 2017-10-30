@@ -1,76 +1,76 @@
-const SHORT_INITIAL_STATE = {
+const COMMENT_INITIAL_STATE = {
   isLoading: false,
   isPostMode: true,
   errorState: false,
-  shortLogSaved: [],
+  commentSaved: [],
 }
 
-const LONG_INITIAL_STATE = {
+const ARTICLE_INITIAL_STATE = {
   isLoading: false,
   isEditorMode: true,
   errorState: false,
-  longLogSaved: [],
+  articleSaved: [],
 }
 
-export const shortLogReducer = (
-  state = SHORT_INITIAL_STATE,
+export const commentReducer = (
+  state = COMMENT_INITIAL_STATE,
   action,
 ) => {
   switch (action.type) {
-    case 'GET_SHORTLOG_REQUEST':
+    case 'GET_COMMENT_REQUEST':
       return {
         ...state,
         isLoading: true,
       }
-    case 'GET_SHORTLOG_SUCCESS':
+    case 'GET_COMMENT_SUCCESS':
       return {
         ...state,
         isLoading: false,
         isPostMode: false,
-        shortLogSaved: action.payload,
+        commentSaved: action.payload,
       }
-    case 'GET_SHORTLOG_FAILED':
+    case 'GET_COMMENT_FAILED':
       return {
         ...state,
         isLoading: false,
         errorState: true,
       }
-    case 'POST_SHORTLOG_REQUEST':
+    case 'POST_COMMENT_REQUEST':
       return {
         ...state,
         isLoading: true,
       }
-    case 'POST_SHORTLOG_SUCCESS':
+    case 'POST_COMMENT_SUCCESS':
       return {
         ...state,
         isLoading: false,
         isPostMode: false,
-        shortLogSaved: action.payload,
+        commentSaved: action.payload,
       }
-    case 'POST_SHORTLOG_FAILED':
+    case 'POST_COMMENT_FAILED':
       return {
         ...state,
         isLoading: false,
         errorState: true,
       }
-    case 'DELETE_SHORTLOG_REQUEST':
+    case 'DELETE_COMMENT_REQUEST':
       return {
         ...state,
         isLoading: true,
       }
-    case 'DELETE_SHORTLOG_SUCCESS':
+    case 'DELETE_COMMENT_SUCCESS':
       return {
         ...state,
         isLoading: false,
-        shortLogSaved: action.payload,
+        commentSaved: action.payload,
       }
-    case 'DELETE_SHORTLOG_FAILED':
+    case 'DELETE_COMMENT_FAILED':
       return {
         ...state,
         isLoading: false,
         errorState: true,
       }
-    case 'CHANGE_MODE_SHORT':
+    case 'CHANGE_MODE_COMMENT':
       return {
         ...state,
         isPostMode: action.payload,
@@ -80,64 +80,64 @@ export const shortLogReducer = (
   }
 }
 
-export const longLogReducer = (
-  state = LONG_INITIAL_STATE,
+export const articleReducer = (
+  state = ARTICLE_INITIAL_STATE,
   action,
 ) => {
   switch (action.type) {
-    case 'GET_LONGLOG_REQUEST':
+    case 'GET_ARTICLE_REQUEST':
       return {
         ...state,
         isLoading: true,
       }
-    case 'GET_LONGLOG_SUCCESS':
+    case 'GET_ARTICLE_SUCCESS':
       return {
         ...state,
         isLoading: false,
         isEditorMode: false,
-        longLogSaved: action.payload,
+        articleSaved: action.payload,
       }
-    case 'GET_LONGLOG_FAILED':
+    case 'GET_ARTICLE_FAILED':
       return {
         ...state,
         isLoading: false,
         errorState: true,
       }
-    case 'POST_LONGLOG_REQUEST':
+    case 'POST_ARTICLE_REQUEST':
       return {
         ...state,
         isLoading: true,
       }
-    case 'POST_LONGLOG_SUCCESS':
+    case 'POST_ARTICLE_SUCCESS':
       return {
         ...state,
         isEditorMode: false,
-        longLogSaved: action.payload,
+        articleSaved: action.payload,
       }
-    case 'POST_LONGLOG_FAILED':
+    case 'POST_ARTICLE_FAILED':
       return {
         ...state,
         isLoading: false,
         errorState: true,
       }
-    case 'DELETE_LONGLOG_REQUEST':
+    case 'DELETE_ARTICLE_REQUEST':
       return {
         ...state,
         isLoading: true,
       }
-    case 'DELETE_LONGLOG_SUCCESS':
+    case 'DELETE_ARTICLE_SUCCESS':
       return {
         ...state,
         isLoading: false,
-        longLogSaved: action.payload,
+        articleSaved: action.payload,
       }
-    case 'DELETE_LONGLOG_FAILED':
+    case 'DELETE_ARTICLE_FAILED':
       return {
         ...state,
         isLoading: false,
         errorState: true,
       }
-    case 'CHANGE_MODE_LONG':
+    case 'CHANGE_MODE_ARTICLE':
       return {
         ...state,
         isEditorMode: action.payload,

@@ -6,8 +6,8 @@ import {
 import authReducer from './authReducer/auth'
 import navActiveItemReducer from './appReducer/navActiveItem'
 import {
-  shortLogReducer,
-  longLogReducer,
+  commentReducer,
+  articleReducer,
 } from './diaryReducer/diaryReview'
 import {
   todayDateReducer,
@@ -39,8 +39,8 @@ const reducers = combineReducers({
   auth: authReducer,
   weightList: weightListReducer,
   weightAll: weightAllReducer,
-  shortLog: shortLogReducer,
-  longLog: longLogReducer,
+  comment: commentReducer,
+  article: articleReducer,
   foodLogs: diaryFoodReducer,
   fitness: diaryFitnessReducer,
   caloriesChart: calorieChartReducer,

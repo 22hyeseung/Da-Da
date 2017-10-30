@@ -1,31 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { convertFromRaw } from 'draft-js'
-
+// 컨버터(Converter): EditorContent -> HTML
+import { stateToHTML } from 'draft-js-export-html'
+import { options } from './draftConvertOptions'
 // 스타일링
 import { Button, Header } from 'semantic-ui-react'
 import { longSubmitBtn } from '../StyledDiaryReview'
-
 // 컴포넌트
 import TextEditor from '../../../../components/TextEditor'
-
-// 컨버터(Converter)
-// EditorContent -> HTML
-import { stateToHTML } from 'draft-js-export-html'
-
 // 리덕스 액션
-import { postLongLogToDB } from '../../../../actions/review'
-
+import { postArticleToDB } from '../../../../actions/review'
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../../helper/date'
 
-class longLogWriteMode extends Component {
+class WriteMode extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      longLog: this.props.longLogSaved
+      article: this.props.articleSaved
         .day_log_comment
-        ? this.props.longLogSaved.day_log_comment
+        ? this.props.articleSaved.day_log_comment
         : '',
       date: dateStringForApiQuery(
         this.props.dateState,
@@ -47,18 +42,19 @@ class longLogWriteMode extends Component {
     const content = this.loadExistingContentFromLocalStorage()
     // ContentState -> HTML
     const editorContent = convertFromRaw(content)
-    return stateToHTML(editorContent)
+
+    return stateToHTML(editorContent, options)
   }
 
-  // 작성된 일기(LongLog)를 DB로 POST
-  createLongLogAndPostToDB = () => {
+  // 작성된 일기(article)를 DB로 POST
+  createArticleAndPostToDB = () => {
     let html = this.convertContentStateToHtml()
     const requestBody = {
       comment: html,
       date: this.state.date,
     }
     // DB로 post
-    this.props.postLongLogToDB(requestBody)
+    this.props.postArticleToDB(requestBody)
   }
 
   // 입력창에 값이 들어왔는지 확인
@@ -86,7 +82,7 @@ class longLogWriteMode extends Component {
           secondary
           style={longSubmitBtn}
           content={'등록'}
-          onClick={this.createLongLogAndPostToDB}
+          onClick={this.createArticleAndPostToDB}
           /* disabled={
           this.isInputValid()} */
         />
@@ -97,19 +93,19 @@ class longLogWriteMode extends Component {
 
 const mapStateToProps = state => {
   return {
-    longLogSaved: state.longLog.longLogSaved,
+    articleSaved: state.article.articleSaved,
     dateState: state.today.date,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    postLongLogToDB: requestBody =>
-      dispatch(postLongLogToDB(requestBody)),
+    postArticleToDB: requestBody =>
+      dispatch(postArticleToDB(requestBody)),
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(longLogWriteMode)
+)(WriteMode)

@@ -1,5 +1,5 @@
 import React from 'react'
-import rootApi from '../../../config'
+import API_HOST from '../../../config'
 import { connect } from 'react-redux'
 
 // 스타일
@@ -60,7 +60,7 @@ class DiaryFitnessSearch extends React.Component {
 
     // 검색 get
     fetch(
-      `${rootApi}/exercises/search?name=${this
+      `${API_HOST}/exercises/search?name=${this
         .state.userInput}`,
       {
         method: 'GET',

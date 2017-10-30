@@ -1,5 +1,5 @@
 import * as types from './ActionTypes'
-import rootApi from '../config'
+import API_HOST from '../config'
 
 export const getFoodSummaryFromDB = date => {
   return dispatch => {
@@ -7,7 +7,7 @@ export const getFoodSummaryFromDB = date => {
       type: types.GET_FOOD_SUMMARY_REQUEST,
     })
     fetch(
-      `${rootApi}/eat-logs/summary/day?date=${date}`,
+      `${API_HOST}/eat-logs/summary/day?date=${date}`,
       {
         method: 'GET',
         headers: {
