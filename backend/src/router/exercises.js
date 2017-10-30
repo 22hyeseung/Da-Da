@@ -38,6 +38,7 @@ router.options('*', cors())
  * @apiSuccess {Number} burn_kcal 계산된 칼로리로 등록한 칼로리
  * @apiSuccess {Number} burn_minute 운동한 시간
  * @apiSuccess {Number} burn_exercise_id 운동 pk
+ * @apiSuccess {Number} exercise_burn_kcal 운동별 1분당 소모 칼로리
  * @apiSuccessExample {Json} Success-Response:
  * {
  *     "burn_id": 1,
@@ -45,7 +46,8 @@ router.options('*', cors())
  *     "burn_date": "2016-12-31T15:00:00.000Z",
  *     "burn_kcal": 50,
  *     "burn_minute": 30,
- *     "burn_exercise_id": 3
+ *     "burn_exercise_id": 3,
+ *     "exercise_burn_kcal": 4
  * }
  */
 router.post('/', (req, res) => {
