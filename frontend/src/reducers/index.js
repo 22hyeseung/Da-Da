@@ -12,10 +12,10 @@ import {
 import {
   todayDateReducer,
   beforeDateReducer,
+  // dateNavigationReducer,
 } from './appReducer/date'
 import { diaryFoodReducer } from './diaryReducer/diaryFood'
 import { diaryFitnessReducer } from './diaryReducer/diaryFitness'
-import { calorieGoalReducer } from './diaryReducer/diaryKcalGoal'
 import { diarySummaryReducer } from './diaryReducer/diarySummary'
 import { diaryKcalReducer } from './diaryReducer/diaryKcal'
 
@@ -48,10 +48,10 @@ const reducers = combineReducers({
   nutritionChart: nutritionChartReducer,
   recipe: recipeReducer,
   recipeSearchList: recipeSearchReducer,
-  calorieGoalAboutADay: calorieGoalReducer,
   diarySummary: diarySummaryReducer,
   calorySummary: calorySummaryReducer,
   nutritionSummary: nutritionSummaryReducer,
+  // dateNavigation: dateNavigationReducer,
 })
 
 export default reducers

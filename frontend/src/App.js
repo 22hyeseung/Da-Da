@@ -18,12 +18,12 @@ import favicon from './static/img/favicon-96x96.png'
 import SearchResultPage from './pages/SearchPage/ResultPage'
 import NoSearchPage from './pages/SearchPage/ResultPage/NoSearch'
 import NotFoundPage from './pages/404Page'
+
 // import Helmet from 'react-helmet'
 class App extends Component {
   render() {
     /* Login 상태가 아닌 경우에 다른 페이지로 접근하면
        Login페이지로 Redirect하여 접근을 막음 */
-
     if (!window.localStorage.token) {
       return <Redirect to="/login" />
     }
@@ -60,7 +60,8 @@ class App extends Component {
           />
           <Route
             path="/search/:sc"
-            component={SearchResultPage}/>
+            component={SearchResultPage}
+          />
           <Route
             path="/search"
             component={SearchPage}

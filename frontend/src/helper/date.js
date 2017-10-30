@@ -100,6 +100,18 @@ export const getDateNDaysBefore = (
   )
 }
 
+// N일후 날짜(date타입) 구하는 함수
+export const getDateNDaysAfter = (
+  dateType,
+  n,
+) => {
+  return new Date(
+    dateType.getFullYear(),
+    dateType.getMonth(),
+    dateType.getDate() + n,
+  )
+}
+
 // 시작일부터 일주일치 Array 반환
 export const getWeekArray = dateTypeStartDate => {
   const dateArray = []
