@@ -8,27 +8,23 @@ import { getCommentFromDB } from '../../actions/review'
 import {
   dateStringForApiQuery,
   getDateNDaysBefore,
-  // dateDotToDateType,
   dateTime,
 } from '../../helper/date'
 
 class PageLoader extends Component {
   constructor(props) {
     super(props)
-    // this.state = {
-    //   date: dateStringForApiQuery(
-    //     this.props.dateState,
-    //   ),
-    // }
   }
 
   // 어제 날짜 구하는 함수
   getYesterday() {
+    // YYYY. MM. DD -> YYYYMMDD
     return dateStringForApiQuery(
       getDateNDaysBefore(
+        // 1일전 Date형식의 날짜
         dateTime,
         1,
-      ).toLocaleDateString(),
+      ).toLocaleDateString(), // date -> string으로 변환
     )
   }
 
@@ -39,9 +35,9 @@ class PageLoader extends Component {
   }
 
   getYesterDayComment() {
-    return this.props.commentSaved.day_log_regret
-      ? this.props.commentSaved.day_log_regret
-      : '오늘도 어제처럼 완벽한 하루를!'
+    const comment = this.props.commentSaved
+      .day_log_regret
+    return comment ? comment : '오늘도 어제처럼 완벽한 하루를!'
   }
 
   render() {
@@ -65,7 +61,6 @@ class PageLoader extends Component {
 const mapStateToProps = state => {
   return {
     commentSaved: state.comment.commentSaved,
-    dateState: state.today.date,
   }
 }
 
