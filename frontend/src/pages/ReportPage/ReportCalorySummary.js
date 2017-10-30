@@ -55,6 +55,7 @@ class ReportCalorySummary extends Component {
         style={{
           ...smSegment,
           backgroundImage: `url(${summaryImg.calory})`,
+          backgroundSize: '90%',
         }}
       >
         <Header style={smHeader}>
