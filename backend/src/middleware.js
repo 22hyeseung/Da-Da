@@ -1,4 +1,7 @@
 const query = require('./query')
+const bodyParser = require('body-parser')
+const expressJwt = require('express-jwt')
+const cors = require('cors')
 
 function loginRequired(req, res, next) {
   if (req.user) {
@@ -19,8 +22,18 @@ function insertToken(req, res, next) {
   next()
 }
 
+const jsonParser = bodyParser.json()
+const urlParser = bodyParser.urlencoded({ 'extended': false })
+const onJwt = expressJwt({ 'secret': process.env.JWT_SECRET })
+const onCors = cors({ 'origin': process.env.TARGET_ORIGIN })
+
 module.exports = {
   loginRequired,
   insertReq,
-  insertToken
+  insertToken,
+  jsonParser,
+  urlParser,
+  onJwt,
+  onCors,
+  query
 }

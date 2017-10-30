@@ -1,7 +1,5 @@
 const express = require('express')
-const expressJwt = require('express-jwt')
-const bodyParser = require('body-parser')
-const cors = require('cors')
+const { jsonParser, urlParser, onJwt, onCors } = require('../middleware')
 const multer = require('multer')
 const aws = require('aws-sdk')
 const uuid = require('uuid')
@@ -37,14 +35,8 @@ const maxFileSize = 1024 * 1024 * 3
 
 const router = express.Router()
 
-
-router.use((req, res, next) => {
-  next()
-})
-router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
-router.use(bodyParser.json())
-router.options('*', cors())
+router.use(jsonParser, urlParser, onJwt)
+router.options('*', onCors)
 
 function googleVision(fileBuffer) {
   return new Promise((resolve, reject) => {

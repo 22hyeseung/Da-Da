@@ -1,25 +1,13 @@
 const express = require('express')
-const expressJwt = require('express-jwt')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-
-const query = require('../query')
+const { jsonParser, urlParser, onJwt, onCors, query } = require('../middleware')
 
 const router = express.Router()
 
-// const urlencodeParser = bodyParser.urlencoded({ 'extended': false })
 /**
  * @apiDefine exercises
  */
-router.use((req, res, next) => {
-  next()
-})
-
-router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ 'extended': false }))
-router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
-router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-router.options('*', cors())
+router.use(jsonParser, urlParser, onJwt)
+router.options('*', onCors)
 /**
  * @api {post} /exercises Post Exercises
  * @apiDescription 운동을 통한 열량소모를 등록하기 위한 액션
