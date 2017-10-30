@@ -14,18 +14,18 @@ import {
 } from '../StyledDiaryReview'
 
 // 리덕스 액션
-import { postShortLogToDB } from '../../../../actions/review'
+import { postCommentToDB } from '../../../../actions/review'
 
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../../helper/date'
 
-class ShortLogWriteMode extends Component {
+class WriteMode extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      shortLog: this.props.shortLogSaved
+      comment: this.props.commentSaved
         .day_log_regret
-        ? this.props.shortLogSaved.day_log_regret
+        ? this.props.commentSaved.day_log_regret
         : '',
       date: dateStringForApiQuery(
         this.props.dateState,
@@ -34,36 +34,36 @@ class ShortLogWriteMode extends Component {
   }
 
   // 반성일기 입력창에 값 입력시 state 변경
-  handleShortLogValueChange = e => {
-    this.setState({ shortLog: e.target.value })
+  handleCommentValueChange = e => {
+    this.setState({ comment: e.target.value })
   }
 
   // 입력창에 값이 들어왔는지 확인
   isInputValid = () => {
-    return this.state.shortLog
+    return this.state.comment
   }
 
   // 입력 받은 일기 길이가 30자 미만인지 확인
   isInputLengthValid = () => {
-    return this.state.shortLog.length <= 30
+    return this.state.comment.length <= 30
   }
 
   // 엔터 버튼 클릭시 등록 이벤트
   handleKeyPress = e => {
     if (e.keyCode === 13) {
-      this.createShortLogAndPostToDB()
+      this.createCommentAndPostToDB()
     }
   }
 
-  // 반성 일기 등록시 date와 ShortLog db로 전송(Post)
-  createShortLogAndPostToDB = () => {
-    const { shortLog, date } = this.state
+  // 반성 일기 등록시 date와 Comment db로 전송(Post)
+  createCommentAndPostToDB = () => {
+    const { comment, date } = this.state
     const requestBody = {
-      regret: shortLog,
+      regret: comment,
       date,
     }
     // DB로 post
-    this.props.postShortLogToDB(requestBody)
+    this.props.postCommentToDB(requestBody)
   }
 
   render() {
@@ -74,11 +74,9 @@ class ShortLogWriteMode extends Component {
         </Header>
         <Input
           style={shortInput}
-          value={this.state.shortLog}
+          value={this.state.comment}
           placeholder="오늘 하루, 스스로의 약속을 잘 지키셨나요?"
-          onChange={
-            this.handleShortLogValueChange
-          }
+          onChange={this.handleCommentValueChange}
           onKeyDown={
             this.isInputValid() &&
             this.isInputLengthValid()
@@ -92,7 +90,7 @@ class ShortLogWriteMode extends Component {
           style={shortSubmitBtn}
           onClick={
             // 버튼 클릭시 POST 요청
-            this.createShortLogAndPostToDB
+            this.createCommentAndPostToDB
           }
           disabled={
             // 입력 값이 없거나 30자를 초과할 경우 버튼 비활성화
@@ -119,19 +117,19 @@ class ShortLogWriteMode extends Component {
 
 const mapStateToProps = state => {
   return {
-    shortLogSaved: state.shortLog.shortLogSaved,
+    commentSaved: state.comment.commentSaved,
     dateState: state.today.date,
   }
 }
 
 const mapDispatchToprops = dispatch => {
   return {
-    postShortLogToDB: requestBody =>
-      dispatch(postShortLogToDB(requestBody)),
+    postCommentToDB: requestBody =>
+      dispatch(postCommentToDB(requestBody)),
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToprops,
-)(ShortLogWriteMode)
+)(WriteMode)

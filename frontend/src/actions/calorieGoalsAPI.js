@@ -1,12 +1,12 @@
 import * as types from './ActionTypes'
-import { rootApi } from '../config'
+import { API_HOST } from '../config'
 
 export const getCalorieGoalFromDB = date => {
   return dispatch => {
     dispatch({
       type: types.KCAL_GOALS_REQUEST,
     })
-    fetch(`${rootApi}/diary/kcal?date=${date}`, {
+    fetch(`${API_HOST}/diary/kcal?date=${date}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window

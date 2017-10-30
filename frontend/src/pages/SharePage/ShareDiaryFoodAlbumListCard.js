@@ -5,7 +5,6 @@ import {
   Modal,
   Image,
 } from 'semantic-ui-react'
-import foodImg from '../../static/img/diary_food_album.jpg'
 import zoomIcon from '../../static/img/diary-zoom.svg'
 import * as Style from './StyledDiaryFood'
 
@@ -17,7 +16,10 @@ class ShareDiaryFoodAlbumListCard extends Component {
   close = () => this.setState({ open: false })
   render() {
     return (
-      <Segment style={Style.albumCard}>
+      <Segment style={{
+        ...Style.albumCard,
+        backgroundImage: `url(${this.props.food.eat_log_picture})`,
+        }}>
         <Label
           attached="top"
           style={{
@@ -25,7 +27,7 @@ class ShareDiaryFoodAlbumListCard extends Component {
             ...Style.albumCardLabelTop,
           }}
         >
-          아침식사
+          {this.props.food.eat_log_meal_tag}식사
           <div>
             <Modal
               trigger={
@@ -40,7 +42,7 @@ class ShareDiaryFoodAlbumListCard extends Component {
             >
               <Modal.Content>
                 <Image
-                  src={foodImg}
+                  src={this.props.food.eat_log_picture}
                   size="big"
                   shape="rounded"
                   centered
@@ -56,7 +58,7 @@ class ShareDiaryFoodAlbumListCard extends Component {
             ...Style.albumCardLabelBtoom,
           }}
         >
-          CSS
+          {this.props.food.food_name_ko}
         </Label>
       </Segment>
     )

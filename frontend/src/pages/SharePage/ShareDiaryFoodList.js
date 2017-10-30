@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ShareDiaryFoodListCard from './ShareDiaryFoodListCard'
 
-const ShareDiaryFoodList = () => {
-  return (
-    <div className="diary-food-meal-list-scroll">
-      <div
-        style={{ display: 'flex' }}
-        className="diary-food-meal-list-card"
-      >
-        <ShareDiaryFoodListCard />
-        <ShareDiaryFoodListCard />
-        <ShareDiaryFoodListCard />
-        <ShareDiaryFoodListCard />
-        <ShareDiaryFoodListCard />
-        <ShareDiaryFoodListCard />
+class ShareDiaryFoodList extends Component {
+
+  render() {
+    if(typeof this.props.foodList === "undefined") {
+      return null
+    }
+
+    return (
+      <div className="share-diary-food-meal-list-scroll">
+        <div
+          style={{ display: 'flex' }}
+          className="diary-food-meal-list-card"
+        >
+          {
+            this.props.foodList.map(val => {
+              return <ShareDiaryFoodListCard foodData={val} />
+            })
+          }
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default ShareDiaryFoodList

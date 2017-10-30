@@ -1,10 +1,10 @@
 import * as types from '../actions/ActionTypes'
-import rootApi from '../config'
+import API_HOST from '../config'
 
 // 1. db 값 받는 action
 export const getFitnessLogsFromDB = date => {
   return dispatch => {
-    fetch(`${rootApi}/exercises?date=${date}`, {
+    fetch(`${API_HOST}/exercises?date=${date}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${window
@@ -29,7 +29,7 @@ export const getFitnessLogsFromDB = date => {
 export const postFitnessToDB = payload => {
   return dispatch => {
     // console.log(payload)
-    fetch(`${rootApi}/exercises`, {
+    fetch(`${API_HOST}/exercises`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${window
@@ -40,8 +40,6 @@ export const postFitnessToDB = payload => {
     })
       .then(result => result.json())
       .then(data => {
-        // console.log(data[0].burn_kcal)
-        // console.log(data, '<<')
         dispatch({
           type: types.POST_FITNESS_TO_DATABASE,
           payload: data,
@@ -64,7 +62,7 @@ export const updateFitnessOfDB = (
 ) => {
   return dispatch => {
     return new Promise((resolve, reject) => {
-      fetch(`${rootApi}/exercises/${id}`, {
+      fetch(`${API_HOST}/exercises/${id}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${window
@@ -100,7 +98,7 @@ export const deleteFitnessOfDB = (
   burnKcal,
 ) => {
   return dispatch => {
-    fetch(`${rootApi}/exercises/${id}`, {
+    fetch(`${API_HOST}/exercises/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${window

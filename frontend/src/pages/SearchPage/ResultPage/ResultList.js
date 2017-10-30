@@ -61,7 +61,6 @@ class ResultBox extends Component {
           columns={4}
           style={Style.ImageWrap}
         >
-        {console.log(this.props.recipeList)}
         {
           this.props.recipeList.length === 0 ? (
             <div style={Style.noSearchContainer}>
@@ -77,7 +76,6 @@ class ResultBox extends Component {
             </div>
           ) : (
             this.props.recipeList.map((result, i) => {
-              console.log(result, '<< [ result ]');
               return (
                 <Grid.Column style={{ paddingTop: '20px' }}>
                   <div style={{ width: '279px' }}>
