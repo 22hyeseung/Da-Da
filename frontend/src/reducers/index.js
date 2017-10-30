@@ -4,7 +4,6 @@ import {
   weightAllReducer,
 } from './weightReducer/weight'
 import authReducer from './authReducer/auth'
-import navActiveItemReducer from './appReducer/navActiveItem'
 import {
   commentReducer,
   articleReducer,
@@ -33,7 +32,6 @@ import {
 } from './reportReducer/summaryData'
 
 const reducers = combineReducers({
-  navActiveItem: navActiveItemReducer,
   today: todayDateReducer,
   beforeDay: beforeDateReducer,
   auth: authReducer,

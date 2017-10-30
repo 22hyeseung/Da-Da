@@ -1,9 +1,34 @@
 import React, { Component } from 'react'
+import {
+  Link,
+  withRouter,
+} from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
-import { itemWrap } from './StyledNavigation'
-import NavItems from './NavItems'
+import {
+  itemWrap,
+  linkTagWrap,
+  linkTag,
+} from './StyledNavigation'
 import UserInfo from './UserInfo'
 
+const routes = [
+  {
+    linkLabel: '다이어리',
+    linkTo: '/diary',
+  },
+  {
+    linkLabel: '리포트',
+    linkTo: '/report',
+  },
+  {
+    linkLabel: '체중 기록',
+    linkTo: '/weight',
+  },
+  {
+    linkLabel: '레시피 검색',
+    linkTo: '/search',
+  },
+]
 class componentName extends Component {
   render() {
     return (
@@ -11,7 +36,27 @@ class componentName extends Component {
         position="right"
         style={itemWrap}
       >
-        <NavItems color={this.props.color} />
+        {routes.map(route => {
+          const isLinkMatched =
+            this.props.location.pathname ===
+            route.linkTo
+          return (
+            <Menu.Item
+              style={linkTagWrap}
+              active={isLinkMatched}
+            >
+              <Link
+                style={{
+                  ...linkTag,
+                  color: this.props.color,
+                }}
+                to={route.linkTo}
+              >
+                {route.linkLabel}
+              </Link>
+            </Menu.Item>
+          )
+        })}
 
         {/* 유저 정보 + 팝업*/}
         <UserInfo
@@ -22,4 +67,4 @@ class componentName extends Component {
   }
 }
 
-export default componentName
+export default withRouter(componentName)
