@@ -1,49 +1,57 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Segment } from 'semantic-ui-react'
 import * as Style from './StyledDiaryFood'
 
-const DiaryFoodListCard = () => {
-  return (
-    <Segment style={Style.mealCard}>
-      <div className="diary-food-meal-list-card-firstRow">
-        <p className="diary-food-meal-list-card-firstRow-title">
-          현미밥
+
+class DiaryFoodListCard extends Component {
+
+  render(){
+    if(typeof this.props.foodData === "undefined") {
+      return null
+    }
+
+    return (
+      <Segment style={Style.mealCard}>
+        <div className="diary-food-meal-list-card-firstRow">
+          <p className="share-diary-food-meal-list-card-firstRow-title">
+            {this.props.foodData.food_name_ko}
+          </p>
+        </div>
+        <p className="diary-food-meal-list-card-calory">
+          {this.props.foodData.food_kcal}
+          <span className="diary-food-meal-list-card-calory-unit">
+            kcal
+          </span>
         </p>
-      </div>
-      <p className="diary-food-meal-list-card-calory">
-        100
-        <span className="diary-food-meal-list-card-calory-unit">
-          kcal
-        </span>
-      </p>
-      <div className="diary-food-meal-list-card-nutritions">
-        <span className="diary-food-meal-list-card-nutrition-wrapper">
-          <span className="diary-food-meal-list-card-nutrition-title">
-            탄
+        <div className="diary-food-meal-list-card-nutritions">
+          <span className="diary-food-meal-list-card-nutrition-wrapper">
+            <span className="diary-food-meal-list-card-nutrition-title">
+              탄
+            </span>
+            <span className="diary-food-meal-list-card-nutrition-kcal">
+              {this.props.foodData.food_carb}
+            </span>
           </span>
-          <span className="diary-food-meal-list-card-nutrition-kcal">
-            100
+          <span className="diary-food-meal-list-card-nutrition-wrapper">
+            <span className="diary-food-meal-list-card-nutrition-title">
+              단
+            </span>
+            <span className="diary-food-meal-list-card-nutrition-kcal">
+              {this.props.foodData.food_protein}
+            </span>
           </span>
-        </span>
-        <span className="diary-food-meal-list-card-nutrition-wrapper">
-          <span className="diary-food-meal-list-card-nutrition-title">
-            단
+          <span className="diary-food-meal-list-card-nutrition-wrapper">
+            <span className="diary-food-meal-list-card-nutrition-title">
+              지
+            </span>
+            <span className="diary-food-meal-list-card-nutrition-kcal">
+              {this.props.foodData.food_fat}
+            </span>
           </span>
-          <span className="diary-food-meal-list-card-nutrition-kcal">
-            100
-          </span>
-        </span>
-        <span className="diary-food-meal-list-card-nutrition-wrapper">
-          <span className="diary-food-meal-list-card-nutrition-title">
-            지
-          </span>
-          <span className="diary-food-meal-list-card-nutrition-kcal">
-            100
-          </span>
-        </span>
-      </div>
-    </Segment>
-  )
+        </div>
+      </Segment>
+    )
+  }
 }
 
 export default DiaryFoodListCard

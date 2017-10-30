@@ -12,6 +12,7 @@ import {
 } from '../../../actions/diaryFood'
 import { connect } from 'react-redux'
 import { submitBtn } from '../StyledDiaryCommon'
+import { dateStringForApiQuery } from '../../../helper/date'
 
 class DiaryFoodList extends React.Component {
   constructor(props) {
@@ -261,11 +262,11 @@ class DiaryFoodList extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     dateState: state.today.date,
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    dateState: state.today.date,
+  }
+}
 const mapDispatchToProps = dispatch => {
   return {
     deleteFoodOfDB: (id, card) =>

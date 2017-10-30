@@ -59,11 +59,6 @@ class CookingProcess extends Component {
   }
 
   createPayloadAndPostToDB = () => {
-    console.log(this.props.recipeAmount, '<< [ this.props.recipeAmount ]');
-    console.log(this.state.date, '<< [ this.state.date ]');
-    console.log(this.state.selectMeal, '<< [ this.state.selectMeal ]');
-    console.log(this.props.recipeContent.recipe_id, '<< [ this.props.recipe.recipe_id ]');
-
     if(!this.state.selectMeal){
       return false;
     }

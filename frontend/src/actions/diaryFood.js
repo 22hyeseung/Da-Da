@@ -55,20 +55,19 @@ export const postFoodToDB = (
           )
             .then(res => res.json())
             .then(data => {
-              // console.log(data)
               if (data) {
                 dispatch({
                   type:
                     types.POST_FOOD_TO_DATABASE,
                   payload: data,
                 })
+                // 차트도 같이 업데이트하기 위한 액션
                 dispatch({
                   type:
-                    types.UPDATE_CALORIE_SUMMARY,
+                    types.UPDATE_CHART_SUMMARY,
                   payload: data,
                 })
               }
-              // 차트도 같이 업데이트하기 위한 액션
             })
             .then(() => {
               fetch(
@@ -172,7 +171,7 @@ export const deleteFoodOfDB = (id, card) => {
       // 차트도 같이 업데이트하기 위한 액션
       .then(result => {
         dispatch({
-          type: types.DELETE_CALORIE_SUMMARY,
+          type: types.DELETE_CHART_SUMMARY,
           payload: card,
         })
       })

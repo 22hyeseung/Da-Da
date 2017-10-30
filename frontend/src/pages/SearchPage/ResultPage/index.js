@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Navigation from '../../../components/Navigation'
-import Footer from '../../../components/Footer'
 import TopSearchBar from './ResultSearchBar'
 import ResultBox from './ResultList'
 import './Result.css'
