@@ -12,13 +12,11 @@ import {
 import {
   todayDateReducer,
   beforeDateReducer,
-  // dateNavigationReducer,
 } from './appReducer/date'
 import { diaryFoodReducer } from './diaryReducer/diaryFood'
 import { diaryFitnessReducer } from './diaryReducer/diaryFitness'
 import { diarySummaryReducer } from './diaryReducer/diarySummary'
 import { diaryKcalReducer } from './diaryReducer/diaryKcal'
-
 import {
   calorieChartReducer,
   nutritionChartReducer,
@@ -33,25 +31,35 @@ import {
 } from './reportReducer/summaryData'
 
 const reducers = combineReducers({
-  navActiveItem: navActiveItemReducer,
+  // app Reducer
   today: todayDateReducer,
   beforeDay: beforeDateReducer,
+  navActiveItem: navActiveItemReducer,
+  // auth Reducer
   auth: authReducer,
-  weightList: weightListReducer,
-  weightAll: weightAllReducer,
+  // diary Reducer
+  //// review ////
   comment: commentReducer,
   article: articleReducer,
+  //// food ////
   foodLogs: diaryFoodReducer,
+  //// fitness ////
   fitness: diaryFitnessReducer,
-  caloriesChart: calorieChartReducer,
+  //// goal ////
   goalKcal: diaryKcalReducer,
-  nutritionChart: nutritionChartReducer,
-  recipe: recipeReducer,
-  recipeSearchList: recipeSearchReducer,
+  //// summary ////
   diarySummary: diarySummaryReducer,
+  // report Reducer
+  caloriesChart: calorieChartReducer,
+  nutritionChart: nutritionChartReducer,
   calorySummary: calorySummaryReducer,
   nutritionSummary: nutritionSummaryReducer,
-  // dateNavigation: dateNavigationReducer,
+  // weight Reducer
+  weightList: weightListReducer,
+  weightAll: weightAllReducer,
+  // recipe Reducer
+  recipe: recipeReducer,
+  recipeSearchList: recipeSearchReducer,
 })
 
 export default reducers
