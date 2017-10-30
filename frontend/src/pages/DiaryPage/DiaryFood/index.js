@@ -9,6 +9,8 @@ import DiaryFoodMeal from './DiaryFoodMeal'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
 
 import { connect } from 'react-redux'
+// 리덕스 액션
+
 import { getFoodLogsFromDB } from '../../../actions/diaryFood'
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../helper/date'

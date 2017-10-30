@@ -134,6 +134,9 @@ class DiarySummary extends Component {
 
           {/* 파이 차트 시작 */}
           <SectionHeader subtitle="NUTRITION\nGRAPH" />
+          <span style={Style.unitLabel}>
+            (단위: kcal)
+          </span>
           <SummaryPieChart
             style={{ marginTop: '4px' }}
           />

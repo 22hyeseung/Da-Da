@@ -24,15 +24,14 @@ const COLORS = ['#16325c', '#a8b7c7', '#e5e5e5']
 class SummaryPieChart extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      date: this.props.dateState,
-    }
+    this.state = {}
   }
 
   componentWillMount() {
     const { getFoodSummaryFromDB } = this.props
+    const date = this.props.dateState
     getFoodSummaryFromDB(
-      dateStringForApiQuery(this.state.date),
+      dateStringForApiQuery(date),
     )
   }
 
