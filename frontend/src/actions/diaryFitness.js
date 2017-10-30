@@ -62,7 +62,7 @@ export const updateFitnessOfDB = (
 ) => {
   return dispatch => {
     return new Promise((resolve, reject) => {
-      fetch(`${rootApi}/exercises/${id}`, {
+      fetch(`${API_HOST}/exercises/${id}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${window
@@ -70,7 +70,6 @@ export const updateFitnessOfDB = (
           'Content-type': 'application/json',
         },
         body: JSON.stringify(payload),
-
       })
         .then(result => result.json())
         .then(data => {
