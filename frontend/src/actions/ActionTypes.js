@@ -136,6 +136,9 @@ export const SET_TODAY_DATE = 'SET_TODAY_DATE'
 export const SET_TODAY_DAY = 'SET_TODAY_DAY'
 export const SET_BEFORE_DATE = 'SET_BEFORE_DATE'
 export const SET_BEFORE_DAY = 'SET_BEFORE_DAY'
+export const MOVE_PREVIOUS_DATE =
+  'MOVE_PREVIOUS_DATE'
+export const MOVE_NEXT_DATE = 'MOVE_NEXT_DATE'
 //==========================================
 
 //==========================================
@@ -168,16 +171,6 @@ export const GET_REPORTS_NUTRITION_SUMMARY_FAILED =
 //==========================================
 
 //==========================================
-// calorieGoalsAPI.js
-export const KCAL_GOALS_REQUEST =
-  'KCAL_GOALS_REQUEST'
-export const KCAL_GOALS_SUCCESS =
-  'KCAL_GOALS_SUCCESS'
-export const KCAL_GOALS_FAILED =
-  'KCAL_GOALS_FAILED'
-//==========================================
-
-//==========================================
 // getFoodSummary.js
 export const GET_FOOD_SUMMARY_REQUEST =
   'GET_FOOD_SUMMARY_REQUEST'
@@ -199,6 +192,10 @@ export const GET_RECIPE_SEARCH_SUCCESS =
 // diaryKcal.js
 export const GET_KCAL_REQUEST = 'GET_KCAL_REQUEST'
 export const GET_KCAL_SUCCESS = 'GET_KCAL_SUCCESS'
+export const GET_KCAL_FAILED = 'GET_KCAL_FAILED'
+export const POST_KCAL_REQUEST =
+  'POST_KCAL_REQUEST'
 export const POST_KCAL_SUCCESS =
   'POST_KCAL_SUCCESS'
+export const POST_KCAL_FAILED = 'POST_KCAL_FAILED'
 //==========================================

@@ -21,6 +21,7 @@ export const getGoalKcal = date => {
         })
       })
       .catch(error => {
+        type: types.GET_KCAL_FAILED
         console.log('getKcal error')
       })
   }
@@ -28,6 +29,9 @@ export const getGoalKcal = date => {
 
 export const postGoalKcal = param => {
   return dispatch => {
+    dispatch({
+      type: types.POST_KCAL_REQUEST,
+    })
     fetch(`${API_HOST}/diary/kcal`, {
       method: 'POST',
       headers: {
@@ -46,6 +50,7 @@ export const postGoalKcal = param => {
         })
       })
       .catch(error => {
+        type: types.POST_KCAL_FAILED
         console.log('postKcal error')
       })
   }
