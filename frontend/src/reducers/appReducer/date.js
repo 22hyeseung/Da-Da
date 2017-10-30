@@ -34,31 +34,15 @@ export const todayDateReducer = (
       }
     case 'MOVE_PREVIOUS_DATE':
       return {
-        date: getDateNDaysBefore(
-          action.payload,
-          1,
-        ).toLocaleDateString(),
-        day: setDay(
-          getDateNDaysBefore(
-            action.payload,
-            1,
-          ).getDay(),
-        ),
+        date: action.payload.toLocaleDateString(),
+        day: setDay(action.payload.getDay()),
         movedDay: setDay(action.payload.getDay()),
         movedDate: action.payload.toLocaleDateString(),
       }
     case 'MOVE_NEXT_DATE':
       return {
-        date: getDateNDaysAfter(
-          action.payload,
-          1,
-        ).toLocaleDateString(),
-        day: setDay(
-          getDateNDaysAfter(
-            action.payload,
-            1,
-          ).getDay(),
-        ),
+        date: action.payload.toLocaleDateString(),
+        day: setDay(action.payload.getDay()),
         movedDay: setDay(action.payload.getDay()),
         movedDate: action.payload.toLocaleDateString(),
       }
