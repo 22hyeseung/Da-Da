@@ -41,15 +41,23 @@ class DiaryFoodList extends React.Component {
         disabled: true,
       })
     }
-
-    this.props.updateFoodOfDB(
-      {
-        amount: this.state.updateAmountVal * 1,
-        serve: this.state.serve,
-      },
-      this.state.food_id,
-    )
-    this.close()
+    this.props
+      .updateFoodOfDB(
+        {
+          amount: this.state.updateAmountVal,
+          serve: this.state.serve,
+        },
+        this.state.food_id,
+      )
+      .then(
+        text => {
+          console.log(text)
+          this.close()
+        },
+        error => {
+          console.log(error)
+        },
+      )
   }
 
   handleUpdate = e => {

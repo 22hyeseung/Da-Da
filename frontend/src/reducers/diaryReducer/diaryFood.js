@@ -52,31 +52,37 @@ export const diaryFoodReducer = (
       visionresultKeyword: action.payload,
     }
   }
+
   if (action.type === 'CLEAR_SELECT_FOOD') {
     return {
       ...state,
       visionresultKeyword: action.payload,
     }
   }
+
   if (action.type === 'CLEAR_IMG_URL') {
     return {
       ...state,
       foodAlbumResult: action.payload,
     }
   }
+
   if (action.type === 'UPDATE_FOOD_OF_DATABASE') {
     const updateFoodIndex = state.foodresult
       .map(item => item.eat_log_id)
       .indexOf(action.payload.eat_log_id)
+
     state.foodresult.splice(
       updateFoodIndex,
       1,
       action.payload,
     )
+
     return {
-      foodresult: state.foodresult,
+      foodresult: [...state.foodresult],
     }
   }
+
   if (action.type === 'DELETE_FOOD_OF_DATABASE') {
     const deleteFoodResult = state.foodresult.filter(
       item => item.eat_log_id !== action.payload,

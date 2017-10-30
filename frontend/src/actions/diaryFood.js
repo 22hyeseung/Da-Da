@@ -41,6 +41,8 @@ export const postFoodToDB = (
     }) // 원래는 응답값을 바로 추가했지만, 현재 칼로리 계산등을 백엔드에서 처리하므로 다시 fetch로 get하였다.
       .then(res => res.json())
       .then(result => {
+        console.log(result[0].eat_log_id)
+        console.log(result)
         if (result) {
           return fetch(
             `${API_HOST}/eat-logs/${result[0]
@@ -137,9 +139,11 @@ export const updateFoodOfDB = (payload, id) => {
                       types.UPDATE_FOOD_OF_DATABASE,
                     payload: data,
                   })
-                  resolve('업데이트 성공')
+                  resolve(
+                    'data updated successfully.',
+                  )
                 } else {
-                  reject('업데이트 실패')
+                  reject('Failed to update data.')
                 }
               })
               .catch(error => {
