@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div>
         <Helmet>
-          <html lang="en" amp />
+          <html lang="ko" amp />
 
           {/* body attributes */}
           <body className="root" />

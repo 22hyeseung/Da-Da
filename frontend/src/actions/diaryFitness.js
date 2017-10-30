@@ -40,8 +40,6 @@ export const postFitnessToDB = payload => {
     })
       .then(result => result.json())
       .then(data => {
-        // console.log(data[0].burn_kcal)
-        // console.log(data, '<<')
         dispatch({
           type: types.POST_FITNESS_TO_DATABASE,
           payload: data,
