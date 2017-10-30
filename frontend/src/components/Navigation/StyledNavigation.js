@@ -1,3 +1,4 @@
+import crybaby from '../../static/img/crybaby.gif'
 // ===============================  index.js
 // 전체 컨테이너
 export const container = {
@@ -25,8 +26,6 @@ export const logo = {
 export const itemWrap = {
   display: 'flex',
 }
-
-// =============================== RightMenu > NavItem.js
 
 // 네비게이션 개별 아이템(a태그) 래퍼
 export const linkTagWrap = {
@@ -59,7 +58,7 @@ export const avatar = {
   marginRight: '7px',
 }
 
-export const button = {
+export const userName = {
   padding: '7px 14px',
   backgroundColor: 'transparent',
   fontWeight: '400',
@@ -188,3 +187,5 @@ export const logoutHeader = {
   color: '#54698d',
   fontWeight: '300',
 }
+
+export const crybabyGif = crybaby

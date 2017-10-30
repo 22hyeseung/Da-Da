@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+// 스타일링
 import {
   Menu,
   Image,
   Popup,
-  Button,
   Icon,
 } from 'semantic-ui-react'
 import {
   userInfoWrap,
   avatar,
-  button,
+  userName,
 } from './StyledNavigation'
+// 컴포넌트
 import UserInfoPopup from './UserInfoPopup'
-import { connect } from 'react-redux'
 
 class UserInfo extends Component {
   render() {
@@ -28,7 +29,7 @@ class UserInfo extends Component {
           trigger={
             <div
               style={{
-                ...button,
+                ...userName,
                 color: this.props.color,
               }}
             >
