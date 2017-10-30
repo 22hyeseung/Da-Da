@@ -41,6 +41,7 @@ class DiaryFoodList extends React.Component {
         disabled: true,
       })
     }
+
     this.props.updateFoodOfDB(
       {
         amount: this.state.updateAmountVal * 1,
@@ -65,7 +66,7 @@ class DiaryFoodList extends React.Component {
   // keydown 이벤트
   handleKeyPress = e => {
     if (e.keyCode === 13) {
-      this.createPayloadAndPostToDB()
+      this.createPayloadAndUpdateToDB()
     }
   }
 
