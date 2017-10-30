@@ -1,12 +1,8 @@
 // helper: 오늘 날짜
 import {
-  dateDotToDateType,
   getDateNDaysBefore,
   getDateNDaysAfter,
-  todaysDate,
-  todaysDay,
   setDay,
-  dateStringForApiQuery,
 } from '../../helper/date'
 
 const TODAY_INITIAL_STATE = {
@@ -20,11 +16,6 @@ const BEFORE_INITIAL_STATE = {
   beforeDay: null,
   beforeDate: null,
 }
-
-// const MOVED_TODAY_INITIAL_STATE = {
-//   day: '',
-
-// }
 
 export const todayDateReducer = (
   state = TODAY_INITIAL_STATE,
@@ -42,41 +33,34 @@ export const todayDateReducer = (
         day: action.payload,
       }
     case 'MOVE_PREVIOUS_DATE':
-      const prevDate = getDateNDaysBefore(
-        dateDotToDateType(action.payload),
-        1,
-      )
-      // console.log(prevDate.toLocaleDateString())
-      // console.log(setDay(prevDate.getDay()))
       return {
         date: getDateNDaysBefore(
-          prevDate,
+          action.payload,
           1,
         ).toLocaleDateString(),
         day: setDay(
           getDateNDaysBefore(
-            prevDate,
+            action.payload,
             1,
           ).getDay(),
         ),
-        movedDay: setDay(prevDate.getDay()),
-        movedDate: prevDate.toLocaleDateString(),
+        movedDay: setDay(action.payload.getDay()),
+        movedDate: action.payload.toLocaleDateString(),
       }
     case 'MOVE_NEXT_DATE':
-      const nextDate = getDateNDaysAfter(
-        dateDotToDateType(action.payload),
-        1,
-      )
       return {
         date: getDateNDaysAfter(
-          nextDate,
+          action.payload,
           1,
         ).toLocaleDateString(),
         day: setDay(
-          getDateNDaysAfter(nextDate, 1).getDay(),
+          getDateNDaysAfter(
+            action.payload,
+            1,
+          ).getDay(),
         ),
-        movedDay: setDay(nextDate.getDay()),
-        movedDate: nextDate.toLocaleDateString(),
+        movedDay: setDay(action.payload.getDay()),
+        movedDate: action.payload.toLocaleDateString(),
       }
     default:
       return state
@@ -102,33 +86,3 @@ export const beforeDateReducer = (
       return state
   }
 }
-
-// export const dateNavigationReducer = (
-//   state = TODAY_INITIAL_STATE,
-//   action,
-// ) => {
-//   switch (action.type) {
-//     case 'MOVE_PREVIOUS_DATE':
-//       const prevDate = getDateNDaysBefore(
-//         dateDotToDateType(action.payload),
-//         1,
-//       )
-//       return {
-//         ...state,
-//         movedDate: prevDate.toLocaleDateString(),
-//         movedDay: setDay(prevDate.getDay()),
-//       }
-//     case 'MOVE_NEXT_DATE':
-//       const nextDate = getDateNDaysAfter(
-//         dateDotToDateType(action.payload),
-//         1,
-//       )
-//       return {
-//         ...state,
-//         movedDate: nextDate.toLocaleDateString(),
-//         movedDay: setDay(nextDate.getDay()),
-//       }
-//     default:
-//       return state
-//   }
-// }
