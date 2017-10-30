@@ -515,7 +515,7 @@ function updateBurnById({ burn_id, burn_kcal, burn_minute, burn_exercise_id }) {
     .update({ burn_kcal, burn_exercise_id, burn_minute })
     .then(() => {
       return knex('burn')
-        .select('burn.burn_id', 'burn.burn_kcal', 'burn.burn_minute', 'exercise.exercise_name')
+        .select('burn.burn_id', 'burn.burn_kcal', 'burn.burn_minute', 'exercise.exercise_name', 'exercise.exercise_burn_kcal')
         .join('exercise', 'burn.burn_exercise_id', '=', 'exercise.exercise_id')
         .where({ burn_id })
     })
