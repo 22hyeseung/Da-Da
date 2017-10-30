@@ -9,12 +9,6 @@ const fileType = require('file-type')
 const kue = require('kue')
 
 const queue = kue.createQueue()
-// const queue = kue.createQueue({
-//   'redis': {
-//     'port': '6379',
-//     'host': 'dada-project.kcxnip.0001.use1.cache.amazonaws.com'
-//   }
-// })
 /**
  * Google Vision
  */

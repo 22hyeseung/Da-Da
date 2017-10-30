@@ -6,19 +6,9 @@ const aws = require('aws-sdk')
 const uuid = require('uuid')
 const axios = require('axios')
 const fileType = require('file-type')
-// const multer = require('multer')
 
-
-// const upload = multer({ 'storage': multer.memoryStorage() })
 const s3 = new aws.S3({ 'apiVersion': '2006-03-01' })
-
 const queue = kue.createQueue()
-// const queue = kue.createQueue({
-//   redis: {
-//     port: '6379',
-//     host: 'dada-project.kcxnip.0001.use1.cache.amazonaws.com'
-//   }
-// })
 
 function s3upload(buffer, fileName, fileMime) {
   return new Promise((resolve, reject) => {
