@@ -15,7 +15,8 @@ import {
 import './Diary.css'
 // 리덕스 액션생성자
 import { getUserInfo } from '../../actions/auth.js'
-
+import { getFoodLogsFromDB } from '../../actions/diaryFood'
+import { getFoodSummaryFromDB } from '../../actions/getFoodSummary'
 import {
   getGoalKcal,
   postGoalKcal,
@@ -45,10 +46,6 @@ class DiarySubNav extends Component {
         ? this.props.movedDay
         : this.props.dayState,
     }
-    // this.moveDate = this.moveDate.bind(this)
-    // this.moveToNextDate = this.moveToNextDate.bind(
-    //   this,
-    // )
   }
 
   componentWillMount() {
@@ -112,6 +109,30 @@ class DiarySubNav extends Component {
     }
   }
 
+  handleDateToPrevious = () => {
+    this.props
+      .moveToPrevDate(this.state.date)
+      .then(date => {
+        const queryDate = dateStringForApiQuery(
+          new Date(date).toLocaleDateString(),
+        )
+        this.props.getFoodLogsFromDB(queryDate)
+        this.props.getFoodSummaryFromDB(queryDate)
+      })
+  }
+
+  handleDateToNext = () => {
+    this.props
+      .moveToNextDate(this.state.date)
+      .then(date => {
+        const queryDate = dateStringForApiQuery(
+          new Date(date).toLocaleDateString(),
+        )
+        this.props.getFoodLogsFromDB(queryDate)
+        this.props.getFoodSummaryFromDB(queryDate)
+      })
+  }
+
   render() {
     return (
       <div>
@@ -119,10 +140,7 @@ class DiarySubNav extends Component {
           <Icon
             name="chevron left"
             style={{ cursor: 'pointer' }}
-            onClick={() =>
-              this.props.moveToPrevDate(
-                this.state.date,
-              )}
+            onClick={this.handleDateToPrevious}
           />
           <span className="diary-date">
             {this.state.date}
@@ -134,10 +152,7 @@ class DiarySubNav extends Component {
           <Icon
             name="chevron right"
             style={{ cursor: 'pointer' }}
-            onClick={() =>
-              this.props.moveToNextDate(
-                this.state.date,
-              )}
+            onClick={this.handleDateToNext}
           />
         </nav>
         <Segment style={calorieGoal}>
@@ -202,6 +217,10 @@ const mapDispatchtoProps = dispatch => ({
     dispatch(moveToPrevDate(targetDate)),
   moveToNextDate: targetDate =>
     dispatch(moveToNextDate(targetDate)),
+  getFoodLogsFromDB: date =>
+    dispatch(getFoodLogsFromDB(date)),
+  getFoodSummaryFromDB: date =>
+    dispatch(getFoodSummaryFromDB(date)),
 })
 
 export default connect(

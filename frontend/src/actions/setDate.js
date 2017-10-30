@@ -1,4 +1,10 @@
 import * as types from '../actions/ActionTypes'
+import API_HOST from '../config'
+import {
+  dateDotToDateType,
+  getDateNDaysBefore,
+  getDateNDaysAfter,
+} from '../helper/date'
 
 export const setTodayDate = date => ({
   type: types.SET_TODAY_DATE,
@@ -20,29 +26,42 @@ export const setBeforeDay = day => ({
   payload: day,
 })
 
-export const moveToPrevDate = targetDate => ({
-  type: types.MOVE_PREVIOUS_DATE,
-  payload: targetDate,
-})
+export const moveToPrevDate = targetDate => {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      const prevDate = getDateNDaysBefore(
+        dateDotToDateType(targetDate),
+        1,
+      )
+      if (targetDate) {
+        dispatch({
+          type: types.MOVE_PREVIOUS_DATE,
+          payload: prevDate,
+        })
+        resolve(prevDate)
+      } else {
+        reject('Failed to move previous date.')
+      }
+    })
+  }
+}
 
-export const moveToNextDate = targetDate => ({
-  type: types.MOVE_NEXT_DATE,
-  payload: targetDate,
-})
-
-// export const moveToNextDate = targetDate => {
-//   const nextDate = getDateNDaysAfter(
-//     dateDotToDateType(targetDate),
-//     1,
-//   )
-
-//   this.setState({
-//     date: nextDate.toLocaleDateString(),
-//     day: setDay(nextDate.getDay()),
-//   })
-
-//   console.log('다음날로가기')
-//   console.log(nextDate)
-//   console.log(this.state.date)
-//   console.log(this.state.day)
-// }
+export const moveToNextDate = targetDate => {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      const nextDate = getDateNDaysAfter(
+        dateDotToDateType(targetDate),
+        1,
+      )
+      if (targetDate) {
+        dispatch({
+          type: types.MOVE_NEXT_DATE,
+          payload: nextDate,
+        })
+        resolve(nextDate)
+      } else {
+        reject('Failed to move previous date.')
+      }
+    })
+  }
+}
