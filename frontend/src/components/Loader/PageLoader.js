@@ -1,28 +1,35 @@
 import React, { Component } from 'react'
-import './pageLoader.css'
-
 import { connect } from 'react-redux'
-
+// 스타일링
+import './pageLoader.css'
 // 리덕스 액션
 import { getCommentFromDB } from '../../actions/review'
-
-// helper: 오늘 날짜 API Query형식
-import { dateStringForApiQuery } from '../../helper/date'
+// helper: 날짜 함수
+import {
+  dateStringForApiQuery,
+  getDateNDaysBefore,
+  // dateDotToDateType,
+  dateTime,
+} from '../../helper/date'
 
 class PageLoader extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      date: dateStringForApiQuery(
-        this.props.dateState,
-      ),
-    }
+    // this.state = {
+    //   date: dateStringForApiQuery(
+    //     this.props.dateState,
+    //   ),
+    // }
   }
 
   // 어제 날짜 구하는 함수
   getYesterday() {
-    const yesterday = this.state.date * 1 - 1
-    return yesterday + ''
+    return dateStringForApiQuery(
+      getDateNDaysBefore(
+        dateTime,
+        1,
+      ).toLocaleDateString(),
+    )
   }
 
   componentWillMount() {
