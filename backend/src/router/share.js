@@ -1,5 +1,4 @@
 const express = require('express')
-const expressJwt = require('express-jwt')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
@@ -16,7 +15,6 @@ router.use((req, res, next) => {
 
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ 'extended': false }))
-router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
 router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
 router.options('*', cors())
 /**
@@ -192,10 +190,10 @@ router.options('*', cors())
  */
 router.get('/', (req, res) => {
   const param = {
-    'eat_log_member_id': req.user.id,
-    'day_log_member_id': req.user.id,
-    'burn_member_id': req.user.id,
-    'member_id': req.user.id,
+    'eat_log_member_id': req.query.id,
+    'day_log_member_id': req.query.id,
+    'burn_member_id': req.query.id,
+    'member_id': req.query.id,
     'eat_log_diary_date': req.query.date,
     'day_log_diary_date': req.query.date,
     'burn_date': req.query.date,
