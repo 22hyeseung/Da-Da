@@ -15,17 +15,19 @@ import {
 import './Diary.css'
 // 리덕스 액션생성자
 import { getUserInfo } from '../../actions/auth.js'
-import { getFoodLogsFromDB } from '../../actions/diaryFood'
-import { getFoodSummaryFromDB } from '../../actions/getFoodSummary'
 import {
   getGoalKcal,
   postGoalKcal,
 } from '../../actions/diaryKcal'
-
 import {
   moveToPrevDate,
   moveToNextDate,
 } from '../../actions/setDate'
+import { getFoodLogsFromDB } from '../../actions/diaryFood'
+import { getFoodSummaryFromDB } from '../../actions/getFoodSummary'
+import { getFitnessLogsFromDB } from '../../actions/diaryFitness'
+import { getCommentFromDB } from '../../actions/review'
+import { getArticleFromDB } from '../../actions/review'
 
 // helper: 오늘 날짜
 import {
@@ -118,6 +120,9 @@ class DiarySubNav extends Component {
         )
         this.props.getFoodLogsFromDB(queryDate)
         this.props.getFoodSummaryFromDB(queryDate)
+        this.props.getFitnessLogsFromDB(queryDate)
+        this.props.getCommentFromDB(queryDate)
+        this.props.getArticleFromDB(queryDate)
       })
   }
 
@@ -130,6 +135,9 @@ class DiarySubNav extends Component {
         )
         this.props.getFoodLogsFromDB(queryDate)
         this.props.getFoodSummaryFromDB(queryDate)
+        this.props.getFitnessLogsFromDB(queryDate)
+        this.props.getCommentFromDB(queryDate)
+        this.props.getArticleFromDB(queryDate)
       })
   }
 
@@ -221,6 +229,12 @@ const mapDispatchtoProps = dispatch => ({
     dispatch(getFoodLogsFromDB(date)),
   getFoodSummaryFromDB: date =>
     dispatch(getFoodSummaryFromDB(date)),
+  getFitnessLogsFromDB: date =>
+    dispatch(getFitnessLogsFromDB(date)),
+  getCommentFromDB: date =>
+    dispatch(getCommentFromDB(date)),
+  getArticleFromDB: date =>
+    dispatch(getArticleFromDB(date)),
 })
 
 export default connect(
