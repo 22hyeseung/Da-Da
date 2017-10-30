@@ -1,24 +1,13 @@
 const express = require('express')
-const expressJwt = require('express-jwt')
-const cors = require('cors')
-const bodyParser = require('body-parser')
-
-const query = require('../query')
+const { jsonParser, urlParser, onJwt, onCors, query } = require('../middleware')
 
 const router = express.Router()
 
 /**
  * @apiDefine eatlog
  */
-router.use((req, res, next) => {
-  next()
-})
-
-router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ 'extended': false }))
-router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
-router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-router.options('*', cors())
+router.use(jsonParser, urlParser, onJwt)
+router.options('*', onCors)
 /**
  * @api {get} /share GetShare
  * @apiDescription 사용자가 하루기록을 공유
