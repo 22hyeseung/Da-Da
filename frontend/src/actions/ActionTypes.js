@@ -147,6 +147,10 @@ export const SET_BEFORE_DAY = 'SET_BEFORE_DAY'
 export const MOVE_PREVIOUS_DATE =
   'MOVE_PREVIOUS_DATE'
 export const MOVE_NEXT_DATE = 'MOVE_NEXT_DATE'
+export const MOVE_PREVIOUS_BEFORE_DATE =
+  'MOVE_PREVIOUS_BEFORE_DATE'
+export const MOVE_NEXT_BEFORE_DATE =
+  'MOVE_NEXT_BEFORE_DATE'
 //==========================================
 
 //==========================================

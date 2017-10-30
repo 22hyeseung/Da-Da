@@ -65,3 +65,43 @@ export const moveToNextDate = targetDate => {
     })
   }
 }
+
+export const moveToPrevBeforeDate = targetDate => {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      const prevDate = getDateNDaysBefore(
+        dateDotToDateType(targetDate),
+        1,
+      )
+      if (targetDate) {
+        dispatch({
+          type: types.MOVE_PREVIOUS_BEFORE_DATE,
+          payload: prevDate,
+        })
+        resolve(prevDate)
+      } else {
+        reject('Failed to move previous date.')
+      }
+    })
+  }
+}
+
+export const moveToNextBeforeDate = targetDate => {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      const nextDate = getDateNDaysAfter(
+        dateDotToDateType(targetDate),
+        1,
+      )
+      if (targetDate) {
+        dispatch({
+          type: types.MOVE_NEXT_BEFORE_DATE,
+          payload: nextDate,
+        })
+        resolve(nextDate)
+      } else {
+        reject('Failed to move previous date.')
+      }
+    })
+  }
+}

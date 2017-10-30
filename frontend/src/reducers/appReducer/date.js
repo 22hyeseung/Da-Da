@@ -60,6 +60,20 @@ export const beforeDateReducer = (
         ...state,
         beforeDay: action.payload,
       }
+    case 'MOVE_PREVIOUS_BEFORE_DATE':
+      return {
+        beforeDate: action.payload.toLocaleDateString(),
+        beforeDay: setDay(
+          action.payload.getDay(),
+        ),
+      }
+    case 'MOVE_NEXT_BEFORE_DATE':
+      return {
+        beforeDate: action.payload.toLocaleDateString(),
+        beforeDay: setDay(
+          action.payload.getDay(),
+        ),
+      }
     default:
       return state
   }
