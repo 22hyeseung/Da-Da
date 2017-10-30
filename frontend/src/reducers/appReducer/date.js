@@ -8,8 +8,6 @@ import {
 const TODAY_INITIAL_STATE = {
   day: null,
   date: null,
-  movedDay: null,
-  movedDate: null,
 }
 
 const BEFORE_INITIAL_STATE = {
@@ -36,15 +34,11 @@ export const todayDateReducer = (
       return {
         date: action.payload.toLocaleDateString(),
         day: setDay(action.payload.getDay()),
-        movedDay: setDay(action.payload.getDay()),
-        movedDate: action.payload.toLocaleDateString(),
       }
     case 'MOVE_NEXT_DATE':
       return {
         date: action.payload.toLocaleDateString(),
         day: setDay(action.payload.getDay()),
-        movedDay: setDay(action.payload.getDay()),
-        movedDate: action.payload.toLocaleDateString(),
       }
     default:
       return state

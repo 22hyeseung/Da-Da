@@ -41,12 +41,14 @@ class DiarySubNav extends Component {
     this.state = {
       isPostMode: false,
       inputGoalKcal: null,
-      date: this.props.movedDate
-        ? this.props.movedDate
-        : this.props.dateState,
-      day: this.props.movedDay
-        ? this.props.movedDay
-        : this.props.dayState,
+      // this.props.movedDate
+      // ? this.props.movedDate
+      // :
+      //  this.props.movedDay
+      //   ? this.props.movedDay
+      //   :
+      date: this.props.dateState,
+      day: this.props.dayState,
     }
   }
 
@@ -60,11 +62,11 @@ class DiarySubNav extends Component {
   componentWillReceiveProps(nextProps) {
     const { date, day } = nextProps
     if (
-      this.props.movedDate !== nextProps.movedDate
+      this.props.dateState !== nextProps.dateState
     ) {
       this.setState({
-        date: nextProps.movedDate,
-        day: nextProps.movedDay,
+        date: nextProps.dateState,
+        day: nextProps.dayState,
       })
     }
   }
@@ -208,8 +210,6 @@ const mapStateToProps = state => {
   return {
     dateState: state.today.date,
     dayState: state.today.day,
-    movedDay: state.today.movedDay,
-    movedDate: state.today.movedDate,
     goalKcal: state.goalKcal.kcal,
     defaultGoalCalorie:
       state.caloriesChart.defaultGoalCalorie,
