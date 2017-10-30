@@ -40,10 +40,16 @@ export const postFitnessToDB = payload => {
     })
       .then(result => result.json())
       .then(data => {
+        // console.log(data[0].burn_kcal)
         // console.log(data, '<<')
         dispatch({
           type: types.POST_FITNESS_TO_DATABASE,
           payload: data,
+        })
+        dispatch({
+          type:
+            types.UPDATE_SUMMARY_OF_BURN_CALORIE,
+          payload: data[0].burn_kcal,
         })
       })
       .catch(error => {
@@ -55,35 +61,44 @@ export const postFitnessToDB = payload => {
 export const updateFitnessOfDB = (
   payload,
   id,
-  onSuccessCb,
 ) => {
   return dispatch => {
-    fetch(`${rootApi}/exercises/${id}`, {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${window
-          .localStorage.token}`,
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    })
-      .then(result => result.json())
-      .then(data => {
-        console.log(data)
-        dispatch({
-          type: types.UPDATE_FITNESS_OF_DATABASE,
-          payload: data[0],
+    return new Promise((resolve, reject) => {
+      fetch(`${rootApi}/exercises/${id}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${window
+            .localStorage.token}`,
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+        .then(result => result.json())
+        .then(data => {
+          if (data) {
+            dispatch({
+              type:
+                types.UPDATE_FITNESS_OF_DATABASE,
+              payload: data,
+            })
+            resolve('data updated successfully.')
+            // console.log(data)
+          } else {
+            reject('Failed to update data.')
+          }
         })
-        onSuccessCb()
-      })
-      .catch(error => {
-        console.log('updateFitnessOfDB error')
-      })
+        .catch(error => {
+          console.log('updateFitnessOfDB error')
+        })
+    })
   }
 }
 
 // 4. deleteFood
-export const deleteFitnessOfDB = id => {
+export const deleteFitnessOfDB = (
+  id,
+  burnKcal,
+) => {
   return dispatch => {
     fetch(`${rootApi}/exercises/${id}`, {
       method: 'DELETE',
@@ -92,12 +107,17 @@ export const deleteFitnessOfDB = id => {
           .localStorage.token}`,
       },
     })
-      .then(result => {
-        if (result) {
+      .then(res => {
+        if (res.ok) {
           dispatch({
             type:
               types.DELETE_FITNESS_OF_DATABASE,
             payload: id,
+          })
+          dispatch({
+            type:
+              types.DELETE_SUMMARY_OF_BURN_CALORIE,
+            payload: burnKcal,
           })
         }
       })

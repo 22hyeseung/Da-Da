@@ -55,6 +55,7 @@ class DiaryFitnessAdd extends React.Component {
               onClick={() =>
                 this.props.deleteFitnessOfDB(
                   this.props.id,
+                  this.props.kcal,
                 )}
             >
               <Icon name="trash outline" />
