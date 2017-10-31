@@ -1,5 +1,7 @@
 import * as types from '../actions/ActionTypes'
 import API_HOST from '../config'
+import { setDay } from '../helper/date'
+
 import {
   dateDotToDateType,
   getDateNDaysBefore,
@@ -16,15 +18,22 @@ export const setTodayDay = day => ({
   payload: day,
 })
 
-export const setBeforeDate = date => ({
-  type: types.SET_BEFORE_DATE,
-  payload: date,
-})
-
-export const setBeforeDay = day => ({
-  type: types.SET_BEFORE_DAY,
-  payload: day,
-})
+export const setBeforeDateAndDay = date => {
+  console.log(date)
+  return dispatch => {
+    const beforeDate = getDateNDaysBefore(
+      dateDotToDateType(date),
+      6,
+    )
+    dispatch({
+      type: types.SET_BEFORE_DATE_AND_DAY,
+      payload: {
+        date: beforeDate.toLocaleDateString(),
+        day: setDay(beforeDate.getDay()),
+      },
+    })
+  }
+}
 
 export const moveToPrevDate = targetDate => {
   return dispatch => {
@@ -66,42 +75,42 @@ export const moveToNextDate = targetDate => {
   }
 }
 
-export const moveToPrevBeforeDate = targetDate => {
-  return dispatch => {
-    return new Promise((resolve, reject) => {
-      const prevDate = getDateNDaysBefore(
-        dateDotToDateType(targetDate),
-        1,
-      )
-      if (targetDate) {
-        dispatch({
-          type: types.MOVE_PREVIOUS_BEFORE_DATE,
-          payload: prevDate,
-        })
-        resolve(prevDate)
-      } else {
-        reject('Failed to move previous date.')
-      }
-    })
-  }
-}
+// export const moveToPrevBeforeDate = targetDate => {
+//   return dispatch => {
+//     return new Promise((resolve, reject) => {
+//       const prevDate = getDateNDaysBefore(
+//         dateDotToDateType(targetDate),
+//         1,
+//       )
+//       if (targetDate) {
+//         dispatch({
+//           type: types.MOVE_PREVIOUS_BEFORE_DATE,
+//           payload: prevDate,
+//         })
+//         resolve(prevDate)
+//       } else {
+//         reject('Failed to move previous date.')
+//       }
+//     })
+//   }
+// }
 
-export const moveToNextBeforeDate = targetDate => {
-  return dispatch => {
-    return new Promise((resolve, reject) => {
-      const nextDate = getDateNDaysAfter(
-        dateDotToDateType(targetDate),
-        1,
-      )
-      if (targetDate) {
-        dispatch({
-          type: types.MOVE_NEXT_BEFORE_DATE,
-          payload: nextDate,
-        })
-        resolve(nextDate)
-      } else {
-        reject('Failed to move previous date.')
-      }
-    })
-  }
-}
+// export const moveToNextBeforeDate = targetDate => {
+//   return dispatch => {
+//     return new Promise((resolve, reject) => {
+//       const nextDate = getDateNDaysAfter(
+//         dateDotToDateType(targetDate),
+//         1,
+//       )
+//       if (targetDate) {
+//         dispatch({
+//           type: types.MOVE_NEXT_BEFORE_DATE,
+//           payload: nextDate,
+//         })
+//         resolve(nextDate)
+//       } else {
+//         reject('Failed to move previous date.')
+//       }
+//     })
+//   }
+// }

@@ -4,89 +4,87 @@ import { Icon } from 'semantic-ui-react'
 import './Report.css'
 
 import {
-  setTodayDate,
-  setTodayDay,
-  setBeforeDate,
-  setBeforeDay,
+  moveToPrevDate,
+  moveToNextDate,
 } from '../../actions/setDate'
 
-import {
-  getDateNDaysBefore, // N일전 날짜 구하는 함수
-  todaysDate, // string타입 오늘 날짜
-  todaysDay, // string타입 오늘 요일
-  setDay, // int -> string 요일 구하는 함수
-  dateTime, // date타입 오늘 날짜
-} from '../../helper/date'
-
-// 6일전 날짜
-const beforeDate = getDateNDaysBefore(
-  dateTime,
-  6,
-).toLocaleDateString()
-
-// 6일전 요일
-const beforeDay = setDay(
-  getDateNDaysBefore(dateTime, 6).getDay(),
-)
+import { dateStringForApiQuery } from '../../helper/date'
 
 class ReportSubNav extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      lastDate: todaysDate,
-      lastDay: todaysDay,
-      beforeDate: beforeDate,
-      beforeDay: beforeDay,
+      lastDate: this.props.lastDateState,
+      lastDay: this.props.lastDayState,
+      beforeDate: this.props.beforeDateState,
+      beforeDay: this.props.beforeDayState,
     }
   }
 
-  componentWillMount() {
-    const {
-      lastDate,
-      lastDay,
-      beforeDate,
-      beforeDay,
-    } = this.state
-    this.props.setTodayDate(lastDate)
-    this.props.setTodayDay(lastDay)
-    this.props.setBeforeDate(beforeDate)
-    this.props.setBeforeDay(beforeDay)
+  componentWillReceiveProps(nextProps) {
+    const { date, day } = nextProps
+    if (
+      this.props.lastDateState !==
+      nextProps.lastDateState
+    ) {
+      this.setState({
+        lastDate: nextProps.lastDateState,
+        lastday: nextProps.lastDayState,
+        beforeDate: nextProps.beforeDateState,
+        beforeDay: nextProps.beforeDayState,
+      })
+    }
   }
 
-  // goToPreviousDate() {
-  //   this.props.setTodayDate(lastDate)
-  //   this.props.setTodayDay(lastDay)
-  //   this.props.setBeforeDate(beforeDate)
-  //   this.props.setBeforeDay(beforeDay)
-  // }
+  handleDateToPrevious = () => {
+    this.props.moveToPrevDate(this.state.lastDate)
+    // .then(date => {
+    //   const queryDate = dateStringForApiQuery(
+    //     new Date(date).toLocaleDateString(),
+    //   )
+    //   // get
+    // })
+  }
+
+  handleDateToNext = () => {
+    this.props.moveToNextDate(this.state.lastDate)
+    // .then(date => {
+    //   const queryDate = dateStringForApiQuery(
+    //     new Date(date).toLocaleDateString(),
+    //   )
+    //   // get
+    // })
+  }
 
   render() {
-    const {
-      beforeDateState,
-      beforeDayState,
-      lastDateState,
-      lastDayState,
-    } = this.props
     return (
       <div className="report">
         <nav className="report-submenu">
-          <Icon name="chevron left" />
+          <Icon
+            name="chevron left"
+            style={{ cursor: 'pointer' }}
+            onClick={this.handleDateToPrevious}
+          />
           <span className="report-date">
-            {beforeDateState}
+            {this.state.beforeDate}
             <span className="report-day">
               {' '}
-              {beforeDayState}
+              {this.state.beforeDay}
             </span>
           </span>
           -
           <span className="report-date">
-            {lastDateState}
+            {this.state.lastDate}
             <span className="report-day">
               {' '}
-              {lastDayState}
+              {this.state.lastDay}
             </span>
           </span>
-          <Icon name="chevron right" />
+          <Icon
+            name="chevron right"
+            style={{ cursor: 'pointer' }}
+            onClick={this.handleDateToNext}
+          />
         </nav>
       </div>
     )
@@ -97,21 +95,17 @@ const mapStateToProps = state => {
   return {
     lastDateState: state.today.date,
     lastDayState: state.today.day,
-    beforeDateState: state.beforeDay.beforeDate,
-    beforeDayState: state.beforeDay.beforeDay,
+    beforeDateState: state.today.beforeDate,
+    beforeDayState: state.today.beforeDay,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setTodayDate: date =>
-      dispatch(setTodayDate(date)),
-    setTodayDay: day =>
-      dispatch(setTodayDay(day)),
-    setBeforeDate: date =>
-      dispatch(setBeforeDate(date)),
-    setBeforeDay: day =>
-      dispatch(setBeforeDay(day)),
+    moveToPrevDate: targetDate =>
+      dispatch(moveToPrevDate(targetDate)),
+    moveToNextDate: targetDate =>
+      dispatch(moveToNextDate(targetDate)),
   }
 }
 

@@ -13,6 +13,7 @@ import {
 import {
   setTodayDate,
   setTodayDay,
+  setBeforeDateAndDay,
 } from '../../actions/setDate'
 
 class Navigation extends Component {
@@ -28,6 +29,9 @@ class Navigation extends Component {
     this.props.saveUserInfo()
     this.props.setTodayDate(this.state.date)
     this.props.setTodayDay(this.state.day)
+    this.props.setBeforeDateAndDay(
+      this.state.date,
+    )
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
@@ -86,6 +90,8 @@ const mapDispatchToProps = dispatch => ({
   setTodayDate: date =>
     dispatch(setTodayDate(date)),
   setTodayDay: day => dispatch(setTodayDay(day)),
+  setBeforeDateAndDay: date =>
+    dispatch(setBeforeDateAndDay(date)),
 })
 
 export default connect(null, mapDispatchToProps)(

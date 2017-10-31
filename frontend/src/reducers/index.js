@@ -9,10 +9,7 @@ import {
   commentReducer,
   articleReducer,
 } from './diaryReducer/diaryReview'
-import {
-  todayDateReducer,
-  beforeDateReducer,
-} from './appReducer/date'
+import { todayDateReducer } from './appReducer/date'
 import { diaryFoodReducer } from './diaryReducer/diaryFood'
 import { diaryFitnessReducer } from './diaryReducer/diaryFitness'
 import { diarySummaryReducer } from './diaryReducer/diarySummary'
@@ -33,7 +30,6 @@ import {
 const reducers = combineReducers({
   // app Reducer
   today: todayDateReducer,
-  beforeDay: beforeDateReducer,
   navActiveItem: navActiveItemReducer,
   // auth Reducer
   auth: authReducer,

@@ -41,12 +41,6 @@ class DiarySubNav extends Component {
     this.state = {
       isPostMode: false,
       inputGoalKcal: null,
-      // this.props.movedDate
-      // ? this.props.movedDate
-      // :
-      //  this.props.movedDay
-      //   ? this.props.movedDay
-      //   :
       date: this.props.dateState,
       day: this.props.dayState,
     }

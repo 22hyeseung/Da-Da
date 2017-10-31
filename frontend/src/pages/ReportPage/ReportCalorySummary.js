@@ -24,7 +24,6 @@ import { getKcalSummaryFromDB } from '../../actions/reportAPIs'
 class ReportCalorySummary extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
   }
 
   componentWillMount() {
@@ -108,7 +107,7 @@ const mapStateToProps = state => {
     calorySummary:
       state.calorySummary.summaryData,
     lastDateState: state.today.date,
-    beforeDateState: state.beforeDay.beforeDate,
+    beforeDateState: state.today.beforeDate,
   }
 }
 
