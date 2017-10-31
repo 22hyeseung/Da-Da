@@ -11,11 +11,8 @@ class SearchPage extends Component {
     return (
       <div style={container}>
         <div style={navGrid}>
-          <Navigation
-            inverted="true"
-            color="#fff"
-          />
-          <SearchBar className="search-searchbar"/>
+          <Navigation color="#fff" />
+          <SearchBar className="search-searchbar" />
         </div>
       </div>
     )

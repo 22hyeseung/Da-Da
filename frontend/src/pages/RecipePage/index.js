@@ -17,19 +17,25 @@ class RecipePage extends Component {
       recipeAmount: 1,
       loading: false,
     }
-    this.updateRecipeAmount = this.updateRecipeAmount.bind(this)
+    this.updateRecipeAmount = this.updateRecipeAmount.bind(
+      this,
+    )
   }
 
   componentDidMount() {
     this.setState({
-      recipeAmount: this.props.recipeContent.recipe_serving,
+      recipeAmount: this.props.recipeContent
+        .recipe_serving,
     })
   }
 
   componentWillMount() {
-    this.props.getRecipe(this.props.match.params.id)
+    this.props.getRecipe(
+      this.props.match.params.id,
+    )
     this.setState({
-      recipeAmount: this.props.recipeContent.recipe_serving,
+      recipeAmount: this.props.recipeContent
+        .recipe_serving,
       loading: true,
     })
 
@@ -46,23 +52,28 @@ class RecipePage extends Component {
 
   render() {
     if (this.state.loading) {
-      return <ComponentLoader posiStyle={{top: '200px'}} />
+      return (
+        <ComponentLoader
+          posiStyle={{ top: '200px' }}
+        />
+      )
     }
 
     return (
       <div style={styled.container}>
-        <div style={{
-          ...styled.topContainer,
-          backgroundImage: `url(//s3.ap-northeast-2.amazonaws.com/dada-s3-file/recipe/${this.props.recipeContent.recipe_id}.jpg)`,
-        }}>
+        <div
+          style={{
+            ...styled.topContainer,
+            backgroundImage: `url(//s3.ap-northeast-2.amazonaws.com/dada-s3-file/recipe/${this
+              .props.recipeContent
+              .recipe_id}.jpg)`,
+          }}
+        >
           <div
             style={styled.navigationBackground}
           >
             <div style={styled.navigationGrid}>
-              <Navigation
-                inverted="true"
-                color="#fff"
-              />
+              <Navigation color="#fff" />
             </div>
           </div>
           <RecipeTitleBox />
@@ -70,7 +81,9 @@ class RecipePage extends Component {
         <div style={styled.bottomContainer}>
           <IngredientBox
             recipeAmount={this.state.recipeAmount}
-            updateRecipeAmount={this.updateRecipeAmount}
+            updateRecipeAmount={
+              this.updateRecipeAmount
+            }
           />
           <CookingProcess
             recipeAmount={this.state.recipeAmount}
@@ -89,8 +102,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getRecipe: id =>
-      dispatch(getRecipe(id)),
+    getRecipe: id => dispatch(getRecipe(id)),
   }
 }
 

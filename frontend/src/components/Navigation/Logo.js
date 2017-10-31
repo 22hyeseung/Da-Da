@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+//스타일링
 import { Menu } from 'semantic-ui-react'
 import {
   logoWrap,

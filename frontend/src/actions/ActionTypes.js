@@ -70,14 +70,6 @@ export const UPDATE_WEIGHT_CHART =
 //==========================================
 
 //==========================================
-// navItemActive.j
-export const CHANGE_NAV_ITEM_ACTIVE =
-  'CHANGE_NAV_ITEM_ACTIVE'
-export const CHANGE_TAB_ITEM_ACTIVE =
-  'CHANGE_TAB_ITEM_ACTIVE'
-//==========================================
-
-//==========================================
 // auth.js
 export const SAVE_TOKEN = 'SAVE_TOKEN'
 export const SAVE_USERINFO = 'SAVE_USERINFO'

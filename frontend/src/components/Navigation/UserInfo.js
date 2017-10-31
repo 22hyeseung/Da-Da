@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+// 스타일링
 import {
   Menu,
   Image,
   Popup,
-  Button,
+  Icon,
 } from 'semantic-ui-react'
 import {
   userInfoWrap,
   avatar,
-  button,
+  userName,
 } from './StyledNavigation'
+// 컴포넌트
 import UserInfoPopup from './UserInfoPopup'
-import { connect } from 'react-redux'
 
 class UserInfo extends Component {
   render() {
@@ -25,13 +27,20 @@ class UserInfo extends Component {
         <Popup
           wide
           trigger={
-            <Button
-              style={button}
-              inverted={this.props.inverted}
-              content={
-                this.props.userInfo.userName
-              }
-            />
+            <div
+              style={{
+                ...userName,
+                color: this.props.color,
+              }}
+            >
+              {this.props.userInfo.userName}
+              <Icon
+                name="caret down"
+                style={{
+                  fontSize: '16px',
+                }}
+              />
+            </div>
           }
           on="click"
         >
