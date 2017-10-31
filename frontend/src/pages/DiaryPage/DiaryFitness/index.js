@@ -100,7 +100,7 @@ class DiaryFitness extends Component {
     const finalKcal = unitKcal * updateTimeVal
 
     const requestBody = {
-      burn_minute: updateTimeVal * 1,
+      burn_minute: updateTimeVal,
       kcal: finalKcal,
     }
 
@@ -155,6 +155,7 @@ class DiaryFitness extends Component {
 
     return (
       <Segment style={Style.container}>
+        {this.finalKcal}
         <DiarySubHeader
           tabNameEN="FITNESS"
           tabNameKR="운동 다이어리"

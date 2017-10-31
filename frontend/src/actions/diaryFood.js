@@ -41,6 +41,8 @@ export const postFoodToDB = (
     }) // 원래는 응답값을 바로 추가했지만, 현재 칼로리 계산등을 백엔드에서 처리하므로 다시 fetch로 get하였다.
       .then(res => res.json())
       .then(result => {
+        console.log(result[0].eat_log_id)
+        console.log(result)
         if (result) {
           return fetch(
             `${API_HOST}/eat-logs/${result[0]
@@ -106,47 +108,55 @@ export const postFoodToDB = (
 // 3. updateDB
 export const updateFoodOfDB = (payload, id) => {
   return dispatch => {
-    fetch(`${API_HOST}/eat-logs/${id}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${window
-          .localStorage.token}`,
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    })
-      .then(result => result.json())
-      .then(result => {
-        if (result) {
-          console.log(result)
-          return fetch(
-            `${API_HOST}/eat-logs/${id}`,
-            {
-              method: 'GET',
-              headers: {
-                Authorization: `Bearer ${window
-                  .localStorage.token}`,
+    return new Promise((resolve, reject) => {
+      fetch(`${API_HOST}/eat-logs/${id}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${window
+            .localStorage.token}`,
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+        .then(result => result.json())
+        .then(result => {
+          if (result) {
+            return fetch(
+              `${API_HOST}/eat-logs/${id}`,
+              {
+                method: 'GET',
+                headers: {
+                  Authorization: `Bearer ${window
+                    .localStorage.token}`,
+                },
               },
-            },
-          )
-            .then(res => res.json())
-            .then(data => {
-              dispatch({
-                type:
-                  types.UPDATE_FOOD_OF_DATABASE,
-                payload: data,
+            )
+              .then(res => res.json())
+              .then(data => {
+                if (data) {
+                  dispatch({
+                    type:
+                      types.UPDATE_FOOD_OF_DATABASE,
+                    payload: data,
+                  })
+                  resolve(
+                    'data updated successfully.',
+                  )
+                } else {
+                  reject('Failed to update data.')
+                }
               })
-            })
-            .catch(error => {
-              console.log(
-                'fetchUpdateFoodFromDB error',
-              )
-            })
-        }
-      })
-      .catch(error => {
-        console.log('updateFoodOfDB error')
-      })
+              .catch(error => {
+                console.log(
+                  'fetchUpdateFoodFromDB error',
+                )
+              })
+          }
+        })
+        .catch(error => {
+          console.log('updateFoodOfDB error')
+        })
+    })
   }
 }
 

@@ -30,6 +30,19 @@ class Navigation extends Component {
     )
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   const { date, day } = nextProps
+  //   if (
+  //     this.props.dateState !== nextProps.dateState
+  //   ) {
+  //     this.setState({
+  //       date: nextProps.dateState,
+  //       day: nextProps.dayState,
+  //     })
+
+  //   }
+  // }
+
   fetchData = () => {
     setTimeout(() => {
       this.setState({
@@ -45,10 +58,7 @@ class Navigation extends Component {
         <Logo color={this.props.color} />
 
         {/* 오른쪽: 네비게이션 아이템*/}
-        <RightMenu
-          inverted={this.props.inverted}
-          color={this.props.color}
-        />
+        <RightMenu color={this.props.color} />
       </Menu>
     )
   }
@@ -57,7 +67,6 @@ class Navigation extends Component {
 // default Props: 컬러 반전이 없는 일반 페이지의 default color
 Navigation.defaultProps = {
   color: '#16325c',
-  inverted: false,
 }
 
 const mapStateToProps = state => ({

@@ -22,16 +22,18 @@ class WeightProgress extends Component {
       goalWeight,
       startWeight,
       currentWeight,
+      weightListItem,
     } = this.props
 
     // 공식 = {(시작체중-현재체중)/(시작체중 - 목표체중 )}*100
     let flagPosition = ''
     {
-      this.props.weightListItem.length === 0
+      weightListItem.length === 0
         ? // 인터넷 느린 경우 등, get 데이터가 안 왔을때
           (flagPosition = 0)
         : (flagPosition =
-            (startWeight - currentWeight) /
+            (startWeight -
+              weightListItem[0].day_log_kg) /
             (startWeight - goalWeight) *
             100)
     }

@@ -210,26 +210,6 @@ class WeightDaily extends Component {
                           </List.Content>
                           <List.Content floated="right">
                             <img
-                              src={ArrowUp}
-                              alt="이전 몸무게보다 높음을 표시"
-                            />
-                            {/*arr[index - 1]
-                              .day_log_kg <
-                            arr[index]
-                              .day_log_kg ? (
-                              <img
-                                src={ArrowUp}
-                                alt="이전 몸무게보다 높음을 표시"
-                              />
-                            ) : (
-                              <img
-                                src={ArrowDown}
-                                alt="이전 몸무게보다 낮음을 표시"
-                              />
-                            )*/}
-                          </List.Content>
-                          <List.Content floated="right">
-                            <img
                               src={trash}
                               alt="삭제버튼"
                               style={{

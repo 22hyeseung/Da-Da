@@ -44,7 +44,7 @@ const DiaryFitnessInput = () => {
             style={Style.textSmall_Input}
           >
             <span style={Style.textBig}>
-              0{' '}
+              0
             </span>kcal
           </List.Content>
         </List.Item>

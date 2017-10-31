@@ -70,14 +70,6 @@ export const UPDATE_WEIGHT_CHART =
 //==========================================
 
 //==========================================
-// navItemActive.j
-export const CHANGE_NAV_ITEM_ACTIVE =
-  'CHANGE_NAV_ITEM_ACTIVE'
-export const CHANGE_TAB_ITEM_ACTIVE =
-  'CHANGE_TAB_ITEM_ACTIVE'
-//==========================================
-
-//==========================================
 // auth.js
 export const SAVE_TOKEN = 'SAVE_TOKEN'
 export const SAVE_USERINFO = 'SAVE_USERINFO'
@@ -147,10 +139,6 @@ export const SET_BEFORE_DATE_AND_DAY =
 export const MOVE_PREVIOUS_DATE =
   'MOVE_PREVIOUS_DATE'
 export const MOVE_NEXT_DATE = 'MOVE_NEXT_DATE'
-export const MOVE_PREVIOUS_BEFORE_DATE =
-  'MOVE_PREVIOUS_BEFORE_DATE'
-export const MOVE_NEXT_BEFORE_DATE =
-  'MOVE_NEXT_BEFORE_DATE'
 //==========================================
 
 //==========================================

@@ -12,6 +12,7 @@ import 'wfk-montserrat/montserrat.css'
 import './Root.css'
 import 'semantic-ui-css/semantic.min.css'
 import App from './App'
+import Helmet from 'react-helmet'
 import LoginPage from './pages/LoginPage'
 
 class Root extends Component {
@@ -19,15 +20,23 @@ class Root extends Component {
     return (
       <BrowserRouter>
         <Provider store={store}>
-          <Switch>
-            {/* intro페이지 & 네비게이션 없는 페이지 */}
-            <Route
-              path="/login"
-              component={LoginPage}
-            />
-            {/* 서비스 페이지 (로그인 이후 접근 가능) & 네비게이션 있는 페이지*/}
-            <Route path="/" component={App} />
-          </Switch>
+          <div>
+            <Helmet>
+              {/* body attributes */}
+              <title itemProp="name">
+                DA, DA
+              </title>
+            </Helmet>
+            <Switch>
+              {/* intro페이지 & 네비게이션 없는 페이지 */}
+              <Route
+                path="/login"
+                component={LoginPage}
+              />
+              {/* 서비스 페이지 (로그인 이후 접근 가능) & 네비게이션 있는 페이지*/}
+              <Route path="/" component={App} />
+            </Switch>
+          </div>
         </Provider>
       </BrowserRouter>
     )

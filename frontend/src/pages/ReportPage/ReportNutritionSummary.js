@@ -88,8 +88,9 @@ class ReportNutritionSummary extends Component {
               <List.Content
                 className="report-summary-title"
                 verticalAlign="bottom"
-              />
-              {Object.keys(val)}
+              >
+                {Object.keys(val)}
+              </List.Content>
               <List.Content
                 floated="right"
                 className="report-result"

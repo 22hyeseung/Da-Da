@@ -38,10 +38,10 @@ export const smSegment = {
   padding: '25px 25px 115px',
   boxShadow: '0 2px 5px 0 rgba(79, 64, 64, 0.2)',
   border: 'none',
-  // backgroundImage: `url(${summaryImg})`,
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'right bottom',
   backgroundSize: '70%',
+  height: '100%',
 }
 
 export const smHeader = {

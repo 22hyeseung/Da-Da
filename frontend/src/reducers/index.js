@@ -1,49 +1,53 @@
 import { combineReducers } from 'redux'
-import {
-  weightListReducer,
-  weightAllReducer,
-} from './weightReducer/weight'
+// app
+import { todayDateReducer } from './appReducer/date'
+// auth
 import authReducer from './authReducer/auth'
-import navActiveItemReducer from './appReducer/navActiveItem'
+// diary
+import { diaryFoodReducer } from './diaryReducer/diaryFood'
+import { diaryFitnessReducer } from './diaryReducer/diaryFitness'
 import {
   commentReducer,
   articleReducer,
 } from './diaryReducer/diaryReview'
-import { todayDateReducer } from './appReducer/date'
-import { diaryFoodReducer } from './diaryReducer/diaryFood'
-import { diaryFitnessReducer } from './diaryReducer/diaryFitness'
-import { diarySummaryReducer } from './diaryReducer/diarySummary'
 import { diaryKcalReducer } from './diaryReducer/diaryKcal'
-import {
-  calorieChartReducer,
-  nutritionChartReducer,
-} from './reportReducer/chartData'
-import {
-  recipeReducer,
-  recipeSearchReducer,
-} from './recipeReducer/recipe'
+import { diarySummaryReducer } from './diaryReducer/diarySummary'
+// report
 import {
   calorySummaryReducer,
   nutritionSummaryReducer,
 } from './reportReducer/summaryData'
+import {
+  calorieChartReducer,
+  nutritionChartReducer,
+} from './reportReducer/chartData'
+// weight
+import {
+  weightListReducer,
+  weightAllReducer,
+} from './weightReducer/weight'
+// recipe
+import {
+  recipeReducer,
+  recipeSearchReducer,
+} from './recipeReducer/recipe'
 
 const reducers = combineReducers({
   // app Reducer
   today: todayDateReducer,
-  navActiveItem: navActiveItemReducer,
   // auth Reducer
   auth: authReducer,
   // diary Reducer
-  //// review ////
+  //   |__ review
   comment: commentReducer,
   article: articleReducer,
-  //// food ////
+  //   |__ food
   foodLogs: diaryFoodReducer,
-  //// fitness ////
+  //   |__ fitness
   fitness: diaryFitnessReducer,
-  //// goal ////
+  //   |__ goal
   goalKcal: diaryKcalReducer,
-  //// summary ////
+  //   |__ summary
   diarySummary: diarySummaryReducer,
   // report Reducer
   caloriesChart: calorieChartReducer,

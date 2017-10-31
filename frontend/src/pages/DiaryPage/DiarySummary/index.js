@@ -55,9 +55,6 @@ class DiarySummary extends Component {
       ? kcalGoal
       : defaultGoalCalorie
 
-    console.log(this.props.eatKcal)
-    console.log(this.props.burnKcal)
-
     const restCalorie =
       goalCalorie - eatKcal + burnKcal
 
