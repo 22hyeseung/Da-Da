@@ -55,6 +55,7 @@ class ReportCalorySummary extends Component {
         style={{
           ...smSegment,
           backgroundImage: `url(${summaryImg.calory})`,
+          backgroundSize: '90%',
         }}
       >
         <Header style={smHeader}>
@@ -78,8 +79,9 @@ class ReportCalorySummary extends Component {
               className="report-summary-list"
               style={{ display: 'flex' }}
             >
-              <List.Content className="report-summary-title" />
-              {val['eat_log_meal_tag']}
+              <List.Content className="report-summary-title">
+                {val['eat_log_meal_tag']}
+              </List.Content>
               <List.Content
                 floated="right"
                 className="report-rate"

@@ -44,11 +44,15 @@
     font-size: 18px;
     color: #54698d;
     font-weight: 100;
+    text-align: right;
+    width: 46px;
 }
 
 .report-result {
     font-family: 'montserrat-semibold';
     font-size: 24px;
+    width: 65px;
+    text-align: right;
 }
 
 .report-summary-title {

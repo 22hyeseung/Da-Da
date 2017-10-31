@@ -49,10 +49,12 @@ class LoginPage extends Component {
       'message',
       this.tokenHandler,
     )
+    var x = window.screen.width / 2 - 700 / 2
+    var y = window.screen.height / 2 - 450 / 2
     const popupWindow = window.open(
       `${API_HOST}/auth/${target}`,
       '_blank',
-      'width=475, height=630;',
+      'left = 300, top = 150, width=850, height=630;',
     )
     this.setState({
       popupWindow: popupWindow,
