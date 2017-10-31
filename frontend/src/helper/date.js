@@ -42,10 +42,16 @@ export const todaysDay = setDay(day)
 // API 통신용 날짜 포맷
 // YYYY. MM. DD. -> YYYYMMDD
 export const dateStringForApiQuery = dateString => {
-  return dateString
-    .split('.')
-    .join('')
-    .replace(/ /gi, '')
+  const splitArray = dateString.split('.')
+  splitArray.map((el, i, arr) => {
+    arr[i] =
+      // 월이나 일이 한 자리 숫자일 때
+      // ex. 2017. 11. 1. -> 2017. 11. 01.
+      el.replace(/ /gi, '').length === 1
+        ? '0' + el
+        : el
+  })
+  return splitArray.join('').replace(/ /gi, '')
 }
 
 // YYYY. MM. DD. -> YYYY-MM-DD
