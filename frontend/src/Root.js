@@ -21,7 +21,6 @@ class Root extends Component {
         <Provider store={store}>
           <div>
             <Helmet>
-              {/* body attributes */}
               <title itemProp="name">
                 DA, DA
               </title>

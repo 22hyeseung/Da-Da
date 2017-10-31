@@ -18,6 +18,7 @@ import {
 class LoginPage extends Component {
   state = {
     popupWindow: null,
+    message: null,
   }
 
   componentWillUnmount() {
@@ -25,7 +26,14 @@ class LoginPage extends Component {
       'message',
       this.tokenHandler,
     )
-    this.props.saveUserInfo()
+  }
+
+  tokenValidation = () => {
+    this.props.userInfo.userName !== null
+      ? this.props.history.push('/')
+      : this.setState({
+          message: '새로고침 후 다시 로그인 해주세요.',
+        })
   }
 
   // token 갖고오는 함수 작동. > 여기서 토큰 저장
@@ -38,9 +46,9 @@ class LoginPage extends Component {
       this.setState({
         popupWindow: null,
       })
-      this.props.history.push('/')
+      this.props.getUserInfo()
+      setTimeout(this.tokenValidation, 100)
     }
-    // window.location.reload()
   }
 
   // sns를 target으로 받아서 분리시킴
@@ -49,8 +57,6 @@ class LoginPage extends Component {
       'message',
       this.tokenHandler,
     )
-    var x = window.screen.width / 2 - 700 / 2
-    var y = window.screen.height / 2 - 450 / 2
     const popupWindow = window.open(
       `${API_HOST}/auth/${target}`,
       '_blank',
@@ -99,6 +105,9 @@ class LoginPage extends Component {
                 </Header.Subheader>
                 DA,DA
               </Header>
+              <span style={{ color: 'white' }}>
+                {this.state.message}
+              </span>
               <div className="login-socialBtns">
                 <Button
                   fluid
@@ -170,7 +179,7 @@ const mapDispatchtoProps = dispatch => {
   return {
     saveToken: token =>
       dispatch(saveToken(token)),
-    saveUserInfo: () => dispatch(getUserInfo()),
+    getUserInfo: () => dispatch(getUserInfo()),
   }
 }
 
