@@ -19,7 +19,11 @@ export const setDay = day => {
     case 6:
       return '토'
     default:
-      return console.log('예외 발생: ' + day)
+      return console.error(
+        '예외 발생:',
+        day,
+        '// 파라미터는 getDay()로 얻어진 정수여야 합니다.',
+      )
   }
 }
 
