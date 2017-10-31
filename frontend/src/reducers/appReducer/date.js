@@ -17,15 +17,11 @@ export const todayDateReducer = (
   action,
 ) => {
   switch (action.type) {
-    case 'SET_TODAY_DATE':
+    case 'SET_TODAY_DATE_AND_DAY':
       return {
         ...state,
-        date: action.payload,
-      }
-    case 'SET_TODAY_DAY':
-      return {
-        ...state,
-        day: action.payload,
+        date: action.payload.date,
+        day: action.payload.day,
       }
     case 'SET_BEFORE_DATE_AND_DAY':
       return {

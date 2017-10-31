@@ -8,15 +8,18 @@ import {
   getDateNDaysAfter,
 } from '../helper/date'
 
-export const setTodayDate = date => ({
-  type: types.SET_TODAY_DATE,
-  payload: date,
-})
-
-export const setTodayDay = day => ({
-  type: types.SET_TODAY_DAY,
-  payload: day,
-})
+export const setTodayDateAndDay = () => {
+  return dispatch => {
+    const dateTime = new Date()
+    dispatch({
+      type: types.SET_TODAY_DATE_AND_DAY,
+      payload: {
+        date: dateTime.toLocaleDateString(),
+        day: setDay(dateTime.getDay()),
+      },
+    })
+  }
+}
 
 export const setBeforeDateAndDay = date => {
   return dispatch => {

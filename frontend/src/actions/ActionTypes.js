@@ -140,8 +140,8 @@ export const DELETE_ARTICLE_FAILED =
 
 //==========================================
 // setDate.js
-export const SET_TODAY_DATE = 'SET_TODAY_DATE'
-export const SET_TODAY_DAY = 'SET_TODAY_DAY'
+export const SET_TODAY_DATE_AND_DAY =
+  'SET_TODAY_DATE_AND_DAY'
 export const SET_BEFORE_DATE_AND_DAY =
   'SET_BEFORE_DATE_AND_DAY'
 export const MOVE_PREVIOUS_DATE =
