@@ -15,22 +15,23 @@ import {
 import './Diary.css'
 // 리덕스 액션생성자
 import { getUserInfo } from '../../actions/auth.js'
-
-// 리덕스 액션생성자
-import {
-  setTodayDate,
-  setTodayDay,
-} from '../../actions/setDate'
-
 import {
   getGoalKcal,
   postGoalKcal,
 } from '../../actions/diaryKcal'
+import {
+  moveToPrevDate,
+  moveToNextDate,
+} from '../../actions/setDate'
+import { getFoodLogsFromDB } from '../../actions/diaryFood'
+import { getFoodSummaryFromDB } from '../../actions/getFoodSummary'
+import { getFitnessLogsFromDB } from '../../actions/diaryFitness'
+import { getCommentFromDB } from '../../actions/review'
+import { getArticleFromDB } from '../../actions/review'
 
 // helper: 오늘 날짜
 import {
-  todaysDate,
-  todaysDay,
+  dateDotToDateType,
   dateStringForApiQuery,
 } from '../../helper/date'
 
@@ -38,26 +39,59 @@ class DiarySubNav extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      goalKcal: null,
       isPostMode: false,
+      inputGoalKcal: null,
+      // this.props.movedDate
+      // ? this.props.movedDate
+      // :
+      //  this.props.movedDay
+      //   ? this.props.movedDay
+      //   :
+      date: this.props.dateState,
+      day: this.props.dayState,
     }
   }
 
-  changeMode = () => {
-    if (
-      this.state.isPostMode &&
-      this.state.goalKcal
-    ) {
-      const param = {
-        goal_kcal: this.state.goalKcal,
-        date: dateStringForApiQuery(todaysDate),
-      }
+  componentWillMount() {
+    const { date, day } = this.state
+    this.props.getGoalKcal(
+      dateStringForApiQuery(date),
+    )
+  }
 
-      this.props.postGoalKcal(param)
+  componentWillReceiveProps(nextProps) {
+    const { date, day } = nextProps
+    if (
+      this.props.dateState !== nextProps.dateState
+    ) {
+      this.setState({
+        date: nextProps.dateState,
+        day: nextProps.dayState,
+      })
+    }
+  }
+
+  createRequestAndPostGoalToDB = () => {
+    this.changeMode()
+    const {
+      isPostMode,
+      inputGoalKcal,
+      date,
+    } = this.state
+
+    if (isPostMode && inputGoalKcal) {
+      const requestBody = {
+        goal_kcal: inputGoalKcal,
+        date: dateStringForApiQuery(date),
+      }
+      this.props.postGoalKcal(requestBody)
     }
 
+    this.changeMode()
+  }
+
+  changeMode = () => {
     this.setState({
-      goalKcal: this.props.goalKcal.kcal,
       isPostMode: !this.state.isPostMode,
     })
   }
@@ -66,40 +100,70 @@ class DiarySubNav extends Component {
     if (e.target.value.length > 6) {
       return false
     }
-    e.target.value = e.target.value.replace(
+    const value = e.target.value.replace(
       /[^0-9]/g,
       '',
     )
-    this.setState({ goalKcal: e.target.value })
+    this.setState({ inputGoalKcal: value })
   }
 
   handleGoalKcalKey = e => {
     if (e.keyCode === 13) {
-      this.changeMode()
+      this.createRequestAndPostGoalToDB()
     }
   }
 
-  componentWillMount() {
-    this.props.setTodayDate(todaysDate)
-    this.props.setTodayDay(todaysDay)
-    this.props.getGoalKcal(
-      dateStringForApiQuery(todaysDate),
-    )
+  handleDateToPrevious = () => {
+    this.props
+      .moveToPrevDate(this.state.date)
+      .then(date => {
+        const queryDate = dateStringForApiQuery(
+          new Date(date).toLocaleDateString(),
+        )
+        this.props.getFoodLogsFromDB(queryDate)
+        this.props.getFoodSummaryFromDB(queryDate)
+        this.props.getFitnessLogsFromDB(queryDate)
+        this.props.getCommentFromDB(queryDate)
+        this.props.getArticleFromDB(queryDate)
+      })
+  }
+
+  handleDateToNext = () => {
+    this.props
+      .moveToNextDate(this.state.date)
+      .then(date => {
+        const queryDate = dateStringForApiQuery(
+          new Date(date).toLocaleDateString(),
+        )
+        this.props.getFoodLogsFromDB(queryDate)
+        this.props.getFoodSummaryFromDB(queryDate)
+        this.props.getFitnessLogsFromDB(queryDate)
+        this.props.getCommentFromDB(queryDate)
+        this.props.getArticleFromDB(queryDate)
+      })
   }
 
   render() {
     return (
       <div>
         <nav className="diary-submenu">
-          <Icon name="chevron left" />
+          <Icon
+            name="chevron left"
+            style={{ cursor: 'pointer' }}
+            onClick={this.handleDateToPrevious}
+          />
           <span className="diary-date">
-            {this.props.dateState}
+            {this.state.date}
             <span className="diary-day">
               {' '}
-              {this.props.dayState}
+              {this.state.day}
             </span>
           </span>
-          <Icon name="chevron right" />
+          <Icon
+            name="chevron right"
+            style={{ cursor: 'pointer' }}
+            onClick={this.handleDateToNext}
+          />
         </nav>
         <Segment style={calorieGoal}>
           <span className="diary-food-goal-label">
@@ -110,7 +174,7 @@ class DiarySubNav extends Component {
               <Input
                 className="diary-food-goal-label-input"
                 style={kcalInput}
-                value={this.state.goalKcal}
+                value={this.state.inputGoalKcal}
                 onChange={
                   this.handleGoalKcalChange
                 }
@@ -119,7 +183,9 @@ class DiarySubNav extends Component {
               />
             ) : (
               <span className="diary-food-goal-kcal">
-                {this.props.goalKcal.kcal}
+                {this.props.goalKcal
+                  ? this.props.goalKcal
+                  : this.props.defaultGoalCalorie}
               </span>
             )}
             <span className="diary-food-goal-unit">
@@ -129,7 +195,9 @@ class DiarySubNav extends Component {
               src={iconSet.editIcon}
               className="diary-food-goal-edit"
               alt="클릭하면 목표칼로리를 수정할 수 있습니다"
-              onClick={this.changeMode}
+              onClick={
+                this.createRequestAndPostGoalToDB
+              }
             />
           </div>
         </Segment>
@@ -142,18 +210,31 @@ const mapStateToProps = state => {
   return {
     dateState: state.today.date,
     dayState: state.today.day,
-    goalKcal: state.goalKcal,
+    goalKcal: state.goalKcal.kcal,
+    defaultGoalCalorie:
+      state.caloriesChart.defaultGoalCalorie,
   }
 }
 
 const mapDispatchtoProps = dispatch => ({
-  setTodayDate: date =>
-    dispatch(setTodayDate(date)),
-  setTodayDay: day => dispatch(setTodayDay(day)),
   getGoalKcal: date =>
     dispatch(getGoalKcal(date)),
   postGoalKcal: param =>
     dispatch(postGoalKcal(param)),
+  moveToPrevDate: targetDate =>
+    dispatch(moveToPrevDate(targetDate)),
+  moveToNextDate: targetDate =>
+    dispatch(moveToNextDate(targetDate)),
+  getFoodLogsFromDB: date =>
+    dispatch(getFoodLogsFromDB(date)),
+  getFoodSummaryFromDB: date =>
+    dispatch(getFoodSummaryFromDB(date)),
+  getFitnessLogsFromDB: date =>
+    dispatch(getFitnessLogsFromDB(date)),
+  getCommentFromDB: date =>
+    dispatch(getCommentFromDB(date)),
+  getArticleFromDB: date =>
+    dispatch(getArticleFromDB(date)),
 })
 
 export default connect(

@@ -1,11 +1,18 @@
+// helper: 오늘 날짜
+import {
+  getDateNDaysBefore,
+  getDateNDaysAfter,
+  setDay,
+} from '../../helper/date'
+
 const TODAY_INITIAL_STATE = {
-  day: '',
-  date: '',
+  day: null,
+  date: null,
 }
 
 const BEFORE_INITIAL_STATE = {
-  beforeDay: '',
-  beforeDate: '',
+  beforeDay: null,
+  beforeDate: null,
 }
 
 export const todayDateReducer = (
@@ -22,6 +29,16 @@ export const todayDateReducer = (
       return {
         ...state,
         day: action.payload,
+      }
+    case 'MOVE_PREVIOUS_DATE':
+      return {
+        date: action.payload.toLocaleDateString(),
+        day: setDay(action.payload.getDay()),
+      }
+    case 'MOVE_NEXT_DATE':
+      return {
+        date: action.payload.toLocaleDateString(),
+        day: setDay(action.payload.getDay()),
       }
     default:
       return state
