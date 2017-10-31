@@ -8,6 +8,11 @@ import {
   moveToNextDate,
 } from '../../actions/setDate'
 
+import {
+  getKcalSummaryFromDB,
+  getNutritionSummaryFromDB,
+} from '../../actions/reportAPIs'
+
 import { dateStringForApiQuery } from '../../helper/date'
 
 class ReportSubNav extends Component {
@@ -37,23 +42,46 @@ class ReportSubNav extends Component {
   }
 
   handleDateToPrevious = () => {
-    this.props.moveToPrevDate(this.state.lastDate)
-    // .then(date => {
-    //   const queryDate = dateStringForApiQuery(
-    //     new Date(date).toLocaleDateString(),
-    //   )
-    //   // get
-    // })
+    this.props
+      .moveToPrevDate(this.state.lastDate)
+      .then(param => {
+        const queryPrev = dateStringForApiQuery(
+          param.prev.toLocaleDateString(),
+        )
+        const queryPrevBefore = dateStringForApiQuery(
+          param.prevBefore.toLocaleDateString(),
+        )
+        this.props.getKcalSummaryFromDB(
+          queryPrevBefore,
+          queryPrev,
+        )
+        this.props.getNutritionSummaryFromDB(
+          queryPrevBefore,
+          queryPrev,
+        )
+      })
   }
 
   handleDateToNext = () => {
-    this.props.moveToNextDate(this.state.lastDate)
-    // .then(date => {
-    //   const queryDate = dateStringForApiQuery(
-    //     new Date(date).toLocaleDateString(),
-    //   )
-    //   // get
-    // })
+    this.props
+      .moveToNextDate(this.state.lastDate)
+      .then(param => {
+        const queryNext = dateStringForApiQuery(
+          param.next.toLocaleDateString(),
+        )
+        const queryNextBefore = dateStringForApiQuery(
+          param.nextBefore.toLocaleDateString(),
+        )
+        console.warn(queryNextBefore, queryNext)
+        this.props.getKcalSummaryFromDB(
+          queryNextBefore,
+          queryNext,
+        )
+        this.props.getNutritionSummaryFromDB(
+          queryNextBefore,
+          queryNext,
+        )
+      })
   }
 
   render() {
@@ -106,6 +134,19 @@ const mapDispatchToProps = dispatch => {
       dispatch(moveToPrevDate(targetDate)),
     moveToNextDate: targetDate =>
       dispatch(moveToNextDate(targetDate)),
+    getKcalSummaryFromDB: (startDate, endDate) =>
+      dispatch(
+        getKcalSummaryFromDB(startDate, endDate),
+      ),
+    getNutritionSummaryFromDB: (
+      startDate,
+      endDate,
+    ) =>
+      dispatch(
+        getNutritionSummaryFromDB(
+          (startDate, endDate),
+        ),
+      ),
   }
 }
 

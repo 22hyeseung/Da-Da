@@ -19,7 +19,6 @@ export const setTodayDay = day => ({
 })
 
 export const setBeforeDateAndDay = date => {
-  console.log(date)
   return dispatch => {
     const beforeDate = getDateNDaysBefore(
       dateDotToDateType(date),
@@ -38,16 +37,22 @@ export const setBeforeDateAndDay = date => {
 export const moveToPrevDate = targetDate => {
   return dispatch => {
     return new Promise((resolve, reject) => {
-      const prevDate = getDateNDaysBefore(
+      const prev = getDateNDaysBefore(
         dateDotToDateType(targetDate),
         1,
       )
+      const prevBefore = getDateNDaysBefore(
+        prev,
+        6,
+      )
+      const param = { prev, prevBefore }
+
       if (targetDate) {
         dispatch({
           type: types.MOVE_PREVIOUS_DATE,
-          payload: prevDate,
+          payload: param,
         })
-        resolve(prevDate)
+        resolve(param)
       } else {
         reject('Failed to move previous date.')
       }
@@ -58,16 +63,21 @@ export const moveToPrevDate = targetDate => {
 export const moveToNextDate = targetDate => {
   return dispatch => {
     return new Promise((resolve, reject) => {
-      const nextDate = getDateNDaysAfter(
+      const next = getDateNDaysAfter(
         dateDotToDateType(targetDate),
         1,
       )
+      const nextBefore = getDateNDaysBefore(
+        next,
+        6,
+      )
+      const param = { next, nextBefore }
       if (targetDate) {
         dispatch({
           type: types.MOVE_NEXT_DATE,
-          payload: nextDate,
+          payload: param,
         })
-        resolve(nextDate)
+        resolve(param)
       } else {
         reject('Failed to move previous date.')
       }

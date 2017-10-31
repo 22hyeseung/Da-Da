@@ -34,36 +34,24 @@ export const todayDateReducer = (
         beforeDay: action.payload.day,
       }
     case 'MOVE_PREVIOUS_DATE':
-      // action.payload: Date타입 1일전 날짜
+      // prev: 1일 전 날짜 (Date타입)
+      // prevBefore: prev의 6일 전 날짜 (Date타입)
+      const { prev, prevBefore } = action.payload
       return {
-        date: action.payload.toLocaleDateString(),
-        day: setDay(action.payload.getDay()),
-        beforeDate: getDateNDaysBefore(
-          action.payload,
-          6,
-        ).toLocaleDateString(),
-        beforeDay: setDay(
-          getDateNDaysBefore(
-            action.payload,
-            6,
-          ).getDay(),
-        ),
+        date: prev.toLocaleDateString(),
+        day: setDay(prev.getDay()),
+        beforeDate: prevBefore.toLocaleDateString(),
+        beforeDay: setDay(prevBefore.getDay()),
       }
     case 'MOVE_NEXT_DATE':
-      // action.payload: Date타입 1일후 날짜
+      // next: 1일 후 날짜 (Date타입)
+      // nextBefore: next의 6일 전 날짜 (Date타입)
+      const { next, nextBefore } = action.payload
       return {
-        date: action.payload.toLocaleDateString(),
-        day: setDay(action.payload.getDay()),
-        beforeDate: getDateNDaysBefore(
-          action.payload,
-          6,
-        ).toLocaleDateString(),
-        beforeDay: setDay(
-          getDateNDaysBefore(
-            action.payload,
-            6,
-          ).getDay(),
-        ),
+        date: next.toLocaleDateString(),
+        day: setDay(next.getDay()),
+        beforeDate: nextBefore.toLocaleDateString(),
+        beforeDay: setDay(nextBefore.getDay()),
       }
     default:
       return state
