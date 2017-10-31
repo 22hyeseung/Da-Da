@@ -6,10 +6,12 @@ import {
   btnDiarySubmit,
 } from './StyledRecipe'
 import { postFoodToDB } from '../../actions/diaryFood'
-import { Button, Modal, Dropdown } from 'semantic-ui-react'
+import {
+  Button,
+  Modal,
+  Dropdown,
+} from 'semantic-ui-react'
 import { dateStringForApiQuery } from '../../helper/date'
-import { setTodayDate } from '../../actions/setDate'
-import { todaysDate } from '../../helper/date'
 
 const options = [
   { key: 1, text: '아침', value: '아침' },
@@ -27,14 +29,13 @@ class CookingProcess extends Component {
       selectMeal: null,
       cookingStep: this.props.recipe,
       date: dateStringForApiQuery(
-        todaysDate,
+        this.props.dateState,
       ),
     }
   }
 
   handlePopupWindowOpen = () => {
-    if(!this.props.recipeAmount){
-
+    if (!this.props.recipeAmount) {
     }
     this.setState({ popupWindow: true })
   }
@@ -45,10 +46,14 @@ class CookingProcess extends Component {
 
   handleCheckboxChange = (e, data) => {
     const stepTemp = this.state.cookingStep
-    if(stepTemp[e.target.value-1].isProcess){
-      stepTemp[e.target.value-1].isProcess = false
-    }else{
-      stepTemp[e.target.value-1].isProcess = true
+    if (stepTemp[e.target.value - 1].isProcess) {
+      stepTemp[
+        e.target.value - 1
+      ].isProcess = false
+    } else {
+      stepTemp[
+        e.target.value - 1
+      ].isProcess = true
     }
 
     this.setState({ cookingStep: stepTemp })
@@ -59,14 +64,17 @@ class CookingProcess extends Component {
   }
 
   createPayloadAndPostToDB = () => {
-    if(!this.state.selectMeal){
-      return false;
+    if (!this.state.selectMeal) {
+      return false
     }
 
     this.props.postFoodToDB({
-      serve: this.props.recipeAmount ? this.props.recipeAmount * 1 : this.props.recipeContent.recipe_serving,
+      serve: this.props.recipeAmount
+        ? this.props.recipeAmount * 1
+        : this.props.recipeContent.recipe_serving,
       date: this.state.date,
-      recipe_id: this.props.recipeContent.recipe_id,
+      recipe_id: this.props.recipeContent
+        .recipe_id,
       meal_tag: this.state.selectMeal,
       picture: null,
     })
@@ -84,58 +92,85 @@ class CookingProcess extends Component {
         }}
       >
         <form style={{ width: '884px' }}>
-          {
-            this.props.recipe.map((val, i) => {
-              const divNaming = `cookingstep${i+1}`
-              return (
-                <div id={divNaming} className={(val.isProcess ? 'cooking-on' : '')}>
-                  <label style={checkboxStyle}>
-                    <input
-                      type="checkbox"
-                      value={val.step}
-                      style={{ display: 'none' }}
-                      onClick={this.handleCheckboxChange}
-                    />
-                    <span style={{ fontSize: '22px' }}>
-                      {val.step}
-                    </span>
-                  </label>
-                  <p style={description}>{val.content}</p>
-                </div>
-              )
-            })
-          }
+          {this.props.recipe.map((val, i) => {
+            const divNaming = `cookingstep${i +
+              1}`
+            return (
+              <div
+                id={divNaming}
+                className={
+                  val.isProcess
+                    ? 'cooking-on'
+                    : ''
+                }
+              >
+                <label style={checkboxStyle}>
+                  <input
+                    type="checkbox"
+                    value={val.step}
+                    style={{ display: 'none' }}
+                    onClick={
+                      this.handleCheckboxChange
+                    }
+                  />
+                  <span
+                    style={{ fontSize: '22px' }}
+                  >
+                    {val.step}
+                  </span>
+                </label>
+                <p style={description}>
+                  {val.content}
+                </p>
+              </div>
+            )
+          })}
         </form>
-        <div style={{textAlign: 'right'}}>
-          <Button size='Large' icon='plus' content='기록 다이어리에 등록하기'
+        <div style={{ textAlign: 'right' }}>
+          <Button
+            size="Large"
+            icon="plus"
+            content="기록 다이어리에 등록하기"
             style={btnDiarySubmit}
             onClick={this.handlePopupWindowOpen}
           />
         </div>
         <div>
-          <Modal open={this.state.popupWindow} onClose={this.handlePopupWindowClose} size='mini'>
-            <Modal.Header>어떤 시간에 드셨나요?</Modal.Header>
+          <Modal
+            open={this.state.popupWindow}
+            onClose={this.handlePopupWindowClose}
+            size="mini"
+          >
+            <Modal.Header>
+              어떤 시간에 드셨나요?
+            </Modal.Header>
             <Modal.Content>
-            <div>
-              <Dropdown
-                downward
-                fluid
-                selection
-                options={options}
-                placeholder=' >> 시간을 선택하세요 << '
-                onChange={this.handleMealTegChange}
-              />
-            </div>
+              <div>
+                <Dropdown
+                  downward
+                  fluid
+                  selection
+                  options={options}
+                  placeholder=" >> 시간을 선택하세요 << "
+                  onChange={
+                    this.handleMealTegChange
+                  }
+                />
+              </div>
             </Modal.Content>
             <Modal.Actions>
               <Button
                 basic
                 content="취소"
-                onClick={this.handlePopupWindowClose}
+                onClick={
+                  this.handlePopupWindowClose
+                }
               />
               <Button
                 content="등록"
-                onClick={this.createPayloadAndPostToDB}
+                onClick={
+                  this.createPayloadAndPostToDB
+                }
               />
             </Modal.Actions>
           </Modal>
@@ -154,11 +189,12 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    setTodayDate: date =>
-      dispatch(setTodayDate(date)),
     postFoodToDB: payload =>
       dispatch(postFoodToDB(payload)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CookingProcess)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CookingProcess)

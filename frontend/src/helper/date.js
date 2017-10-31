@@ -1,6 +1,4 @@
-// 오늘 날짜
-export const dateTime = new Date()
-const day = dateTime.getDay()
+// 요일 구하는 함수 ===============================================
 
 export const setDay = day => {
   switch (day) {
@@ -26,12 +24,6 @@ export const setDay = day => {
       )
   }
 }
-
-// 오늘 날짜 형식: YYYY. MM. DD.
-export const todaysDate = dateTime.toLocaleDateString()
-
-// 오늘 요일 형식: ex. '월'
-export const todaysDay = setDay(day)
 
 // 날짜 포맷 변환 함수 ===============================================
 
