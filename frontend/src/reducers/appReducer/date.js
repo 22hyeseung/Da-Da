@@ -57,32 +57,3 @@ export const todayDateReducer = (
       return state
   }
 }
-
-// export const beforeDateReducer = (
-//   state = BEFORE_INITIAL_STATE,
-//   action,
-// ) => {
-//   switch (action.type) {
-//     // case 'SET_BEFORE_DATE_AND_DAY':
-//     //   return {
-//     //     beforeDate: action.payload.date,
-//     //     beforeDay: action.payload.day,
-//     //   }
-//     case 'MOVE_PREVIOUS_BEFORE_DATE':
-//       return {
-//         beforeDate: action.payload.toLocaleDateString(),
-//         beforeDay: setDay(
-//           action.payload.getDay(),
-//         ),
-//       }
-//     case 'MOVE_NEXT_BEFORE_DATE':
-//       return {
-//         beforeDate: action.payload.toLocaleDateString(),
-//         beforeDay: setDay(
-//           action.payload.getDay(),
-//         ),
-//       }
-//     default:
-//       return state
-//   }
-// }
