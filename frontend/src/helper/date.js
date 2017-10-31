@@ -38,10 +38,19 @@ export const todaysDay = setDay(day)
 // API 통신용 날짜 포맷
 // YYYY. MM. DD. -> YYYYMMDD
 export const dateStringForApiQuery = dateString => {
-  return dateString
+  const dateStringOrigin = dateString
     .split('.')
     .join('')
     .replace(/ /gi, '')
+
+  // 10이하의 날짜에서는 0을 추가
+  const dateFirstWeek = dateStringOrigin.split('')
+  dateFirstWeek.splice(6, 0, '0')
+
+  if (dateStringOrigin.length === 7) {
+    return dateFirstWeek.join('')
+  }
+  return dateStringOrigin
 }
 
 // YYYY. MM. DD. -> YYYY-MM-DD

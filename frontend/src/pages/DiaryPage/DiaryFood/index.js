@@ -1,21 +1,21 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 import * as Style from './StyledDiaryFood'
 
 // 컴포넌트
 import DiarySubHeader from '../DiarySubHeader'
-import DiaryFoodAlbum from './DiaryFoodAlbum'
-import DiaryFoodMeal from './DiaryFoodMeal'
+import FoodAlbum from './FoodAlbum'
+import FoodMeal from './FoodMeal'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
 
-import { connect } from 'react-redux'
 // 리덕스 액션
-
 import { getFoodLogsFromDB } from '../../../actions/diaryFood'
+
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../helper/date'
 
-class DiaryFood extends React.Component {
+class FoodIndex extends React.Component {
   state = {
     loading: false,
     date: dateStringForApiQuery(
@@ -40,8 +40,10 @@ class DiaryFood extends React.Component {
   }
 
   render() {
+    const { foodresult } = this.props
+
     // 끼니별 배열
-    const breackfast = []
+    const breakfast = []
     const lunch = []
     const dinner = []
     const desert = []
@@ -57,58 +59,30 @@ class DiaryFood extends React.Component {
           tabNameKR="식단 다이어리"
           icon="foodIcon"
         />
-
         {/* 받은 데이터를 끼니별 배열에 넣어준다 */}
-        {this.props.foodresult.map(
-          (result, i) => {
-            if (
-              result.eat_log_meal_tag === '아침'
-            ) {
-              {
-                breackfast.push(result)
-              }
-            }
-            if (
-              result.eat_log_meal_tag === '점심'
-            ) {
-              {
-                lunch.push(result)
-              }
-            }
-            if (
-              result.eat_log_meal_tag === '저녁'
-            ) {
-              {
-                dinner.push(result)
-              }
-            }
-            if (
-              result.eat_log_meal_tag === '간식'
-            ) {
-              {
-                desert.push(result)
-              }
-            }
-          },
-        )}
+        {foodresult.map((result, i) => {
+          if (result.eat_log_meal_tag === '아침') {
+            breakfast.push(result)
+          }
+          if (result.eat_log_meal_tag === '점심') {
+            lunch.push(result)
+          }
+          if (result.eat_log_meal_tag === '저녁') {
+            dinner.push(result)
+          }
+          if (result.eat_log_meal_tag === '간식') {
+            desert.push(result)
+          }
+        })}
 
-        <DiaryFoodMeal
+        <FoodMeal
           type="아침"
-          foodresult={breackfast}
+          foodresult={breakfast}
         />
-        <DiaryFoodMeal
-          type="점심"
-          foodresult={lunch}
-        />
-        <DiaryFoodMeal
-          type="저녁"
-          foodresult={dinner}
-        />
-        <DiaryFoodMeal
-          type="간식"
-          foodresult={desert}
-        />
-        <DiaryFoodAlbum />
+        <FoodMeal type="점심" foodresult={lunch} />
+        <FoodMeal type="저녁" foodresult={dinner} />
+        <FoodMeal type="간식" foodresult={desert} />
+        <FoodAlbum />
       </Segment>
     )
   }
@@ -130,4 +104,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(DiaryFood)
+)(FoodIndex)

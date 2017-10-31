@@ -25,7 +25,7 @@ import cameraIcon from '../../../static/img/diary-camera-icon.svg'
 import vision from '../../../static/img/diary-food-vision.svg'
 import * as Style from './StyledDiaryFood'
 
-class DiaryFoodSearchModal extends Component {
+class FoodSearchModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -391,4 +391,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(DiaryFoodSearchModal)
+)(FoodSearchModal)
