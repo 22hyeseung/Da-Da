@@ -80,20 +80,17 @@ router.options('*', mw.corsMiddleware)
  *     }
  * ]
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const name = req.query.name.toString()
 
   if (name.length >= 1) {
-    query.getFoodsSearch(name)
-      .then(food => {
-        res.status(200)
-        res.send(food)
-      })
+    const food = await query.getFoodsSearch(name)
+    res.status(200)
+    res.send(food)
   } else {
     res.status(405)
     res.send('검색어는 최소 한글자 이상 입력해야 합니다.')
   }
-
 })
 
 module.exports = router
