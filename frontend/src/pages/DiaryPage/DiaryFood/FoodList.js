@@ -60,7 +60,7 @@ class FoodList extends React.Component {
               value: card.food_protein,
             },
             {
-              name: '탄',
+              name: '지',
               value: card.food_fat,
             },
           ]
