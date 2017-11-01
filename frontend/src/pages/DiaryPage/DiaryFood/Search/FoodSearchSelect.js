@@ -3,6 +3,7 @@ import {
   Input,
   Icon,
   Button,
+  Popup,
 } from 'semantic-ui-react'
 import {
   submitBtn,
@@ -130,12 +131,14 @@ class FoodSelectDetails extends Component {
       finalKcal,
       loading,
     } = this.state
+
     const {
       foodResult,
       calculateKcal,
       isSelected,
       toggleSearchMode,
     } = this.props
+
     const details = (
       <div
         style={{
@@ -198,6 +201,18 @@ class FoodSelectDetails extends Component {
           {isSelected ? details : blank}
         </div>
         <div>
+          <Popup
+            trigger={
+              <Icon
+                name="help circle outline"
+                size="large"
+                color="teal"
+                style={{ marginRight: '14px' }}
+              />
+            }
+            header="음식의 양"
+            content="개인이 느끼는 1인분의 기준은 각자의 신체조건, 상태에 따라 매우 주관적이므로, 정확한 칼로리 계산을 위해서는 음식의 양을 입력해야합니다."
+          />
           <Button
             basic
             style={{
