@@ -6,7 +6,7 @@ import {
   Dropdown,
   List,
 } from 'semantic-ui-react'
-import * as styled from './StyledRecipe'
+import * as Style from '../StyledRecipe'
 
 const options = [
   { key: 1, text: '1', value: 1 },
@@ -30,7 +30,8 @@ class IngredientBox extends Component {
 
   componentWillMount() {
     this.setState({
-      recipeAmount: this.props.recipeContent.recipe_serving,
+      recipeAmount: this.props.recipeContent
+        .recipe_serving,
     })
   }
 
@@ -41,9 +42,9 @@ class IngredientBox extends Component {
 
   render() {
     return (
-      <Card style={styled.cardWrap}>
+      <Card style={Style.cardWrap}>
         <Card.Content>
-          <Card.Header style={styled.cardHeader}>
+          <Card.Header style={Style.cardHeader}>
             <p style={{ margin: '7px 0 15px 0' }}>
               재료
             </p>
@@ -54,7 +55,9 @@ class IngredientBox extends Component {
               selection
               options={options}
               onChange={this.handleAmount}
-              defaultValue={this.state.recipeAmount}
+              defaultValue={
+                this.state.recipeAmount
+              }
             />
             <span
               style={{
@@ -66,27 +69,40 @@ class IngredientBox extends Component {
             </span>
           </Card.Header>
         </Card.Content>
-        <Card.Content style={styled.cardContent}>
-          <div style={styled.ingredientListWrap}>
-            <List style={styled.ingredientNameList}>
-              {
-                this.props.recipeIngredient.map((val, i) => {
+        <Card.Content style={Style.cardContent}>
+          <div style={Style.ingredientListWrap}>
+            <List
+              style={Style.ingredientNameList}
+            >
+              {this.props.recipeIngredient.map(
+                (val, i) => {
                   return (
-                    <List.Item>{val.name}</List.Item>
+                    <List.Item>
+                      {val.name}
+                    </List.Item>
                   )
-                })
-              }
+                },
+              )}
             </List>
-            <List style={styled.ingredientAmountList}>
-              {
-                this.props.recipeIngredient.map((val, i) => {
+            <List
+              style={Style.ingredientAmountList}
+            >
+              {this.props.recipeIngredient.map(
+                (val, i) => {
                   return (
-                    <List.Item>{(val.num/this.props.recipeContent.recipe_serving)*this.state.recipeAmount} {val.unit}</List.Item>
+                    <List.Item>
+                      {val.num /
+                        this.props.recipeContent
+                          .recipe_serving *
+                        this.state
+                          .recipeAmount}{' '}
+                      {val.unit}
+                    </List.Item>
                   )
-                })
-              }
+                },
+              )}
             </List>
-            <span style={styled.subLabel}>
+            <span style={Style.subLabel}>
               * Tsp : 테이블스푼
             </span>
           </div>
@@ -99,8 +115,11 @@ class IngredientBox extends Component {
 const mapStateToProps = state => {
   return {
     recipeContent: state.recipe.recipeContent,
-    recipeIngredient: state.recipe.recipeIngredient,
+    recipeIngredient:
+      state.recipe.recipeIngredient,
   }
 }
 
-export default connect(mapStateToProps, null)(IngredientBox)
+export default connect(mapStateToProps, null)(
+  IngredientBox,
+)

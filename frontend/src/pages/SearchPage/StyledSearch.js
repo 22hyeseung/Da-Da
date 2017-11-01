@@ -53,7 +53,3 @@ export const h5 = {
   margin: 'auto',
   lineHeight: '50px',
 }
-
-export const searchCamera = {
-  'paddingLeft': '10px',
-}

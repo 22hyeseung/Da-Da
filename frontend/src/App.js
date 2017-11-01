@@ -54,12 +54,12 @@ class App extends Component {
             component={SearchPage}
           />
           <Route
-            path="/share"
-            component={SharePage}
-          />
-          <Route
             path="/recipe/:id"
             component={RecipePage}
+          />
+          <Route
+            path="/share"
+            component={SharePage}
           />
           <Route component={NotFoundPage} />
         </Switch>

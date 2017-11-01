@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as styled from './StyledRecipe'
+// 컴포넌트
 import Navigation from '../../components/Navigation'
 import RecipeTitleBox from './RecipeTitleBox'
-import IngredientBox from './IngredientBox'
-import CookingProcess from './CookingProcess'
+import IngredientBox from './BottomSection/IngredientBox'
+import CookingProcess from './BottomSection/CookingProcess'
 import ComponentLoader from '../../components/Loader/ComponentLoader'
+// 리덕스 액션
 import { getRecipe } from '../../actions/recipe'
 
 class RecipePage extends Component {

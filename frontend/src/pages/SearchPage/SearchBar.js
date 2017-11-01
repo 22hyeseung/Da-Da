@@ -5,9 +5,7 @@ import {
   Input,
   Icon,
 } from 'semantic-ui-react'
-import {
-  withRouter,
-} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import * as Style from './StyledSearch'
 import './Search.css'
 
@@ -21,7 +19,9 @@ class SearchBar extends Component {
 
   handleSearch = e => {
     if (e.keyCode === 13) {
-      this.props.history.push('/search/' + this.state.searchText)
+      this.props.history.push(
+        '/search/' + this.state.searchText,
+      )
     }
   }
 
@@ -55,16 +55,22 @@ class SearchBar extends Component {
             <Input
               className={this.props.className}
               icon={
-                <Icon name='search' circular link
-                  onClick={() => this.props.history.push('/search/' + this.state.searchText)}
+                <Icon
+                  name="search"
+                  circular
+                  link
+                  onClick={() =>
+                    this.props.history.push(
+                      '/search/' +
+                        this.state.searchText,
+                    )}
                 />
               }
               value={this.state.searchText}
               onKeyDown={this.handleSearch}
-              onChange={this.handleSearchTextChange}
-            />
-            <Icon name='camera' link size='large' style={Style.searchCamera}
-              onClick={() => this.props.history.push('/search/' + this.state.searchText)}
+              onChange={
+                this.handleSearchTextChange
+              }
             />
             <Header
               style={Style.h5}
