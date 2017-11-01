@@ -59,18 +59,14 @@ router.options('*', mw.corsMiddleware)
  *     }
  * }
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const param = {
     'day_log_member_id': req.user.id,
     'member_id': req.user.id
   }
-  query.getFirstGoalKcalById(param)
-    .then(default_kcal => {
-      query.getUserById(param.member_id)
-        .then(user => {
-          res.send({ user, default_kcal })
-        })
-    })
+  const default_kcal = await query.getFirstGoalKcalById(param)
+  const user = await query.getUserById(param.member_id)
+  res.send({ default_kcal, user })
 })
 
 /**
@@ -118,7 +114,7 @@ router.get('/', (req, res) => {
  * }
  */
 
-router.post('/first', (req, res) => {
+router.post('/first', async (req, res) => {
   const member_params = {
     'member_id': req.user.id,
     'member_birth': req.body.birth,
@@ -134,13 +130,11 @@ router.post('/first', (req, res) => {
     'day_log_diary_date': req.body.date
   }
 
-  query.postFirstMember(member_params)
-    .then(MemberResult => {
-      query.postFirstDayLog(day_log_params)
-        .then(DaylogResult => {
-          res.send({ MemberResult, DaylogResult })
-        })
-    })
+  const MemberResult = await query.postFirstMember(member_params)
+  const DaylogResult = await query.postFirstDayLog(day_log_params)
+
+  res.send({ MemberResult, DaylogResult })
+
 })
 
 module.exports = router
