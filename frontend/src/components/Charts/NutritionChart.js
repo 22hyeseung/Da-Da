@@ -179,7 +179,7 @@ const mapStateToProps = state => {
     defaultGoalCalorie:
       state.caloriesChart.defaultGoalCalorie,
     lastDateState: state.today.date,
-    beforeDateState: state.beforeDay.beforeDate,
+    beforeDateState: state.today.beforeDate,
   }
 }
 

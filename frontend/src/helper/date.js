@@ -1,6 +1,4 @@
-// 오늘 날짜
-export const dateTime = new Date()
-const day = dateTime.getDay()
+// 요일 구하는 함수 ===============================================
 
 export const setDay = day => {
   switch (day) {
@@ -19,15 +17,13 @@ export const setDay = day => {
     case 6:
       return '토'
     default:
-      return console.log('예외 발생: ' + day)
+      return console.error(
+        '예외 발생:',
+        day,
+        '// 파라미터는 getDay()로 얻어진 정수여야 합니다.',
+      )
   }
 }
-
-// 오늘 날짜 형식: YYYY. MM. DD.
-export const todaysDate = dateTime.toLocaleDateString()
-
-// 오늘 요일 형식: ex. '월'
-export const todaysDay = setDay(day)
 
 // 날짜 포맷 변환 함수 ===============================================
 
@@ -38,19 +34,16 @@ export const todaysDay = setDay(day)
 // API 통신용 날짜 포맷
 // YYYY. MM. DD. -> YYYYMMDD
 export const dateStringForApiQuery = dateString => {
-  const dateStringOrigin = dateString
-    .split('.')
-    .join('')
-    .replace(/ /gi, '')
-
-  // 10이하의 날짜에서는 0을 추가
-  const dateFirstWeek = dateStringOrigin.split('')
-  dateFirstWeek.splice(6, 0, '0')
-
-  if (dateStringOrigin.length === 7) {
-    return dateFirstWeek.join('')
-  }
-  return dateStringOrigin
+  const splitArray = dateString.split('.')
+  splitArray.map((el, i, arr) => {
+    arr[i] =
+      // 월이나 일이 한 자리 숫자일 때
+      // ex. 2017. 11. 1. -> 2017. 11. 01.
+      el.replace(/ /gi, '').length === 1
+        ? '0' + el
+        : el
+  })
+  return splitArray.join('').replace(/ /gi, '')
 }
 
 // YYYY. MM. DD. -> YYYY-MM-DD
@@ -106,6 +99,18 @@ export const getDateNDaysBefore = (
     dateType.getFullYear(),
     dateType.getMonth(),
     dateType.getDate() - n,
+  )
+}
+
+// N일후 날짜(date타입) 구하는 함수
+export const getDateNDaysAfter = (
+  dateType,
+  n,
+) => {
+  return new Date(
+    dateType.getFullYear(),
+    dateType.getMonth(),
+    dateType.getDate() + n,
   )
 }
 

@@ -5,15 +5,43 @@ import { container } from './StyledNavigation'
 import { getUserInfo } from '../../actions/auth'
 import Logo from './Logo'
 import RightMenu from './RightMenu'
+// 리덕스 액션생성자
+import {
+  setTodayDateAndDay,
+  setBeforeDateAndDay,
+} from '../../actions/setDate'
 
 class Navigation extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      date: new Date().toLocaleString(),
+    }
+  }
   // 유저 정보 및 오늘 날짜 SET
   componentWillMount() {
     this.props.saveUserInfo()
+    this.props.setTodayDateAndDay()
+    this.props.setBeforeDateAndDay(
+      this.state.date,
+    )
     this.setState({ loading: true }, () =>
       this.fetchData(),
     )
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   const { date, day } = nextProps
+  //   if (
+  //     this.props.dateState !== nextProps.dateState
+  //   ) {
+  //     this.setState({
+  //       date: nextProps.dateState,
+  //       day: nextProps.dayState,
+  //     })
+
+  //   }
+  // }
 
   fetchData = () => {
     setTimeout(() => {
@@ -41,10 +69,19 @@ Navigation.defaultProps = {
   color: '#16325c',
 }
 
-const mapDispatchtoProps = dispatch => ({
-  saveUserInfo: () => dispatch(getUserInfo()),
+const mapStateToProps = state => ({
+  dateState: state.today.date,
+  dayState: state.today.day,
 })
 
-export default connect(null, mapDispatchtoProps)(
+const mapDispatchToProps = dispatch => ({
+  saveUserInfo: () => dispatch(getUserInfo()),
+  setTodayDateAndDay: () =>
+    dispatch(setTodayDateAndDay()),
+  setBeforeDateAndDay: date =>
+    dispatch(setBeforeDateAndDay(date)),
+})
+
+export default connect(null, mapDispatchToProps)(
   Navigation,
 )

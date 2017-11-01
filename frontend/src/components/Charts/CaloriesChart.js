@@ -21,24 +21,18 @@ import { getCaloriesForAWeekFromDB } from '../../actions/reportAPIs'
 class CaloriesChart extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      // 기준일의 6일 전 날짜 (YYYYMMDD)
-      startDate: dateStringForApiQuery(
-        this.props.beforeDateState,
-      ),
-      // 기준일 (오늘 혹은 사용자가 지정한 날짜)(YYYYMMDD)
-      endDate: dateStringForApiQuery(
-        this.props.lastDateState,
-      ),
-    }
+    this.state = {}
   }
 
   componentDidMount() {
-    const { startDate, endDate } = this.state
     // get
     this.props.getCaloriesForAWeekFromDB(
-      startDate,
-      endDate,
+      dateStringForApiQuery(
+        this.props.beforeDateState,
+      ),
+      dateStringForApiQuery(
+        this.props.lastDateState,
+      ),
     )
   }
 
@@ -184,7 +178,7 @@ const mapStateToProps = state => {
     // 기준일 날짜 (string: YYYY. MM. DD.)
     lastDateState: state.today.date,
     // 시작일(기준일-6일) 날짜 (string: YYYY. MM. DD.)
-    beforeDateState: state.beforeDay.beforeDate,
+    beforeDateState: state.today.beforeDate,
   }
 }
 

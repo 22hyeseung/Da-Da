@@ -22,7 +22,7 @@ import { dateStringForApiQuery } from '../../../helper/date'
 import {
   getFoodSummaryFromDB, // 하루 단위 food summary
 } from '../../../actions/getFoodSummary'
-import { getCalorieGoalFromDB } from '../../../actions/calorieGoalsAPI' // 하루 단위 목표 칼로리 get
+import { getGoalKcal } from '../../../actions/diaryKcal' // 하루 단위 목표 칼로리 get
 
 class DiarySummary extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class DiarySummary extends Component {
   componentWillMount() {
     const {
       getFoodSummaryFromDB,
-      getCalorieGoalFromDB,
+      getGoalKcal,
       dateState,
     } = this.props
 
@@ -40,7 +40,7 @@ class DiarySummary extends Component {
 
     getFoodSummaryFromDB(date)
 
-    getCalorieGoalFromDB(date)
+    getGoalKcal(date)
   }
 
   render() {
@@ -51,8 +51,8 @@ class DiarySummary extends Component {
       kcalGoal,
     } = this.props
 
-    const goalCalorie = kcalGoal.day_log_kcal
-      ? kcalGoal.day_log_kcal
+    const goalCalorie = kcalGoal
+      ? kcalGoal
       : defaultGoalCalorie
 
     const restCalorie =
@@ -152,7 +152,7 @@ const mapStateToProps = state => {
     eatKcal: state.diarySummary.eatKcal,
     burnKcal: state.diarySummary.burnKcal,
     dateState: state.today.date,
-    kcalGoal: state.calorieGoalAboutADay.kcalGoal,
+    kcalGoal: state.goalKcal.kcal,
     defaultGoalCalorie:
       state.auth.userInfo.userDefaultKcal,
   }
@@ -162,8 +162,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getFoodSummaryFromDB: date =>
       dispatch(getFoodSummaryFromDB(date)),
-    getCalorieGoalFromDB: date =>
-      dispatch(getCalorieGoalFromDB(date)),
+    getGoalKcal: date =>
+      dispatch(getGoalKcal(date)),
   }
 }
 

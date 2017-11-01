@@ -21,7 +21,7 @@ class HomePage extends Component {
     loading: false,
   }
 
-  // 유저 정보 및 오늘 날짜 SET
+  // 유저 정보 SET
   componentWillMount() {
     this.props.saveUserInfo()
     this.setState({ loading: true }, () =>

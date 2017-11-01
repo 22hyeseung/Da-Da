@@ -23,17 +23,7 @@ class DiaryReview extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // 둘 중 하나라도 error이면 true
-      errorState:
-        this.props.errorStateComment ||
-        this.props.errorStateArticle,
-      // 둘 중 하나라도 loading이면 true
-      isLoading:
-        this.props.isLoadingComment ||
-        this.props.isLoadingArticle,
-      date: dateStringForApiQuery(
-        this.props.dateState,
-      ),
+      isLoading: this.props.isLoading,
     }
   }
 
@@ -41,25 +31,36 @@ class DiaryReview extends Component {
   // db에 작성된 로그가 이미 있는지 확인하기 위함.
   // 데이터 유무에 따라 보여지는 화면이 다름. (읽기모드/쓰기모드)
   componentWillMount() {
-    this.props.getArticleFromDB(this.state.date)
-    this.props.getCommentFromDB(this.state.date)
+    const {
+      getArticleFromDB,
+      getCommentFromDB,
+      dateState,
+    } = this.props
+
+    const queryDate = dateStringForApiQuery(
+      dateState,
+    )
+
+    getArticleFromDB(queryDate)
+    getCommentFromDB(queryDate)
+
     this.setState({ isLoading: true }, () =>
       this.fetchData(),
     )
   }
 
-  // 로딩 화면 위해 1.5초 지연
+  // 로딩 화면 위해 1초 지연
   fetchData = () => {
     setTimeout(() => {
       this.setState({
         isLoading: false,
       })
-    }, 1500)
+    }, 1000)
   }
 
   render() {
     // 시스템 에러 발생시
-    if (this.state.errorState) {
+    if (this.props.errorState) {
       return (
         <Message negative>
           <Message.Header>
@@ -97,10 +98,14 @@ class DiaryReview extends Component {
 const mapStateToProps = state => {
   return {
     dateState: state.today.date,
-    errorStateComment: state.comment.errorState,
-    errorStateArticle: state.article.errorState,
-    isLoadingComment: state.comment.isLoading,
-    isLoadingArticle: state.article.isLoading,
+    // 하나라도 에러면 에러
+    errorState:
+      state.comment.errorState ||
+      state.article.errorState,
+    // 하나라도 로딩이면 로딩
+    isLoading:
+      state.comment.isLoading ||
+      state.article.isLoading,
   }
 }
 

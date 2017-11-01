@@ -8,8 +8,9 @@ import { getCommentFromDB } from '../../actions/review'
 import {
   dateStringForApiQuery,
   getDateNDaysBefore,
-  dateTime,
 } from '../../helper/date'
+
+const dateTime = new Date()
 
 class PageLoader extends Component {
   constructor(props) {
