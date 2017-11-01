@@ -14,6 +14,8 @@ import { postUserInfo } from '../../actions/auth'
 import introImg from '../../static/img/home-intro-img.svg'
 import { dateStringForApiQuery } from '../../helper/date'
 
+const dateTime = new Date().toLocaleDateString()
+
 class HomeFirstUserInfo extends Component {
   constructor(props) {
     super(props)
@@ -27,9 +29,7 @@ class HomeFirstUserInfo extends Component {
       recommend_kcal: null,
       height: null,
       kg: null,
-      date: dateStringForApiQuery(
-        this.props.dateState,
-      ),
+      date: dateStringForApiQuery(dateTime),
     }
   }
   // 성별을 받는 핸들러
