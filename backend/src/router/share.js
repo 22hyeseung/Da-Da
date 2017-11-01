@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const query = require('../query')
+const mw = require('../middleware')
 
 const router = express.Router()
 
@@ -13,10 +14,10 @@ router.use((req, res, next) => {
   next()
 })
 
-router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ 'extended': false }))
-router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-router.options('*', cors())
+router.use(mw.jsonMiddleware)
+router.use(mw.urlencodedMiddleware)
+router.use(mw.corsMiddleware)
+router.options('*', mw.corsMiddleware)
 /**
  * @api {get} /share GetShare
  * @apiDescription 사용자가 하루기록을 공유
