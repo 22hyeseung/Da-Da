@@ -6,12 +6,12 @@ import './Report.css'
 import {
   moveToPrevDate,
   moveToNextDate,
-} from '../../actions/setDate'
+} from '../../actions/appDate'
 
 import {
   getKcalSummaryFromDB,
   getNutritionSummaryFromDB,
-} from '../../actions/reportAPIs'
+} from '../../actions/report'
 
 import { dateStringForApiQuery } from '../../helper/date'
 

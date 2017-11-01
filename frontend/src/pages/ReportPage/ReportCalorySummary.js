@@ -19,7 +19,7 @@ import './Report.css'
 // helper함수
 import { dateStringForApiQuery } from '../../helper/date'
 // 리덕스 액션
-import { getKcalSummaryFromDB } from '../../actions/reportAPIs'
+import { getKcalSummaryFromDB } from '../../actions/report'
 
 class ReportCalorySummary extends Component {
   constructor(props) {

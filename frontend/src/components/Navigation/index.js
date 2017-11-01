@@ -9,7 +9,7 @@ import RightMenu from './RightMenu'
 import {
   setTodayDateAndDay,
   setBeforeDateAndDay,
-} from '../../actions/setDate'
+} from '../../actions/appDate'
 
 class Navigation extends Component {
   constructor(props) {

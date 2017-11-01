@@ -22,9 +22,9 @@ import {
 import {
   moveToPrevDate,
   moveToNextDate,
-} from '../../actions/setDate'
+} from '../../actions/appDate'
 import { getFoodLogsFromDB } from '../../actions/diaryFood'
-import { getFoodSummaryFromDB } from '../../actions/getFoodSummary'
+import { getFoodSummaryFromDB } from '../../actions/diaryFoodSummary'
 import { getFitnessLogsFromDB } from '../../actions/diaryFitness'
 import { getCommentFromDB } from '../../actions/review'
 import { getArticleFromDB } from '../../actions/review'

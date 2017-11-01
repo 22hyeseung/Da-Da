@@ -19,7 +19,7 @@ import './Report.css'
 
 import { dateStringForApiQuery } from '../../helper/date'
 // 리덕스 액션
-import { getNutritionSummaryFromDB } from '../../actions/reportAPIs'
+import { getNutritionSummaryFromDB } from '../../actions/report'
 
 class ReportNutritionSummary extends Component {
   constructor(props) {
