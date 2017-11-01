@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import DiaryFoodAlbumListCard from './DiaryFoodAlbumListCard'
+import FoodAlbumListCard from './FoodAlbumListCard'
 
-class DiaryFoodAlbumList extends React.Component {
+class FoodAlbumList extends React.Component {
   render() {
     return (
       <div className="diary-food-album-list-scroll">
@@ -16,7 +16,7 @@ class DiaryFoodAlbumList extends React.Component {
                 {item.eat_log_picture === null ? (
                   ''
                 ) : (
-                  <DiaryFoodAlbumListCard
+                  <FoodAlbumListCard
                     picture={item.eat_log_picture}
                     name={item.food_name_ko}
                     meal_tag={
@@ -41,5 +41,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, null)(
-  DiaryFoodAlbumList,
+  FoodAlbumList,
 )

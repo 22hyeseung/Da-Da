@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import _ from 'lodash'
 import {
   Button,
   Segment,
@@ -6,24 +9,22 @@ import {
   Grid,
   Input,
 } from 'semantic-ui-react'
-import * as Style from './StyledDiaryFood'
+import * as Style from '../StyledDiaryFood'
 import {
   segmentDefault,
   submitBtn,
-} from '../StyledDiaryCommon'
+} from '../../StyledDiaryCommon'
 import {
   clearSelect,
   clearImgUrl,
-} from '../../../actions/diaryFood'
-import FoodSelectDetails from './DiaryFoodSearchDetails'
-// import DiaryFoodSearchModal from './DiaryFoodSearchModal'
-import DiaryFoodAdd from './DiaryFoodAdd'
-import notyet from '../../../static/img/diary-food-search-notyet.svg'
-import error from '../../../static/img/diary-search-error.svg'
-import { connect } from 'react-redux'
-import API_HOST from '../../../config'
+} from '../../../../actions/diaryFood'
+import FoodSelectDetails from './FoodSearchSelect'
+import FoodAdd from '../FoodAdd'
+import notyet from '../../../../static/img/diary-food-search-notyet.svg'
+import error from '../../../../static/img/diary-search-error.svg'
+import API_HOST from '../../../../config'
 
-class DiaryFoodSearch extends Component {
+class FoodSearch extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -38,7 +39,6 @@ class DiaryFoodSearch extends Component {
       results: [],
       resultKcal: '',
       finalKcal: '',
-      token: `Bearer ${this.props.token}`,
     }
   }
 
@@ -53,9 +53,10 @@ class DiaryFoodSearch extends Component {
 
   // foodsSearch api : 현재 컴포넌트에서만 사용하므로 따로 action으로 분리하지 않았다.
   getFoodsList = () => {
+    const { userInput } = this.state
     if (
-      !this.state.userInput || // 입력값이 없으면 검색 안됨
-      !this.state.userInput.indexOf(' ') // 공백시 검색 안됨
+      !userInput || // 입력값이 없으면 검색 안됨
+      !userInput.indexOf(' ') // 공백시 검색 안됨
     ) {
       return this.setState({
         inputError: true,
@@ -69,16 +70,13 @@ class DiaryFoodSearch extends Component {
     })
 
     // 검색 get
-    fetch(
-      `${API_HOST}/foods?name=${this.state
-        .userInput}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: this.state.token,
-        },
+    fetch(`${API_HOST}/foods?name=${userInput}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${this.props
+          .token}`,
       },
-    )
+    })
       .then(res => res.json())
       .then(result => {
         this.setState({
@@ -115,10 +113,11 @@ class DiaryFoodSearch extends Component {
 
   // 음식 칼로리를 계산하는 함수
   calculateKcal = key => {
+    const { results } = this.state
     const result =
-      this.state.results[key].food_carb * 4 +
-      this.state.results[key].food_protein * 4 +
-      this.state.results[key].food_fat * 9
+      results[key].food_carb * 4 +
+      results[key].food_protein * 4 +
+      results[key].food_fat * 9
     this.setState({
       resultKcal: result.toFixed(3), // 소수점 아래 3째짜리 이상으로 나오는 숫자를 처리한다.
     })
@@ -137,19 +136,29 @@ class DiaryFoodSearch extends Component {
   render() {
     const {
       isLoading,
+      isEmpty,
       inputError,
       btnState,
+      results,
+      isSearchMode,
+      userInput,
+      selectedKey,
+      resultKcal,
     } = this.state
+    const { foodAlbumResult, type } = this.props
+
+    const sortResults = _.sortBy(
+      results,
+      'food_name_ko',
+    )
 
     return (
       <div>
-        {this.state.isSearchMode ? (
+        {isSearchMode ? (
           <Segment
             style={{
               ...segmentDefault,
-              margin: '0px',
-              overflow: 'hidden',
-              height: '331px',
+              ...Style.segmentSearch,
             }}
           >
             <Grid>
@@ -167,8 +176,9 @@ class DiaryFoodSearch extends Component {
                     className="diary-food-search"
                     loading={isLoading}
                     error={inputError}
-                    onChange={this.handleChange}
-                    value={this.state.userInput}
+                    onChange={e =>
+                      this.handleChange(e)}
+                    value={userInput}
                     onKeyDown={
                       this.handleKeyPress
                     }
@@ -179,8 +189,7 @@ class DiaryFoodSearch extends Component {
                     disabled={btnState}
                     style={{
                       ...submitBtn,
-                      width: '100px',
-                      marginLeft: '7px',
+                      ...Style.searchBtn,
                     }}
                   >
                     검색
@@ -192,17 +201,13 @@ class DiaryFoodSearch extends Component {
 
               {/* 검색창 두번째 줄 (검색결과) 시작 */}
               <Grid.Row
-                style={{
-                  overflow: 'auto',
-                  height: '210px',
-                  padding: '0px 21px',
-                }}
+                style={Style.searchResultRow}
               >
                 <div style={{ width: '100%' }}>
                   {/* 검색결과 시작 */}
                   {/* 초기상태가 비어있지 않으면 결과값을 내놓고, 비어있으면 초기화면을 내놓는 삼항연산자 */}
                   {/* 비어있지 않은 경우 1.검색결과 2.검색했지만 결과값이 없는 경우 3.초기 빈화면*/}
-                  {!this.state.isEmpty ? (
+                  {!isEmpty ? (
                     <div>
                       <div
                         style={
@@ -214,16 +219,12 @@ class DiaryFoodSearch extends Component {
                             Style.searchResult
                           }
                         >
-                          검색결과 {'  '}
-                          {
-                            this.state.results
-                              .length
-                          }{' '}
-                          건
+                          검색결과
+                          {results.length}건
                         </span>
+
                         {/* [UX] 결과값이 너무 많아 찾기 어려운 사용자에게 메세지 */}
-                        {this.state.results
-                          .length > 100 ? (
+                        {results.length > 100 ? (
                           <span
                             style={
                               Style.resultSmallMsg
@@ -236,16 +237,14 @@ class DiaryFoodSearch extends Component {
                           ''
                         )}
                       </div>
-                      {this.state.results
-                        .length !== 0 ? (
+                      {results.length !== 0 ? (
                         // 1. 검색결과
                         <ul
-                          selection
                           style={{
                             margin: '0px',
                           }}
                         >
-                          {this.state.results.map(
+                          {sortResults.map(
                             (result, i) => {
                               const calculateKcal =
                                 result.food_carb *
@@ -344,8 +343,7 @@ class DiaryFoodSearch extends Component {
                           아직 안먹으셨다면 검색!
                         </span>
                       </div>
-                      {!this.props
-                        .foodAlbumResult ? (
+                      {!foodAlbumResult ? (
                         <img
                           style={{ width: '17%' }}
                           src={notyet}
@@ -355,9 +353,7 @@ class DiaryFoodSearch extends Component {
                         <div
                           style={{
                             overflow: 'hidden',
-                            backgroundImage: `url(${this
-                              .props
-                              .foodAlbumResult})`,
+                            backgroundImage: `url(${foodAlbumResult})`,
                             backgroundSize:
                               'contain',
                             backgroundRepeat:
@@ -384,26 +380,18 @@ class DiaryFoodSearch extends Component {
               style={Style.searchLabel}
             >
               <FoodSelectDetails
-                isSelected={
-                  this.state.selectedKey !== -1
-                }
-                calculateKcal={
-                  this.state.resultKcal
-                }
-                foodResult={
-                  this.state.results[
-                    this.state.selectedKey
-                  ]
-                }
-                type={this.props.type}
+                isSelected={selectedKey !== -1}
+                calculateKcal={resultKcal}
+                foodResult={results[selectedKey]}
+                type={type}
                 toggleSearchMode={
                   this.toggleSearchMode
-                } // 토글 이벤트 props 내림
+                }
               />
             </Label>
           </Segment>
         ) : (
-          <DiaryFoodAdd type={this.props.type} />
+          <FoodAdd type={type} />
         )}
       </div>
     )
@@ -429,4 +417,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(DiaryFoodSearch)
+)(FoodSearch)

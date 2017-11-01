@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { clearSelect } from '../../../actions/diaryFood'
 import { Button, Icon } from 'semantic-ui-react'
 import * as Style from './StyledDiaryFood'
-import DiaryFoodSearch from './DiaryFoodSearch'
-import DiaryFoodSearchModal from './DiaryFoodSearchModal'
+import FoodTextSearch from './Search/FoodTextSearch'
+import FoodImageSearch from './Search/FoodImageSearch'
 
-class DiaryFoodAdd extends Component {
+class FoodAdd extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -22,7 +22,7 @@ class DiaryFoodAdd extends Component {
       <div>
         {this.state.isSearchMode ? (
           <div>
-            <DiaryFoodSearch
+            <FoodTextSearch
               type={this.props.type}
             />
           </div>
@@ -40,7 +40,7 @@ class DiaryFoodAdd extends Component {
               />
               음식추가
             </Button>
-            <DiaryFoodSearchModal
+            <FoodImageSearch
               isSearchMode={this.toggleSearchMode}
             />
           </div>
@@ -50,4 +50,4 @@ class DiaryFoodAdd extends Component {
   }
 }
 
-export default DiaryFoodAdd
+export default FoodAdd

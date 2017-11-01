@@ -27,6 +27,7 @@ class UserInfo extends Component {
 
   render() {
     const { open, size } = this.state
+    const { userInfo } = this.props
     return (
       <Grid style={Style.PopWrap}>
         <Grid.Row style={Style.row_1}>
@@ -34,15 +35,23 @@ class UserInfo extends Component {
             <Image
               style={Style.avatar_pop}
               shape="circular"
-              src={this.props.userInfo.userAvatar}
+              src={userInfo.userAvatar}
             />
           </Grid.Column>
           <Grid.Column style={Style.row_1_col_2}>
             <p style={Style.username_pop}>
-              {this.props.userInfo.userName}
+              {userInfo.userName}
             </p>
             <p style={Style.userSize}>
-              160cm / 60kg
+              {
+                userInfo.userDefault
+                  .day_log_height
+              }cm /{' '}
+              {userInfo.userDefault.day_log_kg !==
+              null
+                ? userInfo.userDefault.day_log_kg
+                : 0}{' '}
+              kg
             </p>
           </Grid.Column>
         </Grid.Row>

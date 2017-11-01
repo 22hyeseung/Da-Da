@@ -145,11 +145,28 @@ export const albumCardLabelTop = {
   alignItems: 'center',
 }
 
-export const albumCardLabelBtoom = {
+export const albumCardLabelBottom = {
   padding: '16px',
   fontSize: '18px',
 }
 // 오늘의 식단앨범 끝
+
+export const searchBtn = {
+  width: '100px',
+  marginLeft: '7px',
+}
+
+export const segmentSearch = {
+  margin: '0px',
+  overflow: 'hidden',
+  height: '331px',
+}
+
+export const searchResultRow = {
+  overflow: 'auto',
+  height: '210px',
+  padding: '0px 21px',
+}
 
 export const searchResultList = {
   display: 'flex',

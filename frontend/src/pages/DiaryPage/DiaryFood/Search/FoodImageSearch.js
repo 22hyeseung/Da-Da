@@ -14,19 +14,19 @@ import {
 import {
   cancelBtn,
   submitBtn,
-} from '../StyledDiaryCommon'
+} from '../../StyledDiaryCommon'
 import {
   postFoodImgToDB,
   clearSearchData,
   saveSelect,
-} from '../../../actions/diaryFood'
+} from '../../../../actions/diaryFood'
 import Dropzone from 'react-dropzone'
-import ComponentLoader from '../../../components/Loader/ComponentLoader'
-import cameraIcon from '../../../static/img/diary-camera-icon.svg'
-import vision from '../../../static/img/diary-food-vision.svg'
-import * as Style from './StyledDiaryFood'
+import ComponentLoader from '../../../../components/Loader/ComponentLoader'
+import cameraIcon from '../../../../static/img/diary-camera-icon.svg'
+import vision from '../../../../static/img/diary-food-vision.svg'
+import * as Style from '../StyledDiaryFood'
 
-class DiaryFoodSearchModal extends Component {
+class FoodImageSearch extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -38,7 +38,7 @@ class DiaryFoodSearchModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.visionResult){
+    if (nextProps.visionResult) {
       this.setState({ loading: false })
     }
   }
@@ -93,14 +93,12 @@ class DiaryFoodSearchModal extends Component {
       })
     }
     reader.readAsDataURL(file)
-    //this.props.clearSearchData()
   }
   onDrop(files) {
     this.setState({
       file: files[0],
       imagePreviewUrl: files[0].preview,
     })
-    console.log(files[0], files[0].preview)
   }
   // 리스크중 체크한 항목을 value에 저장한다.
   handleCheckChange = (e, { value }) =>
@@ -114,10 +112,10 @@ class DiaryFoodSearchModal extends Component {
     } = this.state
 
     // 초기화
-    let $imagePreview = null
+    let imagePreview = null
     // 이미지를 업로드했을 경우,
     if (imagePreviewUrl) {
-      $imagePreview = (
+      imagePreview = (
         <form
           onSubmit={e => this.handleSubmit(e)}
           style={{
@@ -127,7 +125,14 @@ class DiaryFoodSearchModal extends Component {
           }}
           id="postImg"
         >
-        {this.state.loading ? <ComponentLoader posiStyle={{top: '40%', zIndex: '100'}} /> : null }
+          {this.state.loading ? (
+            <ComponentLoader
+              posiStyle={{
+                top: '40%',
+                zIndex: '100',
+              }}
+            />
+          ) : null}
           <Dropzone
             style={{ width: 'none' }}
             onDrop={this.onDrop.bind(this)}
@@ -138,7 +143,11 @@ class DiaryFoodSearchModal extends Component {
                 width: '100%',
                 marginBottom: '7px',
               }}
-              className={this.state.loading ? "diary-image-blur" : null }
+              className={
+                this.state.loading
+                  ? 'diary-image-blur'
+                  : null
+              }
               alt="업로드한 사진 미리 확인하는 이미지입니다."
             />
           </Dropzone>
@@ -191,7 +200,7 @@ class DiaryFoodSearchModal extends Component {
       )
     } else {
       // 이미지를 아직 업로드 안했을 경우
-      $imagePreview = (
+      imagePreview = (
         <Dropzone
           style={{ width: 'none' }}
           onDrop={this.onDrop.bind(this)}
@@ -261,7 +270,7 @@ class DiaryFoodSearchModal extends Component {
           >
             <Segment style={Style.modalUpload}>
               <div className="diary-file-upload">
-                {$imagePreview}
+                {imagePreview}
               </div>
             </Segment>
             {/* vision 분석결과가 있을 때 와 없을 때 분기 */}
@@ -286,8 +295,20 @@ class DiaryFoodSearchModal extends Component {
                       ''
                     ) : (
                       <div>
-                        {this.state.loading ? <ComponentLoader posiStyle={{zIndex: '100'}} /> : null}
-                        <div className={this.state.loading ? "diary-image-blur" : null }>
+                        {this.state.loading ? (
+                          <ComponentLoader
+                            posiStyle={{
+                              zIndex: '100',
+                            }}
+                          />
+                        ) : null}
+                        <div
+                          className={
+                            this.state.loading
+                              ? 'diary-image-blur'
+                              : null
+                          }
+                        >
                           {this.props.visionResult.map(
                             (item, i) => (
                               <List.Item
@@ -407,4 +428,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(DiaryFoodSearchModal)
+)(FoodImageSearch)

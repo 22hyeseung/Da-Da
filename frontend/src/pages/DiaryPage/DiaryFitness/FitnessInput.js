@@ -9,7 +9,7 @@ import * as Style from './StyledFitness'
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
 import returnIcon from '../../../static/img/diary-return.svg'
 
-const DiaryFitnessInput = () => {
+const FitnessInput = () => {
   return (
     <div>
       <List horizontal style={Style.listWrap}>
@@ -62,4 +62,4 @@ const DiaryFitnessInput = () => {
   )
 }
 
-export default DiaryFitnessInput
+export default FitnessInput

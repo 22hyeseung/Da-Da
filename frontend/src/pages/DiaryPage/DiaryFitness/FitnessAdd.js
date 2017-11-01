@@ -4,9 +4,9 @@ import {
   addButton,
   addIcon,
 } from './StyledFitness'
-import DiaryFitnessSearch from './DiaryFitnessSearch'
+import FitnessSearch from './FitnessSearch'
 
-class DiaryFitnessAdd extends React.Component {
+class FitnessAdd extends React.Component {
   state = {
     isSearchMode: false,
   }
@@ -20,7 +20,7 @@ class DiaryFitnessAdd extends React.Component {
     return (
       <div>
         {this.state.isSearchMode ? (
-          <DiaryFitnessSearch
+          <FitnessSearch
             isSearchMode={this.toggleSearchMode}
           />
         ) : (
@@ -39,4 +39,4 @@ class DiaryFitnessAdd extends React.Component {
   }
 }
 
-export default DiaryFitnessAdd
+export default FitnessAdd

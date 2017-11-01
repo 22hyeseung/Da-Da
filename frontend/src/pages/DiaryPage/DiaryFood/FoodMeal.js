@@ -1,16 +1,17 @@
 import React from 'react'
 import { Segment, Label } from 'semantic-ui-react'
-import DiaryFoodAdd from './DiaryFoodAdd'
-import DiaryFoodList from './DiaryFoodList'
+import FoodAdd from './FoodAdd'
+import FoodList from './FoodList'
 import * as Style from './StyledDiaryFood'
 
-class DiaryFoodMeal extends React.Component {
+export class FoodMeal extends React.Component {
   render() {
+    const { foodresult, type } = this.props
     // 끼니별 등록된 칼로리 계산식
     let totalKcal =
-      this.props.foodresult.length === 0
+      foodresult.length === 0
         ? 0
-        : this.props.foodresult
+        : foodresult
             .map(kcal => {
               return kcal.food_kcal
             })
@@ -27,13 +28,13 @@ class DiaryFoodMeal extends React.Component {
         <div>
           <div className="diary-food-label">
             <div className="diary-food-title">
-              {this.props.type} 식사
+              {type} 식사
               <span className="diary-food-meal-count">
-                {this.props.foodresult.length}
+                {foodresult.length}
               </span>
             </div>
             <Label style={Style.currentKcal}>
-              현재 {this.props.type} 식사 섭취 칼로리
+              현재 {type} 식사 섭취 칼로리
               <Label.Detail>
                 {totalKcal} kcal
               </Label.Detail>
@@ -41,7 +42,7 @@ class DiaryFoodMeal extends React.Component {
           </div>
 
           {/* 예외처리_get했던 데이터가 없을 경우 */}
-          {this.props.foodresult.length === 0 ? (
+          {foodresult.length === 0 ? (
             ''
           ) : (
             <div className="diary-food-meal-list-scroll">
@@ -49,20 +50,18 @@ class DiaryFoodMeal extends React.Component {
                 style={{ display: 'flex' }}
                 className="diary-food-meal-list-card"
               >
-                <DiaryFoodList
-                  type={this.props.type}
-                  foodresult={
-                    this.props.foodresult
-                  }
+                <FoodList
+                  type={type}
+                  foodresult={foodresult}
                 />
               </div>
             </div>
           )}
         </div>
-        <DiaryFoodAdd type={this.props.type} />
+        <FoodAdd type={type} />
       </Segment>
     )
   }
 }
 
-export default DiaryFoodMeal
+export default FoodMeal

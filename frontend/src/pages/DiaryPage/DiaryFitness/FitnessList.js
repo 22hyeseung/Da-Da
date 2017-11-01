@@ -7,7 +7,7 @@ import {
 } from 'semantic-ui-react'
 import * as Style from './StyledFitness'
 
-class DiaryFitnessAdd extends React.Component {
+class FitnessAdd extends React.Component {
   render() {
     return (
       <div>
@@ -68,4 +68,4 @@ class DiaryFitnessAdd extends React.Component {
   }
 }
 
-export default DiaryFitnessAdd
+export default FitnessAdd

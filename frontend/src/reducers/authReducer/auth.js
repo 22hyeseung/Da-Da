@@ -51,6 +51,7 @@ const authReducer = (
           ? action.payload.default_kcal
               .day_log_kcal
           : '',
+        userDefault: action.payload.default_kcal,
       },
       signingIn: false,
     }

@@ -3,21 +3,22 @@ import {
   Input,
   Icon,
   Button,
+  Popup,
 } from 'semantic-ui-react'
 import {
   submitBtn,
   cancelBtn,
-} from '../StyledDiaryCommon'
+} from '../../StyledDiaryCommon'
 import {
   postFoodToDB,
   clearSelect,
   clearImgUrl,
-} from '../../../actions/diaryFood'
+} from '../../../../actions/diaryFood'
 import { connect } from 'react-redux'
-import multiplyIcon from '../../../static/img/diary-multiply.svg'
-import returnIcon from '../../../static/img/diary-return.svg'
+import multiplyIcon from '../../../../static/img/diary-multiply.svg'
+import returnIcon from '../../../../static/img/diary-return.svg'
 // helper: 오늘 날짜 API Query형식
-import { dateStringForApiQuery } from '../../../helper/date'
+import { dateStringForApiQuery } from '../../../../helper/date'
 
 class FoodSelectDetails extends Component {
   constructor(props) {
@@ -125,6 +126,19 @@ class FoodSelectDetails extends Component {
   }
 
   render() {
+    const {
+      disabled,
+      finalKcal,
+      loading,
+    } = this.state
+
+    const {
+      foodResult,
+      calculateKcal,
+      isSelected,
+      toggleSearchMode,
+    } = this.props
+
     const details = (
       <div
         style={{
@@ -133,10 +147,10 @@ class FoodSelectDetails extends Component {
         }}
       >
         <span className="diary-food-search-label-result-title">
-          {this.props.foodResult.food_name_ko}
+          {foodResult.food_name_ko}
         </span>
         <span className="diary-food-search-label-result-kcal">
-          {this.props.calculateKcal}
+          {calculateKcal}
         </span>
         <div className="diary-food-search-label-result-input">
           <img
@@ -152,10 +166,10 @@ class FoodSelectDetails extends Component {
             style={{ width: '105px' }}
             type="number"
             onKeyDown={this.handleKeyPress}
-            error={this.state.disabled}
+            error={disabled}
           />
           <span className="diary-food-search-label-result-unit">
-            {this.props.foodResult.food_unit}
+            {foodResult.food_unit}
           </span>
           <img
             src={returnIcon}
@@ -164,7 +178,7 @@ class FoodSelectDetails extends Component {
           />
           <div className="diary-food-search-label-result-wrapper">
             <span className="diary-food-search-label-result-calculateKcal">
-              {this.state.finalKcal}
+              {finalKcal}
             </span>
             <span className="diary-food-search-label-result-unit">
               kcal
@@ -184,18 +198,28 @@ class FoodSelectDetails extends Component {
     return (
       <div className="diary-food-search-label">
         <div className="diary-food-search-label-result">
-          {this.props.isSelected
-            ? details
-            : blank}
+          {isSelected ? details : blank}
         </div>
         <div>
+          <Popup
+            trigger={
+              <Icon
+                name="help circle outline"
+                size="large"
+                color="teal"
+                style={{ marginRight: '14px' }}
+              />
+            }
+            header="음식의 양"
+            content="개인이 느끼는 1인분의 기준은 각자의 신체조건, 상태에 따라 매우 주관적이므로, 정확한 칼로리 계산을 위해서는 음식의 양을 입력해야합니다."
+          />
           <Button
             basic
             style={{
               ...cancelBtn,
               marginRight: '9px',
             }}
-            onClick={this.props.toggleSearchMode}
+            onClick={toggleSearchMode}
           >
             취소
           </Button>
@@ -205,8 +229,8 @@ class FoodSelectDetails extends Component {
             onClick={
               this.createPayloadAndPostToDB
             }
-            loading={this.state.loading}
-            disabled={this.state.disabled}
+            loading={loading}
+            disabled={disabled}
           >
             등록
           </Button>
@@ -226,6 +250,7 @@ FoodSelectDetails.defaultProps = {
     food_fat: '',
   },
 }
+
 const mapStateToProps = state => {
   return {
     dateState: state.today.date,
@@ -234,6 +259,7 @@ const mapStateToProps = state => {
       state.foodLogs.foodAlbumResult,
   }
 }
+
 const mapDispatchToProps = dispatch => {
   return {
     postFoodToDB: (requestBody, date) =>

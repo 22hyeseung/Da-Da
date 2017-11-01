@@ -13,8 +13,8 @@ import { submitBtn } from '../StyledDiaryCommon'
 
 // 컴포넌트
 import DiarySubHeader from '../DiarySubHeader'
-import DiaryFitnessList from './DiaryFitnessList'
-import DiaryFitnessAdd from './DiaryFitnessAdd'
+import FitnessList from './FitnessList'
+import FitnessAdd from './FitnessAdd'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
 
 //리덕스 액션
@@ -163,7 +163,7 @@ class DiaryFitness extends Component {
         />
         {this.props.fitnessResult.map(
           (fitness, i) => (
-            <DiaryFitnessList
+            <FitnessList
               name={fitness.exercise_name}
               time={fitness.burn_minute}
               kcal={fitness.burn_kcal}
@@ -242,7 +242,7 @@ class DiaryFitness extends Component {
           </div>
         </Modal>
         {/* 모달 끝 */}
-        <DiaryFitnessAdd />
+        <FitnessAdd />
       </Segment>
     )
   }
