@@ -1,9 +1,7 @@
 const express = require('express')
-const expressJwt = require('express-jwt')
-const cors = require('cors')
-const bodyParser = require('body-parser')
 
 const query = require('../query')
+const mw = require('../middleware')
 
 const router = express.Router()
 
@@ -13,12 +11,11 @@ const router = express.Router()
 router.use((req, res, next) => {
   next()
 })
-router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
-router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-
-router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ 'extended': false }))
-router.options('*', cors())
+router.use(mw.expressJwtMiddleware)
+router.use(mw.corsMiddleware)
+router.use(mw.jsonMiddleware)
+router.use(mw.urlencodedMiddleware)
+router.options('*', mw.corsMiddleware)
 /**
  * @api {get} /recipe/search?name Get RecipeSearch
  * @apiDescription 검색한 recipe들을 보여준다.

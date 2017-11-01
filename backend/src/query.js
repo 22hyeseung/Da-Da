@@ -451,15 +451,15 @@ function getKcalByDate({ day_log_diary_date, day_log_member_id }) {
           })
           .then(() => {
             return knex('day_log')
-            .where({ day_log_member_id })
-            .whereNotNull('day_log_kcal')
-            .orderBy('day_log_diary_date')
-            .select('day_log_kcal')
-            .first()
-            .then(final => {
-              return knex('day_log')
-                .where({ day_log_member_id, day_log_diary_date })
-                .update('day_log_kcal', final.day_log_kcal)
+              .where({ day_log_member_id })
+              .whereNotNull('day_log_kcal')
+              .orderBy('day_log_diary_date')
+              .select('day_log_kcal')
+              .first()
+              .then(final => {
+                return knex('day_log')
+                  .where({ day_log_member_id, day_log_diary_date })
+                  .update('day_log_kcal', final.day_log_kcal)
               })
           })
       }

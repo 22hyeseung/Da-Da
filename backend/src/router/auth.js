@@ -1,5 +1,4 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const cookieSession = require('cookie-session')
 const csurf = require('csurf')
 const passport = require('passport')
@@ -15,7 +14,7 @@ const mw = require('../middleware')
 
 const router = express.Router()
 
-router.use(bodyParser.urlencoded({ 'extended': false }))
+router.use(mw.urlencodedMiddleware)
 
 router.use(cookieSession({
   'name': 'oasess',

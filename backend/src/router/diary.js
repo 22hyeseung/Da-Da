@@ -1,9 +1,6 @@
 const express = require('express')
-const bodyParser = require('body-parser')
-const expressJwt = require('express-jwt')
-const cors = require('cors')
-
 const query = require('../query')
+const mw = require('../middleware')
 
 const router = express.Router()
 
@@ -14,11 +11,11 @@ router.use((req, res, next) => {
   next()
 })
 
-router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ 'extended': false }))
-router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
-router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-router.options('*', cors())
+router.use(mw.jsonMiddleware)
+router.use(mw.urlencodedMiddleware)
+router.use(mw.expressJwtMiddleware)
+router.use(mw.corsMiddleware)
+router.options('*', mw.corsMiddleware)
 
 /**
  * @api {post} /diary/regret Post Regret
