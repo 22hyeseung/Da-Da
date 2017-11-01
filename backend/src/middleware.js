@@ -1,4 +1,5 @@
-const query = require('./query')
+const cors = require('cors')
+const expressJwt = require('express-jwt')
 
 function loginRequired(req, res, next) {
   if (req.user) {
@@ -19,8 +20,14 @@ function insertToken(req, res, next) {
   next()
 }
 
+const corsMiddleware = cors({ 'origin': process.env.TARGET_ORIGIN })
+
+const expressJwtMiddleware = expressJwt({ 'secret': process.env.JWT_SECRET })
+
 module.exports = {
   loginRequired,
   insertReq,
-  insertToken
+  insertToken,
+  corsMiddleware,
+  expressJwtMiddleware
 }
