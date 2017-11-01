@@ -56,7 +56,7 @@ router.options('*', mw.corsMiddleware)
  *     }
  * ]
  */
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const food_id = req.body.food_id ? req.body.food_id : null
   const recipe_id = req.body.recipe_id ? req.body.recipe_id : null
   const picture = req.body.picture ? req.body.picture : null
@@ -73,14 +73,12 @@ router.post('/', (req, res) => {
     'eat_log_diary_date': req.body.date
   }
 
-  query.postEatLogs(eat_log_meal)
-    .then(eat_log => {
-      if (eat_log) {
-        res.send(eat_log)
-      } else {
-        console.log('Eat_logs POST Error')
-      }
-    })
+  const eat_log = await query.postEatLogs(eat_log_meal)
+  if (eat_log) {
+    res.send(eat_log)
+  } else {
+    console.log('Eat_logs POST Error')
+  }
 })
 
 
@@ -118,33 +116,27 @@ router.post('/', (req, res) => {
  * }
  */
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const eat_log_id = req.params.id
 
-  query.getEatLogsId(eat_log_id)
-    .then(result => {
-      if (result.eat_log_food_id) {
-        query.getEatLogsFoodFirst(result)
-          .then(foodresult => {
-            if (foodresult) {
-              res.send(foodresult)
-            } else {
-              console.log('foodresult error')
-            }
-          })
-      } else if (result.eat_log_recipe_id) {
-        query.getEatLogsRecipeFirst(result)
-          .then(reciperesult => {
-            if (reciperesult) {
-              res.send(reciperesult)
-            } else {
-              console.log('reciperesult error')
-            }
-          })
-      } else {
-        console.log('GET eatlogs/:id Error')
-      }
-    })
+  const result = await query.getEatLogsId(eat_log_id)
+  if (result.eat_log_food_id) {
+    const foodresult = await query.getEatLogsFoodFirst(result)
+    if (foodresult) {
+      res.send(foodresult)
+    } else {
+      console.log('foodresult error')
+    }
+  } else if (result.eat_log_recipe_id) {
+    const reciperesult = await query.getEatLogsRecipeFirst(result)
+    if (reciperesult) {
+      res.send(reciperesult)
+    } else {
+      console.log('reciperesult error')
+    }
+  } else {
+    console.log('GET eatlogs/:id Error')
+  }
 })
 
 /**
@@ -213,19 +205,15 @@ router.get('/:id', (req, res) => {
  *     ]
  * }
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const eat_log_meal = {
     'eat_log_member_id': req.user.id,
     'eat_log_diary_date': req.query.date
   }
 
-  query.getEatLogsFood(eat_log_meal)
-    .then(foodresult => {
-      query.getEatLogsRecipe(eat_log_meal)
-        .then(reciperesult => {
-          res.send({ foodresult, reciperesult })
-        })
-    })
+  const foodresult = await query.getEatLogsFood(eat_log_meal)
+  const reciperesult = await query.getEatLogsRecipe(eat_log_meal)
+  res.send({ foodresult, reciperesult })
 })
 
 
@@ -244,17 +232,16 @@ router.get('/', (req, res) => {
  * Message complete
  */
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   const eat_log_id = req.params.id
-  query.deleteEatLogs(eat_log_id)
-    .then(result => {
-      if (result) {
-        res.status(200)
-        res.end('complete')
-      } else {
-        console.log('delete eat-log error')
-      }
-    })
+
+  const result = await query.deleteEatLogs(eat_log_id)
+  if (result) {
+    res.status(200)
+    res.end('complete')
+  } else {
+    console.log('delete eat-log error')
+  }
 })
 
 /**
@@ -289,7 +276,7 @@ router.delete('/:id', (req, res) => {
  * }
  */
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   const amount = req.body.amount ? req.body.amount : null
   const serve = req.body.serve ? req.body.serve : null
 
@@ -299,14 +286,12 @@ router.put('/:id', (req, res) => {
     'eat_log_serve': serve
   }
 
-  query.putEatLogs(update_eat_log)
-    .then(result => {
-      if (result) {
-        res.send(result)
-      } else {
-        console.log('EatLogs update Error!!')
-      }
-    })
+  const result = await query.putEatLogs(update_eat_log)
+  if (result) {
+    res.send(result)
+  } else {
+    console.log('EatLogs update Error!!')
+  }
 })
 
 /**
@@ -341,7 +326,7 @@ router.put('/:id', (req, res) => {
  * }
  */
 
-router.get('/summary/day', (req, res) => {
+router.get('/summary/day', async (req, res) => {
   const param = {
     'day_log_member_id': req.user.id,
     'day_log_diary_date': req.query.date,
@@ -362,41 +347,36 @@ router.get('/summary/day', (req, res) => {
     'today_fat': 0
   }
 
-  query.getSelectDayLog(param)
-    .then(result => {
-      if (result) {
-        out.day_log_kcal = result.day_log_kcal
-      } else {
-        return query.getLastDaylog(param)
-          .then(result => {
-            if (result && result.burn_kcal !== null) {
-              out.day_log_kcal = result.day_log_kcal
-            }
-          })
-      }
-    })
-    .then(() => {
-      return query.getEatKcalByDate(param)
-        .then(result => {
-          if (result) {
-            out.today_kcal = result.today_kcal
-            out.today_carb = result.today_carb
-            out.today_protein = result.today_protein
-            out.today_fat = result.today_fat
-          }
-        })
-    })
-    .then(() => {
-      return query.getBurnKcalByDate(param)
-        .then(result => {
-          if (result && result.burn_kcal !== null) {
-            out.today_burn_kcal = result.burn_kcal
-          }
-        })
-    })
-    .then(() => {
-      res.send(out)
-    })
+  const result1 = await query.getSelectDayLog(param)
+  if (result1) {
+    out.day_log_kcal = result1.day_log_kcal
+  } else {
+    const result2 = await query.getLastDaylog(param)
+    if (result2 && result2.burn_kcal !== null) {
+      out.day_log_kcal = result2.day_log_kcal
+    }
+  }
+  const result3 = await query.getSelectDayLog(param)
+  if (result3) {
+    out.day_log_kcal = result3.day_log_kcal
+  } else {
+    const result4 = await query.getLastDaylog(param)
+    if (result4 && result4.burn_kcal !== null) {
+      out.day_log_kcal = result4.day_log_kcal
+    }
+  }
+  const result5 = await query.getEatKcalByDate(param)
+  if (result5) {
+    out.today_kcal = result5.today_kcal
+    out.today_carb = result5.today_carb
+    out.today_protein = result5.today_protein
+    out.today_fat = result5.today_fat
+  }
+  const result6 = await query.getBurnKcalByDate(param)
+  if (result6 && result6.burn_kcal !== null) {
+    out.today_burn_kcal = result6.burn_kcal
+  }
+  res.send(out)
 })
 
 module.exports = router
