@@ -57,7 +57,6 @@ class SearchBar extends Component {
               icon={
                 <Icon
                   name="search"
-                  circular
                   link
                   onClick={() =>
                     this.props.history.push(
@@ -75,7 +74,7 @@ class SearchBar extends Component {
             <Header
               style={Style.h5}
               as="h5"
-              content="하루 권장량 기준, 현재 소비가능한 칼로리는 300kcal입니다."
+              content="하루 권장량 기준, 현재 소비 가능한 칼로리는 300kcal입니다."
               inverted
             />
           </Grid.Column>

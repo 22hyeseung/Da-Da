@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Navigation from '../../../components/Navigation'
 import TopSearchBar from './ResultSearchBar'
-import ResultBox from './ResultList'
+import ResultCardList from './ResultCardList'
 import './Result.css'
 import {
   resultWrapper,
@@ -18,11 +18,15 @@ class SearchResult extends Component {
       loading: true,
       searchText: this.props.match.params.sc,
     }
-    this.updateSearchText = this.updateSearchText.bind(this)
+    this.updateSearchText = this.updateSearchText.bind(
+      this,
+    )
   }
 
   componentWillMount() {
-    this.props.getRecipeSearch(this.state.searchText)
+    this.props.getRecipeSearch(
+      this.state.searchText,
+    )
   }
 
   updateSearchText(searchText) {
@@ -40,8 +44,14 @@ class SearchResult extends Component {
       <div style={container}>
         <Navigation />
         <div style={resultWrapper} />
-        <TopSearchBar updateSearchText={this.updateSearchText} />
-        <ResultBox isEmpty={isEmpty} loading={loading} searchText={searchText} />
+        <TopSearchBar
+          updateSearchText={this.updateSearchText}
+        />
+        <ResultCardList
+          isEmpty={isEmpty}
+          loading={loading}
+          searchText={searchText}
+        />
       </div>
     )
   }

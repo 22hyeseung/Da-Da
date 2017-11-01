@@ -2,3 +2,7 @@
   margin-top: 70px;
   min-width: 581px;
 }
+
+.ui.icon.input input {
+  border-radius: 100px;
+}

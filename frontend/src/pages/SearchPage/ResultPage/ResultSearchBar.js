@@ -1,17 +1,9 @@
 import React, { Component } from 'react'
-import {
-  Input,
-  Icon,
-} from 'semantic-ui-react'
-import {
-  withRouter,
-} from 'react-router-dom'
-import {
-  searchWrapper,
-  cameraIcon,
-  iconStyle,
-} from './StyledResult'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { Input, Icon } from 'semantic-ui-react'
+import { searchWrapper } from './StyledResult'
+import './Result.css'
 import { getRecipeSearch } from '../../../actions/recipe'
 
 class ResultSearchBar extends Component {
@@ -22,10 +14,14 @@ class ResultSearchBar extends Component {
     }
   }
 
-  handleSearch = (e) => {
+  handleSearch = e => {
     if (e.keyCode === 13 || e === 'pass') {
-      this.props.getRecipeSearch(this.state.searchText)
-      this.props.updateSearchText(this.state.searchText)
+      this.props.getRecipeSearch(
+        this.state.searchText,
+      )
+      this.props.updateSearchText(
+        this.state.searchText,
+      )
     }
   }
 
@@ -37,20 +33,19 @@ class ResultSearchBar extends Component {
     return (
       <div style={searchWrapper}>
         <Input
+          style={{ paddingLeft: '18px' }}
           className="search-result-searchbar"
           icon={
-            <Icon name='search' circular link
-              onClick={() => this.handleSearch('pass')}
+            <Icon
+              name="search"
+              link
+              onClick={() =>
+                this.handleSearch('pass')}
             />
           }
           value={this.state.searchText}
           onKeyDown={this.handleSearch}
           onChange={this.handleSearchTextChange}
-        />
-        <img
-          src={cameraIcon}
-          style={iconStyle}
-          alt="이미지를 업로드하여 식단을 검색"
         />
       </div>
     )
