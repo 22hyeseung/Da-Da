@@ -15,7 +15,7 @@ const mw = require('../middleware')
 
 const router = express.Router()
 
-router.use(bodyParser.urlencoded({ 'extended': false }))
+router.use(mw.urlencodedMiddleware)
 
 router.use(cookieSession({
   'name': 'oasess',
