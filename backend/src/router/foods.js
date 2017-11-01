@@ -1,9 +1,8 @@
 const express = require('express')
-const expressJwt = require('express-jwt')
 const bodyParser = require('body-parser')
 
 const query = require('../query')
-const middleware = require('../middleware')
+const mw = require('../middleware')
 
 const router = express.Router()
 
@@ -16,10 +15,10 @@ router.use((req, res, next) => {
   next()
 })
 
-router.use(middleware.corsMiddleware)
+router.use(mw.corsMiddleware)
 router.use(bodyParser.json())
-router.use(middleware.expressJwtMiddleware)
-router.options('*', middleware.corsMiddleware)
+router.use(mw.expressJwtMiddleware)
+router.options('*', mw.corsMiddleware)
 /**
  * @api {get} /foods Get FoodsSearch
  * @apiDescription 음식정보(영양소)를 검색한다.
