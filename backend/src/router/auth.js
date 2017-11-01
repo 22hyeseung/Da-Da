@@ -1,5 +1,4 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const cookieSession = require('cookie-session')
 const csurf = require('csurf')
 const passport = require('passport')
