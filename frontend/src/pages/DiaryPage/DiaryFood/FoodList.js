@@ -50,7 +50,7 @@ class FoodList extends React.Component {
     return (
       <div style={{ display: 'flex' }}>
         {foodresult.map((card, i) => {
-          const nuturitionInfo = [
+          const nutritionInfo = [
             {
               name: '탄',
               value: card.food_carb,
@@ -114,7 +114,7 @@ class FoodList extends React.Component {
                 </p>
 
                 <div className="diary-food-meal-list-card-nutritions">
-                  {nuturitionInfo.map(item => (
+                  {nutritionInfo.map(item => (
                     <span className="diary-food-meal-list-card-nutrition-wrapper">
                       <span className="diary-food-meal-list-card-nutrition-title">
                         {item.name}

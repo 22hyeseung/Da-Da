@@ -131,7 +131,7 @@ export const getAllWeightFromDB = () => {
         let chartData = []
         data.allDayLog.map(aDay => {
           if (aDay.day_log_kg) {
-            chartData.push({
+            return chartData.push({
               current: aDay.day_log_kg,
               date: aDay.day_log_diary_date
                 .substr(5, 5)
