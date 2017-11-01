@@ -4,7 +4,6 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const query = require('../query')
-const mw = require('../middleware')
 
 const router = express.Router()
 
@@ -15,11 +14,11 @@ router.use((req, res, next) => {
   next()
 })
 
-router.use(mw.jsonMiddleware)
-router.use(mw.urlencodedMiddleware)
-router.use(mw.expressJwtMiddleware)
-router.use(mw.corsMiddleware)
-router.options('*', mw.corsMiddleware)
+router.use(bodyParser.json())
+router.use(bodyParser.urlencoded({ 'extended': false }))
+router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
+router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
+router.options('*', cors())
 /**
  * @api {get} /weight/all Get WeightAll
  * @apiDescription 체중기록 전체현황. 로그인한 사용자의 최초 기록시간부터 현재까지의 기록을 불러온다.
@@ -52,24 +51,18 @@ router.options('*', mw.corsMiddleware)
  *     "goal_weight": null
  * }
  */
-router.get('/all', (req, res) => {
+router.get('/all', async (req, res) => {
   const param = { 'day_log_member_id': req.user.id }
 
   const out = {}
 
-  query.getDayLogAll(param)
-    .then(result => {
-      out.allDayLog = result
-    })
-    .then(() => {
-      return query.getUserById(req.user.id)
-        .then(result => {
-          out.goal_weight = result.member_goal_weight
-        })
-    })
-    .then(() => {
-      res.send(out)
-    })
+  const result1 = await query.getDayLogAll(param)
+  const result2 = await query.getUserById(req.user.id)
+
+  out.allDayLog = result1
+  out.goal_weight = result2.member_goal_weight
+
+  res.send(out)
 })
 
 /**
@@ -92,7 +85,7 @@ router.get('/all', (req, res) => {
  *   "date_weight": 21
  * }
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const user = {
     'day_log_member_id': req.user.id,
     'day_log_diary_date': req.query.date
@@ -106,24 +99,17 @@ router.get('/', (req, res) => {
     'date_weight': 0
   }
 
-  query.getWeightByDate(user)
-    .then(weight_date => {
-      if (weight_date) {
-        data.date_weight = weight_date.day_log_kg
-        data.goal_weight = weight_date.member_goal_weight
-      }
-    })
-    .then(() => {
-      return query.getFirstKgById(user)
-        .then(first => {
-          if (first) {
-            data.first_kg = first.day_log_kg
-          }
-        })
-    })
-    .then(() => {
-      res.send(data)
-    })
+  const weight_date = await query.getWeightByDate(user)
+  const first = await query.getFirstKgById(user)
+
+  if (weight_date) {
+    data.date_weight = weight_date.day_log_kg
+    data.goal_weight = weight_date.member_goal_weight
+  }
+  if (first) {
+    data.first_kg = first.day_log_kg
+  }
+  res.send(data)
 })
 
 /**
@@ -142,16 +128,14 @@ router.get('/', (req, res) => {
  * res.status(200)
  * weight null complete
  */
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   const param = {
     'day_log_id': req.params.id,
     'day_log_member_id': req.user.id
   }
 
-  query.WeightNullById(param)
-  .then(() => {
-    res.end('weight null complete')
-  })
+  await query.WeightNullById(param)
+  res.end('weight null complete')
 })
 
 /**
@@ -170,15 +154,13 @@ router.delete('/:id', (req, res) => {
  *    "member_goal_weight": 24
  * }
  */
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const param = {
     'member_id': req.user.id,
     'member_goal_weight': req.body.goal_weight
   }
 
-  query.PostGoalKgbyUser(param)
-  .then(data => {
-    res.send(data)
-  })
+  const data = await query.PostGoalKgbyUser(param)
+  res.send(data)
 })
 module.exports = router
