@@ -14,9 +14,7 @@ import SharePage from './pages/SharePage'
 import RecipePage from './pages/RecipePage'
 // import Helmet from 'react-helmet'
 // import favicon from './static/img/favicon-96x96.png'
-/* 페이지 확인용 라우터 -> 나중에 ajax로 처리할 화면입니다.*/
 import SearchResultPage from './pages/SearchPage/ResultPage'
-import NoSearchPage from './pages/SearchPage/ResultPage/NoSearch'
 import NotFoundPage from './pages/404Page'
 
 // import Helmet from 'react-helmet'
@@ -62,14 +60,6 @@ class App extends Component {
           <Route
             path="/recipe/:id"
             component={RecipePage}
-          />
-          <Route
-            path="/search-result"
-            component={SearchResultPage}
-          />
-          <Route
-            path="/search-no-result"
-            component={NoSearchPage}
           />
           <Route component={NotFoundPage} />
         </Switch>
