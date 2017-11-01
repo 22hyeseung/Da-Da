@@ -16,11 +16,8 @@ import {
   deleteWeightOfDB,
 } from '../../actions/weight'
 import trash from '../../static/img/trash_icon.svg'
-// 리덕스 액션
-import { setTodayDate } from '../../actions/setDate'
 // helper: 오늘 날짜 API Query형식
 import {
-  todaysDate,
   dateStringForApiQuery,
   dateDashToKR,
 } from '../../helper/date'
@@ -41,7 +38,6 @@ class WeightDaily extends Component {
   }
 
   componentWillMount() {
-    this.props.setTodayDate(todaysDate)
     this.props.fetchWeight()
   }
 
@@ -252,8 +248,6 @@ const mapDispatchToProps = dispatch => {
   return {
     postWeightToDB: requestBody =>
       dispatch(postWeightToDB(requestBody)),
-    setTodayDate: date =>
-      dispatch(setTodayDate(date)),
     fetchWeight: () =>
       dispatch(fetchWeightFromDB()),
     deleteWeight: id =>

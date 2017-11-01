@@ -8,9 +8,6 @@ import {
 const TODAY_INITIAL_STATE = {
   day: null,
   date: null,
-}
-
-const BEFORE_INITIAL_STATE = {
   beforeDay: null,
   beforeDate: null,
 }
@@ -20,45 +17,37 @@ export const todayDateReducer = (
   action,
 ) => {
   switch (action.type) {
-    case 'SET_TODAY_DATE':
+    case 'SET_TODAY_DATE_AND_DAY':
       return {
         ...state,
-        date: action.payload,
+        date: action.payload.date,
+        day: action.payload.day,
       }
-    case 'SET_TODAY_DAY':
+    case 'SET_BEFORE_DATE_AND_DAY':
       return {
         ...state,
-        day: action.payload,
+        beforeDate: action.payload.date,
+        beforeDay: action.payload.day,
       }
     case 'MOVE_PREVIOUS_DATE':
+      // prev: 1일 전 날짜 (Date타입)
+      // prevBefore: prev의 6일 전 날짜 (Date타입)
+      const { prev, prevBefore } = action.payload
       return {
-        date: action.payload.toLocaleDateString(),
-        day: setDay(action.payload.getDay()),
+        date: prev.toLocaleDateString(),
+        day: setDay(prev.getDay()),
+        beforeDate: prevBefore.toLocaleDateString(),
+        beforeDay: setDay(prevBefore.getDay()),
       }
     case 'MOVE_NEXT_DATE':
+      // next: 1일 후 날짜 (Date타입)
+      // nextBefore: next의 6일 전 날짜 (Date타입)
+      const { next, nextBefore } = action.payload
       return {
-        date: action.payload.toLocaleDateString(),
-        day: setDay(action.payload.getDay()),
-      }
-    default:
-      return state
-  }
-}
-
-export const beforeDateReducer = (
-  state = BEFORE_INITIAL_STATE,
-  action,
-) => {
-  switch (action.type) {
-    case 'SET_BEFORE_DATE':
-      return {
-        ...state,
-        beforeDate: action.payload,
-      }
-    case 'SET_BEFORE_DAY':
-      return {
-        ...state,
-        beforeDay: action.payload,
+        date: next.toLocaleDateString(),
+        day: setDay(next.getDay()),
+        beforeDate: nextBefore.toLocaleDateString(),
+        beforeDay: setDay(nextBefore.getDay()),
       }
     default:
       return state

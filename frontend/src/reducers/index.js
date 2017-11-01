@@ -1,55 +1,65 @@
 import { combineReducers } from 'redux'
-import {
-  weightListReducer,
-  weightAllReducer,
-} from './weightReducer/weight'
+// app
+import { todayDateReducer } from './appReducer/date'
+// auth
 import authReducer from './authReducer/auth'
+// diary
+import { diaryFoodReducer } from './diaryReducer/diaryFood'
+import { diaryFitnessReducer } from './diaryReducer/diaryFitness'
 import {
   commentReducer,
   articleReducer,
 } from './diaryReducer/diaryReview'
-import {
-  todayDateReducer,
-  beforeDateReducer,
-  // dateNavigationReducer,
-} from './appReducer/date'
-import { diaryFoodReducer } from './diaryReducer/diaryFood'
-import { diaryFitnessReducer } from './diaryReducer/diaryFitness'
-import { diarySummaryReducer } from './diaryReducer/diarySummary'
 import { diaryKcalReducer } from './diaryReducer/diaryKcal'
-
-import {
-  calorieChartReducer,
-  nutritionChartReducer,
-} from './reportReducer/chartData'
-import {
-  recipeReducer,
-  recipeSearchReducer,
-} from './recipeReducer/recipe'
+import { diarySummaryReducer } from './diaryReducer/diarySummary'
+// report
 import {
   calorySummaryReducer,
   nutritionSummaryReducer,
 } from './reportReducer/summaryData'
+import {
+  calorieChartReducer,
+  nutritionChartReducer,
+} from './reportReducer/chartData'
+// weight
+import {
+  weightListReducer,
+  weightAllReducer,
+} from './weightReducer/weight'
+// recipe
+import {
+  recipeReducer,
+  recipeSearchReducer,
+} from './recipeReducer/recipe'
 
 const reducers = combineReducers({
+  // app Reducer
   today: todayDateReducer,
-  beforeDay: beforeDateReducer,
+  // auth Reducer
   auth: authReducer,
-  weightList: weightListReducer,
-  weightAll: weightAllReducer,
+  // diary Reducer
+  //   |__ review
   comment: commentReducer,
   article: articleReducer,
+  //   |__ food
   foodLogs: diaryFoodReducer,
+  //   |__ fitness
   fitness: diaryFitnessReducer,
-  caloriesChart: calorieChartReducer,
+  //   |__ goal
   goalKcal: diaryKcalReducer,
-  nutritionChart: nutritionChartReducer,
-  recipe: recipeReducer,
-  recipeSearchList: recipeSearchReducer,
+  //   |__ summary
   diarySummary: diarySummaryReducer,
+  // report Reducer
+  caloriesChart: calorieChartReducer,
+  nutritionChart: nutritionChartReducer,
   calorySummary: calorySummaryReducer,
   nutritionSummary: nutritionSummaryReducer,
-  // dateNavigation: dateNavigationReducer,
+  // weight Reducer
+  weightList: weightListReducer,
+  weightAll: weightAllReducer,
+  // recipe Reducer
+  recipe: recipeReducer,
+  recipeSearchList: recipeSearchReducer,
 })
 
 export default reducers

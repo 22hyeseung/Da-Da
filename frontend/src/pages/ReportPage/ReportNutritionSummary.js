@@ -113,7 +113,7 @@ const mapStateToProps = state => {
     nutritionSummary:
       state.nutritionSummary.summaryData,
     lastDateState: state.today.date,
-    beforeDateState: state.beforeDay.beforeDate,
+    beforeDateState: state.today.beforeDate,
   }
 }
 
