@@ -1,9 +1,6 @@
 const express = require('express')
-const expressJwt = require('express-jwt')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-
 const query = require('../query')
+const mw = require('../middleware')
 
 const router = express.Router()
 
@@ -11,15 +8,15 @@ const router = express.Router()
  * @apiDefine user user
  */
 
-router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
+router.use(mw.corsMiddleware)
 
 router.use((req, res, next) => {
   next()
 })
 
-router.use(bodyParser.json())
-router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
-router.options('*', cors())
+router.use(mw.jsonMiddleware)
+router.use(mw.expressJwtMiddleware)
+router.options('*', mw.corsMiddleware)
 
 /**
  * @api {get} /user Get UserData
