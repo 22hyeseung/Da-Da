@@ -43,24 +43,20 @@ router.options('*', mw.corsMiddleware)
  * }
  */
 
-router.post('/regret', (req, res) => {
+router.post('/regret', async (req, res) => {
   const day_log_regret = {
     'day_log_member_id': req.user.id,
     'day_log_regret': req.body.regret,
     'day_log_diary_date': req.body.date
   }
 
-  query.postDayLogRegret(day_log_regret)
-    .then(() => {
-      query.getSelectDayLog(day_log_regret)
-        .then(day_log => {
-          if (day_log) {
-            res.send(day_log)
-          } else {
-            console.log('Regret POST error')
-          }
-        })
-    })
+  await query.postDayLogRegret(day_log_regret)
+  const day_log = await query.getSelectDayLog(day_log_regret)
+  if (day_log) {
+    res.send(day_log)
+  } else {
+    console.log('Regret POST error')
+  }
 })
 
 /**
@@ -87,20 +83,18 @@ router.post('/regret', (req, res) => {
  * }
  */
 
-router.get('/regret', (req, res) => {
+router.get('/regret', async (req, res) => {
   const day_log_regret = {
     'day_log_member_id': req.user.id,
     'day_log_diary_date': req.query.date
   }
 
-  query.getSelectDayLog(day_log_regret)
-    .then(day_log => {
-      if (day_log) {
-        res.send(day_log)
-      } else {
-        console.log('Regret GET error')
-      }
-    })
+  const day_log = await query.getSelectDayLog(day_log_regret)
+  if (day_log) {
+    res.send(day_log)
+  } else {
+    console.log('Regret GET error')
+  }
 })
 
 /**
@@ -126,20 +120,18 @@ router.get('/regret', (req, res) => {
 * }
 */
 
-router.put('/regret/:id', (req, res) => {
+router.put('/regret/:id', async (req, res) => {
   const day_log_regret_params = {
     'day_log_id': req.params.id,
     'day_log_regret': null
   }
 
-  query.putRegretDayLogById(day_log_regret_params)
-    .then(result => {
-      if (result) {
-        res.send(result)
-      } else {
-        console.log('put regret Error')
-      }
-    })
+  const result = await query.putRegretDayLogById(day_log_regret_params)
+  if (result) {
+    res.send(result)
+  } else {
+    console.log('put regret Error')
+  }
 })
 
 /**
@@ -167,24 +159,20 @@ router.put('/regret/:id', (req, res) => {
  * }
  */
 
-router.post('/comment', (req, res) => {
+router.post('/comment', async (req, res) => {
   const day_log_comment = {
     'day_log_member_id': req.user.id,
     'day_log_comment': req.body.comment,
     'day_log_diary_date': req.body.date
   }
 
-  query.postDayLogComment(day_log_comment)
-    .then(() => {
-      query.getSelectDayLog(day_log_comment)
-        .then(day_log => {
-          if (day_log) {
-            res.send(day_log)
-          } else {
-            console.log('Comment POST error')
-          }
-        })
-    })
+  await query.postDayLogComment(day_log_comment)
+  const day_log = await query.getSelectDayLog(day_log_comment)
+  if (day_log) {
+    res.send(day_log)
+  } else {
+    console.log('Comment POST error')
+  }
 })
 
 /**
@@ -211,20 +199,18 @@ router.post('/comment', (req, res) => {
  * }
  */
 
-router.get('/comment', (req, res) => {
+router.get('/comment', async (req, res) => {
   const day_log_comment = {
     'day_log_member_id': req.user.id,
     'day_log_diary_date': req.query.date
   }
 
-  query.getSelectDayLog(day_log_comment)
-    .then(day_log => {
-      if (day_log) {
-        res.send(day_log)
-      } else {
-        console.log('Comment GET error')
-      }
-    })
+  const day_log = await query.getSelectDayLog(day_log_comment)
+  if (day_log) {
+    res.send(day_log)
+  } else {
+    console.log('Comment GET error')
+  }
 })
 
 /**
@@ -250,20 +236,18 @@ router.get('/comment', (req, res) => {
  * }
  */
 
-router.put('/comment/:id', (req, res) => {
+router.put('/comment/:id', async (req, res) => {
   const day_log_comment_params = {
     'day_log_id': req.params.id,
     'day_log_comment': null
   }
 
-  query.putCommentDayLogById(day_log_comment_params)
-    .then(result => {
-      if (result) {
-        res.send(result)
-      } else {
-        console.log('put comment Error')
-      }
-    })
+  const result = await query.putCommentDayLogById(day_log_comment_params)
+  if (result) {
+    res.send(result)
+  } else {
+    console.log('put comment Error')
+  }
 })
 
 
@@ -286,17 +270,15 @@ router.put('/comment/:id', (req, res) => {
  *     "day_log_diary_date": "2017-09-12T15:00:00.000Z"
  * }
  */
-router.post('/kg', (req, res) => {
+router.post('/kg', async (req, res) => {
   const param = {
     'day_log_member_id': req.user.id,
     'day_log_kg': req.body.kg,
     'day_log_diary_date': req.body.date
   }
 
-  query.postDayKgbyUser(param)
-    .then(data => {
-      res.send(data)
-    })
+  const data = await query.postDayKgbyUser(param)
+  res.send(data)
 })
 
 /**
@@ -342,7 +324,7 @@ router.post('/kg', (req, res) => {
  *    }
  * ]
  */
-router.get('/kg', (req, res) => {
+router.get('/kg', async (req, res) => {
   const date = req.query.date
   const user = req.user.id
 
@@ -350,14 +332,13 @@ router.get('/kg', (req, res) => {
     'day_log_member_id': req.user.id,
     'day_log_diary_date': req.query.date
   }
-  query.getKgByDate(param)
-    .then(data => {
-      if (!data) {
-        res.status(404)
-      } else {
-        res.send(data)
-      }
-    })
+
+  const data = await query.getKgByDate(param)
+  if (!data) {
+    res.status(404)
+  } else {
+    res.send(data)
+  }
 })
 
 /**
@@ -382,17 +363,15 @@ router.get('/kg', (req, res) => {
  *     "day_log_diary_date": "2016-12-31T15:00:00.000Z"
  * }
  */
-router.post('/kcal', (req, res) => {
+router.post('/kcal', async (req, res) => {
   const param = {
     'day_log_member_id': req.user.id,
     'day_log_kcal': req.body.goal_kcal,
     'day_log_diary_date': req.body.date
   }
 
-  query.postGoalKcalbyUser(param)
-    .then(result => {
-      res.send(result)
-    })
+  const result = await query.postGoalKcalbyUser(param)
+  res.send(result)
 })
 
 /**
@@ -416,16 +395,14 @@ router.post('/kcal', (req, res) => {
  *     "day_log_diary_date": "2016-12-31T15:00:00.000Z"
  * }
  */
-router.get('/kcal', (req, res) => {
+router.get('/kcal', async (req, res) => {
   const param = {
     'day_log_member_id': req.user.id,
     'day_log_diary_date': req.query.date
   }
 
-  query.getKcalByDate(param)
-    .then(result => {
-      res.send(result)
-    })
+  const result = await query.getKcalByDate(param)
+  res.send(result)
 })
 
 module.exports = router
