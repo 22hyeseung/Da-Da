@@ -45,7 +45,7 @@ router.options('*', mw.corsMiddleware)
  *     "burn_exercise_id": 3
  * }
  */
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const exercise_data = {
     'burn_member_id': req.user.id,
     'burn_exercise_id': req.body.exercise_id,
@@ -53,10 +53,8 @@ router.post('/', (req, res) => {
     'burn_kcal': req.body.kcal,
     'burn_minute': req.body.burn_minute
   }
-  query.insertBurnById(exercise_data)
-    .then(burn => {
-      res.send(burn)
-    })
+  const burn = await query.insertBurnById(exercise_data)
+  res.send(burn)
 })
 
 /**
@@ -87,17 +85,15 @@ router.post('/', (req, res) => {
  *    }
  *]
  */
-router.get('/search', (req, res) => {
+router.get('/search', async (req, res) => {
   const name = req.query.name
 
-  query.getExercisesByName(name)
-    .then(data => {
-      if (!data) {
-        res.status(404)
-      } else {
-        res.send(data)
-      }
-    })
+  const data = await query.getExercisesByName(name)
+  if (!data) {
+    res.status(404)
+  } else {
+    res.send(data)
+  }
 })
 
 /**
@@ -129,16 +125,14 @@ router.get('/search', (req, res) => {
  *    }
  *]
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const param = {
     'burn_member_id': req.user.id,
     'burn_date': req.query.date
   }
 
-  query.getBurnByDate(param)
-    .then(burn => {
-      res.send(burn)
-    })
+  const burn = await query.getBurnByDate(param)
+  res.send(burn)
 })
 
 /**
@@ -154,16 +148,14 @@ router.get('/', (req, res) => {
  * http://localhost:5000/exercises/3
  */
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   const param = {
     'burn_member_id': req.user.id,
     'burn_id': req.params.id
   }
 
-  query.deleteBurnById(param)
-    .then(() => {
-      res.end()
-    })
+  await query.deleteBurnById(param)
+  res.end()
 })
 
 /**
@@ -194,7 +186,7 @@ router.delete('/:id', (req, res) => {
  *     }
  * ]
  */
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   const param = {
     'burn_member_id': req.user.id,
     'burn_id': req.params.id,
@@ -203,9 +195,7 @@ router.put('/:id', (req, res) => {
     'burn_exercise_id': req.body.exercise_id
   }
 
-  query.updateBurnById(param)
-    .then(data => {
-      res.send(data)
-    })
+  const data = await query.updateBurnById(param)
+  res.send(data)
 })
 module.exports = router
