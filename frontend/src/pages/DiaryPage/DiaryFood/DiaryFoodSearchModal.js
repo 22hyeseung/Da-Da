@@ -21,6 +21,7 @@ import {
   saveSelect,
 } from '../../../actions/diaryFood'
 import Dropzone from 'react-dropzone'
+import ComponentLoader from '../../../components/Loader/ComponentLoader'
 import cameraIcon from '../../../static/img/diary-camera-icon.svg'
 import vision from '../../../static/img/diary-food-vision.svg'
 import * as Style from './StyledDiaryFood'
@@ -33,6 +34,12 @@ class DiaryFoodSearchModal extends Component {
       imagePreviewUrl: '',
       open: false,
       loading: false,
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.visionResult){
+      this.setState({ loading: false })
     }
   }
 
@@ -66,6 +73,9 @@ class DiaryFoodSearchModal extends Component {
         disabled: true,
       })
     }
+    this.setState({
+      loading: true,
+    })
     this.props.postFoodImgToDB(this.state.file)
   }
 
@@ -83,6 +93,7 @@ class DiaryFoodSearchModal extends Component {
       })
     }
     reader.readAsDataURL(file)
+    //this.props.clearSearchData()
   }
   onDrop(files) {
     this.setState({
@@ -116,6 +127,7 @@ class DiaryFoodSearchModal extends Component {
           }}
           id="postImg"
         >
+        {this.state.loading ? <ComponentLoader posiStyle={{top: '40%', zIndex: '100'}} /> : null }
           <Dropzone
             style={{ width: 'none' }}
             onDrop={this.onDrop.bind(this)}
@@ -126,6 +138,7 @@ class DiaryFoodSearchModal extends Component {
                 width: '100%',
                 marginBottom: '7px',
               }}
+              className={this.state.loading ? "diary-image-blur" : null }
               alt="업로드한 사진 미리 확인하는 이미지입니다."
             />
           </Dropzone>
@@ -273,36 +286,39 @@ class DiaryFoodSearchModal extends Component {
                       ''
                     ) : (
                       <div>
-                        {this.props.visionResult.map(
-                          (item, i) => (
-                            <List.Item
-                              style={{
-                                padding:
-                                  '7px 0px',
-                                borderBottom:
-                                  '1px solid #e0e1e2',
-                              }}
-                            >
-                              <Checkbox
-                                label={
-                                  item.description
-                                }
-                                value={
-                                  item.description
-                                }
-                                checked={
-                                  this.state
-                                    .value ===
-                                  item.description
-                                }
-                                onChange={
-                                  this
-                                    .handleCheckChange
-                                }
-                              />
-                            </List.Item>
-                          ),
-                        )}
+                        {this.state.loading ? <ComponentLoader posiStyle={{zIndex: '100'}} /> : null}
+                        <div className={this.state.loading ? "diary-image-blur" : null }>
+                          {this.props.visionResult.map(
+                            (item, i) => (
+                              <List.Item
+                                style={{
+                                  padding:
+                                    '7px 0px',
+                                  borderBottom:
+                                    '1px solid #e0e1e2',
+                                }}
+                              >
+                                <Checkbox
+                                  label={
+                                    item.description
+                                  }
+                                  value={
+                                    item.description
+                                  }
+                                  checked={
+                                    this.state
+                                      .value ===
+                                    item.description
+                                  }
+                                  onChange={
+                                    this
+                                      .handleCheckChange
+                                  }
+                                />
+                              </List.Item>
+                            ),
+                          )}
+                        </div>
                       </div>
                     )}
                   </List>
