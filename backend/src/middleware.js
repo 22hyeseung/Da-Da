@@ -1,10 +1,12 @@
-const query = require('./query')
+const cors = require('cors')
+const expressJwt = require('express-jwt')
+const bodyParser = require('body-parser')
 
 function loginRequired(req, res, next) {
   if (req.user) {
     next()
   } else {
-    res.redirect('/login')
+    res.redirect('/auth')
   }
 }
 
@@ -19,8 +21,20 @@ function insertToken(req, res, next) {
   next()
 }
 
+const corsMiddleware = cors({ 'origin': process.env.TARGET_ORIGIN })
+
+const expressJwtMiddleware = expressJwt({ 'secret': process.env.JWT_SECRET })
+
+const jsonMiddleware = bodyParser.json()
+
+const urlencodedMiddleware = bodyParser.urlencoded({ 'extended': false })
+
 module.exports = {
   loginRequired,
   insertReq,
-  insertToken
+  insertToken,
+  corsMiddleware,
+  expressJwtMiddleware,
+  urlencodedMiddleware,
+  jsonMiddleware
 }
