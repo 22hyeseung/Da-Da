@@ -1,0 +1,66 @@
+.report {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* subNav 시작 */
+
+.report-date {
+    font-family: 'montserrat-bold';
+    font-size: 20px;
+    color: #16325c;
+    margin: 0px 10px 0px 10px;
+}
+
+.report-submenu {
+    margin: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'montserrat-bold';
+    font-size: 20px;
+    color: #16325c;
+}
+
+.report-day {
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Spoqa Han Sans';
+}
+
+
+/* subNav 끝 */
+
+.report-calory,
+.report-nutrition {
+    padding: 21px 24px;
+}
+
+
+/* summary 시작 */
+
+.report-rate {
+    font-size: 18px;
+    color: #54698d;
+    font-weight: 100;
+}
+
+.report-result {
+    font-family: 'montserrat-semibold';
+    font-size: 24px;
+}
+
+.report-summary-title {
+    color: #54698d;
+    font-size: 12px;
+}
+
+.report-summary-list {
+    justify-content: flex-end;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+
+/* summary 끝 */

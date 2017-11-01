@@ -1,0 +1,40 @@
+.home-grid {
+    max-width: 1200px;
+    margin: 0 auto 0;
+}
+
+.home-rightColumn {
+    position: absolute;
+    height: 100%;
+    width: 60%;
+    right: 0;
+    display: flex;
+    box-shadow: 20px 40px 60px 0 rgba(0, 0, 0, 0.5);
+}
+
+.home-rightColumn-first {
+    width: 33.3%;
+    top: 0;
+    height: 100%;
+    background-image: url('../../static/img/1.0_home_BG1.jpg');
+    background-size: cover;
+    background-position-x: 20%;
+}
+
+.home-rightColumn-second {
+    width: 33.3%;
+    top: 0;
+    height: 100%;
+    background-image: url('../../static/img/1.0_home_BG2.jpg');
+    background-size: cover;
+    background-position-x: 50%;
+}
+
+.home-rightColumn-third {
+    width: 33.3%;
+    top: 0;
+    height: 100%;
+    background-image: url('../../static/img/1.0_home_BG3.jpg');
+    background-size: cover;
+    background-position-x: 40%;
+}
