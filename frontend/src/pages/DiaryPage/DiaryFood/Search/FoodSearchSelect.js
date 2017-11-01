@@ -7,17 +7,17 @@ import {
 import {
   submitBtn,
   cancelBtn,
-} from '../StyledDiaryCommon'
+} from '../../StyledDiaryCommon'
 import {
   postFoodToDB,
   clearSelect,
   clearImgUrl,
-} from '../../../actions/diaryFood'
+} from '../../../../actions/diaryFood'
 import { connect } from 'react-redux'
-import multiplyIcon from '../../../static/img/diary-multiply.svg'
-import returnIcon from '../../../static/img/diary-return.svg'
+import multiplyIcon from '../../../../static/img/diary-multiply.svg'
+import returnIcon from '../../../../static/img/diary-return.svg'
 // helper: 오늘 날짜 API Query형식
-import { dateStringForApiQuery } from '../../../helper/date'
+import { dateStringForApiQuery } from '../../../../helper/date'
 
 class FoodSelectDetails extends Component {
   constructor(props) {

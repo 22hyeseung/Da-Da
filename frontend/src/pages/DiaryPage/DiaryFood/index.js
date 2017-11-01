@@ -5,7 +5,7 @@ import * as Style from './StyledDiaryFood'
 
 // 컴포넌트
 import DiarySubHeader from '../DiarySubHeader'
-import FoodAlbum from './FoodAlbum'
+import FoodAlbum from './Album/FoodAlbum'
 import FoodMeal from './FoodMeal'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
 

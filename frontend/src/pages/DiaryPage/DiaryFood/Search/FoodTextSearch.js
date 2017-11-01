@@ -7,21 +7,21 @@ import {
   Grid,
   Input,
 } from 'semantic-ui-react'
-import * as Style from './StyledDiaryFood'
+import * as Style from '../StyledDiaryFood'
 import {
   segmentDefault,
   submitBtn,
-} from '../StyledDiaryCommon'
+} from '../../StyledDiaryCommon'
 import {
   clearSelect,
   clearImgUrl,
-} from '../../../actions/diaryFood'
-import FoodSelectDetails from './FoodSearchDetails'
-import FoodAdd from './FoodAdd'
-import notyet from '../../../static/img/diary-food-search-notyet.svg'
-import error from '../../../static/img/diary-search-error.svg'
+} from '../../../../actions/diaryFood'
+import FoodSelectDetails from './FoodSearchSelect'
+import FoodAdd from '../FoodAdd'
+import notyet from '../../../../static/img/diary-food-search-notyet.svg'
+import error from '../../../../static/img/diary-search-error.svg'
 import { connect } from 'react-redux'
-import API_HOST from '../../../config'
+import API_HOST from '../../../../config'
 
 class FoodSearch extends Component {
   constructor(props) {
@@ -72,7 +72,8 @@ class FoodSearch extends Component {
     fetch(`${API_HOST}/foods?name=${userInput}`, {
       method: 'GET',
       headers: {
-        Authorization: this.props.token,
+        Authorization: `Bearer ${this.props
+          .token}`,
       },
     })
       .then(res => res.json())
@@ -384,7 +385,7 @@ class FoodSearch extends Component {
                 type={type}
                 toggleSearchMode={
                   this.toggleSearchMode
-                } // 토글 이벤트 props 내림
+                }
               />
             </Label>
           </Segment>

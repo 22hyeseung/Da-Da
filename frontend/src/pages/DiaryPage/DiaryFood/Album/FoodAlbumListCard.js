@@ -5,8 +5,8 @@ import {
   Modal,
   Image,
 } from 'semantic-ui-react'
-import zoomIcon from '../../../static/img/diary-zoom.svg'
-import * as Style from './StyledDiaryFood'
+import zoomIcon from '../../../../static/img/diary-zoom.svg'
+import * as Style from '../StyledDiaryFood'
 
 class FoodAlbumListCard extends Component {
   state = { open: false }
