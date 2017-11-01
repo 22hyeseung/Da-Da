@@ -1,13 +1,10 @@
 const express = require('express')
-const expressJwt = require('express-jwt')
-const bodyParser = require('body-parser')
-const cors = require('cors')
 const multer = require('multer')
 const aws = require('aws-sdk')
 const uuid = require('uuid')
 const sharp = require('sharp')
 const fileType = require('file-type')
-
+const mw = require('../middleware')
 /**
  * Google Vision
  */
@@ -41,10 +38,10 @@ const router = express.Router()
 router.use((req, res, next) => {
   next()
 })
-router.use(cors({ 'origin': process.env.TARGET_ORIGIN }))
-router.use(expressJwt({ 'secret': process.env.JWT_SECRET }))
-router.use(bodyParser.json())
-router.options('*', cors())
+router.use(mw.corsMiddleware)
+router.use(mw.expressJwtMiddleware)
+router.use(mw.jsonMiddleware)
+router.options('*', mw.corsMiddleware)
 
 function googleVision(fileBuffer) {
   return new Promise((resolve, reject) => {
