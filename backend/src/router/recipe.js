@@ -41,17 +41,16 @@ router.options('*', mw.corsMiddleware)
  * ]
  */
 
-router.get('/search', (req, res) => {
+router.get('/search', async (req, res) => {
   const recipe_name = req.query.name.toString()
 
-  query.getRecipeByName(recipe_name)
-    .then(result => {
-      if (result) {
-        res.send(result)
-      } else {
-        console.log('Recipe GetByname Error')
-      }
-    })
+  const result = await query.getRecipeByName(recipe_name)
+  if (result) {
+    res.send(result)
+  } else {
+    console.log('Recipe GetByname Error')
+  }
+
 })
 
 /**
