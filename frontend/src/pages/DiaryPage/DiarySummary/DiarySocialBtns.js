@@ -1,5 +1,5 @@
 import React from 'react'
-import FbIcon from '../../../static/img/diary-social-facebook.svg'
+import facebookIcon from '../../../static/img/diary-social-facebook.svg'
 import InstagramIcon from '../../../static/img/diary-social-instagram.svg'
 import KakaoIcon from '../../../static/img/diary-social-kakaotalk.svg'
 import NaverIcon from '../../../static/img/diary-social-naver.svg'
@@ -10,7 +10,7 @@ const DiarySocialBtns = () => {
     <div className="diary-social-wrapper">
       <div className="diary-social">
         <img
-          src={FbIcon}
+          src={facebookIcon}
           alt="클릭하면 오늘 하루의 다이어리를 페이스북으로 공유할 수 있습니다."
         />
         <img

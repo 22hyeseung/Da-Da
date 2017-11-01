@@ -1,21 +1,23 @@
-import React from 'react'
-
+import crybaby from '../../static/img/crybaby.gif'
 // ===============================  index.js
 // 전체 컨테이너
 export const container = {
   border: 'none',
-  height: '56px',
+  // margin: '7px 0px',
 }
 
 // ===============================  Logo.js
 
 // 홈페이지 로고
-export const logo = {
-  height: '30px',
+export const logoWrap = {
   fontSize: '25px',
-  color: '#16325c',
-  textTransform: 'uppercase',
+  padding: '0',
+  margin: '3px 0px',
+}
+
+export const logo = {
   fontFamily: '"montserrat-bold", sans-serif',
+  textTransform: 'uppercase',
 }
 
 // =============================== RightMenu
@@ -23,22 +25,17 @@ export const logo = {
 // 네비게이션 아이템 전체 래퍼
 export const itemWrap = {
   display: 'flex',
-  width: '618px',
 }
-
-// =============================== RightMenu > NavItem.js
 
 // 네비게이션 개별 아이템(a태그) 래퍼
 export const linkTagWrap = {
-  height: '29px',
-  padding: '0px 9.5px 15px',
+  padding: '7px',
   marginLeft: '37px',
+  marginBottom: '6px',
 }
 
 // 네비게이션 개별 아이템(a태그)
 export const linkTag = {
-  height: '20px',
-  color: '#16325c',
   fontSize: '14px',
   letterSpacing: '-0.7px',
 }
@@ -51,15 +48,25 @@ export const userInfoWrap = {
   fontSize: '14px',
   color: '#16325c',
   fontWeight: '700',
+  marginBottom: '0px',
 }
 
 // 유저 프로필 사진
 export const avatar = {
   width: '34px',
   height: '34px',
-  marginRight: '18px',
+  marginRight: '7px',
 }
 
+export const userName = {
+  padding: '7px 14px',
+  backgroundColor: 'transparent',
+  fontWeight: '400',
+  cursor: 'pointer',
+  fontSize: '14px',
+  height: '24px',
+  margin: '0',
+}
 // =============================== RightMenu > UseInfo.js > UserInfoPopup.js
 
 // 팝업창 전체 래퍼
@@ -152,3 +159,33 @@ export const row_3 = {
 }
 
 export const logout = { height: '36px' }
+
+export const notLogoutBtn = {
+  color: 'white',
+  fontFamily: 'Spoqa Han Sans',
+  fontWeight: '100',
+  padding: '10px 34px',
+  backgroundImage:
+    'linear-gradient(259deg, #26d0ce, #1a2980)',
+  marginRight: '0px',
+}
+
+export const logoutContent = {
+  textAlign: 'center',
+  paddingBottom: '0px',
+}
+
+export const logoutImg = {
+  marginBottom: '10px',
+  width: '100%',
+  borderRadius: '4px',
+}
+export const logoutHeader = {
+  fontSize: '21px',
+  display: 'block',
+  paddingBottom: '14px',
+  color: '#54698d',
+  fontWeight: '300',
+}
+
+export const crybabyGif = crybaby

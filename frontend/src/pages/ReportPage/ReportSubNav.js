@@ -1,39 +1,156 @@
 import React, { Component } from 'react'
-import {
-  Grid,
-  Header,
-  Menu,
-} from 'semantic-ui-react'
-import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left'
-import MdKeyboardArrowRight from 'react-icons/lib/md/keyboard-arrow-right'
+import { connect } from 'react-redux'
+import { Icon } from 'semantic-ui-react'
 import './Report.css'
+
+import {
+  moveToPrevDate,
+  moveToNextDate,
+} from '../../actions/setDate'
+
+import {
+  getKcalSummaryFromDB,
+  getNutritionSummaryFromDB,
+} from '../../actions/reportAPIs'
+
+import { dateStringForApiQuery } from '../../helper/date'
 
 class ReportSubNav extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      lastDate: this.props.lastDateState,
+      lastDay: this.props.lastDayState,
+      beforeDate: this.props.beforeDateState,
+      beforeDay: this.props.beforeDayState,
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { date, day } = nextProps
+    if (
+      this.props.lastDateState !==
+      nextProps.lastDateState
+    ) {
+      this.setState({
+        lastDate: nextProps.lastDateState,
+        lastday: nextProps.lastDayState,
+        beforeDate: nextProps.beforeDateState,
+        beforeDay: nextProps.beforeDayState,
+      })
+    }
+  }
+
+  handleDateToPrevious = () => {
+    this.props
+      .moveToPrevDate(this.state.lastDate)
+      .then(param => {
+        const queryPrev = dateStringForApiQuery(
+          param.prev.toLocaleDateString(),
+        )
+        const queryPrevBefore = dateStringForApiQuery(
+          param.prevBefore.toLocaleDateString(),
+        )
+        this.props.getKcalSummaryFromDB(
+          queryPrevBefore,
+          queryPrev,
+        )
+        this.props.getNutritionSummaryFromDB(
+          queryPrevBefore,
+          queryPrev,
+        )
+      })
+  }
+
+  handleDateToNext = () => {
+    this.props
+      .moveToNextDate(this.state.lastDate)
+      .then(param => {
+        const queryNext = dateStringForApiQuery(
+          param.next.toLocaleDateString(),
+        )
+        const queryNextBefore = dateStringForApiQuery(
+          param.nextBefore.toLocaleDateString(),
+        )
+        console.warn(queryNextBefore, queryNext)
+        this.props.getKcalSummaryFromDB(
+          queryNextBefore,
+          queryNext,
+        )
+        this.props.getNutritionSummaryFromDB(
+          queryNextBefore,
+          queryNext,
+        )
+      })
   }
 
   render() {
     return (
       <div className="report">
         <nav className="report-submenu">
-          <MdKeyboardArrowLeft />
+          <Icon
+            name="chevron left"
+            style={{ cursor: 'pointer' }}
+            onClick={this.handleDateToPrevious}
+          />
           <span className="report-date">
-            2017.10.10.<span className="report-day">
-              월
+            {this.state.beforeDate}
+            <span className="report-day">
+              {' '}
+              {this.state.beforeDay}
             </span>
           </span>
           -
           <span className="report-date">
-            2017.10.17.<span className="report-day">
-              일
+            {this.state.lastDate}
+            <span className="report-day">
+              {' '}
+              {this.state.lastDay}
             </span>
           </span>
-          <MdKeyboardArrowRight />
+          <Icon
+            name="chevron right"
+            style={{ cursor: 'pointer' }}
+            onClick={this.handleDateToNext}
+          />
         </nav>
       </div>
     )
   }
 }
 
-export default ReportSubNav
+const mapStateToProps = state => {
+  return {
+    lastDateState: state.today.date,
+    lastDayState: state.today.day,
+    beforeDateState: state.today.beforeDate,
+    beforeDayState: state.today.beforeDay,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    moveToPrevDate: targetDate =>
+      dispatch(moveToPrevDate(targetDate)),
+    moveToNextDate: targetDate =>
+      dispatch(moveToNextDate(targetDate)),
+    getKcalSummaryFromDB: (startDate, endDate) =>
+      dispatch(
+        getKcalSummaryFromDB(startDate, endDate),
+      ),
+    getNutritionSummaryFromDB: (
+      startDate,
+      endDate,
+    ) =>
+      dispatch(
+        getNutritionSummaryFromDB(
+          (startDate, endDate),
+        ),
+      ),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ReportSubNav)

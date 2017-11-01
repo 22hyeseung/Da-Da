@@ -1,7 +1,6 @@
 export const header = {
   fontSize: '60px',
-  fontFamily: 'montserrat',
-  fontWeight: '600',
+  fontFamily: 'montserrat-bold',
   color: '#fff',
 }
 

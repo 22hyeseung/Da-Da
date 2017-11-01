@@ -4,11 +4,6 @@
     position: relative;
 }
 
-
-/* 기존 semantic style이 덮어씌어지지 않아서, 해당 스타일을 변경함.
- * 현재 다른 페이지에서 탭을 사용하지 않았기 때문에 영향을 주지 않을 것이라고 판단
- */
-
 .ui.item.menu .item {
     padding-left: 16px !important;
 }
@@ -52,6 +47,18 @@
     line-height: 0px;
 }
 
+.diary-food-goal-label-input>input {
+    background-color: transparent !important;
+    padding: 0px !important;
+    border: none !important;
+    border-bottom: 1px dashed #fff !important;
+    border-radius: 0px !important;
+    text-align: center !important;
+    color: white !important;
+    font-size: 14px;
+    font-family: 'montserrat-semibold' !important;
+}
+
 .diary-food-goal-kcal {
     font-family: 'montserrat-semibold';
     font-size: 14px;
@@ -81,6 +88,7 @@
 }
 
 .diary-food-addBtn:hover {
+    background-color: rgba(255, 255, 255, .5) !important;
     border: 1.5px dashed #16325c !important;
     bottom: 2px;
     position: relative;
@@ -132,9 +140,6 @@
 }
 
 .diary-camera-icon {
-    border-style: none;
-    top: 20px;
-    position: absolute;
     cursor: pointer;
 }
 
@@ -196,6 +201,8 @@
 .diary-food-search-photo-modal-list {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 70%;
 }
 
 .diary-food-calculateIcon {
@@ -214,12 +221,25 @@
 
 .diary-food-meal-list-scroll {
     overflow: auto;
-    height: 180px;
+    height: 163px;
     position: relative;
+    margin-bottom: 7px;
 }
 
 .diary-food-meal-list-scroll::-webkit-scrollbar {
-    display: none;
+    height: 5px;
+    width: 5px;
+    /* display: none; */
+}
+
+.diary-food-meal-list-scroll::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #a8b7c7;
+}
+
+.diary-food-meal-list-scroll::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #e0e5ee;
 }
 
 .diary-food-meal-list-card-firstRow {
@@ -239,6 +259,7 @@
     font-size: 21px;
     letter-spacing: -1px;
     color: #54698d;
+    margin-bottom: 0px;
 }
 
 .diary-food-meal-list-card-calory-unit {
@@ -249,8 +270,12 @@
     margin-left: 8px;
 }
 
-.diary-food-meal-list-card-nutrition-wrapper {
-    margin-right: 9px;
+.diary-food-meal-list-card-nutritions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3px;
+    padding-left: 7px;
+    border-left: 1px solid #e0e5ee;
 }
 
 .diary-food-meal-list-card-nutrition-title {
@@ -288,8 +313,8 @@
 .diary-file-upload {
     position: relative;
     display: inline-block;
-    width: 100%;
     text-align: center;
+    width: 100%;
 }
 
 .diary-file-upload__label {
@@ -299,7 +324,6 @@
     border: 1px dashed #a8b7c7;
     border-radius: 4px;
     transition: all 0.5s ease;
-    margin-bottom: 14px;
     line-height: 14px;
 }
 
@@ -323,15 +347,15 @@
 
 .diary-food-meal-file-upload__label {
     display: block;
-    padding: 10px;
+    padding: 63px;
     color: #a8b7c7;
     border-radius: 4px;
     transition: all 0.5s ease;
-    margin-bottom: 14px;
     line-height: 14px;
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    align-items: center;
 }
 
 .diary-food-meal-file-upload__input {
@@ -344,4 +368,16 @@
     width: 0;
     height: 100%;
     opacity: 0;
+}
+
+.diary-fitness-search>input {
+    width: 100%;
+}
+
+.diary-image-blur {
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
 }

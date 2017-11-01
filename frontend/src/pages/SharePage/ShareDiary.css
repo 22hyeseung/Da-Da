@@ -1,0 +1,386 @@
+.share-diary-grid {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+/* 기존 semantic style이 덮어씌어지지 않아서, 해당 스타일을 변경함.
+ * 현재 다른 페이지에서 탭을 사용하지 않았기 때문에 영향을 주지 않을 것이라고 판단
+ */
+
+.share-ui.item.menu .item {
+    padding-left: 16px !important;
+}
+
+.share-ui.list>.item:after {
+    display: none;
+}
+
+.share-ui.segment:last-child {
+    margin-bottom: 14px;
+}
+
+.share-diary-date {
+    font-family: 'montserrat-bold';
+    font-size: 20px;
+    color: #16325c;
+    margin: 0px 48px;
+}
+
+.share-diary-submenu {
+    margin: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'montserrat-bold';
+    font-size: 20px;
+    color: #16325c;
+}
+
+.share-diary-day {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.share-iary-food-goal-edit {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.share-diary-food-goal-label {
+    line-height: 0px;
+}
+
+.share-diary-food-goal-kcal {
+    font-family: 'montserrat-semibold';
+    font-size: 14px;
+}
+
+.share-diary-food-goal-unit {
+    font-family: 'montserrat-light';
+    font-size: 14px;
+    margin-left: 3px;
+}
+
+.share-diary-social-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.share-diary-social {
+    width: 33%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.share-diary-food-addBtn {
+    transition: all 0.2s ease-in !important;
+    box-shadow: none !important;
+    bottom: 0px !important;
+}
+
+.share-diary-food-addBtn:hover {
+    border: 1.5px dashed #16325c !important;
+    bottom: 2px;
+    position: relative;
+}
+
+.share-diary-food-meal {
+    margin-bottom: 14px;
+}
+
+.share-diary-food-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 0px 7px 0px;
+    align-items: center;
+    color: rgba(0,0,0,.87);
+}
+
+.share-diary-food-meal-count {
+    padding-left: 12px;
+}
+
+.share-diary-food-title {
+    color: #54698d;
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.share-diary-food-search {
+    display: inline-block;
+    width: 100%;
+}
+
+.share-diary-food-search>div {
+    width: 100%;
+}
+
+.share-diary-food-search>div>.prompt {
+    border-radius: 4px !important;
+}
+
+.share-diary-food-search div:nth-child(2) {
+    display: block !important;
+}
+
+.ui.search>.results {
+    position: relative;
+    width: 107%;
+    box-shadow: none;
+    border: none;
+}
+
+.share-diary-camera-icon {
+    border-style: none;
+    top: 20px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.share-diary-food-search-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.share-diary-food-search-label-result {
+    display: flex;
+    align-items: center;
+}
+
+.share-diary-food-search-label-result-title {
+    font-family: 'Spoqa Han Sans';
+    font-weight: 500;
+    padding-right: 26px;
+    font-size: 14px;
+}
+
+.share-diary-food-search-label-result-kcal {
+    font-family: 'Spoqa Han Sans';
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.share-diary-food-search-label-result-input {
+    display: flex;
+    align-items: center;
+}
+
+.share-diary-food-search-label-result-calculateKcal {
+    font-family: 'montserrat-semibold';
+    font-size: 28px;
+    color: #16325c;
+}
+
+.share-diary-food-search-label-result-unit {
+    font-family: 'Spoqa Han Sans';
+    font-weight: 300;
+    padding-left: 7px;
+    font-size: 14px;
+    color: #16325c;
+}
+
+.share-diary-food-search-label-result-wrapper {
+    display: flex;
+    align-items: baseline;
+}
+
+.share-diary-food-search-photo-modal-upload-icon {
+    height: 56px;
+    margin-bottom: 14px;
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.share-diary-food-search-photo-modal-list {
+    display: flex;
+    justify-content: center;
+}
+
+.share-diary-food-calculateIcon {
+    padding: 0px 14px;
+}
+
+.share-diary-food-meal-list-card {
+    display: flex;
+    position: absolute;
+}
+
+.share-diary-food-meal-list-card-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.share-diary-food-meal-list-scroll {
+    overflow: auto;
+    height: 166px;
+    position: relative;
+    margin-bottom: 0px;
+    border-bottom: none;
+}
+
+.share-diary-food-meal-list-scroll::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+    /* display: none; */
+}
+
+.share-diary-food-meal-list-scroll::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #a8b7c7;
+}
+
+.share-diary-food-meal-list-scroll::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #e0e5ee;
+}
+
+.share-diary-food-meal-list-card-firstRow {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 21px;
+}
+
+.share-diary-food-meal-list-card-firstRow-title {
+    font-size: 21px;
+    font-weight: 100;
+    color: #16325c;
+    margin-bottom: 35px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.share-diary-food-meal-list-card-calory {
+    font-family: 'montserrat-semibold';
+    font-size: 21px;
+    letter-spacing: -1px;
+    color: #54698d;
+    margin-top: 21px;
+}
+
+.share-diary-food-meal-list-card-calory-unit {
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: -1px;
+    color: #54698d;
+    margin-left: 8px;
+}
+
+.share-diary-food-meal-list-card-nutrition-wrapper {
+    margin-right: 9px;
+}
+
+.share-diary-food-meal-list-card-nutrition-title {
+    font-weight: 100;
+    font-size: 14px;
+    color: #54698d;
+    margin-right: 7px;
+}
+
+.share-diary-food-meal-list-card-nutrition-kcal {
+    font-family: 'montserrat-semibold';
+    font-size: 14px;
+    color: #54698d;
+}
+
+.share-diary-food-album {
+    padding-top: 21px;
+}
+
+.share-diary-food-album-list-scroll {
+    overflow: auto;
+    height: 220px;
+    position: relative;
+}
+
+.share-diary-food-album-list-scroll::-webkit-scrollbar {
+    /* display: none; */
+    height: 5px;
+    width: 5px;
+}
+
+.share-diary-food-album-list-scroll::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #a8b7c7;
+}
+
+.share-diary-food-album-list-scroll::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #e0e5ee;
+}
+
+.share-diary-food-meal-list-card-firstRow {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 21px;
+}
+
+.share-diary-food-album-list-card-edit-modal>div {
+    padding: 9px 14px;
+    font-size: 14px;
+}
+
+.share-diary-file-upload {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.share-diary-file-upload__label {
+    display: block;
+    padding: 10px;
+    color: #a8b7c7;
+    border: 1px dashed #a8b7c7;
+    border-radius: 4px;
+    transition: all 0.5s ease;
+    margin-bottom: 14px;
+    line-height: 14px;
+}
+
+.share-diary-file-upload__label:hover {
+    cursor: pointer;
+    color: #29323c;
+    border: 1px dashed #29323c;
+}
+
+.share-diary-file-upload__input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 1;
+    width: 0;
+    height: 100%;
+    opacity: 0;
+}
+
+.share-diary-food-meal-file-upload__label {
+    display: block;
+    padding: 10px;
+    color: #a8b7c7;
+    border-radius: 4px;
+    transition: all 0.5s ease;
+    margin-bottom: 14px;
+    line-height: 14px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.share-diary-food-meal-file-upload__input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 1;
+    width: 0;
+    height: 100%;
+    opacity: 0;
+}

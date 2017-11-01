@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import cardBgImg from '../../static/img/recipe_box_img.png'
 import bgImg from '../../static/img/recipe_img.jpg'
 
@@ -6,16 +5,32 @@ import bgImg from '../../static/img/recipe_img.jpg'
 
 // 레피시 페이지 전체 컨테이너
 export const container = {
-  width: '1440px',
-  height: '1080px',
+  minWidth: '1440px',
+  minHeight: '1080px',
 }
 
 // 레시피 페이지 상단 컨테이너
 export const topContainer = {
-  height: '464px',
+  minHeight: '464px',
   backgroundImage: `url(${bgImg})`,
   backgroundSize: '1550px',
   backgroundPosition: 'left center',
+  position: 'relative',
+}
+
+// 레시피 페이지 네비게이션 배경
+export const navigationBackground = {
+  minWidth: '1440px',
+  backgroundColor: 'red',
+  opacity: '0.7',
+  backgroundImage:
+    'linear-gradient(268deg, #485563, #29323c)',
+  position: 'relative',
+}
+
+export const navigationGrid = {
+  width: '1200px',
+  margin: '0 auto',
   position: 'relative',
 }
 
@@ -73,6 +88,7 @@ export const factsData = {
 
 export const unitData = {
   fontSize: '21px',
+  padding: '7px 0',
 }
 
 // =====================================> ingredient box
@@ -97,15 +113,14 @@ export const cardHeader = {
 
 export const cardContent = {
   width: '280px',
-  height: '388px',
 }
 
 export const ingredientListWrap = {
   width: '226px',
-  height: '100px',
   fontSize: '14px',
   textAlign: 'right',
   marginLeft: '12px',
+  marginBottom: '70px',
 }
 
 export const ingredientNameList = {
@@ -113,6 +128,7 @@ export const ingredientNameList = {
   textAlign: 'left',
   color: '#16325c',
   fontWeight: '300',
+  width: '140px',
 }
 
 export const ingredientAmountList = {
@@ -121,7 +137,7 @@ export const ingredientAmountList = {
   fontWeight: '700',
   textAlign: 'right',
   color: '#16325c',
-  marginLeft: '49px',
+  width: '75px',
 }
 
 export const subLabel = {
@@ -129,6 +145,7 @@ export const subLabel = {
   fontWeight: '300',
   lineHeight: '2.08',
   color: '#a8b7c7',
+  display: 'block',
 }
 
 // =====================================> cooking process
@@ -156,4 +173,13 @@ export const description = {
   letterSpacing: '-0.2px',
   color: '#54698d',
   width: '780px',
+}
+
+export const btnDiarySubmit = {
+  margin: '37px',
+  boxShadow: '4px 4px 4px #888888',
+  border: 'none',
+  fontWeight: '100',
+  color: '#fff',
+  backgroundImage: 'linear-gradient(216deg, #26d0ce, #1a2980)'
 }

@@ -9,9 +9,8 @@ export const header = {
 }
 
 export const subHeader = {
-  fontFamily: 'montserrat',
+  fontFamily: 'montserrat-bold',
   fontSize: '14px',
-  fontWeight: '600',
   textAlign: 'left',
   color: '#1f2e79',
 }
@@ -27,6 +26,8 @@ export const weightAddBtn = {
   justifyContent: 'center',
   alignItems: 'center',
   fontFamily: 'Spoqa Han Sans',
+  padding: '9px',
+  // marginBottom: '10px',
 }
 
 export const listItem = {

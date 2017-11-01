@@ -1,40 +1,110 @@
 import React, { Component } from 'react'
-import Navigation from '../../components/Navigation'
-import {
-  Button,
-  Grid,
-  Header,
-  List,
-  Segment,
-} from 'semantic-ui-react'
+// import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+// 스타일링
+import { Grid } from 'semantic-ui-react'
+import { tabContainer } from './StyledHome'
 import './Home.css'
-const HomePage = () => {
-  return (
-    <div className="home-wrapper">
-      <div className="home-rightColumn">
-        <div className="home-rightColumn-first">
-          1
-        </div>
-        <div className="home-rightColumn-second">
-          2
-        </div>
-        <div className="home-rightColumn-third">
-          3
-        </div>
+// 리덕스 액션생성자
+import { getUserInfo } from '../../actions/auth'
+
+// 컴포넌트
+import Navigation from '../../components/Navigation'
+import Loader from '../../components/Loader/index'
+import HomeFirstUserInfo from './HomeFirstUserInfo'
+import HomeHero from './HomeHero'
+import HomeTab from './HomeTab'
+
+// 홈페이지 컴포넌트 시작
+class HomePage extends Component {
+  state = {
+    loading: false,
+  }
+
+  // 유저 정보 SET
+  componentWillMount() {
+    this.props.saveUserInfo()
+    this.setState({ loading: true }, () =>
+      this.fetchData(),
+    )
+  }
+
+  fetchData = () => {
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+      })
+    }, 4000)
+  }
+
+  render() {
+    if (this.state.loading) {
+      return <Loader />
+    }
+    return (
+      <div>
+        {!!this.props.userInfo.userBirth &&
+        !!this.props.userInfo.userGoalWeight &&
+        !!this.props.userInfo.userGender ? (
+          <div>
+            {console.log(
+              !!this.props.userInfo.userBirth,
+              !!this.props.userInfo
+                .userGoalWeight,
+              !!this.props.userInfo.userGender,
+            )}
+            <div className="home-grid">
+              <Navigation color="#fff" />
+            </div>
+            <HomeHero />
+            <div style={tabContainer}>
+              <Grid
+                columns={3}
+                padded
+                style={{ width: '100%' }}
+              >
+                {/* 다이어리 Food 페이지로 이동하는 탭 */}
+                <HomeTab
+                  tabName="FOOD"
+                  message="오늘\n무엇을\n드셨나요?"
+                  linkTo="/diary"
+                  order="first"
+                />
+                {/* 다이어리 Fitness 페이지로 이동하는 탭 */}
+                <HomeTab
+                  tabName="FITNESS"
+                  message="오늘\n어떤 운동을\n하셨나요?"
+                  linkTo="/diary/fitness"
+                  order="second"
+                />
+                {/* 다이어리 Review 페이지로 이동하는 탭 */}
+                <HomeTab
+                  tabName="REVIEW"
+                  message="오늘\n하루를\n기록해볼까요?"
+                  linkTo="/diary/review"
+                  order="third"
+                />
+              </Grid>
+            </div>
+          </div>
+        ) : (
+          <HomeFirstUserInfo />
+        )}
       </div>
-      <div className="home-grid">
-        <Navigation />
-        <Grid>
-          <Grid.Column width={6}>
-            <Segment>
-              1
-              <Segment>1</Segment>
-            </Segment>
-          </Grid.Column>
-        </Grid>
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
-export default HomePage
+const mapStateToProps = state => ({
+  userInfo: state.auth.userInfo,
+  token: state.auth.token,
+})
+
+const mapDispatchtoProps = dispatch => ({
+  saveUserInfo: () => dispatch(getUserInfo()),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchtoProps,
+)(HomePage)

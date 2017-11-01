@@ -1,77 +1,39 @@
 import React, { Component } from 'react'
-import { Grid, Segment } from 'semantic-ui-react'
-import Navigation from '../../components/Navigation'
-import ReportSubNav from './ReportSubNav'
-import ReportCalory from './ReportCalory'
-import ReportCalorySummary from './ReportCalorySummary'
-import ReportNutrtion from './ReportNutrtion'
-import ReportNutritionSummary from './ReportNutritionSummary'
+import { connect } from 'react-redux'
 import './Report.css'
 
-class ReportPage extends Component {
-  constructor(props) {
-    super(props)
-  }
+// 컴포넌트
+import Navigation from '../../components/Navigation'
+import Footer from '../../components/Footer'
+import ReportSubNav from './ReportSubNav'
+import ReportContainer from './ReportContainer'
+import ComponentLoader from '../../components/Loader/ComponentLoader'
 
+class ReportPage extends Component {
   render() {
+    // if (this.props.isLoading) {
+    //   return <ComponentLoader />
+    // }
+
     return (
       <div className="report">
         <Navigation />
         <ReportSubNav />
-        <Segment
-          style={{
-            boxShadow: 'none',
-            border: '1px solid #d8dde6',
-            padding: '12px',
-          }}
-        >
-          <Grid
-            columns="equal"
-            style={{ margin: '0px' }}
-          >
-            <Grid.Column
-              style={{ padding: '0px' }}
-            >
-              <ReportCalory />
-            </Grid.Column>
-            <Grid.Column
-              width={4}
-              style={{
-                padding: '0px 0px 0px 7px',
-              }}
-            >
-              <ReportCalorySummary />
-            </Grid.Column>
-          </Grid>
-        </Segment>
-        <Segment
-          style={{
-            boxShadow: 'none',
-            border: '1px solid #d8dde6',
-          }}
-        >
-          <Grid
-            columns="equal"
-            style={{ margin: '0px' }}
-          >
-            <Grid.Column
-              style={{ padding: '0px' }}
-            >
-              <ReportNutrtion />
-            </Grid.Column>
-            <Grid.Column
-              width={4}
-              style={{
-                padding: '0px 0px 0px 7px',
-              }}
-            >
-              <ReportNutritionSummary />
-            </Grid.Column>
-          </Grid>
-        </Segment>
+        <ReportContainer title="칼로리" />
+        <ReportContainer title="영양분" />
+        <Footer />
       </div>
     )
   }
 }
 
-export default ReportPage
+const mapStateToProps = state => ({
+  // isLoading:
+  //   state.caloriesChart.isLoading ||
+  //   state.nutritionChart.isLoading ||
+  //   state.calorySummary.isLoading ||
+  //   state.nutritionSummary.isLoading,
+})
+export default connect(mapStateToProps, null)(
+  ReportPage,
+)

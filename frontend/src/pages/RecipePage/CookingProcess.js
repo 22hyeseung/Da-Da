@@ -1,24 +1,85 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   checkboxStyle,
   description,
+  btnDiarySubmit,
 } from './StyledRecipe'
-// import { Checkbox } from 'semantic-ui-react'
+import { postFoodToDB } from '../../actions/diaryFood'
+import {
+  Button,
+  Modal,
+  Dropdown,
+} from 'semantic-ui-react'
+import { dateStringForApiQuery } from '../../helper/date'
+
+const options = [
+  { key: 1, text: '아침', value: '아침' },
+  { key: 2, text: '점심', value: '점심' },
+  { key: 3, text: '저녁', value: '저녁' },
+  { key: 4, text: '간식', value: '간식' },
+]
 
 class CookingProcess extends Component {
   constructor(props) {
     super(props)
     this.state = {
       ischecked: false,
+      popupWindow: false,
+      selectMeal: null,
+      cookingStep: this.props.recipe,
+      date: dateStringForApiQuery(
+        this.props.dateState,
+      ),
     }
   }
 
-  handleCheckboxChange = e => {
-    const ischecked = this.state.ischecked
-    console.log(ischecked)
-    this.state = {
-      ischecked: `${!ischecked}`,
+  handlePopupWindowOpen = () => {
+    if (!this.props.recipeAmount) {
     }
+    this.setState({ popupWindow: true })
+  }
+
+  handlePopupWindowClose = () => {
+    this.setState({ popupWindow: false })
+  }
+
+  handleCheckboxChange = (e, data) => {
+    const stepTemp = this.state.cookingStep
+    if (stepTemp[e.target.value - 1].isProcess) {
+      stepTemp[
+        e.target.value - 1
+      ].isProcess = false
+    } else {
+      stepTemp[
+        e.target.value - 1
+      ].isProcess = true
+    }
+
+    this.setState({ cookingStep: stepTemp })
+  }
+
+  handleMealTegChange = (e, data) => {
+    this.setState({ selectMeal: data.value })
+  }
+
+  createPayloadAndPostToDB = () => {
+    if (!this.state.selectMeal) {
+      return false
+    }
+
+    this.props.postFoodToDB({
+      serve: this.props.recipeAmount
+        ? this.props.recipeAmount * 1
+        : this.props.recipeContent.recipe_serving,
+      date: this.state.date,
+      recipe_id: this.props.recipeContent
+        .recipe_id,
+      meal_tag: this.state.selectMeal,
+      picture: null,
+    })
+
+    this.handlePopupWindowClose()
   }
 
   render() {
@@ -31,62 +92,109 @@ class CookingProcess extends Component {
         }}
       >
         <form style={{ width: '884px' }}>
-          <label
-            htmlFor="num-circle"
-            style={checkboxStyle}
-          >
-            <input
-              id="num-circle"
-              className="num-circle"
-              type="checkbox"
-              value={1}
-              style={{ display: 'none' }}
-              onClick={this.handleCheckboxChange}
-            />
-            <span style={{ fontSize: '22px' }}>
-              1
-            </span>
-          </label>
-          <p style={description}>
-            볼에 재료를 전부 넣고 섞으면서 반죽합니다. 반죽이 부풀도록 5분
-            정도 기다려주세요.
-          </p>
-
-          <label style={checkboxStyle}>
-            <input
-              type="checkbox"
-              value={1}
-              style={{ display: 'none' }}
-            />
-            <span style={{ fontSize: '22px' }}>
-              2
-            </span>
-          </label>
-          <p style={description}>
-            {' '}
-            프라이팬에 버터나 오일을 두르세요. 앞 뒤 각각 3-4분정도 중불에
-            구워주세요. 반죽이 흩어질 수 있으니 살살 뒤집으셔야 해요. 코티지
-            치즈가 녹아 프라이팬에 눌러붙을 수 있으니 주의하세요.
-          </p>
-
-          <label style={checkboxStyle}>
-            <input
-              type="checkbox"
-              value={1}
-              style={{ display: 'none' }}
-            />
-            <span style={{ fontSize: '22px' }}>
-              3
-            </span>
-          </label>
-          <p style={description}>
-            블루베리 또는 다른 베리류와 헤비 휘핑 크림을 함께 곁들이면 더
-            맛있습니다.
-          </p>
+          {this.props.recipe.map((val, i) => {
+            const divNaming = `cookingstep${i +
+              1}`
+            return (
+              <div
+                id={divNaming}
+                className={
+                  val.isProcess
+                    ? 'cooking-on'
+                    : ''
+                }
+              >
+                <label style={checkboxStyle}>
+                  <input
+                    type="checkbox"
+                    value={val.step}
+                    style={{ display: 'none' }}
+                    onClick={
+                      this.handleCheckboxChange
+                    }
+                  />
+                  <span
+                    style={{ fontSize: '22px' }}
+                  >
+                    {val.step}
+                  </span>
+                </label>
+                <p style={description}>
+                  {val.content}
+                </p>
+              </div>
+            )
+          })}
         </form>
+        <div style={{ textAlign: 'right' }}>
+          <Button
+            size="Large"
+            icon="plus"
+            content="기록 다이어리에 등록하기"
+            style={btnDiarySubmit}
+            onClick={this.handlePopupWindowOpen}
+          />
+        </div>
+        <div>
+          <Modal
+            open={this.state.popupWindow}
+            onClose={this.handlePopupWindowClose}
+            size="mini"
+          >
+            <Modal.Header>
+              어떤 시간에 드셨나요?
+            </Modal.Header>
+            <Modal.Content>
+              <div>
+                <Dropdown
+                  downward
+                  fluid
+                  selection
+                  options={options}
+                  placeholder=" >> 시간을 선택하세요 << "
+                  onChange={
+                    this.handleMealTegChange
+                  }
+                />
+              </div>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button
+                basic
+                content="취소"
+                onClick={
+                  this.handlePopupWindowClose
+                }
+              />
+              <Button
+                content="등록"
+                onClick={
+                  this.createPayloadAndPostToDB
+                }
+              />
+            </Modal.Actions>
+          </Modal>
+        </div>
       </div>
     )
   }
 }
 
-export default CookingProcess
+const mapStateToProps = state => {
+  return {
+    dateState: state.today.date,
+    recipe: state.recipe.recipe,
+    recipeContent: state.recipe.recipeContent,
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    postFoodToDB: payload =>
+      dispatch(postFoodToDB(payload)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CookingProcess)

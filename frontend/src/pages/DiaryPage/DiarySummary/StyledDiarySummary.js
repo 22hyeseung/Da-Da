@@ -59,3 +59,9 @@ export const graph = {
   margin: '0 auto',
   display: 'block',
 }
+
+export const unitLabel = {
+  color: '#777',
+  fontSize: '12px',
+  float: 'right',
+}

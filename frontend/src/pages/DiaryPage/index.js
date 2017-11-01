@@ -1,10 +1,11 @@
 import React from 'react'
 import Navigation from '../../components/Navigation'
 import { Grid } from 'semantic-ui-react'
-import DiaryTab from './DiaryTab'
+import Footer from '../../components/Footer'
 import DiarySummary from './DiarySummary/'
-import DiaryView from './DiaryView'
 import DiarySubNav from './DiarySubNav'
+import DiaryTabNav from './DiaryTabNav'
+import DiaryViewRouter from './DiaryViewRouter'
 import './Diary.css'
 
 const DiaryPage = () => {
@@ -18,8 +19,8 @@ const DiaryPage = () => {
       >
         <Grid.Row stretched>
           <Grid.Column style={{ padding: '0px' }}>
-            <DiaryTab />
-            <DiaryView />
+            <DiaryTabNav />
+            <DiaryViewRouter />
           </Grid.Column>
           <Grid.Column
             width={4}
@@ -31,6 +32,7 @@ const DiaryPage = () => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <Footer />
     </div>
   )
 }

@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import Navigation from '../../components/Navigation'
 import './404.css'
@@ -14,23 +13,30 @@ const button = {
   fontWeight: '100',
 }
 
-const notFoundPage = () => (
-  <div className="notFound-wrapper">
-    <div className="notFound-grid">
-      <Navigation />
-      <div class="notFound-content">
-        <span className="notFound-header">
-          404
-        </span>
-        <span className="notFound-subHeader">
-          현재 찾을 수 없는 페이지를 요청 하셨습니다.
-        </span>
-        <Link to="/Home">
-          <Button style={button}>홈으로 돌아가기</Button>
-        </Link>
+export default class NotFoundPage extends Component {
+  render() {
+    return (
+      <div className="notFound-wrapper">
+        <div className="notFound-grid">
+          <Navigation color="#fff" />
+          <div class="notFound-content">
+            <span className="notFound-header">
+              404
+            </span>
+            <span className="notFound-subHeader">
+              현재 찾을 수 없는 페이지를 요청 하셨습니다.
+            </span>
+            <Button
+              style={button}
+              onClick={() => {
+                this.props.history.push('/')
+              }}
+            >
+              홈으로 돌아가기
+            </Button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-)
-
-export default notFoundPage
+    )
+  }
+}

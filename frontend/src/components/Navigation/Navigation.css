@@ -1,0 +1,14 @@
+.ui.dimmer {
+    z-index: 2000 !important;
+}
+
+.navigation-logout-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+
+/* .ui.secondary.pointing.menu .active.item {
+  border-color: transparent;
+} */

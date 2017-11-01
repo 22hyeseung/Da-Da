@@ -1,40 +1,76 @@
 import React, { Component } from 'react'
-import { Input, Icon } from 'semantic-ui-react'
+import {
+  Input,
+  Icon,
+} from 'semantic-ui-react'
+import {
+  withRouter,
+} from 'react-router-dom'
+import {
+  searchWrapper,
+  cameraIcon,
+  iconStyle,
+} from './StyledResult'
+import { connect } from 'react-redux'
+import { getRecipeSearch } from '../../../actions/recipe'
 
-const searchWrapper = {
-  display: 'inlineBlock',
-  position: 'absolute',
-  top: '72px',
-  left: '139px',
-}
+class ResultSearchBar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchText: '',
+    }
+  }
 
-const resultSearch = {
-  width: '1124px',
-  height: '41px',
-}
+  handleSearch = (e) => {
+    if (e.keyCode === 13 || e === 'pass') {
+      this.props.getRecipeSearch(this.state.searchText)
+      this.props.updateSearchText(this.state.searchText)
+    }
+  }
 
-const iconStyle = {
-  width: '26px',
-  height: '22px',
-  color: '#1a2980',
-  marginLeft: '21px',
-}
+  handleSearchTextChange = e => {
+    this.setState({ searchText: e.target.value })
+  }
 
-export default class ResultSearchBar extends Component {
   render() {
     return (
       <div style={searchWrapper}>
         <Input
-          style={resultSearch}
-          icon="search"
-          placeholder="Search..."
+          className="search-result-searchbar"
+          icon={
+            <Icon name='search' circular link
+              onClick={() => this.handleSearch('pass')}
+            />
+          }
+          value={this.state.searchText}
+          onKeyDown={this.handleSearch}
+          onChange={this.handleSearchTextChange}
         />
-        <Icon
-          name="photo"
-          size="large"
+        <img
+          src={cameraIcon}
           style={iconStyle}
+          alt="이미지를 업로드하여 식단을 검색"
         />
       </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getRecipeSearch: searchText =>
+      dispatch(getRecipeSearch(searchText)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withRouter(ResultSearchBar))

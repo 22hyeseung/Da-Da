@@ -1,11 +1,28 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+//스타일링
 import { Menu } from 'semantic-ui-react'
-import { logo } from './StyledNavigation'
+import {
+  logoWrap,
+  logo,
+} from './StyledNavigation'
 
-const Logo = () => {
-  return (
-    <Menu.Item style={logo}>DA, DA</Menu.Item>
-  )
+class Logo extends Component {
+  render() {
+    return (
+      <Menu.Item style={logoWrap}>
+        <Link
+          to="/"
+          style={{
+            ...logo,
+            color: this.props.color,
+          }}
+        >
+          DA, DA
+        </Link>
+      </Menu.Item>
+    )
+  }
 }
 
 export default Logo
