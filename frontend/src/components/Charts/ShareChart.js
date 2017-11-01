@@ -16,7 +16,7 @@ import {
 } from 'recharts'
 
 // 파이 차트 colors
-const COLORS = ['#16325c', '#a8b7c7', '#e5e5e5']
+const COLORS = ['#4e6b9a', '#a8b7c7', '#e5e5e5', '#314b75']
 
 class ShareChart extends Component {
   constructor(props) {
@@ -24,10 +24,6 @@ class ShareChart extends Component {
     this.state = {
       date: this.props.dateState,
     }
-  }
-
-  componentWillMount() {
-
   }
 
   render() {
@@ -66,7 +62,8 @@ class ShareChart extends Component {
           cy={40}
           innerRadius={20}
           outerRadius={40}
-          fill="#8884d8"
+          stroke="rgb(255, 255, 255, 0.1);"
+          fill="#485563"
         >
           {chartData.map((entry, index) => (
             <Cell
