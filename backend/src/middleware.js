@@ -1,5 +1,6 @@
 const cors = require('cors')
 const expressJwt = require('express-jwt')
+const bodyParser = require('body-parser')
 
 function loginRequired(req, res, next) {
   if (req.user) {
@@ -24,10 +25,16 @@ const corsMiddleware = cors({ 'origin': process.env.TARGET_ORIGIN })
 
 const expressJwtMiddleware = expressJwt({ 'secret': process.env.JWT_SECRET })
 
+const jsonMiddleware = bodyParser.json()
+
+const urlencodedMiddleware = bodyParser.urlencoded({ 'extended': false })
+
 module.exports = {
   loginRequired,
   insertReq,
   insertToken,
   corsMiddleware,
-  expressJwtMiddleware
+  expressJwtMiddleware,
+  urlencodedMiddleware,
+  jsonMiddleware
 }
