@@ -125,6 +125,17 @@ class FoodSelectDetails extends Component {
   }
 
   render() {
+    const {
+      disabled,
+      finalKcal,
+      loading,
+    } = this.state
+    const {
+      foodResult,
+      calculateKcal,
+      isSelected,
+      toggleSearchMode,
+    } = this.props
     const details = (
       <div
         style={{
@@ -133,10 +144,10 @@ class FoodSelectDetails extends Component {
         }}
       >
         <span className="diary-food-search-label-result-title">
-          {this.props.foodResult.food_name_ko}
+          {foodResult.food_name_ko}
         </span>
         <span className="diary-food-search-label-result-kcal">
-          {this.props.calculateKcal}
+          {calculateKcal}
         </span>
         <div className="diary-food-search-label-result-input">
           <img
@@ -152,10 +163,10 @@ class FoodSelectDetails extends Component {
             style={{ width: '105px' }}
             type="number"
             onKeyDown={this.handleKeyPress}
-            error={this.state.disabled}
+            error={disabled}
           />
           <span className="diary-food-search-label-result-unit">
-            {this.props.foodResult.food_unit}
+            {foodResult.food_unit}
           </span>
           <img
             src={returnIcon}
@@ -164,7 +175,7 @@ class FoodSelectDetails extends Component {
           />
           <div className="diary-food-search-label-result-wrapper">
             <span className="diary-food-search-label-result-calculateKcal">
-              {this.state.finalKcal}
+              {finalKcal}
             </span>
             <span className="diary-food-search-label-result-unit">
               kcal
@@ -184,9 +195,7 @@ class FoodSelectDetails extends Component {
     return (
       <div className="diary-food-search-label">
         <div className="diary-food-search-label-result">
-          {this.props.isSelected
-            ? details
-            : blank}
+          {isSelected ? details : blank}
         </div>
         <div>
           <Button
@@ -195,7 +204,7 @@ class FoodSelectDetails extends Component {
               ...cancelBtn,
               marginRight: '9px',
             }}
-            onClick={this.props.toggleSearchMode}
+            onClick={toggleSearchMode}
           >
             취소
           </Button>
@@ -205,8 +214,8 @@ class FoodSelectDetails extends Component {
             onClick={
               this.createPayloadAndPostToDB
             }
-            loading={this.state.loading}
-            disabled={this.state.disabled}
+            loading={loading}
+            disabled={disabled}
           >
             등록
           </Button>
@@ -226,6 +235,7 @@ FoodSelectDetails.defaultProps = {
     food_fat: '',
   },
 }
+
 const mapStateToProps = state => {
   return {
     dateState: state.today.date,
@@ -234,6 +244,7 @@ const mapStateToProps = state => {
       state.foodLogs.foodAlbumResult,
   }
 }
+
 const mapDispatchToProps = dispatch => {
   return {
     postFoodToDB: (requestBody, date) =>

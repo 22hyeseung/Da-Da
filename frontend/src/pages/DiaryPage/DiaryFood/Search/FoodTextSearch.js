@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import _ from 'lodash'
 import {
   Button,
@@ -20,7 +22,6 @@ import FoodSelectDetails from './FoodSearchSelect'
 import FoodAdd from '../FoodAdd'
 import notyet from '../../../../static/img/diary-food-search-notyet.svg'
 import error from '../../../../static/img/diary-search-error.svg'
-import { connect } from 'react-redux'
 import API_HOST from '../../../../config'
 
 class FoodSearch extends Component {

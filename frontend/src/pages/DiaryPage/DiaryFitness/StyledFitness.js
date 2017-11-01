@@ -105,6 +105,19 @@ export const buttonIcon = {
   width: '46%',
 }
 
+export const searchResultList = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  padding: '7px',
+  margin: '7px 0px',
+  borderBottom: '1px solid #d8dde6',
+  cursor: 'pointer',
+}
+
+export const searchResultUl = {
+  listStyle: 'none',
+  paddingRight: '14px',
+}
 // ==========================> DiaryFitnessInput.js
 
 export const listItemLeftWrap = {

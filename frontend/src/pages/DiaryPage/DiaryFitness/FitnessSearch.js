@@ -17,9 +17,9 @@ import notyet from '../../../static/img/diary-fitness-search-notyet.svg'
 import error from '../../../static/img/diary-search-error.svg'
 
 // 컴포넌트
-import DiaryFitnessSearchDetails from './DiaryFitnessSearchDetails'
+import FitnessSearchDetails from './FitnessSearchSelect'
 
-class DiaryFitnessSearch extends React.Component {
+class FitnessSearch extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -29,12 +29,10 @@ class DiaryFitnessSearch extends React.Component {
       isLoading: false,
       btnState: false,
       isEmpty: true,
-
       userInput: '',
       results: [],
       resultKcal: '',
       finalKcal: '',
-      token: `Bearer ${this.props.token}`,
     }
   }
 
@@ -43,9 +41,10 @@ class DiaryFitnessSearch extends React.Component {
   }
 
   getFitnessesList = () => {
+    const { userInput } = this.state
     if (
-      !this.state.userInput || // 입력값이 없으면 검색 안됨
-      !this.state.userInput.indexOf(' ') // 공백시 검색 안됨
+      !userInput || // 입력값이 없으면 검색 안됨
+      !userInput.indexOf(' ') // 공백시 검색 안됨
     ) {
       return this.setState({
         inputError: true,
@@ -65,7 +64,8 @@ class DiaryFitnessSearch extends React.Component {
       {
         method: 'GET',
         headers: {
-          Authorization: this.state.token,
+          Authorization: `Bearer ${this.props
+            .token}`,
         },
       },
     )
@@ -102,6 +102,14 @@ class DiaryFitnessSearch extends React.Component {
   }
 
   render() {
+    const {
+      results,
+      isEmpty,
+      selectedKey,
+      userInput,
+      btnState,
+    } = this.state
+
     return (
       <div>
         <List horizontal style={Style.listWrap}>
@@ -114,12 +122,12 @@ class DiaryFitnessSearch extends React.Component {
               className="diary-fitness-search"
               style={Style.inputStyle}
               onChange={this.handleChange}
-              value={this.state.userInput}
+              value={userInput}
               onKeyDown={this.handleKeyPress}
             />
             <Button
               onClick={this.getFitnessesList}
-              disabled={this.state.btnState}
+              disabled={btnState}
               style={{
                 ...submitBtn,
                 width: '100px',
@@ -136,17 +144,10 @@ class DiaryFitnessSearch extends React.Component {
             marginLeft: '14px',
           }}
         >
-          <ul
-            style={{
-              listStyle: 'none',
-
-              paddingRight: '14px',
-            }}
-          >
-            {!this.state.isEmpty ? (
+          <ul style={Style.searchResultUl}>
+            {!isEmpty ? (
               <div>
-                {this.state.results.length !==
-                0 ? (
+                {results.length !== 0 ? (
                   <div>
                     <div
                       style={
@@ -156,11 +157,7 @@ class DiaryFitnessSearch extends React.Component {
                       <span
                         style={Style.searchResult}
                       >
-                        검색결과{' '}
-                        {
-                          this.state.results
-                            .length
-                        }
+                        검색결과 {results.length}
                       </span>
                       <span />
                     </div>
@@ -170,20 +167,13 @@ class DiaryFitnessSearch extends React.Component {
                         overflow: 'auto',
                       }}
                     >
-                      {this.state.results.map(
+                      {results.map(
                         (result, i) => {
                           return (
                             <li
-                              style={{
-                                display: 'flex',
-                                justifyContent:
-                                  'space-between',
-                                padding: '7px',
-                                margin: '7px 0px',
-                                borderBottom:
-                                  '1px solid #d8dde6',
-                                cursor: 'pointer',
-                              }}
+                              style={
+                                Style.searchResultList
+                              }
                               key={i}
                               onClick={() =>
                                 this.handleSelect(
@@ -295,15 +285,9 @@ class DiaryFitnessSearch extends React.Component {
             )}
           </ul>
         </List>
-        <DiaryFitnessSearchDetails
-          isSelected={
-            this.state.selectedKey !== -1
-          }
-          fitnessResult={
-            this.state.results[
-              this.state.selectedKey
-            ]
-          }
+        <FitnessSearchDetails
+          isSelected={selectedKey !== -1}
+          fitnessResult={results[selectedKey]}
           toggleSearchMode={
             this.props.isSearchMode
           } // 토글 이벤트 props 내림
@@ -320,5 +304,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, null)(
-  DiaryFitnessSearch,
+  FitnessSearch,
 )
