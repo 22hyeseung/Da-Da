@@ -11,7 +11,7 @@ import {
   calorieGoal,
   iconSet,
   kcalInput,
-} from './StyledDiaryCommon'
+} from './StyledDiary'
 import './Diary.css'
 // 리덕스 액션생성자
 import { getUserInfo } from '../../actions/auth.js'
@@ -35,7 +35,7 @@ import {
   dateStringForApiQuery,
 } from '../../helper/date'
 
-class DiarySubNav extends Component {
+class DateNavigation extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -234,4 +234,4 @@ const mapDispatchtoProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchtoProps,
-)(DiarySubNav)
+)(DateNavigation)

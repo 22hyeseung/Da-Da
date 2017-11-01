@@ -5,7 +5,7 @@ import {
   Input,
   Button,
 } from 'semantic-ui-react'
-import { submitBtn } from '../StyledDiaryCommon'
+import { submitBtn } from '../StyledDiary'
 import { updateFoodOfDB } from '../../../actions/diaryFood'
 
 class FoodEditModal extends React.Component {

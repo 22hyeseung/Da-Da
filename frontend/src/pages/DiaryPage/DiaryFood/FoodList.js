@@ -8,7 +8,7 @@ import {
 import * as Style from './StyledDiaryFood'
 import { deleteFoodOfDB } from '../../../actions/diaryFood'
 import { connect } from 'react-redux'
-import { submitBtn } from '../StyledDiaryCommon'
+import { submitBtn } from '../StyledDiary'
 import FoodEditModal from './FoodEditModal'
 import { dateStringForApiQuery } from '../../../helper/date'
 

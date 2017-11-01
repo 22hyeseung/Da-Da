@@ -3,24 +3,24 @@ import Navigation from '../../components/Navigation'
 import { Grid } from 'semantic-ui-react'
 import Footer from '../../components/Footer'
 import DiarySummary from './DiarySummary/'
-import DiarySubNav from './DiarySubNav'
-import DiaryTabNav from './DiaryTabNav'
-import DiaryViewRouter from './DiaryViewRouter'
+import DateNavigation from './DateNavigation'
+import TabMenu from './TabMenu'
+import ViewRouter from './ViewRouter'
 import './Diary.css'
 
 const DiaryPage = () => {
   return (
     <div className="diary-grid">
       <Navigation />
-      <DiarySubNav />
+      <DateNavigation />
       <Grid
         columns="equal"
         style={{ margin: '0px' }}
       >
         <Grid.Row stretched>
           <Grid.Column style={{ padding: '0px' }}>
-            <DiaryTabNav />
-            <DiaryViewRouter />
+            <TabMenu />
+            <ViewRouter />
           </Grid.Column>
           <Grid.Column
             width={4}

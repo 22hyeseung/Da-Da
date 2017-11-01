@@ -15,7 +15,7 @@ import {
 
 import { dateStringForApiQuery } from '../../helper/date'
 
-class ReportSubNav extends Component {
+class WeekNavigation extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -153,4 +153,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ReportSubNav)
+)(WeekNavigation)

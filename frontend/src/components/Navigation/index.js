@@ -4,7 +4,8 @@ import { Menu } from 'semantic-ui-react'
 import { container } from './StyledNavigation'
 import { getUserInfo } from '../../actions/auth'
 import Logo from './Logo'
-import RightMenu from './RightMenu'
+import RightMenu from './RightMenu/index'
+
 // 리덕스 액션생성자
 import {
   setTodayDateAndDay,

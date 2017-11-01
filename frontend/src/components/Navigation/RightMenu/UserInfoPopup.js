@@ -8,10 +8,10 @@ import {
   Button,
   Modal,
 } from 'semantic-ui-react'
-import './Navigation.css'
-import * as Style from './StyledNavigation'
+import '../Navigation.css'
+import * as Style from '../StyledNavigation'
 // 리덕스 액션
-import { logOut } from '../../actions/auth'
+import { logOut } from '../../../actions/auth'
 
 class UserInfo extends Component {
   state = { open: false }

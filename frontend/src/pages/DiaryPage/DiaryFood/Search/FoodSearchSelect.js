@@ -8,7 +8,7 @@ import {
 import {
   submitBtn,
   cancelBtn,
-} from '../../StyledDiaryCommon'
+} from '../../StyledDiary'
 import {
   postFoodToDB,
   clearSelect,

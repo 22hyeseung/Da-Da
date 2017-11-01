@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash'
 // 스타일링
 import {
   Segment,
@@ -14,19 +13,14 @@ import {
   smSubHeader,
   smListLayout,
   smListContent,
-} from './StyledReport'
-import './Report.css'
+} from '../StyledReport'
+import '../Report.css'
 
-import { dateStringForApiQuery } from '../../helper/date'
+import { dateStringForApiQuery } from '../../../helper/date'
 // 리덕스 액션
-import { getNutritionSummaryFromDB } from '../../actions/report'
+import { getNutritionSummaryFromDB } from '../../../actions/report'
 
-class ReportNutritionSummary extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
+class NutritionSummary extends Component {
   componentWillMount() {
     const {
       lastDateState,
@@ -134,4 +128,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ReportNutritionSummary)
+)(NutritionSummary)

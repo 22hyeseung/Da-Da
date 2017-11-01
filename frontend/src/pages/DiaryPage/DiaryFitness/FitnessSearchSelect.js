@@ -11,7 +11,7 @@ import * as Style from './StyledFitness'
 import {
   submitBtn,
   cancelBtn,
-} from '../StyledDiaryCommon'
+} from '../StyledDiary'
 
 // 아이콘
 import multiplyIcon from '../../../static/img/diary-multiply.svg'
