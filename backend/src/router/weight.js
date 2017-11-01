@@ -51,24 +51,18 @@ router.options('*', cors())
  *     "goal_weight": null
  * }
  */
-router.get('/all', (req, res) => {
+router.get('/all', async (req, res) => {
   const param = { 'day_log_member_id': req.user.id }
 
   const out = {}
 
-  query.getDayLogAll(param)
-    .then(result => {
-      out.allDayLog = result
-    })
-    .then(() => {
-      return query.getUserById(req.user.id)
-        .then(result => {
-          out.goal_weight = result.member_goal_weight
-        })
-    })
-    .then(() => {
-      res.send(out)
-    })
+  const result1 = await query.getDayLogAll(param)
+  const result2 = await query.getUserById(req.user.id)
+
+  out.allDayLog = result1
+  out.goal_weight = result2.member_goal_weight
+
+  res.send(out)
 })
 
 /**
@@ -91,7 +85,7 @@ router.get('/all', (req, res) => {
  *   "date_weight": 21
  * }
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const user = {
     'day_log_member_id': req.user.id,
     'day_log_diary_date': req.query.date
@@ -105,24 +99,17 @@ router.get('/', (req, res) => {
     'date_weight': 0
   }
 
-  query.getWeightByDate(user)
-    .then(weight_date => {
-      if (weight_date) {
-        data.date_weight = weight_date.day_log_kg
-        data.goal_weight = weight_date.member_goal_weight
-      }
-    })
-    .then(() => {
-      return query.getFirstKgById(user)
-        .then(first => {
-          if (first) {
-            data.first_kg = first.day_log_kg
-          }
-        })
-    })
-    .then(() => {
-      res.send(data)
-    })
+  const weight_date = await query.getWeightByDate(user)
+  const first = await query.getFirstKgById(user)
+
+  if (weight_date) {
+    data.date_weight = weight_date.day_log_kg
+    data.goal_weight = weight_date.member_goal_weight
+  }
+  if (first) {
+    data.first_kg = first.day_log_kg
+  }
+  res.send(data)
 })
 
 /**
@@ -141,16 +128,14 @@ router.get('/', (req, res) => {
  * res.status(200)
  * weight null complete
  */
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   const param = {
     'day_log_id': req.params.id,
     'day_log_member_id': req.user.id
   }
 
-  query.WeightNullById(param)
-  .then(() => {
-    res.end('weight null complete')
-  })
+  await query.WeightNullById(param)
+  res.end('weight null complete')
 })
 
 /**
@@ -169,15 +154,13 @@ router.delete('/:id', (req, res) => {
  *    "member_goal_weight": 24
  * }
  */
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const param = {
     'member_id': req.user.id,
     'member_goal_weight': req.body.goal_weight
   }
 
-  query.PostGoalKgbyUser(param)
-  .then(data => {
-    res.send(data)
-  })
+  const data = await query.PostGoalKgbyUser(param)
+  res.send(data)
 })
 module.exports = router
