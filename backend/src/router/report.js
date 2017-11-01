@@ -52,7 +52,7 @@ router.options('*', mw.corsMiddleware)
  *     }
  * ]
  */
-router.get('/nutrition/days', (req, res) => {
+router.get('/nutrition/days', async (req, res) => {
   const param = {
     'eat_log_member_id': req.user.id,
     'start_date': req.query.start_date,
@@ -60,11 +60,9 @@ router.get('/nutrition/days', (req, res) => {
   }
 
   if (param.start_date && param.end_date) {
-    query.getReportNutrition(param)
-      .then(result => {
-        res.status(200)
-        res.send(result)
-      })
+    const result = await query.getReportNutrition(param)
+    res.status(200)
+    res.send(result)
   } else {
     res.status(405)
     res.send('조회 기간을 지정 해야합니다.')
@@ -95,7 +93,7 @@ router.get('/nutrition/days', (req, res) => {
  *     "fat": 179.35
  * }
  */
-router.get('/nutrition/summary', (req, res) => {
+router.get('/nutrition/summary', async (req, res) => {
   const param = {
     'eat_log_member_id': req.user.id,
     'start_date': req.query.start_date,
@@ -103,11 +101,9 @@ router.get('/nutrition/summary', (req, res) => {
   }
 
   if (param.start_date && param.end_date) {
-    query.getReportNutritionSum(param)
-      .then(result => {
-        res.status(200)
-        res.send(result)
-      })
+    const result = await query.getReportNutritionSum(param)
+    res.status(200)
+    res.send(result)
   } else {
     res.status(405)
     res.send('조회 기간을 지정 해야합니다.')
@@ -198,7 +194,7 @@ router.get('/nutrition/summary', (req, res) => {
  *    }
  *}
  */
-router.get('/kcal/days', (req, res) => {
+router.get('/kcal/days', async (req, res) => {
   const param = {
     'eat_log_member_id': req.user.id,
     'day_log_member_id': req.user.id,
@@ -207,16 +203,11 @@ router.get('/kcal/days', (req, res) => {
   }
 
   if (param.start_date && param.end_date) {
-    query.getReportKcalByDate(param)
-      .then(meal_kcal => {
-        query.getGoalKcalByDate(param)
-          .then(day_goal_kcal => {
-            query.getFirstGoalKcalById(param)
-              .then(default_goal_kcal => {
-                res.send({ meal_kcal, day_goal_kcal, default_goal_kcal })
-              })
-          })
-      })
+    const meal_kcal = await query.getReportKcalByDate(param)
+    const day_goal_kcal = await query.getGoalKcalByDate(param)
+    const default_goal_kcal = await query.getFirstGoalKcalById(param)
+
+    res.send({ meal_kcal, day_goal_kcal, default_goal_kcal })
   } else {
     res.status(405)
     res.send('조회 기간을 지정 해야합니다.')
@@ -257,17 +248,15 @@ router.get('/kcal/days', (req, res) => {
  *     }
  * ]
  * */
-router.get('/kcal/summary', (req, res) => {
+router.get('/kcal/summary', async (req, res) => {
   const param = {
     'eat_log_member_id': req.user.id,
     'start_date': req.query.start_date,
     'end_date': req.query.end_date
   }
 
-  query.getReportKcalByDateAvg(param)
-    .then(data => {
-      res.send(data)
-    })
+  const data = await query.getReportKcalByDateAvg(param)
+  res.send(data)
 })
 
 module.exports = router
