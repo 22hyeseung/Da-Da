@@ -18,12 +18,13 @@ export const DELETE_FOOD_OF_DATABASE =
   'DELETE_FOOD_OF_DATABASE'
 //==========================================
 // action: diaryFood & reducer: dairySummary
+export const ADD_CHART_SUMMARY =
+  'ADD_CHART_SUMMARY'
 export const UPDATE_CHART_SUMMARY =
   'UPDATE_CHART_SUMMARY'
 export const DELETE_CHART_SUMMARY =
   'DELETE_CHART_SUMMARY'
-export const UPDATE_LIST_SUMMARY =
-  'UPDATE_LIST_SUMMARY'
+// export const ADD_LIST_SUMMARY = 'ADD_LIST_SUMMARY'
 //==========================================
 // action: diaryFitness & reducer: dairySummary
 export const UPDATE_SUMMARY_OF_BURN_CALORIE =

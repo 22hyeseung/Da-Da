@@ -31,3 +31,22 @@ export const getFoodSummaryFromDB = date => {
       })
   }
 }
+
+export const updateFoodSummary = (
+  modifiedData,
+  prevAmount,
+) => {
+  return dispatch => {
+    dispatch({
+      type: types.UPDATE_CHART_SUMMARY,
+      payload: {
+        modifiedCarb: modifiedData.food_carb,
+        modifiedProt: modifiedData.food_protein,
+        modifiedFat: modifiedData.food_fat,
+        modifiedAmount:
+          modifiedData.eat_log_amount,
+        prevAmount,
+      },
+    })
+  }
+}
