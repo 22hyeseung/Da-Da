@@ -26,9 +26,8 @@ export const getFitnessLogsFromDB = date => {
 }
 
 // 2. input에서 받은 값을 db로 보내는 action(post)
-export const postFitnessToDB = payload => {
+export const postFitnessToDB = requestBody => {
   return dispatch => {
-    // console.log(payload)
     fetch(`${API_HOST}/exercises`, {
       method: 'POST',
       headers: {
@@ -36,7 +35,7 @@ export const postFitnessToDB = payload => {
           .localStorage.token}`,
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(requestBody),
     })
       .then(result => result.json())
       .then(data => {
@@ -45,8 +44,7 @@ export const postFitnessToDB = payload => {
           payload: data,
         })
         dispatch({
-          type:
-            types.UPDATE_SUMMARY_OF_BURN_CALORIE,
+          type: types.ADD_SUMMARY_OF_BURN_CALORIE,
           payload: data[0].burn_kcal,
         })
       })
@@ -71,16 +69,16 @@ export const updateFitnessOfDB = (
         },
         body: JSON.stringify(payload),
       })
-        .then(result => result.json())
+        .then(res => res.json())
         .then(data => {
+          console.log(data)
           if (data) {
             dispatch({
               type:
                 types.UPDATE_FITNESS_OF_DATABASE,
               payload: data,
             })
-            resolve('data updated successfully.')
-            // console.log(data)
+            resolve(data)
           } else {
             reject('Failed to update data.')
           }
