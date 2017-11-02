@@ -24,7 +24,7 @@ class HomeFirstUserInfo extends Component {
       disabled: true,
       gender: '여자',
       gender_enum: null,
-      birth: '20001010',
+      birth: '00000000',
       goal_weight: null,
       recommend_kcal: null,
       height: null,
@@ -104,66 +104,81 @@ class HomeFirstUserInfo extends Component {
   close = () => this.setState({ open: false })
 
   createPayloadAndPostToDB = () => {
+    const {
+      birth,
+      gender_enum,
+      goal_weight,
+      recommend_kcal,
+      height,
+      kg,
+      date,
+    } = this.state
+
     if (
-      !this.state.birth ||
-      this.state.birth < 1 ||
-      this.state.birth.length < 8 ||
-      !this.state.gender_enum ||
-      this.state.gender_enum < 1 ||
-      !this.state.goal_weight ||
-      this.state.goal_weight < 1 ||
-      !this.state.recommend_kcal ||
-      this.state.recommend_kcal < 1 ||
-      !this.state.height ||
-      this.state.height < 1 ||
-      !this.state.kg ||
-      this.state.kg < 1
+      !birth ||
+      birth < 1 ||
+      birth.length < 8 ||
+      !gender_enum ||
+      gender_enum < 1 ||
+      !goal_weight ||
+      goal_weight < 1 ||
+      !recommend_kcal ||
+      recommend_kcal < 1 ||
+      !height ||
+      height < 1 ||
+      !kg ||
+      kg < 1
     ) {
       return this.setState({
         disabled: true,
       })
     }
     this.props.postUserInfoToDB({
-      birth: this.state.birth,
-      gender: this.state.gender_enum,
-      goal_weight: this.state.goal_weight,
-      height: this.state.height,
-      kg: this.state.kg,
-      date: this.state.date,
-      kcal: this.state.recommend_kcal,
+      birth,
+      gender: gender_enum,
+      goal_weight,
+      height,
+      kg,
+      date,
+      kcal: recommend_kcal,
     })
     // 좋은 방법이 아니다.
-    setTimeout(this.close, 100)
-    setTimeout(window.location.reload(), 300)
+    setTimeout(this.close, 1000)
+    setTimeout(window.location.reload(), 2000)
   }
 
   render() {
     const { open, size } = this.state
+    const {
+      gender,
+      height,
+      birth,
+      kg,
+      disabled,
+    } = this.state
 
+    const { userInfo } = this.props
     // BMI 권장 체중 계산식
     const BMIweight =
-      this.state.gender === '여자'
-        ? (Math.pow(this.state.height / 100, 2) *
-            21
+      gender === '여자'
+        ? (Math.pow(height / 100, 2) * 21
           ).toFixed(2)
-        : (Math.pow(this.state.height / 100, 2) *
-            22
+        : (Math.pow(height / 100, 2) * 22
           ).toFixed(2)
 
     const today = new Date()
     const todayYear = today.getFullYear()
-    const age =
-      todayYear - this.state.birth.slice(0, 4)
+    const age = todayYear - birth.slice(0, 4)
 
     const BEEkcal =
-      this.state.gender === '여자'
+      gender === '여자'
         ? 65.51 +
-          9.56 * this.state.kg +
-          1.85 * this.state.height -
+          9.56 * kg +
+          1.85 * height -
           4.68 * age
         : 66.47 +
-          9.56 * this.state.kg +
-          1.85 * this.state.height -
+          9.56 * kg +
+          1.85 * height -
           4.68 * age
 
     return (
@@ -176,9 +191,8 @@ class HomeFirstUserInfo extends Component {
         >
           <Grid.Column width={8}>
             <div style={Style.introTitle}>
-              <span>
-                {this.props.userInfo.userName}
-              </span>님 <br />
+              <span>{userInfo.userName}</span>님
+              <br />
               <span
                 style={{
                   fontFamily: 'montserrat-bold',
@@ -194,9 +208,8 @@ class HomeFirstUserInfo extends Component {
                 opacity: '0.73',
               }}
             >
-              더 나은 이용을 위해서는{' '}
-              {this.props.userInfo.userName}님의 기본
-              정보가 필요합니다.
+              더 나은 이용을 위해서는 {userInfo.userName}님의
+              기본 정보가 필요합니다.
             </span>
             <div style={{ marginTop: '28px' }}>
               <Form style={Style.form}>
@@ -206,9 +219,7 @@ class HomeFirstUserInfo extends Component {
                     label="여자"
                     name="radioGroup"
                     value="여자"
-                    checked={
-                      this.state.gender === '여자'
-                    }
+                    checked={gender === '여자'}
                     onChange={
                       this.handleGenderChange
                     }
@@ -220,9 +231,7 @@ class HomeFirstUserInfo extends Component {
                     label="남자"
                     name="radioGroup"
                     value="남자"
-                    checked={
-                      this.state.gender === '남자'
-                    }
+                    checked={gender === '남자'}
                     onChange={
                       this.handleGenderChange
                     }
@@ -298,7 +307,7 @@ class HomeFirstUserInfo extends Component {
                       fontSize: '12px',
                     }}
                   >
-                    김나영님의 권장 체중은
+                    {userInfo.userName}님의 권장 체중은
                     {BMIweight}kg입니다. (BMI 기준)
                   </span>
                 </Form.Field>
@@ -318,16 +327,16 @@ class HomeFirstUserInfo extends Component {
                 </Form.Field>
                 <Form.Field>
                   {BEEkcal < 0 ||
-                  !this.state.height ||
-                  !this.state.kg ? (
+                  !height ||
+                  !kg ? (
                     <span
                       style={{
                         color: '#26d0ce',
                         fontSize: '12px',
                       }}
                     >
-                      김나영님의 권장 칼로리는 0kcal입니다. (BEE
-                      기준)
+                      {userInfo.userName}님의 권장
+                      칼로리는 0kcal입니다. (BEE 기준)
                     </span>
                   ) : (
                     <span
@@ -336,7 +345,8 @@ class HomeFirstUserInfo extends Component {
                         fontSize: '12px',
                       }}
                     >
-                      김나영님의 하루 권장 칼로리는
+                      {userInfo.userName}님의 하루 권장
+                      칼로리는
                       {BEEkcal.toFixed(2)}kcal입니다.
                       (BEE 기준)
                     </span>
@@ -349,7 +359,7 @@ class HomeFirstUserInfo extends Component {
                   }}
                 >
                   <Button
-                    disabled={this.state.disabled}
+                    disabled={disabled}
                     onClick={this.show('mini')}
                     type="submit"
                     style={Style.fakeSubmitBtn}
@@ -369,10 +379,7 @@ class HomeFirstUserInfo extends Component {
                       }}
                     >
                       <Image
-                        src={
-                          this.props.userInfo
-                            .userAvatar
-                        }
+                        src={userInfo.userAvatar}
                         avatar
                         style={Style.modalAvatar}
                       />
@@ -381,10 +388,7 @@ class HomeFirstUserInfo extends Component {
                           fontWeight: '600',
                         }}
                       >
-                        {
-                          this.props.userInfo
-                            .userName
-                        }
+                        {userInfo.userName}
                       </span>
                       님의 기본정보
                     </Modal.Header>
@@ -412,9 +416,7 @@ class HomeFirstUserInfo extends Component {
                             >
                               성별
                             </span>
-                            <span>
-                              {this.state.gender}
-                            </span>
+                            <span>{gender}</span>
                           </li>
                           <li style={Style.list}>
                             <span
@@ -424,9 +426,7 @@ class HomeFirstUserInfo extends Component {
                             >
                               생일
                             </span>
-                            <span>
-                              {this.state.birth}
-                            </span>
+                            <span>{birth}</span>
                           </li>
                           <li style={Style.list}>
                             <span
@@ -436,9 +436,7 @@ class HomeFirstUserInfo extends Component {
                             >
                               키
                             </span>
-                            <span>
-                              {this.state.height}
-                            </span>
+                            <span>{height}</span>
                           </li>
                           <li style={Style.list}>
                             <span
@@ -448,9 +446,7 @@ class HomeFirstUserInfo extends Component {
                             >
                               현재 체중
                             </span>
-                            <span>
-                              {this.state.kg}
-                            </span>
+                            <span>{kg}</span>
                           </li>
                           <li style={Style.list}>
                             <span
@@ -500,9 +496,7 @@ class HomeFirstUserInfo extends Component {
                         수정하기
                       </Button>
                       <Button
-                        disabled={
-                          this.state.disabled
-                        }
+                        disabled={disabled}
                         fluid
                         style={Style.submitBtn}
                         onClick={
