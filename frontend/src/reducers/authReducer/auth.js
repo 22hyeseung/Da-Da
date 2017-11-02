@@ -5,8 +5,8 @@ const INITIAL_STATE = {
     userSNS: null,
     userAvatar: null,
   },
-  signingIn: false, // 로그인 진행중일 떄 진행중 표시를 하기 위한 Flag
-  errorState: '', // 로그인 중에 문제가 생겼습니다 라고 알리기 위한 Flag
+  isLoading: false,
+  errorState: '',
 }
 
 const authReducer = (
@@ -19,14 +19,15 @@ const authReducer = (
       token: action.payload,
     }
   }
-  if (action.type === 'LOGIN_USER_REQUEST') {
+
+  // =============== Get userInfo ================ //
+  if (action.type === 'SAVE_USERINFO_REQUEST') {
     return {
       ...state,
-      signingIn: true,
-      errorState: false,
+      isLoading: true,
     }
   }
-  if (action.type === 'SAVE_USERINFO') {
+  if (action.type === 'SAVE_USERINFO_SUCCESS') {
     return {
       ...state,
       userInfo: {
@@ -53,16 +54,17 @@ const authReducer = (
           : '',
         userDefault: action.payload.default_kcal,
       },
-      signingIn: false,
+      isLoading: false,
     }
   }
-  if (action.type === 'LOGIN_USER_FAILED') {
+  if (action.type === 'SAVE_USERINFO_FAILED') {
     return {
       ...state,
-      signingIn: false,
       errorState: true,
     }
   }
+
+  // =============== Logout ================ //
   if (action.type === 'LOGOUT') {
     return {
       ...state,
@@ -70,6 +72,26 @@ const authReducer = (
       userInfo: action.payload,
     }
   }
+
+  // =============== Post userInfo ================ //
+  if (action.type === 'POST_USERINFO_REQUEST') {
+    return {
+      isLoading: true,
+    }
+  }
+  if (action.type === 'POST_USERINFO_SUCCESS') {
+    return {
+      ...state,
+      isLoading: false,
+    }
+  }
+  if (action.type === 'POST_USERINFO_FAILED') {
+    return {
+      ...state,
+      errorState: true,
+    }
+  }
+
   return {
     ...state,
   }
