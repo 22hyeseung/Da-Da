@@ -61,3 +61,6 @@ gkey.json
 
 # vscode 제거
 .vscode/
+
+# api문서 제거
+.docs

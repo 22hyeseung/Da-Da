@@ -37,14 +37,22 @@ export const logOut = () => {
 
 export const postUserInfo = payload => {
   return dispatch => {
-    fetch(`${API_HOST}/user/first`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${window
-          .localStorage.token}`,
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(payload),
+    return new Promise((resolve, reject) => {
+      fetch(`${API_HOST}/user/first`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${window
+            .localStorage.token}`,
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      }).then(data => {
+        if (data) {
+          resolve('data posted successfully.')
+        } else {
+          reject('Failed to post data.')
+        }
+      })
     })
   }
 }
