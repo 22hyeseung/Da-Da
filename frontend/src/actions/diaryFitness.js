@@ -4,6 +4,9 @@ import API_HOST from '../config'
 // 1. db 값 받는 action
 export const getFitnessLogsFromDB = date => {
   return dispatch => {
+    dispatch({
+      type: types.GET_FITNESS_LOGS_REQUEST,
+    })
     fetch(`${API_HOST}/exercises?date=${date}`, {
       method: 'GET',
       headers: {
@@ -14,21 +17,25 @@ export const getFitnessLogsFromDB = date => {
       .then(res => res.json())
       .then(data => {
         dispatch({
-          type:
-            types.FETCHED_FITNESS_LOGS_SUCCESS,
+          type: types.GET_FITNESS_LOGS_SUCCESS,
           payload: data,
         })
       })
       .catch(error => {
-        console.log('fetchFitnessLogsToDB error')
+        dispatch({
+          type: types.GET_FITNESS_LOGS_FAILED,
+        })
       })
   }
 }
 
 // 2. input에서 받은 값을 db로 보내는 action(post)
-export const postFitnessToDB = payload => {
+export const postFitnessToDB = requestBody => {
   return dispatch => {
-    // console.log(payload)
+    dispatch({
+      type:
+        types.POST_FITNESS_TO_DATABASE_REQUEST,
+    })
     fetch(`${API_HOST}/exercises`, {
       method: 'POST',
       headers: {
@@ -36,22 +43,28 @@ export const postFitnessToDB = payload => {
           .localStorage.token}`,
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(requestBody),
     })
       .then(result => result.json())
       .then(data => {
-        dispatch({
-          type: types.POST_FITNESS_TO_DATABASE,
-          payload: data,
-        })
+        // if (data) {
         dispatch({
           type:
-            types.UPDATE_SUMMARY_OF_BURN_CALORIE,
-          payload: data[0].burn_kcal,
+            types.POST_FITNESS_TO_DATABASE_SUCCESS,
+          payload: data,
         })
+        // dispatch({
+        //   type:
+        //     types.UPDATE_SUMMARY_OF_BURN_CALORIE,
+        //   payload: data[0].burn_kcal,
+        // })
+        // }
       })
       .catch(error => {
-        console.log('fetchFitnessLogsToDB error')
+        dispatch({
+          type:
+            types.POST_FITNESS_TO_DATABASE_FAILED,
+        })
       })
   }
 }
@@ -61,6 +74,10 @@ export const updateFitnessOfDB = (
   id,
 ) => {
   return dispatch => {
+    dispatch({
+      type:
+        types.UPDATE_FITNESS_OF_DATABASE_REQUEST,
+    })
     return new Promise((resolve, reject) => {
       fetch(`${API_HOST}/exercises/${id}`, {
         method: 'PUT',
@@ -76,7 +93,7 @@ export const updateFitnessOfDB = (
           if (data) {
             dispatch({
               type:
-                types.UPDATE_FITNESS_OF_DATABASE,
+                types.UPDATE_FITNESS_OF_DATABASE_SUCCESS,
               payload: data,
             })
             resolve('data updated successfully.')
@@ -86,7 +103,10 @@ export const updateFitnessOfDB = (
           }
         })
         .catch(error => {
-          console.log('updateFitnessOfDB error')
+          dispatch({
+            type:
+              types.UPDATE_FITNESS_OF_DATABASE_FAILED,
+          })
         })
     })
   }
@@ -98,6 +118,10 @@ export const deleteFitnessOfDB = (
   burnKcal,
 ) => {
   return dispatch => {
+    dispatch({
+      type:
+        types.DELETE_FITNESS_OF_DATABASE_REQUEST,
+    })
     fetch(`${API_HOST}/exercises/${id}`, {
       method: 'DELETE',
       headers: {
@@ -109,7 +133,7 @@ export const deleteFitnessOfDB = (
         if (res.ok) {
           dispatch({
             type:
-              types.DELETE_FITNESS_OF_DATABASE,
+              types.DELETE_FITNESS_OF_DATABASE_SUCCESS,
             payload: id,
           })
           dispatch({
@@ -120,7 +144,10 @@ export const deleteFitnessOfDB = (
         }
       })
       .catch(error => {
-        console.log('deleteFitnessOfDB error')
+        dispatch({
+          type:
+            types.UPDATE_FITNESS_OF_DATABASE_FAILED,
+        })
       })
   }
 }

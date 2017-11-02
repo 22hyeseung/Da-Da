@@ -161,23 +161,30 @@ class DiaryFitness extends Component {
           tabNameKR="운동 다이어리"
           icon="fitnessIcon"
         />
-        {this.props.fitnessResult.map(
-          (fitness, i) => (
-            <FitnessList
-              name={fitness.exercise_name}
-              time={fitness.burn_minute}
-              kcal={fitness.burn_kcal}
-              unitKcal={
-                fitness.exercise_burn_kcal
-              }
-              id={fitness.burn_id}
-              deleteFitnessOfDB={
-                this.props.deleteFitnessOfDB
-              }
-              show={this.show}
-              key={i}
-            />
-          ),
+        {this.props.fitnessResult ===
+        undefined ? (
+          ''
+        ) : (
+          <div>
+            {this.props.fitnessResult.map(
+              (fitness, i) => (
+                <FitnessList
+                  name={fitness.exercise_name}
+                  time={fitness.burn_minute}
+                  kcal={fitness.burn_kcal}
+                  unitKcal={
+                    fitness.exercise_burn_kcal
+                  }
+                  id={fitness.burn_id}
+                  deleteFitnessOfDB={
+                    this.props.deleteFitnessOfDB
+                  }
+                  show={this.show}
+                  key={i}
+                />
+              ),
+            )}
+          </div>
         )}
         {/* 모달 시작 */}
         <Modal
