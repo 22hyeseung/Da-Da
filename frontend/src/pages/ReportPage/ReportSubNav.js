@@ -29,7 +29,6 @@ class ReportSubNav extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { date, day } = nextProps
     if (
       this.props.lastDateState !==
       nextProps.lastDateState

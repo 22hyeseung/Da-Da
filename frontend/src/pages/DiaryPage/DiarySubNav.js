@@ -5,7 +5,6 @@ import {
   Segment,
   Icon,
   Input,
-  Button,
 } from 'semantic-ui-react'
 import {
   calorieGoal,
@@ -14,7 +13,6 @@ import {
 } from './StyledDiaryCommon'
 import './Diary.css'
 // 리덕스 액션생성자
-import { getUserInfo } from '../../actions/auth.js'
 import {
   getGoalKcal,
   postGoalKcal,
@@ -30,10 +28,7 @@ import { getCommentFromDB } from '../../actions/review'
 import { getArticleFromDB } from '../../actions/review'
 
 // helper: 오늘 날짜
-import {
-  dateDotToDateType,
-  dateStringForApiQuery,
-} from '../../helper/date'
+import { dateStringForApiQuery } from '../../helper/date'
 
 class DiarySubNav extends Component {
   constructor(props) {
@@ -47,14 +42,12 @@ class DiarySubNav extends Component {
   }
 
   componentWillMount() {
-    const { date, day } = this.state
     this.props.getGoalKcal(
-      dateStringForApiQuery(date),
+      dateStringForApiQuery(this.state.date),
     )
   }
 
   componentWillReceiveProps(nextProps) {
-    const { date, day } = nextProps
     if (
       this.props.dateState !== nextProps.dateState
     ) {
