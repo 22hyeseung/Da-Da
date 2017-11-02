@@ -24,7 +24,7 @@ class HomeFirstUserInfo extends Component {
       disabled: true,
       gender: '여자',
       gender_enum: null,
-      birth: '00000000',
+      birth: '20001010', // 예외 처리부분. (null로하면 나이계산에서 오류)
       goal_weight: null,
       recommend_kcal: null,
       height: null,
@@ -133,7 +133,8 @@ class HomeFirstUserInfo extends Component {
         disabled: true,
       })
     }
-    this.props.postUserInfoToDB({
+
+    const userData = {
       birth,
       gender: gender_enum,
       goal_weight,
@@ -141,10 +142,22 @@ class HomeFirstUserInfo extends Component {
       kg,
       date,
       kcal: recommend_kcal,
-    })
-    // 좋은 방법이 아니다.
-    setTimeout(this.close, 1000)
-    setTimeout(window.location.reload(), 2000)
+    }
+
+    this.props
+      .postUserInfoToDB(userData)
+      .then(
+        text => {
+          console.log(text)
+          this.close()
+        },
+        error => {
+          console.warn(error)
+        },
+      )
+      .then(window.location.reload())
+    // setTimeout(this.close, 1000)
+    // setTimeout(window.location.reload(), 2000)
   }
 
   render() {
