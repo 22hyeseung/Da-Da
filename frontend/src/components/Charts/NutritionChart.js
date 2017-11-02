@@ -22,7 +22,7 @@ import {
 } from '../../helper/date'
 
 // 리덕스 액션
-import { getNutritionFactsForAWeekFromDB } from '../../actions/reportAPIs'
+import { getNutritionFactsForAWeekFromDB } from '../../actions/report'
 
 class CaloriesChart extends Component {
   constructor(props) {

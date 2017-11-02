@@ -1,5 +1,4 @@
 import noImg from '../../../static/img/No_image_available.svg'
-import iconSrc from '../../../static/img/diary-camera-icon.svg'
 import noSearchImgSrc from '../../../static/img/noSearchImg.svg'
 
 //===========================> index.js
@@ -29,9 +28,7 @@ export const iconStyle = {
   cursor: 'pointer',
 }
 
-export const cameraIcon = iconSrc
-
-// ===================================> ResultList.js
+// ===================================> ResultCardList.js
 
 export const wrapper = {
   width: '1180px',
@@ -45,7 +42,7 @@ export const message = {
   height: '20px',
   fontSize: '14px',
   fontWeight: '300',
-  textAlign: 'left',
+  textAlign: 'center',
   color: '#54698d',
 }
 
@@ -131,7 +128,7 @@ export const CardSize = {
 // ===================================> NoSearch.js
 
 export const noSearchContainer = {
-/*  width: '1180px',
+  /*  width: '1180px',
   height: '607px',
   position: 'absolute',
   top: '113px',

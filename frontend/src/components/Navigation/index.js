@@ -4,12 +4,13 @@ import { Menu } from 'semantic-ui-react'
 import { container } from './StyledNavigation'
 import { getUserInfo } from '../../actions/auth'
 import Logo from './Logo'
-import RightMenu from './RightMenu'
+import RightMenu from './RightMenu/index'
+
 // 리덕스 액션생성자
 import {
   setTodayDateAndDay,
   setBeforeDateAndDay,
-} from '../../actions/setDate'
+} from '../../actions/appDate'
 
 class Navigation extends Component {
   constructor(props) {
@@ -29,19 +30,6 @@ class Navigation extends Component {
       this.fetchData(),
     )
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   const { date, day } = nextProps
-  //   if (
-  //     this.props.dateState !== nextProps.dateState
-  //   ) {
-  //     this.setState({
-  //       date: nextProps.dateState,
-  //       day: nextProps.dayState,
-  //     })
-
-  //   }
-  // }
 
   fetchData = () => {
     setTimeout(() => {
@@ -68,11 +56,6 @@ class Navigation extends Component {
 Navigation.defaultProps = {
   color: '#16325c',
 }
-
-const mapStateToProps = state => ({
-  dateState: state.today.date,
-  dayState: state.today.day,
-})
 
 const mapDispatchToProps = dispatch => ({
   saveUserInfo: () => dispatch(getUserInfo()),

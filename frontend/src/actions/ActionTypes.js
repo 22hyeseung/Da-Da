@@ -73,13 +73,19 @@ export const DELETE_FOOD_OF_DATABASE_FAILED =
 
 //==========================================
 // action: diaryFood & reducer: dairySummary
+export const ADD_CHART_SUMMARY =
+  'ADD_CHART_SUMMARY'
 export const UPDATE_CHART_SUMMARY =
   'UPDATE_CHART_SUMMARY'
 export const DELETE_CHART_SUMMARY =
   'DELETE_CHART_SUMMARY'
+<<<<<<< HEAD
 export const UPDATE_LIST_SUMMARY =
   'UPDATE_LIST_SUMMARY'
 
+=======
+// export const ADD_LIST_SUMMARY = 'ADD_LIST_SUMMARY'
+>>>>>>> e900149279c3815a64e918bfadbfca0aabc4e8c1
 //==========================================
 // action: diaryFitness & reducer: dairySummary
 export const UPDATE_SUMMARY_OF_BURN_CALORIE =
@@ -204,7 +210,7 @@ export const DELETE_ARTICLE_FAILED =
 //==========================================
 
 //==========================================
-// setDate.js
+// appDate.js
 export const SET_TODAY_DATE_AND_DAY =
   'SET_TODAY_DATE_AND_DAY'
 export const SET_BEFORE_DATE_AND_DAY =
@@ -244,7 +250,7 @@ export const GET_REPORTS_NUTRITION_SUMMARY_FAILED =
 //==========================================
 
 //==========================================
-// getFoodSummary.js
+// diarySummary.js
 export const GET_FOOD_SUMMARY_REQUEST =
   'GET_FOOD_SUMMARY_REQUEST'
 export const GET_FOOD_SUMMARY_SUCCESS =

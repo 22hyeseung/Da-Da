@@ -22,10 +22,14 @@ export const getFoodLogsFromDB = date => {
         })
       })
       .catch(error => {
+<<<<<<< HEAD
         console.log('fetchFoodLogsToDB error')
         dispatch({
           type: types.GET_FOOD_LOGS_FAILED,
         })
+=======
+        console.warn('fetchFoodLogsToDB error')
+>>>>>>> e900149279c3815a64e918bfadbfca0aabc4e8c1
       })
   }
 }
@@ -77,8 +81,7 @@ export const postFoodToDB = (
                 })
                 // 차트도 같이 업데이트하기 위한 액션
                 dispatch({
-                  type:
-                    types.UPDATE_CHART_SUMMARY,
+                  type: types.ADD_CHART_SUMMARY,
                   payload: data,
                 })
               }
@@ -93,31 +96,35 @@ export const postFoodToDB = (
                       .localStorage.token}`,
                   },
                 },
+              ).catch(err =>
+                console.warn(
+                  'post and then get food data request is failed',
+                ),
               )
-                .then(res => res.json())
-                .then(data => {
-                  dispatch({
-                    type:
-                      types.UPDATE_LIST_SUMMARY,
-                    payload: data,
-                  })
-                })
-                .catch(err => console.error(err))
             })
             .catch(error => {
+<<<<<<< HEAD
               dispatch({
                 type:
                   types.GET_FOOD_DATA_NEXT_POST_FAILED,
               })
+=======
+              console.warn(
+                'fetchFoodLogsToDB error',
+              )
+>>>>>>> e900149279c3815a64e918bfadbfca0aabc4e8c1
             })
         }
       })
       .catch(error => {
         console.warn('postFoodToDB error')
+<<<<<<< HEAD
         dispatch({
           type:
             types.POST_FOOD_TO_DATABASE_FAILED,
         })
+=======
+>>>>>>> e900149279c3815a64e918bfadbfca0aabc4e8c1
       })
   }
 }
@@ -142,7 +149,7 @@ export const updateFoodOfDB = (
         },
         body: JSON.stringify(requestBody),
       })
-        .then(result => result.json())
+        .then(res => res.json())
         .then(result => {
           if (result) {
             dispatch({
@@ -164,26 +171,36 @@ export const updateFoodOfDB = (
                       types.GET_FOOD_DATA_NEXT_UPDATE_SUCCESS,
                     payload: data,
                   })
-                  resolve(
-                    'data updated successfully.',
-                  )
+                  resolve(data)
                 } else {
-                  reject('Failed to update data.')
+                  reject(
+                    'Failed to update food data.',
+                  )
                 }
               })
               .catch(error => {
+<<<<<<< HEAD
                 dispatch({
                   type:
                     types.GET_FOOD_DATA_NEXT_UPDATE_FAILED,
                 })
+=======
+                console.warn(
+                  'fetchUpdateFoodFromDB error',
+                )
+>>>>>>> e900149279c3815a64e918bfadbfca0aabc4e8c1
               })
           }
         })
         .catch(error => {
+<<<<<<< HEAD
           dispatch({
             type:
               types.UPDATE_FOOD_OF_DATABASE_FAILED,
           })
+=======
+          console.warn('updateFoodOfDB error')
+>>>>>>> e900149279c3815a64e918bfadbfca0aabc4e8c1
         })
     })
   }
@@ -222,10 +239,14 @@ export const deleteFoodOfDB = (
         })
       })
       .catch(error => {
+<<<<<<< HEAD
         dispatch({
           type:
             types.DELETE_FOOD_OF_DATABASE_FAILED,
         })
+=======
+        console.warn('deleteFoodOfDB error')
+>>>>>>> e900149279c3815a64e918bfadbfca0aabc4e8c1
       })
   }
 }
@@ -250,7 +271,13 @@ export const postFoodImgToDB = requestBody => {
       body: formData,
     })
       .then(result => result.json())
+<<<<<<< HEAD
       .then(visionData => {
+=======
+      // .then(res => console.warn(res))
+      .then(visionData => {
+        console.warn(visionData)
+>>>>>>> e900149279c3815a64e918bfadbfca0aabc4e8c1
         dispatch({
           type:
             types.POST_FOOD_IMG_TO_DATABASE_SUCCESS,
@@ -258,10 +285,14 @@ export const postFoodImgToDB = requestBody => {
         })
       })
       .catch(error => {
+<<<<<<< HEAD
         dispatch({
           type:
             types.POST_FOOD_IMG_TO_DATABASE_FAILED,
         })
+=======
+        console.warn('postFoodImgToDB error')
+>>>>>>> e900149279c3815a64e918bfadbfca0aabc4e8c1
       })
   }
 }

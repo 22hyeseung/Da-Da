@@ -5,8 +5,9 @@ import {
   Input,
   Button,
 } from 'semantic-ui-react'
-import { submitBtn } from '../StyledDiaryCommon'
+import { submitBtn } from '../StyledDiary'
 import { updateFoodOfDB } from '../../../actions/diaryFood'
+import { updateFoodSummary } from '../../../actions/diarySummary'
 
 class FoodEditModal extends React.Component {
   constructor(props) {
@@ -24,17 +25,21 @@ class FoodEditModal extends React.Component {
         disabled: true,
       })
     }
-    const updateData = {
+    const requestBody = {
       amount: updateAmountVal,
       serve: serve,
     }
-    updateFoodOfDB(updateData, id).then(
-      text => {
-        console.log(text)
+    updateFoodOfDB(requestBody, id).then(
+      data => {
+        console.log(data)
         this.props.close()
+        this.props.updateFoodSummary(
+          data,
+          this.props.amount,
+        )
       },
       error => {
-        console.log(error)
+        console.warn(error)
       },
     )
   }
@@ -151,8 +156,18 @@ class FoodEditModal extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateFoodOfDB: (payload, id) =>
-      dispatch(updateFoodOfDB(payload, id)),
+    updateFoodOfDB: (requestBody, id) =>
+      dispatch(updateFoodOfDB(requestBody, id)),
+    updateFoodSummary: (
+      modifiedData,
+      prevAmount,
+    ) =>
+      dispatch(
+        updateFoodSummary(
+          modifiedData,
+          prevAmount,
+        ),
+      ),
   }
 }
 

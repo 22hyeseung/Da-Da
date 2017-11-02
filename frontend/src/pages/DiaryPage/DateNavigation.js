@@ -5,16 +5,14 @@ import {
   Segment,
   Icon,
   Input,
-  Button,
 } from 'semantic-ui-react'
 import {
   calorieGoal,
   iconSet,
   kcalInput,
-} from './StyledDiaryCommon'
+} from './StyledDiary'
 import './Diary.css'
 // 리덕스 액션생성자
-import { getUserInfo } from '../../actions/auth.js'
 import {
   getGoalKcal,
   postGoalKcal,
@@ -22,20 +20,17 @@ import {
 import {
   moveToPrevDate,
   moveToNextDate,
-} from '../../actions/setDate'
+} from '../../actions/appDate'
 import { getFoodLogsFromDB } from '../../actions/diaryFood'
-import { getFoodSummaryFromDB } from '../../actions/getFoodSummary'
+import { getFoodSummaryFromDB } from '../../actions/diarySummary'
 import { getFitnessLogsFromDB } from '../../actions/diaryFitness'
 import { getCommentFromDB } from '../../actions/review'
 import { getArticleFromDB } from '../../actions/review'
 
 // helper: 오늘 날짜
-import {
-  dateDotToDateType,
-  dateStringForApiQuery,
-} from '../../helper/date'
+import { dateStringForApiQuery } from '../../helper/date'
 
-class DiarySubNav extends Component {
+class DateNavigation extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -47,14 +42,12 @@ class DiarySubNav extends Component {
   }
 
   componentWillMount() {
-    const { date, day } = this.state
     this.props.getGoalKcal(
-      dateStringForApiQuery(date),
+      dateStringForApiQuery(this.state.date),
     )
   }
 
   componentWillReceiveProps(nextProps) {
-    const { date, day } = nextProps
     if (
       this.props.dateState !== nextProps.dateState
     ) {
@@ -107,6 +100,14 @@ class DiarySubNav extends Component {
     }
   }
 
+  getAgainAfterChangeDate = date => {
+    this.props.getFoodLogsFromDB(date)
+    this.props.getFoodSummaryFromDB(date)
+    this.props.getFitnessLogsFromDB(date)
+    this.props.getCommentFromDB(date)
+    this.props.getArticleFromDB(date)
+  }
+
   handleDateToPrevious = () => {
     this.props
       .moveToPrevDate(this.state.date)
@@ -114,11 +115,7 @@ class DiarySubNav extends Component {
         const queryDate = dateStringForApiQuery(
           param.prev.toLocaleDateString(),
         )
-        this.props.getFoodLogsFromDB(queryDate)
-        this.props.getFoodSummaryFromDB(queryDate)
-        this.props.getFitnessLogsFromDB(queryDate)
-        this.props.getCommentFromDB(queryDate)
-        this.props.getArticleFromDB(queryDate)
+        this.getAgainAfterChangeDate(queryDate)
       })
   }
 
@@ -129,11 +126,7 @@ class DiarySubNav extends Component {
         const queryDate = dateStringForApiQuery(
           param.next.toLocaleDateString(),
         )
-        this.props.getFoodLogsFromDB(queryDate)
-        this.props.getFoodSummaryFromDB(queryDate)
-        this.props.getFitnessLogsFromDB(queryDate)
-        this.props.getCommentFromDB(queryDate)
-        this.props.getArticleFromDB(queryDate)
+        this.getAgainAfterChangeDate(queryDate)
       })
   }
 
@@ -234,4 +227,4 @@ const mapDispatchtoProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchtoProps,
-)(DiarySubNav)
+)(DateNavigation)

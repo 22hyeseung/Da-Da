@@ -3,9 +3,6 @@ import { Header } from 'semantic-ui-react'
 import { subheader } from './StyledDiarySummary'
 
 class SectionHeader extends Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     const {
       subtitle,

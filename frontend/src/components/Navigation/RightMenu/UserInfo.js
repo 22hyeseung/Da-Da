@@ -11,7 +11,7 @@ import {
   userInfoWrap,
   avatar,
   userName,
-} from './StyledNavigation'
+} from '../StyledNavigation'
 // 컴포넌트
 import UserInfoPopup from './UserInfoPopup'
 

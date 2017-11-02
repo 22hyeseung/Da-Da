@@ -4,14 +4,14 @@ import {
   checkboxStyle,
   description,
   btnDiarySubmit,
-} from './StyledRecipe'
-import { postFoodToDB } from '../../actions/diaryFood'
+} from '../StyledRecipe'
 import {
   Button,
   Modal,
   Dropdown,
 } from 'semantic-ui-react'
-import { dateStringForApiQuery } from '../../helper/date'
+import { postFoodToDB } from '../../../actions/diaryFood'
+import { dateStringForApiQuery } from '../../../helper/date'
 
 const options = [
   { key: 1, text: '아침', value: '아침' },
