@@ -11,6 +11,8 @@ import {
 import {
   getKcalSummaryFromDB,
   getNutritionSummaryFromDB,
+  getCaloriesForAWeekFromDB,
+  getNutritionFactsForAWeekFromDB,
 } from '../../actions/report'
 
 import { dateStringForApiQuery } from '../../helper/date'
