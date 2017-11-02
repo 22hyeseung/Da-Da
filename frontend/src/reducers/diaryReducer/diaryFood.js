@@ -10,9 +10,7 @@ export const diaryFoodReducer = (
   state = DEFAULT_DIARY_FOOD,
   action,
 ) => {
-  if (
-    action.type === 'FETCHED_FOOD_LOGS_SUCCESS'
-  ) {
+  if (action.type === 'GET_FOOD_LOGS_SUCCESS') {
     return {
       ...state,
       foodresult: [

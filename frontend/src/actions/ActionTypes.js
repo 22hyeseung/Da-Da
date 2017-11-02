@@ -1,21 +1,60 @@
 //==========================================
 // diaryFood.js
-export const FETCHED_FOOD_LOGS_SUCCESS =
-  'FETCHED_FOOD_LOGS_SUCCESS'
-export const POST_FOOD_TO_DATABASE =
-  'POST_FOOD_TO_DATABASE'
-export const POST_FOOD_IMG_TO_DATABASE =
-  'POST_FOOD_IMG_TO_DATABASE'
+// get Food Logs
+export const GET_FOOD_LOGS_REQUEST =
+  'GET_FOOD_LOGS_REQUEST'
+export const GET_FOOD_LOGS_SUCCESS =
+  'GET_FOOD_LOGS_SUCCESS'
+export const GET_FOOD_LOGS_FAILED =
+  'GET_FOOD_LOGS_FAILED'
+
+// post Food Logs
+export const POST_FOOD_TO_DATABASE_REQUEST =
+  'POST_FOOD_TO_DATABASE_REQUEST'
+export const POST_FOOD_TO_DATABASE_SUCCESS =
+  'POST_FOOD_TO_DATABASE_SUCCESS'
+export const POST_FOOD_TO_DATABASE_FAILED =
+  'POST_FOOD_TO_DATABASE_FAILED'
+
+// post Food Image
+export const POST_FOOD_IMG_TO_DATABASE_REQUEST =
+  'POST_FOOD_IMG_TO_DATABASE_REQUEST'
+export const POST_FOOD_IMG_TO_DATABASE_SUCCESS =
+  'POST_FOOD_IMG_TO_DATABASE_SUCCESS'
+export const POST_FOOD_IMG_TO_DATABASE_FAILED =
+  'POST_FOOD_IMG_TO_DATABASE_FAILED'
+
+// clear the image searched
 export const CLEAR_IMG_SEARCH_DATA =
   'CLEAR_IMG_SEARCH_DATA'
+
+// clear the image selected
 export const CLEAR_SELECT_FOOD =
   'CLEAR_SELECT_FOOD'
+
+// clear the image URL selected
 export const CLEAR_IMG_URL = 'CLEAR_IMG_URL'
+
+// save the image selected
 export const SAVE_SELECT_FOOD = 'SAVE_SELECT_FOOD'
-export const UPDATE_FOOD_OF_DATABASE =
-  'UPDATE_FOOD_OF_DATABASE'
-export const DELETE_FOOD_OF_DATABASE =
-  'DELETE_FOOD_OF_DATABASE'
+
+// save the image selected
+export const UPDATE_FOOD_OF_DATABASE_REQUEST =
+  'UPDATE_FOOD_OF_DATABASE_REQUEST'
+export const UPDATE_FOOD_OF_DATABASE_SUCCESS =
+  'UPDATE_FOOD_OF_DATABASE_SUCCESS'
+export const UPDATE_FOOD_OF_DATABASE_FAILED =
+  'UPDATE_FOOD_OF_DATABASE_FAILED'
+
+// save the image selected
+export const DELETE_FOOD_OF_DATABASE_REQUEST =
+  'DELETE_FOOD_OF_DATABASE_REQUEST'
+export const DELETE_FOOD_OF_DATABASE_SUCCESS =
+  'DELETE_FOOD_OF_DATABASE_SUCCESS'
+export const DELETE_FOOD_OF_DATABASE_FAILED =
+  'DELETE_FOOD_OF_DATABASE_FAILED'
+//==========================================
+
 //==========================================
 // action: diaryFood & reducer: dairySummary
 export const UPDATE_CHART_SUMMARY =
@@ -24,12 +63,14 @@ export const DELETE_CHART_SUMMARY =
   'DELETE_CHART_SUMMARY'
 export const UPDATE_LIST_SUMMARY =
   'UPDATE_LIST_SUMMARY'
+
 //==========================================
 // action: diaryFitness & reducer: dairySummary
 export const UPDATE_SUMMARY_OF_BURN_CALORIE =
   'UPDATE_SUMMARY_OF_BURN_CALORIE'
 export const DELETE_SUMMARY_OF_BURN_CALORIE =
   'DELETE_SUMMARY_OF_BURN_CALORIE,'
+
 //==========================================
 // diaryFitness.js
 export const FETCHED_FITNESS_LOGS_SUCCESS =
@@ -71,10 +112,26 @@ export const UPDATE_WEIGHT_CHART =
 
 //==========================================
 // auth.js
+// Token save
 export const SAVE_TOKEN = 'SAVE_TOKEN'
-export const SAVE_USERINFO = 'SAVE_USERINFO'
+
+// Save UserInfo
+export const SAVE_USERINFO_REQUEST =
+  'SAVE_USERINFO_REQUEST'
+export const SAVE_USERINFO_SUCCESS =
+  'SAVE_USERINFO_SUCCESS'
+export const SAVE_USERINFO_FAILED =
+  'SAVE_USERINFO_FAILED'
+
+// Post UserInfo
+export const POST_USERINFO_REQUEST =
+  'POST_USERINFO_REQUEST'
 export const POST_USERINFO_SUCCESS =
   'POST_USERINFO_SUCCESS'
+export const POST_USERINFO_FAILED =
+  'POST_USERINFO_FAILED'
+
+// Logout
 export const LOGOUT = 'LOGOUT'
 //==========================================
 

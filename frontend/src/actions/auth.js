@@ -11,6 +11,9 @@ export const saveToken = token => {
 // 로그인 이후 토큰 값으로 사용자정보를 갖고오는 action
 export const getUserInfo = () => {
   return dispatch => {
+    dispatch({
+      type: types.SAVE_USERINFO_REQUEST,
+    })
     fetch(`${API_HOST}/user`, {
       method: 'GET',
       headers: {
@@ -21,8 +24,13 @@ export const getUserInfo = () => {
       .then(res => res.json())
       .then(userInfo => {
         dispatch({
-          type: types.SAVE_USERINFO,
+          type: types.SAVE_USERINFO_SUCCESS,
           payload: userInfo,
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: types.SAVE_USERINFO_FAILED,
         })
       })
   }
@@ -37,6 +45,9 @@ export const logOut = () => {
 
 export const postUserInfo = payload => {
   return dispatch => {
+    dispatch({
+      type: types.POST_USERINFO_REQUEST,
+    })
     return new Promise((resolve, reject) => {
       fetch(`${API_HOST}/user/first`, {
         method: 'POST',
@@ -46,13 +57,22 @@ export const postUserInfo = payload => {
           'Content-type': 'application/json',
         },
         body: JSON.stringify(payload),
-      }).then(data => {
-        if (data) {
-          resolve('data posted successfully.')
-        } else {
-          reject('Failed to post data.')
-        }
       })
+        .then(data => {
+          dispatch({
+            type: types.POST_USERINFO_SUCCESS,
+          })
+          if (data) {
+            resolve('data posted successfully.')
+          } else {
+            reject('Failed to post data.')
+          }
+        })
+        .catch(error => {
+          dispatch({
+            type: types.POST_USERINFO_FAILED,
+          })
+        })
     })
   }
 }
