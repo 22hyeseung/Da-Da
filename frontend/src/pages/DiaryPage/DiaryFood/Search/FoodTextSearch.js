@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import _ from 'lodash'
 import {
   Button,
   Segment,
@@ -147,11 +146,6 @@ class FoodSearch extends Component {
     } = this.state
     const { foodAlbumResult, type } = this.props
 
-    const sortResults = _.sortBy(
-      results,
-      'food_name_ko',
-    )
-
     return (
       <div>
         {isSearchMode ? (
@@ -244,7 +238,7 @@ class FoodSearch extends Component {
                             margin: '0px',
                           }}
                         >
-                          {sortResults.map(
+                          {results.map(
                             (result, i) => {
                               const calculateKcal =
                                 result.food_carb *
@@ -352,19 +346,8 @@ class FoodSearch extends Component {
                       ) : (
                         <div
                           style={{
-                            overflow: 'hidden',
+                            ...Style.searchImage,
                             backgroundImage: `url(${foodAlbumResult})`,
-                            backgroundSize:
-                              'contain',
-                            backgroundRepeat:
-                              'no-repeat',
-                            width: '30%',
-                            display: 'flex',
-                            backgroundPositionY:
-                              '50%',
-
-                            backgroundPositionX:
-                              '100%',
                           }}
                         />
                       )}
