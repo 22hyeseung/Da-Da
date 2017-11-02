@@ -98,26 +98,31 @@ class FoodSelectDetails extends Component {
 
   // payload 생성
   createPayloadAndPostToDB = () => {
-    if (
-      !this.state.inputAmount ||
-      this.state.inputAmount < 1
-    ) {
+    const {
+      inputAmount,
+      date,
+      meal_tag,
+    } = this.state
+
+    const {
+      foodAlbumResult,
+      foodResult,
+    } = this.props
+
+    if (!inputAmount || inputAmount < 1) {
       return this.setState({
         disabled: true,
       })
     }
     const requestBody = {
-      amount: this.state.inputAmount * 1,
-      date: this.state.date,
-      food_id: this.props.foodResult.food_id,
-      meal_tag: `${this.state.meal_tag}`,
-      picture: this.props.foodAlbumResult,
+      amount: inputAmount * 1,
+      date: date,
+      food_id: foodResult.food_id,
+      meal_tag: `${meal_tag}`,
+      picture: foodAlbumResult,
     }
 
-    this.props.postFoodToDB(
-      requestBody,
-      this.state.date,
-    )
+    this.props.postFoodToDB(requestBody, date)
 
     this.setState({ loading: true }, () =>
       this.postDelay(),

@@ -4,6 +4,9 @@ import API_HOST from '../config'
 // 1. db 값 받는 action
 export const getFoodLogsFromDB = date => {
   return dispatch => {
+    dispatch({
+      type: types.GET_FOOD_LOGS_REQUEST,
+    })
     fetch(`${API_HOST}/eat-logs?date=${date}`, {
       method: 'GET',
       headers: {
@@ -14,12 +17,15 @@ export const getFoodLogsFromDB = date => {
       .then(res => res.json())
       .then(data => {
         dispatch({
-          type: types.FETCHED_FOOD_LOGS_SUCCESS,
+          type: types.GET_FOOD_LOGS_SUCCESS,
           payload: data,
         })
       })
       .catch(error => {
         console.log('fetchFoodLogsToDB error')
+        dispatch({
+          type: types.GET_FOOD_LOGS_FAILED,
+        })
       })
   }
 }
@@ -30,6 +36,9 @@ export const postFoodToDB = (
   requestDate, //20171027
 ) => {
   return dispatch => {
+    dispatch({
+      type: types.POST_FOOD_TO_DATABASE_REQUEST,
+    })
     fetch(`${API_HOST}/eat-logs`, {
       method: 'POST',
       headers: {
@@ -38,11 +47,15 @@ export const postFoodToDB = (
         'Content-type': 'application/json',
       },
       body: JSON.stringify(requestBody),
-    }) // 원래는 응답값을 바로 추가했지만, 현재 칼로리 계산등을 백엔드에서 처리하므로 다시 fetch로 get하였다.
+    }) // 원래는 응답 값을 바로 추가 했지만, 현재 칼로리 계산을 백엔드에서 처리 하므로 다시 fetch로 get하였다.
       .then(res => res.json())
       .then(result => {
         if (result) {
-          return fetch(
+          dispatch({
+            type:
+              types.GET_FOOD_DATA_NEXT_POST_REQUEST,
+          })
+          fetch(
             `${API_HOST}/eat-logs/${result[0]
               .eat_log_id}`,
             {
@@ -55,10 +68,11 @@ export const postFoodToDB = (
           )
             .then(res => res.json())
             .then(data => {
+              console.log(data)
               if (data) {
                 dispatch({
                   type:
-                    types.POST_FOOD_TO_DATABASE,
+                    types.GET_FOOD_DATA_NEXT_POST_SUCCESS,
                   payload: data,
                 })
                 // 차트도 같이 업데이트하기 위한 액션
@@ -91,22 +105,34 @@ export const postFoodToDB = (
                 .catch(err => console.error(err))
             })
             .catch(error => {
-              console.log(
-                'fetchFoodLogsToDB error',
-              )
+              dispatch({
+                type:
+                  types.GET_FOOD_DATA_NEXT_POST_FAILED,
+              })
             })
         }
       })
       .catch(error => {
-        console.log('postFoodToDB error')
+        console.warn('postFoodToDB error')
+        dispatch({
+          type:
+            types.POST_FOOD_TO_DATABASE_FAILED,
+        })
       })
   }
 }
 
 // 3. updateDB
-export const updateFoodOfDB = (payload, id) => {
+export const updateFoodOfDB = (
+  requestBody,
+  id,
+) => {
   return dispatch => {
     return new Promise((resolve, reject) => {
+      dispatch({
+        type:
+          types.UPDATE_FOOD_OF_DATABASE_REQUEST,
+      })
       fetch(`${API_HOST}/eat-logs/${id}`, {
         method: 'PUT',
         headers: {
@@ -114,27 +140,28 @@ export const updateFoodOfDB = (payload, id) => {
             .localStorage.token}`,
           'Content-type': 'application/json',
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(requestBody),
       })
         .then(result => result.json())
         .then(result => {
           if (result) {
-            return fetch(
-              `${API_HOST}/eat-logs/${id}`,
-              {
-                method: 'GET',
-                headers: {
-                  Authorization: `Bearer ${window
-                    .localStorage.token}`,
-                },
+            dispatch({
+              type:
+                types.GET_FOOD_DATA_NEXT_UPDATE_REQUEST,
+            })
+            fetch(`${API_HOST}/eat-logs/${id}`, {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${window
+                  .localStorage.token}`,
               },
-            )
+            })
               .then(res => res.json())
               .then(data => {
                 if (data) {
                   dispatch({
                     type:
-                      types.UPDATE_FOOD_OF_DATABASE,
+                      types.GET_FOOD_DATA_NEXT_UPDATE_SUCCESS,
                     payload: data,
                   })
                   resolve(
@@ -145,22 +172,32 @@ export const updateFoodOfDB = (payload, id) => {
                 }
               })
               .catch(error => {
-                console.log(
-                  'fetchUpdateFoodFromDB error',
-                )
+                dispatch({
+                  type:
+                    types.GET_FOOD_DATA_NEXT_UPDATE_FAILED,
+                })
               })
           }
         })
         .catch(error => {
-          console.log('updateFoodOfDB error')
+          dispatch({
+            type:
+              types.UPDATE_FOOD_OF_DATABASE_FAILED,
+          })
         })
     })
   }
 }
 
 // 4. deleteFood
-export const deleteFoodOfDB = (id, card) => {
+export const deleteFoodOfDB = (
+  id,
+  requestBody,
+) => {
   return dispatch => {
+    dispatch({
+      type: types.DELETE_FOOD_OF_DATABASE_REQUEST,
+    })
     fetch(`${API_HOST}/eat-logs/${id}`, {
       method: 'DELETE',
       headers: {
@@ -171,7 +208,8 @@ export const deleteFoodOfDB = (id, card) => {
       .then(result => {
         if (result) {
           return dispatch({
-            type: types.DELETE_FOOD_OF_DATABASE,
+            type:
+              types.DELETE_FOOD_OF_DATABASE_SUCCESS,
             payload: id,
           })
         }
@@ -180,23 +218,29 @@ export const deleteFoodOfDB = (id, card) => {
       .then(result => {
         dispatch({
           type: types.DELETE_CHART_SUMMARY,
-          payload: card,
+          payload: requestBody,
         })
       })
       .catch(error => {
-        console.log('deleteFoodOfDB error')
+        dispatch({
+          type:
+            types.DELETE_FOOD_OF_DATABASE_FAILED,
+        })
       })
   }
 }
 
 // 5. vision post
-export const postFoodImgToDB = payload => {
+export const postFoodImgToDB = requestBody => {
   return dispatch => {
     // vision으로 보낼때, form-data형식으로 보내는 방법
     // FormData의 인자로는 key, value값을 추가한다.
     const formData = new FormData()
-    formData.append('upload_img', payload)
-
+    formData.append('upload_img', requestBody)
+    dispatch({
+      type:
+        types.POST_FOOD_IMG_TO_DATABASE_REQUEST,
+    })
     fetch(`${API_HOST}/vision`, {
       method: 'POST',
       headers: {
@@ -204,18 +248,20 @@ export const postFoodImgToDB = payload => {
           .localStorage.token}`,
       },
       body: formData,
-    }) // 원래는 응답값을 바로 추가했지만, 현재 칼로리 계산등을 백엔드에서 처리하므로 다시 fetch로 get하였다.
+    })
       .then(result => result.json())
-      // .then(res => console.log(res))
       .then(visionData => {
-        console.log(visionData)
         dispatch({
-          type: types.POST_FOOD_IMG_TO_DATABASE,
+          type:
+            types.POST_FOOD_IMG_TO_DATABASE_SUCCESS,
           payload: visionData,
         })
       })
       .catch(error => {
-        console.log('postFoodImgToDB error')
+        dispatch({
+          type:
+            types.POST_FOOD_IMG_TO_DATABASE_FAILED,
+        })
       })
   }
 }
@@ -226,6 +272,7 @@ export const clearSearchData = () => {
     payload: [],
   }
 }
+
 export const saveSelect = text => {
   return {
     type: types.SAVE_SELECT_FOOD,
