@@ -79,13 +79,7 @@ export const UPDATE_CHART_SUMMARY =
   'UPDATE_CHART_SUMMARY'
 export const DELETE_CHART_SUMMARY =
   'DELETE_CHART_SUMMARY'
-<<<<<<< HEAD
-export const UPDATE_LIST_SUMMARY =
-  'UPDATE_LIST_SUMMARY'
-
-=======
 // export const ADD_LIST_SUMMARY = 'ADD_LIST_SUMMARY'
->>>>>>> e900149279c3815a64e918bfadbfca0aabc4e8c1
 //==========================================
 // action: diaryFitness & reducer: dairySummary
 export const UPDATE_SUMMARY_OF_BURN_CALORIE =
