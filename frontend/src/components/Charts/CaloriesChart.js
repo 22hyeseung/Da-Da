@@ -24,7 +24,7 @@ class CaloriesChart extends Component {
     this.state = {}
   }
 
-  componentDidMount() {
+  componentWillMount() {
     // get
     this.props.getCaloriesForAWeekFromDB(
       dateStringForApiQuery(

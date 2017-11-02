@@ -31,19 +31,6 @@ class Navigation extends Component {
     )
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   const { date, day } = nextProps
-  //   if (
-  //     this.props.dateState !== nextProps.dateState
-  //   ) {
-  //     this.setState({
-  //       date: nextProps.dateState,
-  //       day: nextProps.dayState,
-  //     })
-
-  //   }
-  // }
-
   fetchData = () => {
     setTimeout(() => {
       this.setState({
@@ -69,11 +56,6 @@ class Navigation extends Component {
 Navigation.defaultProps = {
   color: '#16325c',
 }
-
-const mapStateToProps = state => ({
-  dateState: state.today.date,
-  dayState: state.today.day,
-})
 
 const mapDispatchToProps = dispatch => ({
   saveUserInfo: () => dispatch(getUserInfo()),

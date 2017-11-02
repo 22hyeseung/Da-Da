@@ -27,7 +27,6 @@ class WeekNavigation extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { date, day } = nextProps
     if (
       this.props.lastDateState !==
       nextProps.lastDateState
@@ -41,6 +40,32 @@ class WeekNavigation extends Component {
     }
   }
 
+  // 바뀐 날짜에 해당하는 데이터 전부 다시 get
+  getAgainAfterChangeDate = (
+    startDate,
+    endDate,
+  ) => {
+    // 차트 데이터 다시 get
+    this.props.getCaloriesForAWeekFromDB(
+      startDate,
+      endDate,
+    )
+    this.props.getNutritionFactsForAWeekFromDB(
+      startDate,
+      endDate,
+    )
+    // summary 데이터 다시 get
+    this.props.getKcalSummaryFromDB(
+      startDate,
+      endDate,
+    )
+    this.props.getNutritionSummaryFromDB(
+      startDate,
+      endDate,
+    )
+  }
+
+  // 전날로 이동할 때
   handleDateToPrevious = () => {
     this.props
       .moveToPrevDate(this.state.lastDate)
@@ -51,17 +76,15 @@ class WeekNavigation extends Component {
         const queryPrevBefore = dateStringForApiQuery(
           param.prevBefore.toLocaleDateString(),
         )
-        this.props.getKcalSummaryFromDB(
-          queryPrevBefore,
-          queryPrev,
-        )
-        this.props.getNutritionSummaryFromDB(
+        // 바뀐 날짜에 해당하는 데이터 전부 다시 get
+        this.getAgainAfterChangeDate(
           queryPrevBefore,
           queryPrev,
         )
       })
   }
 
+  // 다음 날로 이동할 때
   handleDateToNext = () => {
     this.props
       .moveToNextDate(this.state.lastDate)
@@ -72,12 +95,8 @@ class WeekNavigation extends Component {
         const queryNextBefore = dateStringForApiQuery(
           param.nextBefore.toLocaleDateString(),
         )
-        console.warn(queryNextBefore, queryNext)
-        this.props.getKcalSummaryFromDB(
-          queryNextBefore,
-          queryNext,
-        )
-        this.props.getNutritionSummaryFromDB(
+        // 바뀐 날짜에 해당하는 데이터 전부 다시 get
+        this.getAgainAfterChangeDate(
           queryNextBefore,
           queryNext,
         )
@@ -144,7 +163,28 @@ const mapDispatchToProps = dispatch => {
     ) =>
       dispatch(
         getNutritionSummaryFromDB(
-          (startDate, endDate),
+          startDate,
+          endDate,
+        ),
+      ), // 칼로리 차트 관련 데이터 불러오는 액션
+    getCaloriesForAWeekFromDB: (
+      startDate,
+      endDate,
+    ) =>
+      dispatch(
+        getCaloriesForAWeekFromDB(
+          startDate,
+          endDate,
+        ),
+      ),
+    getNutritionFactsForAWeekFromDB: (
+      startDate,
+      endDate,
+    ) =>
+      dispatch(
+        getNutritionFactsForAWeekFromDB(
+          startDate,
+          endDate,
         ),
       ),
   }
