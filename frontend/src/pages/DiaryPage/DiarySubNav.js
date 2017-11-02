@@ -107,6 +107,14 @@ class DiarySubNav extends Component {
     }
   }
 
+  getAgainAfterChangeDate = date => {
+    this.props.getFoodLogsFromDB(date)
+    this.props.getFoodSummaryFromDB(date)
+    this.props.getFitnessLogsFromDB(date)
+    this.props.getCommentFromDB(date)
+    this.props.getArticleFromDB(date)
+  }
+
   handleDateToPrevious = () => {
     this.props
       .moveToPrevDate(this.state.date)
@@ -114,11 +122,7 @@ class DiarySubNav extends Component {
         const queryDate = dateStringForApiQuery(
           param.prev.toLocaleDateString(),
         )
-        this.props.getFoodLogsFromDB(queryDate)
-        this.props.getFoodSummaryFromDB(queryDate)
-        this.props.getFitnessLogsFromDB(queryDate)
-        this.props.getCommentFromDB(queryDate)
-        this.props.getArticleFromDB(queryDate)
+        this.getAgainAfterChangeDate(queryDate)
       })
   }
 
@@ -129,11 +133,7 @@ class DiarySubNav extends Component {
         const queryDate = dateStringForApiQuery(
           param.next.toLocaleDateString(),
         )
-        this.props.getFoodLogsFromDB(queryDate)
-        this.props.getFoodSummaryFromDB(queryDate)
-        this.props.getFitnessLogsFromDB(queryDate)
-        this.props.getCommentFromDB(queryDate)
-        this.props.getArticleFromDB(queryDate)
+        this.getAgainAfterChangeDate(queryDate)
       })
   }
 
