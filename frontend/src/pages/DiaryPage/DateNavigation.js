@@ -24,7 +24,7 @@ import {
   moveToNextDate,
 } from '../../actions/appDate'
 import { getFoodLogsFromDB } from '../../actions/diaryFood'
-import { getFoodSummaryFromDB } from '../../actions/diaryFoodSummary'
+import { getFoodSummaryFromDB } from '../../actions/diarySummary'
 import { getFitnessLogsFromDB } from '../../actions/diaryFitness'
 import { getCommentFromDB } from '../../actions/review'
 import { getArticleFromDB } from '../../actions/review'

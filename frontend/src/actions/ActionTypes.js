@@ -171,7 +171,7 @@ export const GET_REPORTS_NUTRITION_SUMMARY_FAILED =
 //==========================================
 
 //==========================================
-// diaryFoodSummary.js
+// diarySummary.js
 export const GET_FOOD_SUMMARY_REQUEST =
   'GET_FOOD_SUMMARY_REQUEST'
 export const GET_FOOD_SUMMARY_SUCCESS =

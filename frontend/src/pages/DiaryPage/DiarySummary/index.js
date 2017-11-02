@@ -21,7 +21,7 @@ import { dateStringForApiQuery } from '../../../helper/date'
 // 리덕스 액션
 import {
   getFoodSummaryFromDB, // 하루 단위 food summary
-} from '../../../actions/diaryFoodSummary'
+} from '../../../actions/diarySummary'
 import { getGoalKcal } from '../../../actions/diaryKcal' // 하루 단위 목표 칼로리 get
 
 class DiarySummary extends Component {
