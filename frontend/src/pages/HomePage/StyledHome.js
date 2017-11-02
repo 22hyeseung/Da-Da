@@ -121,6 +121,8 @@ export const fakeSubmitBtn = {
 
 export const form = {
   display: 'flex',
+  flexDirection: 'column',
   width: '30%',
   justifyContent: 'space-between',
+  marginBottom: '21px',
 }
