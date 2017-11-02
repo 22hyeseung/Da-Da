@@ -15,7 +15,7 @@ class FoodEditModal extends React.Component {
       this,
     )
   }
-
+  // 보시죠 한번
   createPayloadAndUpdateToDB = () => {
     const { updateAmountVal, serve } = this.state
     const { updateFoodOfDB, id } = this.props

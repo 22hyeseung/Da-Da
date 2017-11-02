@@ -18,7 +18,7 @@ import {
 class LoginPage extends Component {
   state = {
     popupWindow: null,
-    // message: null
+    message: null,
   }
 
   componentWillUnmount() {
@@ -26,16 +26,15 @@ class LoginPage extends Component {
       'message',
       this.tokenHandler,
     )
-    this.props.getUserInfo()
   }
 
-  // tokenValidation = () => {
-  //   this.props.userInfo.userName !== null
-  //     ? this.props.history.push('/')
-  //     : this.setState({
-  //         message: '새로고침 후 다시 로그인 해주세요.',
-  //       })
-  // }
+  tokenValidation = () => {
+    this.props.userInfo.userName !== null
+      ? this.props.history.push('/')
+      : this.setState({
+          message: '새로고침 후 다시 로그인 해주세요.',
+        })
+  }
 
   // token 갖고오는 함수 작동. > 여기서 토큰 저장
   tokenHandler = e => {
@@ -47,9 +46,8 @@ class LoginPage extends Component {
       this.setState({
         popupWindow: null,
       })
-      this.props.history.push('/')
-      // this.props.getUserInfo()
-      // setTimeout(this.tokenValidation, 1000)
+      this.props.getUserInfo()
+      setTimeout(this.tokenValidation, 100)
     }
   }
 

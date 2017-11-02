@@ -190,16 +190,6 @@ export const searchDefault = {
   justifyContent: 'space-between',
 }
 
-export const searchImage = {
-  overflow: 'hidden',
-  backgroundSize: 'contain',
-  backgroundRepeat: 'no-repeat',
-  width: '30%',
-  display: 'flex',
-  backgroundPositionX: '100%',
-  backgroundPositionY: '50%',
-}
-
 export const errorIcon = {
   width: '6%',
   filter: 'grayscale(100%)',
