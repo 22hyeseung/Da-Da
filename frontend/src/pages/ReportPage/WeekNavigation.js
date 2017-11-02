@@ -6,18 +6,16 @@ import './Report.css'
 import {
   moveToPrevDate,
   moveToNextDate,
-} from '../../actions/setDate'
+} from '../../actions/appDate'
 
 import {
   getKcalSummaryFromDB,
   getNutritionSummaryFromDB,
-  getCaloriesForAWeekFromDB,
-  getNutritionFactsForAWeekFromDB,
-} from '../../actions/reportAPIs'
+} from '../../actions/report'
 
 import { dateStringForApiQuery } from '../../helper/date'
 
-class ReportSubNav extends Component {
+class WeekNavigation extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -195,4 +193,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ReportSubNav)
+)(WeekNavigation)

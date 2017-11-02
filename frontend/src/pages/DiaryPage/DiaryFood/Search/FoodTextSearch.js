@@ -12,7 +12,7 @@ import * as Style from '../StyledDiaryFood'
 import {
   segmentDefault,
   submitBtn,
-} from '../../StyledDiaryCommon'
+} from '../../StyledDiary'
 import {
   clearSelect,
   clearImgUrl,

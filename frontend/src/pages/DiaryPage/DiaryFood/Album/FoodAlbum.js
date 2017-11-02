@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react'
 import FoodAlbumList from './FoodAlbumList'
-import { header } from '../../StyledDiaryCommon'
+import { header } from '../../StyledDiary'
 
 const FoodAlbum = () => {
   return (

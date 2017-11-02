@@ -3,22 +3,22 @@ import './Report.css'
 
 // 컴포넌트
 import Navigation from '../../components/Navigation'
-import ReportSubNav from './ReportSubNav'
-import ReportContainer from './ReportContainer'
+import WeekNavigation from './WeekNavigation'
+import SectionContainer from './SectionContainer/index'
 import Footer from '../../components/Footer'
+import ComponentLoader from '../../components/Loader/ComponentLoader'
 
 class ReportPage extends Component {
   render() {
     return (
       <div className="report">
         <Navigation />
-        <ReportSubNav />
-        <ReportContainer title="칼로리" />
-        <ReportContainer title="영양분" />
+        <WeekNavigation />
+        <SectionContainer title="칼로리" />
+        <SectionContainer title="영양분" />
         <Footer />
       </div>
     )
   }
 }
-
 export default ReportPage

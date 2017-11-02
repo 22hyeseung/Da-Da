@@ -10,7 +10,7 @@ import {
   calorieGoal,
   iconSet,
   kcalInput,
-} from './StyledDiaryCommon'
+} from './StyledDiary'
 import './Diary.css'
 // 리덕스 액션생성자
 import {
@@ -20,9 +20,9 @@ import {
 import {
   moveToPrevDate,
   moveToNextDate,
-} from '../../actions/setDate'
+} from '../../actions/appDate'
 import { getFoodLogsFromDB } from '../../actions/diaryFood'
-import { getFoodSummaryFromDB } from '../../actions/getFoodSummary'
+import { getFoodSummaryFromDB } from '../../actions/diarySummary'
 import { getFitnessLogsFromDB } from '../../actions/diaryFitness'
 import { getCommentFromDB } from '../../actions/review'
 import { getArticleFromDB } from '../../actions/review'
@@ -30,7 +30,7 @@ import { getArticleFromDB } from '../../actions/review'
 // helper: 오늘 날짜
 import { dateStringForApiQuery } from '../../helper/date'
 
-class DiarySubNav extends Component {
+class DateNavigation extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -227,4 +227,4 @@ const mapDispatchtoProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchtoProps,
-)(DiarySubNav)
+)(DateNavigation)

@@ -9,10 +9,10 @@ import {
   Button,
 } from 'semantic-ui-react'
 import * as Style from './StyledFitness'
-import { submitBtn } from '../StyledDiaryCommon'
+import { submitBtn } from '../StyledDiary'
 
 // 컴포넌트
-import DiarySubHeader from '../DiarySubHeader'
+import SubHeader from '../SubHeader'
 import FitnessList from './FitnessList'
 import FitnessAdd from './FitnessAdd'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
@@ -156,7 +156,7 @@ class DiaryFitness extends Component {
     return (
       <Segment style={Style.container}>
         {this.finalKcal}
-        <DiarySubHeader
+        <SubHeader
           tabNameEN="FITNESS"
           tabNameKR="운동 다이어리"
           icon="fitnessIcon"

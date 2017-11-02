@@ -131,7 +131,7 @@ export const DELETE_ARTICLE_FAILED =
 //==========================================
 
 //==========================================
-// setDate.js
+// appDate.js
 export const SET_TODAY_DATE_AND_DAY =
   'SET_TODAY_DATE_AND_DAY'
 export const SET_BEFORE_DATE_AND_DAY =
@@ -171,7 +171,7 @@ export const GET_REPORTS_NUTRITION_SUMMARY_FAILED =
 //==========================================
 
 //==========================================
-// getFoodSummary.js
+// diarySummary.js
 export const GET_FOOD_SUMMARY_REQUEST =
   'GET_FOOD_SUMMARY_REQUEST'
 export const GET_FOOD_SUMMARY_SUCCESS =

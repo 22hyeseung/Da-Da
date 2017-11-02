@@ -14,7 +14,7 @@ import {
 import {
   cancelBtn,
   submitBtn,
-} from '../../StyledDiaryCommon'
+} from '../../StyledDiary'
 import {
   postFoodImgToDB,
   clearSearchData,
