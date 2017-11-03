@@ -1,3 +1,7 @@
+import arrowDown from '../../static/img/weight-daily-arrowDown.svg'
+import arrowUp from '../../static/img/weight-daily-arrowUp.svg'
+import trash from '../../static/img/trash_icon.svg'
+
 // 공통 style 시작
 export const header = {
   fontSize: '28px',
@@ -16,7 +20,7 @@ export const subHeader = {
 }
 // 공통 style 끝
 
-// daily weight 컴포넌트 시작
+// WeightDaily 컴포넌트 시작
 export const weightAddBtn = {
   backgroundImage:
     ' linear-gradient(261deg, #485563, #29323c)',
@@ -53,4 +57,11 @@ export const weightUnit = {
   fontSize: '16px',
   color: '#16325c',
 }
-// daily weight 컴포넌트 끝
+
+export const icon = {
+  arrowDown,
+  arrowUp,
+  trash,
+}
+
+// WeightDaily 컴포넌트 끝

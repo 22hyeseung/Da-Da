@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   Header,
   Button,
@@ -6,16 +7,13 @@ import {
   Input,
   Icon,
 } from 'semantic-ui-react'
-import ArrowDown from '../../static/img/weight-daily-arrowDown.svg'
-import ArrowUp from '../../static/img/weight-daily-arrowUp.svg'
 import * as Style from './StyledWeight'
-import { connect } from 'react-redux'
 import {
   postWeightToDB,
   fetchWeightFromDB,
   deleteWeightOfDB,
 } from '../../actions/weight'
-import trash from '../../static/img/trash_icon.svg'
+
 // helper: 오늘 날짜 API Query형식
 import {
   dateStringForApiQuery,
@@ -78,14 +76,12 @@ class WeightDaily extends Component {
       postWeightToDB,
       dateState,
     } = this.props
-
     // 입력 값 유효성 검사: 유효하지 않으면 input 비활성화
     if (!weight || weight < 1) {
       return this.setState({
         disabled: true,
       })
     }
-
     const requestBody = {
       kg: weight,
       date: dateStringForApiQuery(dateState),
@@ -94,10 +90,17 @@ class WeightDaily extends Component {
     this.togglePostingMode()
   }
 
+  handleKeyPress = e => {
+    if (e.keyCode === 13) {
+      this.createPayloadAndPostToDB()
+    }
+  }
+
   deleteWeight = id => {
     // console.log(id)
     this.props.deleteWeight(id)
   }
+
   render() {
     const {
       isPostMode,
@@ -135,6 +138,7 @@ class WeightDaily extends Component {
                   style={{
                     width: '100%',
                   }}
+                  onKeyDown={this.handleKeyPress}
                   placeholder="몸무게를 입력하세요"
                   onChange={e =>
                     this.handleWeightValueChange(
@@ -210,7 +214,9 @@ class WeightDaily extends Component {
                           </List.Content>
                           <List.Content floated="right">
                             <img
-                              src={trash}
+                              src={
+                                Style.icon.trash
+                              }
                               alt="삭제버튼"
                               style={{
                                 cursor: 'pointer',

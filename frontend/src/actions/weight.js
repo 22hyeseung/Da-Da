@@ -25,7 +25,7 @@ export const fetchWeightFromDB = () => {
 }
 
 // 2. input에서 받은 값을 db로 보내는 action(post)
-export const postWeightToDB = payload => {
+export const postWeightToDB = requestBody => {
   return dispatch => {
     fetch(`${API_HOST}/diary/kg`, {
       method: 'POST',
@@ -34,7 +34,7 @@ export const postWeightToDB = payload => {
           .localStorage.token}`,
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(requestBody),
     })
       .then(res => {
         if (res.ok) {
@@ -128,18 +128,22 @@ export const getAllWeightFromDB = () => {
     })
       .then(res => res.json())
       .then(data => {
+        // console.log(data.allDayLog)
         let chartData = []
         data.allDayLog.map(aDay => {
-          if (aDay.day_log_kg) {
-            return chartData.push({
-              current: aDay.day_log_kg,
-              date: aDay.day_log_diary_date
-                .substr(5, 5)
-                .replace('-', '/'),
-              goal: data.goal_weight,
-            })
+          if (!aDay.day_log_kg) {
+            return
           }
+
+          chartData.push({
+            current: aDay.day_log_kg,
+            date: aDay.day_log_diary_date
+              .substr(5, 5)
+              .replace('-', '/'),
+            goal: data.goal_weight,
+          })
         })
+        console.log(chartData, '<<')
         dispatch({
           type: types.GET_WEIGHT_ALL_SUCCESS,
           payload: {
@@ -148,7 +152,6 @@ export const getAllWeightFromDB = () => {
           },
         })
       })
-      .then()
       .catch(error => {
         type: types.GET_WEIGHT_ALL_FAILED
         console.error(error)
