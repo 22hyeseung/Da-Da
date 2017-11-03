@@ -58,8 +58,8 @@ export const weightAllReducer = (
         ...state,
         isLoading: false,
         allLog: action.payload.allLog,
-        startWeight: action.payload.allLog.shift()
-          .current,
+        startWeight:
+          action.payload.allLog[0].current,
         goalWeight: action.payload.goalWeight,
       }
     case 'GET_WEIGHT_ALL_FAILED':
