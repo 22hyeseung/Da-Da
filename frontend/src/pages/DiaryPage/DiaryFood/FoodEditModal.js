@@ -160,12 +160,12 @@ const mapDispatchToProps = dispatch => {
       dispatch(updateFoodOfDB(requestBody, id)),
     updateFoodSummary: (
       modifiedData,
-      prevAmount,
+      beforeAmount,
     ) =>
       dispatch(
         updateFoodSummary(
           modifiedData,
-          prevAmount,
+          beforeAmount,
         ),
       ),
   }

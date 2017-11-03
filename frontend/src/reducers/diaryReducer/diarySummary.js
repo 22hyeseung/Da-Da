@@ -94,43 +94,43 @@ export const diarySummaryReducer = (
     case 'UPDATE_CHART_SUMMARY':
       const {
         modifiedCarb,
-        modifiedProt,
+        modifiedProtein,
         modifiedFat,
         modifiedAmount,
-        prevAmount,
+        beforeAmount,
       } = action.payload
 
-      // 기존에 등록한 양에 대한 탄수화물 칼로리
-      const prevCarbKcal =
+      // 수정 전 양에 따른 탄수화물 칼로리
+      const beforeCarbKcal =
         modifiedCarb /
         modifiedAmount * // 식품 1g당 탄수화물 양
-        prevAmount * // 이전에 등록한 양
+        beforeAmount * // 이전에 등록한 양
         4 // 이전에 등록한 양의 탄수화물 칼로리
 
-      // 기존에 등록한 양에 대한 단백질 칼로리
-      const prevProtKcal =
-        modifiedProt /
+      // 수정 전 양에 따른 단백질 칼로리
+      const beforeProteinKcal =
+        modifiedProtein /
         modifiedAmount *
-        prevAmount *
+        beforeAmount *
         4
 
-      // 기존에 등록한 양에 대한 지방 칼로리
-      const prevFatKcal =
+      // 수정 전 양에 따른 지방 칼로리
+      const beforeFatKcal =
         modifiedFat /
         modifiedAmount *
-        prevAmount *
+        beforeAmount *
         9
 
       return {
-        // 현재 섭취 칼로리 - 기존에 등록한 양에 대한 칼로리 + 수정한 양에 대한 칼로리
+        // 현재 섭취 칼로리 - 수정 전 양에 따른 칼로리 + 수정한 양에 따른 칼로리
         ...state,
         eatKcal: Math.round(
           state.eatKcal -
-            (prevCarbKcal +
-              prevProtKcal +
-              prevFatKcal) +
+            (beforeCarbKcal +
+              beforeProteinKcal +
+              beforeFatKcal) +
             (modifiedCarb * 4 +
-              modifiedProt * 4 +
+              modifiedProtein * 4 +
               modifiedFat * 9),
         ),
         nutritionKcals: [
@@ -138,7 +138,7 @@ export const diarySummaryReducer = (
             name: '탄수화물',
             value: Math.round(
               state.nutritionKcals[0].value -
-              prevCarbKcal + // 기존 칼로리
+              beforeCarbKcal + // 기존 칼로리
                 modifiedCarb * 4, // 수정한 칼로리
             ),
           },
@@ -146,15 +146,15 @@ export const diarySummaryReducer = (
             name: '단백질',
             value: Math.round(
               state.nutritionKcals[1].value -
-              prevProtKcal + // 기존 칼로리
-                modifiedProt * 4, // 수정한 칼로리
+              beforeProteinKcal + // 기존 칼로리
+                modifiedProtein * 4, // 수정한 칼로리
             ),
           },
           {
             name: '지방',
             value: Math.round(
               state.nutritionKcals[2].value -
-              prevFatKcal + // 기존 칼로리
+              beforeFatKcal + // 기존 칼로리
                 modifiedFat * 9, // 수정한 칼로리
             ),
           },
@@ -194,10 +194,25 @@ export const diarySummaryReducer = (
           },
         ],
       }
-    case 'UPDATE_SUMMARY_OF_BURN_CALORIE':
+    case 'ADD_SUMMARY_OF_BURN_CALORIE':
       return {
         ...state,
         burnKcal: state.burnKcal + action.payload,
+      }
+    case 'UPDATE_SUMMARY_OF_BURN_CALORIE':
+      // 현재 소모 칼로리 - 수정 전 시간에 따른 소모 칼로리 + 수정한 시간에 따른 소모 칼로리
+      const {
+        modifiedBurnKcal,
+        kcalPer1Min,
+        beforeMinute,
+      } = action.payload
+      return {
+        ...state,
+        burnKcal: Math.round(
+          state.burnKcal - // 현재 소모 칼로리
+          kcalPer1Min * beforeMinute + // 1분당 소모 칼로리 * 수정 전 운동 시간
+            modifiedBurnKcal, // 수정한 시간에 따른 소모 칼로리
+        ),
       }
     case 'DELETE_SUMMARY_OF_BURN_CALORIE,':
       return {

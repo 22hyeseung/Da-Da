@@ -34,18 +34,38 @@ export const getFoodSummaryFromDB = date => {
 
 export const updateFoodSummary = (
   modifiedData,
-  prevAmount,
+  beforeAmount,
 ) => {
   return dispatch => {
     dispatch({
       type: types.UPDATE_CHART_SUMMARY,
       payload: {
         modifiedCarb: modifiedData.food_carb,
-        modifiedProt: modifiedData.food_protein,
+        modifiedProtein:
+          modifiedData.food_protein,
         modifiedFat: modifiedData.food_fat,
         modifiedAmount:
           modifiedData.eat_log_amount,
-        prevAmount,
+        beforeAmount,
+      },
+    })
+  }
+}
+
+export const updateFitnessSummary = (
+  modifiedData,
+  beforeMinute,
+) => {
+  console.log(modifiedData[0].burn_kcal)
+  return dispatch => {
+    dispatch({
+      type: types.UPDATE_SUMMARY_OF_BURN_CALORIE,
+      payload: {
+        modifiedBurnKcal:
+          modifiedData[0].burn_kcal, // 수정한 소모 칼로리
+        kcalPer1Min:
+          modifiedData[0].exercise_burn_kcal, // 1분당 소요 칼로리
+        beforeMinute, // 수정 전 소요 시간
       },
     })
   }
