@@ -47,18 +47,15 @@ export const postFitnessToDB = requestBody => {
     })
       .then(result => result.json())
       .then(data => {
-        // if (data) {
         dispatch({
           type:
             types.POST_FITNESS_TO_DATABASE_SUCCESS,
           payload: data,
         })
-        // dispatch({
-        //   type:
-        //     types.UPDATE_SUMMARY_OF_BURN_CALORIE,
-        //   payload: data[0].burn_kcal,
-        // })
-        // }
+        dispatch({
+          type: types.ADD_SUMMARY_OF_BURN_CALORIE,
+          payload: data[0].burn_kcal,
+        })
       })
       .catch(error => {
         dispatch({
@@ -88,7 +85,7 @@ export const updateFitnessOfDB = (
         },
         body: JSON.stringify(payload),
       })
-        .then(result => result.json())
+        .then(res => res.json())
         .then(data => {
           if (data) {
             dispatch({
@@ -96,8 +93,7 @@ export const updateFitnessOfDB = (
                 types.UPDATE_FITNESS_OF_DATABASE_SUCCESS,
               payload: data,
             })
-            resolve('data updated successfully.')
-            // console.log(data)
+            resolve(data)
           } else {
             reject('Failed to update data.')
           }

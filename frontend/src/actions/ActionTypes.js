@@ -82,6 +82,8 @@ export const DELETE_CHART_SUMMARY =
 // export const ADD_LIST_SUMMARY = 'ADD_LIST_SUMMARY'
 //==========================================
 // action: diaryFitness & reducer: dairySummary
+export const ADD_SUMMARY_OF_BURN_CALORIE =
+  'ADD_SUMMARY_OF_BURN_CALORIE'
 export const UPDATE_SUMMARY_OF_BURN_CALORIE =
   'UPDATE_SUMMARY_OF_BURN_CALORIE'
 export const DELETE_SUMMARY_OF_BURN_CALORIE =

@@ -23,6 +23,7 @@ import {
   deleteFitnessOfDB,
   updateFitnessOfDB,
 } from '../../../actions/diaryFitness'
+import { updateFitnessSummary } from '../../../actions/diarySummary'
 
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../helper/date'
@@ -106,8 +107,11 @@ class DiaryFitness extends Component {
 
     // 입력 받은 값으로 업데이트
     updateFitnessOfDB(requestBody, burn_id).then(
-      text => {
-        console.log(text)
+      data => {
+        this.props.updateFitnessSummary(
+          data, // 수정한 내용이 담긴 전체 데이터
+          this.state.burn_time, // 기존에 입력했던 시간
+        )
         this.close() // 성공 시 모달창 close
       },
       error => {
@@ -268,8 +272,20 @@ const mapDispatchToProps = dispatch => {
       dispatch(getFitnessLogsFromDB(date)),
     deleteFitnessOfDB: (id, burnKcal) =>
       dispatch(deleteFitnessOfDB(id, burnKcal)),
-    updateFitnessOfDB: (payload, id) =>
-      dispatch(updateFitnessOfDB(payload, id)),
+    updateFitnessOfDB: (requestBody, id) =>
+      dispatch(
+        updateFitnessOfDB(requestBody, id),
+      ),
+    updateFitnessSummary: (
+      modifiedData,
+      beforeMinute,
+    ) =>
+      dispatch(
+        updateFitnessSummary(
+          modifiedData,
+          beforeMinute,
+        ),
+      ),
   }
 }
 export default connect(
