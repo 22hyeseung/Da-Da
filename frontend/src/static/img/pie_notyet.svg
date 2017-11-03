@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="162px" height="162px" viewBox="0 0 162 162" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-Copy-2" transform="translate(-204.000000, -215.000000)">
+            <g id="Group-5" transform="translate(205.000000, 216.000000)">
+                <g id="Group" stroke="#A8B7C7" stroke-dasharray="3">
+                    <circle id="Oval" cx="80" cy="80" r="80"></circle>
+                    <circle id="Oval" cx="80.5" cy="80.5" r="40.5"></circle>
+                    <path d="M121.5,78.5 L158.513511,78.5" id="Line" opacity="0.629698822" stroke-linecap="square"></path>
+                    <path d="M105,114 L128.293357,142.764901" id="Line" opacity="0.629698822" stroke-linecap="square"></path>
+                    <path d="M68.4365794,121.506297 L58.8567778,157.258603" id="Line" opacity="0.629698822" stroke-linecap="square"></path>
+                </g>
+                <text id="탄/단/지" font-family="SpoqaHanSans-Regular, SpoqaHanSans" font-size="12" font-weight="normal" line-spacing="16" fill="#A8B7C7">
+                    <tspan x="59" y="28">탄/단/지</tspan>
+                </text>
+                <g id="Group-4" transform="translate(67.000000, 72.000000)" fill="#A8B7C7">
+                    <path d="M2.31668394,4.63336788 C1.03709845,4.63336788 0,3.59626943 0,2.31668394 C0,1.03709845 1.03709845,0 2.31668394,0 C3.59533679,0 4.63243523,1.03709845 4.63243523,2.31668394 C4.63243523,3.59626943 3.59533679,4.63336788 2.31668394,4.63336788 Z" id="Fill-17"></path>
+                    <path d="M23.7973057,4.63336788 C22.5177202,4.63336788 21.4806218,3.59626943 21.4806218,2.31668394 C21.4806218,1.03709845 22.5177202,0 23.7973057,0 C25.0768912,0 26.1139896,1.03709845 26.1139896,2.31668394 C26.1139896,3.59626943 25.0768912,4.63336788 23.7973057,4.63336788 Z" id="Fill-18"></path>
+                    <path d="M7.61129534,13.2360622 C7.61129534,12.2064249 8.44694301,11.3707772 9.47658031,11.3707772 C10.5071503,11.3707772 11.3418653,12.2064249 11.3418653,13.2360622 C11.3418653,14.3636269 12.5459067,15.7943005 13.899171,15.7943005 C15.2524352,15.7943005 16.4564767,14.3636269 16.4564767,13.2360622 C16.4564767,12.2064249 17.2921244,11.3707772 18.3217617,11.3707772 C19.3523316,11.3707772 20.1870466,12.2064249 20.1870466,13.2360622 C20.1870466,16.2046632 17.4982383,19.5239378 13.899171,19.5239378 C10.3001036,19.5239378 7.61129534,16.2046632 7.61129534,13.2360622 Z" id="Fill-20"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
