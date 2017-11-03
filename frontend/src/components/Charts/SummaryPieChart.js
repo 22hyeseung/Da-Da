@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 // 스타일링
-import { Message } from 'semantic-ui-react'
+import { Message, Image } from 'semantic-ui-react'
 // helper
 import { dateStringForApiQuery } from '../../helper/date'
 // 리덕스 action
 import {
   getFoodSummaryFromDB, // 하루 단위 food summary
 } from '../../actions/diarySummary'
+import pieDefault from '../../static/img/pie_notyet.svg'
 //차트
 import {
   PieChart,
@@ -41,13 +42,29 @@ class SummaryPieChart extends Component {
       errorState,
     } = this.props
 
-    if (isEmpty(nutritionKcals)) {
+    let flagGraph = false
+
+    nutritionKcals.map(val => {
+      if (val.value) {
+        flagGraph = true
+      }
+    })
+
+    if (!flagGraph) {
       return (
-        <Message
-          warning
-          header="데이터가 충분하지 않습니다!"
-          content="차트를 표시하기 위해 하나 이상의 식사를 등록해주세요."
-        />
+        <div style={{ margin: '37.5px' }}>
+          <Image src={pieDefault} />
+          <p
+            style={{
+              color: '#A8B7C7',
+              fontSize: '12px',
+              marginTop: '25px',
+              textAlign: 'center',
+            }}
+          >
+            식단을 등록하세요! <br /> 영양비율을 확인할 수 있습니다.
+          </p>
+        </div>
       )
     }
 
