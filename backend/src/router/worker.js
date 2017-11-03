@@ -34,12 +34,13 @@ queue.process('thumbnail', (job, done) => {
   axios({
     'method': 'get',
     'url': `${job.data.imgUrl}`,
+    'fileName': `${job.data.fileName}`,
     'responseType': 'arraybuffer'
   })
     .then(response => {
       // response.data안에 파일의 정보가 들어있다.
+      const fileName = `${response.config.fileName}`
       const { ext, mime } = fileType(response.data)
-      const fileName = `${uuid.v4()}.${ext}`
       return sharp(response.data)
         .resize(200, 200)
         .crop(sharp.gravity.center)

@@ -162,7 +162,7 @@ router.post('/', upload.single('upload_img'), (req, res) => {
     })
     .then(result => {
       return new Promise((resolve, reject) => {
-        queue.create('thumbnail', { 'imgUrl': result.imgUrl })
+        queue.create('thumbnail', { 'imgUrl': result.imgUrl, 'fileName': fileName })
           .removeOnComplete(true)
           .save(err => {
             if (err) {
