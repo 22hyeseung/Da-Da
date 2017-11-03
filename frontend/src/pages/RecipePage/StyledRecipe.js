@@ -154,6 +154,7 @@ export const checkboxStyle = {
   display: 'inline-block',
   marginRight: '24px',
   marginBottom: '48px',
+  paddingTop: '3px',
   color: '#54698d',
   fontSize: '20px',
   lineHeight: '40px',
@@ -181,5 +182,6 @@ export const btnDiarySubmit = {
   border: 'none',
   fontWeight: '100',
   color: '#fff',
-  backgroundImage: 'linear-gradient(216deg, #26d0ce, #1a2980)'
+  backgroundImage:
+    'linear-gradient(216deg, #26d0ce, #1a2980)',
 }
