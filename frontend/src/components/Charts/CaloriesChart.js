@@ -16,7 +16,7 @@ import {
   dateDotToDateType,
   getWeekArray,
 } from '../../helper/date'
-import { getCaloriesForAWeekFromDB } from '../../actions/reportAPIs'
+import { getCaloriesForAWeekFromDB } from '../../actions/report'
 
 class CaloriesChart extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class CaloriesChart extends Component {
     this.state = {}
   }
 
-  componentDidMount() {
+  componentWillMount() {
     // get
     this.props.getCaloriesForAWeekFromDB(
       dateStringForApiQuery(

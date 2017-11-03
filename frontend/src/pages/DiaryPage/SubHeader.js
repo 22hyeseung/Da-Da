@@ -4,9 +4,9 @@ import {
   header,
   subHeader,
   iconSet,
-} from './StyledDiaryCommon'
+} from './StyledDiary'
 
-class DiarySubHeader extends Component {
+class SubHeader extends Component {
   render() {
     const {
       tabNameEN,
@@ -33,4 +33,4 @@ class DiarySubHeader extends Component {
   }
 }
 
-export default DiarySubHeader
+export default SubHeader

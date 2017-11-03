@@ -8,7 +8,7 @@ import {
   itemWrap,
   linkTagWrap,
   linkTag,
-} from './StyledNavigation'
+} from '../StyledNavigation'
 import UserInfo from './UserInfo'
 
 const routes = [

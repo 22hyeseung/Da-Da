@@ -10,7 +10,7 @@ import { reviewBox } from './StyledDiaryReview'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
 import Comment from './Comment'
 import Article from './Article'
-import DiarySubHeader from '../DiarySubHeader'
+import SubHeader from '../SubHeader'
 
 // 리덕스 액션
 import { getCommentFromDB } from '../../../actions/review'
@@ -80,7 +80,7 @@ class DiaryReview extends Component {
       <div>
         <Segment style={reviewBox}>
           {/* title */}
-          <DiarySubHeader
+          <SubHeader
             tabNameEN="REVIEW"
             tabNameKR="일기"
             icon="reviewIcon"

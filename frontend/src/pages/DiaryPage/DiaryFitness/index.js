@@ -9,10 +9,10 @@ import {
   Button,
 } from 'semantic-ui-react'
 import * as Style from './StyledFitness'
-import { submitBtn } from '../StyledDiaryCommon'
+import { submitBtn } from '../StyledDiary'
 
 // 컴포넌트
-import DiarySubHeader from '../DiarySubHeader'
+import SubHeader from '../SubHeader'
 import FitnessList from './FitnessList'
 import FitnessAdd from './FitnessAdd'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
@@ -23,6 +23,7 @@ import {
   deleteFitnessOfDB,
   updateFitnessOfDB,
 } from '../../../actions/diaryFitness'
+import { updateFitnessSummary } from '../../../actions/diarySummary'
 
 // helper: 오늘 날짜 API Query형식
 import { dateStringForApiQuery } from '../../../helper/date'
@@ -106,8 +107,11 @@ class DiaryFitness extends Component {
 
     // 입력 받은 값으로 업데이트
     updateFitnessOfDB(requestBody, burn_id).then(
-      text => {
-        console.log(text)
+      data => {
+        this.props.updateFitnessSummary(
+          data, // 수정한 내용이 담긴 전체 데이터
+          this.state.burn_time, // 기존에 입력했던 시간
+        )
         this.close() // 성공 시 모달창 close
       },
       error => {
@@ -156,28 +160,35 @@ class DiaryFitness extends Component {
     return (
       <Segment style={Style.container}>
         {this.finalKcal}
-        <DiarySubHeader
+        <SubHeader
           tabNameEN="FITNESS"
           tabNameKR="운동 다이어리"
           icon="fitnessIcon"
         />
-        {this.props.fitnessResult.map(
-          (fitness, i) => (
-            <FitnessList
-              name={fitness.exercise_name}
-              time={fitness.burn_minute}
-              kcal={fitness.burn_kcal}
-              unitKcal={
-                fitness.exercise_burn_kcal
-              }
-              id={fitness.burn_id}
-              deleteFitnessOfDB={
-                this.props.deleteFitnessOfDB
-              }
-              show={this.show}
-              key={i}
-            />
-          ),
+        {this.props.fitnessResult ===
+        undefined ? (
+          ''
+        ) : (
+          <div>
+            {this.props.fitnessResult.map(
+              (fitness, i) => (
+                <FitnessList
+                  name={fitness.exercise_name}
+                  time={fitness.burn_minute}
+                  kcal={fitness.burn_kcal}
+                  unitKcal={
+                    fitness.exercise_burn_kcal
+                  }
+                  id={fitness.burn_id}
+                  deleteFitnessOfDB={
+                    this.props.deleteFitnessOfDB
+                  }
+                  show={this.show}
+                  key={i}
+                />
+              ),
+            )}
+          </div>
         )}
         {/* 모달 시작 */}
         <Modal
@@ -261,8 +272,20 @@ const mapDispatchToProps = dispatch => {
       dispatch(getFitnessLogsFromDB(date)),
     deleteFitnessOfDB: (id, burnKcal) =>
       dispatch(deleteFitnessOfDB(id, burnKcal)),
-    updateFitnessOfDB: (payload, id) =>
-      dispatch(updateFitnessOfDB(payload, id)),
+    updateFitnessOfDB: (requestBody, id) =>
+      dispatch(
+        updateFitnessOfDB(requestBody, id),
+      ),
+    updateFitnessSummary: (
+      modifiedData,
+      beforeMinute,
+    ) =>
+      dispatch(
+        updateFitnessSummary(
+          modifiedData,
+          beforeMinute,
+        ),
+      ),
   }
 }
 export default connect(

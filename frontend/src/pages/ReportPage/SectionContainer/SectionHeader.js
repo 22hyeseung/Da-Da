@@ -1,10 +1,13 @@
 import React from 'react'
 // 스타일링
 import { Header } from 'semantic-ui-react'
-import { header, subHeader } from './StyledReport'
-import './Report.css'
+import {
+  header,
+  subHeader,
+} from '../StyledReport'
+import '../Report.css'
 
-const ReportHeader = ({ title }) => {
+const SectionHeader = ({ title }) => {
   return (
     <div>
       <Header style={header}>
@@ -17,4 +20,4 @@ const ReportHeader = ({ title }) => {
   )
 }
 
-export default ReportHeader
+export default SectionHeader

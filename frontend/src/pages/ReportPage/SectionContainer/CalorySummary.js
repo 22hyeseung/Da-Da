@@ -13,19 +13,15 @@ import {
   smSubHeader,
   smListLayout,
   smListContent,
-} from './StyledReport'
-import './Report.css'
+} from '../StyledReport'
+import '../Report.css'
 
 // helper함수
-import { dateStringForApiQuery } from '../../helper/date'
+import { dateStringForApiQuery } from '../../../helper/date'
 // 리덕스 액션
-import { getKcalSummaryFromDB } from '../../actions/reportAPIs'
+import { getKcalSummaryFromDB } from '../../../actions/report'
 
-class ReportCalorySummary extends Component {
-  constructor(props) {
-    super(props)
-  }
-
+class CalorySummary extends Component {
   componentWillMount() {
     const {
       lastDateState,
@@ -125,4 +121,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ReportCalorySummary)
+)(CalorySummary)

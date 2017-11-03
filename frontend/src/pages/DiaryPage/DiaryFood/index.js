@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import * as Style from './StyledDiaryFood'
 
 // 컴포넌트
-import DiarySubHeader from '../DiarySubHeader'
+import SubHeader from '../SubHeader'
 import FoodAlbum from './Album/FoodAlbum'
 import FoodMeal from './FoodMeal'
 import ComponentLoader from '../../../components/Loader/ComponentLoader'
@@ -54,7 +54,7 @@ class FoodIndex extends React.Component {
 
     return (
       <Segment style={Style.foodBox}>
-        <DiarySubHeader
+        <SubHeader
           tabNameEN="FOOD"
           tabNameKR="식단 다이어리"
           icon="foodIcon"

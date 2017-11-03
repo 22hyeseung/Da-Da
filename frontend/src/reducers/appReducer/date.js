@@ -1,9 +1,5 @@
 // helper: 오늘 날짜
-import {
-  getDateNDaysBefore,
-  getDateNDaysAfter,
-  setDay,
-} from '../../helper/date'
+import { setDay } from '../../helper/date'
 
 const TODAY_INITIAL_STATE = {
   day: null,

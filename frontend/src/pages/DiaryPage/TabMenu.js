@@ -4,7 +4,7 @@ import {
   withRouter,
 } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
-import * as Style from './StyledDiaryCommon'
+import * as Style from './StyledDiary'
 
 const routes = [
   {
@@ -28,7 +28,7 @@ const routes = [
   },
 ]
 
-class DiaryTabNav extends Component {
+class TabMenu extends Component {
   render() {
     return (
       <Menu
@@ -83,4 +83,4 @@ class DiaryTabNav extends Component {
   }
 }
 
-export default withRouter(DiaryTabNav)
+export default withRouter(TabMenu)

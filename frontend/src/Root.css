@@ -1,7 +1,27 @@
 * {
-  font-family: 'Spoqa Han Sans',
-    'Spoqa Han Sans JP', 'Sans-serif';
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#responsive {
+    display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+    #root {
+        display: none;
+    }
+    #responsive {
+        display: inline;
+        background-image: url('./static/img/responsive.jpg');
+        position: fixed;
+        background-position-x: 20%;
+        background-size: cover;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+    }
 }

@@ -10,7 +10,7 @@ import {
 } from 'semantic-ui-react'
 import * as Style from './StyledFitness'
 import '../Diary.css'
-import { submitBtn } from '../StyledDiaryCommon'
+import { submitBtn } from '../StyledDiary'
 
 // 아이콘
 import notyet from '../../../static/img/diary-fitness-search-notyet.svg'

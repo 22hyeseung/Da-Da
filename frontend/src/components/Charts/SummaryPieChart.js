@@ -8,7 +8,7 @@ import { dateStringForApiQuery } from '../../helper/date'
 // 리덕스 action
 import {
   getFoodSummaryFromDB, // 하루 단위 food summary
-} from '../../actions/getFoodSummary'
+} from '../../actions/diarySummary'
 //차트
 import {
   PieChart,

@@ -1,16 +1,16 @@
 import React from 'react'
 // 스타일링
 import { Grid, Segment } from 'semantic-ui-react'
-import { segment } from './StyledReport'
-import './Report.css'
+import { segment } from '../StyledReport'
+import '../Report.css'
 // 컴포넌트
-import ReportHeader from './ReportHeader'
-import CaloriesChart from '../../components/Charts/CaloriesChart'
-import NutritionChart from '../../components/Charts/NutritionChart'
-import ReportCalorySummary from './ReportCalorySummary'
-import ReportNutritionSummary from './ReportNutritionSummary'
+import SectionHeader from './SectionHeader'
+import CaloriesChart from '../../../components/Charts/CaloriesChart'
+import NutritionChart from '../../../components/Charts/NutritionChart'
+import CalorySummary from './CalorySummary'
+import NutritionSummary from './NutritionSummary'
 
-const ReportContainer = ({ title }) => {
+const SectionContainer = ({ title }) => {
   return (
     <Segment style={segment}>
       <Grid
@@ -20,12 +20,12 @@ const ReportContainer = ({ title }) => {
         <Grid.Column style={{ padding: '0px' }}>
           {title === '영양분' ? (
             <div className="report-calory">
-              <ReportHeader title={title} />
+              <SectionHeader title={title} />
               <NutritionChart />
             </div>
           ) : (
             <div className="report-calory">
-              <ReportHeader title={title} />
+              <SectionHeader title={title} />
               <CaloriesChart />
             </div>
           )}
@@ -37,9 +37,9 @@ const ReportContainer = ({ title }) => {
           }}
         >
           {title === '영양분' ? (
-            <ReportNutritionSummary />
+            <NutritionSummary />
           ) : (
-            <ReportCalorySummary />
+            <CalorySummary />
           )}
         </Grid.Column>
       </Grid>
@@ -47,4 +47,4 @@ const ReportContainer = ({ title }) => {
   )
 }
 
-export default ReportContainer
+export default SectionContainer

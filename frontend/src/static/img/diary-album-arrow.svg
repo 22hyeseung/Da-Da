@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="271px" height="250px" viewBox="0 0 271 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Path 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="3.061617e-15%" y1="50%" x2="100%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#CACDCD" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#777779" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="3">
+        <g id="Artboard-Copy" transform="translate(-353.000000, -106.000000)" stroke="url(#linearGradient-1)">
+            <path d="M352.11593,355.142915 C437.348449,355.142915 620.438323,337.412884 620.438323,105.336947" id="Path-2"></path>
+            <path id="Path-2-decoration-1" d="M623.438323,116.136947 L620.438323,105.336947 L617.438323,116.136947"></path>
+        </g>
+    </g>
+</svg>
