@@ -12,6 +12,8 @@ import '../Navigation.css'
 import * as Style from '../StyledNavigation'
 // 리덕스 액션
 import { logOut } from '../../../actions/auth'
+// date heler
+import { calculateDday } from '../../../helper/date'
 
 class UserInfo extends Component {
   state = { open: false }
@@ -28,6 +30,8 @@ class UserInfo extends Component {
   render() {
     const { open, size } = this.state
     const { userInfo } = this.props
+    const dateTime = new Date()
+
     return (
       <Grid style={Style.PopWrap}>
         <Grid.Row style={Style.row_1}>
@@ -58,7 +62,11 @@ class UserInfo extends Component {
         <Grid.Row style={Style.row_2}>
           <Segment style={Style.row_2_segment}>
             <p style={Style.d_day}>
-              오늘은 10일차 입니다.
+              오늘은{' '}
+              {calculateDday(
+                userInfo.userJoinDate,
+                dateTime,
+              )}일차 입니다.
             </p>
             <div style={Style.goalWrap}>
               목표체중까지

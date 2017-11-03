@@ -128,3 +128,15 @@ export const getWeekArray = dateTypeStartDate => {
   }
   return dateArray
 }
+
+// d-day 구하는 함수
+export const calculateDday = (
+  startDate, // 시작 날짜, Date 타입
+  targetDate, // D-day 구하려는 날짜, Date 타입
+) => {
+  return Math.round(
+    (targetDate.getTime() - startDate.getTime()) /
+      (1000 * 60 * 60 * 24) +
+      1,
+  )
+}
