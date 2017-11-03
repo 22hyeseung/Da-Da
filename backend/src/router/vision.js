@@ -2,9 +2,11 @@ const express = require('express')
 const multer = require('multer')
 const aws = require('aws-sdk')
 const uuid = require('uuid')
-const sharp = require('sharp')
+const kue = require('kue')
 const fileType = require('file-type')
 const mw = require('../middleware')
+
+const queue = kue.createQueue()
 /**
  * Google Vision
  */
@@ -52,37 +54,27 @@ function googleVision(fileBuffer) {
       if (err) {
         reject(err)
       } else {
+        const apiDescription = []
         const apiData = []
-        const Data = []
+
+        // vision결과 가공
         apiResponse.responses[0].labelAnnotations.map(val => {
           if (filterText.indexOf(val.description) < 0) {
             apiData.push({
-              'description': val.description,
+              'originalDescription': val.description,
               'score': val.score
             })
+            apiDescription.push(val.description)
           }
         })
-        console.log(apiData)
-        const objmap = apiData.map(e => {
-          return e.description
-        })
 
-        const objscore = apiData.map(e => {
-          return e.score
-        })
-
-        // Translates some text into Russian
-        translate.translate(objmap, target)
+        // 가공된 데이터 번역
+        translate.translate(apiDescription, target)
           .then(results => {
             results[0].map((description, i) => {
-              Data.push({
-                description,
-                'score': objscore[i]
-              })
+              apiData[i].description = description
             })
-          })
-          .then(() => {
-            resolve(Data)
+            resolve(apiData)
           })
       }
     })
@@ -123,20 +115,24 @@ function s3upload(buffer, fileName, fileMime) {
  * {
  *     "visionAnalysis": [
  *         {
- *             "description": "아시아 음식",
- *             "score": 0.7088456749916077
+ *             "originalDescription": "tteokbokki",
+ *             "score": 0.8299320936203003,
+ *             "description": "떡볶이"
  *         },
  *         {
- *             "description": "중국 음식",
- *             "score": 0.5872408747673035
+ *             "originalDescription": "curry",
+ *             "score": 0.7845646142959595,
+ *             "description": "카레"
  *         },
  *         {
- *             "description": "태국 음식",
- *             "score": 0.5646466016769409
+ *             "originalDescription": "gravy",
+ *             "score": 0.6326877474784851,
+ *             "description": "육수"
  *         },
  *         {
- *             "description": "한국 음식",
- *             "score": 0.5556439757347107
+ *             "originalDescription": "stew",
+ *             "score": 0.6129271984100342,
+ *             "description": "스튜"
  *         }
  *     ],
  *     "imgUrl": "https://dada-sh-test.s3.amazonaws.com/a12454a5-e845-412c-9240-50886fc4cdf0.jpg"
@@ -162,15 +158,20 @@ router.post('/', upload.single('upload_img'), (req, res) => {
         'imgUrl': result[1].Location
       }
       res.send(output)
+      return output
     })
-    .then(() => {
-      sharp(req.file.buffer)
-        .resize(200, 200)
-        .crop(sharp.gravity.center)
-        .toBuffer()
-        .then(resizeFile => {
-          s3upload(resizeFile, `thumb/${fileName}`)
-        })
+    .then(result => {
+      return new Promise((resolve, reject) => {
+        queue.create('thumbnail', { 'imgUrl': result.imgUrl, 'fileName': fileName })
+          .removeOnComplete(true)
+          .save(err => {
+            if (err) {
+              reject(err)
+            } else {
+              resolve()
+            }
+          })
+      })
     })
     .catch(err => {
       res.status(400)

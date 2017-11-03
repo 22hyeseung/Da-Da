@@ -36,6 +36,25 @@ function firstOrCreateUserByProvider({
     })
 }
 
+function updateUserInfo({
+  member_provider,
+  member_provider_number,
+  member_provider_name,
+  member_avatar_url,
+  token = null
+}) {
+  return knex('member')
+    .where({
+      'member_provider': member_provider,
+      'member_provider_number': member_provider_number
+    })
+    .update({
+      member_provider_name,
+      member_avatar_url,
+      token
+    })
+}
+
 function getUserById(member_id) {
   return knex('member')
     .where({ member_id })
@@ -622,5 +641,6 @@ module.exports = {
   postFirstMember,
   postFirstDayLog,
   getGoalKcalByDate,
-  getFirstGoalKcalById
+  getFirstGoalKcalById,
+  updateUserInfo
 }

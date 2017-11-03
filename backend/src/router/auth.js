@@ -63,6 +63,9 @@ passport.use(new KakaoStrategy({
 
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
+      if (member_data.member_provider_name !== null && (user.member_provider_name !== member_data.member_provider_name || user.member_avatar_url !== member_data.member_avatar_url)) {
+        query.updateUserInfo(member_data).then()
+      }
       return user ? done(null, user) : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).catch(err => {
       done(err)
@@ -86,6 +89,9 @@ passport.use(new NaverStrategy({
 
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
+      if (member_data.member_provider_name !== null && (user.member_provider_name !== member_data.member_provider_name || user.member_avatar_url !== member_data.member_avatar_url)) {
+        query.updateUserInfo(member_data).then()
+      }
       return user ? done(null, user) : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).catch(err => {
       done(err)
@@ -110,6 +116,9 @@ passport.use(new FacebookStrategy({
 
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
+      if (member_data.member_provider_name !== null && (user.member_provider_name !== member_data.member_provider_name || user.member_avatar_url !== member_data.member_avatar_url)) {
+        query.updateUserInfo(member_data).then()
+      }
       return user ? done(null, user) : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).catch(err => {
       done(err)
@@ -133,6 +142,9 @@ passport.use(new InstagramStrategy({
 
   query.firstOrCreateUserByProvider(member_data)
     .then(user => {
+      if (member_data.member_provider_name !== null && (user.member_provider_name !== member_data.member_provider_name || user.member_avatar_url !== member_data.member_avatar_url)) {
+        query.updateUserInfo(member_data).then()
+      }
       return user ? done(null, user) : done(new Error('해당 정보와 일치하는 사용자가 없습니다.'))
     }).catch(err => {
       done(err)
