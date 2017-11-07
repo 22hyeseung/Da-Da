@@ -67,7 +67,7 @@ export const postFitnessToDB = requestBody => {
 }
 // 3. updateDB
 export const updateFitnessOfDB = (
-  payload,
+  requestBody,
   id,
 ) => {
   return dispatch => {
@@ -83,10 +83,11 @@ export const updateFitnessOfDB = (
             .localStorage.token}`,
           'Content-type': 'application/json',
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(requestBody),
       })
         .then(res => res.json())
         .then(data => {
+          console.log(data, 'response data')
           if (data) {
             dispatch({
               type:

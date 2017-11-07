@@ -47,7 +47,6 @@ export const postWeightToDB = requestBody => {
           })
             .then(res => res.json())
             .then(data => {
-              // console.log(data)
               dispatch({
                 type:
                   types.POST_AND_GET_WEIGHT_SUCCESS,
@@ -128,7 +127,6 @@ export const getAllWeightFromDB = () => {
     })
       .then(res => res.json())
       .then(data => {
-        // console.log(data.allDayLog)
         let chartData = []
         data.allDayLog.map(aDay => {
           if (!aDay.day_log_kg) {
@@ -143,7 +141,6 @@ export const getAllWeightFromDB = () => {
             goal: data.goal_weight,
           })
         })
-        console.log(chartData, '<<')
         dispatch({
           type: types.GET_WEIGHT_ALL_SUCCESS,
           payload: {

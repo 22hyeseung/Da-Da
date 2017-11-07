@@ -56,7 +56,6 @@ export const updateFitnessSummary = (
   modifiedData,
   beforeMinute,
 ) => {
-  console.log(modifiedData[0].burn_kcal)
   return dispatch => {
     dispatch({
       type: types.UPDATE_SUMMARY_OF_BURN_CALORIE,

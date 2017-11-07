@@ -31,7 +31,6 @@ class FoodEditModal extends React.Component {
     }
     updateFoodOfDB(requestBody, id).then(
       data => {
-        console.log(data)
         this.props.close()
         this.props.updateFoodSummary(
           data,

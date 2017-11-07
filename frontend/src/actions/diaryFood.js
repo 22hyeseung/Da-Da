@@ -92,7 +92,7 @@ export const postFoodToDB = (
                   },
                 },
               ).catch(err =>
-                console.warn(
+                console.log(
                   'post and then get food data request is failed',
                 ),
               )
@@ -106,7 +106,7 @@ export const postFoodToDB = (
         }
       })
       .catch(error => {
-        console.warn('postFoodToDB error')
+        console.log('postFoodToDB error')
         dispatch({
           type:
             types.POST_FOOD_TO_DATABASE_FAILED,

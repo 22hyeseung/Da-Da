@@ -32,6 +32,7 @@ class HomeFirstUserInfo extends Component {
       date: dateStringForApiQuery(dateTime),
     }
   }
+
   // 성별을 받는 핸들러
   handleGenderChange = (e, { value }) => {
     this.setState({ gender: value })
@@ -69,6 +70,7 @@ class HomeFirstUserInfo extends Component {
         disabled: false,
       })
   }
+
   // 키를 받는 핸들러
   handleHeightChange = e => {
     this.setState({ height: e.target.value })
@@ -156,8 +158,6 @@ class HomeFirstUserInfo extends Component {
         },
       )
       .then(window.location.reload())
-    // setTimeout(this.close, 1000)
-    // setTimeout(window.location.reload(), 2000)
   }
 
   render() {

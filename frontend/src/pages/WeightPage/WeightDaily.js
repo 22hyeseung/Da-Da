@@ -97,7 +97,6 @@ class WeightDaily extends Component {
   }
 
   deleteWeight = id => {
-    // console.log(id)
     this.props.deleteWeight(id)
   }
 

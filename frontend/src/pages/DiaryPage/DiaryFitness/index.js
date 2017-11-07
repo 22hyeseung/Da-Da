@@ -89,14 +89,12 @@ class DiaryFitness extends Component {
     } = this.state
 
     const { updateFitnessOfDB } = this.props
-
     // 수정값이 없을 경우 반환
     if (!updateTimeVal || updateTimeVal < 1) {
       return this.setState({
         disabled: true,
       })
     }
-
     // 수정된 시간에 따라 칼로리 계산
     const finalKcal = unitKcal * updateTimeVal
 
@@ -212,8 +210,6 @@ class DiaryFitness extends Component {
                 기존 입력했던 시간은 {this.state.burn_time}분입니다.
               </span>
               <Input
-                ref={input =>
-                  (this.textInput = input)}
                 type="number"
                 style={{
                   margin: '0px 0px 28px',

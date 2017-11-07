@@ -47,12 +47,6 @@ class HomePage extends Component {
         !!this.props.userInfo.userGoalWeight &&
         !!this.props.userInfo.userGender ? (
           <div>
-            {console.log(
-              !!this.props.userInfo.userBirth,
-              !!this.props.userInfo
-                .userGoalWeight,
-              !!this.props.userInfo.userGender,
-            )}
             <div className="home-grid">
               <Navigation color="#fff" />
             </div>
