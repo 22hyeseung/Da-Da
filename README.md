@@ -208,5 +208,8 @@
 ### 3. 개발
 
 [Da, Da 홈페이지](https://dada.downmix.net)
+
+***SNS 로그인 공개 승인 절차 문제로 현재 카카오 로그인만 가능합니다.***
+
 [완성본 동영상 보기](https://youtu.be/DWtnFShrpKM)
 
