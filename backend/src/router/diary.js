@@ -95,11 +95,7 @@ router.get('/regret', (req, res) => {
 
   query.getSelectDayLog(day_log_regret)
     .then(day_log => {
-      if (day_log) {
-        res.send(day_log)
-      } else {
-        console.log('Regret GET error')
-      }
+      res.send(day_log)
     })
 })
 
