@@ -38,7 +38,7 @@ class HomePage extends Component {
   }
 
   render() {
-    if (this.state.loading) {
+    if (this.state.loading || typeof this.props.userInfo === 'undefined') {
       return <Loader />
     }
     return (

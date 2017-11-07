@@ -35,7 +35,11 @@ class HomeFirstUserInfo extends Component {
 
   // 성별을 받는 핸들러
   handleGenderChange = (e, { value }) => {
-    this.setState({ gender: value })
+    this.setState({
+      gender: value,
+      gender_enum: value === '남자' ? 1 : 2
+    })
+
     if (value > 0)
       this.setState({
         disabled: false,
@@ -116,6 +120,8 @@ class HomeFirstUserInfo extends Component {
       date,
     } = this.state
 
+    const { postUserInfoToDB } = this.props
+
     if (
       !birth ||
       birth < 1 ||
@@ -158,6 +164,7 @@ class HomeFirstUserInfo extends Component {
         },
       )
       .then(window.location.reload())
+
   }
 
   render() {
