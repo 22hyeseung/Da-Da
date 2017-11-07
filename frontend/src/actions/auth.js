@@ -72,6 +72,7 @@ export const postUserInfo = payload => {
           dispatch({
             type: types.POST_USERINFO_FAILED,
           })
+          reject(error)
         })
     })
   }

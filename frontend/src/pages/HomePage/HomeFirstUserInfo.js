@@ -34,7 +34,11 @@ class HomeFirstUserInfo extends Component {
   }
   // 성별을 받는 핸들러
   handleGenderChange = (e, { value }) => {
-    this.setState({ gender: value })
+    this.setState({
+      gender: value,
+      gender_enum: value === '남자' ? 1 : 2
+    })
+
     if (value > 0)
       this.setState({
         disabled: false,
@@ -114,6 +118,8 @@ class HomeFirstUserInfo extends Component {
       date,
     } = this.state
 
+    const { postUserInfoToDB } = this.props
+
     if (
       !birth ||
       birth < 1 ||
@@ -144,20 +150,16 @@ class HomeFirstUserInfo extends Component {
       kcal: recommend_kcal,
     }
 
-    this.props
-      .postUserInfoToDB(userData)
-      .then(
-        text => {
-          console.log(text)
-          this.close()
-        },
-        error => {
-          console.warn(error)
-        },
-      )
-      .then(window.location.reload())
-    // setTimeout(this.close, 1000)
-    // setTimeout(window.location.reload(), 2000)
+    postUserInfoToDB(userData)
+      .then(text => {
+        window.location.reload()
+      })
+      .catch(error => {
+        console.warn(error)
+      })
+
+    //setTimeout(this.close, 1000)
+    //setTimeout(window.location.reload(), 5000)
   }
 
   render() {
