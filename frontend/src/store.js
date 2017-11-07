@@ -6,15 +6,19 @@ import reducers from './reducers'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
-// 전체 state를 관리해줌
+// 배포용 빌드 시 logger 제외
+let createStoreWithMiddleware
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunk,
-  logger,
-)(createStore)
-// 디버깅할 때 도움이 된다.
+if (process.env.NODE_ENV === 'production') {
+  createStoreWithMiddleware = applyMiddleware(
+    thunk,
+  )(createStore)
+} else {
+  createStoreWithMiddleware = applyMiddleware(
+    thunk,
+    logger,
+  )(createStore)
+}
+
 const store = createStoreWithMiddleware(reducers)
-
 export default store
-
-// store => redux getState() dispatch 리액트 컴포넌트에 넣어준다<div class="">// </div>
