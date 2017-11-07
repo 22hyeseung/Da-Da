@@ -10,10 +10,6 @@ const router = express.Router()
 
 router.use(mw.corsMiddleware)
 
-router.use((req, res, next) => {
-  next()
-})
-
 router.use(mw.jsonMiddleware)
 router.use(mw.expressJwtMiddleware)
 router.options('*', mw.corsMiddleware)
