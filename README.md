@@ -207,6 +207,6 @@
 
 ### 3. 개발
 
-[Da, Da 홈페이지](https://dada/downmix.net)
+[Da, Da 홈페이지](https://dada.downmix.net)
 [완성본 동영상 보기](https://youtu.be/DWtnFShrpKM)
 
