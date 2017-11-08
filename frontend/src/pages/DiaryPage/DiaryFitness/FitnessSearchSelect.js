@@ -96,9 +96,6 @@ class FitnessSelectDetails extends Component {
       burn_minute: this.state.inputTime,
     })
     this.props.toggleSearchMode()
-    // this.setState({ loading: true }, () =>
-    //   this.postDelay(),
-    // )
   }
 
   render() {

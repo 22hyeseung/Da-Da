@@ -85,12 +85,6 @@ class TextEditor extends Component {
   // 에디터에 입력되는 내용이 state로 설정됨
   onChange = editorState => {
     const contentState = editorState.getCurrentContent()
-
-    // console.log(
-    //   'content state',
-    //   // contentState를 자바스크립트 객체로 변환
-    //   convertToRaw(contentState),
-    // )
     this.saveContent(contentState)
     this.setState({
       editorState,
