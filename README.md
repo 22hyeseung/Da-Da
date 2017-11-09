@@ -47,13 +47,13 @@
 ### 3. 레시피 검색
 
 - **검색**
-  - 텍스트 검색과 사진 검색을 지원한다.
+  - 텍스트 검색을 지원한다.
 
 - **레시피 정보**
   - 원하는 레시피 정보를 조회할 수 있다.
   - 레시피 화면을 통해 요리 진행 사항을 체크할 수 있다. (체크박스 제공)
   - 레시피 재료의 양 정보를 기준 인분 수  입력을 통해 조정된 값으로 제공받을 수 있다.
-  - 레시피로 조리된 음식을 식단에 기록할 수 있다.
+  - 레시피로 조리한 음식을 식단 통계에 합산하여 기록할 수 있다.
 
 <br>
 
@@ -203,7 +203,7 @@
 - Zeplin (디자인 시안 공유)
 - 매주 월/화/목 HangOut 온라인 회의: 데일리 스크럼
 - 매주 수/금 오프라인 정기 회의: 이슈 공유 및 논의, 코드 리뷰
-- Scrum Board 작성: Google Spread Sheet (매일 진행 사항 공유 & 일정 관리)
+- [Scrum Board 작성](https://docs.google.com/spreadsheets/d/e/2PACX-1vR57PrRMvXjFa1sHCtLX-ifjMt8VEoiPuzKa0ErH-h787p4MqxssYJKt7QaYCReGVIaJEu_HgpMBGRC/pubhtml): Google Spread Sheet (매일 진행 사항 공유 & 일정 관리)
 - [Github](https://github.com/huusz/Da-Da) & [Github Projects](https://github.com/huusz/Da-Da/projects) (작업 분담(기능별 & 페이지별) 및 이슈 관리)
 - [API Document](https://api.downmix.net/)
 
@@ -216,7 +216,8 @@
 ### 1. 기획
 
 #### 1) 와이어프레임
-![WireFrame](./ReadmeImages/wire-frame-1.png)
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRgjDbUHXEy2dDrOFUiSDvOQ2hTvXXMSGbRQw3Bakq3Xh7Jcw5sVTkolmp-XKsWISoXxpxI6EjV6twg/embed?start=false&loop=false&delayms=3000" frameborder="0" width="672" height="533" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <br>
 
