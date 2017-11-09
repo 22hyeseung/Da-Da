@@ -206,12 +206,12 @@
 <br>
 
 ## Team Work
-- Git (소스 코드 버전 관리)
-- Zeplin (디자인 시안 공유)
+- Git: 소스 코드 버전 관리
+- Zeplin: 디자인 시안 공유
 - 매주 월/화/목 HangOut 온라인 회의: 데일리 스크럼
 - 매주 수/금 오프라인 정기 회의: 이슈 공유 및 논의, 코드 리뷰
-- [Scrum Board 작성](https://docs.google.com/spreadsheets/d/e/2PACX-1vR57PrRMvXjFa1sHCtLX-ifjMt8VEoiPuzKa0ErH-h787p4MqxssYJKt7QaYCReGVIaJEu_HgpMBGRC/pubhtml): Google Spread Sheet (매일 진행 사항 공유 & 일정 관리)
-- [Github](https://github.com/huusz/Da-Da) & [Github Projects](https://github.com/huusz/Da-Da/projects) (작업 분담(기능별 & 페이지별) 및 이슈 관리)
+- [Scrum Board 작성](https://docs.google.com/spreadsheets/d/e/2PACX-1vR57PrRMvXjFa1sHCtLX-ifjMt8VEoiPuzKa0ErH-h787p4MqxssYJKt7QaYCReGVIaJEu_HgpMBGRC/pubhtml)(Google Spread Sheet): 매일 진행 사항 공유 & 일정 관리
+- [Github](https://github.com/huusz/Da-Da) & [Github Projects](https://github.com/huusz/Da-Da/projects): 작업 분담(기능/페이지별) 및 이슈 관리
 - [API Document](https://api.downmix.net/)
 
 <br>
