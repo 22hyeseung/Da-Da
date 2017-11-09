@@ -167,15 +167,16 @@
 
 <br>
 
-**7) Release**
-- 환경
+## Release
+
+### 환경
   - AWS EC2 (Ubuntu 16.04)
   - AWS RDS (MySql 5.7.17)
   - AWS S3
   - [create-react-app](https://github.com/facebookincubator/create-react-app) 환경 빌드
-  - 외부 도메인 대행업체
+  - 외부 도메인 대행 업체
 
-- AWS EC2 :: 메인서버
+### 메인서버 :: AWS EC2
   - node.js(v8.5) + npm(v5.3) + nvm
   - git : github 통한 코드 배포
   - pm2 : node.js 프로세스 관리
@@ -183,18 +184,18 @@
   - python(v2.7.11) : 이미지 변환 처리 ([sharp](https://www.npmjs.com/package/sharp) 활용)
   - redis : 이미지 변환 큐 관리 ([Kue](https://www.npmjs.com/package/kue) 활용)
 
-- 프론트엔드 배포
-  - create-react-app build >> 정적 웹사이트 배포
+### 프론트엔드 배포
+  - create-react-app의 `build` script로 정적 웹사이트 배포
 
-- 웹서버 정책 :: [Caddy](https://caddyserver.com/)
-  - dada.downmix.net : 프론트 웹페이지 >> 웹서버
-  - api.downmix.net : API서버 >> 내부포트 프록시
-  - devapi.downmix.net : 개발용 API >> 내부포트 프록시
+### 웹서버 정책 :: [Caddy](https://caddyserver.com/)
+  - dada.downmix.net : 프론트 웹 페이지 >> 웹 서버
+  - api.downmix.net : 배포용 API 서버 >> 내부 포트 프록시
+  - devapi.downmix.net : 개발용 API 서버 >> 내부 포트 프록시
 
-- 데이터베이스 구축 :: MySql
+### 데이터베이스 구축 :: MySql
   - AWS RDS 연동
   - [knex.js](https://www.npmjs.com/package/knex) 를 통한 DB 마이그레이션 진행
-  - knex 마이그레이션 경로 : /backend/migrations
+  - knex 마이그레이션 경로 : `/backend/migrations`
 
 <br>
 
@@ -211,7 +212,7 @@
 
 ---
 
-## Summary
+## Workflow Summary
 
 ### 1. 기획
 
@@ -223,7 +224,7 @@
 
 #### 2) 프로토타입
 
-> [프로토타입 보기](https://invis.io/2GDPBHAT5)
+> [프로토타입 전체 보기](https://invis.io/2GDPBHAT5)
 
 <br>
 
@@ -231,7 +232,7 @@
 
 #### 1) 디자인 시안
 
-> [더 많은 디자인 시안 보기](https://invis.io/DCE154SUH)
+> [디자인 시안 전체 보기](https://invis.io/DCE154SUH)
 
 ![Diary-Food Page](./ReadmeImages/design-food.jpg)
 
@@ -241,7 +242,7 @@
 
 [Da, Da 홈페이지](https://dada.downmix.net)
 
-***SNS 로그인 공개 승인 절차 문제로 현재 카카오 로그인만 가능합니다.***
+***현재 SNS 로그인 공개 승인 절차 문제로 카카오 로그인만 가능합니다.***
 
-[완성본 동영상 보기](https://youtu.be/DWtnFShrpKM)
+[시연 동영상 보기](https://youtu.be/DWtnFShrpKM)
 
