@@ -133,8 +133,12 @@
 **1) Server**
 - Node.js
 - Express
-- AWS (supported: EC2, S3(Image Storage), Caddy): Cloud Web Server
-- Redis(supported: KUE): In-memory data structure store
+- AWS
+  - EC2
+  - S3 (Image Storage)
+  - Caddy
+- Redis (In-memory data structure store)
+  - KUE
 
 <br>
 
@@ -167,11 +171,13 @@
 
 <br>
 
+<br>
+
 ## Release
 
 ### 환경
-  - AWS EC2 (Ubuntu 16.04)
-  - AWS RDS (MySql 5.7.17)
+  - AWS EC2 (Ubuntu v16.04)
+  - AWS RDS (MySql v5.7.17)
   - AWS S3
   - [create-react-app](https://github.com/facebookincubator/create-react-app) 환경 빌드
   - 외부 도메인 대행 업체
