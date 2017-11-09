@@ -224,7 +224,7 @@
 
 #### 1) 와이어프레임
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRgjDbUHXEy2dDrOFUiSDvOQ2hTvXXMSGbRQw3Bakq3Xh7Jcw5sVTkolmp-XKsWISoXxpxI6EjV6twg/embed?start=false&loop=false&delayms=3000" frameborder="0" width="672" height="533" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+> [와이어 프레임 보기](https://docs.google.com/presentation/d/e/2PACX-1vRgjDbUHXEy2dDrOFUiSDvOQ2hTvXXMSGbRQw3Bakq3Xh7Jcw5sVTkolmp-XKsWISoXxpxI6EjV6twg/pub?start=false&loop=false&delayms=3000)
 
 <br>
 
