@@ -85,7 +85,7 @@
 
 ## 기술 스택 & 툴
 
-### ProtoType & Design
+### Prototype & Design
 - Google spread sheet
 - Sketch
 - Invision
@@ -102,11 +102,11 @@
 
 <br>
 
-**1-1) Extension or Frameworks**
+**1.1) Framework**
 
 - [Semantic-ui-react](https://react.semantic-ui.com/) (CSS Framework)
 - [Draft.js](https://draftjs.org/) (Text editor Framework)
-- [recharts.js](http://recharts.org/#/en-US) (Chart Package)
+- [recharts.js](http://recharts.org/#/en-US) (Chart Framework)
 
 <br>
 
