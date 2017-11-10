@@ -4,7 +4,9 @@
 
 <br>
 
-## 서비스 목표
+# About Service
+
+## 목표
 
 바른 다이어트를 위해서는 건강하고 균형잡힌 식습관을 유지할 필요가 있다.
 - 사용자가 복잡하고 번거로운 칼로리/영양성분 계산을 하지 않아도 되게 하자.
@@ -14,7 +16,7 @@
 
 <br>
 
-## 서비스 기능 요약
+## 기능 요약
 
 ### 1. 기록(주요 기능)
 
@@ -68,64 +70,7 @@
 
 <br>
 
-## 개발 기간
-
-#### 1) 2017-09-27 ~ 2017-09-30 (3 days)
-- 기획, 디자인
-  - 와이어프레임 제작
-  - 프로토타입 제작
-  - 디자인 시안 제작
-
-#### 2) 2017-10-01 ~ 2017-10-09 (8 days)
-  - 프론트엔드
-    - 정적 페이지 개발(퍼블리싱)
-    - json-server 이용한 가상 데이터 통신
-  - 백엔드
-    - DB 개발
-    - API 개발 및 문서화 작업
-
-#### 3) 2017-10-10 ~ 2017-10-19 (9 days)
-  - 프론트엔드
-    - router 개발
-    - redux 연동
-    - 서버 api 연동, ajax 통신 개발 (json-server 삭제)
-    - 페이지 별 핵심 기능 개발
-  - 백엔드
-    - API 개발 및 문서화 작업
-    - 소셜 Login API 개발
-
-#### 4) 2017-10-20 ~ 2017-10-27 (7days)
-  - 프론트엔드
-    - 페이지 별 부가 기능 개발
-    - 리팩토링
-    - 버그 픽싱
-  - 백엔드
-    - Google Vision API 개발
-
-#### 5) 2017-10-28 ~ 2017-11-3 (6days)
-  - 프론트엔드
-    - 부가 기능 추가 개발
-    - 리팩토링
-    - 버그 픽싱
-  - 백엔드
-    - 리팩토링
-    - 버그 픽싱
-
-
-## 팀 구성원
-
-#### 프론트엔드
-
- - [김나영](https://github.com/feel5ny)
- - [이혜승](https://github.com/huusz)
-
-#### 백엔드
-
-- [김세준](https://github.com/KimSejune)
-- [임옥택](https://github.com/downmix)
-- [조수현](https://github.com/suhyeon)
-
-<br>
+# About Tech
 
 ## 기술 스택 & 툴
 
@@ -215,8 +160,7 @@
 
 <br>
 
-<br>
-
+---
 ## Release
 
 ### 환경
@@ -249,7 +193,26 @@
 
 <br>
 
-## Team Work
+---
+
+# Team
+
+## Member
+
+### Frontend
+
+ - [김나영](https://github.com/feel5ny)
+ - [이혜승](https://github.com/huusz)
+
+### Backend
+
+- [김세준](https://github.com/KimSejune)
+- [임옥택](https://github.com/downmix)
+- [조수현](https://github.com/suhyeon)
+
+<br>
+
+## Collaboration
 - Git: 소스 코드 버전 관리
 - Zeplin: 디자인 시안 공유
 - 매주 월/화/목 HangOut 온라인 회의: 데일리 스크럼
@@ -262,37 +225,75 @@
 
 ---
 
-## Workflow Summary
+## Workflow
 
-### 1. 기획
-
-#### 1) 와이어프레임
-
-> [와이어 프레임 보기](https://docs.google.com/presentation/d/e/2PACX-1vRgjDbUHXEy2dDrOFUiSDvOQ2hTvXXMSGbRQw3Bakq3Xh7Jcw5sVTkolmp-XKsWISoXxpxI6EjV6twg/pub?start=false&loop=false&delayms=3000)
-
-<br>
-
-#### 2) 프로토타입
-
-> [프로토타입 전체 보기](https://invis.io/2GDPBHAT5)
+#### 1) 2017-09-27 ~ 2017-09-30 (3 days)
+- 기획, 디자인
+  - [와이어프레임](https://docs.google.com/presentation/d/e/2PACX-1vRgjDbUHXEy2dDrOFUiSDvOQ2hTvXXMSGbRQw3Bakq3Xh7Jcw5sVTkolmp-XKsWISoXxpxI6EjV6twg/pub?start=false&loop=false&delayms=3000) 제작
+  - [프로토타입](https://invis.io/2GDPBHAT5) 제작
+  - [디자인 시안](https://invis.io/DCE154SUH) 제작
 
 <br>
 
-### 2. 디자인
-
-#### 1) 디자인 시안
-
-> [디자인 시안 전체 보기](https://invis.io/DCE154SUH)
-
-![Diary-Food Page](./ReadmeImages/design-food.jpg)
+#### 2) 2017-10-01 ~ 2017-10-09 (8 days)
+  - 프론트엔드
+    - 정적 페이지 개발(퍼블리싱)
+    - json-server 이용한 가상 데이터 통신
+  - 백엔드
+    - DB 개발
+    - API 개발 및 문서화 작업
 
 <br>
 
-### 3. 개발
+#### 3) 2017-10-10 ~ 2017-10-19 (9 days)
+  - 프론트엔드
+    - router 개발
+    - redux 연동
+    - 서버 api 연동, ajax 통신 개발 (json-server 삭제)
+    - 페이지 별 핵심 기능 개발
+  - 백엔드
+    - API 개발 및 문서화 작업
+    - 소셜 Login API 개발
 
-[DA, DA 홈페이지](https://dada.downmix.net)
+    <br>
 
-***현재 SNS 로그인 공개 승인 절차 문제로 카카오 로그인만 가능합니다.***
+#### 4) 2017-10-20 ~ 2017-10-27 (7days)
+  - 프론트엔드
+    - 페이지 별 부가 기능 개발
+    - 리팩토링
+  - 백엔드
+    - Google Vision API 개발
+    - 1차 배포
+  - 공통
+    - 테스팅 및 버그 픽싱
+    - [시연 동영상 제작](https://youtu.be/DWtnFShrpKM)
 
-[시연 동영상 보기](https://youtu.be/DWtnFShrpKM)
+    <br>
 
+#### 5) 2017-10-28 ~ 2017-11-3 (6days)
+  - 프론트엔드
+    - 부가 기능 추가 개발
+    - 리팩토링
+  - 백엔드
+    - 리팩토링
+    - [최종 배포](https://dada.downmix.net)
+  - 공통
+    - 테스팅 및 버그 픽싱
+
+<br>
+
+## All Links
+
+1. [Scrum Board](https://docs.google.com/spreadsheets/d/e/2PACX-1vR57PrRMvXjFa1sHCtLX-ifjMt8VEoiPuzKa0ErH-h787p4MqxssYJKt7QaYCReGVIaJEu_HgpMBGRC/pubhtml)
+
+2. [와이어프레임](https://docs.google.com/presentation/d/e/2PACX-1vRgjDbUHXEy2dDrOFUiSDvOQ2hTvXXMSGbRQw3Bakq3Xh7Jcw5sVTkolmp-XKsWISoXxpxI6EjV6twg/pub?start=false&loop=false&delayms=3000)
+
+3. [프로토타입](https://invis.io/2GDPBHAT5)
+
+4. [디자인 시안](https://invis.io/DCE154SUH)
+
+5. [1차 배포 시연 동영상](https://youtu.be/DWtnFShrpKM)
+
+6. [최종 배포 홈페이지](https://dada.downmix.net)
+
+> 현재 SNS 로그인 공개 승인 절차 문제로 **카카오 로그인**만 가능합니다.
