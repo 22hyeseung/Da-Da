@@ -1,3 +1,18 @@
+
+---
+#### Index
+[1. About Service](https://github.com/huusz/Da-Da#about-service)
+
+[2. About Tech](https://github.com/huusz/Da-Da#about-tech)
+
+[3. About Team](https://github.com/huusz/Da-Da#about-team)
+
+[4. About Project](https://github.com/huusz/Da-Da#about-project)
+
+[5. All Links (Summary)](https://github.com/huusz/Da-Da#all-links)
+
+---
+
 # DA, DA
 <기록과 통계>를 통해 식습관을 모니터링 할 수 있고,
 칼로리 카운트를 통해 식단을 관리할 수 있는 회원제 <다이어트 다이어리> 서비스
@@ -195,7 +210,7 @@
 
 ---
 
-# Team
+# About Team
 
 ## Member
 
@@ -225,7 +240,7 @@
 
 ---
 
-# Project
+# About Project
 
 ## Workflow
 
@@ -284,7 +299,7 @@
 
 <br>
 
-## Project Links
+## All Links
 
 1. [Scrum Board](https://docs.google.com/spreadsheets/d/e/2PACX-1vR57PrRMvXjFa1sHCtLX-ifjMt8VEoiPuzKa0ErH-h787p4MqxssYJKt7QaYCReGVIaJEu_HgpMBGRC/pubhtml)
 
