@@ -225,6 +225,8 @@
 
 ---
 
+# Project
+
 ## Workflow
 
 #### 1) 2017-09-27 ~ 2017-09-30 (3 days)
@@ -282,7 +284,7 @@
 
 <br>
 
-## All Links
+## Project Links
 
 1. [Scrum Board](https://docs.google.com/spreadsheets/d/e/2PACX-1vR57PrRMvXjFa1sHCtLX-ifjMt8VEoiPuzKa0ErH-h787p4MqxssYJKt7QaYCReGVIaJEu_HgpMBGRC/pubhtml)
 
@@ -292,8 +294,15 @@
 
 4. [디자인 시안](https://invis.io/DCE154SUH)
 
-5. [1차 배포 시연 동영상](https://youtu.be/DWtnFShrpKM)
+5. [Github](https://github.com/huusz/Da-Da)
 
-6. [최종 배포 홈페이지](https://dada.downmix.net)
+6. [Github Projects](https://github.com/huusz/Da-Da/projects)
+
+7. [API Document](https://api.downmix.net/)
+
+8. [1차 배포 시연 동영상](https://youtu.be/DWtnFShrpKM)
+
+9. [최종 배포 홈페이지](https://dada.downmix.net)
+
 
 > 현재 SNS 로그인 공개 승인 절차 문제로 **카카오 로그인**만 가능합니다.
