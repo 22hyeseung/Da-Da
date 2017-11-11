@@ -246,7 +246,7 @@
 
 #### 1) 2017-09-27 ~ 2017-09-30 (3 days)
 - 기획, 디자인
-  - [와이어프레임](https://docs.google.com/presentation/d/e/2PACX-1vRgjDbUHXEy2dDrOFUiSDvOQ2hTvXXMSGbRQw3Bakq3Xh7Jcw5sVTkolmp-XKsWISoXxpxI6EjV6twg/pub?start=false&loop=false&delayms=3000) 제작
+  - [와이어프레임](static/dada-wireframe.pdf) 제작
   - [프로토타입](https://invis.io/2GDPBHAT5) 제작
   - [디자인 시안](https://invis.io/DCE154SUH) 제작
 
@@ -303,7 +303,8 @@
 
 1. [Scrum Board](https://docs.google.com/spreadsheets/d/e/2PACX-1vR57PrRMvXjFa1sHCtLX-ifjMt8VEoiPuzKa0ErH-h787p4MqxssYJKt7QaYCReGVIaJEu_HgpMBGRC/pubhtml)
 
-2. [와이어프레임](static/dada-wireframe.pdf)
+2. [와이어프레임 PDF](static/dada-wireframe.pdf)
+ [와이어프레임 Web](https://docs.google.com/presentation/d/e/2PACX-1vRgjDbUHXEy2dDrOFUiSDvOQ2hTvXXMSGbRQw3Bakq3Xh7Jcw5sVTkolmp-XKsWISoXxpxI6EjV6twg/pub?start=false&loop=false&delayms=3000)
 
 3. [프로토타입](https://invis.io/2GDPBHAT5)
 
