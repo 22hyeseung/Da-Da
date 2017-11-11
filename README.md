@@ -303,7 +303,7 @@
 
 1. [Scrum Board](https://docs.google.com/spreadsheets/d/e/2PACX-1vR57PrRMvXjFa1sHCtLX-ifjMt8VEoiPuzKa0ErH-h787p4MqxssYJKt7QaYCReGVIaJEu_HgpMBGRC/pubhtml)
 
-2. [와이어프레임](https://docs.google.com/presentation/d/e/2PACX-1vRgjDbUHXEy2dDrOFUiSDvOQ2hTvXXMSGbRQw3Bakq3Xh7Jcw5sVTkolmp-XKsWISoXxpxI6EjV6twg/pub?start=false&loop=false&delayms=3000)
+2. [와이어프레임](static/dada-wireframe.pdf)
 
 3. [프로토타입](https://invis.io/2GDPBHAT5)
 
