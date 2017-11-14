@@ -13,6 +13,7 @@ import 'semantic-ui-css/semantic.min.css'
 import App from './App'
 import Helmet from 'react-helmet'
 import LoginPage from './pages/LoginPage'
+import SharePage from './pages/SharePage'
 
 class Root extends Component {
   render() {
@@ -32,6 +33,10 @@ class Root extends Component {
                 component={LoginPage}
               />
               {/* 서비스 페이지 (로그인 이후 접근 가능) & 네비게이션 있는 페이지*/}
+              <Route
+                path="/share"
+                component={SharePage}
+              />
               <Route path="/" component={App} />
             </Switch>
           </div>

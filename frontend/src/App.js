@@ -10,7 +10,6 @@ import DiaryPage from './pages/DiaryPage'
 import ReportPage from './pages/ReportPage'
 import WeightPage from './pages/WeightPage'
 import SearchPage from './pages/SearchPage'
-import SharePage from './pages/SharePage'
 import RecipePage from './pages/RecipePage'
 // import Helmet from 'react-helmet'
 // import favicon from './static/img/favicon-96x96.png'
@@ -56,10 +55,6 @@ class App extends Component {
           <Route
             path="/recipe/:id"
             component={RecipePage}
-          />
-          <Route
-            path="/share"
-            component={SharePage}
           />
           <Route component={NotFoundPage} />
         </Switch>
