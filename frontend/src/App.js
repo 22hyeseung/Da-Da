@@ -10,7 +10,6 @@ import DiaryPage from './pages/DiaryPage'
 import ReportPage from './pages/ReportPage'
 import WeightPage from './pages/WeightPage'
 import SearchPage from './pages/SearchPage'
-import SharePage from './pages/SharePage'
 import RecipePage from './pages/RecipePage'
 import SearchResultPage from './pages/SearchPage/ResultPage'
 import NotFoundPage from './pages/404Page'
@@ -53,10 +52,6 @@ class App extends Component {
           <Route
             path="/recipe/:id"
             component={RecipePage}
-          />
-          <Route
-            path="/share"
-            component={SharePage}
           />
           <Route component={NotFoundPage} />
         </Switch>
