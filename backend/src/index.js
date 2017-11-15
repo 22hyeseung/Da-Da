@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const path = require('path')
 const express = require('express')
+const morgan = require('morgan')
 const authRouter = require('./router/auth')
 const userRouter = require('./router/user')
 const diaryRouter = require('./router/diary')
