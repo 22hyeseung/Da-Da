@@ -2,7 +2,7 @@ import React from 'react'
 import { Segment } from 'semantic-ui-react'
 import WeightChart from '../../components/Charts/WeightChart'
 
-const WeightGraph = () => {
+const Graph = () => {
   return (
     <div>
       <Segment
@@ -17,4 +17,4 @@ const WeightGraph = () => {
   )
 }
 
-export default WeightGraph
+export default Graph

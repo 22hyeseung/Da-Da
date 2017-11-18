@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+// styles
 import {
   Header,
   Button,
@@ -8,19 +9,18 @@ import {
   Icon,
 } from 'semantic-ui-react'
 import * as Style from './StyledWeight'
+// actions
 import {
   postWeightToDB,
-  fetchWeightFromDB,
   deleteWeightOfDB,
 } from '../../actions/weight'
-
-// helper: 오늘 날짜 API Query형식
+// helper functions
 import {
   dateStringForApiQuery,
   dateDashToKR,
 } from '../../helper/date'
 
-class WeightDaily extends Component {
+class DailyRecords extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -33,10 +33,6 @@ class WeightDaily extends Component {
         this.props.dateState,
       ),
     }
-  }
-
-  componentWillMount() {
-    this.props.fetchWeight()
   }
 
   // weight 입력값 유효성 검사
@@ -66,7 +62,6 @@ class WeightDaily extends Component {
   closeAndResetValue = e =>
     this.setState({
       weight: '',
-      // isPostMode: !this.state.isPostMode, -> 중복인것 같아 주석처리했어요!
     })
 
   // 입력 받은 체중 post
@@ -253,8 +248,6 @@ const mapDispatchToProps = dispatch => {
   return {
     postWeightToDB: requestBody =>
       dispatch(postWeightToDB(requestBody)),
-    fetchWeight: () =>
-      dispatch(fetchWeightFromDB()),
     deleteWeight: id =>
       dispatch(deleteWeightOfDB(id)),
   }
@@ -263,4 +256,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(WeightDaily)
+)(DailyRecords)

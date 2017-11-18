@@ -14,14 +14,10 @@ class RecipePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      recipeResult: [],
       isEmpty: true,
       recipeAmount: 1,
       loading: false,
     }
-    this.updateRecipeAmount = this.updateRecipeAmount.bind(
-      this,
-    )
   }
 
   componentDidMount() {
@@ -48,7 +44,7 @@ class RecipePage extends Component {
     }, 1500)
   }
 
-  updateRecipeAmount(recipeAmount) {
+  updateRecipeAmount = recipeAmount => {
     this.setState({ recipeAmount })
   }
 

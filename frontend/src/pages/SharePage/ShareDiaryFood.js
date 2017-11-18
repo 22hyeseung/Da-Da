@@ -11,26 +11,26 @@ import * as Style from './StyledDiaryFood'
 import './ShareDiary.css'
 
 class ShareDiaryFood extends Component {
-
   componentWillMount() {
-    const breackfast = [];  //아침
-    let breackfastKcal = 0;
-    const lunch = [];       //점심
-    let lunchKcal = 0;
-    const dinner = [];      //저녁
-    let dinnerKcal = 0;
-    const desert = [];      //간식
-    let desertKcal = 0;
-    const foodPictureList = [];
+    const breackfast = [] //아침
+    let breackfastKcal = 0
+    const lunch = [] //점심
+    let lunchKcal = 0
+    const dinner = [] //저녁
+    let dinnerKcal = 0
+    const desert = [] //간식
+    let desertKcal = 0
+    const foodPictureList = []
 
     this.props.foodLogs.map(result => {
-      if (result.eat_log_meal_tag === '아침') {
+      const mealTag = result.eat_log_meal_tag
+      if (mealTag === '아침') {
         breackfast.push(result)
-      }else if (result.eat_log_meal_tag === '점심') {
+      } else if (mealTag === '점심') {
         lunch.push(result)
-      }else if (result.eat_log_meal_tag === '저녁') {
+      } else if (mealTag === '저녁') {
         dinner.push(result)
-      }else if (result.eat_log_meal_tag === '간식') {
+      } else if (mealTag === '간식') {
         desert.push(result)
       }
 
@@ -40,13 +40,14 @@ class ShareDiaryFood extends Component {
     })
 
     this.props.reportKcal.map(result => {
-      if (result.eat_log_meal_tag === '아침') {
+      const mealTag = result.eat_log_meal_tag
+      if (mealTag === '아침') {
         breackfastKcal = result['sum(kcal)']
-      }else if (result.eat_log_meal_tag === '점심') {
+      } else if (mealTag === '점심') {
         lunchKcal = result['sum(kcal)']
-      }else if (result.eat_log_meal_tag === '저녁') {
+      } else if (mealTag === '저녁') {
         dinnerKcal = result['sum(kcal)']
-      }else if (result.eat_log_meal_tag === '간식') {
+      } else if (mealTag === '간식') {
         desertKcal = result['sum(kcal)']
       }
     })
@@ -69,7 +70,9 @@ class ShareDiaryFood extends Component {
       <Segment style={Style.foodBox}>
         {/* title 시작 */}
         <Header style={Style.header}>
-          <Header.Subheader style={Style.subHeader}>
+          <Header.Subheader
+            style={Style.subHeader}
+          >
             FOOD DIARY
           </Header.Subheader>
           오늘의 식단 다이어리
@@ -102,10 +105,14 @@ class ShareDiaryFood extends Component {
             </div>
             <Label style={Style.currentKcal}>
               아침 식사 섭취 칼로리
-              <Label.Detail>{this.state.breackfastKcal} kcal</Label.Detail>
+              <Label.Detail>
+                {this.state.breackfastKcal} kcal
+              </Label.Detail>
             </Label>
           </div>
-          <ShareDiaryFoodList foodList={this.state.breackfast} />
+          <ShareDiaryFoodList
+            foodList={this.state.breackfast}
+          />
         </Segment>
         {/* 아침 식사 끝 */}
         {/* 점심 식사 시작 */}
@@ -124,10 +131,14 @@ class ShareDiaryFood extends Component {
             </div>
             <Label style={Style.currentKcal}>
               점심 식사 섭취 칼로리
-              <Label.Detail>{this.state.lunchKcal} kcal</Label.Detail>
+              <Label.Detail>
+                {this.state.lunchKcal} kcal
+              </Label.Detail>
             </Label>
           </div>
-          <ShareDiaryFoodList foodList={this.state.lunch}/>
+          <ShareDiaryFoodList
+            foodList={this.state.lunch}
+          />
         </Segment>
         {/* 점심 식사 끝 */}
         {/* 저녁 식사 시작 */}
@@ -146,10 +157,14 @@ class ShareDiaryFood extends Component {
             </div>
             <Label style={Style.currentKcal}>
               저녁 식사 섭취 칼로리
-              <Label.Detail>{this.state.dinnerKcal} kcal</Label.Detail>
+              <Label.Detail>
+                {this.state.dinnerKcal} kcal
+              </Label.Detail>
             </Label>
           </div>
-          <ShareDiaryFoodList foodList={this.state.dinner} />
+          <ShareDiaryFoodList
+            foodList={this.state.dinner}
+          />
         </Segment>
         {/* 저녁 식사 끝 */}
         {/* 간식/기타 시작 */}
@@ -168,13 +183,21 @@ class ShareDiaryFood extends Component {
             </div>
             <Label style={Style.currentKcal}>
               간식/기타 섭취 칼로리
-              <Label.Detail>{this.state.desertKcal} kcal</Label.Detail>
+              <Label.Detail>
+                {this.state.desertKcal} kcal
+              </Label.Detail>
             </Label>
           </div>
-          <ShareDiaryFoodList foodList={this.state.desert} />
+          <ShareDiaryFoodList
+            foodList={this.state.desert}
+          />
         </Segment>
         {/* 간식/기타 끝 */}
-        <ShareDiaryFoodAlbum foodPictureList={this.state.foodPictureList} />
+        <ShareDiaryFoodAlbum
+          foodPictureList={
+            this.state.foodPictureList
+          }
+        />
         {/* 끼니별 식단 다이어리 끝 */}
       </Segment>
     )

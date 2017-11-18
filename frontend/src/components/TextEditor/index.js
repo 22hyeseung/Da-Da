@@ -65,12 +65,16 @@ class TextEditor extends Component {
     // content가 존재하면, state에 저장.
     // convertFromRaw: 자바스크립트 객체를 ContentState로 변환
     if (content) {
-      this.state.editorState = EditorState.createWithContent(
-        convertFromRaw(JSON.parse(content)),
-      )
+      this.setState({
+        editorState: EditorState.createWithContent(
+          convertFromRaw(JSON.parse(content)),
+        ),
+      })
     } else {
       // content가 존재하지 않으면 state를 초기화.
-      this.state.editorState = EditorState.createEmpty()
+      this.setState({
+        editorState: EditorState.createEmpty(),
+      })
     }
   }
 
@@ -85,6 +89,7 @@ class TextEditor extends Component {
   // 에디터에 입력되는 내용이 state로 설정됨
   onChange = editorState => {
     const contentState = editorState.getCurrentContent()
+
     this.saveContent(contentState)
     this.setState({
       editorState,

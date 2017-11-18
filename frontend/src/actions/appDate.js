@@ -1,5 +1,4 @@
 import * as types from '../actions/ActionTypes'
-import API_HOST from '../config'
 import { setDay } from '../helper/date'
 
 import {

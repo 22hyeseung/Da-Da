@@ -1,130 +1,136 @@
 .home-grid {
-    width: 1200px;
-    /* margin: 0 auto; */
-    position: absolute;
-    z-index: 2;
-    min-width: 1200px;
-    left: 50%;
-    transform: translateX(-50%);
+  /* margin: 0 auto; */
+  position: absolute;
+  z-index: 2;
+  min-width: 1200px;
+  left: 50%;
+  transform: translateX(-50%);
 }
-
 
 /* userInfo 라디오버튼 스타일링*/
 
-.home-userInfo-radio>label {
-    color: white !important;
+.home-userInfo-radio > label {
+  color: white !important;
 }
 
-.home-userInfo-label>label {
-    color: #fff !important;
-    font-weight: 100 !important;
+.home-userInfo-label > label {
+  color: #fff !important;
+  font-weight: 100 !important;
 }
 
-.home-userInfo-label>input {
-    background-color: transparent !important;
-    border: 1px solid #fff !important;
-    color: #fff !important;
+.home-userInfo-label > input {
+  background-color: transparent !important;
+  border: 1px solid #fff !important;
+  color: #fff !important;
 }
-
 
 /* userInfo 컴포넌트 시작 */
 
 .home-userInfo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    background-image: linear-gradient(234deg, #485563, #2a333d 97%, #29323c);
-    color: white;
-    font-family: 'Spoqa Han Sans';
-    font-weight: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  background-image: linear-gradient(
+    234deg,
+    #485563,
+    #2a333d 97%,
+    #29323c
+  );
+  color: white;
+  font-family: 'Spoqa Han Sans';
+  font-weight: 100;
 }
 
 .home-hero-content {
-    color: #fff;
-    z-index: 2;
-    text-align: center;
-    margin-top: 56px;
-    font-family: 'Spoqa Han Sans';
-    font-weight: 100;
+  color: #fff;
+  z-index: 2;
+  text-align: center;
+  margin-top: 56px;
+  font-family: 'Spoqa Han Sans';
+  font-weight: 100;
 }
 
 .home-hero-title {
-    font-size: 42px;
-    line-height: initial;
-    padding-top: 56px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  font-size: 42px;
+  line-height: initial;
+  padding-top: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.home-userInfo-input>input {
-    background: transparent;
+.home-userInfo-input > input {
+  background: transparent;
 }
 
 .home-rightColumn-first {
-    transition: all .4s ease-in-out;
-    z-index: 3;
+  transition: all 0.4s ease-in-out;
+  z-index: 3;
 }
 
 .home-rightColumn-first:hover {
-    opacity: .5;
-    background-position: 5%;
-    box-shadow: 20px 40px 60px 0 rgba(0, 0, 0, 0.4);
-    z-index: 3;
+  opacity: 0.5;
+  background-position: 5%;
+  box-shadow: 20px 40px 60px 0 rgba(0, 0, 0, 0.4);
+  z-index: 3;
 }
 
 .home-rightColumn-second {
-    transition: all .4s ease-in-out;
-    background-position-x: 30%;
-    z-index: 2;
+  transition: all 0.4s ease-in-out;
+  background-position-x: 30%;
+  z-index: 2;
 }
 
 .home-rightColumn-second:hover {
-    opacity: .5;
-    background-position-x: 33%;
-    box-shadow: 20px 40px 60px 0 rgba(0, 0, 0, 0.4);
-    z-index: 2;
+  opacity: 0.5;
+  background-position-x: 33%;
+  box-shadow: 20px 40px 60px 0 rgba(0, 0, 0, 0.4);
+  z-index: 2;
 }
 
 .home-rightColumn-third {
-    transition: all .4s ease-in-out;
-    background-position-x: 30%;
-    z-index: 1;
+  transition: all 0.4s ease-in-out;
+  background-position-x: 30%;
+  z-index: 1;
 }
 
 .home-rightColumn-third:hover {
-    opacity: .5;
-    background-position: 33%;
-    box-shadow: 20px 40px 60px 0 rgba(0, 0, 0, 0.4);
-    z-index: 1;
+  opacity: 0.5;
+  background-position: 33%;
+  box-shadow: 20px 40px 60px 0 rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
 
 .home-dashboard {
-    position: relative;
-    height: 350px;
-    overflow: hidden;
+  position: relative;
+  height: 350px;
+  overflow: hidden;
 }
 
 .home-dashboard-filter {
-    background-image: linear-gradient(242deg, #26d0ce, #1a2980);
-    opacity: .7;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    z-index: 1;
+  background-image: linear-gradient(
+    242deg,
+    #26d0ce,
+    #1a2980
+  );
+  opacity: 0.7;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
 }
 
-.home-dashboard>video {
-    width: 100%;
-    z-index: -1;
+.home-dashboard > video {
+  width: 100%;
+  z-index: -1;
 }
 
 .home-label {
-    z-index: 4;
-    position: absolute;
-    padding: 35px;
+  z-index: 4;
+  position: absolute;
+  padding: 35px;
 }

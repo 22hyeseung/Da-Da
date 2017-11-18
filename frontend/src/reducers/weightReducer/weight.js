@@ -1,4 +1,7 @@
 const DEFAULT_WEIGHT = {
+  isLoading: false,
+  errorState: false,
+  currentWeight: null,
   weightListItem: [],
 }
 
@@ -15,31 +18,62 @@ export const weightListReducer = (
   state = DEFAULT_WEIGHT,
   action,
 ) => {
-  if (action.type === 'FETCHED_WEIGHT_SUCCESS') {
-    return {
-      ...state,
-      weightListItem: [...action.payload],
-      currentWeight: action.payload.shift()
-        .day_log_kg,
-    }
-  }
-  if (
-    action.type === 'POST_AND_GET_WEIGHT_SUCCESS'
-  ) {
-    return {
-      weightListItem: [...action.payload],
-    }
-  }
-  if (
-    action.type ===
-    'DELETE_AND_GET_WEIGHT_SUCCESS'
-  ) {
-    return {
-      weightListItem: [...action.payload],
-    }
-  }
-  return {
-    ...state,
+  switch (action.type) {
+    case 'FETCHED_WEIGHT_REQUEST':
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case 'FETCHED_WEIGHT_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        weightListItem: [...action.payload],
+        currentWeight:
+          action.payload[0].day_log_kg,
+      }
+    case 'FETCHED_WEIGHT_FAILED':
+      return {
+        ...state,
+        isLoading: false,
+        errorState: true,
+      }
+    case 'POST_AND_GET_WEIGHT_REQUEST':
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case 'POST_AND_GET_WEIGHT_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        weightListItem: [...action.payload],
+      }
+    case 'POST_AND_GET_WEIGHT_FAILED':
+      return {
+        ...state,
+        isLoading: false,
+        errorState: true,
+      }
+    case 'DELETE_AND_GET_WEIGHT_REQUEST':
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case 'DELETE_AND_GET_WEIGHT_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        weightListItem: [...action.payload],
+      }
+    case 'DELETE_AND_GET_WEIGHT_FAILED':
+      return {
+        ...state,
+        isLoading: false,
+        errorState: true,
+      }
+    default:
+      return state
   }
 }
 

@@ -6,7 +6,6 @@ import Navigation from '../../components/Navigation'
 import WeekNavigation from './WeekNavigation'
 import SectionContainer from './SectionContainer/index'
 import Footer from '../../components/Footer'
-import ComponentLoader from '../../components/Loader/ComponentLoader'
 
 class ReportPage extends Component {
   render() {

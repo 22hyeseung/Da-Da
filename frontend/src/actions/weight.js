@@ -132,7 +132,6 @@ export const getAllWeightFromDB = () => {
           if (!aDay.day_log_kg) {
             return
           }
-
           chartData.push({
             current: aDay.day_log_kg,
             date: aDay.day_log_diary_date
@@ -150,8 +149,10 @@ export const getAllWeightFromDB = () => {
         })
       })
       .catch(error => {
-        type: types.GET_WEIGHT_ALL_FAILED
-        console.error(error)
+        dispatch({
+          type: types.GET_WEIGHT_ALL_FAILED,
+        })
+        console.log('getAllWeightFromDB error')
       })
   }
 }
