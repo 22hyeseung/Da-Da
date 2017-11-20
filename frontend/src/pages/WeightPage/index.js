@@ -1,36 +1,32 @@
-import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
+// styles
+import { Grid } from 'semantic-ui-react'
+import './weight.css'
+// actions
+import {
+  fetchWeightFromDB,
+  getAllWeightFromDB,
+} from '../../actions/weight'
+// components
 import Navigation from '../../components/Navigation'
-import WeightView from './WeightView'
-import WeightDaily from './WeightDaily'
-import WeightGraph from './WeightGraph'
-import './Weight.css'
-import { fetchWeightFromDB } from '../../actions/weight'
 import ComponentLoader from '../../components/Loader/ComponentLoader'
+import DashBoard from './DashBoard'
+import DailyRecords from './DailyRecords'
+import Graph from './Graph'
 
-class WeightPage extends React.Component {
-  state = {
-    loading: false,
+class WeightPage extends Component {
+  // willmount보다 빠름!
+  componentDidMount() {
+    this.props.fetchWeightLogs()
+    this.props.getAllWeightFromDB()
   }
-  componentWillMount() {
-    // this.props.fetchWeightLogs()
-    this.setState({ loading: true }, () =>
-      this.getDelay(),
-    )
-  }
-  getDelay = () => {
-    setTimeout(() => {
-      this.setState({
-        loading: false,
-      })
-    }, 2000)
-  }
+
   render() {
     return (
       <div className="weight-grid">
         <Navigation />
-        {this.state.loading ? (
+        {this.props.isLoading ? (
           <ComponentLoader />
         ) : (
           <Grid
@@ -41,8 +37,8 @@ class WeightPage extends React.Component {
               <Grid.Column
                 style={{ padding: '0px' }}
               >
-                <WeightView />
-                <WeightGraph />
+                <DashBoard />
+                <Graph />
               </Grid.Column>
               <Grid.Column
                 width={4}
@@ -50,7 +46,7 @@ class WeightPage extends React.Component {
                   padding: '0px 0px 0px 7px',
                 }}
               >
-                <WeightDaily />
+                <DailyRecords />
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -60,20 +56,22 @@ class WeightPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    foodresult: state.foodLogs.foodresult,
-  }
-}
+const mapStateToProps = state => ({
+  isLoading:
+    state.weightList.isLoading ||
+    state.weightAll.isLoading,
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchWeightLogs: () =>
-      dispatch(fetchWeightFromDB()),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  fetchWeightLogs: () =>
+    dispatch(fetchWeightFromDB()),
+  getAllWeightFromDB: () =>
+    dispatch(getAllWeightFromDB()),
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(WeightPage)
+
+// export default WeightPage

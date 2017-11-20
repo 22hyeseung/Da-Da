@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 // 스타일링
 import { Message } from 'semantic-ui-react'
@@ -16,7 +15,12 @@ import {
 } from 'recharts'
 
 // 파이 차트 colors
-const COLORS = ['#4e6b9a', '#a8b7c7', '#e5e5e5', '#314b75']
+const COLORS = [
+  '#4e6b9a',
+  '#a8b7c7',
+  '#e5e5e5',
+  '#314b75',
+]
 
 class ShareChart extends Component {
   constructor(props) {
@@ -27,10 +31,7 @@ class ShareChart extends Component {
   }
 
   render() {
-    const {
-      chartData,
-      errorState,
-    } = this.props
+    const { chartData, errorState } = this.props
 
     if (isEmpty(chartData)) {
       return (
@@ -54,7 +55,11 @@ class ShareChart extends Component {
     }
 
     return (
-      <PieChart width={140} height={83} margin={{ left: 45 }}>
+      <PieChart
+        width={140}
+        height={83}
+        margin={{ left: 45 }}
+      >
         <Pie
           key={String(Math.random())}
           data={chartData}

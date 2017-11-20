@@ -31,6 +31,7 @@ export const getCommentFromDB = date => {
       },
     )
       .then(res => res.json())
+      // .then(res => console.log(res))
       .then(data => {
         dispatch({
           type: types.GET_COMMENT_SUCCESS,

@@ -34,11 +34,14 @@ class HomePage extends Component {
       this.setState({
         loading: false,
       })
-    }, 4000)
+    }, 3000)
   }
 
   render() {
-    if (this.state.loading || typeof this.props.userInfo === 'undefined') {
+    if (
+      this.state.loading ||
+      typeof this.props.userInfo === 'undefined'
+    ) {
       return <Loader />
     }
     return (
