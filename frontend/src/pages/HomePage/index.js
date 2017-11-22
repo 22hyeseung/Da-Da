@@ -97,11 +97,11 @@ const mapStateToProps = state => ({
   token: state.auth.token,
 })
 
-const mapDispatchtoProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   saveUserInfo: () => dispatch(getUserInfo()),
 })
 
 export default connect(
   mapStateToProps,
-  mapDispatchtoProps,
+  mapDispatchToProps,
 )(HomePage)
