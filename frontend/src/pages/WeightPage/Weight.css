@@ -1,62 +1,56 @@
-.weight-grid {
-    width: 1200px;
-    margin: 0 auto;
-}
-
 .weight-current-wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 35px;
-    height: 166px;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 35px;
+  height: 166px;
+  justify-content: space-between;
 }
 
 .weight-current {
-    font-family: 'montserrat-semibold';
-    font-size: 70px;
-    color: #16325c;
+  font-family: 'montserrat-semibold';
+  font-size: 70px;
+  color: #16325c;
 }
 
 .weight-unit-kg {
-    padding-left: 3px;
-    font-family: 'montserrat-semibold';
-    font-size: 28px;
-    color: #16325c;
+  padding-left: 3px;
+  font-family: 'montserrat-semibold';
+  font-size: 28px;
+  color: #16325c;
 }
 
-.ui.list>.item:after {
-    display: none;
+.ui.list > .item:after {
+  display: none;
 }
 
 .weight-alert {
-    color: tomato;
-    padding: 10px;
+  color: tomato;
+  padding: 10px;
 }
 
 .weight-daily {
-    box-shadow: 0 2px 5px 0 rgba(79, 64, 64, 0.2);
-    padding: 27px 27px 180px 27px;
-    background-image: url('../../static/img/weight_img_3.png');
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    background-size: 100%;
-    border-radius: 4px;
+  box-shadow: 0 2px 5px 0 rgba(79, 64, 64, 0.2);
+  padding: 27px 27px 180px 27px;
+  background-image: url('../../static/img/weight_img_3.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 100%;
+  border-radius: 4px;
 }
 
 .weight-daily-value {
-    display: flex;
+  display: flex;
 }
 
 .weight-daily-value-unit {
-    margin-left: 5px
+  margin-left: 5px;
 }
 
 .weight-add-wrapper {
-    display: flex;
-    margin-bottom: 10px;
+  display: flex;
+  margin-bottom: 10px;
 }
-
 
 /*
 @media only screen and (max-width: 1200px) {
@@ -86,17 +80,13 @@
         margin: 0px 250px;
         /* 100%가 33rem */
 
-
 /* 추후 데이터 연동시, left에 수치값 적용
           left = (시작체중-목표체중)/(시작체중-현재체중)*33 */
-
 
 /* }
 } */
 
-
 /* Medium Devices, Desktops : ~ 992px */
-
 
 /*
 @media only screen and (max-width: 992px) {
@@ -111,17 +101,13 @@
         margin: 0px 130px;
         /* 100%가 34rem */
 
-
 /* 추후 데이터 연동시, left에 수치값 적용
         left = (시작체중-목표체중)/(시작체중-현재체중)*34  */
-
 
 /* }
 } */
 
-
 /* Small Devices, Tablets : ~ 768px */
-
 
 /*
 @media only screen and (max-width: 768px) {
@@ -136,10 +122,8 @@
         margin: 0px 130px;
         /* 100%가 13rem */
 
-
 /* 추후 데이터 연동시, left에 수치값 적용
       left = (시작체중-목표체중)/(시작체중-현재체중)*13  */
-
 
 /* }
     .weight-daily {
@@ -147,9 +131,7 @@
     }
 } */
 
-
 /* Extra Small Devices, Phones : ~ 480px */
-
 
 /*
 @media only screen and (max-width: 480px) {
@@ -167,10 +149,8 @@
         margin: 0px 90px;
         /* 100%가 7rem */
 
-
 /* 추후 데이터 연동시, left에 수치값 적용
     left = (시작체중-목표체중)/(시작체중-현재체중)*7  */
-
 
 /* }
     .weight-daily {
