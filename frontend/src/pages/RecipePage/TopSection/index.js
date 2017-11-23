@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { topContainer } from '../StyledRecipe'
-import RecipeTitleBox from './RecipeTitleBox'
+import RecipeTitleInfo from './RecipeTitleInfo'
 
 const TopContainer = props => {
   return (
@@ -13,7 +13,7 @@ const TopContainer = props => {
         }.jpg)`,
       }}
     >
-      <RecipeTitleBox />
+      <RecipeTitleInfo />
     </div>
   )
 }
