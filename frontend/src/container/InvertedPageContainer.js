@@ -1,6 +1,6 @@
 import React from 'react'
 import Navigation from '../components/Navigation'
-import Footer from '../components/Footer'
+// import Footer from '../components/Footer'
 
 const InvertedPageContainer = ({ children }) => {
   return (
@@ -13,7 +13,6 @@ const InvertedPageContainer = ({ children }) => {
     >
       <Navigation color="#fff" />
       {children}
-      <Footer />
     </div>
   )
 }
