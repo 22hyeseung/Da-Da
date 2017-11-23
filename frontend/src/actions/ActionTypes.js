@@ -126,12 +126,24 @@ export const DELETE_FITNESS_OF_DATABASE_FAILED =
 
 //==========================================
 // weight.js
+export const FETCHED_WEIGHT_REQUEST =
+  'FETCHED_WEIGHT_REQUEST'
 export const FETCHED_WEIGHT_SUCCESS =
   'FETCHED_WEIGHT_SUCCESS'
+export const FETCHED_WEIGHT_FAILED =
+  'FETCHED_WEIGHT_FAILED'
+export const POST_AND_GET_WEIGHT_REQUEST =
+  'POST_AND_GET_WEIGHT_REQUEST'
 export const POST_AND_GET_WEIGHT_SUCCESS =
   'POST_AND_GET_WEIGHT_SUCCESS'
+export const POST_AND_GET_WEIGHT_FAILED =
+  'POST_AND_GET_WEIGHT_FAILED'
+export const DELETE_AND_GET_WEIGHT_REQUEST =
+  'DELETE_AND_GET_WEIGHT_REQUEST'
 export const DELETE_AND_GET_WEIGHT_SUCCESS =
   'DELETE_AND_GET_WEIGHT_SUCCESS'
+export const DELETE_AND_GET_WEIGHT_FAILED =
+  'DELETE_AND_GET_WEIGHT_FAILED'
 
 export const GET_WEIGHT_ALL_REQUEST =
   'GET_WEIGHT_ALL_REQUEST'
@@ -280,10 +292,15 @@ export const GET_FOOD_SUMMARY_FAILED =
 
 //==========================================
 // recipe.js
+export const GET_RECIPE_REQUEST =
+  'GET_RECIPE_REQUEST'
 export const GET_RECIPE_SUCCESS =
   'GET_RECIPE_SUCCESS'
+export const GET_RECIPE_FAILED =
+  'GET_RECIPE_FAILED'
 export const GET_RECIPE_SEARCH_SUCCESS =
   'GET_RECIPE_SEARCH_SUCCESS'
+export const CHANGE_SERVING = 'CHANGE_SERVING'
 //==========================================
 
 //==========================================

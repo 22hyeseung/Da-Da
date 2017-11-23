@@ -1,8 +1,16 @@
 import * as types from '../actions/ActionTypes'
 import API_HOST from '../config'
 
+export const changeServing = serving => ({
+  type: types.CHANGE_SERVING,
+  payload: serving,
+})
+
 export const getRecipe = id => {
   return dispatch => {
+    dispatch({
+      type: types.GET_RECIPE_REQUEST,
+    })
     fetch(`${API_HOST}/recipe/search/${id}`, {
       method: 'GET',
       headers: {
@@ -18,6 +26,9 @@ export const getRecipe = id => {
         })
       })
       .catch(error => {
+        dispatch({
+          type: types.GET_RECIPE_FAILED,
+        })
         console.log('getRecipe error')
       })
   }

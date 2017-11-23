@@ -84,14 +84,8 @@ class CookingProcess extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          position: 'absolute',
-          left: '450px',
-          top: '46px',
-        }}
-      >
-        <form style={{ width: '884px' }}>
+      <div style={{ width: '780px' }}>
+        <form>
           {this.props.recipe.map((val, i) => {
             const divNaming = `cookingstep${i +
               1}`

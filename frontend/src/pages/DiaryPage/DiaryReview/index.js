@@ -22,40 +22,30 @@ import { dateStringForApiQuery } from '../../../helper/date'
 class DiaryReview extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      isLoading: this.props.isLoading,
-    }
   }
 
   // 다이어리 리뷰 페이지 첫 로드시 get.
   // db에 작성된 로그가 이미 있는지 확인하기 위함.
   // 데이터 유무에 따라 보여지는 화면이 다름. (읽기모드/쓰기모드)
-  componentWillMount() {
+  // componentWillMount() {
+  //   const { dateState } = this.props
+  //   const queryDate = dateStringForApiQuery(
+  //     dateState,
+  //   )
+  // }
+
+  componentDidMount() {
     const {
       getArticleFromDB,
       getCommentFromDB,
       dateState,
     } = this.props
-
     const queryDate = dateStringForApiQuery(
       dateState,
     )
-
-    getArticleFromDB(queryDate)
+    console.log(queryDate)
     getCommentFromDB(queryDate)
-
-    this.setState({ isLoading: true }, () =>
-      this.fetchData(),
-    )
-  }
-
-  // 로딩 화면 위해 1초 지연
-  fetchData = () => {
-    setTimeout(() => {
-      this.setState({
-        isLoading: false,
-      })
-    }, 1000)
+    getArticleFromDB(queryDate)
   }
 
   render() {
@@ -72,7 +62,7 @@ class DiaryReview extends Component {
     }
 
     // 로딩 중 (요청 후 응답이 오지 않은 상태)
-    if (this.state.isLoading) {
+    if (this.props.isLoading) {
       return <ComponentLoader />
     }
 

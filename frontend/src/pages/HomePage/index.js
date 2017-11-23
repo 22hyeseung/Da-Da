@@ -34,11 +34,14 @@ class HomePage extends Component {
       this.setState({
         loading: false,
       })
-    }, 4000)
+    }, 3000)
   }
 
   render() {
-    if (this.state.loading || typeof this.props.userInfo === 'undefined') {
+    if (
+      this.state.loading ||
+      typeof this.props.userInfo === 'undefined'
+    ) {
       return <Loader />
     }
     return (
@@ -94,11 +97,11 @@ const mapStateToProps = state => ({
   token: state.auth.token,
 })
 
-const mapDispatchtoProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   saveUserInfo: () => dispatch(getUserInfo()),
 })
 
 export default connect(
   mapStateToProps,
-  mapDispatchtoProps,
+  mapDispatchToProps,
 )(HomePage)

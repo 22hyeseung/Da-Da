@@ -37,7 +37,7 @@ class HomeFirstUserInfo extends Component {
   handleGenderChange = (e, { value }) => {
     this.setState({
       gender: value,
-      gender_enum: value === '남자' ? 1 : 2
+      gender_enum: value === '남자' ? 1 : 2,
     })
 
     if (value > 0)
@@ -120,8 +120,6 @@ class HomeFirstUserInfo extends Component {
       date,
     } = this.state
 
-    const { postUserInfoToDB } = this.props
-
     if (
       !birth ||
       birth < 1 ||
@@ -164,7 +162,6 @@ class HomeFirstUserInfo extends Component {
         },
       )
       .then(window.location.reload())
-
   }
 
   render() {

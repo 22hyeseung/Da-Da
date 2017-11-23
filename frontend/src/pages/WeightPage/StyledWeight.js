@@ -1,6 +1,11 @@
+import weightMeasure from '../../static/img/weight-img.svg'
 import arrowDown from '../../static/img/weight-daily-arrowDown.svg'
 import arrowUp from '../../static/img/weight-daily-arrowUp.svg'
 import trash from '../../static/img/trash_icon.svg'
+// progress flag
+import weightFlag from '../../static/img/weight-flag.svg'
+import startPoint from '../../static/img/Step-Active.svg'
+import endPoint from '../../static/img/Step-Not_Completed.svg'
 
 // 공통 style 시작
 export const header = {
@@ -20,7 +25,6 @@ export const subHeader = {
 }
 // 공통 style 끝
 
-// WeightDaily 컴포넌트 시작
 export const weightAddBtn = {
   backgroundImage:
     ' linear-gradient(261deg, #485563, #29323c)',
@@ -31,7 +35,6 @@ export const weightAddBtn = {
   alignItems: 'center',
   fontFamily: 'Spoqa Han Sans',
   padding: '9px',
-  // marginBottom: '10px',
 }
 
 export const listItem = {
@@ -62,6 +65,11 @@ export const icon = {
   arrowDown,
   arrowUp,
   trash,
+  weightFlag,
+  startPoint,
+  endPoint,
 }
 
-// WeightDaily 컴포넌트 끝
+export const img = {
+  weightMeasure,
+}
