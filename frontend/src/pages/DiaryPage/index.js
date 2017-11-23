@@ -1,17 +1,16 @@
 import React from 'react'
-import Navigation from '../../components/Navigation'
 import { Grid } from 'semantic-ui-react'
-import Footer from '../../components/Footer'
-import DiarySummary from './DiarySummary'
+// components
+import Container from '../../container/DefaultPageContainer'
 import DateNavigation from './DateNavigation'
 import TabMenu from './TabMenu'
 import ViewRouter from './ViewRouter'
+import DiarySummary from './DiarySummary'
 import './Diary.css'
 
 const DiaryPage = () => {
   return (
-    <div className="diary-grid">
-      <Navigation />
+    <Container>
       <DateNavigation />
       <Grid
         columns="equal"
@@ -32,8 +31,7 @@ const DiaryPage = () => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <Footer />
-    </div>
+    </Container>
   )
 }
 

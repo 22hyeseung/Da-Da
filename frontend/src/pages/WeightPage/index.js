@@ -9,7 +9,7 @@ import {
   getAllWeightFromDB,
 } from '../../actions/weight'
 // components
-import Navigation from '../../components/Navigation'
+import Container from '../../container/DefaultPageContainer'
 import ComponentLoader from '../../components/Loader/ComponentLoader'
 import DashBoard from './DashBoard'
 import DailyRecords from './DailyRecords'
@@ -24,8 +24,7 @@ class WeightPage extends Component {
 
   render() {
     return (
-      <div className="weight-grid">
-        <Navigation />
+      <Container>
         {this.props.isLoading ? (
           <ComponentLoader />
         ) : (
@@ -51,7 +50,7 @@ class WeightPage extends Component {
             </Grid.Row>
           </Grid>
         )}
-      </div>
+      </Container>
     )
   }
 }
@@ -73,5 +72,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(WeightPage)
-
-// export default WeightPage

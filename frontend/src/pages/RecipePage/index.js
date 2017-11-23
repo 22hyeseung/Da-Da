@@ -2,90 +2,39 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as styled from './StyledRecipe'
 // 컴포넌트
-import Navigation from '../../components/Navigation'
-import RecipeTitleBox from './RecipeTitleBox'
-import IngredientBox from './BottomSection/IngredientBox'
-import CookingProcess from './BottomSection/CookingProcess'
+import Container from '../../container/InvertedPageContainer'
+import Footer from '../../components/Footer'
 import ComponentLoader from '../../components/Loader/ComponentLoader'
+import TopSection from './TopSection'
+import BottomSection from './BottomSection'
 // 리덕스 액션
 import { getRecipe } from '../../actions/recipe'
 
 class RecipePage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isEmpty: true,
-      recipeAmount: 1,
-      loading: false,
-    }
-  }
-
   componentDidMount() {
-    this.setState({
-      recipeAmount: this.props.recipeContent
-        .recipe_serving,
-    })
-  }
-
-  componentWillMount() {
     this.props.getRecipe(
       this.props.match.params.id,
     )
-    this.setState({
-      recipeAmount: this.props.recipeContent
-        .recipe_serving,
-      loading: true,
-    })
-
-    setTimeout(() => {
-      this.setState({
-        loading: false,
-      })
-    }, 1500)
-  }
-
-  updateRecipeAmount = recipeAmount => {
-    this.setState({ recipeAmount })
   }
 
   render() {
-    if (this.state.loading) {
-      return (
-        <ComponentLoader
-          posiStyle={{ top: '200px' }}
-        />
-      )
+    if (this.props.isLoading) {
+      return <ComponentLoader />
     }
-
     return (
       <div style={styled.container}>
+        <TopSection />
+        <div style={styled.navigationBackground}>
+          <Container />
+        </div>
         <div
           style={{
-            ...styled.topContainer,
-            backgroundImage: `url(//s3.ap-northeast-2.amazonaws.com/dada-s3-file/recipe/${this
-              .props.recipeContent
-              .recipe_id}.jpg)`,
+            width: '1200px',
+            margin: '0 auto',
           }}
         >
-          <div
-            style={styled.navigationBackground}
-          >
-            <div style={styled.navigationGrid}>
-              <Navigation color="#fff" />
-            </div>
-          </div>
-          <RecipeTitleBox />
-        </div>
-        <div style={styled.bottomContainer}>
-          <IngredientBox
-            recipeAmount={this.state.recipeAmount}
-            updateRecipeAmount={
-              this.updateRecipeAmount
-            }
-          />
-          <CookingProcess
-            recipeAmount={this.state.recipeAmount}
-          />
+          <BottomSection />
+          <Footer />
         </div>
       </div>
     )
@@ -94,7 +43,7 @@ class RecipePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    recipeContent: state.recipe.recipeContent,
+    isLoading: state.recipe.isLoading,
   }
 }
 

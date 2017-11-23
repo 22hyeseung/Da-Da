@@ -292,10 +292,15 @@ export const GET_FOOD_SUMMARY_FAILED =
 
 //==========================================
 // recipe.js
+export const GET_RECIPE_REQUEST =
+  'GET_RECIPE_REQUEST'
 export const GET_RECIPE_SUCCESS =
   'GET_RECIPE_SUCCESS'
+export const GET_RECIPE_FAILED =
+  'GET_RECIPE_FAILED'
 export const GET_RECIPE_SEARCH_SUCCESS =
   'GET_RECIPE_SEARCH_SUCCESS'
+export const CHANGE_SERVING = 'CHANGE_SERVING'
 //==========================================
 
 //==========================================
