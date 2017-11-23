@@ -7,6 +7,7 @@ import {
   List,
 } from 'semantic-ui-react'
 import * as Style from '../StyledRecipe'
+import { changeServing } from '../../../actions/recipe'
 
 const options = [
   { key: 1, text: '1', value: 1 },
@@ -20,106 +21,91 @@ const options = [
   { key: 9, text: '9', value: 9 },
 ]
 
-class IngredientBox extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      recipeAmount: 1,
-    }
-  }
-
-  componentWillMount() {
-    this.setState({
-      recipeAmount: this.props.recipeContent
-        .recipe_serving,
-    })
-  }
-
-  handleAmount = (e, data) => {
-    this.props.updateRecipeAmount(data.value)
-    this.setState({ recipeAmount: data.value })
-  }
-
-  render() {
-    return (
-      <Card style={Style.cardWrap}>
-        <Card.Content>
-          <Card.Header style={Style.cardHeader}>
-            <p style={{ margin: '7px 0 15px 0' }}>
-              재료
-            </p>
-            <Icon name="user" size="big" />
-            <Dropdown
-              downward
-              compact
-              selection
-              options={options}
-              onChange={this.handleAmount}
-              defaultValue={
-                this.state.recipeAmount
-              }
-            />
-            <span
-              style={{
-                fontWeight: '300',
-                marginLeft: '7px',
-              }}
-            >
-              인분
-            </span>
-          </Card.Header>
-        </Card.Content>
-        <Card.Content style={Style.cardContent}>
-          <div style={Style.ingredientListWrap}>
-            <List
-              style={Style.ingredientNameList}
-            >
-              {this.props.recipeIngredient.map(
-                (val, i) => {
-                  return (
-                    <List.Item>
-                      {val.name}
-                    </List.Item>
-                  )
-                },
+const IngredientBox = props => {
+  return (
+    <Card style={Style.cardWrap}>
+      <Card.Content>
+        <Card.Header style={Style.cardHeader}>
+          <p style={{ margin: '7px 0 15px 0' }}>
+            재료
+          </p>
+          <Icon name="user" size="big" />
+          <Dropdown
+            downward
+            compact
+            selection
+            options={options}
+            onChange={e =>
+              props.changeServing(
+                e.target.textContent,
               )}
-            </List>
-            <List
-              style={Style.ingredientAmountList}
-            >
-              {this.props.recipeIngredient.map(
-                (val, i) => {
-                  return (
-                    <List.Item>
-                      {val.num /
-                        this.props.recipeContent
-                          .recipe_serving *
-                        this.state
-                          .recipeAmount}{' '}
-                      {val.unit}
-                    </List.Item>
-                  )
-                },
-              )}
-            </List>
-            <span style={Style.subLabel}>
-              * Tsp : 테이블스푼
-            </span>
-          </div>
-        </Card.Content>
-      </Card>
-    )
-  }
+            defaultValue={props.defaultServing}
+          />
+          <span
+            style={{
+              fontWeight: '300',
+              marginLeft: '7px',
+            }}
+          >
+            인분
+          </span>
+        </Card.Header>
+      </Card.Content>
+      <Card.Content style={Style.cardContent}>
+        <div style={Style.ingredientListWrap}>
+          <List style={Style.ingredientNameList}>
+            {props.recipeIngredient.map(
+              (val, i) => {
+                return (
+                  <List.Item>
+                    {val.name}
+                  </List.Item>
+                )
+              },
+            )}
+          </List>
+          <List
+            style={Style.ingredientAmountList}
+          >
+            {props.recipeIngredient.map(
+              (val, i) => {
+                return (
+                  <List.Item>
+                    {val.num /
+                      props.defaultServing *
+                      props.serving}{' '}
+                    {val.unit}
+                  </List.Item>
+                )
+              },
+            )}
+          </List>
+          <span style={Style.subLabel}>
+            * Tsp : 테이블스푼
+          </span>
+        </div>
+      </Card.Content>
+    </Card>
+  )
 }
 
 const mapStateToProps = state => {
   return {
-    recipeContent: state.recipe.recipeContent,
+    defaultServing: state.recipe.defaultServing,
+    serving: state.recipe.serving,
     recipeIngredient:
       state.recipe.recipeIngredient,
   }
 }
 
-export default connect(mapStateToProps, null)(
-  IngredientBox,
-)
+const mapDispatchToProps = dispatch => {
+  return {
+    changeServing: serving =>
+      dispatch(changeServing(serving)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(IngredientBox)

@@ -3,60 +3,23 @@ import { connect } from 'react-redux'
 import * as styled from './StyledRecipe'
 // 컴포넌트
 import Navigation from '../../components/Navigation'
-import RecipeTitleBox from './RecipeTitleBox'
-import IngredientBox from './BottomSection/IngredientBox'
-import CookingProcess from './BottomSection/CookingProcess'
 import ComponentLoader from '../../components/Loader/ComponentLoader'
+import RecipeTitleBox from './RecipeTitleBox'
+import BottomSection from './BottomSection'
 // 리덕스 액션
 import { getRecipe } from '../../actions/recipe'
 
 class RecipePage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isEmpty: true,
-      recipeAmount: 1,
-      loading: false,
-    }
-  }
-
   componentDidMount() {
-    this.setState({
-      recipeAmount: this.props.recipeContent
-        .recipe_serving,
-    })
-  }
-
-  componentWillMount() {
     this.props.getRecipe(
       this.props.match.params.id,
     )
-    this.setState({
-      recipeAmount: this.props.recipeContent
-        .recipe_serving,
-      loading: true,
-    })
-
-    setTimeout(() => {
-      this.setState({
-        loading: false,
-      })
-    }, 1500)
-  }
-
-  updateRecipeAmount = recipeAmount => {
-    this.setState({ recipeAmount })
   }
 
   render() {
-    if (this.state.loading) {
-      return (
-        <ComponentLoader
-          posiStyle={{ top: '200px' }}
-        />
-      )
+    if (this.props.isLoading) {
+      return <ComponentLoader />
     }
-
     return (
       <div style={styled.container}>
         <div
@@ -76,17 +39,7 @@ class RecipePage extends Component {
           </div>
           <RecipeTitleBox />
         </div>
-        <div style={styled.bottomContainer}>
-          <IngredientBox
-            recipeAmount={this.state.recipeAmount}
-            updateRecipeAmount={
-              this.updateRecipeAmount
-            }
-          />
-          <CookingProcess
-            recipeAmount={this.state.recipeAmount}
-          />
-        </div>
+        <BottomSection />
       </div>
     )
   }
@@ -95,6 +48,7 @@ class RecipePage extends Component {
 const mapStateToProps = state => {
   return {
     recipeContent: state.recipe.recipeContent,
+    isLoading: state.recipe.isLoading,
   }
 }
 
