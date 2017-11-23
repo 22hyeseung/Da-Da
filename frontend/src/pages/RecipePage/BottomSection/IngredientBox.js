@@ -38,7 +38,8 @@ const IngredientBox = props => {
             onChange={e =>
               props.changeServing(
                 e.target.textContent,
-              )}
+              )
+            }
             defaultValue={props.defaultServing}
           />
           <span
@@ -51,7 +52,7 @@ const IngredientBox = props => {
           </span>
         </Card.Header>
       </Card.Content>
-      <Card.Content style={Style.cardContent}>
+      <Card.Content>
         <div style={Style.ingredientListWrap}>
           <List style={Style.ingredientNameList}>
             {props.recipeIngredient.map(
@@ -80,9 +81,6 @@ const IngredientBox = props => {
               },
             )}
           </List>
-          <span style={Style.subLabel}>
-            * Tsp : 테이블스푼
-          </span>
         </div>
       </Card.Content>
     </Card>

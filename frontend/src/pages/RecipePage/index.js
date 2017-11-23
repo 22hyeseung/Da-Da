@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as styled from './StyledRecipe'
 // 컴포넌트
-import Navigation from '../../components/Navigation'
+import Container from '../../container/InvertedPageContainer'
+import Footer from '../../components/Footer'
 import ComponentLoader from '../../components/Loader/ComponentLoader'
-import RecipeTitleBox from './RecipeTitleBox'
+import TopSection from './TopSection'
 import BottomSection from './BottomSection'
 // 리덕스 액션
 import { getRecipe } from '../../actions/recipe'
@@ -22,24 +23,19 @@ class RecipePage extends Component {
     }
     return (
       <div style={styled.container}>
+        <TopSection />
+        <div style={styled.navigationBackground}>
+          <Container />
+        </div>
         <div
           style={{
-            ...styled.topContainer,
-            backgroundImage: `url(//s3.ap-northeast-2.amazonaws.com/dada-s3-file/recipe/${this
-              .props.recipeContent
-              .recipe_id}.jpg)`,
+            width: '1200px',
+            margin: '0 auto',
           }}
         >
-          <div
-            style={styled.navigationBackground}
-          >
-            <div style={styled.navigationGrid}>
-              <Navigation color="#fff" />
-            </div>
-          </div>
-          <RecipeTitleBox />
+          <BottomSection />
+          <Footer />
         </div>
-        <BottomSection />
       </div>
     )
   }
@@ -47,7 +43,6 @@ class RecipePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    recipeContent: state.recipe.recipeContent,
     isLoading: state.recipe.isLoading,
   }
 }
