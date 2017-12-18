@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-  Segment,
-  Message,
-} from 'semantic-ui-react'
+import { Segment, Message } from 'semantic-ui-react'
 import { reviewBox } from './StyledDiaryReview'
 
 // 컴포넌트
@@ -11,6 +8,7 @@ import ComponentLoader from '../../../components/Loader/ComponentLoader'
 import Comment from './Comment'
 import Article from './Article'
 import SubHeader from '../SubHeader'
+import ErrorMessage from '../../../components/Messages/ErrorMessage'
 
 // 리덕스 액션
 import { getCommentFromDB } from '../../../actions/review'
@@ -35,30 +33,15 @@ class DiaryReview extends Component {
   // }
 
   componentDidMount() {
-    const {
-      getArticleFromDB,
-      getCommentFromDB,
-      dateState,
-    } = this.props
-    const queryDate = dateStringForApiQuery(
-      dateState,
-    )
-    console.log(queryDate)
-    getCommentFromDB(queryDate)
-    getArticleFromDB(queryDate)
+    const queryDate = dateStringForApiQuery(this.props.dateState)
+    this.props.getCommentFromDB(queryDate)
+    this.props.getArticleFromDB(queryDate)
   }
 
   render() {
     // 시스템 에러 발생시
     if (this.props.errorState) {
-      return (
-        <Message negative>
-          <Message.Header>
-            죄송합니다. 예기치 못한 오류가 발생했어요. (◞‸◟；)
-          </Message.Header>
-          <p>잠시 후 다시 시도해 주세요. (; •͈́ ༚ •͈̀ )</p>
-        </Message>
-      )
+      return <ErrorMessage />
     }
 
     // 로딩 중 (요청 후 응답이 오지 않은 상태)
@@ -70,11 +53,7 @@ class DiaryReview extends Component {
       <div>
         <Segment style={reviewBox}>
           {/* title */}
-          <SubHeader
-            tabNameEN="REVIEW"
-            tabNameKR="일기"
-            icon="reviewIcon"
-          />
+          <SubHeader tabNameEN="REVIEW" tabNameKR="일기" icon="reviewIcon" />
           {/* 오늘의 반성일기 */}
           <Comment />
           {/* 오늘의 일기*/}
@@ -85,30 +64,21 @@ class DiaryReview extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     dateState: state.today.date,
     // 하나라도 에러면 에러
-    errorState:
-      state.comment.errorState ||
-      state.article.errorState,
+    errorState: state.comment.errorState || state.article.errorState,
     // 하나라도 로딩이면 로딩
-    isLoading:
-      state.comment.isLoading ||
-      state.article.isLoading,
+    isLoading: state.comment.isLoading || state.article.isLoading,
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getCommentFromDB: date =>
-      dispatch(getCommentFromDB(date)),
-    getArticleFromDB: date =>
-      dispatch(getArticleFromDB(date)),
+    getCommentFromDB: (date) => dispatch(getCommentFromDB(date)),
+    getArticleFromDB: (date) => dispatch(getArticleFromDB(date)),
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(DiaryReview)
+export default connect(mapStateToProps, mapDispatchToProps)(DiaryReview)

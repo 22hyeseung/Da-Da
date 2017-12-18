@@ -12,10 +12,7 @@ const ARTICLE_INITIAL_STATE = {
   articleSaved: [],
 }
 
-export const commentReducer = (
-  state = COMMENT_INITIAL_STATE,
-  action,
-) => {
+export const commentReducer = (state = COMMENT_INITIAL_STATE, action) => {
   switch (action.type) {
     case 'GET_COMMENT_REQUEST':
       return {
@@ -80,10 +77,7 @@ export const commentReducer = (
   }
 }
 
-export const articleReducer = (
-  state = ARTICLE_INITIAL_STATE,
-  action,
-) => {
+export const articleReducer = (state = ARTICLE_INITIAL_STATE, action) => {
   switch (action.type) {
     case 'GET_ARTICLE_REQUEST':
       return {
@@ -112,6 +106,7 @@ export const articleReducer = (
       return {
         ...state,
         isEditorMode: false,
+        isLoading: false,
         articleSaved: action.payload,
       }
     case 'POST_ARTICLE_FAILED':

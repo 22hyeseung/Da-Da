@@ -12,17 +12,14 @@ import {
 } from 'draft-js'
 
 // 에디터 스타일링
-import {
-  Style,
-  colorStyleMap,
-} from './StyledTextEditor'
+import { Style, colorStyleMap } from './StyledTextEditor'
 import './editor.css'
 
 // 상단 툴바
 import Toolbar from './Toolbar'
 
 // Block Style 커스텀
-const blockStyleFn = contentBlock => {
+const blockStyleFn = (contentBlock) => {
   const type = contentBlock.getType()
 
   switch (type) {
@@ -46,39 +43,29 @@ const blockStyleFn = contentBlock => {
 class TextEditor extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
-    this.handleKeyCommand = this.handleKeyCommand.bind(
-      this,
-    )
-
     // 에디터 영역 (내에서 아무데나 클릭시) focus
     this.focus = () => this.refs.editor.focus()
 
-    // tab => 리스트 depth
-    this.onTab = this._onTab.bind(this)
-
     // 로컬 스토리지에서 content를 가져옴.
-    const content = window.localStorage.getItem(
-      'content',
-    )
+    const content = window.localStorage.getItem('content')
 
     // content가 존재하면, state에 저장.
     // convertFromRaw: 자바스크립트 객체를 ContentState로 변환
     if (content) {
-      this.setState({
+      this.state = {
         editorState: EditorState.createWithContent(
           convertFromRaw(JSON.parse(content)),
         ),
-      })
+      }
     } else {
       // content가 존재하지 않으면 state를 초기화.
-      this.setState({
+      this.state = {
         editorState: EditorState.createEmpty(),
-      })
+      }
     }
   }
 
-  saveContent = content => {
+  saveContent = (content) => {
     // 에디터에 작성되는 내용을 로컬스토리지에 String으로 저장
     window.localStorage.setItem(
       'content',
@@ -87,7 +74,7 @@ class TextEditor extends Component {
   }
 
   // 에디터에 입력되는 내용이 state로 설정됨
-  onChange = editorState => {
+  onChange = (editorState) => {
     const contentState = editorState.getCurrentContent()
 
     this.saveContent(contentState)
@@ -97,20 +84,14 @@ class TextEditor extends Component {
   }
 
   // 키보드 명령 바인딩
-  keyBindingFn = e => {
+  keyBindingFn = (e) => {
     // ctrl(win) or command(osx) + b = 볼드체
-    if (
-      KeyBindingUtil.hasCommandModifier(e) &&
-      e.keyCode === 66 /* 'b' 키 */
-    ) {
+    if (KeyBindingUtil.hasCommandModifier(e) && e.keyCode === 66 /* 'b' 키 */) {
       return 'cbBold'
     }
 
     // ctrl(win) or command(osx) + i = 이탤릭체
-    if (
-      KeyBindingUtil.hasCommandModifier(e) &&
-      e.keyCode === 73 /* 'i' 키 */
-    ) {
+    if (KeyBindingUtil.hasCommandModifier(e) && e.keyCode === 73 /* 'i' 키 */) {
       return 'ciItalic'
     }
 
@@ -127,24 +108,18 @@ class TextEditor extends Component {
   }
 
   // 키 커맨드 핸들러
-  handleKeyCommand = command => {
+  handleKeyCommand = (command) => {
     let newState = RichUtils.handleKeyCommand(
       this.state.editorState, // 에디터에 입력된 내용
       command, // backspace, bold, italic 등...
     )
 
     if (command === 'cbBold') {
-      newState = RichUtils.toggleInlineStyle(
-        this.state.editorState,
-        'BOLD',
-      )
+      newState = RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD')
     }
 
     if (command === 'ciItalic') {
-      newState = RichUtils.toggleInlineStyle(
-        this.state.editorState,
-        'ITALIC',
-      )
+      newState = RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC')
     }
 
     if (command === 'c-StrikeThrough') {
@@ -161,15 +136,9 @@ class TextEditor extends Component {
     return 'not-handled'
   }
 
-  _onTab(e) {
+  _onTab = (e) => {
     const maxDepth = 4
-    this.onChange(
-      RichUtils.onTab(
-        e,
-        this.state.editorState,
-        maxDepth,
-      ),
-    )
+    this.onChange(RichUtils.onTab(e, this.state.editorState, maxDepth))
   }
 
   render() {
@@ -177,10 +146,7 @@ class TextEditor extends Component {
 
     return (
       <div style={Style.root}>
-        <Toolbar
-          editorState={editorState}
-          onChange={this.onChange}
-        />
+        <Toolbar editorState={editorState} onChange={this.onChange} />
 
         <div
           className="editorContainer"
@@ -192,9 +158,7 @@ class TextEditor extends Component {
             blockStyleFn={blockStyleFn}
             editorState={editorState}
             onChange={this.onChange}
-            handleKeyCommand={
-              this.handleKeyCommand
-            }
+            handleKeyCommand={this.handleKeyCommand}
             onTab={this.onTab}
             keyBindingFn={this.keyBindingFn}
             ref="editor"
