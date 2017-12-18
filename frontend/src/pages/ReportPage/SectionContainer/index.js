@@ -7,7 +7,10 @@ import '../Report.css'
 // helper함수
 import { dateStringForApiQuery } from '../../../helper/date'
 // 리덕스 액션
-import { getKcalSummaryFromDB } from '../../../actions/report'
+import {
+  getKcalSummaryFromDB,
+  getNutritionSummaryFromDB,
+} from '../../../actions/report'
 // 컴포넌트
 import SectionHeader from './SectionHeader'
 import CaloriesChart from '../../../components/Charts/CaloriesChart'
@@ -17,10 +20,11 @@ import NutritionSummary from './NutritionSummary'
 
 class SectionContainer extends Component {
   componentDidMount() {
-    const { lastDateState, beforeDateState, getKcalSummaryFromDB } = this.props
-    const startDate = dateStringForApiQuery(beforeDateState)
-    const endDate = dateStringForApiQuery(lastDateState)
-    getKcalSummaryFromDB(startDate, endDate)
+    const { startDate, endDate } = this.props
+    const queryStartDate = dateStringForApiQuery(startDate)
+    const queryEndDate = dateStringForApiQuery(endDate)
+    this.props.getKcalSummaryFromDB(queryStartDate, queryEndDate)
+    this.props.getNutritionSummaryFromDB(queryStartDate, queryEndDate)
   }
   render() {
     const { title } = this.props
@@ -56,8 +60,8 @@ class SectionContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    lastDateState: state.today.date,
-    beforeDateState: state.today.beforeDate,
+    endDate: state.today.date,
+    startDate: state.today.beforeDate,
   }
 }
 
@@ -65,6 +69,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getKcalSummaryFromDB: (startDate, endDate) =>
       dispatch(getKcalSummaryFromDB(startDate, endDate)),
+    getNutritionSummaryFromDB: (startDate, endDate) =>
+      dispatch(getNutritionSummaryFromDB(startDate, endDate)),
   }
 }
 

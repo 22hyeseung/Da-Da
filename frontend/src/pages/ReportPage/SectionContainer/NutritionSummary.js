@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 // 스타일링
-import {
-  Segment,
-  Header,
-  List,
-} from 'semantic-ui-react'
+import { Segment, Header, List } from 'semantic-ui-react'
 import {
   smSegment,
   smHeader,
@@ -16,116 +12,64 @@ import {
 } from '../StyledReport'
 import '../Report.css'
 
-import { dateStringForApiQuery } from '../../../helper/date'
-// 리덕스 액션
-import { getNutritionSummaryFromDB } from '../../../actions/report'
+const NutritionSummary = (props) => {
+  console.log(props.nutritionSummary)
+  let sum =
+    props.nutritionSummary.carb +
+    props.nutritionSummary.protein +
+    props.nutritionSummary.fat
 
-class NutritionSummary extends Component {
-  componentWillMount() {
-    const {
-      lastDateState,
-      beforeDateState,
-      getNutritionSummaryFromDB,
-    } = this.props
+  let summaryData = [
+    { 탄수화물: props.nutritionSummary.carb },
+    { 단백질: props.nutritionSummary.protein },
+    { 지방: props.nutritionSummary.fat },
+  ]
 
-    const startDate = dateStringForApiQuery(
-      lastDateState,
-    )
-    const endDate = dateStringForApiQuery(
-      beforeDateState,
-    )
-    getNutritionSummaryFromDB(startDate, endDate)
-  }
+  return (
+    <Segment
+      style={{
+        ...smSegment,
+        backgroundImage: `url(${summaryImg.nutrition})`,
+      }}
+    >
+      <Header style={smHeader}>
+        <Header.Subheader style={smSubHeader}>SUMMARY</Header.Subheader>
+        요약
+      </Header>
 
-  render() {
-    let { nutritionSummary } = this.props
-    let sum =
-      nutritionSummary.carb +
-      nutritionSummary.protein +
-      nutritionSummary.fat
+      <List style={smListLayout}>
+        <List.Item>
+          <List.Content floated="right" style={smListContent}>
+            (kcal)
+          </List.Content>
+        </List.Item>
 
-    const nutritionArray = [
-      { 탄수화물: nutritionSummary.carb },
-      { 단백질: nutritionSummary.protein },
-      { 지방: nutritionSummary.fat },
-    ]
-
-    return (
-      <Segment
-        style={{
-          ...smSegment,
-          backgroundImage: `url(${summaryImg.nutrition})`,
-        }}
-      >
-        <Header style={smHeader}>
-          <Header.Subheader style={smSubHeader}>
-            SUMMARY
-          </Header.Subheader>
-          요약
-        </Header>
-
-        <List style={smListLayout}>
-          <List.Item>
+        {summaryData.map((val) => (
+          <List.Item
+            className="report-summary-list"
+            style={{ display: 'flex' }}
+          >
             <List.Content
-              floated="right"
-              style={smListContent}
+              className="report-summary-title"
+              verticalAlign="bottom"
             >
-              (kcal)
+              {Object.keys(val)}
+            </List.Content>
+            <List.Content floated="right" className="report-result">
+              {/*합계가 0이면 = 데이터가 없으면 계산 하지 않고 0%로 렌더*/}
+              {!sum ? 0 : Math.round(Object.values(val) / sum * 100)} %
             </List.Content>
           </List.Item>
-
-          {nutritionArray.map(val => (
-            <List.Item
-              className="report-summary-list"
-              style={{ display: 'flex' }}
-            >
-              <List.Content
-                className="report-summary-title"
-                verticalAlign="bottom"
-              >
-                {Object.keys(val)}
-              </List.Content>
-              <List.Content
-                floated="right"
-                className="report-result"
-              >
-                {Math.round(
-                  Object.values(val) / sum * 100,
-                )}{' '}
-                %
-              </List.Content>
-            </List.Item>
-          ))}
-        </List>
-      </Segment>
-    )
-  }
+        ))}
+      </List>
+    </Segment>
+  )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    nutritionSummary:
-      state.nutritionSummary.summaryData,
-    lastDateState: state.today.date,
-    beforeDateState: state.today.beforeDate,
+    nutritionSummary: state.nutritionSummary.summaryData,
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getNutritionSummaryFromDB: (
-      startDate,
-      endDate,
-    ) =>
-      dispatch(
-        getNutritionSummaryFromDB(
-          (startDate, endDate),
-        ),
-      ),
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(NutritionSummary)
+export default connect(mapStateToProps, null)(NutritionSummary)
