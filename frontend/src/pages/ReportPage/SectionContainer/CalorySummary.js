@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 // 스타일링
-import {
-  Segment,
-  Header,
-  List,
-} from 'semantic-ui-react'
+import { Segment, Header, List } from 'semantic-ui-react'
 import {
   smSegment,
   smHeader,
@@ -16,109 +12,80 @@ import {
 } from '../StyledReport'
 import '../Report.css'
 
-// helper함수
-import { dateStringForApiQuery } from '../../../helper/date'
-// 리덕스 액션
-import { getKcalSummaryFromDB } from '../../../actions/report'
+const CalorySummary = (props) => {
+  let sum = 0
+  let summaryData = [
+    {
+      eat_log_meal_tag: '저녁',
+      'sum(kcal)': 0,
+    },
+    {
+      eat_log_meal_tag: '간식',
+      'sum(kcal)': 0,
+    },
+    {
+      eat_log_meal_tag: '점심',
+      'sum(kcal)': 0,
+    },
+    {
+      eat_log_meal_tag: '아침',
+      'sum(kcal)': 0,
+    },
+  ]
 
-class CalorySummary extends Component {
-  componentWillMount() {
-    const {
-      lastDateState,
-      beforeDateState,
-      getKcalSummaryFromDB,
-    } = this.props
+  props.calorySummary.map((val, i) => {
+    if (val.eat_log_meal_tag) {
+      summaryData[i]['sum(kcal)'] = val['sum(kcal)']
+    }
+    sum += val['sum(kcal)']
+  })
 
-    const startDate = dateStringForApiQuery(
-      beforeDateState,
-    )
-    const endDate = dateStringForApiQuery(
-      lastDateState,
-    )
-    getKcalSummaryFromDB(startDate, endDate)
-  }
+  return (
+    <Segment
+      style={{
+        ...smSegment,
+        backgroundImage: `url(${summaryImg.calory})`,
+        backgroundSize: '90%',
+      }}
+    >
+      <Header style={smHeader}>
+        <Header.Subheader style={smSubHeader}>SUMMARY</Header.Subheader>
+        요약
+      </Header>
 
-  render() {
-    const { calorySummary } = this.props
-    let sum = 0
-    calorySummary.map(val => {
-      return (sum += val['sum(kcal)'])
-    })
-
-    return (
-      <Segment
-        style={{
-          ...smSegment,
-          backgroundImage: `url(${summaryImg.calory})`,
-          backgroundSize: '90%',
-        }}
-      >
-        <Header style={smHeader}>
-          <Header.Subheader style={smSubHeader}>
-            SUMMARY
-          </Header.Subheader>
-          요약
-        </Header>
-
-        <List style={smListLayout}>
-          <List.Item>
-            <List.Content
-              floated="right"
-              style={smListContent}
-            >
-              (kcal)
+      <List style={smListLayout}>
+        <List.Item>
+          <List.Content floated="right" style={smListContent}>
+            (kcal)
+          </List.Content>
+        </List.Item>
+        {summaryData.map((val, i) => (
+          <List.Item
+            key={i}
+            className="report-summary-list"
+            style={{ display: 'flex' }}
+          >
+            <List.Content className="report-summary-title">
+              {val['eat_log_meal_tag']}
+            </List.Content>
+            <List.Content floated="right" className="report-rate">
+              {/*합계가 0이면 = 데이터가 없으면 계산 하지 않고 0%로 렌더*/}
+              {!sum ? 0 : Math.round(val['sum(kcal)'] / sum * 100)} %
+            </List.Content>
+            <List.Content floated="right" className="report-result">
+              {Math.round(val['sum(kcal)'])}
             </List.Content>
           </List.Item>
-          {calorySummary.map(val => (
-            <List.Item
-              className="report-summary-list"
-              style={{ display: 'flex' }}
-            >
-              <List.Content className="report-summary-title">
-                {val['eat_log_meal_tag']}
-              </List.Content>
-              <List.Content
-                floated="right"
-                className="report-rate"
-              >
-                {Math.round(
-                  val['sum(kcal)'] / sum * 100,
-                )}{' '}
-                %
-              </List.Content>
-              <List.Content
-                floated="right"
-                className="report-result"
-              >
-                {Math.round(val['sum(kcal)'])}
-              </List.Content>
-            </List.Item>
-          ))}
-        </List>
-      </Segment>
-    )
-  }
+        ))}
+      </List>
+    </Segment>
+  )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    calorySummary:
-      state.calorySummary.summaryData,
-    lastDateState: state.today.date,
-    beforeDateState: state.today.beforeDate,
+    calorySummary: state.calorySummary.summaryData,
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getKcalSummaryFromDB: (startDate, endDate) =>
-      dispatch(
-        getKcalSummaryFromDB(startDate, endDate),
-      ),
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CalorySummary)
+export default connect(mapStateToProps, null)(CalorySummary)
