@@ -37,7 +37,7 @@ const CalorySummary = (props) => {
     if (val.eat_log_meal_tag) {
       summaryData[i]['sum(kcal)'] = val['sum(kcal)']
     }
-    sum += val['sum(kcal)']
+    return (sum += val['sum(kcal)'])
   })
 
   return (

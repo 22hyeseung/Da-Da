@@ -13,7 +13,6 @@ import {
 import '../Report.css'
 
 const NutritionSummary = (props) => {
-  console.log(props.nutritionSummary)
   let sum =
     props.nutritionSummary.carb +
     props.nutritionSummary.protein +
