@@ -23,7 +23,6 @@
     "riek": "^1.1.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.74.2",
-    "typeface-spoqa-han-sans2": "^2.1.2",
     "wfk-montserrat": "^1.0.0"
   },
   "scripts": {
