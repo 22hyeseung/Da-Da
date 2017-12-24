@@ -71,41 +71,40 @@ export const userName = {
 
 // 팝업창 전체 래퍼
 export const PopWrap = {
-  textAlign: 'center',
+  textAlign: 'left',
   color: '#16325c',
-  width: '220px',
-  height: '280px',
+  width: '332px',
+  height: '184px',
 }
 
 // 첫번째 Row = 유저 사진, 이름, 신체(키/몸무게) 정보
 export const row_1 = {
-  height: '85px',
   paddingBottom: '0',
 }
 
 // 첫번째 row 첫번째 col
 export const row_1_col_1 = {
   padding: '0',
-  marginLeft: '21px',
-  width: '80px',
+  margin: '10px 21px',
+  width: '100px',
 }
 
 // 팝업창에서의 사용자 이미지
 export const avatar_pop = {
   ...avatar,
-  width: '69px',
-  height: '69px',
+  width: '180px',
+  height: '100px',
 }
 
 // 첫번째 row 두번째 col
 export const row_1_col_2 = {
-  padding: '10px 0 0 0',
-  width: '102px',
+  padding: '15px 0 0 0',
+  width: '190px',
 }
 
 // 팝업창에서의 사용자 이름
 export const username_pop = {
-  fontSize: '21px',
+  fontSize: '16px',
   fontWeight: '700',
   textAlign: 'left',
   margin: '0',
@@ -114,38 +113,21 @@ export const username_pop = {
 
 // 사용자 신체 정보
 export const userSize = {
-  fontFamily: 'Montserrat-medium',
+  textAlign: 'center',
   fontSize: '12px',
   width: '102px',
-  height: '27px',
-  lineHeight: '27px',
+  height: '20px',
+  lineHeight: '21px',
   color: '#fff',
-  borderRadius: '21px',
+  margin: '3px 0',
+  borderRadius: '4px',
   backgroundImage: 'linear-gradient(255deg, #26d0ce, #1a2980)',
-}
-
-// 두번째 Row = D+day, 목표 체중 정보
-export const row_2 = {
-  padding: '0',
-  height: '115px',
-}
-
-export const row_2_segment = {
-  marginLeft: '21px',
-  height: '114px',
 }
 
 export const d_day = {
   fontSize: '14px',
-  fontWeight: '700',
-}
-
-export const goalWrap = {
-  width: '150px',
-  height: '55px',
-  lineHeight: '27.5px',
-  borderRadius: '4px',
-  border: 'solid 1px #d8dde6',
+  fontWeight: '400',
+  lineHeight: '24px',
 }
 
 export const goalWeight = { fontWeight: '700' }
@@ -153,7 +135,7 @@ export const goalWeight = { fontWeight: '700' }
 // 세번째 Row = 로그아웃 버튼
 export const row_3 = {
   height: '40px',
-  marginLeft: '108px',
+  marginLeft: '214px',
   padding: '0',
 }
 
