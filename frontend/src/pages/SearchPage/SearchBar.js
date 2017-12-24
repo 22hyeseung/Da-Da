@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 // 스타일링
-import {
-  Grid,
-  Header,
-  Input,
-  Icon,
-} from 'semantic-ui-react'
+import { Grid, Header, Input, Icon } from 'semantic-ui-react'
 import * as Style from './StyledSearch'
 import './Search.css'
 
@@ -29,62 +24,45 @@ class SearchBar extends Component {
   }
 
   componentWillMount() {
-    const {
-      getFoodSummaryFromDB,
-      getGoalKcal,
-      dateState,
-    } = this.props
+    const { getFoodSummaryFromDB, getGoalKcal, dateState } = this.props
 
     const date = dateStringForApiQuery(dateState)
     getFoodSummaryFromDB(date)
     getGoalKcal(date)
   }
 
-  handleSearch = e => {
+  handleSearch = (e) => {
     if (e.keyCode === 13) {
-      this.props.history.push(
-        '/search/' + this.state.searchText,
-      )
+      this.props.history.push('/search/' + this.state.searchText)
     }
   }
 
-  handleSearchTextChange = e => {
+  handleSearchTextChange = (e) => {
     this.setState({ searchText: e.target.value })
   }
 
   render() {
-    const {
-      defaultGoalCalorie,
-      eatKcal,
-      burnKcal,
-      kcalGoal,
-    } = this.props
+    const { defaultGoalCalorie, eatKcal, burnKcal, kcalGoal } = this.props
 
-    const goalCalorie = kcalGoal
-      ? kcalGoal
-      : defaultGoalCalorie
+    const goalCalorie = kcalGoal ? kcalGoal : defaultGoalCalorie
 
-    const restCalorie =
-      goalCalorie - eatKcal + burnKcal
+    const restCalorie = goalCalorie - eatKcal + burnKcal
 
     return (
       <div>
         <Grid>
           <Grid.Column width={3} />
-          <Grid.Column
-            width={10}
-            style={Style.centerGrid}
-          >
+          <Grid.Column width={10} style={Style.centerGrid}>
             <Grid.Row style={Style.headerGrid}>
               <Header
-                style={Style.h1}
-                as="h1"
+                style={Style.h2}
+                as="h2"
                 content="어떤 요리를 원하세요?"
                 inverted
               />
               <Header
-                style={Style.h2}
-                as="h2"
+                style={Style.h1}
+                as="h1"
                 content="레시피를 검색해보세요."
                 inverted
               />
@@ -96,17 +74,13 @@ class SearchBar extends Component {
                   name="search"
                   link
                   onClick={() =>
-                    this.props.history.push(
-                      '/search/' +
-                        this.state.searchText,
-                    )}
+                    this.props.history.push('/search/' + this.state.searchText)
+                  }
                 />
               }
               value={this.state.searchText}
               onKeyDown={this.handleSearch}
-              onChange={
-                this.handleSearchTextChange
-              }
+              onChange={this.handleSearchTextChange}
             />
             <Header
               style={Style.h5}
@@ -122,27 +96,22 @@ class SearchBar extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     dateState: state.today.date,
     eatKcal: state.diarySummary.eatKcal,
     burnKcal: state.diarySummary.burnKcal,
     kcalGoal: state.goalKcal.kcal,
-    defaultGoalCalorie:
-      state.auth.userInfo.userDefaultKcal,
+    defaultGoalCalorie: state.auth.userInfo.userDefaultKcal,
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getFoodSummaryFromDB: date =>
-      dispatch(getFoodSummaryFromDB(date)),
-    getGoalKcal: date =>
-      dispatch(getGoalKcal(date)),
+    getFoodSummaryFromDB: (date) => dispatch(getFoodSummaryFromDB(date)),
+    getGoalKcal: (date) => dispatch(getGoalKcal(date)),
   }
 }
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(
-    SearchBar,
-  ),
+  connect(mapStateToProps, mapDispatchToProps)(SearchBar),
 )

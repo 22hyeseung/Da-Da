@@ -15,7 +15,7 @@
 
 .home-userInfo-label > label {
   color: #fff !important;
-  font-weight: 100 !important;
+  font-weight: 300 !important;
 }
 
 .home-userInfo-label > input {
@@ -34,15 +34,10 @@
   min-height: 100%;
   width: auto;
   height: auto;
-  background-image: linear-gradient(
-    234deg,
-    #485563,
-    #2a333d 97%,
-    #29323c
-  );
+  background-image: linear-gradient(234deg, #485563, #2a333d 97%, #29323c);
   color: white;
-  font-family: 'Spoqa Han Sans';
-  font-weight: 100;
+  font-family: 'NanumSquareRound', sans-serif;
+  font-weight: 300;
 }
 
 .home-hero-content {
@@ -50,8 +45,8 @@
   z-index: 2;
   text-align: center;
   margin-top: 56px;
-  font-family: 'Spoqa Han Sans';
-  font-weight: 100;
+  font-family: 'NanumSquareRound', sans-serif;
+  font-weight: 300;
 }
 
 .home-hero-title {
@@ -112,11 +107,7 @@
 }
 
 .home-dashboard-filter {
-  background-image: linear-gradient(
-    242deg,
-    #26d0ce,
-    #1a2980
-  );
+  background-image: linear-gradient(242deg, #26d0ce, #1a2980);
   opacity: 0.7;
   height: 100%;
   width: 100%;

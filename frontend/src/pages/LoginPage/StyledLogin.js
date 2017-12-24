@@ -7,12 +7,12 @@ export const header = {
 export const subHeader = {
   color: '#fff',
   fontSize: '21px',
-  fontWeight: '100',
+  fontWeight: '300',
   marginBottom: '10px',
   lineHeight: '1.35',
 }
 
 export const Btn = {
   color: '#fff',
-  fontWeight: '100',
+  fontWeight: '300',
 }

@@ -121,8 +121,7 @@ export const userSize = {
   lineHeight: '27px',
   color: '#fff',
   borderRadius: '21px',
-  backgroundImage:
-    'linear-gradient(255deg, #26d0ce, #1a2980)',
+  backgroundImage: 'linear-gradient(255deg, #26d0ce, #1a2980)',
 }
 
 // 두번째 Row = D+day, 목표 체중 정보
@@ -162,11 +161,10 @@ export const logout = { height: '36px' }
 
 export const notLogoutBtn = {
   color: 'white',
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
   padding: '10px 34px',
-  backgroundImage:
-    'linear-gradient(259deg, #26d0ce, #1a2980)',
+  backgroundImage: 'linear-gradient(259deg, #26d0ce, #1a2980)',
   marginRight: '0px',
 }
 

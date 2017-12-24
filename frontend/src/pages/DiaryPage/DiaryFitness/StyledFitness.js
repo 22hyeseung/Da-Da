@@ -21,7 +21,7 @@ export const icon = {
 
 export const modalName = {
   textAlign: 'center',
-  fontWeight: '100',
+  fontWeight: '300',
   fontSize: '21px',
   borderBottom: '1px solid #e0e5ee',
   padding: '0px 0px 14px',
@@ -77,7 +77,7 @@ export const text = {
 }
 
 export const listItemTime = {
-  fontFamily: 'Spoqa Han Sans',
+  fontFamily: "'NanumSquareRound', sans-serif",
   letterSpacing: '-.3px',
   color: '#16325c',
   fontWeight: '400',
@@ -86,8 +86,8 @@ export const listItemTime = {
 }
 
 export const listItemKcal = {
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
 }
 
 export const textBig = {
@@ -186,7 +186,7 @@ export const errorIcon = {
 
 export const noResultMsg = {
   color: '#a8b7c7',
-  fontWeight: '100',
+  fontWeight: '300',
   display: 'block',
 }
 
@@ -229,7 +229,7 @@ export const searchResultWrapper = {
 
 export const searchDefaultMsg = {
   color: '#a8b7c7',
-  fontWeight: '100',
+  fontWeight: '300',
   marginTop: '10px',
 }
 

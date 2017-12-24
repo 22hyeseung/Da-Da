@@ -4,10 +4,10 @@ import foodBG from '../../static/img/food_bg.png'
 // 공통 스타일 시작
 export const header = {
   fontSize: '28px',
-  fontWeight: '100',
+  fontWeight: '300',
   color: '#16325C',
   marginBottom: '42px',
-  fontFamily: 'Spoqa Han Sans',
+  fontFamily: "'NanumSquareRound', sans-serif",
 }
 
 export const subHeader = {
@@ -24,18 +24,17 @@ export const segmentDefault = {
 }
 
 export const cancelBtn = {
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
   padding: '10px 34px',
 }
 
 export const submitBtn = {
   color: 'white',
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
   padding: '10px 34px',
-  backgroundImage:
-    'linear-gradient(249deg, #485563, #29323c)',
+  backgroundImage: 'linear-gradient(249deg, #485563, #29323c)',
   marginRight: '0px',
 }
 // 공통 스타일 끝
@@ -54,7 +53,7 @@ export const currentKcal = {
   height: '25px',
   borderRadius: '43px',
   padding: '4px 26px',
-  fontWeight: '100',
+  fontWeight: '300',
   fontSize: '14px',
   lineHeight: 'inherit',
   backgroundColor: 'rgba(245,244,240,0.86)',
@@ -71,7 +70,7 @@ export const addBtn = {
   fontWeight: '200',
   display: 'flex',
   alignItems: 'center',
-  fontFamily: 'Spoqa Han Sans',
+  fontFamily: "'NanumSquareRound', sans-serif",
 }
 
 // food tab view 컴포넌트 끝
@@ -80,7 +79,7 @@ export const addBtn = {
 export const searchLabel = {
   backgroundColor: 'white',
   borderTop: '1px solid #D8DDE6',
-  fontFamily: 'Spoqa Han Sans',
+  fontFamily: "'NanumSquareRound', sans-serif",
 }
 
 export const modalGrid = {
@@ -117,8 +116,8 @@ export const modalThirdGrid = {
 }
 
 export const modalThirdGridHeader = {
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
 }
 export const modalThirdGridBox = {
   height: '288px',
@@ -168,7 +167,7 @@ export const albumCard = {
 export const albumLabel = {
   backgroundColor: 'rgba(22, 50, 92, 0.7)',
   color: '#fff',
-  fontWeight: '100',
+  fontWeight: '300',
 }
 
 export const albumCardLabelTop = {

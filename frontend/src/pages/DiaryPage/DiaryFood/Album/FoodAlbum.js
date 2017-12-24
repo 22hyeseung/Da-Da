@@ -11,9 +11,7 @@ class FoodAlbum extends React.Component {
     const album =
       this.props.foodResult.length === 0
         ? []
-        : this.props.foodResult.map(
-            (item, key) => item.eat_log_picture,
-          )
+        : this.props.foodResult.map((item, key) => item.eat_log_picture)
 
     return (
       <div className="diary-food-album">
@@ -25,7 +23,7 @@ class FoodAlbum extends React.Component {
         >
           오늘의 식단 앨범
         </Header>
-        {album.every(elem => elem == null) ? (
+        {album.every((elem) => elem == null) ? (
           <div style={{ position: 'relative' }}>
             <div
               style={{
@@ -47,12 +45,12 @@ class FoodAlbum extends React.Component {
                 style={{
                   color: '#a8b7c7',
                   marginTop: '14px',
-                  fontWeight: '100',
+                  fontWeight: '300',
                   textAlign: 'center',
                 }}
               >
-                <b>사진 등록으로</b> <br />더 멋진{' '}
-                <b>식단 일기</b>를 만들어 보세요!
+                <b>사진 등록으로</b> <br />더 멋진 <b>식단 일기</b>를 만들어
+                보세요!
               </span>
             </div>
             <img
@@ -74,12 +72,10 @@ class FoodAlbum extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     foodResult: state.foodLogs.foodresult,
   }
 }
 
-export default connect(mapStateToProps, null)(
-  FoodAlbum,
-)
+export default connect(mapStateToProps, null)(FoodAlbum)

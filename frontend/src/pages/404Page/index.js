@@ -7,10 +7,9 @@ const button = {
   width: '190px',
   marginTop: '37px',
   borderRadius: '18px',
-  backgroundImage:
-    'linear-gradient(259deg, #26d0ce, #1a2980)',
+  backgroundImage: 'linear-gradient(259deg, #26d0ce, #1a2980)',
   color: '#fff',
-  fontWeight: '100',
+  fontWeight: '300',
 }
 
 export default class NotFoundPage extends Component {
@@ -20,9 +19,7 @@ export default class NotFoundPage extends Component {
         <div className="notFound-grid">
           <Navigation color="#fff" />
           <div class="notFound-content">
-            <span className="notFound-header">
-              404
-            </span>
+            <span className="notFound-header">404</span>
             <span className="notFound-subHeader">
               현재 찾을 수 없는 페이지를 요청 하셨습니다.
             </span>

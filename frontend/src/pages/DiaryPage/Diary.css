@@ -82,12 +82,7 @@
 }
 
 .diary-food-addBtn:hover {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.5
-  ) !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
   border: 1.5px dashed #16325c !important;
   bottom: 2px;
   position: relative;
@@ -159,15 +154,13 @@
 }
 
 .diary-food-search-label-result-title {
-  font-family: 'Spoqa Han Sans';
-  font-weight: 500;
+  font-weight: 700;
   padding-right: 26px;
   font-size: 14px;
 }
 
 .diary-food-search-label-result-kcal {
-  font-family: 'Spoqa Han Sans';
-  font-weight: 500;
+  font-weight: 700;
   font-size: 14px;
 }
 
@@ -183,7 +176,6 @@
 }
 
 .diary-food-search-label-result-unit {
-  font-family: 'Spoqa Han Sans';
   font-weight: 300;
   padding-left: 7px;
   font-size: 14px;
@@ -253,7 +245,7 @@
 
 .diary-food-meal-list-card-firstRow-title {
   font-size: 21px;
-  font-weight: 100;
+  font-weight: 300;
   color: #16325c;
   margin-bottom: 35px;
 }
@@ -283,7 +275,7 @@
 }
 
 .diary-food-meal-list-card-nutrition-title {
-  font-weight: 100;
+  font-weight: 300;
   font-size: 14px;
   color: #54698d;
   margin-right: 7px;

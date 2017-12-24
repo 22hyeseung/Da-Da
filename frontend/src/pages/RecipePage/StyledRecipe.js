@@ -23,8 +23,7 @@ export const navigationBackground = {
   minWidth: '1200px',
   backgroundColor: 'red',
   opacity: '0.7',
-  backgroundImage:
-    'linear-gradient(268deg, #485563, #29323c)',
+  backgroundImage: 'linear-gradient(268deg, #485563, #29323c)',
   position: 'absolute',
   top: 0,
   right: 0,
@@ -56,8 +55,7 @@ export const ribbonLabel = {
   width: '202px',
   height: '37px',
   borderRadius: '0 33px 33px 0',
-  backgroundImage:
-    'linear-gradient(260deg, #485563, #29323c)',
+  backgroundImage: 'linear-gradient(260deg, #485563, #29323c)',
   fontSize: '14px',
   fontWeight: '300',
   lineHeight: '20px',
@@ -161,8 +159,7 @@ export const btnDiarySubmit = {
   margin: '37px',
   boxShadow: '4px 4px 4px #888888',
   border: 'none',
-  fontWeight: '100',
+  fontWeight: '300',
   color: '#fff',
-  backgroundImage:
-    'linear-gradient(216deg, #26d0ce, #1a2980)',
+  backgroundImage: 'linear-gradient(216deg, #26d0ce, #1a2980)',
 }

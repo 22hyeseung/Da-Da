@@ -1,108 +1,108 @@
 .share-wrapper {
-    background-image: linear-gradient(214deg, #243b55, #141e30);
-    color: #fff;
+  background-image: linear-gradient(214deg, #243b55, #141e30);
+  color: #fff;
 }
 
 .share-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 70px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 70px;
 }
 
 .share-bg-logo {
-    font-family: montserrat-bold;
-    opacity: 0.11;
-    mix-blend-mode: overlay;
-    position: absolute;
-    font-size: 210px;
-    top: 0;
-    right: 0;
-    line-height: 147px;
+  font-family: montserrat-bold;
+  opacity: 0.11;
+  mix-blend-mode: overlay;
+  position: absolute;
+  font-size: 210px;
+  top: 0;
+  right: 0;
+  line-height: 147px;
 }
 
 .share-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 35px 0px;
+  display: flex;
+  justify-content: space-between;
+  padding: 35px 0px;
 }
 
 .share-header-title {
-    display: flex;
-    flex-direction: column;
-    font-weight: 100;
-    font-size: 35px;
-    line-height: 1.37;
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  font-size: 35px;
+  line-height: 1.37;
 }
 
 .share-header-summary {
-    display: flex;
+  display: flex;
 }
 
 .share-summary-plusKcal,
 .share-summary-minusKcal {
-    width: 160px;
-    border-radius: 4px;
-    border: solid 1px #d8dde6;
-    padding: 28px 21px;
-    margin-left: 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  width: 160px;
+  border-radius: 4px;
+  border: solid 1px #d8dde6;
+  padding: 28px 21px;
+  margin-left: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .share-summary-meal,
 .share-summary-nutritions {
-    width: 160px;
-    border-radius: 4px;
-    background-image: linear-gradient(225deg, #243b55, #141e30);
-    padding: 14px;
-    margin-left: 14px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+  width: 160px;
+  border-radius: 4px;
+  background-image: linear-gradient(225deg, #243b55, #141e30);
+  padding: 14px;
+  margin-left: 14px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .share-summary-meal-graph,
 .share-summary-nutritions-graph {
-    position: absolute;
-    bottom: 14px;
-    right: 14px;
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
 }
 
 .share-summary-plusKcal-label,
 .share-summary-minusKcal-label {
-    font-size: 14px;
-    font-weight: 100;
-    line-height: 1.21;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.21;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .share-summary-plusKcal-num,
 .share-summary-minusKcal-num {
-    font-family: montserrat-bold;
-    font-size: 35px;
-    line-height: 35px;
+  font-family: montserrat-bold;
+  font-size: 35px;
+  line-height: 35px;
 }
 
 .share-footer {
-    font-size: 14px;
-    position: fixed;
-    text-align: center;
-    bottom: 0;
-    width: 100%;
-    padding: 14px;
-    background-image: url('../../static/img/share-footer.jpg');
-    background-position-x: 60%;
-    background-size: cover;
-    cursor: pointer;
-    color: #fff;
-    font-weight: 100;
+  font-size: 14px;
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  padding: 14px;
+  background-image: url('../../static/img/share-footer.jpg');
+  background-position-x: 60%;
+  background-size: cover;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 300;
 }
 
 .share-footer-logo {
-    margin-left: 7px;
-    font-family: 'montserrat-semibold';
+  margin-left: 7px;
+  font-family: 'montserrat-semibold';
 }

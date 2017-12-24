@@ -2,21 +2,13 @@
   color: white;
   font-size: 21px;
   display: block;
-  font-weight: 100;
+  font-weight: 300;
   margin-bottom: 21px;
 }
 
 .loader-body {
-  background: -webkit-linear-gradient(
-    191deg,
-    #26d0ce,
-    #1a2980
-  );
-  background: linear-gradient(
-    259deg,
-    #26d0ce,
-    #1a2980
-  );
+  background: -webkit-linear-gradient(191deg, #26d0ce, #1a2980);
+  background: linear-gradient(259deg, #26d0ce, #1a2980);
   position: fixed;
   top: 0;
   left: 0;

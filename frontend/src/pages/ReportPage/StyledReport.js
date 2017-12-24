@@ -5,11 +5,11 @@ import summaryImg_nutrition from '../../static/img/report_nutrition_img.png'
 // Container
 export const header = {
   fontSize: '28px',
-  fontWeight: '100',
+  fontWeight: '300',
   textAlign: 'left',
   color: '#16325C',
   margin: '0px',
-  fontFamily: 'Spoqa Han Sans',
+  fontFamily: "'NanumSquareRound', sans-serif",
 }
 
 export const subHeader = {
@@ -46,8 +46,8 @@ export const smSegment = {
 
 export const smHeader = {
   fontSize: '28px',
-  fontWeight: '100',
-  fontFamily: 'Spoqa Han Sans',
+  fontWeight: '300',
+  fontFamily: "'NanumSquareRound', sans-serif",
   textAlign: 'left',
   color: '#16325C',
   margin: '0px',
@@ -71,7 +71,7 @@ export const smListLayout = {
 
 export const smListContent = {
   fontSize: '12px',
-  fontWeight: '100',
+  fontWeight: '300',
   color: '#a8b7c7',
 }
 // ============================================================

@@ -1,21 +1,15 @@
 import React, { Component } from 'react'
-import {
-  Segment,
-  Header,
-} from 'semantic-ui-react'
+import { Segment, Header } from 'semantic-ui-react'
 import bgImg from '../../static/img/fitness_bg.png'
 import FitnessIcon from '../../static/img/diary-fitness_default.svg'
 import ShareDiaryFitnessList from './ShareDiaryFitnessList'
-
 
 const listWrapper = {
   width: '80%',
   color: 'black',
 }
 
-
 class ShareDiaryFitness extends Component {
-
   render() {
     return (
       <Segment
@@ -36,7 +30,7 @@ class ShareDiaryFitness extends Component {
         <Header
           style={{
             fontSize: '28px',
-            fontWeight: '100',
+            fontWeight: '300',
             color: '#16325C',
             marginBottom: '42px',
           }}
@@ -61,13 +55,9 @@ class ShareDiaryFitness extends Component {
           />
         </Header>
         <div style={listWrapper}>
-          {
-            this.props.burn.length > 0 ? (
-              this.props.burn.map(val => <ShareDiaryFitnessList burn={val} />)
-            ) : (
-              '오늘은 운동을 하지 않았어요..'
-            )
-          }
+          {this.props.burn.length > 0
+            ? this.props.burn.map((val) => <ShareDiaryFitnessList burn={val} />)
+            : '오늘은 운동을 하지 않았어요..'}
         </div>
       </Segment>
     )

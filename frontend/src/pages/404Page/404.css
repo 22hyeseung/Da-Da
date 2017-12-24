@@ -1,42 +1,42 @@
 .notFound-grid {
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .notFound-wrapper {
-    background: url('../../static/img/404bg.jpg');
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+  background: url('../../static/img/404bg.jpg');
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
 }
 
 .notFound-content {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .notFound-header {
-    font-family: 'montserrat-semibold';
-    font-size: 210px;
-    line-height: initial;
-    text-shadow: 0 2px 19px rgba(79, 64, 64, 0.58);
+  font-family: 'montserrat-semibold';
+  font-size: 210px;
+  line-height: initial;
+  text-shadow: 0 2px 19px rgba(79, 64, 64, 0.58);
 }
 
 .notFound-subHeader {
-    font-weight: 100;
-    font-size: 21px;
-    border-bottom: 2px dashed #fff;
-    padding-bottom: 10px;
+  font-weight: 300;
+  font-size: 21px;
+  border-bottom: 2px dashed #fff;
+  padding-bottom: 10px;
 }

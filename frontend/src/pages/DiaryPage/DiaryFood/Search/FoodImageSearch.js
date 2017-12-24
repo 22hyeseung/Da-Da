@@ -11,10 +11,7 @@ import {
   Checkbox,
   Icon,
 } from 'semantic-ui-react'
-import {
-  cancelBtn,
-  submitBtn,
-} from '../../StyledDiary'
+import { cancelBtn, submitBtn } from '../../StyledDiary'
 import {
   postFoodImgToDB,
   clearSearchData,
@@ -44,7 +41,7 @@ class FoodImageSearch extends Component {
   }
 
   // modal show
-  show = dimmer => () => {
+  show = (dimmer) => () => {
     this.setState({ dimmer, open: true })
     this.props.clearSearchData() //사진 검색시, 기존에 검색결과가 남아있는 경우를 초기화시켜준다.
   }
@@ -66,7 +63,7 @@ class FoodImageSearch extends Component {
   }
 
   // 업로드한 파일을 post보냄
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
     if (!this.state.imagePreviewUrl) {
       return this.setState({
@@ -101,15 +98,10 @@ class FoodImageSearch extends Component {
     })
   }
   // 리스크중 체크한 항목을 value에 저장한다.
-  handleCheckChange = (e, { value }) =>
-    this.setState({ value })
+  handleCheckChange = (e, { value }) => this.setState({ value })
 
   render() {
-    const {
-      open,
-      dimmer,
-      imagePreviewUrl,
-    } = this.state
+    const { open, dimmer, imagePreviewUrl } = this.state
 
     // 초기화
     let imagePreview = null
@@ -117,7 +109,7 @@ class FoodImageSearch extends Component {
     if (imagePreviewUrl) {
       imagePreview = (
         <form
-          onSubmit={e => this.handleSubmit(e)}
+          onSubmit={(e) => this.handleSubmit(e)}
           style={{
             display: 'flex',
             flexDirection: 'column',
@@ -133,32 +125,22 @@ class FoodImageSearch extends Component {
               }}
             />
           ) : null}
-          <Dropzone
-            style={{ width: 'none' }}
-            onDrop={this.onDrop.bind(this)}
-          >
+          <Dropzone style={{ width: 'none' }} onDrop={this.onDrop.bind(this)}>
             <img
               src={imagePreviewUrl}
               style={{
                 width: '100%',
                 marginBottom: '7px',
               }}
-              className={
-                this.state.loading
-                  ? 'diary-image-blur'
-                  : null
-              }
+              className={this.state.loading ? 'diary-image-blur' : null}
               alt="업로드한 사진 미리 확인하는 이미지입니다."
             />
           </Dropzone>
-          <label
-            for="upload"
-            style={{ display: 'flex' }}
-          >
+          <label for="upload" style={{ display: 'flex' }}>
             <div
               style={{
-                fontFamily: 'Spoqa Han Sans',
-                fontWeight: '100',
+                fontFamily: "'NanumSquareRound', sans-serif",
+                fontWeight: '300',
                 padding: '7px 34px',
                 borderRadius: '4px',
                 border: '1px solid #e0e1e2',
@@ -172,9 +154,7 @@ class FoodImageSearch extends Component {
                 ...submitBtn,
                 marginLeft: '7px',
               }}
-              onClick={
-                this.createPayloadAndPostToDB
-              }
+              onClick={this.createPayloadAndPostToDB}
               loading={this.state.loading}
             >
               사진 분석하기
@@ -185,8 +165,7 @@ class FoodImageSearch extends Component {
             className="diary-food-meal-file-upload__input"
             type="file"
             name="file-upload"
-            onChange={e =>
-              this.handleImageChange(e)}
+            onChange={(e) => this.handleImageChange(e)}
           />
           <span
             style={{
@@ -216,9 +195,7 @@ class FoodImageSearch extends Component {
                 style={{ width: '56%' }}
                 alt="이미지 업로드 캐릭터 아이콘"
               />
-              <span style={{ marginTop: '28px' }}>
-                이미지를 업로드하세요
-              </span>
+              <span style={{ marginTop: '28px' }}>이미지를 업로드하세요</span>
               <span style={{ marginTop: '14px' }}>
                 직접 드래그하여 등록도 가능합니다.
               </span>
@@ -228,8 +205,7 @@ class FoodImageSearch extends Component {
               className="diary-food-meal-file-upload__input"
               type="file"
               name="file-upload"
-              onChange={e =>
-                this.handleImageChange(e)}
+              onChange={(e) => this.handleImageChange(e)}
             />
           </div>
         </Dropzone>
@@ -237,21 +213,14 @@ class FoodImageSearch extends Component {
     }
 
     return (
-      <Grid.Column
-        width={1}
-        style={Style.modalGrid}
-      >
+      <Grid.Column width={1} style={Style.modalGrid}>
         <img
           src={cameraIcon}
           className="diary-camera-icon"
           onClick={this.show('blurring')}
           alt="이미지를 업로드하여 식단을 검색"
         />
-        <Modal
-          dimmer={dimmer}
-          open={open}
-          onClose={this.close}
-        >
+        <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header
             style={{
               fontWeight: '200',
@@ -269,29 +238,18 @@ class FoodImageSearch extends Component {
             }}
           >
             <Segment style={Style.modalUpload}>
-              <div className="diary-file-upload">
-                {imagePreview}
-              </div>
+              <div className="diary-file-upload">{imagePreview}</div>
             </Segment>
             {/* vision 분석결과가 있을 때 와 없을 때 분기 */}
-            {new Object(this.props.visionResult)
-              .length !== 0 ? (
-              <Segment
-                style={Style.modalThirdGridBox}
-              >
-                <Header
-                  as="h3"
-                  style={
-                    Style.modalThirdGridHeader
-                  }
-                >
+            {new Object(this.props.visionResult).length !== 0 ? (
+              <Segment style={Style.modalThirdGridBox}>
+                <Header as="h3" style={Style.modalThirdGridHeader}>
                   찾으시는 음식이 맞나요?
                 </Header>
                 <div className="diary-food-search-photo-modal-list">
                   <List divided relaxed>
                     {/* 분석결과가 없을 때 분기 */}
-                    {this.props.visionResult ===
-                    undefined ? (
+                    {this.props.visionResult === undefined ? (
                       ''
                     ) : (
                       <div>
@@ -304,41 +262,24 @@ class FoodImageSearch extends Component {
                         ) : null}
                         <div
                           className={
-                            this.state.loading
-                              ? 'diary-image-blur'
-                              : null
+                            this.state.loading ? 'diary-image-blur' : null
                           }
                         >
-                          {this.props.visionResult.map(
-                            (item, i) => (
-                              <List.Item
-                                style={{
-                                  padding:
-                                    '7px 0px',
-                                  borderBottom:
-                                    '1px solid #e0e1e2',
-                                }}
-                              >
-                                <Checkbox
-                                  label={
-                                    item.description
-                                  }
-                                  value={
-                                    item.description
-                                  }
-                                  checked={
-                                    this.state
-                                      .value ===
-                                    item.description
-                                  }
-                                  onChange={
-                                    this
-                                      .handleCheckChange
-                                  }
-                                />
-                              </List.Item>
-                            ),
-                          )}
+                          {this.props.visionResult.map((item, i) => (
+                            <List.Item
+                              style={{
+                                padding: '7px 0px',
+                                borderBottom: '1px solid #e0e1e2',
+                              }}
+                            >
+                              <Checkbox
+                                label={item.description}
+                                value={item.description}
+                                checked={this.state.value === item.description}
+                                onChange={this.handleCheckChange}
+                              />
+                            </List.Item>
+                          ))}
                         </div>
                       </div>
                     )}
@@ -349,8 +290,7 @@ class FoodImageSearch extends Component {
                   style={{
                     textAlign: 'center',
                     background: 'transparent',
-                    borderTop:
-                      '1px solid #e0e1e2',
+                    borderTop: '1px solid #e0e1e2',
                     fontWeight: '300',
                     cursor: 'pointer',
                   }}
@@ -378,27 +318,16 @@ class FoodImageSearch extends Component {
                   color="teal"
                   style={{ marginLeft: '7px' }}
                 />
-                <span
-                  style={{ color: '#16325C' }}
-                >
-                  {this.state.value}
-                </span>
+                <span style={{ color: '#16325C' }}>{this.state.value}</span>
               </div>
             ) : (
               <span />
             )}
             <div>
-              <Button
-                basic
-                style={cancelBtn}
-                onClick={this.close}
-              >
+              <Button basic style={cancelBtn} onClick={this.close}>
                 취소
               </Button>
-              <Button
-                style={submitBtn}
-                onClick={this.close}
-              >
+              <Button style={submitBtn} onClick={this.close}>
                 등록
               </Button>
             </div>
@@ -409,23 +338,17 @@ class FoodImageSearch extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     visionResult: state.foodLogs.visionresult,
   }
 }
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    postFoodImgToDB: file =>
-      dispatch(postFoodImgToDB(file)),
-    clearSearchData: () =>
-      dispatch(clearSearchData()),
-    saveSelect: food =>
-      dispatch(saveSelect(food)),
+    postFoodImgToDB: (file) => dispatch(postFoodImgToDB(file)),
+    clearSearchData: () => dispatch(clearSearchData()),
+    saveSelect: (food) => dispatch(saveSelect(food)),
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(FoodImageSearch)
+export default connect(mapStateToProps, mapDispatchToProps)(FoodImageSearch)

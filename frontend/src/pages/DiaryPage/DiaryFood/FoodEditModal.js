@@ -1,10 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {
-  Modal,
-  Input,
-  Button,
-} from 'semantic-ui-react'
+import { Modal, Input, Button } from 'semantic-ui-react'
 import { submitBtn } from '../StyledDiary'
 import { updateFoodOfDB } from '../../../actions/diaryFood'
 import { updateFoodSummary } from '../../../actions/diarySummary'
@@ -12,9 +8,7 @@ import { updateFoodSummary } from '../../../actions/diarySummary'
 class FoodEditModal extends React.Component {
   constructor(props) {
     super(props)
-    this.createPayloadAndUpdateToDB = this.createPayloadAndUpdateToDB.bind(
-      this,
-    )
+    this.createPayloadAndUpdateToDB = this.createPayloadAndUpdateToDB.bind(this)
   }
 
   createPayloadAndUpdateToDB = () => {
@@ -30,20 +24,17 @@ class FoodEditModal extends React.Component {
       serve: serve,
     }
     updateFoodOfDB(requestBody, id).then(
-      data => {
+      (data) => {
         this.props.close()
-        this.props.updateFoodSummary(
-          data,
-          this.props.amount,
-        )
+        this.props.updateFoodSummary(data, this.props.amount)
       },
-      error => {
+      (error) => {
         console.warn(error)
       },
     )
   }
 
-  handleUpdate = e => {
+  handleUpdate = (e) => {
     this.setState({
       updateAmountVal: e.target.value,
     })
@@ -55,29 +46,17 @@ class FoodEditModal extends React.Component {
   }
 
   // keydown 이벤트
-  handleKeyPress = e => {
+  handleKeyPress = (e) => {
     if (e.keyCode === 13) {
       this.createPayloadAndUpdateToDB()
     }
   }
 
   render() {
-    const {
-      open,
-      dimmer,
-      close,
-      name,
-      id,
-      amount,
-    } = this.props
+    const { open, dimmer, close, name, id, amount } = this.props
 
     return (
-      <Modal
-        dimmer={dimmer}
-        open={open}
-        onClose={close}
-        size="mini"
-      >
+      <Modal dimmer={dimmer} open={open} onClose={close} size="mini">
         <Modal.Content
           style={{
             padding: '21px 14px 0px 14px',
@@ -86,7 +65,7 @@ class FoodEditModal extends React.Component {
           <Modal.Header
             style={{
               textAlign: 'center',
-              fontWeight: '100',
+              fontWeight: '300',
               fontSize: '21px',
               borderBottom: '1px solid #e0e5ee',
               padding: '0px 0px 14px',
@@ -118,7 +97,7 @@ class FoodEditModal extends React.Component {
                 margin: '0px 0px 28px',
               }}
               placeholder="수정할 값을 적으세요"
-              onChange={e => this.handleUpdate(e)}
+              onChange={(e) => this.handleUpdate(e)}
               onKeyDown={this.handleKeyPress}
             />
           </Modal.Description>
@@ -129,21 +108,14 @@ class FoodEditModal extends React.Component {
             padding: '0px 14px 14px',
           }}
         >
-          <Button
-            fluid
-            content="취소"
-            onClick={close}
-            basic
-          />
+          <Button fluid content="취소" onClick={close} basic />
           <Button
             fluid
             style={{
               ...submitBtn,
               padding: '10px',
             }}
-            onClick={
-              this.createPayloadAndUpdateToDB
-            }
+            onClick={this.createPayloadAndUpdateToDB}
           >
             수정하기
           </Button>
@@ -153,23 +125,13 @@ class FoodEditModal extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     updateFoodOfDB: (requestBody, id) =>
       dispatch(updateFoodOfDB(requestBody, id)),
-    updateFoodSummary: (
-      modifiedData,
-      beforeAmount,
-    ) =>
-      dispatch(
-        updateFoodSummary(
-          modifiedData,
-          beforeAmount,
-        ),
-      ),
+    updateFoodSummary: (modifiedData, beforeAmount) =>
+      dispatch(updateFoodSummary(modifiedData, beforeAmount)),
   }
 }
 
-export default connect(null, mapDispatchToProps)(
-  FoodEditModal,
-)
+export default connect(null, mapDispatchToProps)(FoodEditModal)

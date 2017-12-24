@@ -10,8 +10,8 @@ import endPoint from '../../static/img/Step-Not_Completed.svg'
 // 공통 style 시작
 export const header = {
   fontSize: '28px',
-  fontWeight: '100',
-  fontFamily: 'Spoqa Han Sans',
+  fontWeight: '300',
+  fontFamily: "'NanumSquareRound', sans-serif",
   textAlign: 'left',
   color: '#16325C',
   marginBottom: '30px',
@@ -26,14 +26,13 @@ export const subHeader = {
 // 공통 style 끝
 
 export const weightAddBtn = {
-  backgroundImage:
-    ' linear-gradient(261deg, #485563, #29323c)',
+  backgroundImage: ' linear-gradient(261deg, #485563, #29323c)',
   color: '#fff',
-  fontWeight: '100',
+  fontWeight: '300',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  fontFamily: 'Spoqa Han Sans',
+  fontFamily: "'NanumSquareRound', sans-serif",
   padding: '9px',
 }
 

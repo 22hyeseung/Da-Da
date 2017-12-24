@@ -6,7 +6,7 @@ export const segment = {
 
 export const header = {
   fontSize: '28px',
-  fontWeight: '100',
+  fontWeight: '300',
   color: '#16325C',
 }
 
@@ -29,7 +29,7 @@ export const listItemElse = {
 
 export const listContent = {
   fontSize: '12px',
-  fontWeight: '100',
+  fontWeight: '300',
   color: '#a8b7c7',
 }
 
@@ -47,7 +47,7 @@ export const listContentKcal = {
 export const comment = {
   padding: '25px',
   textAlign: 'center',
-  fontWeight: '100',
+  fontWeight: '300',
   color: 'white',
   boxShadow: 'none',
   border: 'none',

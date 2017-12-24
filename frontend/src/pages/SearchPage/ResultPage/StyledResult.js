@@ -83,17 +83,16 @@ export const CardLabel = {
   height: '83px',
   position: 'absolute',
   top: '188px',
-  fontWeight: '100',
+  fontWeight: '300',
   fontSize: '14px',
   opacity: '0.7',
   borderRadius: '4px',
-  backgroundImage:
-    'linear-gradient(253deg, #485563, #29323c)',
+  backgroundImage: 'linear-gradient(253deg, #485563, #29323c)',
 }
 
 export const CardLabelHeader = {
   color: '#fff',
-  fontWeight: '100',
+  fontWeight: '300',
   position: 'absolute',
   top: '13.5px',
   left: '18px',

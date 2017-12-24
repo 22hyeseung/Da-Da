@@ -1,0 +1,39 @@
+@font-face {
+  font-family: NanumSquareRound;
+  font-weight: 300;
+  src: url(NanumSquareRoundL.eot); /* IE 호환성 보기 */
+  src: url(NanumSquareRoundL.eot#iefix) format('embedded-opentype'),
+    url(NanumSquareRoundL.woff) format('woff'),
+    url(NanumSquareRoundL.ttf) format('truetype'),
+    url(NanumSquareRoundL.svg#NanumSquareRoundL) format('svg'); /* 구 모바일 브라우저 */
+}
+
+@font-face {
+  font-family: NanumSquareRound;
+  font-weight: 400;
+  src: url(NanumSquareRoundR.eot); /* IE 호환성 보기 */
+  src: url(NanumSquareRoundR.eot#iefix) format('embedded-opentype'),
+    url(NanumSquareRoundR.woff) format('woff'),
+    url(NanumSquareRoundR.ttf) format('truetype'),
+    url(NanumSquareRoundR.svg#NanumSquareRoundR) format('svg'); /* 구 모바일 브라우저 */
+}
+
+@font-face {
+  font-family: NanumSquareRound;
+  font-weight: 700;
+  src: url(NanumSquareRoundB.eot); /* IE 호환성 보기 */
+  src: url(NanumSquareRoundB.eot#iefix) format('embedded-opentype'),
+    url(NanumSquareRoundB.woff) format('woff'),
+    url(NanumSquareRoundB.ttf) format('truetype'),
+    url(NanumSquareRoundB.svg#NanumSquareRoundB) format('svg'); /* 구 모바일 브라우저 */
+}
+
+@font-face {
+  font-family: NanumSquareRound;
+  font-weight: 800;
+  src: url(NanumSquareRoundEB.eot); /* IE 호환성 보기 */
+  src: url(NanumSquareRoundEB.eot#iefix) format('embedded-opentype'),
+    url(NanumSquareRoundEB.woff) format('woff'),
+    url(NanumSquareRoundEB.ttf) format('truetype'),
+    url(NanumSquareRoundEB.svg#NanumSquareRoundEB) format('svg'); /* 구 모바일 브라우저 */
+}

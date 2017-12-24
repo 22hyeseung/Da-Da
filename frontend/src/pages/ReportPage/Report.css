@@ -19,7 +19,7 @@
 .report-day {
   font-weight: 700;
   font-size: 18px;
-  font-family: 'Spoqa Han Sans';
+  font-family: 'NanumSquareRound', sans-serif;
 }
 
 /* subNav 끝 */
@@ -34,7 +34,7 @@
 .report-rate {
   font-size: 18px;
   color: #54698d;
-  font-weight: 100;
+  font-weight: 300;
   text-align: right;
   width: 46px;
 }

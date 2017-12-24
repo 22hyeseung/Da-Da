@@ -30,16 +30,19 @@ export const centerGrid = {
 }
 
 export const h1 = {
-  fontWeight: '100',
-  fontSize: '56px',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
+  fontSize: '28px',
+  lineHeight: '56px',
   margin: '0',
 }
 
 export const h2 = {
-  fontWeight: '100',
-  fontSize: '28px',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '400',
+  fontSize: '56px',
   margin: '0',
-  letterSpacing: '1.6px',
+  // letterSpacing: '1.6px',
 }
 
 export const headerGrid = {
@@ -47,8 +50,8 @@ export const headerGrid = {
 }
 
 export const h5 = {
-  width: '349px',
-  fontWeight: '100',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
   fontSize: '14px',
   margin: 'auto',
   lineHeight: '50px',

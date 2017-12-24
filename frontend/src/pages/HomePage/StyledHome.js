@@ -17,14 +17,14 @@ export const button = {
   backgroundColor: 'transparent',
   border: '1px solid rgba(255, 255, 255,.5)',
   color: '#fff',
-  fontWeight: '100',
+  fontWeight: '300',
 }
 export const header = {
   fontSize: '28px',
-  fontWeight: '100',
+  fontWeight: '300',
   color: '#16325C',
   marginBottom: '42px',
-  fontFamily: 'Spoqa Han Sans',
+  fontFamily: "'NanumSquareRound', sans-serif",
 }
 
 export const subHeader = {
@@ -80,17 +80,16 @@ export const lastMsg = {
 
 export const submitBtn = {
   color: 'white',
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
   padding: '10px 34px',
-  backgroundImage:
-    'linear-gradient(249deg, #485563, #29323c)',
+  backgroundImage: 'linear-gradient(249deg, #485563, #29323c)',
   marginRight: '0px',
 }
 
 export const cancleBtn = {
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
   padding: '10px 34px',
 }
 
@@ -110,11 +109,10 @@ export const modalAvatar = {
 
 export const fakeSubmitBtn = {
   color: 'white',
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
   padding: '10px 34px',
-  backgroundImage:
-    'linear-gradient(250deg, #26d0ce, #1a2980)',
+  backgroundImage: 'linear-gradient(250deg, #26d0ce, #1a2980)',
   marginRight: '0px',
   boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.5)',
 }

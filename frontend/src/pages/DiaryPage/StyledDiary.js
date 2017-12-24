@@ -9,10 +9,10 @@ import reviewIconWhite from '../../static/img/diary-review_w.svg'
 // 공통 스타일 시작
 export const header = {
   fontSize: '28px',
-  fontWeight: '100',
+  fontWeight: '300',
   color: '#16325C',
   marginBottom: '42px',
-  fontFamily: 'Spoqa Han Sans',
+  fontFamily: "'NanumSquareRound', sans-serif",
 }
 
 export const subHeader = {
@@ -29,18 +29,15 @@ export const segmentDefault = {
 }
 
 export const cancelBtn = {
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontWeight: '300',
   padding: '10px 34px',
 }
 
 export const submitBtn = {
   color: 'white',
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontWeight: '300',
   padding: '10px 34px',
-  backgroundImage:
-    'linear-gradient(249deg, #485563, #29323c)',
+  backgroundImage: 'linear-gradient(249deg, #485563, #29323c)',
   marginRight: '0px',
 }
 // 공통 스타일 끝
@@ -54,10 +51,9 @@ export const calorieGoal = {
   margin: '0px',
   boxShadow: 'none',
   border: 'none',
-  fontWeight: '100',
+  fontWeight: '300',
   color: '#fff',
-  backgroundImage:
-    'linear-gradient(216deg, #26d0ce, #1a2980)',
+  backgroundImage: 'linear-gradient(216deg, #26d0ce, #1a2980)',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -69,12 +65,11 @@ export const defaultTabStyle = {
 
 export const activeTabStyle = {
   ...defaultTabStyle,
-  backgroundImage:
-    'linear-gradient(263deg, #485563, #29323c)',
+  backgroundImage: 'linear-gradient(263deg, #485563, #29323c)',
 }
 
 export const defaultFontStyle = {
-  fontWeight: '100',
+  fontWeight: '300',
   color: '#16325c',
 }
 

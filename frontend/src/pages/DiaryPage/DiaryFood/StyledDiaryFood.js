@@ -16,7 +16,7 @@ export const currentKcal = {
   height: '25px',
   borderRadius: '43px',
   padding: '4px 26px',
-  fontWeight: '100',
+  fontWeight: '300',
   fontSize: '14px',
   lineHeight: 'inherit',
   backgroundColor: 'rgba(245,244,240,0.86)',
@@ -33,7 +33,7 @@ export const addBtn = {
   fontWeight: '200',
   display: 'flex',
   alignItems: 'center',
-  fontFamily: 'Spoqa Han Sans',
+  fontFamily: "'NanumSquareRound', sans-serif",
 }
 
 // food tab view 컴포넌트 끝
@@ -42,7 +42,7 @@ export const addBtn = {
 export const searchLabel = {
   backgroundColor: 'white',
   borderTop: '1px solid #D8DDE6',
-  fontFamily: 'Spoqa Han Sans',
+  fontFamily: "'NanumSquareRound', sans-serif",
 }
 
 export const modalGrid = {
@@ -84,8 +84,8 @@ export const modalThirdGrid = {
 }
 
 export const modalThirdGridHeader = {
-  fontFamily: 'Spoqa Han Sans',
-  fontWeight: '100',
+  fontFamily: "'NanumSquareRound', sans-serif",
+  fontWeight: '300',
   textAlign: 'center',
   marginTop: '7px',
   paddingBottom: '14px',
@@ -135,7 +135,7 @@ export const albumCard = {
 export const albumLabel = {
   backgroundColor: 'rgba(22, 50, 92, 0.7)',
   color: '#fff',
-  fontWeight: '100',
+  fontWeight: '300',
 }
 
 export const albumCardLabelTop = {
@@ -180,7 +180,7 @@ export const searchResultList = {
 
 export const searchDefaultMsg = {
   color: '#a8b7c7',
-  fontWeight: '100',
+  fontWeight: '300',
   marginTop: '10px',
 }
 
@@ -207,7 +207,7 @@ export const errorIcon = {
 
 export const noResultMsg = {
   color: '#a8b7c7',
-  fontWeight: '100',
+  fontWeight: '300',
   display: 'block',
 }
 

@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
 import * as Style from './StyledHome'
-import {
-  Button,
-  Grid,
-  Form,
-  Radio,
-  Modal,
-  Image,
-} from 'semantic-ui-react'
+import { Button, Grid, Form, Radio, Modal, Image } from 'semantic-ui-react'
 import './Home.css'
 import { connect } from 'react-redux'
 import { postUserInfo } from '../../actions/auth'
@@ -47,7 +40,7 @@ class HomeFirstUserInfo extends Component {
   }
 
   // 생일을 받는 핸들러
-  handleBirthChange = e => {
+  handleBirthChange = (e) => {
     this.setState({ birth: e.target.value })
     if (e.target.value > 0)
       this.setState({
@@ -56,7 +49,7 @@ class HomeFirstUserInfo extends Component {
   }
 
   // 목표체중 받는 핸들러
-  handleGoalWeightChange = e => {
+  handleGoalWeightChange = (e) => {
     this.setState({ goal_weight: e.target.value })
     if (e.target.value > 0)
       this.setState({
@@ -65,7 +58,7 @@ class HomeFirstUserInfo extends Component {
   }
 
   // 목표칼로리 받는 핸들러
-  handleGoalKcalChange = e => {
+  handleGoalKcalChange = (e) => {
     this.setState({
       recommend_kcal: e.target.value,
     })
@@ -76,7 +69,7 @@ class HomeFirstUserInfo extends Component {
   }
 
   // 키를 받는 핸들러
-  handleHeightChange = e => {
+  handleHeightChange = (e) => {
     this.setState({ height: e.target.value })
     if (e.target.value > 0)
       this.setState({
@@ -85,7 +78,7 @@ class HomeFirstUserInfo extends Component {
   }
 
   // 몸무게를 받는 핸들러
-  handleWeightChange = e => {
+  handleWeightChange = (e) => {
     this.setState({ kg: e.target.value })
     if (e.target.value > 0)
       this.setState({
@@ -105,8 +98,7 @@ class HomeFirstUserInfo extends Component {
   }
 
   // 모달 사이즈, toggle 함수
-  show = size => () =>
-    this.setState({ size, open: true })
+  show = (size) => () => this.setState({ size, open: true })
   close = () => this.setState({ open: false })
 
   createPayloadAndPostToDB = () => {
@@ -153,11 +145,11 @@ class HomeFirstUserInfo extends Component {
     this.props
       .postUserInfoToDB(userData)
       .then(
-        text => {
+        (text) => {
           console.log(text)
           this.close()
         },
-        error => {
+        (error) => {
           console.warn(error)
         },
       )
@@ -166,22 +158,14 @@ class HomeFirstUserInfo extends Component {
 
   render() {
     const { open, size } = this.state
-    const {
-      gender,
-      height,
-      birth,
-      kg,
-      disabled,
-    } = this.state
+    const { gender, height, birth, kg, disabled } = this.state
 
     const { userInfo } = this.props
     // BMI 권장 체중 계산식
     const BMIweight =
       gender === '여자'
-        ? (Math.pow(height / 100, 2) * 21
-          ).toFixed(2)
-        : (Math.pow(height / 100, 2) * 22
-          ).toFixed(2)
+        ? (Math.pow(height / 100, 2) * 21).toFixed(2)
+        : (Math.pow(height / 100, 2) * 22).toFixed(2)
 
     const today = new Date()
     const todayYear = today.getFullYear()
@@ -189,14 +173,8 @@ class HomeFirstUserInfo extends Component {
 
     const BEEkcal =
       gender === '여자'
-        ? 65.51 +
-          9.56 * kg +
-          1.85 * height -
-          4.68 * age
-        : 66.47 +
-          9.56 * kg +
-          1.85 * height -
-          4.68 * age
+        ? 65.51 + 9.56 * kg + 1.85 * height - 4.68 * age
+        : 66.47 + 9.56 * kg + 1.85 * height - 4.68 * age
 
     return (
       <div className="home-userInfo">
@@ -225,8 +203,8 @@ class HomeFirstUserInfo extends Component {
                 opacity: '0.73',
               }}
             >
-              더 나은 이용을 위해서는 {userInfo.userName}님의
-              기본 정보가 필요합니다.
+              더 나은 이용을 위해서는 {userInfo.userName}님의 기본 정보가
+              필요합니다.
             </span>
             <div style={{ marginTop: '28px' }}>
               <Form style={Style.form}>
@@ -237,9 +215,7 @@ class HomeFirstUserInfo extends Component {
                     name="radioGroup"
                     value="여자"
                     checked={gender === '여자'}
-                    onChange={
-                      this.handleGenderChange
-                    }
+                    onChange={this.handleGenderChange}
                   />
                 </Form.Field>
                 <Form.Field>
@@ -249,57 +225,39 @@ class HomeFirstUserInfo extends Component {
                     name="radioGroup"
                     value="남자"
                     checked={gender === '남자'}
-                    onChange={
-                      this.handleGenderChange
-                    }
+                    onChange={this.handleGenderChange}
                   />
                 </Form.Field>
               </Form>
               <Form>
-                <Form.Field
-                  required
-                  className="home-userInfo-label"
-                >
+                <Form.Field required className="home-userInfo-label">
                   <label>생년월일</label>
                   <input
                     type="number"
                     placeholder="(YYYYMMDD) 형식으로 입력해주세요"
-                    onChange={
-                      this.handleBirthChange
-                    }
+                    onChange={this.handleBirthChange}
                   />
                 </Form.Field>
                 <div
                   style={{
                     display: 'flex',
-                    justifyContent:
-                      'space-between',
+                    justifyContent: 'space-between',
                   }}
                 >
-                  <Form.Field
-                    required
-                    className="home-userInfo-label"
-                  >
+                  <Form.Field required className="home-userInfo-label">
                     <label>키</label>
                     <input
                       type="number"
                       placeholder="cm"
-                      onChange={
-                        this.handleHeightChange
-                      }
+                      onChange={this.handleHeightChange}
                     />
                   </Form.Field>
-                  <Form.Field
-                    required
-                    className="home-userInfo-label"
-                  >
+                  <Form.Field required className="home-userInfo-label">
                     <label>현재 체중</label>
                     <input
                       type="number"
                       placeholder="kg"
-                      onChange={
-                        this.handleWeightChange
-                      }
+                      onChange={this.handleWeightChange}
                     />
                   </Form.Field>
                 </div>
@@ -312,9 +270,7 @@ class HomeFirstUserInfo extends Component {
                   <input
                     type="number"
                     placeholder="kg"
-                    onChange={
-                      this.handleGoalWeightChange
-                    }
+                    onChange={this.handleGoalWeightChange}
                   />
                 </Form.Field>
                 <Form.Field>
@@ -337,23 +293,19 @@ class HomeFirstUserInfo extends Component {
                   <input
                     type="number"
                     placeholder="kcal"
-                    onChange={
-                      this.handleGoalKcalChange
-                    }
+                    onChange={this.handleGoalKcalChange}
                   />
                 </Form.Field>
                 <Form.Field>
-                  {BEEkcal < 0 ||
-                  !height ||
-                  !kg ? (
+                  {BEEkcal < 0 || !height || !kg ? (
                     <span
                       style={{
                         color: '#26d0ce',
                         fontSize: '12px',
                       }}
                     >
-                      {userInfo.userName}님의 권장
-                      칼로리는 0kcal입니다. (BEE 기준)
+                      {userInfo.userName}님의 권장 칼로리는 0kcal입니다. (BEE
+                      기준)
                     </span>
                   ) : (
                     <span
@@ -362,10 +314,8 @@ class HomeFirstUserInfo extends Component {
                         fontSize: '12px',
                       }}
                     >
-                      {userInfo.userName}님의 하루 권장
-                      칼로리는
-                      {BEEkcal.toFixed(2)}kcal입니다.
-                      (BEE 기준)
+                      {userInfo.userName}님의 하루 권장 칼로리는
+                      {BEEkcal.toFixed(2)}kcal입니다. (BEE 기준)
                     </span>
                   )}
                 </Form.Field>
@@ -384,15 +334,11 @@ class HomeFirstUserInfo extends Component {
                     입장하기
                   </Button>
 
-                  <Modal
-                    size={size}
-                    open={open}
-                    onClose={this.close}
-                  >
+                  <Modal size={size} open={open} onClose={this.close}>
                     <Modal.Header
                       style={{
                         textAlign: 'center',
-                        fontWeight: '100',
+                        fontWeight: '300',
                       }}
                     >
                       <Image
@@ -415,95 +361,41 @@ class HomeFirstUserInfo extends Component {
                         justifyContent: 'center',
                       }}
                     >
-                      <Modal.Description
-                        style={
-                          Style.modalDescription
-                        }
-                      >
+                      <Modal.Description style={Style.modalDescription}>
                         <ul
                           style={{
                             listStyle: 'none',
                           }}
                         >
                           <li style={Style.list}>
-                            <span
-                              style={
-                                Style.listLabel
-                              }
-                            >
-                              성별
-                            </span>
+                            <span style={Style.listLabel}>성별</span>
                             <span>{gender}</span>
                           </li>
                           <li style={Style.list}>
-                            <span
-                              style={
-                                Style.listLabel
-                              }
-                            >
-                              생일
-                            </span>
+                            <span style={Style.listLabel}>생일</span>
                             <span>{birth}</span>
                           </li>
                           <li style={Style.list}>
-                            <span
-                              style={
-                                Style.listLabel
-                              }
-                            >
-                              키
-                            </span>
+                            <span style={Style.listLabel}>키</span>
                             <span>{height}</span>
                           </li>
                           <li style={Style.list}>
-                            <span
-                              style={
-                                Style.listLabel
-                              }
-                            >
-                              현재 체중
-                            </span>
+                            <span style={Style.listLabel}>현재 체중</span>
                             <span>{kg}</span>
                           </li>
                           <li style={Style.list}>
-                            <span
-                              style={
-                                Style.listLabel
-                              }
-                            >
-                              목표 체중
-                            </span>
-                            <span>
-                              {
-                                this.state
-                                  .goal_weight
-                              }
-                            </span>
+                            <span style={Style.listLabel}>목표 체중</span>
+                            <span>{this.state.goal_weight}</span>
                           </li>
                           <li style={Style.list}>
-                            <span
-                              style={
-                                Style.listLabel
-                              }
-                            >
-                              목표 칼로리
-                            </span>
-                            <span>
-                              {
-                                this.state
-                                  .recommend_kcal
-                              }
-                            </span>
+                            <span style={Style.listLabel}>목표 칼로리</span>
+                            <span>{this.state.recommend_kcal}</span>
                           </li>
                         </ul>
-                        <p style={Style.lastMsg}>
-                          작성하신 정보가 확실한가요?
-                        </p>
+                        <p style={Style.lastMsg}>작성하신 정보가 확실한가요?</p>
                       </Modal.Description>
                     </div>
-                    <Modal.Content
-                      style={{ display: 'flex' }}
-                    >
+                    <Modal.Content style={{ display: 'flex' }}>
                       <Button
                         basic
                         fluid
@@ -516,10 +408,7 @@ class HomeFirstUserInfo extends Component {
                         disabled={disabled}
                         fluid
                         style={Style.submitBtn}
-                        onClick={
-                          this
-                            .createPayloadAndPostToDB
-                        }
+                        onClick={this.createPayloadAndPostToDB}
                       >
                         입장하기
                       </Button>
@@ -536,10 +425,7 @@ class HomeFirstUserInfo extends Component {
               justifyContent: 'flex-end',
             }}
           >
-            <img
-              src={introImg}
-              alt="intro 이미지입니다."
-            />
+            <img src={introImg} alt="intro 이미지입니다." />
           </Grid.Column>
         </Grid>
       </div>
@@ -547,17 +433,13 @@ class HomeFirstUserInfo extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   userInfo: state.auth.userInfo,
   dateState: state.today.date,
 })
 
-const mapDispatchtoProps = dispatch => ({
-  postUserInfoToDB: payload =>
-    dispatch(postUserInfo(payload)),
+const mapDispatchtoProps = (dispatch) => ({
+  postUserInfoToDB: (payload) => dispatch(postUserInfo(payload)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchtoProps,
-)(HomeFirstUserInfo)
+export default connect(mapStateToProps, mapDispatchtoProps)(HomeFirstUserInfo)
