@@ -39,8 +39,8 @@ export const h1 = {
 
 export const h2 = {
   fontFamily: "'NanumSquareRound', sans-serif",
-  fontWeight: '400',
-  fontSize: '56px',
+  fontWeight: '300',
+  fontSize: '58px',
   margin: '0',
   // letterSpacing: '1.6px',
 }
