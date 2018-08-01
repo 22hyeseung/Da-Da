@@ -103,14 +103,9 @@
 - React-Router
 - Redux
 - CSS
-
-<br>
-
-**1.1) Framework**
-
-- [Semantic-ui-react](https://react.semantic-ui.com/) (CSS Framework)
-- [Draft.js](https://draftjs.org/) (Text editor Framework)
-- [recharts.js](http://recharts.org/#/en-US) (Chart Framework)
+- [Semantic-ui-react](https://react.semantic-ui.com/) (UI Component)
+- [Draft.js](https://draftjs.org/) (Text editor framework)
+- [recharts.js](http://recharts.org/#/en-US) (Chart)
 
 <br>
 
