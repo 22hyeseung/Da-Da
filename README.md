@@ -110,7 +110,7 @@
 <br>
 
 **2) Network**
-- fetch API
+- fetch (Native API)
 
 <br>
 
