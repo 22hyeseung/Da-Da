@@ -165,7 +165,7 @@
 
 <br>
 
-**6) Error Reporting Manager**
+**6) Bug Reporting Manager**
 - BugSnag
 
 <br>
