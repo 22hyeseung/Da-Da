@@ -296,6 +296,7 @@
 
 #### 6) 프론트엔드 구현 상세 소개
 
+- https://github.com/huusz/Da-Da/blob/master/static/Dada-frontend-implement-details.pdf
 
 ## All Links
 
