@@ -22,7 +22,7 @@ class Root extends Component {
             </Helmet>
             <Switch>
               {/* intro페이지 & 네비게이션 없는 페이지 */}
-              <Route path="/login" component={LoginPage} />
+              {/* <Route path="/login" component={LoginPage} /> */}
               {/* 서비스 페이지 (로그인 이후 접근 가능) & 네비게이션 있는 페이지*/}
               <Route path="/share" component={SharePage} />
               <Route path="/" component={App} />
